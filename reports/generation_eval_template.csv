@@ -1,0 +1,51 @@
+query,is_offtopic,mode,intent,citations,citation_valid_ratio,citation_in_context_ratio,hallucination,groundedness_ngram,relevancy,refusal,response_chars
+Docker là gì và dùng để làm gì?,0,template,definition,0,,,0,0.41975308641975306,0.3333333333333333,0,1353
+Khoa học dữ liệu nên học gì trước cho người mới?,0,template,recommend,0,,,0,0.3905882352941176,0.875,0,4533
+Linux cron job hoạt động thế nào?,0,template,definition,0,,,0,0.4626865671641791,0.8571428571428571,0,1414
+SQL JOIN có mấy loại và khác nhau thế nào?,0,template,comparison,0,,,0,0.5604395604395604,1.0,0,1384
+An ninh mạng học lộ trình thế nào cho người mới?,0,template,career_path,0,,,0,0.4797979797979798,1.0,0,3527
+Python với Java khác nhau ra sao khi chọn học?,0,template,comparison,0,,,0,0.43478260869565216,0.4444444444444444,0,1740
+React state hook hoạt động thế nào?,0,template,definition,0,,,0,0.4541832669322709,0.14285714285714285,0,1326
+Git merge với rebase khác gì nhau?,0,template,answer,0,,,0,0.3115264797507788,1.0,0,3697
+Kubernetes triển khai microservices cần biết gì?,0,template,answer,0,,,0,0.34388489208633094,1.0,0,4074
+Thread và process trong hệ điều hành khác nhau thế nào?,0,template,comparison,0,,,0,0.4652567975830816,0.5555555555555556,0,1794
+Machine Learning loss function là gì?,0,template,definition,0,,,0,0.42857142857142855,1.0,0,1606
+Học HTML CSS tuần đầu nên làm gì?,0,template,answer,0,,,0,0.341991341991342,1.0,0,3808
+TCP và UDP trong mạng máy tính khác gì nhau?,0,template,comparison,0,,,0,0.5021834061135371,0.625,0,2355
+Pentest (kiểm thử xâm nhập) bắt đầu chuẩn như thế nào?,0,template,answer,0,,,0,0.322237017310253,1.0,0,4257
+NLP pipeline cơ bản gồm những bước nào?,0,template,learning_path,0,,,0,0.30503795721187027,1.0,0,8059
+Phân tích dữ liệu bằng Excel nên học từ đâu?,0,template,career_path,0,,,0,0.4492481203007519,0.625,0,2851
+Làm sao học AWS cho quản trị hệ thống hiệu quả?,0,template,answer,0,,,0,0.3391812865497076,1.0,0,3851
+Khi nào nên dùng NoSQL và cần lưu ý gì?,0,template,definition,0,,,0,0.4444444444444444,1.0,0,1408
+Học computer vision cho người mới nên bắt đầu thế nào?,0,template,answer,0,,,0,0.3662714097496706,1.0,0,4340
+Soft skill nào quan trọng cho software engineer?,0,template,answer,0,,,0,0.38324175824175827,1.0,0,4168
+Sự khác biệt giữa TensorFlow và PyTorch?,0,template,answer,0,,,0,0.3422712933753943,1.0,0,3660
+Cách thiết kế API REST an toàn và rõ ràng?,0,template,answer,0,,,0,0.33518005540166207,1.0,0,3962
+Học lập trình mobile nên chọn Android hay iOS trước?,0,template,answer,0,,,0,0.34610123119015046,1.0,0,4138
+Vì sao DevOps giúp triển khai phần mềm nhanh hơn?,0,template,definition,0,,,0,0.3888888888888889,1.0,0,1589
+Hướng dẫn tự học Python từ con số không?,0,template,answer,0,,,0,0.35502958579881655,1.0,0,3690
+Cách viết CV xin việc IT cho fresher?,0,template,answer,0,,,0,0.3796940194714882,1.0,0,3912
+Cloud computing có mấy loại dịch vụ chính?,0,template,answer,0,,,0,0.32763532763532766,1.0,0,3881
+MongoDB và PostgreSQL nên chọn loại nào?,0,template,answer,0,,,0,0.3242009132420091,1.0,0,3751
+Kiểm thử phần mềm unit test nên làm thế nào?,0,template,answer,0,,,0,0.32894736842105265,1.0,0,4298
+Nấu cháo gà sao cho đậm đà và không bị cháy?,1,template,answer,0,,,0,0.3963210702341137,1.0,0,3225
+Đội tuyển bóng đá Việt Nam giao hữu gần đây đấu ra sao?,1,template,answer,0,,,0,0.38497652582159625,1.0,0,3495
+Cách chọn táo nhập khẩu sạch và an toàn cho gia đình?,1,template,answer,0,,,0,0.3941267387944359,1.0,0,3520
+Du lịch Đà Nẵng nên đi mùa nào là lý tưởng nhất?,1,template,answer,0,,,0,0.3703099510603589,1.0,0,3386
+Cảm cúm nên uống thuốc gì và ăn gì cho nhanh khỏi?,1,template,answer,0,,,0,0.3729071537290715,1.0,0,3515
+Chính trị đảng Mỹ vận hành thế nào cho người mới tìm hiểu?,1,template,answer,0,,,0,0.3892128279883382,1.0,0,3895
+Hướng dẫn nuôi cá vàng sinh sống được vài năm?,1,template,answer,0,,,0,0.36795252225519287,1.0,0,3703
+Chứng khoán Việt Nam nên đầu tư thời điểm nào?,1,template,answer,0,,,0,0.35394126738794435,1.0,0,3561
+Lời bài hát về tình yêu đã xa cảm động?,1,template,answer,0,,,0,0.3744075829383886,1.0,0,3453
+Cách vượt khỏi khủng hoảng tình cảm sau chia tay?,1,template,answer,0,,,0,0.35441176470588237,1.0,0,3758
+Dinh dưỡng áp dụng cho con 7 tháng cần bổ sung gì?,1,template,answer,0,,,0,0.3784570596797671,1.0,0,3719
+Quy định giao thông đường bộ mới nhất về đi xe máy?,1,template,answer,0,,,0,0.3850574712643678,1.0,0,3710
+Cách học toán hình học lớp 10 thích thú thật?,1,template,answer,0,,,0,0.4042904290429043,1.0,0,3320
+Nên trồng cây gì trong phòng giúp không khí trong lành?,1,template,answer,0,,,0,0.3273001508295626,1.0,0,3696
+Xu hướng thời trang thu đông cho nam giới?,1,template,answer,0,,,0,0.3922480620155039,1.0,0,3533
+Cách pha cà phê muối ngon đúng chuẩn?,1,template,answer,0,,,0,0.37518463810930575,1.0,0,3774
+Đạo nhảy hiện đại của Kpop học ở đâu?,1,template,answer,0,,,0,0.36786786786786785,1.0,0,3769
+Cách làm mì Ý sốt bò bằm chuẩn vị?,1,template,answer,0,,,0,0.3689759036144578,1.0,0,3709
+Mở tiệm trà sữa nên vốn bao nhiêu cho khởi đầu?,1,template,answer,0,,,0,0.4178082191780822,1.0,0,3951
+Chăm sóc chó con 2 tháng tuổi cần biết gì?,1,template,answer,0,,,0,0.34355828220858897,1.0,0,3583
+Yoga buổi sáng cho người cao tuổi nên tập thế nào?,1,template,answer,0,,,0,0.40813253012048195,1.0,0,3703

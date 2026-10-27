@@ -1,0 +1,122 @@
+query,label,note
+Docker là gì và dùng để làm gì?,1,hand-curated IT query
+Kubernetes dùng để quản lý cụm container như thế nào?,1,hand-curated IT query
+Linux cron job tạo và kiểm tra thế nào?,1,hand-curated IT query
+Bash script để sao lưu tự động viết ra sao?,1,hand-curated IT query
+SSH key không hoạt động cần kiểm tra gì?,1,hand-curated IT query
+Firewall iptables chặn port thế nào?,1,hand-curated IT query
+Nginx load balancing cấu hình ra sao?,1,hand-curated IT query
+Ubuntu LTS nâng cấp từ bản cũ thế nào cho an toàn?,1,hand-curated IT query
+AWS EC2 định cỡ instance hợp lý thế nào?,1,hand-curated IT query
+Terraform infrastructure as code nên học từ đâu?,1,hand-curated IT query
+Kafka đảm bảo message không mất bằng cách nào?,1,hand-curated IT query
+Redis cache invalidation làm thế nào đúng?,1,hand-curated IT query
+SQL query chạy chậm tối ưu thế nào?,1,hand-curated IT query
+Index từng phần và full index khác nhau ra sao?,1,hand-curated IT query
+PostgreSQL backup và restore thực hiện thế nào?,1,hand-curated IT query
+MongoDB schema thiết kế trong trường hợp nào hợp lý?,1,hand-curated IT query
+MySQL replication thiết lập ra sao?,1,hand-curated IT query
+Python list comprehension chạy nhanh hơn vòng lặp nhờ gì?,1,hand-curated IT query
+Python virtual environment quản lý package thế nào?,1,hand-curated IT query
+Pandas groupby tối ưu bộ nhớ ra sao?,1,hand-curated IT query
+NumPy broadcasting hoạt động thế nào?,1,hand-curated IT query
+Machine Learning overfitting phát hiện thế nào?,1,hand-curated IT query
+Cross-validation trong ML dùng ra sao?,1,hand-curated IT query
+Random Forest khác Gradient Boosting ở điểm nào?,1,hand-curated IT query
+Deep Learning cần GPU khi nào và tại sao?,1,hand-curated IT query
+NLP hỏi đáp dựa trên transformer học thế nào?,1,hand-curated IT query
+Computer Vision phân loại ảnh nên bắt đầu thế nào?,1,hand-curated IT query
+TensorFlow chạy model trên mobile thế nào?,1,hand-curated IT query
+PyTorch DataLoader chậm thì tối ưu ra sao?,1,hand-curated IT query
+JavaScript event loop chạy thế nào?,1,hand-curated IT query
+React useEffect cleanup khi nào cần?,1,hand-curated IT query
+TypeScript giảm lỗi type ở runtime kiểu gì?,1,hand-curated IT query
+Node.js non-blocking I/O hoạt động ra sao?,1,hand-curated IT query
+CSS Grid bố cục khác Flexbox thế nào?,1,hand-curated IT query
+API REST thiết kế version đúng cách thế nào?,1,hand-curated IT query
+GraphQL khác REST tốt ở trường hợp nào?,1,hand-curated IT query
+WebSocket chat realtime dựng thế nào?,1,hand-curated IT query
+HTML semantic giúp SEO thế nào?,1,hand-curated IT query
+Unit test nên đặt ranh giới thế nào?,1,hand-curated IT query
+Xử lý conflict khi Git rebase trong nhóm thế nào?,1,hand-curated IT query
+Git hook chạy lint tự động ra sao?,1,hand-curated IT query
+CI/CD pipeline gồm những giai đoạn nào?,1,hand-curated IT query
+Docker compose khai báo multi-service thế nào?,1,hand-curated IT query
+DevOps SRE quy trình incident hợp lý thế nào?,1,hand-curated IT query
+Mạng máy tính NAT hoạt động thế nào?,1,hand-curated IT query
+TCP handshake ba bước gồm những gì?,1,hand-curated IT query
+DNS record loại nào dùng cho gì?,1,hand-curated IT query
+VPN doanh nghiệp thiết lập bảo mật ra sao?,1,hand-curated IT query
+Cybersecurity OWASP top 10 gồm những nguy cơ nào?,1,hand-curated IT query
+Báo cáo pentest viết theo format chuẩn thế nào?,1,hand-curated IT query
+SQL injection phòng chống thế nào trong code?,1,hand-curated IT query
+Mã hóa bất đối xứng hoạt động thế nào?,1,hand-curated IT query
+Quản lý encryption key bằng KMS ra sao?,1,hand-curated IT query
+Trạng thái app Android lưu bền vững thế nào?,1,hand-curated IT query
+iOS development tương thích các thiết bị thế nào?,1,hand-curated IT query
+Flutter cross-platform có nhược điểm gì?,1,hand-curated IT query
+React Native hiệu năng chênh native lúc nào?,1,hand-curated IT query
+Phân tích dữ liệu Excel pivot thường dùng ra sao?,1,hand-curated IT query
+Data engineering ETL pipeline nên thiết kế thế nào?,1,hand-curated IT query
+Big data Spark xử lý batch thế nào?,1,hand-curated IT query
+Nấu cháo gà sao cho đậm đà không bị cháy?,0,hand-curated off-topic query
+Cách chọn táo nhập khẩu sạch cho gia đình?,0,hand-curated off-topic query
+Du lịch Đà Nẵng nên đi mùa nào là đẹp nhất?,0,hand-curated off-topic query
+Chứng khoán Việt Nam nên đầu tư thời điểm nào?,0,hand-curated off-topic query
+Chương trình hỗ trợ công an về giấy tờ mới nhất?,0,hand-curated off-topic query
+Chính trị đảng Mỹ vận hành thế nào cho người mới?,0,hand-curated off-topic query
+Cảm cúm nên uống thuốc gì nhanh khỏi?,0,hand-curated off-topic query
+Dinh dưỡng cho trẻ 7 tháng nên bổ sung gì?,0,hand-curated off-topic query
+Cách pha cà phê muối ngon đúng chuẩn?,0,hand-curated off-topic query
+Trồng cây gì trong phòng giúp không khí sạch?,0,hand-curated off-topic query
+Xu hướng thời trang thu đông cho nam giới?,0,hand-curated off-topic query
+Chăm sóc chó con 2 tháng tuổi cần biết gì?,0,hand-curated off-topic query
+Yoga buổi sáng cho người cao tuổi tập thế nào?,0,hand-curated off-topic query
+Lời bài hát về tình yêu đã xa cảm động?,0,hand-curated off-topic query
+Tự học vẽ tranh sơn dầu ở tuổi trưởng thành thế nào?,0,hand-curated off-topic query
+Rửa chén dùng muối rửa bát có hiệu quả không?,0,hand-curated off-topic query
+Cách vượt khỏi khủng hoảng tình cảm sau chia tay?,0,hand-curated off-topic query
+Đội tuyển bóng đá Việt Nam giao hữu ra sao?,0,hand-curated off-topic query
+Bóng đá World Cup lịch thi đấu thế nào?,0,hand-curated off-topic query
+NBA mùa mới đội nào mạnh nhất?,0,hand-curated off-topic query
+Quy định giao thông đường bộ về đi xe máy?,0,hand-curated off-topic query
+Mở tiệm trà sữa khởi đầu nên vốn bao nhiêu?,0,hand-curated off-topic query
+Nhạc EDM lướt thị trường mấy năm gần đây phát triển thế nào?,0,hand-curated off-topic query
+Cách làm mì Ý sốt bò bằm chuẩn vị?,0,hand-curated off-topic query
+Chương trình đại học ngành văn học nước ngoài học thế nào?,0,hand-curated off-topic query
+Tìm hiểu lịch sử triều Nguyễn nổi bật thế nào?,0,hand-curated off-topic query
+Cách làm bánh softer cho trẻ 2 tuổi?,0,hand-curated off-topic query
+Chọn trường mẫu giáo cho bé cần xem gì?,0,hand-curated off-topic query
+Đi cắm trại núi Bà Đen cần mang gì?,0,hand-curated off-topic query
+Bảo hiểm y tế gia đình dùng ra sao?,0,hand-curated off-topic query
+Chi phí xây nhà cấp 4 trọn gói là bao?,0,hand-curated off-topic query
+Hợp đồng thuê nhà nên hạn chế gì rủi ro?,0,hand-curated off-topic query
+Thủ tục ly hôn đơn phương thế nào?,0,hand-curated off-topic query
+Người sợ kim tiêm có nên hiến máu không?,0,hand-curated off-topic query
+Lốp xe ô tô thay khi nào đúng hạn?,0,hand-curated off-topic query
+Mua xe máy trả góp lãi suất thế nào cho hợp lý?,0,hand-curated off-topic query
+Hoa hồng thường tưới nước thế nào cho hoa nở?,0,hand-curated off-topic query
+Nuôi cá vàng làm thế nào cho sống lâu?,0,hand-curated off-topic query
+Con đường để vào đội tuyển bóng chuyền là gì?,0,hand-curated off-topic query
+Nghề barista có tương lai không?,0,hand-curated off-topic query
+Nghiệp dư tự học cắt tóc cơ bản thế nào?,0,hand-curated off-topic query
+Vụ lúa mùa xuân khi nào gặt thu hoạch?,0,hand-curated off-topic query
+Cây trầu bà thủy sinh sống trong nước ra sao?,0,hand-curated off-topic query
+Nhựa tái chế dùng hộp cơm có an toàn không?,0,hand-curated off-topic query
+Trẻ trầm cảm phụ huynh nên đối xử thế nào?,0,hand-curated off-topic query
+Kinh doanh online trên Facebook đặt quảng cáo ra sao?,0,hand-curated off-topic query
+Kênh YouTube mới muốn phát triển cần làm thế nào?,0,hand-curated off-topic query
+Cua rang me làm thế nào cho chuẩn vị?,0,hand-curated off-topic query
+Cuối tuần chơi bóng bàn nên đến nơi nào?,0,hand-curated off-topic query
+Tinh dầu trầm hương giúp ngủ ngon không?,0,hand-curated off-topic query
+Lồng chim chào mào nên chọn thế nào?,0,hand-curated off-topic query
+Nghề hàn điện cần tuân thủ an toàn gì?,0,hand-curated off-topic query
+Học pha chế cà phê phin để mở tiệm thế nào?,0,hand-curated off-topic query
+Sửa chiếc xe đạp leo núi bị kêu khục khục thế nào?,0,hand-curated off-topic query
+Uống nước chanh mật ong có tiêu mỡ không?,0,hand-curated off-topic query
+Thời điểm nào nên tưới cây trong ngày nóng?,0,hand-curated off-topic query
+Chọn đồng hồ cơ phong cách cổ điển thế nào?,0,hand-curated off-topic query
+Cách dạy con tự thức dậy đúng giờ đi học?,0,hand-curated off-topic query
+Đà Nẵng bãi biển nào nước sạch nhất?,0,hand-curated off-topic query
+Kệ sách nên chọn gỗ công nghiệp hay gỗ tự nhiên?,0,hand-curated off-topic query
+Cách giữ ấm da tay mùa đông khô ráo?,0,hand-curated off-topic query

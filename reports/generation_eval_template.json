@@ -1,0 +1,9 @@
+{
+  "mode": "template",
+  "n": 50,
+  "mean_valid_ratio": null,
+  "mean_in_context_ratio": null,
+  "hallucination_rate": 0.0,
+  "groundedness": 0.385214,
+  "relevancy": 0.929167
+}

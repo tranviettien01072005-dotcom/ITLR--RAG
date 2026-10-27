@@ -1,0 +1,21 @@
+# Môi trường / build
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+
+# Secrets — KHÔNG commit (.env.example là template rỗng-key duy nhất được theo repo)
+.env
+
+# Artifacts lớn — tái lập bằng `python scripts/build_all.py`
+var/artifacts/
+
+# linh tinh hệ điều hành / editor
+.DS_Store
+*.swp
+
+# reports/ GIỮ trong repo: là kết quả eval lặp lại được (từ eval/run_all.py),
+# ai checkout cần thấy số thật đi kèm code.
