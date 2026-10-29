@@ -130,7 +130,7 @@ def health():
                             detail="Artifacts chưa build (chạy scripts/build_all_v2.py)")
     return {"status": "ok", "engine": "ready",
             "cf": bool(getattr(eng, "cf_model", None) is not None),
-            "items": len(getattr(eng, "items", []) or [])}
+            "items": int(len(eng.items)) if getattr(eng, "items", None) is not None else 0}
 
 
 @app.get("/metrics", response_class=PlainTextResponse)
