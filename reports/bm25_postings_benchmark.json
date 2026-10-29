@@ -1,0 +1,14 @@
+{
+  "scope": "synthetic 10,000-document sparse-term microbenchmark; not real-corpus RAG latency",
+  "repeats": 100,
+  "results": {
+    "before": {
+      "median_ms": 3.7477844998647925,
+      "p95_ms": 4.730462998850271
+    },
+    "after": {
+      "median_ms": 0.06744500024069566,
+      "p95_ms": 0.07338999967032578
+    }
+  }
+}

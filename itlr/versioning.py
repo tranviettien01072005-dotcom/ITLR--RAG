@@ -180,7 +180,6 @@ def activate(root=None, version: str | None = None) -> str:
         raise VersionError(
             f"Phiên bản '{version}' CHỨA MANIFEST probe ok — chạy kiểm thử trước khi kích hoạt.")
     verify_integrity(d, required=True)
-    prev = current_version(root)
     _write_pointer(root, version)
     _append_history(root, "activate", version)
     return version

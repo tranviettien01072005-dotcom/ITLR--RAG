@@ -13,10 +13,7 @@ RUN npm ci
 COPY . .
 # Biên dịch TS -> dist/, rồi copy thủ công các asset KHÔNG qua tsc:
 # views (.ejs), public (.css/.js), schema.sql — đường dẫn runtime là __dirname (=dist/).
-RUN npm run build \
- && cp -r src/views dist/views \
- && cp -r src/public dist/public \
- && cp src/db/schema.sql dist/db/schema.sql
+RUN npm run build
 
 # ── Image runtime gọn ──────────────────────────────────────────────────────────
 FROM node:22-bookworm-slim AS runtime

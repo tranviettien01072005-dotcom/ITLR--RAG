@@ -20,15 +20,19 @@ class BM25Index:
 
     def fit(self, documents):
         self.n_docs = len(documents)
+        self.idf = {}
+        self.postings = {}
         self.doc_freqs = []
         df_counter = Counter()
         self.doc_lengths = []
 
-        for doc in documents:
+        for position, doc in enumerate(documents):
             tokens = tokenize(doc)
             self.doc_lengths.append(len(tokens))
             tf = Counter(tokens)
             self.doc_freqs.append(tf)
+            for term, frequency in tf.items():
+                self.postings.setdefault(term, []).append((position, frequency))
             df_counter.update(set(tokens))
 
         self.avgdl = sum(self.doc_lengths) / max(self.n_docs, 1)
@@ -43,15 +47,19 @@ class BM25Index:
         if not query_tokens:
             return [0.0] * self.n_docs
 
+        if not hasattr(self, "postings"):
+            # Old pickle artifacts retain doc_freqs but have no inverted lists.
+            postings = {}
+            for position, terms in enumerate(self.doc_freqs):
+                for term, frequency in terms.items():
+                    postings.setdefault(term, []).append((position, frequency))
+            self.postings = postings
         scores = [0.0] * self.n_docs
         for token in set(query_tokens):
             if token not in self.idf:
                 continue
             idf = self.idf[token]
-            for i, tf_map in enumerate(self.doc_freqs):
-                freq = tf_map.get(token, 0)
-                if freq == 0:
-                    continue
+            for i, freq in self.postings.get(token, []):
                 dl = self.doc_lengths[i]
                 denom = freq + self.k1 * (1 - self.b + self.b * dl / self.avgdl)
                 scores[i] += idf * (freq * (self.k1 + 1)) / denom

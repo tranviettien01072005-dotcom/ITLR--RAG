@@ -76,8 +76,6 @@ def main() -> int:
     preset = resolve_preset()
     print(f"[i] Items: {n} — model: {preset['model_name']} — dir: {out_dir}")
 
-    from sentence_transformers import SentenceTransformer  # nạp sau khi print cấu hình
-
     model = load_model(preset["model_name"])
 
     t0 = time.time()
