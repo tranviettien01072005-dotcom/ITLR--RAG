@@ -238,3 +238,29 @@ Kiểm chứng trước release: `python -m pytest tests/`, `cd web && npm run t
 npm run lint && npm test && npm run build && npm audit --audit-level=high`;
 `python -m pip_audit` và `python -m bandit -r itlr scripts -lll`.
 CI có gates nhưng một workflow chưa chạy trên GitHub không phải bằng chứng CI xanh.
+
+### Crawler inventory policy (audit 2026-10-29)
+
+Sources default to `listing_is_complete: false`. Use this for rolling RSS feeds,
+API pages and news listings: absent URLs remain active. Set the JSON boolean
+`listing_is_complete: true` only for an authoritative complete inventory where
+absence proves removal. Both this flag and `full_text_allowed` require JSON
+booleans, not strings or integers. Existing records already marked missing need
+separate URL verification before restoration. Serialize refresh jobs; overlapping
+build/version history writes have not been verified safe.
+
+### V3 shared retrieval and lifecycle state (2026-10-30)
+
+A rebuilt version containing `chunk_embeddings.pkl` uses the shared chunk retrieval
+service for search, chatbot semantic retrieval and off-topic scoring. Old versions
+remain readable and use V2 retrieval. V3 generated output requires selected chunk
+citations; identity validation does not prove semantic faithfulness. Calibrate the
+cosine threshold on real off-topic queries before release.
+
+New transitions embed history inside CURRENT.json, with file/directory fsync.
+The separate history JSON is a compatibility mirror. After a process interruption,
+inspect CURRENT.json as the authoritative committed state before retrying; the
+pointer may be committed even if updating the compatibility mirror failed.
+Rollback reads embedded history. Do not edit history independently. Local Linux
+filesystem behavior is tested; multi-host/network storage is not supported by
+these tests. No existing version needs a data migration or destructive rebuild.

@@ -1,0 +1,172 @@
+{
+  "provenance": "real checked-in source snapshots; eight hand-authored item-level query judgments, not human panel labels",
+  "scope": "8 documents only; no distractors outside selected corpus; no reranker; not release quality evidence",
+  "n_chunks": 98,
+  "model": "intfloat/multilingual-e5-base",
+  "faithfulness": null,
+  "hallucination": null,
+  "citation_accuracy": null,
+  "generation": "not run; no paid API calls",
+  "results": {
+    "item_mean_dense": {
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "ndcg_at_5": 1.0,
+      "p95_latency_ms": 117.40563304956595,
+      "cases": [
+        {
+          "query": "How does Docker daemon access affect root privileges?",
+          "expected_id": 5001,
+          "rank": 1,
+          "latency_ms": 103.99352300009923,
+          "recall_at_5": 1.0,
+          "mrr_at_5": 1.0,
+          "ndcg_at_5": 1.0
+        },
+        {
+          "query": "How do services networks and volumes work together in Compose?",
+          "expected_id": 5003,
+          "rank": 1,
+          "latency_ms": 111.84351400152082,
+          "recall_at_5": 1.0,
+          "mrr_at_5": 1.0,
+          "ndcg_at_5": 1.0
+        },
+        {
+          "query": "How do I publish a container port to a host port?",
+          "expected_id": 5011,
+          "rank": 1,
+          "latency_ms": 103.89155499797198,
+          "recall_at_5": 1.0,
+          "mrr_at_5": 1.0,
+          "ndcg_at_5": 1.0
+        },
+        {
+          "query": "How does a browser use a preflight request for cross origin HTTP?",
+          "expected_id": 5024,
+          "rank": 1,
+          "latency_ms": 116.56846100049734,
+          "recall_at_5": 1.0,
+          "mrr_at_5": 1.0,
+          "ndcg_at_5": 1.0
+        },
+        {
+          "query": "How do I select the first DOM element matching a CSS selector?",
+          "expected_id": 5028,
+          "rank": 1,
+          "latency_ms": 117.85641799906443,
+          "recall_at_5": 1.0,
+          "mrr_at_5": 1.0,
+          "ndcg_at_5": 1.0
+        },
+        {
+          "query": "How do I create and activate a Python virtual environment?",
+          "expected_id": 5117,
+          "rank": 1,
+          "latency_ms": 109.11539299922879,
+          "recall_at_5": 1.0,
+          "mrr_at_5": 1.0,
+          "ndcg_at_5": 1.0
+        },
+        {
+          "query": "How do I handle exceptions with try and except in Python?",
+          "expected_id": 5121,
+          "rank": 1,
+          "latency_ms": 109.18268900059047,
+          "recall_at_5": 1.0,
+          "mrr_at_5": 1.0,
+          "ndcg_at_5": 1.0
+        },
+        {
+          "query": "How do Python lists support indexing and slicing?",
+          "expected_id": 5126,
+          "rank": 1,
+          "latency_ms": 104.2005130002508,
+          "recall_at_5": 1.0,
+          "mrr_at_5": 1.0,
+          "ndcg_at_5": 1.0
+        }
+      ]
+    },
+    "chunk_hybrid_rrf": {
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "ndcg_at_5": 1.0,
+      "p95_latency_ms": 118.36227645007966,
+      "cases": [
+        {
+          "query": "How does Docker daemon access affect root privileges?",
+          "expected_id": 5001,
+          "rank": 1,
+          "latency_ms": 104.86356100045668,
+          "recall_at_5": 1.0,
+          "mrr_at_5": 1.0,
+          "ndcg_at_5": 1.0
+        },
+        {
+          "query": "How do services networks and volumes work together in Compose?",
+          "expected_id": 5003,
+          "rank": 1,
+          "latency_ms": 112.6986270010093,
+          "recall_at_5": 1.0,
+          "mrr_at_5": 1.0,
+          "ndcg_at_5": 1.0
+        },
+        {
+          "query": "How do I publish a container port to a host port?",
+          "expected_id": 5011,
+          "rank": 1,
+          "latency_ms": 104.76364999885845,
+          "recall_at_5": 1.0,
+          "mrr_at_5": 1.0,
+          "ndcg_at_5": 1.0
+        },
+        {
+          "query": "How does a browser use a preflight request for cross origin HTTP?",
+          "expected_id": 5024,
+          "rank": 1,
+          "latency_ms": 117.65427500176884,
+          "recall_at_5": 1.0,
+          "mrr_at_5": 1.0,
+          "ndcg_at_5": 1.0
+        },
+        {
+          "query": "How do I select the first DOM element matching a CSS selector?",
+          "expected_id": 5028,
+          "rank": 1,
+          "latency_ms": 118.7435079991701,
+          "recall_at_5": 1.0,
+          "mrr_at_5": 1.0,
+          "ndcg_at_5": 1.0
+        },
+        {
+          "query": "How do I create and activate a Python virtual environment?",
+          "expected_id": 5117,
+          "rank": 1,
+          "latency_ms": 109.92232399985369,
+          "recall_at_5": 1.0,
+          "mrr_at_5": 1.0,
+          "ndcg_at_5": 1.0
+        },
+        {
+          "query": "How do I handle exceptions with try and except in Python?",
+          "expected_id": 5121,
+          "rank": 1,
+          "latency_ms": 110.04429899912793,
+          "recall_at_5": 1.0,
+          "mrr_at_5": 1.0,
+          "ndcg_at_5": 1.0
+        },
+        {
+          "query": "How do Python lists support indexing and slicing?",
+          "expected_id": 5126,
+          "rank": 1,
+          "latency_ms": 105.4384660001233,
+          "recall_at_5": 1.0,
+          "mrr_at_5": 1.0,
+          "ndcg_at_5": 1.0
+        }
+      ]
+    }
+  }
+}

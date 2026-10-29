@@ -139,3 +139,54 @@ API Qwen response57.01s with valid retrieved citation2716. Reranker disabled, CF
 Direct80-token Qwen smoke omitted citation; no general groundedness/hallucination claim.
 Evidence reports/LOCAL_MODELS.md and raw JSON; startup deploy/LOCAL_MODELS.md.
 DeepSeek, PostgreSQL/browser and other release gates remain unverified.
+
+## Audit checkpoint — 2026-10-29 (Ponytail ultra)
+
+Confirmed and fixed rolling-feed false missing detection (explicit complete-inventory opt-in),
+strict JSON booleans for collection policy, V2 nDCG reuse of standard logarithmic metric,
+and small-catalog self-retrieval probe bounds. Regression tests reproduced failures before fixes.
+Full suite outside sandbox: 228 passed / 5 existing conditional skips (233 collected).
+Web: 59 passed; typecheck/build pass; lint 0 errors / 20 warnings; line coverage 25.01%.
+Sandbox FastAPI TestClient hangs in AnyIO portal; outside-sandbox suite passes.
+No paid LLM calls, data deletion, activation, migrations or deployment performed.
+V3 chunk-vector retrieval and overlapping refresh safety remain unfinished; live DeepSeek,
+PostgreSQL, browser, Docker and production load/quality gates remain unverified.
+Evidence and scoped audit/review: reports/AUDIT_2026-10-29.md. Claude-Mem unavailable.
+
+## V3 implementation checkpoint — 2026-10-30
+
+Added real chunk-vector FAISS + existing BM25/RRF retrieval to chatbot semantic path,
+optional bounded passage CrossEncoder, chunk citation identity validation and persistence of
+chunk vectors. Existing V2 item/API search paths remain; no active index rebuild/activation.
+Added Linux lifecycle locks, serialized CLI crawl/build and refresh parent jobs, unique staging IDs,
+rollback transition tracking, GC staging/rollback preservation, and load-before-swap engine reload.
+Temporary versioned API fixtures replace all 5 artifact-conditional skips without deleting assertions.
+Final regression:245 Python passed,0 skipped (44.60s);Web59 passed, coverage lines25.01%.
+Real E5 experiment:8 source snapshots/98 chunks,8 hand-authored item qrels; both mean-dense and
+chunk-hybrid Recall@5/MRR@5/nDCG@5=1.0;p95=117.41/118.36ms. No quality/speed improvement claimed.
+Generation faithfulness/hallucination/citation accuracy unmeasured; no paid calls.
+Release blockers:V2 API/off-topic paths, real reranker validation, crash-durable pointer/history,
+DeepSeek live,PostgreSQL,Docker/browser and full-corpus eval. Claude-Mem tools unavailable.
+Evidence:reports/V3_PROGRESS_2026-10-30.md and reports/chunks_v3_experiment.json.
+
+## Shared V3 retrieval and repository migration — 2026-10-30
+
+Baseline245/0 retained;latest full suite256 Python passed/0 skipped (44.63s),Web59 passed.
+Web typecheck/build pass;lint0 errors/20 existing warnings;compileall/diff checks pass.
+Search,off-topic,semantic chat and quick resources use itlr.retrieval.service for chunk artifacts;
+legacy artifact paths remain. V3 generation now requires valid chunk references per cited item.
+BM25 implementation moved with git mv to itlr/retrieval/bm25.py; old core module is a pickle/import shim.
+CURRENT.json atomically commits pointer+history with fsync; legacy history file remains a mirror.
+Process-exit/restart test proves rollback survives pointer/mirror interruption. Corrupt version
+reload preserves loaded engine. No runtime data/index activation,paid call or DB migration.
+Real E5 experiment8 docs/98 chunks:item mean vs chunk RRF scores all1.0;p95=129.07/130.23ms;
+CPU=113.98/114.98ms per query;whole-process peakRSS1468.86MiB. Generation quality unmeasured.
+Mapping/review/release limits:reports/V3_RESTRUCTURING_2026-10-30.md and ADR-010.
+Docker/psql/postgres absent from PATH;browser/live DeepSeek/real reranker/full-corpus gates pending.
+Claude-Mem tools unavailable; fallback memory updated only, no save_memory claim.
+
+Packaging verification: initial namespace discovery stalled at metadata; setting namespaces=false
+(regular packages all have __init__.py) allowed offline wheel build to complete. The first wheel
+then failed asset inspection: zero static assets. Added explicit itlr.api static HTML/JS/CSS package
+data; rebuilt wheel successfully and verified all four UI assets, retrieval modules and legacy
+BM25 shim are present. No dependency downloads (--no-index --no-deps --no-build-isolation).

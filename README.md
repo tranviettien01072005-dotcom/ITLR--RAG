@@ -212,3 +212,13 @@ Deploy một worker/replica, trusted proxy tường minh, manifest strict và h�
 riêng: [DEPLOY](deploy/DEPLOY.md#7-security-remediation-2026-10-29).
 UI tĩnh chỉ render Markdown giới hạn (bold/code/newline), không render HTML hay link Markdown;
 link catalog chỉ chấp nhận HTTP(S). `/live` tách biệt `/health` readiness.
+
+## V3 implementation status (2026-10-30)
+
+Chunk artifacts use a shared retrieval service for API search, semantic chat,
+quick resources and off-topic scoring. Old artifacts retain the V2 path. Generated
+V3 answers require selected chunk citations; this checks identity, not semantic
+truth. Active artifacts are not upgraded merely by updating code.
+
+Architecture and compatibility mapping: [ADR-010](docs/decisions/ADR-010-shared-retrieval-and-atomic-state.md).
+Measured scope, tests and release blockers: [V3 restructuring checkpoint](reports/V3_RESTRUCTURING_2026-10-30.md).

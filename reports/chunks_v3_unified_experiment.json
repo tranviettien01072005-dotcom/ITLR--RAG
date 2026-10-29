@@ -1,0 +1,192 @@
+{
+  "provenance": "real checked-in source snapshots; eight hand-authored item-level query judgments, not human panel labels",
+  "scope": "8 documents only; no distractors outside selected corpus; no reranker; not release quality evidence",
+  "n_chunks": 98,
+  "model": "intfloat/multilingual-e5-base",
+  "faithfulness": null,
+  "hallucination": null,
+  "citation_accuracy": null,
+  "peak_process_rss_mib": 1468.859375,
+  "memory_scope": "Whole process high-water RSS including model load and both configurations, not per-configuration memory",
+  "generation": "not run; no paid API calls",
+  "results": {
+    "item_mean_dense": {
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "ndcg_at_5": 1.0,
+      "cpu_ms": 113.98229512500535,
+      "p95_latency_ms": 129.07280599965816,
+      "cases": [
+        {
+          "query": "How does Docker daemon access affect root privileges?",
+          "expected_id": 5001,
+          "rank": 1,
+          "latency_ms": 100.59277199979988,
+          "cpu_ms": 99.52484299999753,
+          "recall_at_5": 1.0,
+          "mrr_at_5": 1.0,
+          "ndcg_at_5": 1.0
+        },
+        {
+          "query": "How do services networks and volumes work together in Compose?",
+          "expected_id": 5003,
+          "rank": 1,
+          "latency_ms": 124.13294299949484,
+          "cpu_ms": 122.94907200001148,
+          "recall_at_5": 1.0,
+          "mrr_at_5": 1.0,
+          "ndcg_at_5": 1.0
+        },
+        {
+          "query": "How do I publish a container port to a host port?",
+          "expected_id": 5011,
+          "rank": 1,
+          "latency_ms": 107.34672599937767,
+          "cpu_ms": 106.03891499999918,
+          "recall_at_5": 1.0,
+          "mrr_at_5": 1.0,
+          "ndcg_at_5": 1.0
+        },
+        {
+          "query": "How does a browser use a preflight request for cross origin HTTP?",
+          "expected_id": 5024,
+          "rank": 1,
+          "latency_ms": 131.20699399951263,
+          "cpu_ms": 129.88249800000062,
+          "recall_at_5": 1.0,
+          "mrr_at_5": 1.0,
+          "ndcg_at_5": 1.0
+        },
+        {
+          "query": "How do I select the first DOM element matching a CSS selector?",
+          "expected_id": 5028,
+          "rank": 1,
+          "latency_ms": 125.10931399992842,
+          "cpu_ms": 123.80922900001678,
+          "recall_at_5": 1.0,
+          "mrr_at_5": 1.0,
+          "ndcg_at_5": 1.0
+        },
+        {
+          "query": "How do I create and activate a Python virtual environment?",
+          "expected_id": 5117,
+          "rank": 1,
+          "latency_ms": 110.68771999998717,
+          "cpu_ms": 109.62452800001188,
+          "recall_at_5": 1.0,
+          "mrr_at_5": 1.0,
+          "ndcg_at_5": 1.0
+        },
+        {
+          "query": "How do I handle exceptions with try and except in Python?",
+          "expected_id": 5121,
+          "rank": 1,
+          "latency_ms": 112.56666299959761,
+          "cpu_ms": 111.55046700000071,
+          "recall_at_5": 1.0,
+          "mrr_at_5": 1.0,
+          "ndcg_at_5": 1.0
+        },
+        {
+          "query": "How do Python lists support indexing and slicing?",
+          "expected_id": 5126,
+          "rank": 1,
+          "latency_ms": 109.29421800028649,
+          "cpu_ms": 108.47880900000462,
+          "recall_at_5": 1.0,
+          "mrr_at_5": 1.0,
+          "ndcg_at_5": 1.0
+        }
+      ]
+    },
+    "chunk_hybrid_rrf": {
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "ndcg_at_5": 1.0,
+      "cpu_ms": 114.9752243750033,
+      "p95_latency_ms": 130.2348148507008,
+      "cases": [
+        {
+          "query": "How does Docker daemon access affect root privileges?",
+          "expected_id": 5001,
+          "rank": 1,
+          "latency_ms": 101.51232999851345,
+          "cpu_ms": 100.436049999999,
+          "recall_at_5": 1.0,
+          "mrr_at_5": 1.0,
+          "ndcg_at_5": 1.0
+        },
+        {
+          "query": "How do services networks and volumes work together in Compose?",
+          "expected_id": 5003,
+          "rank": 1,
+          "latency_ms": 125.11523800094437,
+          "cpu_ms": 123.92271699999924,
+          "recall_at_5": 1.0,
+          "mrr_at_5": 1.0,
+          "ndcg_at_5": 1.0
+        },
+        {
+          "query": "How do I publish a container port to a host port?",
+          "expected_id": 5011,
+          "rank": 1,
+          "latency_ms": 108.35776900057681,
+          "cpu_ms": 107.03924800000664,
+          "recall_at_5": 1.0,
+          "mrr_at_5": 1.0,
+          "ndcg_at_5": 1.0
+        },
+        {
+          "query": "How does a browser use a preflight request for cross origin HTTP?",
+          "expected_id": 5024,
+          "rank": 1,
+          "latency_ms": 132.45825600097305,
+          "cpu_ms": 131.12631799998553,
+          "recall_at_5": 1.0,
+          "mrr_at_5": 1.0,
+          "ndcg_at_5": 1.0
+        },
+        {
+          "query": "How do I select the first DOM element matching a CSS selector?",
+          "expected_id": 5028,
+          "rank": 1,
+          "latency_ms": 126.10556700019515,
+          "cpu_ms": 124.79877800001304,
+          "recall_at_5": 1.0,
+          "mrr_at_5": 1.0,
+          "ndcg_at_5": 1.0
+        },
+        {
+          "query": "How do I create and activate a Python virtual environment?",
+          "expected_id": 5117,
+          "rank": 1,
+          "latency_ms": 111.61032000018167,
+          "cpu_ms": 110.53941800000189,
+          "recall_at_5": 1.0,
+          "mrr_at_5": 1.0,
+          "ndcg_at_5": 1.0
+        },
+        {
+          "query": "How do I handle exceptions with try and except in Python?",
+          "expected_id": 5121,
+          "rank": 1,
+          "latency_ms": 113.57179100014037,
+          "cpu_ms": 112.54193200001339,
+          "recall_at_5": 1.0,
+          "mrr_at_5": 1.0,
+          "ndcg_at_5": 1.0
+        },
+        {
+          "query": "How do Python lists support indexing and slicing?",
+          "expected_id": 5126,
+          "rank": 1,
+          "latency_ms": 110.21955600153888,
+          "cpu_ms": 109.39733400000762,
+          "recall_at_5": 1.0,
+          "mrr_at_5": 1.0,
+          "ndcg_at_5": 1.0
+        }
+      ]
+    }
+  }
+}
