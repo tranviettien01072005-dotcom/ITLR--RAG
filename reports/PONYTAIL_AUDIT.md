@@ -1,3 +1,5 @@
+> **Ngữ cảnh đồ án — 2026-10-30:** Tài liệu lịch sử: giữ số đo, phạm vi và kế hoạch tại thời điểm ghi. Không coi đây là chứng nhận thương mại hoặc trạng thái runtime hiện tại. Xem [README hiện tại](../README.md).
+
 What this repo does: ITLR collects learning resources, builds hybrid retrieval artifacts and exposes search and grounded chat through Python and a separate Express/PostgreSQL web app. Assumed load: one instance and one worker per service behind an explicitly trusted reverse proxy.
 
 ## Must fix

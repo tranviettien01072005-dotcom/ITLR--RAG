@@ -1,3 +1,5 @@
+> **Ngữ cảnh đồ án — 2026-10-30:** Tài liệu lịch sử: giữ số đo, phạm vi và kế hoạch tại thời điểm ghi. Không coi đây là chứng nhận thương mại hoặc trạng thái runtime hiện tại. Xem [README hiện tại](../../../README.md).
+
 # ITLR product V2
 
 User selected and authorized implementation of priorities1–4 and GitHub commit/push `itrl v2`.

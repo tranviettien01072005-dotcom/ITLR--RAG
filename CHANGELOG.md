@@ -1,5 +1,18 @@
 # Changelog
 
+## 2026-10-30 — Tinh gọn đồ án và build web
+
+- Sửa BM25 refit, thêm inverted postings và hỗ trợ pickle cũ; ngăn race công bố postings dở.
+- Build Web đóng gói EJS/public/schema; bỏ copy trùng trong Dockerfile.
+- Viết lại hướng dẫn hiện hành quanh web3000/PostgreSQL/API8000, không yêu cầu Claude-Mem.
+- Rà soát Markdown, gắn ngữ cảnh lịch sử, sửa nhãn mô phỏng và kiểm tra local links.
+- Bỏ khai báo MIT của package, giữ thông báo bản quyền bên thứ ba.
+- Kiểm chứng cuối:260 Python pass/0 skip,59 Web pass; build/typecheck/wheel/links pass,lint20 cảnh báo cũ.
+- Bằng chứng, benchmark và giới hạn xem reports/VALIDATION.md.
+
+### Các mục lịch sử bên dưới
+
+
 Định dạng theo [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [2.0.0] - 2026-10-29

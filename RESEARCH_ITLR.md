@@ -1,3 +1,5 @@
+> **Ngữ cảnh đồ án — 2026-10-30:** Tài liệu lịch sử: giữ số đo, phạm vi và kế hoạch tại thời điểm ghi. Không coi đây là chứng nhận thương mại hoặc trạng thái runtime hiện tại. Xem [README hiện tại](README.md).
+
 # Báo cáo nghiên cứu chi tiết repo `ITLR RAG`
 
 > Ngày: 2026-10-27 · 46 file Python (~6.750 dòng KLOC) + 2 file JSON tri thức + 1 web UI tĩnh + 2 CSV dữ liệu.

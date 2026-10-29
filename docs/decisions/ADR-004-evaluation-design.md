@@ -1,3 +1,5 @@
+> **Ngữ cảnh đồ án — 2026-10-30:** Quyết định kiến trúc theo thời điểm. Không coi đây là chứng nhận thương mại hoặc trạng thái runtime hiện tại. Xem [README hiện tại](../../README.md).
+
 # ADR-004: Thiết kế đánh giá — qrels rule-based từ metadata, bootstrap CI, nhãn "human" chỉ là khung
 
 ## Trạng thái

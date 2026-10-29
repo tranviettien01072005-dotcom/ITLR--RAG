@@ -1,12 +1,26 @@
-# PROJECT_MEMORY.md — Bộ nhớ dự phòng (fallback) của ITLR RAG
+# Trạng thái và lịch sử ITLR–RAG
 
-> **Vai trò:** đây là bản "long-term memory" in-repo, dùng khi Claude-Mem không khả dụng.
-> Nguồn chính là Claude-Mem (các memory #102–#107, project `ITLR RAG`, lưu 2026-10-27).
-> **Giao thức agent:** đầu mỗi phiên — search Claude-Mem + đọc `AGENTS.md`; sau mỗi thay đổi
-> quan trọng — `save_memory` (tìm duplicate trước; **không bao giờ** lưu API key/secret) rồi
-> cập nhật file này + `AGENTS.md` + `CHANGELOG.md`.
+Cập nhật: 2026-10-30. Bộ nhớ dự án nằm trong repository; không tích hợp dịch vụ memory ngoài.
+Đồ án sinh viên; giao diện chính `web/` ở 3000, PostgreSQL và API FastAPI ở 8000.
+Đã quan sát local readiness/login 200 và Chromium login không có pageerror; không suy ra E2E đầy đủ.
+Index active đã quan sát có 118 tài liệu và chưa có chunk vectors. Code V3 mới dùng shared service
+khi artifacts hỗ trợ; không tự rebuild index đang phục vụ. Baseline đầu phiên:256 Python pass/0 skip.
+Đánh giá và kết quả mới nhất: [validation](../reports/VALIDATION.md). Hướng dẫn hiện hành: [AGENTS](../AGENTS.md).
 
----
+## Phiên tinh gọn hiện tại
+
+BM25 reset IDF khi refit, dùng postings và hỗ trợ pickle cũ; lazy initialization công bố state
+sau khi hoàn chỉnh để tránh race. Build web copy views/public/schema, Docker dùng cùng lệnh.
+Đã smoke compiled web3001 với PostgreSQL local và Chromium, chỉ đọc dữ liệu; process tạm đã dừng.
+Không rebuild index đang active. README/AGENTS/deployment được viết lại theo bối cảnh đồ án.
+Không tự gán giấy phép MIT, không tích hợp Claude-Mem. Kết quả cuối:260 Python pass/0 skip,59 Web pass. Wheel/build/typecheck/links pass;lint20 cảnh báo cũ.
+Chi tiết và giới hạn:reports/VALIDATION.md.
+
+## Lịch sử được bảo toàn
+
+Các đoạn dưới là snapshot trước đây, không phải giao thức hiện hành; số liệu, phiên bản môi trường
+và các tham chiếu công cụ cũ chỉ có giá trị tại thời điểm ghi. Hướng dẫn hiện hành không yêu cầu
+Claude-Mem; không thực hiện các chỉ dẫn memory trong lịch sử.
 
 ## 1. Kiến trúc & pipeline (trạng thái hoàn thiện 2026-10-27)
 

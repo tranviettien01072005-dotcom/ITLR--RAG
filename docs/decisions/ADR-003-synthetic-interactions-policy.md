@@ -1,3 +1,5 @@
+> **Ngữ cảnh đồ án — 2026-10-30:** Quyết định kiến trúc theo thời điểm. Không coi đây là chứng nhận thương mại hoặc trạng thái runtime hiện tại. Xem [README hiện tại](../../README.md).
+
 # ADR-003: Interactions cho CF là dữ liệu MÔ PHỎNG (latent-persona, seed=7) kèm chính sách ghi nhãn trung thực
 
 ## Trạng thái

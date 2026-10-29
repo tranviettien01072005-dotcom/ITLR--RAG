@@ -1,3 +1,5 @@
+> **Ngữ cảnh đồ án — 2026-10-30:** Tài liệu lịch sử: giữ số đo, phạm vi và kế hoạch tại thời điểm ghi. Không coi đây là chứng nhận thương mại hoặc trạng thái runtime hiện tại. Xem [README hiện tại](../README.md).
+
 # Đánh giá chất lượng GENERATION (chatbot RAG)
 *Mode: **template** — bộ tổng hợp template KHÔNG dùng LLM (offline).*
 *Các số GROUNDEDNESS / RELEVANCY là XẤP XỈ rule-based (n-gram, token-overlap); HALLUCINATION + CITATION ACCURACY là đo TRỰC TIẾP trên ID nguồn (không xấp xỉ).*

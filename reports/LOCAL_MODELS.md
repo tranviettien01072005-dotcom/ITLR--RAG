@@ -1,3 +1,5 @@
+> **Ngữ cảnh đồ án — 2026-10-30:** Tài liệu lịch sử: giữ số đo, phạm vi và kế hoạch tại thời điểm ghi. Không coi đây là chứng nhận thương mại hoặc trạng thái runtime hiện tại. Xem [README hiện tại](../README.md).
+
 # Real local model verification — 2026-10-29
 
 **Installed and tested:** E5-base embeddings and Qwen2.5:3b through Ollama CPU.

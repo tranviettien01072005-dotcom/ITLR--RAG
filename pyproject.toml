@@ -8,7 +8,6 @@ version = "1.0.0"
 description = "IT Learning Recommender — RAG (E5/BGE + BM25/TF-IDF + ANN + Cross-Encoder) · CF gợi ý cá nhân · Chatbot sinh câu trả lời bằng DeepSeek/OpenAI/Ollama · API FastAPI"
 readme = "README.md"
 requires-python = ">=3.11"
-license = { text = "MIT" }
 authors = [{ name = "ITLR maintainers" }]
 keywords = ["rag", "recommender", "collaborative-filtering", "fastapi", "deepseek"]
 

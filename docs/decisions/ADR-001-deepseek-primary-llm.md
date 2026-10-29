@@ -1,3 +1,5 @@
+> **Ngữ cảnh đồ án — 2026-10-30:** Quyết định kiến trúc theo thời điểm. Không coi đây là chứng nhận thương mại hoặc trạng thái runtime hiện tại. Xem [README hiện tại](../../README.md).
+
 # ADR-001: DeepSeek là LLM chính, đi qua tầng `llm_client` thống nhất
 
 ## Trạng thái

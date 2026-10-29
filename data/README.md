@@ -1,3 +1,5 @@
+> Hướng dẫn đồ án / snapshot theo thời điểm. Giao diện chính là `web/` ở cổng 3000; xem [README](../README.md). Giữ nguyên thông báo bản quyền và provenance nguồn.
+
 # Official learning-resource snapshot
 
 `curated_resources.jsonl`:118 real documentation pages selected from the128-URL allowlist in

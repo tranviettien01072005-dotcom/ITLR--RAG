@@ -1,3 +1,5 @@
+> **Ngữ cảnh đồ án — 2026-10-30:** Quyết định kiến trúc theo thời điểm. Không coi đây là chứng nhận thương mại hoặc trạng thái runtime hiện tại. Xem [README hiện tại](../../README.md).
+
 # ADR-002: Đường dẫn artifact/data tập trung tại `itlr.config`, bỏ mặc định tương đối
 
 ## Trạng thái

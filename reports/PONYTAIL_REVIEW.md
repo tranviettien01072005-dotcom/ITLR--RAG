@@ -1,3 +1,5 @@
+> **Ngữ cảnh đồ án — 2026-10-30:** Tài liệu lịch sử: giữ số đo, phạm vi và kế hoạch tại thời điểm ghi. Không coi đây là chứng nhận thương mại hoặc trạng thái runtime hiện tại. Xem [README hiện tại](../README.md).
+
 What this change does: It closes browser rendering, credentials, upload and artifact trust boundaries and adds executable CI gates. It preserves the existing uncommitted application work. Expected deployment is one process and one replica per service.
 
 ## Must fix before release

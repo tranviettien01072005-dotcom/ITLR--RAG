@@ -1,3 +1,5 @@
+> Hướng dẫn đồ án / snapshot theo thời điểm. Giao diện chính là `web/` ở cổng 3000; xem [README](../README.md). Giữ nguyên thông báo bản quyền và provenance nguồn.
+
 # Local E5 + Qwen (installed 2026-10-29)
 
 Models downloaded and tested: `intfloat/multilingual-e5-base` (768d), `qwen2.5:3b`.

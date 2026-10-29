@@ -1,3 +1,77 @@
+# Kiểm chứng ITLR–RAG — đồ án sinh viên
+
+Cập nhật 2026-10-30. Đây là bằng chứng theo phạm vi đã chạy, không phải chứng nhận production.
+
+## Phiên tinh gọn và chuẩn hóa
+
+- Baseline chạy lại:256 Python passed/0 skipped (33.04s), kế thừa mốc245 và các regression bổ sung.
+- BM25 refit giữ IDF cũ đã tái hiện FAIL; reset state và postings đã sửa. Legacy pickle được hỗ trợ.
+- Review phát hiện race lazy postings: request thứ hai đọc trạng thái đang tạo dở; test concurrent
+  FAIL trước sửa, sau sửa chỉ công bố dictionary đã hoàn chỉnh.
+- Benchmark sparse term:10.000 tài liệu synthetic,100 lần, output scores trước/sau bằng nhau.
+  p50=3.748→0.067ms;p95=4.730→0.073ms. Chỉ là BM25 microbenchmark, không phải real-corpus RAG speedup.
+  [Raw JSON](bm25_postings_benchmark.json). Postings dùng thêm RAM; chưa đo riêng phần tăng này.
+- `npm run build` thiếu EJS/public/schema trong dist đã tái hiện FAIL bằng asset assertion.
+  Build mới copy đủ; Dockerfile tái sử dụng cùng quy trình, bỏ ba lệnh copy trùng.
+- Compiled web chạy ở cổng tạm3001:Chromium login200,1 form,0 pageerror;CSS200;
+  `/ready`200 dùng PostgreSQL local sẵn có. Không migration hoặc ghi dữ liệu để chạy smoke.
+  Đã dừng riêng process3001; không dừng web3000 hoặc API8000 đang dùng.
+- README và AGENTS viết lại; deployment cập nhật; rà soát toàn bộ Markdown tracked, phân biệt
+  lịch sử/ADR/kế hoạch với trạng thái hiện tại. Bảo toàn số đo và bản quyền nguồn.
+  Sửa nhãn human_eval thành mô phỏng. Kiểm tra local Markdown file links bằng regression.
+- Loại import SentenceTransformer không dùng, biến prev không dùng; giữ normalize_scores vì
+  còn callers ở recommender/pipeline/LTR. Không xóa module/dependency chỉ dựa vào phỏng đoán.
+- Bỏ khai báo MIT của chính package. Không tạo LICENSE mới. Không tích hợp Claude-Mem;
+  các tham chiếu công cụ trong phần lịch sử không còn là giao thức bắt buộc.
+
+## Ponytail Ultra audit / review / technical debt
+
+What this repo does: a student IT learning project with a web interface, PostgreSQL and a Python RAG backend.
+Assumed load: local Linux, one worker per service; preserve existing data and artifact compatibility.
+
+Must fix found and addressed: BM25 refit stale vocabulary, partial lazy postings publication,
+compiled web missing non-TypeScript assets, and misleading current-vs-historical documentation.
+Each code defect has failing execution evidence before the correction. No unexplained High/Critical
+finding remains in this changed group. This is a scoped audit extending prior reports, not proof that
+all code paths are defect-free. No dependency was removed without use evidence.
+
+Technical debt scan:0 shortcut:/ponytail: comment markers in application/eval/script sources.
+A clean marker ledger is not absence of debt. Remaining:real reranker/DeepSeek validation,
+independent passage labels, CPU/RAM and latency under full-corpus load, existing20 lint warnings,
+and broader authenticated browser/database integration. No semantic faithfulness/hallucination
+numbers were fabricated; historical real-snapshot results remain in their original reports.
+
+## Chưa kiểm chứng
+
+Docker image/Compose execution, DeepSeek live (paid calls not authorized), real CrossEncoder,
+authenticated multi-step browser E2E, concurrent database transactions under load, device/power-loss
+crash durability and full-corpus V3 activation. PostgreSQL readiness/login smoke does not cover
+all of these. Active artifacts were not rebuilt or changed in this session. No deletion of runtime
+or user data; no Git commit/push performed for this group.
+
+
+## Kết quả cuối phiên — 2026-10-30
+
+- Python:260 passed/0 skipped,34.22s; baseline đầu phiên256 passed/0 skipped,33.04s.
+  Chênh lệch thời gian suite không phải benchmark hiệu năng vì số tests thay đổi.
+- Web:59 tests pass; typecheck/build pass; ESLint0 errors/20 cảnh báo cũ; line coverage25.01%.
+- Python wheel offline build pass; static API assets có trong wheel, metadata không khai báo MIT.
+- compileall,pip check,git diff --check và test local Markdown links pass.
+-43/43 Markdown tracked đã được rà soát/cập nhật: hướng dẫn hiện tại viết lại, lịch sử gắn nhãn
+  và giữ số liệu. Không xóa giấy phép/bản quyền bên thứ ba.
+- Code/config sửa:itlr/retrieval/bm25.py, itlr/pipelines/build_embeddings_v2.py,
+  itlr/versioning.py, pyproject.toml, web/package.json, web/Dockerfile.
+- Thêm tests/test_bm25_refit.py và tests/test_markdown_links.py;
+  raw benchmark reports/bm25_postings_benchmark.json.
+- Không đổi tên/xóa file hoặc dependency trong nhóm này. Chỉ bỏ import/biến không dùng và copy
+  Docker trùng. normalize_scores vẫn giữ vì có callers thực tế. Không xóa node_modules/runtime.
+- Kết quả trên được ghi trước publication; code/tests được lưu trong commit 93993b0.
+  Xem lịch sử Git cho trạng thái push. Web3000 và backend8000 không bị sửa index hoặc dừng.
+
+## Lịch sử kiểm chứng được bảo toàn
+
+> **Ngữ cảnh đồ án — 2026-10-30:** Tài liệu lịch sử: giữ số đo, phạm vi và kế hoạch tại thời điểm ghi. Không coi đây là chứng nhận thương mại hoặc trạng thái runtime hiện tại. Xem [README hiện tại](../README.md).
+
 # Validation evidence — 2026-10-29
 
 These are commands run during remediation. No production deployment, paid LLM API,

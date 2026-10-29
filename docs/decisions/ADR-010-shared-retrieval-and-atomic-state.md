@@ -1,3 +1,5 @@
+> **Ngữ cảnh đồ án — 2026-10-30:** Quyết định kiến trúc theo thời điểm. Không coi đây là chứng nhận thương mại hoặc trạng thái runtime hiện tại. Xem [README hiện tại](../../README.md).
+
 # ADR-010: Share chunk retrieval and commit lifecycle state in one pointer
 
 Date: 2026-10-30. Status: implemented; release validation remains incomplete.

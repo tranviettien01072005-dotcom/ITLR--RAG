@@ -1,12 +1,7 @@
 # CONSTRAINTS.md — Sàn chất lượng dự án (floor-only)
 
-> **Trạng thái:** Floor-only. Đây là SÀN tối thiểu — mọi thay đổi phải đạt đủ, vượt tốt hơn.
-> Chưa chạy "Lore interview" với user sống (repo chưa có maintainer phản hồi trực tiếp);
-> sàn dưới đây do quá trình hoàn thiện repo tự rút ra từ các lỗi vừa sửa. Khi có user,
-> giữ các sàn này làm mặc định và chỉ HẠ nếu được đồng ý công khai (ratchet một chiều).
->
-> **Cách dùng:** agent/human khi thêm/sửa code phải đối chiếu từng mục. Vi phạm sàn =
-> chặn merge, trừ khi sửa chính `CONSTRAINTS.md` thành văn bản (không được mềm dẻo im lặng).
+> **Trạng thái:** Sàn chất lượng của đồ án; không hạ ngưỡng hoặc bỏ kiểm tra để đạt PASS.
+> Đọc [AGENTS](AGENTS.md) và [validation](reports/VALIDATION.md) cho trạng thái hiện tại.
 
 ## 1. Kiểm thử (pytest)
 
@@ -15,7 +10,7 @@
 | Suite xanh | `pytest -q` → **0 fail, 0 error** | CI/lệnh cục bộ trước mọi hand-off |
 | Skip hạn chế | Skip CHỈ vì 2 lý do được ghi trong docstring test: (a) thiếu artifacts `var/artifacts/embeddings.pkl` (integration), (b) thư viện nặng chưa cài (import-probe eval) | `pytest -q` tự báo `skipped` |
 | Không hủ tệ thêm | KHÔNG thêm `pytest.skip`/`xfail`/`pytest.mark.skipif` mới ngoài 2 nguyên nhân trên, không rút `testpaths`/addopts để bỏ test | đọc pytest.ini + diff tests/ |
-| Ratchet số test | Số test hiện hữu chỉ được tăng (64 unit + 5 integration hiện tại); xóa/giảm 1 test phải thay bằng test mạnh hơn cùng phạm vi | `pytest --collect-only -q \| wc -l` |
+| Ratchet số test | Số test hiện hữu chỉ được tăng (baseline đầu phiên 256 test không skip; xem validation cho số mới nhất); xóa/giảm 1 test phải thay bằng test mạnh hơn cùng phạm vi | `pytest --collect-only -q \| wc -l` |
 | Bug phải kèm regression | Mỗi lỗi sửa lại phải có test tái hiện lỗi cũ (pattern RED→GREEN đã dùng xuyên suốt) | diff của bugfix phải đụng tests/ |
 
 ## 2. Không che lỗi (no silent fallback)

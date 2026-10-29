@@ -1,3 +1,5 @@
+> **Ngữ cảnh đồ án — 2026-10-30:** Tài liệu lịch sử: giữ số đo, phạm vi và kế hoạch tại thời điểm ghi. Không coi đây là chứng nhận thương mại hoặc trạng thái runtime hiện tại. Xem [README hiện tại](../README.md).
+
 # Kết quả đánh giá — Bảng ablation per-stage (truy vấn NHIỄU (bỏ dấu + lỗi gõ))
 
 *Số truy vấn: 78. Metric macro-average trên nhãn bán-tự-động (`data/eval/relevance_judgments.csv`).*
