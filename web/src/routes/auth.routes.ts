@@ -37,7 +37,7 @@ const loginSchema = z.object({
 
 function safeNext(raw: unknown): string {
   const n = typeof raw === "string" ? raw : "";
-  return n.startsWith("/") && !n.startsWith("//") ? n : "/dashboard";
+  return n.startsWith("/") && !n.startsWith("//") && !n.includes("\\") ? n : "/dashboard";
 }
 
 authRouter.get("/register", (req, res) => {

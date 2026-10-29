@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import { env } from "../config/env";
+import { query } from "../db/pool";
 
 export interface AuthUser {
   id: number;
@@ -37,13 +38,17 @@ export function clearAuthCookie(res: Response): void {
   res.clearCookie(COOKIE);
 }
 
-export function loadUser(req: Request, res: Response, next: NextFunction): void {
+export async function loadUser(req: Request, res: Response, next: NextFunction): Promise<void> {
   const token = req.cookies?.[COOKIE];
+  let userId: number | undefined;
   if (token) {
     try {
       const payload = jwt.verify(token, env.jwtSecret) as AuthUser & { iat?: number; exp?: number };
-      req.user = { id: payload.id, email: payload.email, name: payload.name, role: payload.role };
+      if (Number.isSafeInteger(payload.id) && payload.id > 0) userId = payload.id;
     } catch {}
+  }
+  if (userId !== undefined) {
+    [req.user] = await query<AuthUser>("SELECT id, email, name, role FROM users WHERE id = $1", [userId]);
   }
   res.locals.user = req.user || null;
   res.locals.path = req.path;
