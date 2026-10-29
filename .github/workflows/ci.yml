@@ -29,7 +29,7 @@ jobs:
       - run: python -m compileall -q itlr scripts eval
       - run: python -m pytest -q tests --junitxml=reports/pytest.xml
       - name: API and fixture pipeline integration
-        run: python -m pytest -q tests/test_api_hardening.py tests/test_collect_runner.py tests/test_index_probe.py tests/test_pipeline_fixture.py
+        run: python -m pytest -q tests/test_api_hardening.py tests/test_collect_runner.py tests/test_index_probe.py tests/test_pipeline_fixture.py tests/test_chunks_v3.py tests/test_retrieval_service.py tests/test_versioning.py tests/test_api_integration.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:

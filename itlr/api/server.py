@@ -365,9 +365,12 @@ def admin_reload(request: Request):
                                    "(đặt env rồi khởi động lại server).")
     if not _admin_authorized(request):
         raise HTTPException(status_code=403, detail="Sai hoặc thiếu header X-Admin-Token.")
-    load_engine.cache_clear()
     try:
-        eng = load_engine()
+        if hasattr(load_engine, "reload"):
+            eng = load_engine.reload()
+        else:  # Test/provider adapters retain the historical cache interface.
+            load_engine.cache_clear()
+            eng = load_engine()
     except FileNotFoundError:
         raise HTTPException(status_code=503,
                             detail="Reload xong pointers nhưng artifacts chưa build được nạp "

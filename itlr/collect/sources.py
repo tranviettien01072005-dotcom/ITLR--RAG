@@ -40,6 +40,7 @@ class Source:
     list_urls: tuple[str, ...] = ()
     link_prefix: str | None = None
     link_pattern: str | None = None   # regex bắt buộc toàn bộ path (lọc trang mục lục)
+    listing_is_complete: bool = False  # True only for authoritative full inventories.
 
 
     def as_dict(self) -> dict:
@@ -63,6 +64,7 @@ class Source:
                 "feed_url": self.feed_url,
                 "list_urls": list(self.list_urls),
                 "link_pattern": self.link_pattern,
+                "listing_is_complete": self.listing_is_complete,
             }, ensure_ascii=False),
             "updated_at": "",
         }
@@ -128,7 +130,14 @@ def _one_source(raw: dict, defaults: dict) -> Source:
     kind = req("kind")
     if kind not in KINDS:
         raise SourcesError(f"source '{sid}': kind phải là một trong {KINDS}")
-    full_text = bool(raw.get("full_text_allowed", False))
+    def policy_flag(key):
+        value = raw.get(key, False)
+        if not isinstance(value, bool):
+            raise SourcesError(f"source {sid}: {key} must be a JSON boolean")
+        return value
+
+    full_text = policy_flag("full_text_allowed")
+    listing_is_complete = policy_flag("listing_is_complete")
 
     def dflt(key, default=None):
         v = raw.get(key, defaults.get(key, default))
@@ -156,6 +165,7 @@ def _one_source(raw: dict, defaults: dict) -> Source:
         platform=raw.get("platform", sid),
         homepage=raw.get("homepage", ""),
         full_text_allowed=full_text,
+        listing_is_complete=listing_is_complete,
         license=str(raw.get("license") or "unknown"),
         lang=str(dflt("lang", "en")),
         type_label=str(dflt("type_label", "Tài liệu")),

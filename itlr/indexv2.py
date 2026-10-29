@@ -85,6 +85,9 @@ def self_retrieval_sanity(artifacts: str | Path, n_samples=30, top_k=5,
 
     vec = model["vectorizers"]["full"]
     matrix = model["matrices"]["full"]
+    if top_k < 1 or n_samples < 1 or len(items) == 0:
+        raise ValueError("self-retrieval needs nonempty items and positive sample/top-k limits")
+    top_k = min(top_k, len(items))
     rng = np.random.RandomState(seed)
     idxs = rng.choice(len(items), size=min(n_samples, len(items)), replace=False)
     hits = 0

@@ -12,7 +12,7 @@ import numpy as np
 import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from itlr.core.bm25 import BM25Index
+from itlr.retrieval.bm25 import BM25Index
 from itlr.core.recommender import (
     build_field_corpus, build_retrieval_model, create_vectorizer, search_by_query,
 )

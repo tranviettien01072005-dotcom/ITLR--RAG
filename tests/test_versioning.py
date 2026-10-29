@@ -77,3 +77,93 @@ class TestVersions:
             versioning.activate(vroot, v)
         versioning.garbage_collect(vroot, keep=3)
         assert versioning.list_versions(vroot) == ["v4", "v3", "v2"]
+
+
+def test_generated_staging_ids_do_not_collide(vroot, monkeypatch):
+    monkeypatch.setattr(versioning.time, 'time', lambda: 1234567890.)
+    a = versioning.create_version_dir(vroot)
+    b = versioning.create_version_dir(vroot)
+    assert a != b
+
+
+def test_rollback_tracks_actual_transition(vroot):
+    for name in ['v1', 'v2', 'v3']:
+        d = versioning.create_version_dir(vroot, name)
+        versioning.write_manifest(d, {'probe': 'ok'})
+        versioning.activate(vroot, name)
+    assert versioning.rollback(vroot)
+    assert versioning.current_version(vroot) == 'v2'
+    assert versioning.rollback(vroot)
+    assert versioning.current_version(vroot) == 'v3'
+
+
+def test_concurrent_activations_preserve_all_history(vroot):
+    from concurrent.futures import ThreadPoolExecutor
+    names = [f'v{i}' for i in range(12)]
+    for name in names:
+        d = versioning.create_version_dir(vroot, name)
+        versioning.write_manifest(d, {'probe':'ok'})
+    with ThreadPoolExecutor(max_workers=4) as pool:
+        list(pool.map(lambda name: versioning.activate(vroot,name), names))
+    assert len(versioning.read_history(vroot)) == len(names)
+    assert {h['version'] for h in versioning.read_history(vroot)} == set(names)
+
+
+def test_gc_preserves_in_progress_staging(vroot):
+    staged = versioning.create_version_dir(vroot,'aaa-staging')
+    d = versioning.create_version_dir(vroot,'zzz-active')
+    versioning.write_manifest(d, {'probe':'ok'})
+    versioning.activate(vroot,'zzz-active')
+    versioning.garbage_collect(vroot,keep=1)
+    assert staged.is_dir()
+
+
+def test_multiprocess_activation_history_is_consistent(vroot):
+    import subprocess
+    import sys
+    from concurrent.futures import ThreadPoolExecutor
+    names = [f'p{i}' for i in range(8)]
+    for name in names:
+        d = versioning.create_version_dir(vroot,name)
+        versioning.write_manifest(d, {'probe':'ok'})
+    def activate(name):
+        subprocess.run([sys.executable,'-c',
+                        'import sys; from itlr.versioning import activate; activate(sys.argv[1],sys.argv[2])',
+                        str(vroot),name],check=True)
+    with ThreadPoolExecutor(max_workers=4) as pool:
+        list(pool.map(activate,names))
+    hist = versioning.read_history(vroot)
+    assert len(hist) == 8
+    assert {h['version'] for h in hist} == set(names)
+    assert versioning.current_version(vroot) == hist[-1]['version']
+
+
+def test_crash_between_pointer_and_history_preserves_rollback(vroot, monkeypatch):
+    for name in ['v1','v2']:
+        d=versioning.create_version_dir(vroot,name)
+        versioning.write_manifest(d, {'probe':'ok'})
+    versioning.activate(vroot,'v1')
+    def crash(*args): raise OSError('simulated interruption after pointer commit')
+    with monkeypatch.context() as m:
+        m.setattr(versioning,'_append_history',crash)
+        with pytest.raises(OSError): versioning.activate(vroot,'v2')
+    assert versioning.read_history(vroot)[-1]['version']=='v2'
+    assert versioning.rollback(vroot)
+    assert versioning.current_version(vroot)=='v1'
+
+
+def test_restart_after_process_exit_between_pointer_and_mirror(vroot):
+    import subprocess
+    import sys
+    for name in ['v1','v2']:
+        d=versioning.create_version_dir(vroot,name)
+        versioning.write_manifest(d, {'probe':'ok'})
+    versioning.activate(vroot,'v1')
+    code = ('import os,sys; from itlr import versioning as v; '
+            'v._append_history=lambda *a: os._exit(23); v.activate(sys.argv[1],"v2")')
+    result=subprocess.run([sys.executable,'-c',code,str(vroot)],check=False)
+    assert result.returncode==23
+    assert versioning.current_version(vroot)=='v2'
+    assert versioning.read_history(vroot)[-1]['version']=='v2'
+    assert versioning.rollback(vroot)
+    assert versioning.current_version(vroot)=='v1'

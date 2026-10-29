@@ -33,3 +33,7 @@ var/ollama/
 var/hf/
 
 var/data/web_items.csv
+
+# Local process coordination (never remove while jobs are running)
+var/data/.pipeline.lock
+var/data/.refresh.lock

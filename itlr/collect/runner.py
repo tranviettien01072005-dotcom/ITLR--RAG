@@ -135,12 +135,16 @@ class CollectRunner:
 
         # Đồng bộ active/missing CHỈ khi listing lấy đủ và có ít nhất một mục — listing lỗi
         # một phần hoặc rỗng bất thường không được phép đánh missing hàng loạt.
-        if listing_complete and entries:
+        if listing_complete and entries and src.listing_is_complete:
             rec = self.store.reconcile_source(src.source_id, listed_keys)
             counts["missing"] = rec["marked_missing"]
             counts["restored"] = rec["restored"]
             self._stats["missing_marked"] += rec["marked_missing"]
             self._stats["restored"] += rec["restored"]
+        elif listing_complete and entries:
+            # Rolling feeds can restore seen URLs but cannot prove deletion.
+            counts["restored"] = self.store.link_seen(src.source_id, listed_keys)
+            self._stats["restored"] += counts["restored"]
         elif not listing_complete:
             LOG.warning("Nguồn %s: listing KHÔNG đầy đủ — bỏ qua đồng bộ missing.", src.source_id)
 

@@ -22,6 +22,8 @@ import json
 import os
 import shutil
 import time
+import uuid
+from itlr.locking import artifact_locked
 from pathlib import Path
 
 from itlr import config
@@ -48,7 +50,7 @@ def create_version_dir(root=None, version: str | None = None) -> Path:
     from itlr.versioning import _id
 
     root = Path(root or config.ARTIFACTS_DIR)
-    version = version or _id()
+    version = version or (_id() + "-" + uuid.uuid4().hex[:12])
     d = _dir(root, version)
     d.mkdir(parents=True, exist_ok=True)
     return d
@@ -138,28 +140,33 @@ def current_dir(root=None) -> Path:
         raise VersionError("Invalid artifact pointer") from exc
 
 
-def _write_pointer(root: Path, version: str) -> None:
+def _write_pointer(root: Path, version: str, event="activate") -> None:
     root = Path(root)
-    meta = {"version": version, "dir": f"versions/{version}"}
+    hist = read_history(root)
+    hist.append({"ts": time.strftime("%Y-%m-%dT%H:%M:%S"), "event": event, "version": version})
+    meta = {"version": version, "dir": f"versions/{version}", "history": hist[-200:]}
     tmp = root / f".CURRENT.json.tmp{os.getpid()}"
-    tmp.write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
+    with tmp.open("w", encoding="utf-8") as handle:
+        json.dump(meta, handle, ensure_ascii=False, indent=2)
+        handle.flush()
+        os.fsync(handle.fileno())
     os.replace(tmp, root / "CURRENT.json")
+    fd = os.open(root, os.O_RDONLY | os.O_DIRECTORY)
+    try:
+        os.fsync(fd)
+    finally:
+        os.close(fd)
 
 
 def _append_history(root: Path, event: str, version: str | None) -> None:
+    # Compatibility mirror; CURRENT.json is the authoritative atomic transaction.
     root = Path(root)
-    hist_path = root / HISTORY_FILE
-    try:
-        hist = json.loads(hist_path.read_text(encoding="utf-8")) if hist_path.exists() else []
-    except Exception:
-        hist = []
-    hist.append({"ts": time.strftime("%Y-%m-%dT%H:%M:%S"),
-                 "event": event, "version": version})
     tmp = root / f".{HISTORY_FILE}.tmp{os.getpid()}"
-    tmp.write_text(json.dumps(hist[-200:], ensure_ascii=False, indent=2), encoding="utf-8")
-    os.replace(tmp, hist_path)
+    tmp.write_text(json.dumps(read_history(root), ensure_ascii=False, indent=2), encoding="utf-8")
+    os.replace(tmp, root / HISTORY_FILE)
 
 
+@artifact_locked
 def activate(root=None, version: str | None = None) -> str:
     """Kích hoạt một phiên bản (đÃ phải probe ok). Con trỏ ghi nguyên tử."""
     root = Path(root or config.ARTIFACTS_DIR)
@@ -181,16 +188,17 @@ def activate(root=None, version: str | None = None) -> str:
 
 def history_prev_version(root=None):
     root = Path(root or config.ARTIFACTS_DIR)
-    try:
-        hist = json.loads((root / HISTORY_FILE).read_text(encoding="utf-8"))
-    except Exception:
-        return None
-    activates = [h["version"] for h in hist if h.get("event") == "activate" and h.get("version")]
-    if len(activates) >= 2:
-        return activates[-2]
+    hist = read_history(root)
+    cur = current_version(root)
+    transitions = [h["version"] for h in hist
+                   if h.get("event") in {"activate", "rollback"} and h.get("version")]
+    for version in reversed(transitions):
+        if version != cur:
+            return version
     return None
 
 
+@artifact_locked
 def rollback(root=None) -> bool:
     """Quay về phiên bản activate trước — trả True nếu có và đã quay thành công."""
     root = Path(root or config.ARTIFACTS_DIR)
@@ -202,25 +210,39 @@ def rollback(root=None) -> bool:
         raise VersionError("Previous artifact version has no successful probe")
     verify_integrity(d, required=True)
     cur = current_version(root)
-    _write_pointer(root, prev)
+    _write_pointer(root, prev, "rollback" if cur else "activate")
     _append_history(root, "rollback" if cur else "activate", prev)
     return True
 
 
 def read_history(root=None) -> list[dict]:
     root = Path(root or config.ARTIFACTS_DIR)
+    pointer = root / "CURRENT.json"
+    if pointer.exists():
+        try:
+            meta = json.loads(pointer.read_text(encoding="utf-8"))
+            if "history" in meta:
+                if not isinstance(meta["history"], list):
+                    raise VersionError("Invalid pointer history")
+                return meta["history"]
+        except (OSError, ValueError, TypeError) as exc:
+            raise VersionError("Invalid artifact pointer history") from exc
     try:
         return json.loads((root / HISTORY_FILE).read_text(encoding="utf-8"))
-    except Exception:
+    except FileNotFoundError:
         return []
+    except (OSError, ValueError) as exc:
+        raise VersionError("Invalid legacy artifact history") from exc
 
 
+@artifact_locked
 def garbage_collect(root=None, keep: int = 3) -> None:
     """Giới hạn số phiên bản lưu trữ để tiết kiệm ổ cứng (mặc định giữ 3 gần nhất)."""
     root = Path(root or config.ARTIFACTS_DIR)
     cur = current_version(root)
-    versions = list_versions(root)
+    previous = history_prev_version(root)
+    versions = [v for v in list_versions(root) if probe_ok(_dir(root, v))]
     for name in versions[keep:]:
-        if name == cur:
+        if name in {cur, previous}:
             continue  # không thể xóa phiên bản đang chạy
         shutil.rmtree(_dir(root, name), ignore_errors=True)

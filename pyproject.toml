@@ -43,4 +43,8 @@ eval = ["lightgbm>=4.0", "matplotlib>=3.8", "shap>=0.46"]
 dev = ["pytest>=8.0"]
 
 [tool.setuptools.packages.find]
+namespaces = false
 include = ["itlr*"]
+
+[tool.setuptools.package-data]
+"itlr.api" = ["static/*.html", "static/*.js", "static/*.css"]

@@ -10,7 +10,7 @@ Collaborative Filtering) được giữ nguyên — engine chỉ gói lại cho 
 import logging
 import os
 import pickle
-from functools import lru_cache
+import threading
 from pathlib import Path
 
 from itlr import config
@@ -61,15 +61,28 @@ class RecommenderEngine:
         if matched:
             notes.append(f"khái niệm: {matched['name']}")
 
-        results = search_by_embedding(
-            search_query, self.items, self.model, self.search_index["embeddings"],
-            char_vectorizer=self.search_index["char_vectorizer"],
-            char_matrix=self.search_index["char_matrix"],
-            item_type=item_type, min_relevance=min_pct / 100.0,
-            query_prefix=self.search_index.get("query_prefix", ""),
-            ann=self.search_index.get("ann"),
-            reranker=self.search_index.get("reranker"),
-        )
+        if self.search_index.get("retrieval") is not None:
+            from itlr.core.recommender import row_to_dict
+            hits = self.search_index["retrieval"].search(search_query,item_type=item_type,
+                                                       min_relevance=min_pct/100.)
+            results = []
+            seen = set()
+            for hit in hits:
+                if hit["item_id"] in seen:
+                    continue
+                seen.add(hit["item_id"])
+                results.append({**row_to_dict(hit["item"],score=hit["dense_score"]),
+                                "chunk_id":hit["chunk_id"],"excerpt":hit["excerpt"]})
+        else:
+            results = search_by_embedding(
+                search_query, self.items, self.model, self.search_index["embeddings"],
+                char_vectorizer=self.search_index["char_vectorizer"],
+                char_matrix=self.search_index["char_matrix"],
+                item_type=item_type, min_relevance=min_pct / 100.0,
+                query_prefix=self.search_index.get("query_prefix", ""),
+                ann=self.search_index.get("ann"),
+                reranker=self.search_index.get("reranker"),
+            )
         return {
             "results": results,
             "display": understanding["display"],
@@ -113,8 +126,7 @@ class RecommenderEngine:
                 "không gắn dữ liệu thật).")
 
 
-@lru_cache(maxsize=1)
-def load_engine():
+def _load_engine():
     """Nạp toàn bộ artifacts MỘT LẦN (cache process-level) và dựng RecommenderEngine.
 
     Ném FileNotFoundError nếu thiếu artifacts -> caller hiển thị hướng dẫn build.
@@ -161,6 +173,11 @@ def load_engine():
         search_index["chunk_meta"] = (chunk_meta.get("rows", []) if isinstance(chunk_meta, dict)
                                       else chunk_meta.to_dict("records") if hasattr(chunk_meta, "to_dict") else chunk_meta)
 
+    if (active_dir / "chunk_embeddings.pkl").is_file():
+        from itlr.core.chunks import ChunkIndex
+        with (active_dir / "chunk_embeddings.pkl").open("rb") as handle:
+            search_index["chunks"] = ChunkIndex(search_index["chunk_meta"], pickle.load(handle))
+
     from sentence_transformers import SentenceTransformer
 
     from itlr.chatbot.chatbot import EducationalChatbot
@@ -175,9 +192,48 @@ def load_engine():
     search_index["ann"] = ann
     search_index["reranker"] = reranker
 
+    if search_index.get("chunks") is not None:
+        from itlr.retrieval.service import RetrievalService
+        search_index["retrieval"] = RetrievalService(search_index["chunks"],items,model,
+                                                     search_index["query_prefix"],reranker)
+
     chatbot = EducationalChatbot(
         items, retrieval_model, search_index=search_index, embed_model=model,
         query_prefix=search_index["query_prefix"], ann=ann, reranker=reranker,
     )
     search_index["vocab"] = chatbot.vocab
     return RecommenderEngine(items, model, search_index, cf_model, chatbot)
+
+
+_ENGINE = None
+_ENGINE_LOCK = threading.RLock()
+
+
+def load_engine():
+    global _ENGINE
+    cached = _ENGINE
+    if cached is not None:
+        return cached
+    with _ENGINE_LOCK:
+        if _ENGINE is None:
+            return _reload_engine()
+        return _ENGINE
+
+
+def _reload_engine():
+    global _ENGINE
+    from itlr.locking import file_lock
+    with _ENGINE_LOCK, file_lock(config.ARTIFACTS_DIR / ".activation.lock", shared=True):
+        candidate = _load_engine()
+        _ENGINE = candidate
+        return candidate
+
+
+def _clear_engine():
+    global _ENGINE
+    with _ENGINE_LOCK:
+        _ENGINE = None
+
+
+load_engine.cache_clear = _clear_engine
+load_engine.reload = _reload_engine

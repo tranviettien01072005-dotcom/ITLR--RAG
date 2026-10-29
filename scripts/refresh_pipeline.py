@@ -129,4 +129,7 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.path.insert(0, str(ROOT))
+    from itlr.locking import file_lock
+    with file_lock(ROOT / "var" / "data" / ".refresh.lock"):
+        sys.exit(main())

@@ -122,3 +122,17 @@ class TestSelfRetrieval:
         with open(d / "MANIFEST.json") as f:
             m = json.load(f)
         assert m["probe"] == "ok"
+
+
+def test_self_retrieval_handles_catalog_smaller_than_top_k(tmp_path):
+    d = _mini_artifacts(tmp_path, n=2)
+    ratio, report = self_retrieval_sanity(d, top_k=5)
+    assert ratio == 1.0
+    assert report['n_samples'] == 2
+
+
+def test_self_retrieval_rejects_zero_top_k(tmp_path):
+    import pytest
+    d = _mini_artifacts(tmp_path, n=2)
+    with pytest.raises(ValueError, match='positive'):
+        self_retrieval_sanity(d, top_k=0)

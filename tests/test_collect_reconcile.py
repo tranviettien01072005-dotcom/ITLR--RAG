@@ -107,7 +107,7 @@ def test_reconcile_marks_missing_and_restores(tmp_path):
     st.close()
 
 
-def test_runner_marks_doc_missing_when_removed_from_feed(tmp_path):
+def test_runner_marks_doc_missing_when_removed_from_complete_inventory(tmp_path):
     store = CollectStore(tmp_path / "c.db")
     url_a, url_b = "https://r/a", "https://r/b"
     ka, kb = content_key(url_a), content_key(url_b)
@@ -116,14 +116,16 @@ def test_runner_marks_doc_missing_when_removed_from_feed(tmp_path):
         "https://r/rss": (200, _rss_xml([("Học Docker từ cơ bản đến nâng cao", url_a, "d")])),
         url_a: (200, PAGE_TPL.format(title="Học Docker từ cơ bản").encode()),
     })
-    s1 = CollectRunner(_sset(_rss_source()), fetcher=f1, store=store).run()
+    src = _rss_source()
+    src.listing_is_complete = True
+    s1 = CollectRunner(_sset(src), fetcher=f1, store=store).run()
     assert s1["sources"]["rss1"]["new"] == 1
 
     f2 = StubFetcher({
         "https://r/rss": (200, _rss_xml([("Kubernetes cho lập trình viên backend", url_b, "d")])),
         url_b: (200, PAGE_TPL.format(title="Kubernetes cho backend").encode()),
     })
-    s2 = CollectRunner(_sset(_rss_source()), fetcher=f2, store=store).run()
+    s2 = CollectRunner(_sset(src), fetcher=f2, store=store).run()
     assert s2["sources"]["rss1"]["missing"] == 1
     assert store.get_doc_by_key(ka)["status"] == "missing"
     assert store.get_doc_by_key(kb)["status"] == "active"
@@ -132,7 +134,7 @@ def test_runner_marks_doc_missing_when_removed_from_feed(tmp_path):
         "https://r/rss": (200, _rss_xml([("Học Docker từ cơ bản đến nâng cao", url_a, "d")])),
         url_a: (200, PAGE_TPL.format(title="Học Docker từ cơ bản").encode()),
     })
-    s3 = CollectRunner(_sset(_rss_source()), fetcher=f3, store=store).run()
+    s3 = CollectRunner(_sset(src), fetcher=f3, store=store).run()
     assert s3["sources"]["rss1"]["restored"] == 1
     assert store.get_doc_by_key(ka)["status"] == "active"
     store.close()
@@ -173,4 +175,35 @@ def test_failed_listing_never_marks_existing_docs_missing(tmp_path):
     stats = CollectRunner(ss, fetcher=fetcher, store=store).run()
     assert stats["sources"]["web1"]["missing"] == 0
     assert store.get_doc_by_key(key)["status"] == "active"
+    store.close()
+
+
+def test_rolling_feed_keeps_archived_articles_active(tmp_path):
+    store = CollectStore(tmp_path / 'rolling.db')
+    old_key = content_key('https://r/old')
+    store.upsert_doc(_doc(old_key, title='Docker archive tutorial'))
+    src = _rss_source()
+    fetcher = StubFetcher({'https://r/rss': (200, _rss_xml([
+        ('Kubernetes backend tutorial', 'https://r/new', 'd')])),
+        'https://r/new': (200, PAGE_TPL.format(title='Kubernetes backend tutorial').encode())})
+    stats = CollectRunner(_sset(src), fetcher=fetcher, store=store).run()
+    assert stats['sources']['rss1']['missing'] == 0
+    assert store.get_doc_by_key(old_key)['status'] == 'active'
+    store.close()
+
+
+def test_rolling_feed_restores_seen_document_beyond_fetch_budget(tmp_path):
+    store = CollectStore(tmp_path / 'restore.db')
+    key = content_key('https://r/old')
+    store.upsert_doc(_doc(key, title='Docker archive tutorial'))
+    store.mark_missing('rss1')
+    src = _rss_source(max_items=1)
+    fetcher = StubFetcher({'https://r/rss': (200, _rss_xml([
+        ('New Kubernetes tutorial', 'https://r/new', 'd'),
+        ('Docker archive tutorial', 'https://r/old', 'd')])),
+        'https://r/new': (200, PAGE_TPL.format(title='New Kubernetes tutorial').encode())})
+    stats = CollectRunner(_sset(src), fetcher=fetcher, store=store).run()
+    assert stats['sources']['rss1']['restored'] == 1
+    assert store.get_doc_by_key(key)['status'] == 'active'
+    assert 'https://r/old' not in fetcher.calls
     store.close()

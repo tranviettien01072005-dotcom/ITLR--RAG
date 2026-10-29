@@ -114,4 +114,7 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    from itlr import config
+    from itlr.locking import file_lock
+    with file_lock(config.DATA_DIR / ".pipeline.lock"):
+        sys.exit(main())

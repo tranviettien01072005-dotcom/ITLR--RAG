@@ -36,13 +36,10 @@ CITATION_RE = re.compile(r"\[item_id:([\dA-Fa-fx\-]+)\]*[\]\)]?", re.IGNORECASE)
 
 
 def _ndcg_at_k(ranked_ids, rels, k):
-    dcg = 0.0
-    for pos, iid in enumerate(ranked_ids[:k], 1):
-        g = rels.get(int(iid), 0)
-        dcg += (2 ** g - 1) / (1 + pos) if g else 0.0   # log2 = log(pos+1)
-    best = sorted(rels.values(), reverse=True)[:k]
-    idcg = sum((2 ** g - 1) / (1 + i + 1) for i, g in enumerate(best) if g)
-    return dcg / idcg if idcg > 0 else 0.0
+    from itlr.eval.metrics import ndcg_at_k
+
+    return ndcg_at_k([rels.get(int(iid), 0) for iid in ranked_ids[:k]],
+                     k, ideal_rels=list(rels.values()))
 
 
 def _mrr_at_k(ranked_ids, rels, k):

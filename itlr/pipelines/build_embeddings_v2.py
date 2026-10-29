@@ -99,6 +99,8 @@ def main() -> int:
 
     chunk_embs = encode_passages(model, all_passages, preset,
                                  batch_size=32, show_progress_bar=True)
+    with open(os.path.join(out_dir, "chunk_embeddings.pkl"), "wb") as f:
+        pickle.dump(np.asarray(chunk_embs, dtype=np.float32), f)
     # ---- gộp mean + chuẩn hóa L2 về đúng n hàng ----
     emb = np.zeros((n, chunk_embs.shape[1]), dtype=np.float32)
     counts = np.zeros(n, dtype=np.int64)

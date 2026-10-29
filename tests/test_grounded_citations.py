@@ -98,3 +98,17 @@ def test_api_preserves_sources_and_early_events(monkeypatch):
     frames = [json.loads(frame[6:]) for frame in server.api_chat_stream(server.ChatReq(message="q"))]
     assert [f["type"] for f in frames] == ["sources", "meta", "text", "text", "final", "done"]
     assert frames[-2]["response"] == result["response"]
+
+
+def test_v3_generation_requires_chunk_reference(monkeypatch):
+    bot=prepared(monkeypatch)
+    bot.search_index={'retrieval':object()}
+    monkeypatch.setattr(cb,'try_llm_response',lambda *a,**kw:'Python [item_id:5001]')
+    assert bot.chat('q')['generation_mode']=='insufficient_evidence'
+
+
+def test_v3_generation_accepts_selected_chunk(monkeypatch):
+    bot=prepared(monkeypatch)
+    bot.search_index={'retrieval':object()}
+    monkeypatch.setattr(cb,'try_llm_response',lambda *a,**kw:'Python [item_id:5001] [chunk_id:5001:0]')
+    assert bot.chat('q')['generation_mode']=='llm'

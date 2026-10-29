@@ -10,7 +10,7 @@ from itlr.collect.runner import CollectRunner
 from itlr.collect.sources import Source, SourceSet
 from itlr.collect.store import CollectStore
 from itlr.collect.chunk import chunk_text
-from itlr.core.bm25 import BM25Index
+from itlr.retrieval.bm25 import BM25Index
 from itlr.core.recommender import (
     build_field_corpus, build_retrieval_model, create_vectorizer, search_by_query,
 )

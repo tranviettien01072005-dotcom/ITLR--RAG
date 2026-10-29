@@ -15,7 +15,7 @@ if hasattr(sys.stdout, "reconfigure"):
 import pandas as pd
 
 from itlr import config
-from itlr.core.bm25 import BM25Index
+from itlr.retrieval.bm25 import BM25Index
 from itlr.core.recommender import (
     build_field_corpus,
     build_retrieval_model,
