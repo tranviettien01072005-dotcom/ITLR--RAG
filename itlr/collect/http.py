@@ -123,6 +123,10 @@ class HttpError(Exception):
     """Fetch thất bại sau hết số lần thử (hoặc bị robots từ chối)."""
 
 
+class _RobotsDenied(HttpError):
+    """A denied redirect is a policy decision, not a retryable network failure."""
+
+
 class HttpFetcher:
     """HTTP fetch (httpx, tạo client mới cho từng lần gọi — không dùng chung),
 
@@ -145,11 +149,12 @@ class HttpFetcher:
         self.rate: RateLimiter | None = rate_limiter
         self.robots: RobotsCtx | None = robots
 
-    def _new_client(self):
+    def _new_client(self, request_hook):
         timeout = self._httpx.Timeout(self.request_timeout, connect=self.timeout_connect)
         return self._httpx.Client(
             timeout=timeout, follow_redirects=True,
             headers={"User-Agent": self.user_agent},
+            event_hooks={"request": [request_hook]},
         )
 
     def _throttle(self, url: str, crawl_delay: float = 0.0):
@@ -158,20 +163,21 @@ class HttpFetcher:
 
     def fetch(self, url: str, *, respect_robots=True) -> tuple[int, bytes]:
         """Fetch URL → (status, body_bytes); raise HttpError nếu robots chặn hoặc hết retry."""
-        if self.robots is not None and respect_robots:
-            ok, crawl_delay = self.robots.allowed(url)
-            if not ok:
-                raise HttpError(f"robots.txt từ chối: {url}")
-            self._throttle(url, crawl_delay)
-        else:
-            self._throttle(url)
+        def before_request(request):
+            target = str(request.url)
+            crawl_delay = 0.0
+            if self.robots is not None and respect_robots:
+                ok, crawl_delay = self.robots.allowed(target)
+                if not ok:
+                    raise _RobotsDenied(f"robots.txt từ chối: {target}")
+            self._throttle(target, crawl_delay)
 
         cap = max(0, self.max_retries)
         last_err = None
         for attempt in range(cap + 1):
             client = None
             try:
-                client = self._new_client()
+                client = self._new_client(before_request)
                 resp = client.get(url)
                 code = resp.status_code
                 if 200 <= code < 300:
@@ -182,6 +188,8 @@ class HttpFetcher:
                 # 4xx khác (404/401/...) — không retry
                 LOG.info("fetch %s → HTTP %s (không retry)", url, code)
                 return code, resp.content
+            except _RobotsDenied:
+                raise
             except self._httpx.TimeoutException as exc:
                 last_err = f"timeout: {exc}"
             except self._httpx.TransportError as exc:

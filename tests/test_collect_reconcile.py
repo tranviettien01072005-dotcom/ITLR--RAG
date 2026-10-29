@@ -207,3 +207,62 @@ def test_rolling_feed_restores_seen_document_beyond_fetch_budget(tmp_path):
     assert store.get_doc_by_key(key)['status'] == 'active'
     assert 'https://r/old' not in fetcher.calls
     store.close()
+
+
+@pytest.mark.parametrize("changed_content", [False, True])
+def test_refetch_updates_document_license_and_permission(tmp_path, changed_content):
+    store = CollectStore(tmp_path / "policy.db")
+    doc = _doc("u:policy", title="Docker policy tutorial")
+    store.upsert_doc(doc)
+    refreshed = {**doc, "license": "new-license", "full_text_allowed": 0}
+    if changed_content:
+        refreshed.update(text="updated article", content_hash="changed")
+    result = store.upsert_doc(refreshed)
+    row = store.get_doc_by_key(doc["content_key"])
+    assert row["license"] == "new-license"
+    assert row["full_text_allowed"] == 0
+    assert result["event"] == "updated"
+    assert store.docs_for_index() == []
+    store.close()
+
+
+def test_source_revocation_blocks_cached_documents_even_if_listing_fails(tmp_path):
+    store = CollectStore(tmp_path / "revoked.db")
+    key = content_key("https://r/archive")
+    doc = _doc(key, title="Docker archived tutorial")
+    store.upsert_doc(doc)
+    src = _rss_source()
+    src.full_text_allowed = False
+    stats = CollectRunner(_sset(src), fetcher=StubFetcher({}), store=store).run()
+    assert "error" in stats["sources"][src.source_id]
+    assert store.docs_for_index() == []
+    # Revocation prevents reuse without deleting the previously collected snapshot.
+    assert store.get_doc_by_key(key)["text"] == doc["text"]
+    store.close()
+
+
+@pytest.mark.parametrize("kind", ["rss", "api", "web"])
+def test_http_error_listing_cannot_reconcile_or_add_documents(tmp_path, kind):
+    import json
+
+    store = CollectStore(tmp_path / "listing-error.db")
+    old_key = content_key("https://r/old")
+    store.upsert_doc(_doc(old_key, title="Docker archived tutorial"))
+    src = _rss_source()
+    src.kind = kind
+    src.listing_is_complete = True
+    src.list_url = "https://r/list"
+    src.list_urls = ("https://r/list",)
+    src.fields = {"url": "url", "title": "title"}
+    entry = ("Kubernetes backend tutorial", "https://r/new", "d")
+    payload = {"rss": _rss_xml([entry]),
+               "api": json.dumps([{"title": entry[0], "url": entry[1]}]).encode(),
+               "web": b'<a href="https://r/new">New tutorial</a>'}[kind]
+    listing_url = src.feed_url if kind == "rss" else src.list_url
+    fetcher = StubFetcher({listing_url: (404, payload),
+                           entry[1]: (200, PAGE_TPL.format(title=entry[0]).encode())})
+    CollectRunner(_sset(src), fetcher=fetcher, store=store).run()
+    assert store.get_doc_by_key(old_key)["status"] == "active"
+    assert store.stats()["docs_total"] == 1
+    assert entry[1] not in fetcher.calls
+    store.close()

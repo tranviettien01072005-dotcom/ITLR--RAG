@@ -116,9 +116,11 @@ class TestFetcher:
 
         class FakeClient:
             def __init__(self, *a, **k):
-                pass
+                self.hooks = k.get("event_hooks", {}).get("request", [])
 
             def get(self, url):
+                for hook in self.hooks:
+                    hook(type("Request", (), {"url": url})())
                 calls["urls"].append(url)
                 item = responses[min(calls["n"], len(responses) - 1)]
                 calls["n"] += 1
@@ -186,3 +188,60 @@ class TestFetcher:
         f = self._fetcher(robots=Deny())
         with pytest.raises(HttpError):
             f.fetch("https://example.net/anything")
+
+
+def test_redirect_target_is_checked_before_fetching_and_each_hop_is_throttled(monkeypatch):
+    import httpx
+
+    visited = []
+    throttled = []
+    checked = []
+
+    def respond(request):
+        visited.append(str(request.url))
+        return httpx.Response(302, headers={"Location": "https://blocked.test/private"})
+
+    class Robots:
+        def allowed(self, url):
+            checked.append(url)
+            return ("blocked.test" not in url), 4.0
+
+    class Rate:
+        def wait(self, host, extra_delay=0):
+            throttled.append((host, extra_delay))
+
+    original_client = httpx.Client
+    monkeypatch.setattr(httpx, "Client", lambda **kwargs: original_client(
+        **kwargs, transport=httpx.MockTransport(respond)))
+    fetcher = HttpFetcher(robots=Robots(), rate_limiter=Rate(), max_retries=0)
+    with pytest.raises(HttpError):
+        fetcher.fetch("https://allowed.test/start")
+    assert visited == ["https://allowed.test/start"]
+    assert "https://blocked.test/private" in checked
+    assert throttled == [("allowed.test", 4.0)]
+
+
+def test_each_retry_and_allowed_redirect_obeys_rate_limit(monkeypatch):
+    import httpx
+
+    visited = []
+    throttled = []
+
+    def respond(request):
+        url = str(request.url)
+        visited.append(url)
+        if url.endswith("/start"):
+            return httpx.Response(302, headers={"Location": "https://other.test/end"})
+        return httpx.Response(503 if len(visited) == 2 else 200, content=b"ok")
+
+    class Rate:
+        def wait(self, host, extra_delay=0):
+            throttled.append(host)
+
+    original_client = httpx.Client
+    monkeypatch.setattr(httpx, "Client", lambda **kwargs: original_client(
+        **kwargs, transport=httpx.MockTransport(respond)))
+    monkeypatch.setattr("itlr.collect.http.time.sleep", lambda _: None)
+    fetcher = HttpFetcher(rate_limiter=Rate(), max_retries=1, backoff_base=0)
+    assert fetcher.fetch("https://allowed.test/start") == (200, b"ok")
+    assert throttled == ["allowed.test", "other.test", "allowed.test", "other.test"]

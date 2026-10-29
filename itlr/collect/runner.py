@@ -100,7 +100,9 @@ class CollectRunner:
             seen_keys.add(ckey)
 
             doc0 = self.store.get_doc_by_key(ckey)
-            if doc0 and _fetched_recently(doc0, self.recheck_h):
+            if doc0 and doc0["license"] == src.license and \
+                    bool(doc0["full_text_allowed"]) == src.full_text_allowed and \
+                    _fetched_recently(doc0, self.recheck_h):
                 counts["skipped"] += 1
                 self._stats["skipped_recheck"] += 1
                 continue
@@ -153,18 +155,24 @@ class CollectRunner:
 
     def _list_entries(self, src: Source) -> tuple[list, bool]:
         """Trả (entries, listing_complete). complete=False nếu bất kỳ trang listing lỗi."""
+        def fetch_listing(url):
+            status, payload = self.fetcher.fetch(url)
+            if not 200 <= status < 300:
+                raise HttpError(f"Listing {url}: HTTP {status}")
+            return payload
+
         if src.kind == "api":
-            _, payload = self.fetcher.fetch(src.list_url)
+            payload = fetch_listing(src.list_url)
             return api_candidates(src, payload), True
         if src.kind == "rss":
-            _, payload = self.fetcher.fetch(src.feed_url)
+            payload = fetch_listing(src.feed_url)
             return rss_candidates(src, payload), True
         # web: mọi trang listing
         entries = []
         complete = True
         for lu in src.list_urls:
             try:
-                _, payload = self.fetcher.fetch(lu)
+                payload = fetch_listing(lu)
                 entries += web_candidates(src, payload.decode("utf-8", errors="replace"), lu)
             except HttpError as exc:
                 complete = False
@@ -179,7 +187,7 @@ class CollectRunner:
             status, payload = self.fetcher.fetch(entry.url)
         except HttpError:
             raise
-        if status in (301, 302, 404, 410, 403):
+        if not 200 <= status < 300:
             return None
         html = payload.decode("utf-8", errors="replace")
         meta = extract_meta(html)

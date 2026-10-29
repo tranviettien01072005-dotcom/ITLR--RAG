@@ -108,8 +108,14 @@ class CollectStore:
              "updated_at=excluded.updated_at")
         if not data.get("updated_at"):
             data = {**data, "updated_at": utcnow()}
-        self._conn.execute(q, data)
-        self._conn.commit()
+        with self._conn:
+            self._conn.execute(q, data)
+            if not data["full_text_allowed"]:
+                # Revoke reuse immediately, including archived URLs and failed listings.
+                self._conn.execute(
+                    "UPDATE docs SET full_text_allowed=0, updated_at=? "
+                    "WHERE source_id=? AND full_text_allowed<>0",
+                    (data["updated_at"], data["source_id"]))
 
     def source_row(self, source_id: str) -> dict | None:
         cur = self._conn.execute("SELECT * FROM sources WHERE source_id=?", (source_id,))
@@ -179,14 +185,10 @@ class CollectStore:
             self._remember_title(doc)
             return {"event": "new", "row": dict(new_id), "revision": 1}
 
-        if existing["content_hash"] == doc["content_hash"] and \
-                existing["quality_status"] != "ok":
-            # Đã nhận trước đây là rác, và vẫn như cũ → unchanged, không tái kiểm
-            self._touch(existing["doc_id"], now)
-            return {"event": "unchanged", "row_id": existing["doc_id"],
-                    "revision": existing["revision"]}
-
-        if existing["content_hash"] == doc["content_hash"]:
+        provenance = ("source_id", "external_id", "url", "norm_url", "lang",
+                      "license", "full_text_allowed")
+        if existing["content_hash"] == doc["content_hash"] and all(
+                existing[field] == doc[field] for field in provenance):
             self._touch(existing["doc_id"], now)
             return {"event": "unchanged", "row_id": existing["doc_id"],
                     "revision": existing["revision"]}
@@ -194,6 +196,8 @@ class CollectStore:
         # Nội dung ĐỔI → cập nhật, thúc revision
         q = ("UPDATE docs SET title=:title, description=:description, text=:text, "
              "tags=:tags, author=:author, published_at=:published_at, "
+             "source_id=:source_id, external_id=:external_id, url=:url, norm_url=:norm_url, "
+             "lang=:lang, license=:license, full_text_allowed=:full_text_allowed, "
              "content_hash=:content_hash, n_chars=:n_chars, "
              "quality_status=:quality_status, revision=revision+1, "
              "fetched_at=:fetched_at, updated_at=:updated_at, status='active' "

@@ -154,3 +154,35 @@ class TestRunner:
         store = CollectStore(tmp_path / "budget.db")
         stats = CollectRunner(ss, fetcher=fetcher, store=store).run()
         assert stats["sources"]["rss1"]["new"] == 2
+
+    def test_license_change_refetches_inside_recheck_window(self, tmp_path):
+        ss = _sourceset(tmp_path)
+        store = CollectStore(tmp_path / "license.db")
+        src = ss.sources[0]
+        url = "https://r/docker"
+        fetcher = StubFetcher({
+            "https://r/rss": (200, _rss_xml([("Docker tutorial for beginners", url, "d")])),
+            url: (200, PAGE_TPL.format(title="Docker tutorial for beginners").encode()),
+        })
+        runner = CollectRunner(ss, fetcher=fetcher, store=store)
+        runner.run(sources=(src,))
+        src.license = "new-license"
+        stats = runner.run(sources=(src,))
+        assert fetcher.calls.count(url) == 2
+        assert stats["sources"][src.source_id]["updated"] == 1
+        assert store.docs_for_index()[0]["license"] == "new-license"
+        store.close()
+
+    @pytest.mark.parametrize("status", [401, 418])
+    def test_non_success_article_is_not_indexed(self, tmp_path, status):
+        ss = _sourceset(tmp_path)
+        store = CollectStore(tmp_path / "article-error.db")
+        url = "https://r/error"
+        fetcher = StubFetcher({
+            "https://r/rss": (200, _rss_xml([("Docker tutorial for beginners", url, "d")])),
+            url: (status, PAGE_TPL.format(title="Docker tutorial for beginners").encode()),
+        })
+        stats = CollectRunner(ss, fetcher=fetcher, store=store).run(sources=(ss.sources[0],))
+        assert stats["sources"]["rss1"]["quality_rejected"] == 1
+        assert store.docs_for_index() == []
+        store.close()
