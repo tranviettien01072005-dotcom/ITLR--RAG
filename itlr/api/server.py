@@ -87,8 +87,9 @@ async def lifespan(_app):
     except FileNotFoundError:
         _log(
             "[!] Chưa có model artifacts. Hãy build trước:\n"
-            "    python scripts/build_all.py\n"
-            "(hoặc lần lượt build_model -> build_embeddings -> generate_interactions -> build_cf)"
+            "    python scripts/build_all_v2.py\n"
+            "(catalog V2 (legacy + crawl) -> build_model -> build_embeddings_v2 -> probe -> activate)\n"
+            "CF (cf_model.pkl) là tùy chọn: không có thì /api/personas, /api/for-you trả 503."
         )
     yield
 
@@ -121,12 +122,15 @@ async def _track_metrics(request: Request, call_next):
 
 @app.get("/health")
 def health():
-    """Liveness/readiness: engine đã nạp được artifacts chưa."""
+    """Liveness/readiness: engine đã nạp được artifacts chưa + CF đang bật/tắt."""
     try:
-        load_engine()
-        return {"status": "ok", "engine": "ready"}
+        eng = load_engine()
     except FileNotFoundError:
-        raise HTTPException(status_code=503, detail="Artifacts chưa build (chạy scripts/build_all.py)")
+        raise HTTPException(status_code=503,
+                            detail="Artifacts chưa build (chạy scripts/build_all_v2.py)")
+    return {"status": "ok", "engine": "ready",
+            "cf": bool(getattr(eng, "cf_model", None) is not None),
+            "items": len(getattr(eng, "items", []) or [])}
 
 
 @app.get("/metrics", response_class=PlainTextResponse)
@@ -164,6 +168,11 @@ class ChatReq(BaseModel):
 class ForYouReq(BaseModel):
     persona: Union[int, str]
     interested: List[int] = []
+
+
+def _cf_unavailable_detail() -> str:
+    return ("Collaborative Filtering chưa khả dụng (cf_model.pkl không có — tính năng tùy "
+            "chọn V2). Search, chatbot và evaluation không bị ảnh hưởng.")
 
 
 @app.post("/api/search")
@@ -226,27 +235,66 @@ def api_chat_stream(req: ChatReq):
     )
 
 
+def _admin_token_expected() -> str:
+    """Token quản trị đọc TẠI THỜI ĐIỂM GỌI (env có thể đổi reload runtime).
+    Rỗng ⇒ API quản trị BỊ TẮT (không có mặc định — an toàn trước tiên)."""
+    return str(os.environ.get("ITLR_ADMIN_TOKEN", "")).strip()
+
+
+def _admin_authorized(request: Request) -> bool:
+    import secrets
+
+    expected = _admin_token_expected()
+    given = request.headers.get("X-Admin-Token", "")
+    if not expected:
+        return False
+    return secrets.compare_digest(given, expected)
+
+
 @app.post("/admin/reload")
-def admin_reload():
+def admin_reload(request: Request):
     """Nạp lại artifacts mà không cần tắt/mở lại tiến trình — gọi sau khi
-    scripts/update_data.py ghi artifacts mới, để chatbot/tìm kiếm dùng dữ liệu mới ngay.
-    Dùng bởi `scripts/update_data.py --restart`.
+    build_all_v2.py kích hoạt phiên bản mới, để search/chatbot dùng dữ liệu mới ngay.
+
+    Bảo vệ: BẮT BUỘC header `X-Admin-Token` khớp env `ITLR_ADMIN_TOKEN`. Env rỗng
+    (chưa cấu hình) ⇒ 403 + API coi như tắt — tránh ai cũng reload được server.
     """
+    if not _admin_token_expected():
+        raise HTTPException(status_code=403,
+                            detail="Admin reload bị tắt: chưa cấu hình ITLR_ADMIN_TOKEN "
+                                   "(đặt env rồi khởi động lại server).")
+    if not _admin_authorized(request):
+        raise HTTPException(status_code=403, detail="Sai hoặc thiếu header X-Admin-Token.")
     load_engine.cache_clear()
-    eng = load_engine()
+    try:
+        eng = load_engine()
+    except FileNotFoundError:
+        raise HTTPException(status_code=503,
+                            detail="Reload xong pointers nhưng artifacts chưa build được nạp "
+                                   "(chạy scripts/build_all_v2.py).")
     n = len(eng.items) if hasattr(eng, "items") else None
-    return {"ok": True, "reloaded": True, "items": n}
+    return {"ok": True, "reloaded": True, "items": n,
+            "cf": bool(getattr(eng, "cf_model", None) is not None)}
 
 
 @app.get("/api/personas")
 def api_personas():
-    return load_engine().personas()
+    from itlr.engine import CFUnavailable
+
+    try:
+        return load_engine().personas()
+    except CFUnavailable:
+        raise HTTPException(status_code=503, detail=_cf_unavailable_detail())
 
 
 @app.post("/api/for-you")
 def api_for_you(req: ForYouReq):
+    from itlr.engine import CFUnavailable
+
     try:
         return load_engine().for_you(req.persona, interested_item_ids=req.interested)
+    except CFUnavailable:
+        raise HTTPException(status_code=503, detail=_cf_unavailable_detail())
     except (KeyError, ValueError):
         raise HTTPException(status_code=404, detail="Không tìm thấy persona này.")
 

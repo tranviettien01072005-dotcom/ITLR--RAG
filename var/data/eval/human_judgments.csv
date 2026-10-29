@@ -1,229 +1,235 @@
 query_id,query,item_id,auto_grade,human_label
-Q049,cho phép chạy code mà không quản lý máy chủ nhà cung cấp tự cấp phát và mở rộng bạn chỉ trả tiền cho thời gian chạy thực,2675,0,0
-Q071,là nhân vật trong do máy điều khiển không phải người chơi thường có AI để tương tác với người chơi,2252,2,1
-Q055,Hàm băm biến dữ liệu thành chuỗi cố định một chiều không giải ngược được,253,0,0
-Q067,là mạng các thiết bị vật lý gắn cảm biến và kết nối để thu thập/trao đổi dữ liệu nhà thông minh công nghiệp 4.0,898,2,0
-Q067,là mạng các thiết bị vật lý gắn cảm biến và kết nối để thu thập/trao đổi dữ liệu nhà thông minh công nghiệp 4.0,1080,0,0
-Q006,Kiểu dữ liệu xác định loại giá trị một biến có thể giữ và các phép toán hợp lệ với nó số nguyên số thực chuỗi boolean danh,191,0,1
-Q019,là ngôn ngữ hiện đại chạy trên JVM gọn và an toàn hơn Java là ngôn ngữ chính thức được Google khuyến nghị cho phát triển,2156,0,0
-Q030,chỉ tập dữ liệu quá lớn/nhanh/đa dạng để công cụ truyền thống xử lý 5V Volume Velocity Variety Veracity Value,607,2,1
-Q071,là nhân vật trong do máy điều khiển không phải người chơi thường có AI để tương tác với người chơi,2924,0,1
-Q064,Tiền mã hóa là tài sản số dùng mật mã để bảo mật giao dịch vận hành trên phi tập trung vd Bitcoin Ethereum,1046,1,1
-Q032,Apache là nền tảng streaming sự kiện phân tán truyền dữ liệu thời gian thực giữa các hệ thống với thông lượng cao độ trễ thấp,2175,1,1
-Q047,CI/CD tự động hóa tích hợp và triển khai mỗi lần đẩy code sẽ tự build test và phát hành,848,0,0
-Q011,Mã nguồn là tập hợp các dòng lệnh do lập trình viên viết bằng ngôn ngữ lập trình sau đó được biên dịch/thông dịch thành chương trình chạy,3234,1,1
-Q022,phá dữ liệu là quá trình tìm mẫu quy luật ẩn trong tập dữ liệu lớn bằng thống kê và máy học,4869,2,1
-Q029,lưu dữ liệu thô ở mọi định dạng có/không cấu trúc tại quy mô lớn xử lý sau khi cần,648,0,0
-Q039,Mô hình hóa dữ liệu là thiết kế cấu trúc dữ liệu bảng quan hệ khóa phản ánh đúng nghiệp vụ trước khi xây hệ thống,1730,0,0
-Q027,là có thêm hệ thống kiểu tĩnh giúp bắt lỗi sớm và bảo trì dự án lớn dễ hơn,1775,2,1
-Q005,Biến là một ô nhớ có tên dùng để lưu trữ dữ liệu trong chương trình,2502,2,1
-Q071,là nhân vật trong do máy điều khiển không phải người chơi thường có AI để tương tác với người chơi,4668,0,0
-Q054,Mã hóa biến dữ liệu thành dạng không đọc được nếu không có khóa bảo vệ tính bí mật,230,2,1
-Q024,đóng gói ứng dụng cùng toàn bộ phụ thuộc vào container — đơn vị nhẹ chạy giống nhau ở mọi nơi,2983,2,0
-Q065,Hệ thống nhúng là máy tính chuyên dụng tích hợp trong thiết bị vi điều khiển để điều khiển chức năng cụ thể tài nguyên hạn chế vd,4817,0,0
-Q046,thu thập và phân tích log/sự kiện bảo mật từ toàn hệ thống để phát hiện tấn công và cảnh báo theo thời gian thực,219,0,0
-Q008,chuyên lập chỉ mục và truy hồi dữ liệu cho LLM nạp tài liệu cắt đoạn tạo embedding và phục vụ RAG,4701,2,1
-Q056,Mã hóa bất đối xứng dùng cặp khóa khóa công để mã hóa/xác minh khóa riêng tư để giải mã/ký,4003,0,0
-Q044,Trực hóa dữ liệu biến số liệu thành biểu đồ đồ thị dashboard để con người dễ nhận ra xu hướng và mẫu hình,3594,0,0
-Q060,là khung làm việc tổ chức công việc theo 1–4 tuần với vai trò PO Dev và nghi thức daily review retro rõ ràng,3904,0,0
-Q047,CI/CD tự động hóa tích hợp và triển khai mỗi lần đẩy code sẽ tự build test và phát hành,3917,2,1
-Q017,là framework giúp dựng nhanh ứng dụng backend/microservices với cấu hình tối thiểu và server nhúng,2191,2,0
-Q043,Extract–Transform–Load là quy trình rút trích – biến đổi – nạp dữ liệu từ nhiều nguồn về kho phân tích,4311,2,1
-Q019,là ngôn ngữ hiện đại chạy trên JVM gọn và an toàn hơn Java là ngôn ngữ chính thức được Google khuyến nghị cho phát triển,1350,2,0
-Q038,là tài liệu đặc tả đầy đủ yêu cầu của phần mềm chức năng + phi chức năng để cả nhóm hiểu thống nhất phải xây gì trước,23,2,1
-Q068,là ứng dụng trong công nghiệp cảm biến máy móc kết nối để giám sát và tự động hóa sản xuất Công nghiệp 4.0,1484,2,1
-Q007,là framework xây ứng dụng LLM nối mô hình với công cụ bộ nhớ truy hồi RAG và tác tử qua các chain,3627,2,1
-Q074,Điện toán lượng tử dùng qubit chồng chập và vướng víu lượng tử để giải một số bài toán nhanh hơn máy tính cổ điển theo cấp số,2550,0,0
-Q051,Ba mô hình dịch vụ đám mây cho thuê hạ tầng máy ảo mạng cung cấp nền tảng để phát triển/triển khai cung cấp phần mềm dùng ngay,3306,0,0
-Q061,là chương trình tự động thực thi trên khi điều kiện được thỏa không cần trung gian vd trên viết bằng Solidity,1896,0,0
-Q053,mạng bảo vệ hệ thống mạng và dữ liệu khỏi tấn công,1934,2,1
-Q059,là triết lý phát triển phần mềm linh hoạt lặp ngắn ưu tiên giá trị cho khách hàng và thích ứng thay đổi hơn bám kế hoạch cứng,4515,0,0
-Q072,cung cấp sẵn đồ họa vật lý âm thanh và công cụ để xây nhanh vd Unreal,4109,2,1
-Q040,Hệ thống thông là tổ hợp con người quy trình dữ liệu và công nghệ phối hợp để thu thập xử lý và cung cấp thông hỗ trợ,2871,0,0
-Q002,Đệ là kỹ thuật một hàm tự gọi lại chính nó để giải bài toán bằng cách chia thành các bài toán con nhỏ hơn có điều kiện,1986,1,1
-Q015,là xử lý nhiều tác vụ chồng lấn thời gian để tận dụng tài nguyên đa luồng bất đồng bộ,493,0,0
-Q068,là ứng dụng trong công nghiệp cảm biến máy móc kết nối để giám sát và tự động hóa sản xuất Công nghiệp 4.0,4404,0,0
-Q070,là tài liệu thiết kế mô tả cốt truyện cơ chế chơi nhân vật level — kim chỉ nam cho cả nhóm phát triển,379,0,1
-Q023,là văn hóa + thực hành kết hợp phát triển Dev và vận hành Ops để giao phần mềm nhanh tự động và đáng tin cậy qua CI/CD,3234,1,1
-Q074,Điện toán lượng tử dùng qubit chồng chập và vướng víu lượng tử để giải một số bài toán nhanh hơn máy tính cổ điển theo cấp số,4725,2,1
-Q045,Giám sát thu thập metric log và trace để theo dõi sức khỏe hệ thống cảnh báo sự cố và phân tích hiệu năng vd Prometheus Grafana,1269,0,0
-Q016,Quản lý bộ nhớ kiểm soát việc cấp phát và thu hồi bộ nhớ cho chương trình stack/heap garbage collection,2991,2,1
-Q016,Quản lý bộ nhớ kiểm soát việc cấp phát và thu hồi bộ nhớ cho chương trình stack/heap garbage collection,3593,0,0
-Q003,Giải thuật là chuỗi bước hữu hạn rõ ràng để giải một bài toán,4578,2,0
-Q062,là tầm nhìn về Internet phi tập trung dựa trên nơi người dùng sở hữu dữ liệu và tài sản số mà không phụ thuộc nền tảng tập,4259,2,1
-Q043,Extract–Transform–Load là quy trình rút trích – biến đổi – nạp dữ liệu từ nhiều nguồn về kho phân tích,1476,0,0
-Q001,Lập trình là việc viết các chỉ thị để ra lệnh cho máy tính thực hiện một tác vụ,4171,1,1
-Q066,điều khiển là chip tích hợp CPU + bộ nhớ + ngoại trên một con điều khiển thiết bị nhúng ESP32,2623,2,1
-Q014,Tiến trình là chương trình đang chạy với vùng nhớ riêng luồng là đơn vị thực thi nhỏ hơn bên trong tiến trình chia sẻ bộ nhớ,3683,1,1
-Q042,học dữ liệu kết hợp thống kê lập trình và kiến thức nghiệp vụ để rút ra hiểu biết và dự đoán từ dữ liệu,988,2,1
-Q028,dùng React/JavaScript để xây ứng dụng di động đa nền tảng với thành phần gốc thật,3491,1,1
-Q014,Tiến trình là chương trình đang chạy với vùng nhớ riêng luồng là đơn vị thực thi nhỏ hơn bên trong tiến trình chia sẻ bộ nhớ,4258,0,0
-Q005,Biến là một ô nhớ có tên dùng để lưu trữ dữ liệu trong chương trình,4830,1,1
-Q069,đưa người dùng vào môi trường ảo hoàn toàn phủ thông tin số lên thế giới thực,3916,0,0
-Q019,là ngôn ngữ hiện đại chạy trên JVM gọn và an toàn hơn Java là ngôn ngữ chính thức được Google khuyến nghị cho phát triển,2981,1,1
-Q008,chuyên lập chỉ mục và truy hồi dữ liệu cho LLM nạp tài liệu cắt đoạn tạo embedding và phục vụ RAG,1789,0,0
-Q069,đưa người dùng vào môi trường ảo hoàn toàn phủ thông tin số lên thế giới thực,4987,1,1
-Q068,là ứng dụng trong công nghiệp cảm biến máy móc kết nối để giám sát và tự động hóa sản xuất Công nghiệp 4.0,2961,0,1
-Q026,là thư viện của Meta để xây giao diện theo component dùng Virtual DOM để cập nhật hiệu quả,1232,2,0
-Q021,là quá trình tạo và chọn các đặc trưng tốt từ dữ liệu thô để mô hình học hiệu quả hơn,2378,0,1
-Q045,Giám sát thu thập metric log và trace để theo dõi sức khỏe hệ thống cảnh báo sự cố và phân tích hiệu năng vd Prometheus Grafana,4976,1,1
-Q013,là bộ nhớ truy cập ngẫu nhiên lưu tạm dữ liệu và chương trình đang chạy tốc độ cao nhưng mất dữ liệu khi tắt máy,1772,0,0
-Q072,cung cấp sẵn đồ họa vật lý âm thanh và công cụ để xây nhanh vd Unreal,1251,0,1
-Q067,là mạng các thiết bị vật lý gắn cảm biến và kết nối để thu thập/trao đổi dữ liệu nhà thông minh công nghiệp 4.0,3995,0,1
-Q011,Mã nguồn là tập hợp các dòng lệnh do lập trình viên viết bằng ngôn ngữ lập trình sau đó được biên dịch/thông dịch thành chương trình chạy,1163,2,1
-Q037,Phân tích nghiệp vụ là cầu nối giữa nhu cầu kinh doanh và giải pháp CNTT thu thập yêu cầu mô hình hóa quy trình viết tài liệu,2365,0,1
-Q054,Mã hóa biến dữ liệu thành dạng không đọc được nếu không có khóa bảo vệ tính bí mật,205,0,0
-Q053,mạng bảo vệ hệ thống mạng và dữ liệu khỏi tấn công,2950,0,1
-Q009,là hệ thống quản lý phiên bản phân tán theo dõi lịch sử thay đổi code hỗ trợ nhánh hợp nhất và cộng tác nhóm,1435,0,0
-Q062,là tầm nhìn về Internet phi tập trung dựa trên nơi người dùng sở hữu dữ liệu và tài sản số mà không phụ thuộc nền tảng tập,1217,0,0
-Q010,Phần mềm mã nguồn mở công khai mã nguồn để mọi người dùng xem sửa và chia sẻ tự do theo giấy phép vd Linux Python React,4349,1,1
-Q026,là thư viện của Meta để xây giao diện theo component dùng Virtual DOM để cập nhật hiệu quả,4599,0,1
-Q050,Điện toán đám mây cung cấp tài nguyên máy chủ lưu trữ dịch vụ theo yêu cầu qua internet trả tiền theo mức dùng,905,2,1
-Q064,Tiền mã hóa là tài sản số dùng mật mã để bảo mật giao dịch vận hành trên phi tập trung vd Bitcoin Ethereum,4995,0,0
-Q046,thu thập và phân tích log/sự kiện bảo mật từ toàn hệ thống để phát hiện tấn công và cảnh báo theo thời gian thực,2471,2,1
-Q059,là triết lý phát triển phần mềm linh hoạt lặp ngắn ưu tiên giá trị cho khách hàng và thích ứng thay đổi hơn bám kế hoạch cứng,971,0,0
-Q034,là cơ sở dữ liệu quan hệ mã nguồn mở mạnh mẽ hỗ trợ ACID kiểu dữ liệu phong phú JSONB mảng và mở rộng tốt,1030,1,1
-Q022,phá dữ liệu là quá trình tìm mẫu quy luật ẩn trong tập dữ liệu lớn bằng thống kê và máy học,478,1,1
-Q070,là tài liệu thiết kế mô tả cốt truyện cơ chế chơi nhân vật level — kim chỉ nam cho cả nhóm phát triển,727,0,0
-Q056,Mã hóa bất đối xứng dùng cặp khóa khóa công để mã hóa/xác minh khóa riêng tư để giải mã/ký,3211,2,1
-Q052,Cam kết mức dịch vụ giữa nhà cung cấp và khách hàng vd uptime 99.9%,459,0,0
-Q036,là cơ sở dữ liệu quan hệ mã nguồn mở phổ biến dữ liệu dạng bảng có schema chặt hỗ trợ giao dịch ACID,4986,0,0
-Q041,Thống kê là ngành thu thập mô tả và suy luận từ dữ liệu xác suất phân phối kiểm định giả thuyết,1998,0,0
-Q001,Lập trình là việc viết các chỉ thị để ra lệnh cho máy tính thực hiện một tác vụ,1969,2,1
-Q035,là sơ đồ mô tả các thực thể bảng và quan hệ giữa chúng — công cụ thiết kế cơ sở dữ liệu trực quan,4695,0,0
-Q046,thu thập và phân tích log/sự kiện bảo mật từ toàn hệ thống để phát hiện tấn công và cảnh báo theo thời gian thực,1169,1,1
-Q055,Hàm băm biến dữ liệu thành chuỗi cố định một chiều không giải ngược được,2214,2,1
-Q075,là thiết kế diện màu bố cục nút là thiết kế trải nghiệm tổng thể sao cho dễ dùng và hữu ích,4291,0,0
-Q061,là chương trình tự động thực thi trên khi điều kiện được thỏa không cần trung gian vd trên viết bằng Solidity,2474,2,1
-Q018,là hệ điều hành di động mã nguồn mở của Google lập trình chủ yếu bằng Kotlin/Java,2251,1,1
-Q014,Tiến trình là chương trình đang chạy với vùng nhớ riêng luồng là đơn vị thực thi nhỏ hơn bên trong tiến trình chia sẻ bộ nhớ,4574,2,1
-Q022,phá dữ liệu là quá trình tìm mẫu quy luật ẩn trong tập dữ liệu lớn bằng thống kê và máy học,1334,0,1
-Q012,Lập trình viên là người thiết kế viết và bảo trì phần mềm bằng ngôn ngữ lập trình,3060,2,1
-Q063,là sổ cái phân tán bất biến lưu giao dịch thành các khối nối với nhau bằng mật mã không cần bên trung gian tin cậy,4867,2,1
-Q002,Đệ là kỹ thuật một hàm tự gọi lại chính nó để giải bài toán bằng cách chia thành các bài toán con nhỏ hơn có điều kiện,1658,2,1
-Q048,là máy chủ tự động hóa mã nguồn mở phổ biến để xây pipeline CI/CD tự build test và triển khai khi có thay đổi code,4662,0,0
-Q004,Big-O mô tả tốc độ tăng của thời gian/bộ nhớ theo kích thước đầu vào n vd O(1 O(log n O(n O(n²,1413,0,1
-Q059,là triết lý phát triển phần mềm linh hoạt lặp ngắn ưu tiên giá trị cho khách hàng và thích ứng thay đổi hơn bám kế hoạch cứng,669,2,1
-Q075,là thiết kế diện màu bố cục nút là thiết kế trải nghiệm tổng thể sao cho dễ dùng và hữu ích,2587,0,0
-Q015,là xử lý nhiều tác vụ chồng lấn thời gian để tận dụng tài nguyên đa luồng bất đồng bộ,4619,2,1
-Q033,quản trị cơ sở dữ liệu cài đặt sao lưu tối ưu hiệu năng bảo mật và đảm bảo dữ liệu luôn sẵn sàng,211,2,0
-Q053,mạng bảo vệ hệ thống mạng và dữ liệu khỏi tấn công,4996,0,0
-Q056,Mã hóa bất đối xứng dùng cặp khóa khóa công để mã hóa/xác minh khóa riêng tư để giải mã/ký,3049,0,0
-Q050,Điện toán đám mây cung cấp tài nguyên máy chủ lưu trữ dịch vụ theo yêu cầu qua internet trả tiền theo mức dùng,3119,0,0
-Q044,Trực hóa dữ liệu biến số liệu thành biểu đồ đồ thị dashboard để con người dễ nhận ra xu hướng và mẫu hình,1153,2,1
-Q027,là có thêm hệ thống kiểu tĩnh giúp bắt lỗi sớm và bảo trì dự án lớn dễ hơn,526,1,0
-Q042,học dữ liệu kết hợp thống kê lập trình và kiến thức nghiệp vụ để rút ra hiểu biết và dự đoán từ dữ liệu,1597,0,0
-Q063,là sổ cái phân tán bất biến lưu giao dịch thành các khối nối với nhau bằng mật mã không cần bên trung gian tin cậy,517,0,0
-Q004,Big-O mô tả tốc độ tăng của thời gian/bộ nhớ theo kích thước đầu vào n vd O(1 O(log n O(n O(n²,221,2,1
-Q058,đại diện khách hàng trong nhóm quản lý và ưu tiên backlog để nhóm xây đúng giá trị cần nhất,925,0,0
-Q016,Quản lý bộ nhớ kiểm soát việc cấp phát và thu hồi bộ nhớ cho chương trình stack/heap garbage collection,2717,1,1
-Q029,lưu dữ liệu thô ở mọi định dạng có/không cấu trúc tại quy mô lớn xử lý sau khi cần,2396,1,1
-Q020,Lập trình động là xây ứng dụng cho điện thoại Android/iOS gốc native hoặc đa nền tảng Flutter/React Native,1512,0,0
-Q030,chỉ tập dữ liệu quá lớn/nhanh/đa dạng để công cụ truyền thống xử lý 5V Volume Velocity Variety Veracity Value,1441,0,0
-Q041,Thống kê là ngành thu thập mô tả và suy luận từ dữ liệu xác suất phân phối kiểm định giả thuyết,3492,1,1
-Q041,Thống kê là ngành thu thập mô tả và suy luận từ dữ liệu xác suất phân phối kiểm định giả thuyết,4211,2,1
-Q012,Lập trình viên là người thiết kế viết và bảo trì phần mềm bằng ngôn ngữ lập trình,3231,0,1
-Q052,Cam kết mức dịch vụ giữa nhà cung cấp và khách hàng vd uptime 99.9%,1615,2,0
-Q028,dùng React/JavaScript để xây ứng dụng di động đa nền tảng với thành phần gốc thật,2482,0,0
-Q049,cho phép chạy code mà không quản lý máy chủ nhà cung cấp tự cấp phát và mở rộng bạn chỉ trả tiền cho thời gian chạy thực,3221,0,0
-Q006,Kiểu dữ liệu xác định loại giá trị một biến có thể giữ và các phép toán hợp lệ với nó số nguyên số thực chuỗi boolean danh,347,2,1
-Q039,Mô hình hóa dữ liệu là thiết kế cấu trúc dữ liệu bảng quan hệ khóa phản ánh đúng nghiệp vụ trước khi xây hệ thống,1065,0,0
-Q025,Node.js là môi trường chạy phía server mô hình bất đồng bộ hướng sự kiện hiệu quả cho ứng dụng I/O nhiều realtime,3625,0,0
-Q030,chỉ tập dữ liệu quá lớn/nhanh/đa dạng để công cụ truyền thống xử lý 5V Volume Velocity Variety Veracity Value,2616,1,1
-Q076,Kiểm soát chất lượng tập trung phát hiện lỗi của sản phẩm qua kiểm thử còn Đảm bảo chất lượng thiên về cải tiến quy trình để phòng,4897,0,0
-Q003,Giải thuật là chuỗi bước hữu hạn rõ ràng để giải một bài toán,1127,0,0
-Q061,là chương trình tự động thực thi trên khi điều kiện được thỏa không cần trung gian vd trên viết bằng Solidity,3583,0,0
-Q007,là framework xây ứng dụng LLM nối mô hình với công cụ bộ nhớ truy hồi RAG và tác tử qua các chain,3919,0,0
-Q028,dùng React/JavaScript để xây ứng dụng di động đa nền tảng với thành phần gốc thật,2389,2,1
-Q023,là văn hóa + thực hành kết hợp phát triển Dev và vận hành Ops để giao phần mềm nhanh tự động và đáng tin cậy qua CI/CD,2863,0,0
-Q023,là văn hóa + thực hành kết hợp phát triển Dev và vận hành Ops để giao phần mềm nhanh tự động và đáng tin cậy qua CI/CD,52,2,1
-Q013,là bộ nhớ truy cập ngẫu nhiên lưu tạm dữ liệu và chương trình đang chạy tốc độ cao nhưng mất dữ liệu khi tắt máy,3252,1,1
-Q031,là dữ liệu tập trung tối ưu cho phân tích OLAP thay vì giao dịch,2997,0,0
-Q021,là quá trình tạo và chọn các đặc trưng tốt từ dữ liệu thô để mô hình học hiệu quả hơn,2455,2,1
-Q035,là sơ đồ mô tả các thực thể bảng và quan hệ giữa chúng — công cụ thiết kế cơ sở dữ liệu trực quan,855,0,1
-Q039,Mô hình hóa dữ liệu là thiết kế cấu trúc dữ liệu bảng quan hệ khóa phản ánh đúng nghiệp vụ trước khi xây hệ thống,1669,2,1
-Q066,điều khiển là chip tích hợp CPU + bộ nhớ + ngoại trên một con điều khiển thiết bị nhúng ESP32,4397,0,0
-Q031,là dữ liệu tập trung tối ưu cho phân tích OLAP thay vì giao dịch,3141,1,1
-Q026,là thư viện của Meta để xây giao diện theo component dùng Virtual DOM để cập nhật hiệu quả,3175,1,1
-Q044,Trực hóa dữ liệu biến số liệu thành biểu đồ đồ thị dashboard để con người dễ nhận ra xu hướng và mẫu hình,4717,0,0
-Q034,là cơ sở dữ liệu quan hệ mã nguồn mở mạnh mẽ hỗ trợ ACID kiểu dữ liệu phong phú JSONB mảng và mở rộng tốt,2000,2,1
-Q051,Ba mô hình dịch vụ đám mây cho thuê hạ tầng máy ảo mạng cung cấp nền tảng để phát triển/triển khai cung cấp phần mềm dùng ngay,2977,2,0
-Q051,Ba mô hình dịch vụ đám mây cho thuê hạ tầng máy ảo mạng cung cấp nền tảng để phát triển/triển khai cung cấp phần mềm dùng ngay,2607,0,0
-Q057,lập kế hoạch điều phối nguồn lực tiến độ và rủi ro để dự án về đích đúng phạm vi thời gian ngân sách,1380,2,1
-Q032,Apache là nền tảng streaming sự kiện phân tán truyền dữ liệu thời gian thực giữa các hệ thống với thông lượng cao độ trễ thấp,240,2,1
-Q058,đại diện khách hàng trong nhóm quản lý và ưu tiên backlog để nhóm xây đúng giá trị cần nhất,3655,0,0
-Q047,CI/CD tự động hóa tích hợp và triển khai mỗi lần đẩy code sẽ tự build test và phát hành,1691,0,1
-Q002,Đệ là kỹ thuật một hàm tự gọi lại chính nó để giải bài toán bằng cách chia thành các bài toán con nhỏ hơn có điều kiện,1384,0,0
-Q024,đóng gói ứng dụng cùng toàn bộ phụ thuộc vào container — đơn vị nhẹ chạy giống nhau ở mọi nơi,3671,0,0
-Q025,Node.js là môi trường chạy phía server mô hình bất đồng bộ hướng sự kiện hiệu quả cho ứng dụng I/O nhiều realtime,1317,1,1
-Q037,Phân tích nghiệp vụ là cầu nối giữa nhu cầu kinh doanh và giải pháp CNTT thu thập yêu cầu mô hình hóa quy trình viết tài liệu,1969,0,0
-Q017,là framework giúp dựng nhanh ứng dụng backend/microservices với cấu hình tối thiểu và server nhúng,3759,1,1
-Q072,cung cấp sẵn đồ họa vật lý âm thanh và công cụ để xây nhanh vd Unreal,4803,0,0
-Q038,là tài liệu đặc tả đầy đủ yêu cầu của phần mềm chức năng + phi chức năng để cả nhóm hiểu thống nhất phải xây gì trước,241,0,0
-Q024,đóng gói ứng dụng cùng toàn bộ phụ thuộc vào container — đơn vị nhẹ chạy giống nhau ở mọi nơi,4944,1,1
-Q075,là thiết kế diện màu bố cục nút là thiết kế trải nghiệm tổng thể sao cho dễ dùng và hữu ích,995,2,1
-Q062,là tầm nhìn về Internet phi tập trung dựa trên nơi người dùng sở hữu dữ liệu và tài sản số mà không phụ thuộc nền tảng tập,1531,0,1
-Q064,Tiền mã hóa là tài sản số dùng mật mã để bảo mật giao dịch vận hành trên phi tập trung vd Bitcoin Ethereum,3926,2,0
-Q020,Lập trình động là xây ứng dụng cho điện thoại Android/iOS gốc native hoặc đa nền tảng Flutter/React Native,1777,2,1
-Q011,Mã nguồn là tập hợp các dòng lệnh do lập trình viên viết bằng ngôn ngữ lập trình sau đó được biên dịch/thông dịch thành chương trình chạy,3438,0,0
-Q049,cho phép chạy code mà không quản lý máy chủ nhà cung cấp tự cấp phát và mở rộng bạn chỉ trả tiền cho thời gian chạy thực,345,2,1
-Q010,Phần mềm mã nguồn mở công khai mã nguồn để mọi người dùng xem sửa và chia sẻ tự do theo giấy phép vd Linux Python React,4350,0,0
-Q069,đưa người dùng vào môi trường ảo hoàn toàn phủ thông tin số lên thế giới thực,119,2,1
-Q042,học dữ liệu kết hợp thống kê lập trình và kiến thức nghiệp vụ để rút ra hiểu biết và dự đoán từ dữ liệu,100,1,1
-Q017,là framework giúp dựng nhanh ứng dụng backend/microservices với cấu hình tối thiểu và server nhúng,2849,0,0
-Q018,là hệ điều hành di động mã nguồn mở của Google lập trình chủ yếu bằng Kotlin/Java,4744,0,0
-Q033,quản trị cơ sở dữ liệu cài đặt sao lưu tối ưu hiệu năng bảo mật và đảm bảo dữ liệu luôn sẵn sàng,1376,0,0
-Q009,là hệ thống quản lý phiên bản phân tán theo dõi lịch sử thay đổi code hỗ trợ nhánh hợp nhất và cộng tác nhóm,3159,2,1
-Q010,Phần mềm mã nguồn mở công khai mã nguồn để mọi người dùng xem sửa và chia sẻ tự do theo giấy phép vd Linux Python React,3060,2,1
-Q076,Kiểm soát chất lượng tập trung phát hiện lỗi của sản phẩm qua kiểm thử còn Đảm bảo chất lượng thiên về cải tiến quy trình để phòng,1928,2,1
-Q003,Giải thuật là chuỗi bước hữu hạn rõ ràng để giải một bài toán,3057,0,0
-Q004,Big-O mô tả tốc độ tăng của thời gian/bộ nhớ theo kích thước đầu vào n vd O(1 O(log n O(n O(n²,1224,0,0
-Q035,là sơ đồ mô tả các thực thể bảng và quan hệ giữa chúng — công cụ thiết kế cơ sở dữ liệu trực quan,4874,2,0
-Q025,Node.js là môi trường chạy phía server mô hình bất đồng bộ hướng sự kiện hiệu quả cho ứng dụng I/O nhiều realtime,4900,2,1
-Q027,là có thêm hệ thống kiểu tĩnh giúp bắt lỗi sớm và bảo trì dự án lớn dễ hơn,1506,0,0
-Q015,là xử lý nhiều tác vụ chồng lấn thời gian để tận dụng tài nguyên đa luồng bất đồng bộ,1141,1,1
-Q050,Điện toán đám mây cung cấp tài nguyên máy chủ lưu trữ dịch vụ theo yêu cầu qua internet trả tiền theo mức dùng,4847,0,0
-Q006,Kiểu dữ liệu xác định loại giá trị một biến có thể giữ và các phép toán hợp lệ với nó số nguyên số thực chuỗi boolean danh,3011,1,1
-Q007,là framework xây ứng dụng LLM nối mô hình với công cụ bộ nhớ truy hồi RAG và tác tử qua các chain,125,1,1
-Q073,Lập trình viên xây dựng cơ chế chơi đồ họa vật lý và logic cho trò chơi bằng engine như Unity/Unreal,713,0,1
-Q076,Kiểm soát chất lượng tập trung phát hiện lỗi của sản phẩm qua kiểm thử còn Đảm bảo chất lượng thiên về cải tiến quy trình để phòng,3232,0,1
-Q043,Extract–Transform–Load là quy trình rút trích – biến đổi – nạp dữ liệu từ nhiều nguồn về kho phân tích,330,1,1
-Q008,chuyên lập chỉ mục và truy hồi dữ liệu cho LLM nạp tài liệu cắt đoạn tạo embedding và phục vụ RAG,3360,1,1
-Q020,Lập trình động là xây ứng dụng cho điện thoại Android/iOS gốc native hoặc đa nền tảng Flutter/React Native,3633,0,0
-Q009,là hệ thống quản lý phiên bản phân tán theo dõi lịch sử thay đổi code hỗ trợ nhánh hợp nhất và cộng tác nhóm,3035,1,1
-Q001,Lập trình là việc viết các chỉ thị để ra lệnh cho máy tính thực hiện một tác vụ,1152,0,0
-Q052,Cam kết mức dịch vụ giữa nhà cung cấp và khách hàng vd uptime 99.9%,2885,0,0
-Q048,là máy chủ tự động hóa mã nguồn mở phổ biến để xây pipeline CI/CD tự build test và triển khai khi có thay đổi code,337,0,0
-Q013,là bộ nhớ truy cập ngẫu nhiên lưu tạm dữ liệu và chương trình đang chạy tốc độ cao nhưng mất dữ liệu khi tắt máy,1789,2,1
-Q012,Lập trình viên là người thiết kế viết và bảo trì phần mềm bằng ngôn ngữ lập trình,1114,1,1
-Q065,Hệ thống nhúng là máy tính chuyên dụng tích hợp trong thiết bị vi điều khiển để điều khiển chức năng cụ thể tài nguyên hạn chế vd,2983,0,0
-Q065,Hệ thống nhúng là máy tính chuyên dụng tích hợp trong thiết bị vi điều khiển để điều khiển chức năng cụ thể tài nguyên hạn chế vd,4570,2,1
-Q066,điều khiển là chip tích hợp CPU + bộ nhớ + ngoại trên một con điều khiển thiết bị nhúng ESP32,4068,0,0
-Q058,đại diện khách hàng trong nhóm quản lý và ưu tiên backlog để nhóm xây đúng giá trị cần nhất,632,2,1
-Q060,là khung làm việc tổ chức công việc theo 1–4 tuần với vai trò PO Dev và nghi thức daily review retro rõ ràng,1865,0,0
-Q021,là quá trình tạo và chọn các đặc trưng tốt từ dữ liệu thô để mô hình học hiệu quả hơn,1409,1,1
-Q070,là tài liệu thiết kế mô tả cốt truyện cơ chế chơi nhân vật level — kim chỉ nam cho cả nhóm phát triển,1864,2,1
-Q074,Điện toán lượng tử dùng qubit chồng chập và vướng víu lượng tử để giải một số bài toán nhanh hơn máy tính cổ điển theo cấp số,4,0,0
-Q037,Phân tích nghiệp vụ là cầu nối giữa nhu cầu kinh doanh và giải pháp CNTT thu thập yêu cầu mô hình hóa quy trình viết tài liệu,2181,2,1
-Q032,Apache là nền tảng streaming sự kiện phân tán truyền dữ liệu thời gian thực giữa các hệ thống với thông lượng cao độ trễ thấp,3297,0,0
-Q054,Mã hóa biến dữ liệu thành dạng không đọc được nếu không có khóa bảo vệ tính bí mật,1863,0,0
-Q040,Hệ thống thông là tổ hợp con người quy trình dữ liệu và công nghệ phối hợp để thu thập xử lý và cung cấp thông hỗ trợ,4784,0,0
-Q036,là cơ sở dữ liệu quan hệ mã nguồn mở phổ biến dữ liệu dạng bảng có schema chặt hỗ trợ giao dịch ACID,3320,1,1
-Q073,Lập trình viên xây dựng cơ chế chơi đồ họa vật lý và logic cho trò chơi bằng engine như Unity/Unreal,346,0,0
-Q045,Giám sát thu thập metric log và trace để theo dõi sức khỏe hệ thống cảnh báo sự cố và phân tích hiệu năng vd Prometheus Grafana,878,2,0
-Q057,lập kế hoạch điều phối nguồn lực tiến độ và rủi ro để dự án về đích đúng phạm vi thời gian ngân sách,1800,0,0
-Q033,quản trị cơ sở dữ liệu cài đặt sao lưu tối ưu hiệu năng bảo mật và đảm bảo dữ liệu luôn sẵn sàng,2949,1,1
-Q036,là cơ sở dữ liệu quan hệ mã nguồn mở phổ biến dữ liệu dạng bảng có schema chặt hỗ trợ giao dịch ACID,2210,2,1
-Q005,Biến là một ô nhớ có tên dùng để lưu trữ dữ liệu trong chương trình,2698,0,0
-Q048,là máy chủ tự động hóa mã nguồn mở phổ biến để xây pipeline CI/CD tự build test và triển khai khi có thay đổi code,766,2,1
-Q018,là hệ điều hành di động mã nguồn mở của Google lập trình chủ yếu bằng Kotlin/Java,2108,2,0
-Q063,là sổ cái phân tán bất biến lưu giao dịch thành các khối nối với nhau bằng mật mã không cần bên trung gian tin cậy,3211,1,1
-Q073,Lập trình viên xây dựng cơ chế chơi đồ họa vật lý và logic cho trò chơi bằng engine như Unity/Unreal,1253,2,1
-Q038,là tài liệu đặc tả đầy đủ yêu cầu của phần mềm chức năng + phi chức năng để cả nhóm hiểu thống nhất phải xây gì trước,2924,0,0
-Q060,là khung làm việc tổ chức công việc theo 1–4 tuần với vai trò PO Dev và nghi thức daily review retro rõ ràng,4814,2,1
-Q034,là cơ sở dữ liệu quan hệ mã nguồn mở mạnh mẽ hỗ trợ ACID kiểu dữ liệu phong phú JSONB mảng và mở rộng tốt,1683,0,0
-Q057,lập kế hoạch điều phối nguồn lực tiến độ và rủi ro để dự án về đích đúng phạm vi thời gian ngân sách,4903,0,0
-Q029,lưu dữ liệu thô ở mọi định dạng có/không cấu trúc tại quy mô lớn xử lý sau khi cần,4084,2,1
-Q055,Hàm băm biến dữ liệu thành chuỗi cố định một chiều không giải ngược được,357,0,0
-Q031,là dữ liệu tập trung tối ưu cho phân tích OLAP thay vì giao dịch,4088,2,1
-Q040,Hệ thống thông là tổ hợp con người quy trình dữ liệu và công nghệ phối hợp để thu thập xử lý và cung cấp thông hỗ trợ,534,2,1
+Q033,bug tracking Kiểm thử phần mềm,2797,0,
+Q038,hàm Lập trình,2219,0,
+Q048,python MLOps & AI Engineering,184,0,
+Q018,linux DevOps,3457,1,
+Q011,crud Cơ sở dữ liệu,3155,2,
+Q070,superposition Điện toán lượng tử,1089,0,
+Q068,pandas Trí tuệ nhân tạo,1824,2,
+Q006,owasp An ninh mạng,2197,2,
+Q059,kanban Quản lý dự án CNTT,1659,0,
+Q037,python Lập trình,2235,0,
+Q032,test case design Kiểm thử phần mềm,725,2,
+Q037,python Lập trình,2983,1,
+Q027,statistics Khoa học dữ liệu,3230,1,
+Q071,qubit Điện toán lượng tử,4953,0,
+Q020,linux Dữ liệu lớn,3262,1,
+Q003,unity basics AR/VR & Thực tế ảo,4360,1,
+Q071,qubit Điện toán lượng tử,4759,0,
+Q057,requirements engineering Phân tích nghiệp vụ (BA),3222,2,
+Q076,3d math Đồ họa máy tính,2694,0,
+Q040,java Lập trình Mobile,1244,1,
+Q049,dns Mạng máy tính,5027,1,
+Q055,documentation Phân tích nghiệp vụ (BA),4333,0,
+Q024,microcontroller IoT & Hệ thống nhúng,1019,0,
+Q042,kotlin Lập trình Mobile,812,2,
+Q070,superposition Điện toán lượng tử,4877,2,
+Q076,3d math Đồ họa máy tính,1728,2,
+Q065,design thinking Thiết kế UI/UX,4838,0,
+Q073,iam Điện toán đám mây,4897,2,
+Q052,2d graphics Phát triển Game,3012,2,
+Q013,big o Cấu trúc dữ liệu & Giải thuật,3587,0,
+Q003,unity basics AR/VR & Thực tế ảo,2586,2,
+Q062,shell scripting Quản trị hệ thống & Linux,16,0,
+Q002,augmented reality AR/VR & Thực tế ảo,4879,0,
+Q049,dns Mạng máy tính,47,2,
+Q067,python Trí tuệ nhân tạo,1939,2,
+Q047,machine learning MLOps & AI Engineering,3862,2,
+Q040,java Lập trình Mobile,3023,0,
+Q040,java Lập trình Mobile,4008,2,
+Q034,solid Kỹ thuật phần mềm,568,2,
+Q046,docker MLOps & AI Engineering,2448,0,
+Q064,figma Thiết kế UI/UX,3592,0,
+Q021,sql Dữ liệu lớn,2957,1,
+Q005,network security An ninh mạng,4935,0,
+Q025,numpy Khoa học dữ liệu,1173,0,
+Q067,python Trí tuệ nhân tạo,72,0,
+Q070,superposition Điện toán lượng tử,4732,0,
+Q056,use case Phân tích nghiệp vụ (BA),3060,0,
+Q075,networking basics Điện toán đám mây,126,0,
+Q007,bitcoin Blockchain & Web3,4858,0,
+Q022,arduino IoT & Hệ thống nhúng,4665,2,
+Q025,numpy Khoa học dữ liệu,1746,2,
+Q044,responsive design Lập trình Web,2864,2,
+Q041,mobile basics Lập trình Mobile,1080,2,
+Q013,big o Cấu trúc dữ liệu & Giải thuật,3827,0,
+Q035,oop Kỹ thuật phần mềm,1987,1,
+Q034,solid Kỹ thuật phần mềm,3625,0,
+Q046,docker MLOps & AI Engineering,1305,1,
+Q033,bug tracking Kiểm thử phần mềm,2365,0,
+Q016,git DevOps,4694,1,
+Q052,2d graphics Phát triển Game,593,0,
+Q032,test case design Kiểm thử phần mềm,2613,0,
+Q025,numpy Khoa học dữ liệu,4946,0,
+Q077,computer graphics Đồ họa máy tính,4673,0,
+Q004,cryptography An ninh mạng,2966,0,
+Q029,binary Khoa học máy tính,3968,0,
+Q023,sensor IoT & Hệ thống nhúng,91,0,
+Q021,sql Dữ liệu lớn,3556,0,
+Q046,docker MLOps & AI Engineering,4137,2,
+Q002,augmented reality AR/VR & Thực tế ảo,3133,2,
+Q055,documentation Phân tích nghiệp vụ (BA),3906,0,
+Q068,pandas Trí tuệ nhân tạo,890,1,
+Q048,python MLOps & AI Engineering,4718,2,
+Q044,responsive design Lập trình Web,4755,0,
+Q078,image processing Đồ họa máy tính,596,0,
+Q058,scrum Quản lý dự án CNTT,28,0,
+Q075,networking basics Điện toán đám mây,3420,2,
+Q078,image processing Đồ họa máy tính,4675,0,
+Q067,python Trí tuệ nhân tạo,5019,1,
+Q071,qubit Điện toán lượng tử,2023,2,
+Q001,virtual reality AR/VR & Thực tế ảo,2314,0,
+Q074,cloud concepts Điện toán đám mây,2521,0,
+Q068,pandas Trí tuệ nhân tạo,1031,0,
+Q069,linear algebra Trí tuệ nhân tạo,4169,2,
+Q015,linked list Cấu trúc dữ liệu & Giải thuật,831,0,
+Q008,blockchain Blockchain & Web3,2153,0,
+Q027,statistics Khoa học dữ liệu,4899,0,
+Q061,bash Quản trị hệ thống & Linux,706,2,
+Q073,iam Điện toán đám mây,3655,0,
+Q061,bash Quản trị hệ thống & Linux,2758,1,
+Q054,unity basics Phát triển Game,3500,2,
+Q060,agile Quản lý dự án CNTT,2301,0,
+Q051,tcp ip Mạng máy tính,3012,0,
+Q047,machine learning MLOps & AI Engineering,4039,1,
+Q074,cloud concepts Điện toán đám mây,4077,2,
+Q069,linear algebra Trí tuệ nhân tạo,2790,0,
+Q019,big data Dữ liệu lớn,3396,2,
+Q018,linux DevOps,1181,2,
+Q028,process Khoa học máy tính,763,2,
+Q026,sql Khoa học dữ liệu,894,1,
+Q054,unity basics Phát triển Game,3232,1,
+Q059,kanban Quản lý dự án CNTT,2643,0,
+Q024,microcontroller IoT & Hệ thống nhúng,4671,0,
+Q053,game design Phát triển Game,120,0,
+Q002,augmented reality AR/VR & Thực tế ảo,4347,0,
+Q029,binary Khoa học máy tính,731,2,
+Q015,linked list Cấu trúc dữ liệu & Giải thuật,4981,2,
+Q043,html Lập trình Web,4266,0,
+Q077,computer graphics Đồ họa máy tính,310,0,
+Q009,consensus Blockchain & Web3,2754,0,
+Q028,process Khoa học máy tính,1601,0,
+Q057,requirements engineering Phân tích nghiệp vụ (BA),2089,0,
+Q017,bash DevOps,4334,2,
+Q030,memory management Khoa học máy tính,4265,2,
+Q077,computer graphics Đồ họa máy tính,4455,2,
+Q043,html Lập trình Web,3347,2,
+Q030,memory management Khoa học máy tính,1300,0,
+Q051,tcp ip Mạng máy tính,3405,2,
+Q022,arduino IoT & Hệ thống nhúng,3010,0,
+Q019,big data Dữ liệu lớn,1519,0,
+Q022,arduino IoT & Hệ thống nhúng,2345,0,
+Q010,data modeling Cơ sở dữ liệu,2948,0,
+Q003,unity basics AR/VR & Thực tế ảo,1152,0,
+Q064,figma Thiết kế UI/UX,1604,0,
+Q061,bash Quản trị hệ thống & Linux,1589,0,
+Q036,git Kỹ thuật phần mềm,899,0,
+Q035,oop Kỹ thuật phần mềm,1565,0,
+Q034,solid Kỹ thuật phần mềm,549,0,
+Q014,array Cấu trúc dữ liệu & Giải thuật,2946,0,
+Q041,mobile basics Lập trình Mobile,1455,0,
+Q066,wireframing Thiết kế UI/UX,840,2,
+Q032,test case design Kiểm thử phần mềm,2701,0,
+Q076,3d math Đồ họa máy tính,4824,0,
+Q049,dns Mạng máy tính,4958,0,
+Q005,network security An ninh mạng,3971,2,
+Q060,agile Quản lý dự án CNTT,2647,0,
+Q078,image processing Đồ họa máy tính,1933,2,
+Q045,javascript Lập trình Web,1906,0,
+Q006,owasp An ninh mạng,2382,0,
+Q006,owasp An ninh mạng,1041,0,
+Q031,manual testing Kiểm thử phần mềm,3776,0,
+Q065,design thinking Thiết kế UI/UX,138,2,
+Q012,mysql Cơ sở dữ liệu,490,0,
+Q009,consensus Blockchain & Web3,2869,2,
+Q072,quantum computing Điện toán lượng tử,4017,0,
+Q020,linux Dữ liệu lớn,381,2,
+Q072,quantum computing Điện toán lượng tử,1721,2,
+Q043,html Lập trình Web,1000,0,
+Q063,ssh Quản trị hệ thống & Linux,1269,0,
+Q063,ssh Quản trị hệ thống & Linux,2757,2,
+Q045,javascript Lập trình Web,16,1,
+Q012,mysql Cơ sở dữ liệu,4124,0,
+Q004,cryptography An ninh mạng,2113,2,
+Q053,game design Phát triển Game,2646,2,
+Q007,bitcoin Blockchain & Web3,781,2,
+Q020,linux Dữ liệu lớn,504,0,
+Q059,kanban Quản lý dự án CNTT,2133,2,
+Q019,big data Dữ liệu lớn,2606,0,
+Q050,ip addressing Mạng máy tính,1825,0,
+Q037,python Lập trình,483,2,
+Q023,sensor IoT & Hệ thống nhúng,3718,2,
+Q039,vòng lặp và điều kiện Lập trình,3189,0,
+Q028,process Khoa học máy tính,1437,0,
+Q026,sql Khoa học dữ liệu,4773,2,
+Q039,vòng lặp và điều kiện Lập trình,4112,2,
+Q058,scrum Quản lý dự án CNTT,2691,2,
+Q021,sql Dữ liệu lớn,2571,2,
+Q042,kotlin Lập trình Mobile,203,0,
+Q042,kotlin Lập trình Mobile,3175,1,
+Q001,virtual reality AR/VR & Thực tế ảo,4,2,
+Q047,machine learning MLOps & AI Engineering,1785,0,
+Q038,hàm Lập trình,2137,2,
+Q013,big o Cấu trúc dữ liệu & Giải thuật,2450,2,
+Q010,data modeling Cơ sở dữ liệu,191,0,
+Q011,crud Cơ sở dữ liệu,4398,0,
+Q050,ip addressing Mạng máy tính,3622,2,
+Q027,statistics Khoa học dữ liệu,2746,2,
+Q075,networking basics Điện toán đám mây,4456,0,
+Q014,array Cấu trúc dữ liệu & Giải thuật,4312,0,
+Q014,array Cấu trúc dữ liệu & Giải thuật,300,2,
+Q010,data modeling Cơ sở dữ liệu,4371,2,
+Q007,bitcoin Blockchain & Web3,4362,0,
+Q062,shell scripting Quản trị hệ thống & Linux,3503,0,
+Q052,2d graphics Phát triển Game,2782,0,
+Q050,ip addressing Mạng máy tính,982,0,
+Q063,ssh Quản trị hệ thống & Linux,549,0,
+Q029,binary Khoa học máy tính,2210,0,
+Q057,requirements engineering Phân tích nghiệp vụ (BA),4692,0,
+Q069,linear algebra Trí tuệ nhân tạo,4069,0,
+Q060,agile Quản lý dự án CNTT,4967,2,
+Q001,virtual reality AR/VR & Thực tế ảo,2671,0,
+Q009,consensus Blockchain & Web3,2632,0,
+Q016,git DevOps,4113,0,
+Q056,use case Phân tích nghiệp vụ (BA),4079,2,
+Q015,linked list Cấu trúc dữ liệu & Giải thuật,4310,0,
+Q048,python MLOps & AI Engineering,4412,1,
+Q039,vòng lặp và điều kiện Lập trình,4200,0,
+Q011,crud Cơ sở dữ liệu,1365,0,
+Q074,cloud concepts Điện toán đám mây,4391,0,
+Q023,sensor IoT & Hệ thống nhúng,1025,0,
+Q045,javascript Lập trình Web,4091,2,
+Q018,linux DevOps,2179,0,
+Q016,git DevOps,4388,2,
+Q024,microcontroller IoT & Hệ thống nhúng,4729,2,
+Q035,oop Kỹ thuật phần mềm,1339,2,
+Q017,bash DevOps,511,1,
+Q066,wireframing Thiết kế UI/UX,2894,0,
+Q054,unity basics Phát triển Game,2664,0,
+Q051,tcp ip Mạng máy tính,2302,1,
+Q066,wireframing Thiết kế UI/UX,2434,0,
+Q062,shell scripting Quản trị hệ thống & Linux,1847,2,
+Q005,network security An ninh mạng,3399,0,
+Q012,mysql Cơ sở dữ liệu,3534,2,
+Q036,git Kỹ thuật phần mềm,579,1,
+Q008,blockchain Blockchain & Web3,3034,2,
+Q064,figma Thiết kế UI/UX,4861,2,
+Q026,sql Khoa học dữ liệu,1276,0,
+Q072,quantum computing Điện toán lượng tử,4216,0,
+Q033,bug tracking Kiểm thử phần mềm,3970,2,
+Q065,design thinking Thiết kế UI/UX,392,0,
+Q038,hàm Lập trình,1032,0,
+Q004,cryptography An ninh mạng,4037,0,
+Q036,git Kỹ thuật phần mềm,4009,2,
+Q044,responsive design Lập trình Web,3332,0,
+Q055,documentation Phân tích nghiệp vụ (BA),2325,2,
+Q073,iam Điện toán đám mây,169,0,
+Q056,use case Phân tích nghiệp vụ (BA),2497,0,
+Q041,mobile basics Lập trình Mobile,1111,0,
+Q031,manual testing Kiểm thử phần mềm,3893,0,
+Q031,manual testing Kiểm thử phần mềm,132,2,
+Q008,blockchain Blockchain & Web3,5021,1,
+Q017,bash DevOps,3917,0,
+Q053,game design Phát triển Game,3662,0,
+Q030,memory management Khoa học máy tính,1725,1,
+Q058,scrum Quản lý dự án CNTT,343,0,

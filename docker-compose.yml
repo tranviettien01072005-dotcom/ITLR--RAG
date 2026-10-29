@@ -1,0 +1,36 @@
+# ITLR-RAG V2 — docker compose cho API + refresh job.
+#
+#  - `docker compose up -d`            : chạy API (mount var/ từ host)
+#  - `docker compose run --rm refresh` : tạo lại dữ liệu thủ công (lần đầu: thêm --online)
+#  - xem deploy/DEPLOY.md              : cron/systemd + rollback + kiến trúc
+#
+# Token quản trị (dùng /admin/reload); để trống ⇒ admin API tắt (403).
+
+services:
+  api:
+    build: .
+    container_name: itlr-api
+    env_file: .env
+    ports:
+      - "8000:8000"
+    volumes:
+      # Dữ liệu runtime: artifacts (phiên bản), SQLite crawler, HF cache — ngoài image.
+      - ./var:/app/var
+    restart: unless-stopped
+    # CPU-only deploy: giới hạn CPU cho job crawl/build tranh chấp với server. Điều chỉnh theo máy.
+    deploy:
+      resources:
+        limits:
+          cpus: "4"
+
+  # Job tạo lại dữ liệu ngoại tuyến (không trục hàng dài server cùng lúc với crawl).
+  # Lần chạy đầu khi model HF chưa được cache: thêm `--online`.
+  refresh:
+    build: .
+    profiles: ["refresh"]
+    container_name: itlr-refresh
+    env_file: .env
+    command: ["python", "scripts/refresh_pipeline.py", "--force-build"]
+    volumes:
+      - ./var:/app/var
+    # Không đặt restart: always — refresh là job one-shot; cron/systemd sẽ gọi.

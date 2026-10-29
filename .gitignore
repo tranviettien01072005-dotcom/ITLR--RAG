@@ -13,6 +13,12 @@ dist/
 # Artifacts lớn — tái lập bằng `python scripts/build_all.py`
 var/artifacts/
 
+# V2 — dữ liệu runtime tái lập được (crawl DB SQLite, catalog V2, tổng kết build)
+# Catalog V2 = legacy CSV (từng có sẵn trong repo) + crawl DB theo `scripts/collect_data.py`
+var/data/collect/
+var/data/itlr_v2_items.csv
+var/data/last_build.json
+
 # linh tinh hệ điều hành / editor
 .DS_Store
 *.swp

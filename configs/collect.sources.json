@@ -1,0 +1,74 @@
+{
+  "defaults": {
+    "max_items_per_run": 25,
+    "min_title_chars": 10,
+    "min_text_chars": 350,
+    "max_text_chars": 20000,
+    "recheck_after_hours": 24,
+    "type_label": "Tài liệu",
+    "level_label": "Trung cấp",
+    "lang": "en",
+    "keywords_required_outside_language": []
+  },
+  "sources": [
+    {
+      "source_id": "devto-python",
+      "kind": "api",
+      "name": "DEV Community – thẻ python",
+      "platform": "DEV Community",
+      "homepage": "https://dev.to",
+      "license": "Nội dung dev.to do người dùng đăng — CC BY-SA theo ToS dev.to; kiểm tra lại trước khi dùng thương mại",
+      "full_text_allowed": true,
+      "lang": "en",
+      "list_url": "https://dev.to/api/articles?tag=python&per_page=30&state=all",
+      "fields": {
+        "id": "id",
+        "title": "title",
+        "url": "url",
+        "description": "description",
+        "author": "user.username",
+        "published_at": "published_at",
+        "tags": "tag_list"
+      }
+    },
+    {
+      "source_id": "freecodecamp-news",
+      "kind": "rss",
+      "name": "freeCodeCamp News (tutorials)",
+      "platform": "freeCodeCamp",
+      "homepage": "https://www.freecodecamp.org/news/",
+      "license": "CC BY-SA 4.0 (nội dung freeCodeCamp; verify trên trang license trước khi dùng thương mại)",
+      "full_text_allowed": true,
+      "lang": "en",
+      "feed_url": "https://www.freecodecamp.org/news/rss/"
+    },
+    {
+      "source_id": "mdn-blog",
+      "kind": "rss",
+      "name": "MDN Web Docs Blog",
+      "platform": "MDN Web Docs",
+      "homepage": "https://developer.mozilla.org/en-US/blog/",
+      "license": "CC BY-SA 2.5 (nội dung MDN; verify trước khi dùng thương mại)",
+      "full_text_allowed": true,
+      "lang": "en",
+      "feed_url": "https://developer.mozilla.org/en-US/blog/rss.xml"
+    },
+    {
+      "source_id": "vnexpress-cong-nghe",
+      "kind": "web",
+      "name": "VnExpress – Công nghệ (chỉ title + mô tả + URL)",
+      "platform": "VnExpress",
+      "homepage": "https://vnexpress.net",
+      "license": "Chưa có giấy phép mở — chính sách snippet-only: chỉ lưu tiêu đề, mô tả ngắn và URL nguồn",
+      "full_text_allowed": false,
+      "lang": "vi",
+      "type_label": "Tài liệu",
+      "level_label": "Trung cấp",
+      "list_urls": [
+        "https://vnexpress.net/cong-nghe"
+      ],
+      "link_prefix": "https://vnexpress.net/",
+      "link_pattern": "^\\/[-a-zA-Z0-9~-]+-[0-9]{4,}\\.html$"
+    }
+  ]
+}

@@ -77,9 +77,28 @@ def evaluate_retrieval(item_list, retrieval_model):
     }
 
 
+def load_catalog_items(path=None) -> "pd.DataFrame":
+    """Đọc catalog CSV cho build — chống mất hàng âm thầm.
+
+    Bỏ CHỈ hàng khuyết dữ liệu cốt lõi (không thể index) — có log đếm; các ô tùy chọn
+    rỗng (topics/instructor/level/…) giữ "" thay vì NaN (lỗi cũ: dropna() mọi cột nuốt
+    hàng crawl có topics rỗng một cách âm thầm)."""
+    items = pd.read_csv(path or config.ITEMS_CSV)
+    core = [c for c in ("item_id", "title", "type", "category", "description")
+            if c in items.columns]
+    before = len(items)
+    items = items.dropna(subset=core).reset_index(drop=True)
+    dropped = before - len(items)
+    if dropped > 0:
+        print(f"[!] Đã bỏ {dropped} items khuyết cột cốt lõi {core} (không thể index).")
+    fill = [c for c in ("topics", "instructor", "platform", "link", "level", "type")
+            if c in items.columns]
+    items[fill] = items[fill].fillna("")
+    return items
+
+
 def main():
-    items = pd.read_csv(config.ITEMS_CSV)
-    items.dropna(inplace=True)
+    items = load_catalog_items()
 
     keep_cols = [
         "item_id", "title", "type", "description", "category",

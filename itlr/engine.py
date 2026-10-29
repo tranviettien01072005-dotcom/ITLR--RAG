@@ -7,11 +7,19 @@ Toàn bộ logic lõi (truy hồi ngữ nghĩa, RAG, chatbot có cổng off-topi
 Collaborative Filtering) được giữ nguyên — engine chỉ gói lại cho tiện gọi.
 """
 
+import logging
 import pickle
 from functools import lru_cache
+from pathlib import Path
 
 from itlr import config
 from itlr.core.recommender import recommend_for_user, search_by_embedding
+
+LOG = logging.getLogger("itlr.engine")
+
+
+class CFUnavailable(RuntimeError):
+    """Collaborative Filtering chưa được build (cf_model.pkl không có) — CF là TUỲ CHỌN V2."""
 
 
 class RecommenderEngine:
@@ -21,7 +29,7 @@ class RecommenderEngine:
         self.items = items
         self.model = model
         self.search_index = search_index
-        self.cf_model = cf_model
+        self.cf_model = cf_model   # None khi chưa build CF (tính năng tùy chọn)
         self.chatbot = chatbot
 
     def search(self, query, item_type=None, min_pct=90):
@@ -78,12 +86,14 @@ class RecommenderEngine:
 
     def personas(self):
         """Danh sách hồ sơ người dùng mô phỏng: [{uid, label}]."""
+        self._require_cf()
         labels = self.cf_model["labels"]
         return [{"uid": int(u), "label": labels[u]} for u in labels]
 
     def for_you(self, persona_uid, interested_item_ids=None, top_n=12):
         """Gợi ý CF cho một persona. `interested_item_ids` = các item_id user vừa bấm 'Quan tâm'
         trong phiên (chuyển sang vị trí và nối vào lịch sử để feed học thêm)."""
+        self._require_cf()
         histories = self.cf_model["histories"]
         id_to_pos = self.cf_model["id_to_pos"]
         uid = int(persona_uid)
@@ -91,6 +101,15 @@ class RecommenderEngine:
         extra = [id_to_pos[int(i)] for i in (interested_item_ids or []) if int(i) in id_to_pos]
         recs = recommend_for_user(base + extra, self.cf_model, self.items, top_n=top_n)
         return {"recs": recs}
+
+    def _require_cf(self) -> None:
+        """CF là tùy chọn trong V2: chỉ endpoint CF mới yêu cầu model tồn tại."""
+        if self.cf_model is None:
+            raise CFUnavailable(
+                "Chưa có cf_model.pkl — Collaborative Filtering là tính năng tùy chọn. "
+                "Build bằng `python -m itlr.pipelines.generate_interactions` + "
+                "`python -m itlr.pipelines.build_cf` (dữ liệu tương tác giả mô phỏng, "
+                "không gắn dữ liệu thật).")
 
 
 @lru_cache(maxsize=1)
@@ -105,8 +124,16 @@ def load_engine():
         meta = pickle.load(f)
     with open(config.artifact("retrieval_model.pkl"), "rb") as f:
         retrieval_model = pickle.load(f)
-    with open(config.artifact("cf_model.pkl"), "rb") as f:
-        cf_model = pickle.load(f)
+    # CF là TUỲ CHỌN V2: thiếu cf_model.pkl → log WARNING, engine vẫn chạy
+    # (search/chatbot giữ nguyên; endpoint CF sẽ trả 503). KHÔNG nuốt lỗi cho artifact khác.
+    cf_path = config.artifact("cf_model.pkl")
+    if Path(cf_path).is_file():
+        with open(cf_path, "rb") as f:
+            cf_model = pickle.load(f)
+    else:
+        LOG.warning("Thiếu %s — Collaborative Filtering bị tắt (tùy chọn V2); "
+                    "/api/personas và /api/for-you sẽ trả 503 cho tới khi build CF.", cf_path)
+        cf_model = None
     search_index = {
         "embeddings": None,
         "char_vectorizer": None,

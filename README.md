@@ -17,38 +17,76 @@ Hệ thống gợi ý & hỏi đáp cho học CNTT, gồm 3 nòng cốt:
 > Nhãn "human" trong `eval/` ở chế độ `--simulate-human` là nhãn MÔ PHỎNG (dùng để chạy
 > hết pipeline), phải thay bằng nhãn người thật trước khi báo cáo chính thức.
 
+## V2 — dữ liệu thật tự thu thập (crawler) + index theo phiên bản
+
+V2 bổ sung (khởi từ 2026-10-29, giữ nguyên 3 nòng cốt trên):
+
+1. **Crawler** (`itlr/collect/`) nguồn công khai hợp pháp: dev.to (JSON API,
+   full-text) · freeCodeCamp News (RSS, CC BY-SA 4.0) · MDN Blog (RSS, CC BY-SA 2.5) ·
+   VnExpress Công nghệ (HTML, **snippet-only** vì chưa có giấy phép mở). Retry/backoff,
+   robots.txt, rate-limit per-host, chuẩn hóa URL, chống trùng, lọc chất lượng, nguồn
+   cấu hình trong `configs/collect.sources.json`. Dữ liệu: SQLite `var/data/collect/crawl.db`.
+2. **Index theo phiên bản** (`itlr/versioning.py`, ADR-007): build vào
+   `var/artifacts/versions/<id>/` → **probe 3 mức** (validate · self-retrieval TF-IDF ·
+   engine subprocess) → activate ghi nguyên tử `CURRENT.json` → rollback một lệnh. API
+   sống không gián đoạn; probe fail ⇒ index cũ giữ nguyên.
+3. **Encoding theo chunk** (`itlr/pipelines/build_embeddings_v2.py`): tài liệu dài bị chia
+   đoạn (max 900 ký tự, overlap 120) rồi encode từng đoạn; vector item = mean + L2 —
+   hợp đồng "1 hàng = 1 item" không đổi cho engine.
+4. **CF là tùy chọn** (ADR-005): thiếu `cf_model.pkl` ⇒ engine vẫn chạy, `/api/personas`
+   `/api/for-you` trả 503 minh bạch; tương tác giả không nằm trong bất kỳ khóa đánh giá nào.
+5. **`/admin/reload` có token** (ADR-008): env `ITLR_ADMIN_TOKEN`, trống ⇒ 403 (tắt).
+
+Cập nhật dữ liệu một lệnh (cron được):
+```bash
+python scripts/refresh_pipeline.py        # crawl → catalog V2 → build → probe → activate
+```
+Chi tiết: `deploy/DEPLOY.md` · các quyết định: `docs/decisions/ADR-00{5,6,7,8}-*.md`
+
 ## Kiến trúc & pipeline build
 
+V2 pipeline:
+
 ```
-var/data/it_learning_items.csv (5.000 items)
-        │  python scripts/build_all.py
+crawl (SQLite) + legacy CSV (5.000 synthetic, item_id giữ nguyên)
+        │  python scripts/build_all_v2.py (một lệnh)
         ▼
-[1] retrieval_model  : TF-IDF (full/title/topics) + BM25 k1=1.4,b=0.75 + MMR
-[2] embeddings + ANN : E5-base 768d, FAISS IndexFlatIP; char n-gram TF-IDF (chống typo/không dấu)
-[3] CF               : item-item cosine (top-32/item) từ interactions.csv
+[0] catalog V2      : var/data/itlr_v2_items.csv (+ provenance origin/license/lang/hash)
+[1] retrieval_model : TF-IDF (full/title/topics) + BM25 k1=1.4,b=0.75 + MMR
+[2] embeddings v2   : E5-base 768d ENCODE TỪNG CHUNK → mean + L2; FAISS; chunk_meta.pkl
+[3] (tùy chọn) CF   : item-item cosine từ interactions.csv  (--with-cf)
         ▼
-var/artifacts/*.pkl  →  engine nạp 1 lần (uvicorn itlr.api.server:app)
+var/artifacts/versions/<id>/…  → PROBE (3 mức) → CURRENT.json (activate) → GC keep=3
 ```
 
-Quickstart:
+Legacy pipeline (vẫn chạy được, không đổi): `python scripts/build_all.py`.
+
+## Quickstart
 
 ```bash
 # 0. môi trường (Python ≥3.11; repo đã kiểm nghiệm trên 3.14)
 python3 -m venv .venv
 . .venv/bin/activate
-pip install -r requirements.txt          # hoặc: pip install -e "[eval]"
+pip install -r requirements.txt          # hoặc: pip install -e ".[eval,dev]"
 
-# 1. cấu hình LLM (DeepSeek chính)
-cp .env.example .env                     # điền DEEPSEEK_API_KEY=...
+# 1. cấu hình LLM (DeepSeek chính) + token quản trị
+cp .env.example .env                     # điền DEEPSEEK_API_KEY=...; ITLR_ADMIN_TOKEN=...
 set -a; . ./.env; set +a                 # export biến môi trường
 
-# 2. build toàn bộ artifacts (idempotent — có sẵn thì bỏ qua)
-python scripts/build_all.py              # --dry-run để xem kế hoạch; --force build lại hết
+# 2. thu thập + build index V2 (lần đầu cần mạng: thêm --online)
+python scripts/collect_data.py           # crawl 4 nguồn (devto/fCC/MDN/VnExpress)
+python scripts/build_all_v2.py           # catalog → build → probe → activate
 
 # 3. chạy server + UI
 uvicorn itlr.api.server:app --host 127.0.0.1 --port 8000
 # mở http://localhost:8000  (UI tĩnh tự mount /static)
-python -m itlr.pipelines.generate_interactions   # (tùy chọn) tái sinh interactions 1.800 users seed=7 -- sau đó build lại CF: python scripts/build_all.py --force --step collaborative
+curl -H "X-Admin-Token: $ITLR_ADMIN_TOKEN" -X POST localhost:8000/admin/reload
+```
+
+Legacy quickstart (chỉ synthetic catalog):
+
+```bash
+python scripts/build_all.py              # --dry-run để xem kế hoạch; --force build lại hết
 ```
 
 ## API endpoints
@@ -60,8 +98,9 @@ python -m itlr.pipelines.generate_interactions   # (tùy chọn) tái sinh inter
 | `POST /api/search` | `{"query": "docker", "type": "Khóa học", "min_pct": 90}` — tìm kiếm ngữ nghĩa |
 | `POST /api/chat` | `{"message": "...", "history": [{"role","content"}...]}` — hỏi đáp; trả `{response, recommendations, intent}` |
 | `POST /api/chat/stream` | SSE — mỗi frame `data: {json}` (text/meta/done) |
-| `GET  /api/personas` | list persona CF cho demo "Dành cho bạn" |
-| `POST /api/for-you` | `{"persona": 12, "interested": [101]}` — gợi ý cá nhân hóa |
+| `GET  /api/personas` | list persona CF cho demo "Dành cho bạn" (503 khi CF chưa build) |
+| `POST /api/for-you` | `{"persona": 12, "interested": [101]}` — gợi ý cá nhân hóa (503 khi CF chưa build) |
+| `POST /admin/reload` | nạp lại artifacts từ CURRENT.json — đòi header `X-Admin-Token: $ITLR_ADMIN_TOKEN` (403 khi env trống) |
 
 ```bash
 curl -s localhost:8000/health
