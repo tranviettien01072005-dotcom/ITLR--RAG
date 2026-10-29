@@ -1,6 +1,6 @@
 # AGENTS.md — Hướng dẫn bắt buộc cho agent (OpenCode / Claude / Codex...) làm việc trên repo này
 
-> **Cập nhật:** 2026-10-27 · Duy trì file này mỗi khi repo thay đổi đáng kể.
+> **Cập nhật:** 2026-10-29 · Duy trì file này mỗi khi repo thay đổi đáng kể.
 > Phiên bản đầy đủ của "long-term memory" in-text nằm ở `docs/PROJECT_MEMORY.md`.
 
 ## 0) Giao thức bắt buộc mọi phiên làm việc
@@ -21,30 +21,45 @@
 
 ## 1) Dự án là gì (tóm tắt 30 giây)
 
-- **ITLR RAG** — hệ thống gợi ý học CNTT + chatbot RAG: catalog 5.000 items (SYNTHETIC),
-  interactions CF 1.800 users (SYNTHETIC, seed=7), glossary 360 khái niệm, 19 career roles.
-- Pipeline: retrieval (E5 768d + FAISS · TF-IDF + BM25 · RRF) → [tùy chọn] rerank
-  cross-encoder + MMR → generation grounded → recommendation CF ("Dành cho bạn").
-  Tầng gọi LLM duy nhất là `itlr/chatbot/llm_client.py`
+- **ITLR RAG (V2)** — hệ thống gợi ý học CNTT + chatbot RAG: catalog **5.060 items =
+  5.000 legacy synthetic + 60 crawl thật** (dev.to · freeCodeCamp News · MDN Blog
+  · VnExpress snippet-only — xem ADR-006); item_id crawl **ổn định từ 5001**.
+  Interactions CF 1.800 users (SYNTHETIC, seed=7) — CF là **tùy chọn** (ADR-005:
+  thiếu `cf_model.pkl` ⇒ engine vẫn sống, `/api/personas` `/api/for-you` 503).
+- Pipeline: retrieval (E5 768d encode TỪNG CHUNK + FAISS · TF-IDF + BM25 · RRF) →
+  [tùy chọn] rerank cross-encoder + MMR → generation grounded → CF.
+  Tầng gọi LLM duy nhất `itlr/chatbot/llm_client.py`
   (chuỗi DeepSeek → OpenAI → Ollama → template offline).
-- API FastAPI `itlr.api.server:app` + UI tĩnh; build một lệnh `scripts/build_all.py`
-  (artifacts `var/artifacts/*.pkl`, không đưa vào VCS).
-- Tổ chức: `itlr/` (package) · `eval/` (entrypoint đánh giá) · `scripts/` · `tests/` · `reports/`.
+- **Index theo phiên bản** (ADR-007): build vào `var/artifacts/versions/<id>/` → probe
+  3 mức → activate (`CURRENT.json`) → rollback; API không gián đoạn.
+- **Crawler** (`itlr/collect/`): httpx + bs4/feedparser, robots.txt + rate-limit +
+  retry; SQLite `var/data/collect/crawl.db`; nguồn cấu hình
+  `configs/collect.sources.json`.
+- API FastAPI `itlr.api.server:app` + UI tĩnh; build một lệnh `scripts/build_all_v2.py`;
+  **`/admin/reload` đòi `X-Admin-Token`** khớp `ITLR_ADMIN_TOKEN` (trống ⇒ 403, ADR-008).
+- Tổ chức: `itlr/` (package) · `eval/` (entrypoint đánh giá) · `scripts/` · `tests/` ·
+  `configs/` · `deploy/` (cron/systemd/Docker) · `reports/`.
 
 ## 2) Lệnh cốt lõi
 
 ```bash
-.venv/bin/python -m pytest -q                           # 70/70 test, 0 skip
-python scripts/build_all.py [--dry-run|--force|--step retrieval|embeddings_ann|collaborative]
+.venv/bin/python -m pytest tests/                        # 156 passed / 5 skipped (10-29)
+python scripts/collect_data.py [--sources a,b]           # crawl (rate-limit + robots)
+python scripts/build_all_v2.py [--dry-run|--no-activate|--with-cf|--online]
+python scripts/refresh_pipeline.py                       # cron: crawl → build → probe → activate
 uvicorn itlr.api.server:app --host 127.0.0.1 --port 8000
-python eval/run_all.py [--quick|--with-ltr]             # eval rút gọn khi --quick; ltr.md chỉ khi --with-ltr
-python eval/eval_offtopic.py                            # AUC/F1 ngưỡng cổng off-topic
-python eval/eval_generation.py [--llm]                  # --llm FAIL-FAST nếu thiếu DEEPSEEK_API_KEY
+python eval/run_evaluation.py --no-rerank --tag _v2      # ablation V2 (qrels rule-based)
+python eval/eval_v2_real.py                              # số thực đo: recall/MRR/NDCG + latency + citation
+python eval/run_all.py [--quick|--with-ltr]              # eval tổng (legacy, vẫn chạy được)
+python eval/eval_offtopic.py                             # AUC/F1 ngưỡng cổng off-topic
+python eval/eval_generation.py [--llm]                   # --llm FAIL-FAST nếu thiếu DEEPSEEK_API_KEY
 ```
 
-- Venv: `.venv` (Python 3.14.4). Cài: `pip install -r requirements.txt` hoặc `pip install -e "[eval]"`.
-- LTR (tùy chọn, chậm): `eval/build_ltr.py --no-cross`.
-- Tái sinh interactions: `python -m itlr.pipelines.generate_interactions` rồi build lại `--step collaborative`.
+- Venv: `.venv` (Python 3.14.4). Cài: `pip install -r requirements.txt`
+  hoặc `pip install -e ".[eval,dev]"`.
+- Build V2 lần đầu (model HF chưa cache): thêm `--online`.
+- Tái sinh interactions: `python -m itlr.pipelines.generate_interactions`
+  + `python -m itlr.pipelines.build_cf` (hoặc `build_all_v2.py --with-cf`).
 
 ## 3) Cấu hình LLM (không có secret nào trong file này)
 
@@ -81,7 +96,7 @@ ratchet mode (không hạ sàn). Review biên bản: `docs/review-2026-10-27.md`
   batch, cache, model quantized.
 - Cổng off-topic đang dùng ngưỡng 0.55; dữ liệu (121 câu, AUC 0.9825) khuyến nghị 0.800
   (F1 0.929) — nên mở rộng bộ test rồi mới đổi runtime.
-- Repo **chưa** là git repo; `.gitignore` đã sẵn sàng (var/artifacts bị loại, reports giữ trong repo).
+- Repo đã được git hóa và đồng bộ GitHub tại `origin/main`; `.gitignore` loại artifacts/runtime data, reports giữ trong repo.
 
 ## 7) Lưu ý khi sửa code (từ audit trước)
 

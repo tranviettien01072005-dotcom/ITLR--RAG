@@ -31,7 +31,7 @@
   Artifacts không đưa vào VCS (`.gitignore` loại trừ `var/artifacts/`).
 - **Đường dẫn tập trung** `itlr/config.py` (ADR-002): `ARTIFACTS_DIR`, `DATA_DIR`; env
   override `ITLR_ARTIFACTS_DIR` cho sandbox/test.
-- **Repo chưa là git repo** — không commit được; `.gitignore`, `pyproject.toml`,
+- **Repo đã là git repo** — đã push lên `origin/main`; `.gitignore`, `pyproject.toml`,
   `Makefile`, `.env.example` đã có sẵn cho tương lai.
 
 ## 2. Cấu hình LLM & embeddings (không chứa secret nào)
@@ -138,8 +138,8 @@ python scripts/build_all.py --force --step collaborative
    runtime chưa đổi vì mẫu còn nhỏ.
 4. **Template mode không từ chối câu off-topic** (refusal 0/21) — chỉ đúng khi chạy offline
    template; với LLM sống, SYSTEM_PROMPT grounded + refusal là nét chính.
-5. **Repo chưa là git** — khi git hóa: `.gitignore` đã chặn `var/artifacts/`, `reports/` giữ
-   trong repo; nhớ commit cả `AGENTS.md`, `docs/PROJECT_MEMORY.md`, `CHANGELOG.md`.
+5. **Repo đã là git** — `.gitignore` chặn `var/artifacts/` và runtime V2, `reports/` giữ
+   trong repo; `main` đã đồng bộ với GitHub.
 6. **Claude-Mem worker** từng vào quota cooldown (provider codex) — không khởi động lại
    worker bằng tay; nếu `save_memory` lỗi thì báo nguyên nhân gốc, không giả vờ thành công.
 
@@ -150,3 +150,4 @@ python scripts/build_all.py --force --step collaborative
 | 2026-10-27 (sáng) | Nghiên cứu repo, xuất `RESEARCH_ITLR.md`; các note giai đoạn nghiên cứu #1…#23. |
 | 2026-10-27 (chiều) | Audit + review 9 findings; sửa eval/ann/paths/chatbot; 70/70 tests; build 11 artifacts thật với 1.800 users; `eval/run_all.py` 8/8 OK; ADR-001…004; CHANGELOG/README/CONSTRAINTS; DeepSeek verified docs chính thức. |
 | 2026-10-27 (chìều muộn) | `eval_offtopic.py` rc=0 (AUC 0.9825, ngưỡng tối ưu 0.800); `eval_generation.py` template rc=0; lưu 6 memory #102–#107 + xác minh truy xuất; tạo `AGENTS.md` + `docs/PROJECT_MEMORY.md`. |
+| 2026-10-29 | Commit/push V2 data collection, versioning, deployment assets và test suite lên `origin/main`; health item count hardening bổ sung; working tree sạch. |
