@@ -1,53 +1,74 @@
-> **Ngữ cảnh đồ án — 2026-10-30:** Tài liệu lịch sử: giữ số đo, phạm vi và kế hoạch tại thời điểm ghi. Không coi đây là chứng nhận thương mại hoặc trạng thái runtime hiện tại. Xem [README hiện tại](../README.md).
+# ITLR–RAG | Intelligent IT Learning Platform — Web security remediation
 
-What this repo does: The Node web app authenticates learners, stores conversations and social content in PostgreSQL, and calls the Python RAG API. This review assumes one Node process behind an explicitly configured reverse proxy.
+Historical checkpoint: **2026-10-29**. The Express application authenticates learners, stores
+conversations/social content in PostgreSQL and calls the Python RAG API. This review assumed
+one Node process behind an explicitly configured proxy. Later evidence and operating limits
+are in [Validation](../reports/VALIDATION.md), [deployment](../deploy/DEPLOY.md) and
+[final remediation](../reports/FINAL_REMEDIATION.md).
 
-## Audit before fixes
+## Findings and changes at the checkpoint
 
-1. **Must fix: default credentials permit impersonation.** `src/config/env.ts` supplied a known signing key, admin passcode `1`, and PostgreSQL credentials outside production. Starting development on a reachable host exposed privileged access. Fix: require strong explicit configuration in all modes.
-2. **Must fix: uploads trust attacker MIME and extension.** API, social and admin handlers persisted arbitrary bytes and served the attacker MIME inline. A fake avatar with `image/svg+xml` could carry active content; document parsers ran directly on the event loop. Fix: shared signature/MIME validation before storage, bounded multipart inputs, rejection of unvalidated Office/video formats, extraction worker timeout and response sandbox.
-3. **Must fix: pending attachments bypass moderation.** `/api/download/:id`, inline and text routes returned unapproved files to any authenticated user. Fix: require approval or ownership for ordinary users; admin has its separate protected download route.
-4. **Must fix: spoofed forwarding headers bypass per-IP limits.** `trust proxy=1` assumed every peer was a proxy. Fix: direct connections by default; explicit trusted proxy IP/CIDR list; refuse common multiworker settings while limiter/presence are in memory.
-5. **Must fix: web build broken.** `dataset.ts` had duplicate extraction exports, missing imports and an incorrect catalog path. Fix: use central `ITEMS_CSV` and dedicated extraction worker.
-6. **Should fix: inline scripts weaken CSP.** Templates required `unsafe-inline`. Fix: external init script and event listeners; CSP now forbids inline JavaScript and attributes.
+| Finding before remediation | Implemented boundary |
+|---|---|
+| Known JWT key, admin passcode `1` and database defaults allowed impersonation on reachable development hosts | Require explicit strong credentials in all modes |
+| Uploads trusted attacker MIME/extension and could persist active content | Shared signature/MIME checks before storage, bounded multipart input and fail-closed formats |
+| Pending attachment download/inline/text routes bypassed approval | Require approval, ownership or privileged access |
+| `trust proxy=1` trusted arbitrary direct peers and could bypass per-IP limits | Direct connections by default; explicit trusted proxy IP/CIDR list |
+| `dataset.ts` had duplicate extraction exports, missing imports and wrong catalog path | Central `ITEMS_CSV` and dedicated extraction worker |
+| Template inline scripts required `unsafe-inline` | External initialization/event handlers and CSP blocking inline JavaScript |
 
-## Implementation limits
+Uploads remain in private request memory until validation succeeds. This is transient isolation,
+not a durable malware quarantine. Signature checks do not replace antivirus or decoder validation.
+Existing blobs may predate the checks; sandbox response headers and `nosniff` also apply to them.
 
-Signature checks are not antivirus or full decoder validation. Files remain in private request memory until all signatures pass. This is quarantine before validation, not a durable malware scanning queue. Existing blobs may predate validation; response sandbox and nosniff also cover those blobs.
+Office/video uploads are rejected. Review found that ZIP local-header checks could disagree with
+Office parsers’ central-directory view; the final scope removed Mammoth/XLSX and limited extraction
+to bounded PDF. UI selectors/messages reflect supported formats. Extraction permits at most two
+worker threads, a five-second timeout, V8 heap caps, output and page limits. Worker limits do
+not cap native allocations or total process memory; configure OS/container limits on the host.
 
-Office documents and videos are rejected pending safe validation. The initial ZIP validator relied on local headers while Office parsers use the central directory; review found that mismatch could bypass its limits. The final change rejects all Office uploads, removes Mammoth/XLSX parser dependencies, and only extracts bounded PDF input. UI file selectors and messages match this restriction.
+Both rate limiting and presence remain in memory. Startup rejects common cluster settings;
+orchestration must still keep one process/replica. `TRUSTED_PROXIES` must name actual peers,
+and the proxy must overwrite forwarded headers. These controls do not provide multi-host limiting.
+Production-mode configuration requires explicit HTTPS `APP_ORIGIN`; entrypoint seed errors are
+reported rather than swallowed.
 
-Document extraction uses at most two worker threads, five second timeout, V8 heap caps, bounded output and page limits. Worker memory limits do not cap native allocations or total process memory; use container/OS resource limits. Full malware scanning and content disarm remain necessary before production acceptance of arbitrary user documents.
+## Recorded verification
 
-One-process deployment is an explicit constraint, not distributed limiting. Guards reject common cluster settings, but orchestration must keep replicas at one. Configure `TRUSTED_PROXIES` only for actual proxy CIDRs and make that proxy overwrite forwarding headers.
+- Node 22.16.0 syntax checks passed for `src/public/app.js` and `src/public/init.js`.
+- A Node VM check of Python static `ui.js` passed HTML escaping, executable/protocol-relative
+  URL rejection and text-only malicious catalog rendering with a throwing HTML sink.
+- Vitest regressions were added for environment, upload and static-UI boundaries. Reset-token
+  logging had recorded FAIL → fix → PASS; other new tests lacked recorded pre-fix execution.
+- An exact `uploads.ts` copy executed with Node’s experimental type stripping passed disguised
+  HTML, SVG, MIME mismatch, valid PNG signature and 415 quarantine-boundary cases. This did
+  not replace typecheck, database route tests or browser execution.
+- PDF worker tests exercised corrupt-input rejection and parser-capacity recovery.
 
-## Skills and sources
+The first npm test attempt could not run because npm was absent from PATH. Dependency audit
+initially reported **18 findings: 12 high and 1 critical**. Updates moved Multer to 2.x, Zod to
+4.x and Nodemailer to 10.x and removed Mammoth/XLSX. npm 10 Arborist crashed on ordinary
+`audit fix`/`update`; `update --legacy-peer-deps` completed. A separate normal
+`npm ci --ignore-scripts --prefix /tmp/itlr-web-install-check` installed **322 packages** and
+audited **323 with 0 vulnerabilities** at that checkpoint, without a persisted peer bypass.
+An offline attempt lacked a cached tarball; the online retry passed. This historical audit
+is not a current vulnerability assessment.
 
-Applied security-and-hardening (trust boundaries and abuse cases), test-driven-development (regression cases), source-driven-development (official contracts), debugging-and-error-recovery (broken dataset module), git-workflow-and-versioning (preserved user changes), and Ponytail ultra/audit/review (shared middleware and minimal changes).
+After upgrades, typecheck/build passed, lint had 0 errors / 20 existing `any` warnings,
+and **22 tests in 6 files passed**. Source line coverage was about **9.34%**, covering selected
+regressions rather than the full application. Later test totals belong to later validation runs.
 
-- [Express proxy trust](https://expressjs.com/en/guide/behind-proxies/)
-- [Node worker limits](https://nodejs.org/api/worker_threads.html)
-- [OWASP upload guidance](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html)
+## Review scope and remaining evidence
 
-## Review after fixes
+The changes established explicit credentials, validation-before-persistence, pending-file access
+control, proxy constraints, extraction isolation and CSP. No PostgreSQL integration, SMTP delivery,
+real browser rendering, malware scan, native-memory exhaustion, multi-host deployment or production
+deployment was exercised in this checkpoint. Static VM tests do not substitute for browser tests.
+Release decisions still need current dependency review, database/browser flows, upload scanning
+policy and target-host resource validation; no readiness certification is claimed.
 
-What this change does: It requires explicit credentials, validates uploads before persistence, restricts pending attachment access, and constrains proxy/worker assumptions. It also separates document extraction from the request event loop and blocks inline JavaScript.
-
-Verdict: Do not declare production-ready until dependency audit, full web tests, PostgreSQL integration, scanner/quarantine policy and deployment resource limits pass. No live database or browser proof is implied by unit tests.
-
-Not checked: Real PostgreSQL flows, full browser rendering, antivirus, native memory exhaustion, multi-host deployment.
-
-## Executed checks (2026-10-29)
-
-- `/tmp/node-v22.16.0-linux-x64/bin/node --check web/src/public/app.js`: PASS.
-- Same syntax check for `web/src/public/init.js`: PASS.
-- Node vm self-check against full `itlr/api/static/ui.js`: PASS for HTML escaping, executable/protocol-relative URL rejection, and text-only malicious catalog rendering with an HTML sink that throws.
-- Added persistent Vitest regressions in `src/config/env.test.ts`, `src/middleware/uploads.test.ts`, `src/services/static-ui.test.ts`.
-- Initial test attempt: NOT RUN because npm was absent in PATH; dependency installation then completed. Reset-token logging was separately reproduced with a failing route-level test before its fix; other new tests lack recorded pre-fix execution.
-- Node22 `--experimental-strip-types` execution of an exact copy of `src/middleware/uploads.ts`: PASS for disguised HTML, SVG, mismatched MIME, valid PNG signature, and quarantine returning 415 without invoking the route. This does not substitute for TypeScript typecheck or database route tests.
-
-Final dependency remediation: npm audit initially reported 18 findings (12 high, 1 critical). Updated lockfile, upgraded Multer to 2.x, Zod to 4.x and Nodemailer to 10.x; removed Mammoth/XLSX. `npm audit fix` and ordinary `npm update` hit an npm 10 Arborist peer-resolver crash; `npm update --legacy-peer-deps` succeeded. A fresh **normal** `npm ci --ignore-scripts --prefix /tmp/itlr-web-install-check` then installed 322 packages and audited 323 with **0 vulnerabilities**, proving the lockfile needs no persisted peer bypass. Offline clean-install attempt failed only because a tarball was not cached; online retry passed.
-
-Verification after upgrades: TypeScript typecheck PASS; ESLint PASS with 20 existing `any` warnings; build PASS; full Vitest suite **22 tests / 6 files PASS**. Source line coverage is only about **9.34%**; these tests cover selected regressions and are not comprehensive application coverage. Worker tests exercise corrupt PDF rejection and parser capacity recovery. Static UI VM tests do not replace a real browser.
-
-Review also confirmed entrypoint seed errors are no longer swallowed. Production requires explicit HTTPS APP_ORIGIN. No PostgreSQL integration, SMTP delivery, browser UI or production deployment is claimed here.
+The originating work applied security, TDD, source-driven development, debugging, Git workflow and
+Ponytail Ultra review. Technical references retained for that work:
+[Express proxies](https://expressjs.com/en/guide/behind-proxies/),
+[Node workers](https://nodejs.org/api/worker_threads.html),
+[OWASP uploads](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html).

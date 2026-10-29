@@ -1,12 +1,14 @@
-> **Ngữ cảnh đồ án — 2026-10-30:** Tài liệu lịch sử: giữ số đo, phạm vi và kế hoạch tại thời điểm ghi. Không coi đây là chứng nhận thương mại hoặc trạng thái runtime hiện tại. Xem [README hiện tại](../README.md).
+# ITLR–RAG | Intelligent IT Learning Platform
 
-# Benchmark độ trễ & mở rộng
+## CPU retrieval latency and memory
 
-*12 truy vấn × 30 lần lặp, 1 luồng, CPU. Đo bằng time.perf_counter().*
+Historical record: 2026-10-27. This document describes evidence and decisions at that checkpoint. See the [current platform guide](../README.md) and [current validation](VALIDATION.md) for later changes and runtime status.
 
-### Độ trễ từng tầng của phễu
+The historical benchmark used 12 queries × 30 repetitions, one CPU thread and `time.perf_counter()`. QPS describes this sequential run rather than concurrent service capacity. Generation was outside the measurements.
 
-| Thành phần | p50 (ms) | p95 (ms) | p99 (ms) | mean (ms) | QPS (1 luồng) |
+### Retrieval stages
+
+| Component | p50 (ms) | p95 (ms) | p99 (ms) | mean (ms) | QPS (1 luồng) |
 |---|---|---|---|---|---|
 | Stage0 Candidate Gen (embedding+ANN) | 71.37 | 84.66 | 132.85 | 73.15 | 13.7 |
 | Stage1 L1 ranking | 119.47 | 156.66 | 171.14 | 123.01 | 8.1 |
@@ -14,18 +16,20 @@
 | Stage3 MMR reorder | 1.09 | 1.43 | 1.85 | 1.12 | 890.1 |
 | Full (no rerank) | 178.05 | 195.44 | 221.95 | 179.97 | 5.6 |
 
-### FAISS ANN vs Brute-force (Stage-0)
+### FAISS versus brute-force candidate search
 
-| Thành phần | p50 (ms) | p95 (ms) | p99 (ms) | mean (ms) | QPS (1 luồng) |
+| Component | p50 (ms) | p95 (ms) | p99 (ms) | mean (ms) | QPS (1 luồng) |
 |---|---|---|---|---|---|
 | FAISS ANN | 48.90 | 53.16 | 70.30 | 49.84 | 20.1 |
 | Brute-force (matmul) | 147.94 | 194.68 | 224.36 | 150.46 | 6.6 |
 
-> Ở quy mô 5k×384 trên CPU, Stage-0 bị **chi phí ENCODE truy vấn (SentenceTransformer ~200ms) chi phối**, nên FAISS ANN vs brute-force gần ngang nhau (~**3.02×**): matmul 5k vector vẫn rẻ. Lợi thế ANN (sublinear) chỉ bộc lộ khi N lớn hơn nhiều (hàng triệu) — đây là kết luận trung thực về tradeoff recall–latency ở quy mô hiện tại.
+Mean timings imply approximately 3.02× for the FAISS/brute-force comparison (49.84ms versus 150.46ms). Cross-encoder pool=48 is the dominant measured stage, with p50 6180.34ms and p95 8347.35ms. No sublinear scaling or million-item performance was measured.
 
-## Dấu chân bộ nhớ
+The original narrative cited a 5k×384 problem and approximately 200ms query encoding, while the artifact table below gives `(5000, 768)` and the stage table reports different end-to-end timings. It also described a 3.02× difference as near parity. These are unresolved historical reporting inconsistencies; the tables are preserved without combining the incompatible descriptions into a new benchmark claim.
 
-| Thành phần | MB | Kích thước |
+### Artifact memory and disk footprint
+
+| Component | MB | Shape |
 |---|---|---|
 | embeddings (float32) | 15.4 | (5000, 768) |
 | char n-gram matrix (sparse) | 11.2 | (5000, 4405) |
@@ -33,4 +37,4 @@
 | retrieval_model.pkl (on disk) | 21.3 |  |
 | embeddings.pkl (on disk) | 15.4 |  |
 
-*Hướng tối ưu (đã nêu trong kế hoạch): quantization embeddings float32->int8 (~4× giảm bộ nhớ), caching truy vấn phổ biến, batch encoding.*
+Proposed optimizations were float32→int8 embedding quantization (approximately 4× storage reduction), common-query caching and batched encoding. They were proposals, without measured quality, latency or process-RAM results in this record. Later hardware, model or catalog changes require a new comparable run.

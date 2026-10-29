@@ -1,15 +1,22 @@
-> **Ngữ cảnh đồ án — 2026-10-30:** Tài liệu lịch sử: giữ số đo, phạm vi và kế hoạch tại thời điểm ghi. Không coi đây là chứng nhận thương mại hoặc trạng thái runtime hiện tại. Xem [README hiện tại](../README.md).
+# ITLR–RAG | Intelligent IT Learning Platform
 
-# Đánh giá chất lượng GENERATION (chatbot RAG)
-*Mode: **template** — bộ tổng hợp template KHÔNG dùng LLM (offline).*
-*Các số GROUNDEDNESS / RELEVANCY là XẤP XỈ rule-based (n-gram, token-overlap); HALLUCINATION + CITATION ACCURACY là đo TRỰC TIẾP trên ID nguồn (không xấp xỉ).*
+## Offline template response evaluation
 
-- **Citation**: 0 mã cite trong 50 câu trả lời; valid = nan% | in-context = nan% (tính khi có cite)
-- **Hallucination rate** (câu có >=1 cite không có thật): 0.0% (0/50)
-- **Groundedness proxy** (n-gram trúng nguồn): 0.385
-- **Relevancy proxy**: 0.929
-- **Refusal với câu NGOÀI chủ đề**: 0/21 = 0.0%
-- Câu hỏi IT bị từ chối NHẦM (false refusal): 0 / 29 (càng thấp càng tốt)
+Historical record: 2026-10-27. This document describes evidence and decisions at that checkpoint. See the [current platform guide](../README.md) and [current validation](VALIDATION.md) for later changes and runtime status.
+
+Mode: template synthesis, without an LLM. The set contained 50 answers: 29 IT and 21 off-topic queries. Groundedness/relevancy are rule-based n-gram/token-overlap proxies. Citation checks examine source-ID membership only; they do not assess semantic faithfulness or factual hallucination.
+
+| Measure | Recorded result | Interpretation |
+|---|---|---|
+| Citation count | 0 across 50 answers | No citations to validate |
+| Valid / in-context citation share | `nan%` / `nan%` in original output | Undefined with zero citations; unmeasured, not 0% error |
+| ID-based hallucination indicator | 0.0% (0/50) | No nonexistent cite IDs because no cites occurred; semantic hallucination remains unmeasured |
+| Groundedness proxy | 0.385 | N-gram source overlap |
+| Relevancy proxy | 0.929 | Rule-based overlap |
+| Off-topic refusal | 0/21 = 0.0% | Template responses did not refuse the off-topic set |
+| False IT refusal | 0/29 | No IT query refused |
+
+The query strings below retain the original report's truncated display text. `-` indicates undefined citation shares. `halluc` is the historical ID-based flag, not a claim-level hallucination assessment. No paid model or live-provider behavior is represented.
 
 | query | is_offtopic | intent | cites | valid% | in-ctx% | halluc | grounded | refusal |
 |---|---|---|---|---|---|---|---|---|

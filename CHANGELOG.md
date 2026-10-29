@@ -1,6 +1,22 @@
-# Changelog
+# ITLR–RAG | Intelligent IT Learning Platform — Changelog
 
-## 2026-10-30 — Tinh gọn đồ án và build web
+## Chưa phát hành — 2026-10-30: correctness và tài liệu sản phẩm
+
+- V3: Top-K không bị cắt ngầm ở 32; tìm tài nguyên loại trùng item trước giới hạn ứng viên;
+  truy hồi bằng chứng vẫn giữ nhiều chunk. Cosine được chặn trong [-1, 1], so ngưỡng với sai số float32.
+- Hybrid: RRF đếm một tài liệu một lần trong mỗi ranking; pipeline tái sử dụng điểm nền đã tính.
+- Evaluation: dùng retrieval model của engine đã nạp, hoạt động khi không có CF; đóng file LTR sau đọc.
+- Probe: truyền đường dẫn staging qua môi trường, kiểm tra cả exit code và sentinel.
+- Web: chặn redirect có backslash; quyền user được lấy từ database hiện tại sau xác minh JWT.
+- Crawler: đồng bộ policy/provenance khi cập nhật; không tái sử dụng full text đã bị thu hồi trong lần
+  export tiếp theo. Listing/article không phải 2xx bị từ chối; redirect kiểm robots và rate-limit mỗi hop.
+- Viết lại toàn bộ Markdown tracked theo thương hiệu thống nhất; giữ số liệu và phạm vi lịch sử,
+  phân biệt implemented/verified/experimental/planned. Không thêm giấy phép hay dịch vụ memory ngoài.
+- Kết quả thực chạy và giới hạn triển khai: [Validation](reports/VALIDATION.md).
+  Thu hồi policy không sửa artifacts đang active; cần rebuild, probe và activate có kiểm soát.
+
+
+## 2026-10-30 — BM25 và đóng gói Web (checkpoint lịch sử)
 
 - Sửa BM25 refit, thêm inverted postings và hỗ trợ pickle cũ; ngăn race công bố postings dở.
 - Build Web đóng gói EJS/public/schema; bỏ copy trùng trong Dockerfile.
@@ -10,8 +26,12 @@
 - Kiểm chứng cuối:260 Python pass/0 skip,59 Web pass; build/typecheck/wheel/links pass,lint20 cảnh báo cũ.
 - Bằng chứng, benchmark và giới hạn xem reports/VALIDATION.md.
 
-### Các mục lịch sử bên dưới
+### Phạm vi lịch sử
 
+
+Các mục dưới ghi trạng thái tại thời điểm thay đổi, không phải chứng nhận runtime hiện tại.
+Phiên bản package hiện vẫn là `1.0.0`; tiêu đề `2.0.0` bên dưới là nhãn lịch sử, không xác nhận một release tag.
+Bằng chứng mới nhất: [Validation](reports/VALIDATION.md).
 
 Định dạng theo [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
@@ -89,11 +109,9 @@
   rõ là proxy rule-based; `--llm` fail-fast khi chưa có key.
 - **`var/data/eval/offtopic_testset.csv`** — 121 câu hand-curated (60 IT / 61 ngoài
   chủ đề) để chốt ngưỡng cổng off-topic bằng dữ liệu.
-- **`AGENTS.md` + `docs/PROJECT_MEMORY.md`** — bộ nhớ dự phòng in-repo, đồng bộ với
-  Claude-Mem notes #102–#107 (kiến trúc, config không-secret, bugfix + quyết định
-  (ADR), lệnh setup/build/test/eval, datasets + metrics thực đo, tech debt);
-  AGENTS.md định nghĩa giao thức bắt buộc đầu phiên (search Claude-Mem + đọc AGENTS.md)
-  và quy tắc cập nhật memory sau mỗi thay đổi quan trọng.
+- **`AGENTS.md` + `docs/PROJECT_MEMORY.md`** — bộ nhớ trong repo về kiến trúc, cấu hình không chứa secret, ADR, build/test/eval và giới hạn.
+  Lịch sử có tham chiếu notes #102–#107; giao thức cũ đó đã được thay bằng đọc và cập nhật
+  file trong repo. Không tích hợp hoặc yêu cầu Claude-Mem.
 - Kết quả eval mới chạy rc=0: `reports/offtopic_eval.md`
   (AUC 0.9825; ngưỡng hiện 0.55 → F1 0.663; tối ưu F1 0.800 → P 0.881 / R 0.983 / F1 0.929)
   và `reports/generation_eval_template.{csv,md,json}`

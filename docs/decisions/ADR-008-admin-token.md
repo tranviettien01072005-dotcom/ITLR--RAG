@@ -1,36 +1,32 @@
-> **Ngữ cảnh đồ án — 2026-10-30:** Quyết định kiến trúc theo thời điểm. Không coi đây là chứng nhận thương mại hoặc trạng thái runtime hiện tại. Xem [README hiện tại](../../README.md).
+# ADR-008: Reload quản trị phải được xác thực
 
-# ADR-008: Bảo vệ API quản trị bằng token (`/admin/reload`)
-
-## Trạng thái
-Accepted
-
-## Ngày
-2026-10-29
+Sản phẩm: **ITLR–RAG | Intelligent IT Learning Platform**. Accepted, 2026-10-29.
+Vận hành: [deployment](../../deploy/DEPLOY.md).
 
 ## Bối cảnh
-`/admin/reload` ngắt cache engine và nạp lại artifacts từ con trỏ CURRENT.json —
-năng lực vận hành nhưng cũng là khả năng DoS (spam reload liên tục) và leo thang (nạp artifacts
-tùy ý từ đĩa). Sàn dự án: mọi endpoint đụng tới trạng thái hệ thống phải có auth; không có
-key mặc định.
+
+`/admin/reload` nạp artifacts từ `CURRENT.json` và thay engine. Gọi không kiểm soát có thể
+lạm dụng tài nguyên hoặc kích hoạt nội dung không mong muốn từ filesystem. Mạng nội bộ
+không thay thế xác thực cho thao tác này.
 
 ## Quyết định
-- **Env `ITLR_ADMIN_TOKEN`** là khóa cấu hình duy nhất; đọc tại thời điểm MỖI request (không
-  cache) — rotate token không cần restart.
-- **Env trống / không đặt** ⇒ endpoint coi như TẮT: mọi request nhận 403 kèm hướng dẫn cấu hình.
-  Thiết kế có chủ đích: fail-closed, không có "mặc định trống cho phép".
-- **Header `X-Admin-Token`** so sánh bằng `secrets.compare_digest` (chống timing side-channel).
-- Vận hành: sinh token `secrets.token_urlsafe(32)`, giữ trong `.env` (chmod 600, ngoài git);
-  proxy thật (nginx/traefik) chỉ pass header này vào mạng nội bộ.
+
+Mỗi request đọc `ITLR_ADMIN_TOKEN` và so header `X-Admin-Token` bằng `secrets.compare_digest`.
+Không cấu hình hoặc token rỗng làm endpoint trả **403**; không có default key.
+
+Sinh secret đủ mạnh, chẳng hạn `secrets.token_urlsafe(32)`, giữ trong environment hoặc file local
+ngoài Git, quyền file phù hợp (`chmod 600`). Truyền header qua kênh được bảo vệ; proxy phải
+được cấu hình rõ ràng và không công khai token. Không log token hay đưa vào báo cáo.
 
 ## Phương án đã cân nhắc
-- **Basic auth**: cần thêm username/password form + TLS; heavier — token đơn header đủ cho API
-  nội bộ (đã có firewall/LAN).
-- **IP allow-list**: môi trường docker/cloud dynamic IP khó bền vững; token bền hơn.
-- **No auth trong private network**: không — reload là vector vận hành dễ lạm dụng; mạng nội bộ
-  chia sẻ nhiều người vẫn cần phân quyền.
+
+Basic auth thêm quản lý username/password cho API nội bộ nhỏ. IP allow-list khó duy trì
+trong môi trường địa chỉ thay đổi và vẫn có thể bổ sung token. Bỏ auth trong private network
+không đáp ứng ranh giới quản trị.
 
 ## Hệ quả
-- Tests: `tests/test_admin_security_cf.py` — 3 ca (tắt khi trống · sai token · đúng token).
-- DEPLOY.md §1.2 hướng dẫn sinh token + curl; .env.example có placeholder + hướng dẫn.
-- Sàn "no secrets in repo giữ": chỉ ví dụ, giá trị thật sinh cục bộ.
+
+Không cấu hình token thì reload bị vô hiệu hóa an toàn. Đọc environment mỗi request hỗ trợ
+rotation trong process có environment được cập nhật; thay environment của service thường
+vẫn cần restart theo cách triển khai. `tests/test_admin_security_cf.py` kiểm thiếu, sai và đúng
+token. [.env.example](../../.env.example) chỉ chứa placeholder; secret thật không đưa vào repo.

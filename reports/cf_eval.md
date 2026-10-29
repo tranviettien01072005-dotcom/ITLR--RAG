@@ -1,10 +1,12 @@
-> **Ngữ cảnh đồ án — 2026-10-30:** Tài liệu lịch sử: giữ số đo, phạm vi và kế hoạch tại thời điểm ghi. Không coi đây là chứng nhận thương mại hoặc trạng thái runtime hiện tại. Xem [README hiện tại](../README.md).
+# ITLR–RAG | Intelligent IT Learning Platform
 
-# Đánh giá Collaborative Filtering (B6)
+## Collaborative filtering evaluation (B6)
 
-*Số user đánh giá: 800 (leave-one-out), 800 (temporal split).*
+Historical record: 2026-10-27. This document describes evidence and decisions at that checkpoint. See the [current platform guide](../README.md) and [current validation](VALIDATION.md) for later changes and runtime status.
 
-## Leave-one-out — CF vs Popularity baseline
+The legacy experiment used synthetic interactions, including the historical 1,800-user generation described in project memory. Each reported evaluation used 800 users: 800 leave-one-out and 800 temporal-split users. These are offline recommendation measurements, without real-user effectiveness evidence.
+
+### Leave-one-out: item-based CF versus popularity
 
 | Metric | CF item-based | Popularity baseline |
 |---|---|---|
@@ -13,9 +15,9 @@
 | HitRate@10 | 0.4863 | 0.0288 |
 | MRR | 0.2903 | 0.0081 |
 
-## Temporal split (train quá khứ → test tương lai)
+### Temporal split: past training, future holdout
 
-| Metric | KHÔNG rò rỉ (train lại) | Có rò rỉ (tham khảo) |
+| Metric | Retrained, no holdout leakage | All-data model, leaking reference |
 |---|---|---|
 | Recall@1 | 0.0000 | 0.0023 |
 | Recall@5 | 0.0001 | 0.0130 |
@@ -23,6 +25,6 @@
 | NDCG@10 | 0.0023 | 0.0442 |
 | MAP | 0.0006 | 0.0136 |
 
-*Cột **KHÔNG rò rỉ** train lại item_sim CHỈ trên phần quá khứ của mọi user (held-out không tham gia đồng-xuất-hiện) — đây là con số đáng tin để báo cáo. Cột có rò rỉ dùng cf_model train trên TOÀN bộ tương tác nên lạc quan quá mức.*
+The non-leaking column retrains item similarity only on every user's past partition; held-out interactions do not enter co-occurrence. It is the preferred result for reporting. The leaking column uses a model trained on all interactions and is optimistically biased. Leave-one-out also used the original CF model and therefore contains leakage.
 
-*Lưu ý: interactions.csv không có timestamp -> temporal split dùng thứ tự dòng làm proxy thời gian (đã nêu giả định trong itlr/eval/cf_eval.py). Leave-one-out ở trên dùng cf_model gốc nên CŨNG có rò rỉ — diễn giải thận trọng, ưu tiên cột không rò rỉ.*
+`interactions.csv` has no timestamps. Row order is a proxy for time, as assumed in `itlr/eval/cf_eval.py`; this limits interpretation of the temporal split. Synthetic interactions and proxy time cannot establish future behavior of actual learners.

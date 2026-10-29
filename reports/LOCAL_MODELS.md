@@ -1,46 +1,32 @@
-> **Ngữ cảnh đồ án — 2026-10-30:** Tài liệu lịch sử: giữ số đo, phạm vi và kế hoạch tại thời điểm ghi. Không coi đây là chứng nhận thương mại hoặc trạng thái runtime hiện tại. Xem [README hiện tại](../README.md).
+# ITLR–RAG | Intelligent IT Learning Platform
 
-# Real local model verification — 2026-10-29
+## Local neural model verification
 
-**Installed and tested:** E5-base embeddings and Qwen2.5:3b through Ollama CPU.
-No paid API or external crawl. These results supersede the missing-model limitation in
-FINAL_REMEDIATION.md for this local checkout only; other release blockers remain.
+Historical record: 2026-10-29. This document describes evidence and decisions at that checkpoint. See the [current platform guide](../README.md) and [current validation](VALIDATION.md) for later changes and runtime status.
 
-| Check | Result |
+E5-base embeddings and Qwen2.5:3b were installed and exercised through Ollama CPU. No paid API call or external crawl occurred. This superseded the missing-model limitation in [FINAL_REMEDIATION.md](FINAL_REMEDIATION.md) for the measured local checkout; other release gates remained.
+
+| Check | Recorded result |
 |---|---|
-| PyTorch/Sentence Transformers/FAISS | 2.15.0+cpu / 6.2.0 / 1.15.1 installed; pip check PASS |
-| E5 weights | `intfloat/multilingual-e5-base`, revision `d128750597153bb5987e10b1c3493a34e5a4502a`, downloaded completely |
-| E5 actual inference | PASS: three passages → (3,768), unit norms; Docker query ranks Docker first (0.8995 vs 0.7318/0.7294) |
-| Qwen weights | `qwen2.5:3b`, downloaded completely; Ollama SHA256 verification PASS |
-| Ollama runtime | 0.40.13; full archive integrity checked with zstd; CPU runner installed |
-| Direct Qwen inference | PASS: nonempty real generated reply; 15 generated tokens, 3.35s generation/16.45s total for short smoke |
-| Versioned neural build | PASS: 5,000 items/chunks, 768d, FAISS; retrieval step 48.1s, embeddings step 1214.5s including download wait; total1281.1s |
-| Probe/activation | PASS; active version `20261029-204546` with manifest hashes |
-| Actual loopback API health | 200: engine ready, items5000, cf=false |
-| Actual API search | 200: 134 results for docker containers/min_pct70 |
-| Actual API Qwen chat | 200: nonempty response, 57.01s, citation `[item_id:2716]` matches retrieved recommendation ID |
-| Preset regression | Reproduced full E5 model ID losing required prefixes; fixed shared resolver; regression PASS |
+| PyTorch / Sentence Transformers / FAISS | 2.15.0+cpu / 6.2.0 / 1.15.1; `pip check` passed |
+| E5 weights | `intfloat/multilingual-e5-base`, complete revision `d128750597153bb5987e10b1c3493a34e5a4502a` |
+| E5 inference | Three passages produced `(3,768)` unit-normalized vectors; Docker query ranked Docker first, 0.8995 versus 0.7318/0.7294 |
+| Qwen weights | Complete `qwen2.5:3b`; Ollama SHA256 verification passed |
+| Ollama | 0.40.13; full archive integrity checked using zstd, CPU runner installed |
+| Direct Qwen inference | Nonempty generated reply; 15 tokens, 3.35s generation and 16.45s total |
+| Versioned neural build | 5,000 items/chunks, 768d, FAISS; retrieval 48.1s, embeddings 1214.5s including download wait, total 1281.1s |
+| Probe/activation | Passed; version `20261029-204546`, manifest hashes recorded |
+| Loopback health | HTTP 200, engine ready, `items=5000`, `cf=false` |
+| API search | HTTP 200, 134 results for docker containers / `min_pct=70` |
+| API Qwen chat | HTTP 200, nonempty answer in 57.01s; `[item_id:2716]` matched a retrieved recommendation |
+| E5 preset regression | Full model ID lost query/passage prefixes before shared resolver correction; regression passed after correction |
 
-Raw evidence: `local_embedding_smoke.json`, `qwen_live_smoke.json`, `local_models_smoke.json`.
-Commands: [LOCAL_MODELS setup](../deploy/LOCAL_MODELS.md), `scripts/verify_local_models.py`.
-Model caches: `var/hf`; runtime/weights: `var/ollama`; downloads/logs: `var/downloads`.
+Raw evidence: `local_embedding_smoke.json`, `qwen_live_smoke.json`, `local_models_smoke.json`. Reproduction uses `scripts/verify_local_models.py` and the [local model setup](../deploy/LOCAL_MODELS.md). Caches were under `var/hf`; Ollama runtime/weights under `var/ollama`; downloads/logs under `var/downloads`.
 
-## Quality limits
+### Interpretation and limits
 
-All 5,000 current catalog items are **synthetic**; no crawl rows were present in this checkout.
-This proves the local neural pipeline runs, not usefulness on real users or human-rated quality.
-Reranker disabled; CF unbuilt/optional. DeepSeek live remains unverified.
-One 80-token direct adapter prompt omitted its requested citation and was truncated; record this
-as a model-instruction-following limitation, not a pass for groundedness. The separate API chat
-had a valid source ID, but source-ID validity alone does not prove every generated claim.
-No LLM-judge or human groundedness/hallucination assessment was performed. API cost=$0;
-local CPU/electricity costs were not measured. CPU chat is slow (~57s for this single query).
-An API shutdown warning reported one loky semaphore cleanup; no server process was left running
-from the smoke. Ollama remains local on 127.0.0.1:11434 for reuse.
+The catalog at this checkpoint contained 5,000 synthetic items and no crawl rows. The checks establish local pipeline execution, without measuring usefulness or human-rated quality. Reranking was disabled, CF unbuilt/optional and live DeepSeek unverified.
 
-Initial Python suite after installing dependencies:201 passed/5 skipped in33.37s. Five old API
-integration tests still test for legacy root `var/artifacts/embeddings.pkl`, so skip despite the
-active versioned build; actual HTTP smoke above validates neural health/search/chat separately.
-Final regression result is appended below after completion.
+A separate direct adapter prompt, limited to 80 tokens, omitted the requested citation and was truncated. This is an instruction-following limitation. The API answer contained a valid retrieved ID, but ID validity does not establish claim entailment, groundedness or hallucination rate. No human or LLM-judge assessment was performed. API cost was $0; local electricity/CPU costs were unmeasured. One query took roughly 57s, without a throughput claim.
 
-Final regression: `201 passed, 5 skipped in 28.99s`. No new skips or suppressed failures.
+Shutdown emitted one loky semaphore cleanup warning; the smoke server was stopped. Ollama remained on `127.0.0.1:11434` for reuse. Initial Python regression: 201 passed / 5 skipped in 33.37s; final regression: 201 passed / 5 skipped in 28.99s. The five legacy API tests looked for root `var/artifacts/embeddings.pkl` and skipped despite a versioned build; separate real HTTP checks covered neural health/search/chat. No new skip or suppressed failure was introduced.

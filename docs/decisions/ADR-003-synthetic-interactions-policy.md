@@ -1,41 +1,38 @@
-> **Ngữ cảnh đồ án — 2026-10-30:** Quyết định kiến trúc theo thời điểm. Không coi đây là chứng nhận thương mại hoặc trạng thái runtime hiện tại. Xem [README hiện tại](../../README.md).
+# ADR-003: Provenance của tương tác CF mô phỏng
 
-# ADR-003: Interactions cho CF là dữ liệu MÔ PHỎNG (latent-persona, seed=7) kèm chính sách ghi nhãn trung thực
-
-## Trạng thái
-Accepted
-
-## Ngày
-2026-10-27
+Sản phẩm: **ITLR–RAG | Intelligent IT Learning Platform**. Accepted, 2026-10-27.
+Chính sách dữ liệu hiện hành: [CONSTRAINTS](../../CONSTRAINTS.md), [data](../../data/README.md).
 
 ## Bối cảnh
-CF item-item cosine cần ma trận tương tác user×item dày đủ (≥5 item/user). Repo chỉ có bản cũ
-500 users / 12.342 clicks (đã backup `var/data/interactions_backup_500users.csv`). Không có nguồn
-data người thật — dùng data thu thập không có sự đồng ý là không khả thi trong phạm vi bài toán.
-Vấn đề: nếu mô phỏng "trắng" (chọn ngẫu nhiên đều), CF chỉ học phổ biến → mọi con số eval CF
-(Off-policy, HitRate) vô nghĩa nhưng trông vẫn đẹp.
+
+CF item-item cần lịch sử đủ dày nhưng repository chưa có hành vi người dùng thật được
+thu thập có sự đồng ý. Snapshot ban đầu có 500 users / 12.342 clicks, được lưu ở
+`var/data/interactions_backup_500users.csv`. Lấy mẫu ngẫu nhiên đều không tạo cấu trúc
+cộng tác hữu ích để kiểm thử mô hình.
 
 ## Quyết định
-`itlr/pipelines/generate_interactions.py` sinh **1.800 users, seed=7** với cấu trúc latent:
-- Mỗi user 1–3 "persona" (chuyên mục ưa thích, sampling theo tần suất chuyên mục catalog).
-- ~80% click nằm trong persona (còn lại khám phá, cap EXPLORATION_CAP=1/user).
-- Số click/user ~ gamma quanh 25 (P90≈46); chọn item trong pool theo power-law phổ biến.
-- MIN_HISTORY=5 — lọc sau khi sinh.
 
-**Chính sách trung thực (ràng buộc học thuật, xem CONSTRAINTS.md §5):**
-- Dataset này KHÔNG phải hành vi người thật; mọi report phải gắn nhãn `synthetic (mô phỏng, seed=7)`.
-- Off-policy eval coi click là reward đã biết trước — khung demo phương pháp, không phải số ship.
-- Khi có data thật chỉ cần thay `var/data/interactions.csv` (env `ITLR_INTERACTIONS_CSV`) rồi
-  `python scripts/build_all.py --force --step collaborative` — schema chỉ cần `(user_id, item_id)`.
+`itlr/pipelines/generate_interactions.py` sinh **1.800 users, seed=7** với latent personas:
+1–3 chuyên mục ưa thích/user, khoảng 80% click trong persona, phần còn lại khám phá với
+`EXPLORATION_CAP=1/user`. Số click theo phân phối gamma quanh 25, P90≈46; item được chọn theo
+power-law popularity. Lọc lịch sử với `MIN_HISTORY=5` sau khi sinh.
+
+Mọi báo cáo phải ghi **synthetic / mô phỏng, seed=7**. Click và reward off-policy được tạo
+trong môi trường mô phỏng; kết quả không chứng minh hiệu quả đối với người dùng thật.
+Không nhập dữ liệu cá nhân vào tập này hoặc trình bày nó như dữ liệu vận hành.
 
 ## Phương án đã cân nhắc
-- **Chưa xây CF đến khi có data thật**: hủy luôn trang "Dành cho bạn" — trái yêu cầu e2e — bị loại.
-- **Mô phỏng ngẫu nhiên đều**: CF thành bảng xếp hạng phổ biến trá hình — bị loại vì eval ảo.
-- **Score giả lập (rating 1–5.pred)**: build_cf chỉ hiểu binary click; thêm thang rating là sửa
-  mô hình mà không có bằng chứng — bị loại.
+
+Hoãn CF sẽ bỏ khả năng thử luồng “Dành cho bạn”. Random-uniform không kiểm được tín hiệu
+persona; rating giả 1–5 không phù hợp schema binary-click hiện có. Chọn bộ tương tác
+có cấu trúc, công khai nguồn nhãn và tách CF khỏi retrieval.
 
 ## Hệ quả
-- Tái lập được tuyệt đối (seed 7, deterministic): cùng seed → cùng CSV.
-- Latent_structure bị chặn hồi quy: `tests/test_generate_interactions.py` so share top-1 chuyên
-  mục với baseline xáo trộn (phải ≥ baseline+0.15).
-- Con số CF trong reports hợp lệ **chi trong thế giới mô phỏng**; không suy rộng ra người dùng thật.
+
+Seed cố định hỗ trợ tái lập. `tests/test_generate_interactions.py` so share chuyên mục top-1
+với baseline xáo trộn, yêu cầu cao hơn ít nhất 0.15. Kiểm tra này xác nhận cấu trúc mô phỏng,
+không xác nhận hành vi thật.
+
+Dữ liệu thật sau này cần consent và provenance phù hợp, schema `(user_id, item_id)`, cấu hình
+`ITLR_INTERACTIONS_CSV` rồi rebuild collaborative. Không ghi đè dữ liệu runtime khi chỉ sửa tài liệu.
+CF là tùy chọn theo [ADR-005](ADR-005-cf-optional-decoupling.md).

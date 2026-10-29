@@ -1,88 +1,63 @@
-# ITLR–RAG V3
+# ITLR–RAG | Intelligent IT Learning Platform
 
-**Đồ án sinh viên: gợi ý tài nguyên học Công nghệ thông tin và chatbot trả lời dựa trên tài liệu.**
+ITLR–RAG là nền tảng hỗ trợ học Công nghệ thông tin bằng tiếng Việt: tìm tài nguyên, hỏi đáp theo tài liệu, xây lộ trình và theo dõi tiến độ. Giao diện chính dùng Express, TypeScript, EJS và PostgreSQL tại cổng 3000; backend FastAPI tại cổng 8000 cung cấp retrieval, chatbot và gợi ý tài nguyên.
 
-ITLR kết hợp tìm kiếm từ vựng và ngữ nghĩa, hiển thị nguồn trích dẫn và lưu hoạt động học tập.
-Giao diện chính nằm trong **`web/`**, kết nối PostgreSQL và backend FastAPI. V3 là hướng phát triển
-đang được kiểm chứng; mã nguồn mới không tự biến artifacts V2 đang có thành index V3.
+Hệ thống kết hợp tìm kiếm từ vựng với ngữ nghĩa và trình bày nguồn trích dẫn để người học kiểm tra. Mã V3 hỗ trợ truy xuất ở mức chunk; artifacts cũ tiếp tục dùng đường V2. Khả năng có trong mã nguồn, kết quả đã chạy và mục tiêu phát triển được phân biệt dưới đây; repository chưa có đủ bằng chứng để tuyên bố production-ready.
 
-## Mục tiêu và phạm vi
+## Tìm tài liệu cần dùng
 
-- Tìm tài liệu phù hợp với câu hỏi, loại tài nguyên và nhu cầu học.
-- Truy xuất đoạn văn thay vì chỉ dựa vào vector trung bình toàn bài.
-- Tách ranking, kiểm tra nguồn, generation và lưu trữ để dễ hiểu, kiểm thử, bảo trì.
-- Giữ tương thích API, dữ liệu và artifacts cũ; đo kết quả thay vì tuyên bố chất lượng.
+| Nhu cầu | Tài liệu |
+|---|---|
+| Cài đặt, cấu hình, khởi chạy, cập nhật index, rollback | [Hướng dẫn vận hành](deploy/DEPLOY.md) |
+| Chạy E5 và Qwen qua Ollama trên máy local | [Model local](deploy/LOCAL_MODELS.md) |
+| Nguồn dữ liệu, snapshot và nghĩa vụ bản quyền | [Dữ liệu](data/README.md), [ADR-006](docs/decisions/ADR-006-data-sources-licensing.md) |
+| Thiết kế hệ thống và tương thích artifacts | [ADR-010](docs/decisions/ADR-010-shared-retrieval-and-atomic-state.md), [ADR-007](docs/decisions/ADR-007-artifact-versioning.md) |
+| Phương pháp đánh giá và provenance của nhãn | [ADR-004](docs/decisions/ADR-004-evaluation-design.md), [nghiên cứu nền](RESEARCH_ITLR.md) |
+| Kết quả kiểm chứng và giới hạn | [Validation](reports/VALIDATION.md), [báo cáo V3](reports/V3_RESTRUCTURING_2026-10-30.md) |
+| Quy trình thay đổi và chất lượng | [AGENTS](AGENTS.md), [CONSTRAINTS](CONSTRAINTS.md), [changelog](CHANGELOG.md) |
+| Công việc tiếp theo | [Lộ trình](tasks/plan.md), [checklist](tasks/todo.md) |
 
-Đây không phải sản phẩm thương mại và chưa có kết luận production-ready. Không tự gán giấy phép
-cho toàn đồ án. Tài liệu thu thập phải giữ nguồn, điều kiện sử dụng và bản quyền tương ứng;
-xem [dữ liệu](data/README.md) và [ADR-006](docs/decisions/ADR-006-data-sources-licensing.md).
+## Trải nghiệm học tập
 
-## Kiến trúc
+Người học có thể tìm khóa học hoặc tài liệu, mở nguồn gốc, trao đổi với chatbot và lưu hoạt động trong tài khoản. Luồng học tập có mục tiêu, chẩn đoán bằng luật, lộ trình có thứ tự và tiến độ theo tài khoản. Chẩn đoán chỉ hỗ trợ định hướng; chưa được xác nhận như một phép đo năng lực.
+
+Chatbot có các nhánh intent/template và nhánh generation qua DeepSeek, OpenAI hoặc Ollama. Template/extractive hoạt động khi không dùng LLM và có nhãn chế độ riêng. Gợi ý Collaborative Filtering (CF) là tính năng tùy chọn sử dụng interactions synthetic; không đại diện cho cá nhân hóa đã đánh giá trên hành vi người dùng thật.
+
+## Kiến trúc và luồng dữ liệu
 
 ```mermaid
 flowchart LR
-    U[Người học] --> W[web: Express / EJS]
+    U[Người học] --> W[Web Express / EJS :3000]
     W --> P[(PostgreSQL)]
-    W --> A[FastAPI]
-    A --> R[RetrievalService]
-    R --> D[FAISS: chunk vectors]
+    W --> A[FastAPI :8000]
+    A --> R[Shared RetrievalService khi có chunk vectors]
+    R --> D[Dense E5 / FAISS]
     R --> B[BM25]
-    D --> F[RRF]
+    D --> F[RRF fusion]
     B --> F
     F --> X[CrossEncoder tùy chọn]
-    X --> E[Đoạn trích và provenance]
-    E --> G[LLM client: DeepSeek / OpenAI / Ollama]
-    G --> C[Kiểm tra item và chunk citations]
+    X --> E[Evidence: đoạn trích và provenance]
+    E --> L[LLM client: DeepSeek / OpenAI / Ollama]
+    L --> C[Kiểm tra item / chunk citations]
     C --> W
-    S[Nguồn cho phép] --> I[Crawler / SQLite]
-    I --> V[Build staging → probe → activate]
+    S[Nguồn được cấu hình] --> I[Crawler / SQLite]
+    I --> V[Staging → probe → activate]
     V --> R
+    A --> O[Đường V2 khi artifacts cũ]
 ```
 
-Với artifacts V3, search, semantic chat, quick resources và off-topic dùng service chung.
-BM25 + dense được hợp nhất bằng Reciprocal Rank Fusion; điểm RRF không phải xác suất.
-Off-topic dùng cosine riêng, không dùng RRF để so ngưỡng. CrossEncoder chấm các passage ứng viên;
-không bật mặc định trong thử nghiệm CPU local. Generation V3 yêu cầu cite `[item_id:ID]` và
-`[chunk_id:ID:INDEX]` thuộc evidence đã chọn. Kiểm tra ID không chứng minh nội dung được nguồn hỗ trợ.
+Search, semantic chat, quick resources và off-topic dùng chung `itlr/retrieval/service.py` khi artifacts có chunk vectors. RRF dùng thứ hạng để hợp nhất kết quả; điểm RRF không phải xác suất. Cổng relevance dùng cosine riêng. Generation V3 phải dẫn cả `[item_id:ID]` và `[chunk_id:ID:INDEX]` thuộc evidence được chọn; ID hợp lệ chỉ xác nhận định danh, chưa chứng minh câu trả lời được nguồn hỗ trợ về ngữ nghĩa.
 
-Artifacts V2 vẫn hoạt động qua đường tương thích. Các template/intent học tập và CF có chức năng
-riêng; không được báo cáo template như kết quả LLM có groundedness đã xác minh.
+Search và quick resources chọn các item khác nhau trước khi giới hạn ứng viên để một tài liệu dài
+không chiếm hết kết quả. Chat giữ chunk-level evidence. Top-K lớn hơn 32 tự tăng candidate budget;
+reranker chỉ chấm trong pool được chọn. Ngưỡng cosine dùng tolerance 1e-6 cho sai số float32;
+điểm hiển thị không phải xác suất đúng của câu trả lời. RRF chỉ tính một item một lần trong mỗi ranking.
 
-## Công nghệ và cấu trúc
+`web/` lưu tài khoản, hội thoại và tiến độ trong PostgreSQL. `itlr/collect/` lưu ingestion vào SQLite; `itlr/pipelines/` xây artifacts; `itlr/versioning.py` quản lý staging, probe, pointer/history, rollback và GC. UI tĩnh ở backend là giao diện phụ. Các quyết định và đánh đổi nằm trong [ADRs](docs/decisions/ADR-010-shared-retrieval-and-atomic-state.md).
 
-| Thành phần | Công nghệ / trách nhiệm |
-|---|---|
-| Giao diện chính | Express, TypeScript, EJS; auth, học tập, hội thoại |
-| Lưu trữ web | PostgreSQL; tài khoản, tiến độ, nội dung và hội thoại |
-| API | Python, FastAPI, Pydantic |
-| Retrieval | E5, FAISS, BM25, TF-IDF tương thích, RRF, optional CrossEncoder |
-| Generation | OpenAI-compatible SDK và Ollama; chỉ generation dùng LLM |
-| Ingestion | httpx, BeautifulSoup, feedparser, robots và SQLite |
-| Kiểm thử | pytest, Vitest; GitHub Actions |
+## Bắt đầu trên máy local
 
-```text
-itlr/
-  api/           FastAPI và UI tĩnh phụ
-  retrieval/     service dùng chung, BM25
-  core/          chunk FAISS, ANN, reranking, thuật toán tương thích
-  chatbot/       routing, nguồn trích dẫn, LLM client
-  collect/       crawler và SQLite
-  pipelines/     build artifacts và CF
-  eval/          metrics và đánh giá dùng lại
-web/src/         Express, EJS, TypeScript, SQL và static assets
-scripts/         CLI thu thập, build, refresh, export catalog
-eval/           entrypoint benchmark và evaluation
-tests/          Python regression và integration
-configs/         cấu hình nguồn và dữ liệu curated
-deploy/         hướng dẫn local, Docker, timer
-docs/decisions/ ADR và quyết định kiến trúc
-reports/        kết quả có provenance, gồm báo cáo lịch sử
-```
-
-## Cài đặt
-
-Yêu cầu: Python ≥3.11, Node.js 22, PostgreSQL và đủ RAM cho model CPU. Môi trường đã dùng
-Python 3.14.3; phiên bản tối thiểu không đảm bảo mọi wheel neural có sẵn trên mọi hệ điều hành.
+Cần Python ≥3.11, Node.js 22 và PostgreSQL. Môi trường kiểm chứng trước đây dùng Python 3.14.3; khả năng có wheel neural tùy nền tảng. Chạy từ repo root:
 
 ```bash
 python3 -m venv .venv
@@ -92,12 +67,11 @@ npm ci
 cp .env.example .env
 ```
 
-Điền `web/.env`: `DATABASE_URL`, `JWT_SECRET` ngẫu nhiên ≥32 ký tự, `ADMIN_PASSCODE` ≥16 ký tự,
-`PORT=3000`, `RECOMMENDER_URL=http://127.0.0.1:8000`, `APP_ORIGIN=http://localhost:3000`.
-Không dùng credentials mẫu, không commit `.env`. Tạo database PostgreSQL riêng cho đồ án trước
-khi áp schema; không trỏ migration/seed vào database không thuộc dự án.
+Điền `web/.env` với `DATABASE_URL` riêng, `JWT_SECRET` ngẫu nhiên ≥32 ký tự, `ADMIN_PASSCODE` ≥16 ký tự, `APP_ORIGIN=http://localhost:3000` và `RECOMMENDER_URL=http://127.0.0.1:8000`. Backend dùng biến môi trường của process; sao chép root `.env.example` không tự nạp `.env` vào mọi lệnh Python. Xem [cấu hình chi tiết](deploy/DEPLOY.md#cấu-hình) trước khi khởi chạy.
 
-Từ `web/`, sau khi database đã sẵn sàng:
+Backend cần model cache và index đã build. Với máy đã có E5/Qwen/index, làm theo [model local](deploy/LOCAL_MODELS.md); với máy mới, làm theo [chuẩn bị dữ liệu và index](deploy/DEPLOY.md#chuẩn-bị-dữ-liệu-và-index). Không rebuild index đang phục vụ chỉ để thử giao diện.
+
+Khi PostgreSQL riêng và catalog export đã sẵn sàng, chạy từ `web/`:
 
 ```bash
 npm run migrate
@@ -105,75 +79,44 @@ npm run seed
 npm run dev
 ```
 
-Seed cần `var/data/web_items.csv`; tạo catalog từ index đang active ở repo root:
+Mở **http://localhost:3000** khi backend 8000 chạy song song. `npm run seed` cần `var/data/web_items.csv`; tạo từ repo root bằng `.venv/bin/python scripts/export_web_catalog.py`. Migration và seed ghi database, vì vậy chỉ dùng database đã chọn cho ITLR–RAG. Build bản biên dịch bằng `npm run build`, sau đó `npm start`; build copy cả views, public và schema vào `dist/`.
 
-```bash
-.venv/bin/python scripts/export_web_catalog.py
-```
+## API backend
 
-Mở **http://localhost:3000**, đăng ký hoặc đăng nhập. Backend phải chạy song song ở cổng 8000.
-`npm run build` biên dịch TypeScript và copy views/public/schema vào `dist/`; sau đó chạy
-`npm start`. Dockerfile tái sử dụng cùng lệnh build để tránh hai quy trình copy khác nhau.
+Schema đầy đủ được sinh tại http://127.0.0.1:8000/docs khi API chạy.
 
-## Chạy backend và model local
-
-Xem [hướng dẫn E5/Qwen](deploy/LOCAL_MODELS.md) cho cache và Ollama đã cài. Lệnh tối thiểu ở repo root:
-
-```bash
-env -u DEEPSEEK_API_KEY -u OPENAI_API_KEY \
-  HF_HOME="$PWD/var/hf" HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \
-  USE_OLLAMA=1 OLLAMA_MODEL=qwen2.5:3b DISABLE_RERANKER=1 \
-  OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 ITLR_REQUIRE_ARTIFACT_MANIFEST=1 \
-  .venv/bin/python -m uvicorn itlr.api.server:app --host 127.0.0.1 --port 8000 \
-  --workers 1 --no-proxy-headers
-```
-
-Cần index đã build và Ollama đang chạy. Nếu không dùng Ollama, đặt `USE_OLLAMA=0` để thử đường
-extractive/template; không gán nhãn đây là benchmark generation LLM. DeepSeek chỉ gọi khi đã
-được phép và có key môi trường; model/base URL cấu hình trong `llm_client.py`, cần kiểm tra provider
-trước khi dùng. Bảng giá trong code là ước tính, không phải báo giá chính thức.
-
-## Dữ liệu và workflow cập nhật
-
-```bash
-.venv/bin/python scripts/collect_data.py
-.venv/bin/python scripts/build_all_v2.py --real-only --no-activate
-.venv/bin/python scripts/refresh_pipeline.py --no-build
-```
-
-Tên CLI V2 được giữ tương thích; builder mới lưu thêm chunk vectors cho V3. Lần đầu tải model cần
-`--online`, có mạng và thời gian build. Xem [deployment](deploy/DEPLOY.md) trước khi activate/rollback;
-không chạy build thay đổi index đang sử dụng chỉ để thử giao diện. `CURRENT.json` chứa pointer và
-history atomic; file history riêng là mirror tương thích. Sau lỗi ghi mirror phải kiểm tra pointer
-trước khi retry. Khóa hiện dành cho tiến trình hợp tác trên Linux local, không phải distributed lock.
-
-Catalog legacy 5.000 items và interactions CF là **synthetic**. Snapshot tài liệu thật có provenance;
-index local đã quan sát có 118 items, không suy ra tất cả bản checkout có cùng số lượng.
-Rolling feed mặc định không được dùng sự vắng mặt để đánh dấu bài đã bị xóa.
-
-## API chính
-
-| Endpoint backend | Chức năng |
+| Phương thức và đường dẫn | Hợp đồng chính |
 |---|---|
-| `GET /health` | Readiness engine, số item, trạng thái CF |
-| `GET /live` | Liveness |
-| `POST /api/search` | `query`, `min_pct`, `item_type` tùy chọn |
-| `POST /api/chat` | `message`, `history` |
-| `POST /api/chat/stream` | SSE, sources trước token, kết quả final có kiểm tra citation |
-| `GET /api/personas` | Personas synthetic khi CF có model |
-| `POST /api/for-you` | Gợi ý CF; thiếu model trả 503 |
-| `POST /admin/reload` | Cần `X-Admin-Token`; nạp mới rồi mới hoán đổi |
+| `GET /live` | Liveness của API |
+| `GET /health` | Readiness engine, số item thực tế và trạng thái CF |
+| `GET /metrics` | Metrics trong process; quyền truy cập theo cấu hình runtime |
+| `POST /api/search` | `query`, `type` tùy chọn (`Khóa học` / `Tài liệu`), `min_pct` 0–100 |
+| `POST /api/chat` | `message`, `history` chứa role `user` / `assistant` |
+| `POST /api/chat/stream` | SSE có `sources`, `text`, `meta`, `final`, `error`, `done` |
+| `GET /api/personas` | Personas synthetic; thiếu CF trả 503 |
+| `POST /api/for-you` | `persona`, `interested`; thiếu CF trả 503 |
+| `GET /api/suggested` | Câu hỏi gợi ý |
+| `POST /admin/reload` | Header `X-Admin-Token` khớp `ITLR_ADMIN_TOKEN`; trống/sai trả 403 |
 
-Xem schema thực tế tại http://127.0.0.1:8000/docs. Web có `/ready` kiểm tra kết nối database.
-Cổng 8000 không thay thế giao diện chính trong `web/`.
+Ví dụ tìm kiếm, không gọi generation trả phí:
+
+```bash
+curl -sS http://127.0.0.1:8000/api/search \
+  -H 'Content-Type: application/json' \
+  -d '{"query":"Docker networking","type":"Tài liệu","min_pct":0}'
+```
+
+Token streaming là nội dung tạm. Client phải dùng `final` đã kiểm tra làm kết quả chính thức; `done` chỉ kết thúc stream, không tự chứng minh thành công. Lỗi giữa stream được gửi qua frame vì HTTP status đã gửi. Web có `/health` cho liveness và `/ready` để kiểm tra database.
 
 ## Kiểm thử và đánh giá
 
+Chạy kiểm thử local với paid provider keys bị bỏ khỏi môi trường:
+
 ```bash
-USE_OLLAMA=0 DISABLE_RERANKER=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 \
+env -u DEEPSEEK_API_KEY -u OPENAI_API_KEY \
+  USE_OLLAMA=0 DISABLE_RERANKER=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 \
   .venv/bin/python -m pytest tests/ -o addopts='' -q -ra
 .venv/bin/python -m compileall -q itlr scripts eval
-.venv/bin/python eval/bench_chunks_v3.py
 cd web
 npm run typecheck
 npm run lint
@@ -181,29 +124,29 @@ npm run build
 npm test
 ```
 
-[Validation](reports/VALIDATION.md) chứa kết quả mới nhất. Checkpoint trước phiên này: 256 Python
-pass/0 skip, 59 Web pass, lint 0 lỗi/20 cảnh báo; không dùng số này thay cho execution mới.
-GitHub Actions kiểm tra Python, Web, dependencies và PostgreSQL integration theo workflow.
+Kết quả phiên audit: **280 Python pass/0 skip**, **64 Web pass**; typecheck/build PASS,
+lint 0 lỗi/20 cảnh báo, Web line coverage **27,06%**. Bandit 0 High (còn 28 Medium/58 Low);
+npm audit 0 vulnerabilities; pip-audit không có advisory trong các package quét được nhưng
+`torch 2.15.0+cpu` chưa được audit qua PyPI. [Validation](reports/VALIDATION.md) lưu lệnh,
+phạm vi và các checkpoint cũ. GitHub Actions có job Python, Web, dependency audit và PostgreSQL
+integration; cấu hình workflow không chứng minh lượt hosted CI đã thành công.
 
-| Thử nghiệm có thật | Kết quả và giới hạn |
-|---|---|
-| E5 CPU, 8 snapshot/98 chunk, 8 item qrels tự soạn | V2 mean dense và V3 chunk hybrid cùng Recall@5/MRR@5/nDCG@5=1,0 |
-| Cùng thử nghiệm | p95 129,07/130,23 ms; CPU 113,98/114,98 ms/query; peak RSS toàn process 1468,86 MiB |
-| Faithfulness/hallucination/citation accuracy | Chưa đo generation trong thử nghiệm này; giá trị null |
-| Nhãn “human” mô phỏng ở báo cáo cũ | Không phải hội đồng gán nhãn/người dùng thật |
+Đánh giá thuật toán dùng `.venv/bin/python eval/run_all.py --quick`; chạy lệnh này sẽ ghi lại outputs trong `reports/`. Benchmark chunk CPU dùng `.venv/bin/python eval/bench_chunks_v3.py`. Chỉ chạy `eval/eval_generation.py --llm` khi đã được phép gọi API trả phí và có cấu hình hợp lệ; thiếu key phải fail-fast, không gắn nhãn template thành LLM.
 
-Số từ [raw JSON](reports/chunks_v3_unified_experiment.json) là bộ nhỏ dễ, không chứng minh V3 tốt
-hoặc nhanh hơn trên toàn corpus. Qrels metadata/rule-based và đánh giá ID không thay cho nhãn
-passage độc lập và kiểm tra semantic entailment. Báo cáo lịch sử vẫn được giữ, có nhãn thời điểm.
+Thử nghiệm [V3 nhỏ](reports/chunks_v3_unified_experiment.json) dùng 8 snapshot thật, 98 chunk và 8 item qrels tự soạn: mean-dense/V3 chunk-hybrid cùng Recall@5, MRR@5, nDCG@5 = 1,0; p95 = 129,07/130,23 ms, CPU = 113,98/114,98 ms/query, peak RSS toàn process = 1468,86 MiB. Bộ nhỏ này chưa chứng minh V3 nhanh hoặc tốt hơn trên toàn corpus. Faithfulness, hallucination và citation accuracy của generation trong thử nghiệm là `null` vì chưa đo.
 
-## Giới hạn và hướng phát triển
+Lần chạy E5 offline sau audit vẫn đạt cùng ba metric 1,0 trên bộ 8 tài liệu/98 chunk;
+p95 item-mean/chunk-hybrid **114,30/115,33 ms**, không có generation hoặc reranker.
+[Validation mới](reports/VALIDATION.md#thử-nghiệm-neural-offline-sau-sửa) lưu raw output và giới hạn;
+không suy ra cải thiện toàn corpus từ bộ thử nhỏ.
 
-- Index đang active có thể là V2; cần build/probe và đánh giá trước khi chuyển V3.
-- Chưa có kiểm chứng đầy đủ CrossEncoder thật, DeepSeek live được phép, full-corpus quality/load.
-- PostgreSQL readiness và trang login đã thử local; không đồng nghĩa toàn bộ DB/browser E2E pass.
-- Docker Compose và mất điện/storage vật lý chưa được kiểm chứng; test process crash có phạm vi hẹp hơn.
-- Tối ưu corpus lớn, cache embeddings, nhãn passage thật và faithfulness là các bước tiếp theo.
-- Giữ [sàn chất lượng](CONSTRAINTS.md), không bỏ tests để đạt PASS.
+## Dữ liệu, quyền sử dụng và giới hạn
 
-Tham khảo [ADR-010](docs/decisions/ADR-010-shared-retrieval-and-atomic-state.md),
-[báo cáo V3](reports/V3_RESTRUCTURING_2026-10-30.md) và [changelog](CHANGELOG.md).
+Catalog legacy 5.000 items và interactions CF là **synthetic**. [Snapshot curated](data/README.md) chứa 118 trang tài liệu thật từ allowlist 128 URL sau chuẩn hóa; con số snapshot không phải số item runtime. Đọc `/health` và provenance của version thực tế. Qrels metadata/rule-based và nhãn mô phỏng không phải đánh giá người dùng thật.
+
+Thay đổi policy thu thập áp dụng cho lần export/build tiếp theo; artifacts active cần được rebuild,
+probe và activate để ngừng dùng nội dung đã thu hồi. Không tự gán giấy phép MIT hoặc quyền sử dụng chung cho toàn repository. Giữ thông báo bản quyền, license và attribution của từng nguồn; bản sao giấy phép nằm trong `data/licenses/`. Bảng giá LLM trong code là ước tính, cần kiểm tra provider khi dùng.
+
+Đã có smoke local PostgreSQL readiness và Chromium trang login; chưa suy ra toàn bộ authenticated E2E. CrossEncoder thật, DeepSeek live được phép, Docker/Compose, tải đồng thời trên toàn corpus và khả năng chịu lỗi storage vật lý vẫn cần kiểm chứng. Runtime hiện giới hạn một worker/replica mỗi service trên Linux local; chưa có bảo đảm distributed deployment.
+
+Lộ trình tập trung vào nhãn passage độc lập, đánh giá faithfulness/refusal, đo CPU/RAM/latency trên corpus đầy đủ và kiểm chứng luồng tài khoản từ đầu đến cuối. [Checklist](tasks/todo.md) ghi rõ phần đã thực hiện và việc còn lại.

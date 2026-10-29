@@ -1,44 +1,32 @@
-> **Ngữ cảnh đồ án — 2026-10-30:** Quyết định kiến trúc theo thời điểm. Không coi đây là chứng nhận thương mại hoặc trạng thái runtime hiện tại. Xem [README hiện tại](../../README.md).
+# ADR-005: Collaborative Filtering là tính năng tùy chọn
 
-# ADR-005: Tách Collaborative Filtering thành tính năng tùy chọn (optional)
-
-## Trạng thái
-Accepted
-
-## Ngày
-2026-10-29
+Sản phẩm: **ITLR–RAG | Intelligent IT Learning Platform**. Accepted, 2026-10-29.
+Hợp đồng hiện hành: [README](../../README.md), [ADR-003](ADR-003-synthetic-interactions-policy.md).
 
 ## Bối cảnh
-CF (item-based co-occurrence) train từ `interactions.csv` — dữ liệu tương tác hiện có là
-**giả lập** (`generate_interactions.py`, seed 7) vì không có dữ liệu người dùng thật. Tính năng
-hỗ trợ này từng là bước bắt buộc trong `load_engine()`: thiếu `cf_model.pkl` ⇒ server không
-khởi động được (lỗi FileNotFoundError) dù search/chatbot — phần lõi — hoàn toàn không cần CF.
 
-Sàn dự án V2: trung thực dữ liệu; không dùng tương tác giả làm dữ liệu thật trong báo cáo;
-API không được chết chỉ vì một tính năng phụ thiếu.
+`load_engine()` từng bắt buộc `cf_model.pkl`, làm search/chat không khởi động khi thiếu
+model phụ trợ. Tương tác CF hiện có là mô phỏng seed 7; retrieval không phụ thuộc dữ liệu này.
 
 ## Quyết định
-- `RecommenderEngine.cf_model` cho phép **None**; `load_engine()` thiếu `cf_model.pkl` ⇒ log
-  WARNING (không nuốt lặng lẽ), engine vẫn chạy.
-- Endpoint CF (`/api/personas`, `/api/for-you`) khi không có CF: trả **503** kèm lời giải thích
-  (`CFUnavailable`) — không 500, không trả danh sách rỗng để che giấu điều kiện thực tế.
-- `/health` thể hiện trạng thái: `"cf": true|false` — giám sát thấy được.
-- Build CF thành bước tùy chọn: `build_all_v2 --with-cf` (generate_interactions + build_cf);
-  KHÔNG build nếu không có yêu cầu demo persona — dữ liệu tương tác vẫn là giả lập, chỉ dùng
-  demo UI, rõ ràng nằm ngoài mọi báo cáo đánh giá chất lượng retrieval.
-- Bảo vệ `/admin/reload` bằng token quản trị được chốt riêng ở ADR-008.
+
+`RecommenderEngine.cf_model` có thể là `None`. Thiếu model phải ghi WARNING và giữ retrieval
+hoạt động. `/api/personas` và `/api/for-you` trả **503** với `CFUnavailable`, không che điều kiện
+bằng danh sách rỗng. `/health` công khai trạng thái `cf: true|false`.
+
+Build V2 chỉ thêm CF khi chọn `--with-cf`; dữ liệu mô phỏng dùng thử luồng persona được ghi nhãn
+riêng và không đi vào kết luận chất lượng retrieval. Bảo vệ reload theo
+[ADR-008](ADR-008-admin-token.md).
 
 ## Phương án đã cân nhắc
-- **Giữ CF bắt buộc**: đơn giản nhưng server phụ thuộc dữ liệu giả — vi phạm nguyên tắc trung
-  thực và SPOF vô nghĩa. Bị loại.
-- **Thay CF bằng nơi giữ chỗ biến popularity-only** (không cần interactions.csv): che giấu điều
-  kiện thực tế; popularity từ dữ liệu giả vẫn là giả. Bị loại — chọn phơi rõ trạng thái 503.
-- **CF từ event thật của API (log click)**: đúng hương hướng nhưng chưa có luồng lưu event; để
-  tương lai (cần bảng interactions thật + consent).
+
+Giữ CF bắt buộc tạo dependency khởi động không cần thiết. Dùng popularity thay thế âm thầm
+che mất trạng thái model; popularity từ dữ liệu giả vẫn không phải tín hiệu thật. Thu thập
+click thật là hướng riêng, cần luồng lưu event và consent.
 
 ## Hệ quả
-- Không có CF: search/, chatbot, evaluation retrieval hoạt động đủ; FE persona cần ẩn khi
-  `/health` báo `cf:false`.
-- Có CF: như cũ — `recommend_for_user`, personas 40 archetype.
-- Tests: `tests/test_admin_security_cf.py` — unit (engine raise) + API (503 với fake engine,
-  không cần artifacts build).
+
+Search, chatbot và retrieval evaluation có thể chạy khi CF thiếu. UI cần thể hiện trạng thái
+không khả dụng từ health/503. Khi có model, `recommend_for_user` và 40 persona archetype giữ
+hành vi tương thích. `tests/test_admin_security_cf.py` kiểm engine và API bằng fixtures,
+không cần build artifacts runtime; kiểm thử này không đo hiệu quả cá nhân hóa thực tế.

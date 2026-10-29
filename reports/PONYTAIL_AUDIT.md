@@ -1,47 +1,21 @@
-> **Ngữ cảnh đồ án — 2026-10-30:** Tài liệu lịch sử: giữ số đo, phạm vi và kế hoạch tại thời điểm ghi. Không coi đây là chứng nhận thương mại hoặc trạng thái runtime hiện tại. Xem [README hiện tại](../README.md).
+# ITLR–RAG | Intelligent IT Learning Platform
 
-What this repo does: ITLR collects learning resources, builds hybrid retrieval artifacts and exposes search and grounded chat through Python and a separate Express/PostgreSQL web app. Assumed load: one instance and one worker per service behind an explicitly trusted reverse proxy.
+## Security audit before remediation
 
-## Must fix
+Historical record: 2026-10-29. This document describes evidence and decisions at that checkpoint. See the [current platform guide](../README.md) and [current validation](VALIDATION.md) for later changes and runtime status.
 
-1. **Untrusted text becomes executable HTML** (`itlr/api/static/index.html`, original lines 134–318).
-   - **What this is:** Search and streamed chat display external content.
-   - **Problem:** `<img src=x onerror=alert(1)>` in query/title/model output enters innerHTML. The unversioned marked CDN is trusted to execute.
-   - **Fix:** Build cards with textContent, validate HTTP(S) links, escape before restricted Markdown formatting, remove CDN and inline scripts.
-   - **If we skip it:** A resource author or model response can run browser code.
-2. **Default credentials let deployments start insecurely** (`web/src/config/env.ts`).
-   - **What this is:** Web startup configures authentication and PostgreSQL.
-   - **Problem:** Missing JWT/admin/database settings select development credentials.
-   - **Fix:** Require explicit strong values at startup, including development.
-   - **If we skip it:** Sessions or administrator access can be forged with known values.
-3. **Upload metadata is treated as proof** (`web/src/routes/api.routes.ts`, `social.routes.ts`, `admin.routes.ts`).
-   - **What this is:** Users upload documents and media.
-   - **Problem:** HTML with a PNG MIME label reaches processing/storage; pending files can be downloaded.
-   - **Fix:** Shared signature checks before persistence/extraction, size budgets, isolated extraction, approval checks and sandboxed responses.
-   - **If we skip it:** Malicious files reach parsers and other users.
-4. **Artifact pointer can escape the trusted root** (`itlr/versioning.py`).
-   - **What this is:** Startup follows CURRENT.json then loads Python pickles.
-   - **Problem:** An absolute/outside directory is accepted; rollback skips probe validation; file changes are undetected.
-   - **Fix:** Constrain resolved paths, hash the file inventory, verify before load and rollback.
-   - **If we skip it:** Corrupted or substituted executable pickle data can be loaded.
-5. **Process-local rate limits multiply with workers** (`itlr/api/ratelimit.py`, `web/src/server.ts`).
-   - **What this is:** Both services limit requests in process memory.
-   - **Problem:** Multiple workers multiply quotas; Express trusts a proxy hop without deployment-specific trust.
-   - **Fix:** Explicit single worker/replica deployment and fail on known multiworker settings; opt in trusted proxies.
-   - **If we skip it:** Clients bypass quotas and spoof addresses.
-6. **Runtime and verification differ from documentation** (`README.md`, `.github/`, `docs/PROJECT_MEMORY.md`).
-   - **What this is:** Installation and quality checks describe earlier runs.
-   - **Problem:** Current environment lacks model dependencies/artifacts and Node; no automated CI gates exist at audit start.
-   - **Fix:** Add executable gates and document actual results and unavailable components separately.
-   - **If we skip it:** Historical tests are mistaken for release evidence.
+The platform collects learning resources, builds hybrid retrieval artifacts and exposes search/chat through Python and an Express/PostgreSQL application. The assumed deployment is one instance and worker per service behind an explicitly trusted reverse proxy. This record captures the pre-remediation findings; [remediation evidence](FINAL_REMEDIATION.md) records subsequent changes.
 
-## Should fix
+### Findings requiring correction
 
-7. **Metric labels grow with arbitrary paths** (`itlr/api/server.py`).
-   - **What this is:** A dictionary records latency for each request path.
-   - **Problem:** Unique unknown paths retain unlimited entries.
-   - **Fix:** Use matched route templates and one unmatched label.
-   - **If we skip it:** A scanner can grow service memory without calling retrieval.
+| Priority | Boundary | Observed defect | Required correction and consequence |
+|---|---|---|---|
+| Must fix | Browser rendering, `itlr/api/static/index.html` (original lines 134–318) | Query/title/model output entered `innerHTML`; `<img src=x onerror=alert(1)>` could execute. The unversioned marked CDN supplied executable code. | Use `textContent`, HTTP(S) URL validation and escape-first restricted Markdown; remove CDN/inline scripts. Otherwise external authors or model output can execute browser code. |
+| Must fix | Credentials, `web/src/config/env.ts` | Missing JWT/admin/database configuration selected known development credentials. | Require explicit strong settings at startup, including development, to prevent forged sessions/admin access. |
+| Must fix | Uploads, `web/src/routes/{api,social,admin}.routes.ts` | Claimed MIME types admitted HTML labeled PNG; pending files could be downloaded. | Validate signatures before persistence/extraction, bound size/resources, isolate extraction and authorize pending downloads with sandboxed responses. Otherwise malicious files reach parsers and users. |
+| Must fix | Artifacts, `itlr/versioning.py` | `CURRENT.json` accepted outside/absolute paths; rollback skipped probes and file changes were undetected before pickle loading. | Confine resolved paths, hash inventory and verify before load/rollback. Pickles require trusted provenance. |
+| Must fix | Rate limiting, `itlr/api/ratelimit.py`, `web/src/server.ts` | In-memory quotas multiplied across workers; Express trusted a proxy hop without deployment-specific configuration. | Require one worker/replica, reject known multiworker settings and opt in proxy trust. Otherwise quotas/address attribution can be bypassed. |
+| Must fix | Verification/documentation, `README.md`, `.github/`, `docs/PROJECT_MEMORY.md` | Historical installation/tests did not describe the audit environment: model dependencies/artifacts and Node were absent, and automated CI gates were missing. | Add executable checks and distinguish historical results from available runtime evidence. |
+| Should fix | Metrics, `itlr/api/server.py` | Latency dictionary keys used arbitrary request paths. | Use matched route templates and one unmatched label to bound memory growth under unknown-path traffic. |
 
-Verdict: Fix security boundaries first; full launch remains gated on real runtime validation and dependency audit.
-Not checked: Full dense model runtime, live DeepSeek, real PostgreSQL, browser and public deployment were unavailable at audit start. This is the pre-remediation source audit snapshot; subsequent results are in FINAL_REMEDIATION.md.
+Security boundaries took priority over launch work. Dense model runtime, live DeepSeek, PostgreSQL, browser and public deployment were unavailable at audit start. This snapshot establishes findings for remediation, without certifying the remaining repository.

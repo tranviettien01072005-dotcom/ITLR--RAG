@@ -1,35 +1,37 @@
 # Hướng dẫn làm việc với ITLR–RAG
 
-Cập nhật: 2026-10-30. Đây là đồ án sinh viên về gợi ý tài nguyên học CNTT và chatbot RAG.
-Không mô tả đồ án là sản phẩm thương mại, open-source hoặc production-ready khi chưa có căn cứ.
-Không tự gán giấy phép MIT; giữ nguyên thông báo bản quyền và giấy phép của nguồn bên thứ ba.
+Cập nhật: 2026-10-30. Tên sản phẩm: **ITLR–RAG | Intelligent IT Learning Platform**. Phạm vi là nền tảng hỗ trợ học CNTT, gợi ý tài nguyên và chatbot RAG. Mô tả dựa trên khả năng có trong repository; không suy diễn trạng thái thương mại, giấy phép open-source hoặc production-ready. Không tự gán MIT; bảo toàn bản quyền và license bên thứ ba.
 
-## Quy trình
+## Tiếp nhận và thực hiện công việc
 
-1. Đọc file này, [trạng thái dự án](docs/PROJECT_MEMORY.md), báo cáo mới nhất và Git diff.
-2. Kế thừa kết quả cũ. Không tích hợp hoặc yêu cầu Claude-Mem; ghi trạng thái trong repo.
-3. Dùng Ponytail Ultra và skill phù hợp. Bug phải có FAIL → fix → PASS; review diff sau mỗi nhóm.
-4. Không ghi đè thay đổi người dùng, xóa runtime/database, che lỗi hoặc hạ chất lượng tests.
-5. Không gọi API trả phí khi chưa được phép. Khi thử local, unset key DeepSeek/OpenAI.
-6. Cập nhật README, memory, changelog và tài liệu liên quan khi hành vi thay đổi.
-7. Không push/commit nếu yêu cầu hiện tại không bao gồm việc đó.
+1. Đọc file này, [memory](docs/PROJECT_MEMORY.md), báo cáo mới nhất và Git diff trước khi sửa. Phân biệt lịch sử với trạng thái hiện hành.
+2. Kế thừa kết quả đã có; ghi trạng thái trong repo. Không yêu cầu hoặc tích hợp Claude-Mem.
+3. Dùng Ponytail Ultra và skill phù hợp: thay đổi nhỏ nhất giải quyết đầy đủ yêu cầu. Bug phải có bằng chứng FAIL → fix → PASS; review diff sau mỗi nhóm.
+4. Giữ thay đổi người dùng, runtime và database; không xóa dữ liệu, che lỗi, bỏ assertions hoặc hạ chất lượng tests để đạt PASS.
+5. Không gọi API trả phí nếu chưa được phép. Khi thử local, unset `DEEPSEEK_API_KEY` và `OPENAI_API_KEY`.
+6. Khi hành vi thay đổi, cập nhật README, memory, changelog và tài liệu liên quan; ghi riêng kết quả đã chạy, thử nghiệm và phần chưa kiểm chứng.
+7. Không commit/push nếu yêu cầu hiện tại không bao gồm việc đó. Kế hoạch lịch sử ghi quyền publish không cấp lại quyền cho phiên mới.
 
-## Kiến trúc hiện tại
+## Ranh giới kiến trúc cần giữ
 
-- Giao diện chính: `web/`, Express + TypeScript + EJS + PostgreSQL, cổng 3000.
-- Backend: `itlr.api.server:app`, cổng 8000; UI tĩnh tại đây chỉ là giao diện phụ.
-- `itlr/retrieval/`: service dùng chung và BM25; `itlr/core/chunks.py`: FAISS chunk + RRF + reranking.
-- `itlr/collect/`: ingestion, robots, rate-limit, SQLite; `itlr/pipelines/`: build artifacts.
-- `itlr/chatbot/llm_client.py`: tầng LLM duy nhất; DeepSeek/OpenAI hoặc Ollama local.
-- `itlr/versioning.py`: staging, probe, atomic pointer/history, rollback, GC; `itlr/locking.py`: khóa Linux local.
-- Chunk artifacts mới dùng service chung. Artifacts cũ vẫn dùng đường V2. Không di chuyển/xóa pickle shim `itlr/core/bm25.py`.
-- `/admin/reload` cần `X-Admin-Token` khớp `ITLR_ADMIN_TOKEN`; chưa cấu hình phải 403.
-- CF tùy chọn; thiếu model trả 503 ở personas/for-you, không làm hỏng retrieval.
+| Khu vực | Trách nhiệm và ràng buộc |
+|---|---|
+| `web/` | Giao diện chính Express + TypeScript + EJS + PostgreSQL, cổng 3000 |
+| `itlr.api.server:app` | Backend cổng 8000; UI tĩnh chỉ là giao diện phụ |
+| `itlr/retrieval/` | Shared service và BM25 cho artifacts có chunk vectors |
+| `itlr/core/chunks.py` | FAISS chunk, RRF và passage reranking |
+| `itlr/collect/`, `itlr/pipelines/` | Ingestion có robots/rate-limit/SQLite; build artifacts |
+| `itlr/chatbot/llm_client.py` | Tầng generation LLM duy nhất: DeepSeek/OpenAI hoặc Ollama |
+| `itlr/versioning.py`, `itlr/locking.py` | Staging, probe, atomic pointer/history, rollback, GC và khóa Linux local |
 
-## Kiểm chứng
+Artifacts cũ giữ đường V2. Không xóa hoặc di chuyển shim `itlr/core/bm25.py`: pickle cũ còn tham chiếu module này. `/admin/reload` yêu cầu `X-Admin-Token` khớp `ITLR_ADMIN_TOKEN`; chưa cấu hình phải 403. CF tùy chọn; thiếu model phải trả 503 tại personas/for-you và không làm hỏng retrieval.
+
+## Kiểm chứng trước bàn giao
 
 ```bash
-USE_OLLAMA=0 DISABLE_RERANKER=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 .venv/bin/python -m pytest tests/ -o addopts='' -q -ra
+env -u DEEPSEEK_API_KEY -u OPENAI_API_KEY \
+  USE_OLLAMA=0 DISABLE_RERANKER=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 \
+  .venv/bin/python -m pytest tests/ -o addopts='' -q -ra
 .venv/bin/python -m compileall -q itlr scripts eval
 cd web
 npm run typecheck
@@ -38,22 +40,16 @@ npm run build
 npm test
 ```
 
-Baseline kiểm chứng lại đầu phiên: 256 Python pass/0 skip, 59 Web pass ở checkpoint trước.
-Kết quả cuối phiên:260 Python pass/0 skip,59 Web pass. Số đo và giới hạn đọc trong [validation](reports/VALIDATION.md).
-Nếu TestClient treo trong sandbox, kiểm tra ngoài sandbox theo quyền được cấp; không skip để đạt PASS.
+[Validation](reports/VALIDATION.md) ghi baseline 256 Python pass/0 skip, kết quả cuối checkpoint 260 Python pass/0 skip và 59 Web pass. Không trình bày số cũ như lần chạy mới. Nếu TestClient treo trong sandbox, kiểm tra ngoài sandbox theo quyền được cấp; không skip để làm xanh suite. Chỉ sửa tài liệu thì kiểm tra diff, nội dung, đường dẫn và links phù hợp; không chạy migration/build index để chứng minh một thay đổi văn bản.
 
-## Quy tắc dữ liệu và bảo mật
+## Dữ liệu và bảo mật
 
-- 5.000 catalog legacy và interactions CF là synthetic. Snapshot tài liệu thật nằm ở `data/curated_resources.jsonl`.
-- Không dùng số item lịch sử làm số item runtime; đọc `/health` và provenance của version thực tế.
-- Qrels metadata/rule-based và nhãn mô phỏng không phải đánh giá người dùng thật.
-- Citation ID hợp lệ không chứng minh faithfulness. Metric chưa đo ghi null, không ghi 0% lỗi.
-- Giữ bí mật trong môi trường hoặc file local bị gitignore; không log/report key hoặc mật khẩu.
-- Paths qua `itlr/config.py`; không unpickle artifacts không đáng tin. Giữ inventory SHA256.
-- Crawler rolling feed mặc định không được suy luận bài đã xóa chỉ vì vắng khỏi feed.
-- Một worker mỗi service, local Linux filesystem; không tự quảng bá hỗ trợ distributed deployment.
+- Catalog legacy 5.000 items và interactions CF là synthetic; snapshot thật ở `data/curated_resources.jsonl`. Số runtime phải đọc `/health` cùng provenance version.
+- Qrels metadata/rule-based, nhãn mô phỏng và chẩn đoán bằng luật không thay thế đánh giá độc lập của người dùng thật.
+- Citation ID hợp lệ không chứng minh faithfulness. Chỉ tiêu chưa đo ghi `null`, không ghi 0% lỗi.
+- Secret giữ trong môi trường hoặc file local bị gitignore; không in key, mật khẩu hay reset token vào log/report.
+- Paths qua `itlr/config.py`; artifacts pickle chỉ từ builder tin cậy. Giữ SHA256 inventory; hash không xác nhận tác giả nếu attacker sửa được cả file và manifest.
+- Rolling feed mặc định không được suy ra bài đã xóa vì vắng khỏi feed. `listing_is_complete` và `full_text_allowed` phải là JSON boolean.
+- Một worker/replica mỗi service, local Linux filesystem. Không suy diễn khóa local/rate limiter RAM thành hỗ trợ nhiều host.
 
-## Tài liệu cần biết
-
-[README](README.md) · [Deployment](deploy/DEPLOY.md) · [Sàn chất lượng](CONSTRAINTS.md) ·
-[ADR-010](docs/decisions/ADR-010-shared-retrieval-and-atomic-state.md) · [V3 review](reports/V3_RESTRUCTURING_2026-10-30.md).
+Tra cứu [README](README.md), [deployment](deploy/DEPLOY.md), [sàn chất lượng](CONSTRAINTS.md), [ADR-010](docs/decisions/ADR-010-shared-retrieval-and-atomic-state.md) và [V3 review](reports/V3_RESTRUCTURING_2026-10-30.md) trước thay đổi kiến trúc.

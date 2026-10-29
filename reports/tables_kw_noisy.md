@@ -1,14 +1,16 @@
-> **Ngữ cảnh đồ án — 2026-10-30:** Tài liệu lịch sử: giữ số đo, phạm vi và kế hoạch tại thời điểm ghi. Không coi đây là chứng nhận thương mại hoặc trạng thái runtime hiện tại. Xem [README hiện tại](../README.md).
+# ITLR–RAG | Intelligent IT Learning Platform
 
-# Kết quả đánh giá — Bảng ablation per-stage (truy vấn NHIỄU (bỏ dấu + lỗi gõ))
+## Retrieval ablation: noisy Vietnamese queries
 
-*Số truy vấn: 78. Metric macro-average trên nhãn bán-tự-động (`data/eval/relevance_judgments.csv`).*
+Historical record: 2026-10-27. This document describes evidence and decisions at that checkpoint. See the [current platform guide](../README.md) and [current validation](VALIDATION.md) for later changes and runtime status.
 
-> Truy vấn bị **bỏ dấu + chèn lỗi gõ**, nhãn liên quan giữ nguyên. Bảng này đo **độ bền** của hệ trước input tiếng Việt đời thực: khớp từ vựng chính xác (TF-IDF/BM25) sụt mạnh, kênh ngữ nghĩa + char n-gram bỏ dấu giữ được chất lượng.
+The experiment macro-averaged 78 queries against metadata/rule-based semi-automatic labels in `data/eval/relevance_judgments.csv`, using the historical synthetic legacy catalog. Accent removal and typing errors altered queries while preserving relevance labels. This measures that constructed perturbation, without establishing robustness for every real user input. See the [76-query clean condition](tables.md) for its separate measurements.
 
-## Bảng ablation (headline metrics)
+L1 hybrid signals and Cross-Encoder tie at NDCG@10 0.5919; the table supplies no evidence of a reranker gain over L1. Semantic/character features performed better than lexical-only baselines on this dataset. Bootstrap p-values printed as 0 are finite-run reported output, rather than mathematically exact probabilities.
 
-| Cấu hình | P@5 | R@5 | NDCG@10 | MAP | MRR | R@100 |
+### Ablation metrics
+
+| Configuration | P@5 | R@5 | NDCG@10 | MAP | MRR | R@100 |
 |---|---|---|---|---|---|---|
 | TF-IDF only | 0.1308 | 0.0066 | 0.1370 | 0.1377 | 0.2280 | 0.1554 |
 | BM25 only | 0.1974 | 0.0098 | 0.1801 | 0.1747 | 0.2885 | 0.1890 |
@@ -18,9 +20,9 @@
 | + Cross-Encoder | 0.6231 | 0.0296 | 0.5919 | 0.4500 | 0.7588 | 0.3558 |
 | + RAG-Fusion + MMR (Full) | 0.3590 | 0.0177 | 0.3760 | 0.4957 | 0.6984 | 0.4821 |
 
-## Kiểm định thống kê — **+ L1 hybrid signals** (tốt nhất) vs baseline (NDCG@10)
+### L1 hybrid versus baselines: NDCG@10 differences
 
-| Baseline | NDCG@10 (base) | + L1 hybrid signals − base | CI 95% | p (t-test) | p (bootstrap) | Có ý nghĩa? |
+| Baseline | Baseline NDCG@10 | + L1 hybrid signals − base | CI 95% | p (t-test) | p (bootstrap) | Significant? |
 |---|---|---|---|---|---|---|
 | TF-IDF only | 0.1370 | +0.4549 | [0.3740, 0.5357] | 3.409e-17 | 0 | ✅ p<0.05 |
 | BM25 only | 0.1801 | +0.4119 | [0.3257, 0.4972] | 4.183e-14 | 0 | ✅ p<0.05 |
@@ -29,10 +31,12 @@
 | + Cross-Encoder | 0.5919 | +0.0000 | [0.0000, 0.0000] | 1 | 1 | — |
 | + RAG-Fusion + MMR (Full) | 0.3760 | +0.2159 | [0.1482, 0.2828] | 2.495e-08 | 0 | ✅ p<0.05 |
 
-## Beyond-accuracy (cấu hình Full, top-10)
+### Full configuration: top-10 diversity and distribution
 
-| Metric | Giá trị |
+| Metric | Value |
 |---|---|
 | Coverage | 0.1230 |
 | Gini | 0.8987 |
 | ILD | 0.0997 |
+
+Confidence intervals and t-test/bootstrap outputs retain the original run's precision. Statistical comparisons are conditional on this query set and rule-based labels; they are not human-rated quality or current-runtime evidence. No multiple-comparison correction is established by this record.

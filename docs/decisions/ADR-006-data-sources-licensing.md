@@ -1,62 +1,48 @@
-> **Ngữ cảnh đồ án — 2026-10-30:** Quyết định kiến trúc theo thời điểm. Không coi đây là chứng nhận thương mại hoặc trạng thái runtime hiện tại. Xem [README hiện tại](../../README.md).
+# ADR-006: Chính sách nguồn, quyền nội dung và provenance
 
-# ADR-006: Nguồn dữ liệu crawl V2 — licensing, robots, full-text vs snippet-only
-
-## Trạng thái
-Accepted
-
-## Ngày
-2026-10-29
+Sản phẩm: **ITLR–RAG | Intelligent IT Learning Platform**. Accepted, 2026-10-29.
+Nguồn hiện hành: [data guide](../../data/README.md), [source config](../../configs/collect.sources.json).
 
 ## Bối cảnh
-Catalog legacy (5000 items) là dữ liệu tổng hợp để demo — không thể dùng làm dữ liệu thật cho người
-dùng. Cần dữ liệu thật, cập nhật được và hợp pháp. Môi trường build CPU-only, không GPU. Nguyên tắc
-dự án: không bao giờ bịa dữ liệu; mỗi item phải truy ngược được về nguồn gốc.
+
+Catalog legacy 5.000 items là synthetic. Collection cần tài nguyên có URL, tác giả, ngày lấy,
+hash và chính sách lưu rõ ràng. Metadata license trong config là hồ sơ vận hành tại checkpoint,
+không phải xác nhận pháp lý cho mọi bài hoặc quyền thương mại của nền tảng.
 
 ## Quyết định
-Bộ nguồn mặc định trong `configs/collect.sources.json` (đã kiểm robots.txt + feed bằng curl trước
-khi thêm vào cấu hình):
 
-| Nguồn | Kiểu | Nội dung | License | Chính sách lưu |
-|-------|------|----------|---------|----------------|
-| dev.to (tag `python`) | JSON API | full-text + tags | Nội dung thuộc tác giả, công khai qua official API | full-text |
-| freeCodeCamp News | RSS + HTML | full-text | CC BY-SA 4.0 | full-text (+ credit, link nguồn) |
-| MDN Web Docs Blog | RSS + HTML | full-text | CC BY-SA 2.5 | full-text (+ credit, link nguồn) |
-| VnExpress – Công nghệ | HTML listing | title + mô tả ngắn | Chưa có giấy phép mở | **snippet-only** |
+| Nguồn tại checkpoint | Cách lấy | Metadata quyền đã ghi | Chính sách cấu hình |
+|---|---|---|---|
+| DEV Community, tag python | JSON API | Nội dung thuộc tác giả; config dẫn ToS/CC BY-SA và yêu cầu kiểm tra lại | Full text khi được phép |
+| freeCodeCamp News | RSS + HTML | CC BY-SA 4.0, cần xác minh theo bài/nguồn | Full text, attribution và link |
+| MDN Web Docs Blog | RSS + HTML | CC BY-SA 2.5, cần xác minh theo bài/nguồn | Full text, attribution và link |
+| VnExpress Công nghệ | HTML listing | Chưa có giấy phép mở | Chỉ title, mô tả ngắn và URL |
 
-Các cơ chế đi kèm:
+Người thêm nguồn phải kiểm quyền, robots và điều khoản trước khi bật collection. Public API hoặc
+robots cho phép không tự cấp quyền sao chép. Giữ credit, link gốc, tác giả và nghĩa vụ license;
+không gán một giấy phép chung cho nội dung bên thứ ba.
 
-- **Snippet-only**: `full_text_allowed=0` trong cấu hình nguồn → `docs_for_index()` loại doc ra
-  khỏi index văn bản; chỉ lưu title/mô tả ngắn/URL (hyperlink, không đóng khung toàn văn).
-- **item_id ổn định**: `item_map` trong SQLite, khóa `content_key` = hash của URL chuẩn hóa.
-  ID mới bắt đầu tại floor = max(item_id legacy) + 1 → ID cũ không bao giờ bị chiếm đoạt
-  (trích dẫn `[item_id:...]` không hỏng giữa các phiên bản index).
-- **Lọc trang listing**: `link_pattern` regex theo nguồn (ví dụ VNE:
-  `^\/[-a-zA-Z0-9~-]+-[0-9]{4,}\.html$` — bài thật luôn có id trong đường dẫn) → chặn trang mục
-  lục/tag-page đi vào docs.
-- **Chất lượng**: lọc `too_short`, loại trùng theo content-hash và tiêu đề-tương tự ≥ 0.8 với
-  catalog legacy; trạng thái quyết định lưu ở `quality_status` (không xóa âm thầm).
-- **Provenance**: cột `origin` (vd `crawl:devto-python` / `legacy:synthetic`), `crawl_license`,
-  `crawl_lang`, `crawl_hash` đi vào CSV catalog — minh bạch nguồn gốc từng hàng.
+`full_text_allowed` và `listing_is_complete` phải là JSON boolean. Nguồn snippet-only bị loại
+khỏi export văn bản qua `docs_for_index()`. Feed rolling không phải inventory đầy đủ: bài vắng
+khỏi feed không được tự đánh dấu đã xóa. Quyền thay đổi phải được ghi khi refetch; thu hồi quyền
+chặn export mới mà không tự xóa snapshot hoặc artifacts đã active.
 
-## Crawler hợp quy
-- HTTPX một client/lần fetch; retry exponential-backoff cho 429/5xx/timeout; timeout connect và
-  timeout request tách riêng.
-- Kiểm tra robots.txt trước khi fetch mỗi host lần đầu; cache kết quả + `Crawl-delay`.
-- Rate limiter per-host; chuẩn hóa URL (bỏ UTM/traffic params, trailing slash) chống re-fetch.
-- Số lượng mỗi lượt: giới hạn bởi `max_items_per_run` từng nguồn.
+`item_map` trong SQLite gán ID ổn định theo hash URL chuẩn hóa, ID mới bắt đầu trên max legacy ID.
+Lọc listing bằng `link_pattern`, lọc `too_short`, content-hash trùng và tiêu đề tương tự ≥0.8;
+quyết định lưu `quality_status`. Catalog giữ `origin`, `crawl_license`, `crawl_lang`, `crawl_hash`,
+URL, platform và tác giả.
 
-## Phương án đã cân nhắc
-- **Scrapy/Playwright**: nhẹ hều hơn cho nhu cầu 4 nguồn; bs4 + httpx đủ, ít dependency mới, dễ test.
-  Playwright (cần browser JS) bị loại — các nguồn hiện tại không đòi render JS.
-- **Nguồn khác** (GitHub, Coursera…): yêu cầu API key / điều khoản riêng — để tương lai khi có cấp phép.
-- **Crawl toàn văn VnExpress**: không có giấy phép mở → chỉ snippet.
+## Collection và lựa chọn kỹ thuật
+
+HTTPX + BeautifulSoup đáp ứng các nguồn hiện có mà không cần browser JS/Scrapy. Request cần
+kiểm HTTP status, robots/rate-limit từng host kể cả redirect, retry/backoff cho 429/5xx/timeout,
+cache robots/Crawl-delay và chuẩn hóa URL bỏ tracking params. Mỗi source có `max_items_per_run`.
+Nguồn mới như GitHub/Coursera cần đánh giá API key và điều khoản riêng; không mặc nhiên được phép.
 
 ## Hệ quả
-- Lượt đầu cho ~85 docs thật (devto 25 · fCC 10 · MDN 25 · VNE 25; một số bài fCC bị lọc
-  `too_short` do trích xuất không đủ — đúng thiết kế, không nuốt lỗi âm thầm).
-- Không so sánh tốc độ giữa các nguồn vì số liệu chưa đủ dài hạn (cảnh báo trung thực).
-- Quy trách nhiệm khi thêm nguồn mới: người thêm tự verify license + robots trước khi cấu hình;
-  license ghi tường trong config, không ghi chung chung.
-- Credit luôn đi kèm mỗi item: `link` = URL gốc, `platform`, `instructor` (tác giả) — mọi trích dẫn
-  trong RAG dẫn về đúng nguồn, không nhận nhầm tác quyền.
+
+Checkpoint đầu ghi khoảng 85 docs: DEV 25, freeCodeCamp 10, MDN 25, VnExpress 25; một số bài
+freeCodeCamp bị lọc do text quá ngắn. Đây là số lịch sử, không phải corpus hiện hành hoặc
+benchmark tốc độ nguồn. Đọc `/health` cùng version/provenance để xác định dữ liệu runtime.
+Operator phải rebuild/probe/activate khi thay quyền của nội dung đã vào index; giữ snapshot
+không đồng nghĩa tiếp tục được phục vụ toàn văn. Không xóa dữ liệu trong đợt sửa tài liệu.

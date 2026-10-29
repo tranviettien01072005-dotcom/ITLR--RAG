@@ -1,22 +1,53 @@
-# Trạng thái và lịch sử ITLR–RAG
+# ITLR–RAG | Intelligent IT Learning Platform — Trạng thái dự án
 
-Cập nhật: 2026-10-30. Bộ nhớ dự án nằm trong repository; không tích hợp dịch vụ memory ngoài.
-Đồ án sinh viên; giao diện chính `web/` ở 3000, PostgreSQL và API FastAPI ở 8000.
-Đã quan sát local readiness/login 200 và Chromium login không có pageerror; không suy ra E2E đầy đủ.
-Index active đã quan sát có 118 tài liệu và chưa có chunk vectors. Code V3 mới dùng shared service
-khi artifacts hỗ trợ; không tự rebuild index đang phục vụ. Baseline đầu phiên:256 Python pass/0 skip.
-Đánh giá và kết quả mới nhất: [validation](../reports/VALIDATION.md). Hướng dẫn hiện hành: [AGENTS](../AGENTS.md).
+Cập nhật: 2026-10-30. Đây là bộ nhớ kỹ thuật trong repository; không cần dịch vụ memory ngoài.
+Hướng dẫn hiện hành: [README](../README.md), [AGENTS](../AGENTS.md),
+[Deployment](../deploy/DEPLOY.md). Bằng chứng theo lần chạy: [Validation](../reports/VALIDATION.md).
 
-## Phiên tinh gọn hiện tại
+## Trạng thái hiện hành
 
-BM25 reset IDF khi refit, dùng postings và hỗ trợ pickle cũ; lazy initialization công bố state
-sau khi hoàn chỉnh để tránh race. Build web copy views/public/schema, Docker dùng cùng lệnh.
-Đã smoke compiled web3001 với PostgreSQL local và Chromium, chỉ đọc dữ liệu; process tạm đã dừng.
-Không rebuild index đang active. README/AGENTS/deployment được viết lại theo bối cảnh đồ án.
-Không tự gán giấy phép MIT, không tích hợp Claude-Mem. Kết quả cuối:260 Python pass/0 skip,59 Web pass. Wheel/build/typecheck/links pass;lint20 cảnh báo cũ.
-Chi tiết và giới hạn:reports/VALIDATION.md.
+- **Implemented:** Web Express/TypeScript/EJS (3000), PostgreSQL; API FastAPI (8000).
+  SQLite lưu nội dung thu thập; artifacts pickle/FAISS được version hóa trên filesystem Linux local.
+- **Implemented:** chunk dense + BM25 + RRF và reranker tùy chọn qua shared retrieval service;
+  artifacts legacy vẫn dùng đường V2. Giữ shim `itlr/core/bm25.py` để unpickle bản cũ.
+- **Implemented:** citation kiểm ID item/chunk trong evidence đã chọn, SSE provisional rồi final;
+  thiếu bằng chứng trả trạng thái rõ ràng. Kiểm ID không đo entailment/faithfulness.
+- **Verified trước phiên:** 260 Python/0 skip, 59 Web tests. **Verified trong phiên:** baseline Python
+  260/0 skip (48.90s) ngoài sandbox; final **280/0 skip (57.36s)**; Web **64 pass**, line coverage **27.06%**, lint 0 lỗi/20 cảnh báo.
+- **Experimental:** real E5 trên 8 snapshot/98 chunk, nhãn item-level. Không suy rộng sang corpus lớn,
+  generation hoặc tải nhiều người dùng. Metric chưa đo giữ `null`.
+- **Planned:** passage qrels độc lập, calibration V3/off-topic, benchmark reranker và capacity,
+  browser E2E có đăng nhập, diễn tập backup/restore và triển khai đầy đủ.
 
-## Lịch sử được bảo toàn
+## Thay đổi phiên audit sản phẩm
+
+1. Top-K V3, đa dạng item trước giới hạn ứng viên và sai số cosine: đã tái hiện FAIL rồi sửa PASS.
+2. RRF không cộng điểm trùng trong một ranking; pipeline không tính nền hai lần.
+3. Evaluation tái sử dụng model trong engine để tránh trộn version; CF thiếu không làm hỏng retrieval eval.
+4. Probe không nội suy path thành Python code và yêu cầu subprocess thoát thành công.
+5. Web xác thực user/role hiện tại trong PostgreSQL; redirect login không chấp nhận backslash.
+6. Crawler kiểm HTTP status, robots trên redirect và rate-limit từng request; policy/license mới được
+   ghi vào bản refetch, thu hồi full-text chặn export tiếp theo mà không xóa snapshot.
+7. Markdown được viết lại theo thương hiệu sản phẩm, giữ giới hạn thực nghiệm và provenance lịch sử.
+
+Không thay index active, không migration database đang chạy, không gọi LLM trả phí, không commit/push.
+Thu hồi quyền nội dung không tự xóa bằng chứng trong artifacts đã active: operator cần rebuild/probe/activate.
+Untracked `node_modules/` đầu phiên được giữ nguyên. Không xóa dependency hoặc shim khi chưa chứng minh an toàn.
+
+Thử nghiệm E5 offline sau sửa: 8 snapshot/98 chunk, 8 qrels item-level tự soạn; cả hai cấu hình
+Recall@5/MRR@5/nDCG@5=1.0, p95 114.30/115.33ms, CPU 106.80/107.68ms/query, peak process RSS
+1486.51MiB. Không generation/reranker; không kết luận cải thiện toàn corpus.
+Raw: [chunks_v3_audit_experiment.json](../reports/chunks_v3_audit_experiment.json).
+
+## Các quy tắc tiếp nối
+
+- Đọc Git diff và Validation trước khi sửa; không dùng test count cũ làm bằng chứng mới.
+- Dùng Ponytail Ultra; mỗi bug có RED → GREEN → review. Không bỏ/skip/làm yếu assertion.
+- Khi test local, unset DeepSeek/OpenAI keys và tắt Ollama nếu không chủ đích kiểm local inference.
+- Giữ nguyên thông báo bản quyền nguồn; không gán giấy phép cho toàn dự án.
+- API admin fail-closed; CF là tùy chọn; một worker/service, filesystem Linux local.
+
+## Các checkpoint lịch sử
 
 Các đoạn dưới là snapshot trước đây, không phải giao thức hiện hành; số liệu, phiên bản môi trường
 và các tham chiếu công cụ cũ chỉ có giá trị tại thời điểm ghi. Hướng dẫn hiện hành không yêu cầu
@@ -85,7 +116,7 @@ Biên bản review: `docs/review-2026-10-27.md` (9 findings — mọi Required �
 - `CONSTRAINTS.md`: sàn floor-only 6 mục (tests passing · không fallback âm thầm ·
   không hardcode secret · không hardcode path · trung thực dữ liệu · ratchet mode).
 
-## 4. Lệnh setup / build / run / test / eval
+## 4. Lệnh tại checkpoint 2026-10-27 (tham khảo lịch sử)
 
 ```bash
 python3 -m venv .venv && . .venv/bin/activate && pip install -r requirements.txt
@@ -154,8 +185,8 @@ python scripts/build_all.py --force --step collaborative
    template; với LLM sống, SYSTEM_PROMPT grounded + refusal là nét chính.
 5. **Repo đã là git** — `.gitignore` chặn `var/artifacts/` và runtime V2, `reports/` giữ
    trong repo; `main` đã đồng bộ với GitHub.
-6. **Claude-Mem worker** từng vào quota cooldown (provider codex) — không khởi động lại
-   worker bằng tay; nếu `save_memory` lỗi thì báo nguyên nhân gốc, không giả vờ thành công.
+6. **Dịch vụ memory ngoài** từng gặp quota cooldown. Đây là lịch sử công cụ, không phải
+   dependency hay bước vận hành hiện hành; không khởi động hoặc tích hợp lại.
 
 ## 8. Nhật ký phiên (append khi có thay đổi quan trọng)
 

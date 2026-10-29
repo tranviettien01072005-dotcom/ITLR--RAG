@@ -1,47 +1,41 @@
-> **Ngữ cảnh đồ án — 2026-10-30:** Tài liệu lịch sử: giữ số đo, phạm vi và kế hoạch tại thời điểm ghi. Không coi đây là chứng nhận thương mại hoặc trạng thái runtime hiện tại. Xem [README hiện tại](../README.md).
+# ITLR–RAG | Intelligent IT Learning Platform — Follow-up checklist
 
-# Upgrade Checklist
+Updated **2026-10-30**. Scope and acceptance criteria: [improvement plan](plan.md).
+Implemented behavior and completed checks belong to [README](../README.md) and
+[Validation](../reports/VALIDATION.md); unchecked items below are outstanding evidence or work,
+not claims that all previous implementation is missing.
 
-## Phase 0 — Security
+## Evaluation and retrieval
 
-- [ ] Rotate/remove credential-shaped value in `.env.example`
-- [ ] Add secret scanning to tests/CI
-- [ ] Sanitize Markdown and catalog/user fields
-- [ ] Protect or disable `/admin/reload`
-- [ ] Add API input limits and correct error status codes
+- [ ] Create independent passage-level relevance judgments with provenance and query holdout.
+- [ ] Calibrate V3 cosine/off-topic thresholds against representative IT and non-IT cases.
+- [ ] Compare lexical/dense/hybrid configurations on clean/noisy tracks with uncertainty.
+- [ ] Measure real reranker quality, latency and memory before changing its default.
+- [ ] Benchmark full-corpus bounded candidate pools and concurrent load against agreed targets.
+- [ ] Evaluate RRF/MMR trade-offs without changing test qrels or tuning on the holdout.
 
-## Phase 1 — Evaluation
+## Generation and learner experience
 
-- [ ] Fix hallucination/citation edge cases
-- [ ] Fix evaluator NaN formatting
-- [ ] Make `run_all.py` propagate failures
-- [ ] Add label provenance and run metadata
-- [ ] Regenerate baseline reports from a clean run
+- [ ] Measure semantic faithfulness/entailment and citation precision/recall independently of ID checks.
+- [ ] Evaluate answerability and refusal precision on representative supported/unsupported requests.
+- [ ] Exercise authenticated SSE, cancellation/error handling and final-answer persistence end to end.
+- [ ] Verify account-scoped diagnostic, roadmap, saved-resource and progress flows in PostgreSQL/browser.
+- [ ] If authorized, validate the configured paid provider separately from local/template runs.
 
-## Checkpoint A
+## Deployment and security
 
-- [ ] Tests pass
-- [ ] Holdout baseline is reproducible
-- [ ] Retrieval comparison table includes all enabled stages
+- [ ] Verify a clean supported-environment install of the built wheel and packaged static assets.
+- [ ] Run Docker/proxy deployment checks with explicit credentials, HTTPS origin and one replica/service.
+- [ ] Validate parser/native-memory limits and the upload scanning/quarantine policy on the target host.
+- [ ] Exercise backup/restore and version activation/reload/rollback without losing runtime data.
+- [ ] Confirm monitoring, health/readiness, log redaction and agreed latency/capacity alerts.
+- [ ] Refresh dependency/security assessment when preparing a release; retain unresolved advisory scope.
+- [ ] Recheck source rights/attribution and rebuild/probe/activate when indexed full-text permission changes.
 
-## Phase 2 — Retrieval
+## Completion discipline
 
-- [ ] Define query/qrel tracks and holdout split
-- [ ] Tune hybrid weights on validation only
-- [ ] Benchmark reranker latency and quality
-- [ ] Evaluate RRF/MMR Pareto trade-off
-
-## Phase 3 — Generation
-
-- [ ] Implement strict citation validation
-- [ ] Add context budget and answerability policy
-- [ ] Make partial stream failures explicit
-- [ ] Add groundedness/refusal evaluation
-
-## Phase 4 — Productization
-
-- [ ] Fix wheel package discovery and package-data
-- [ ] Add clean install smoke test
-- [ ] Add dependency constraints/lock
-- [ ] Add runtime metrics and SLO checks
-- [ ] Split chatbot orchestration into focused modules
+For each completed item, record date, command/configuration, corpus/version, result and limits in
+Validation or its linked report. Keep synthetic data and simulated labels explicit. Do not replace
+missing integration evidence with unit-test counts, weaken quality gates, delete the BM25 shim,
+activate artifacts or migrate runtime data as part of documentation maintenance. Commit/push,
+paid calls and public deployment require authorization in the current request.

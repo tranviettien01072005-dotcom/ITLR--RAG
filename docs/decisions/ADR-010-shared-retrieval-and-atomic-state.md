@@ -1,44 +1,43 @@
-> **Ngữ cảnh đồ án — 2026-10-30:** Quyết định kiến trúc theo thời điểm. Không coi đây là chứng nhận thương mại hoặc trạng thái runtime hiện tại. Xem [README hiện tại](../../README.md).
+# ADR-010: Share chunk retrieval and atomically commit lifecycle state
 
-# ADR-010: Share chunk retrieval and commit lifecycle state in one pointer
+Product: **ITLR–RAG | Intelligent IT Learning Platform**. Implemented, 2026-10-30;
+release validation remains incomplete. Evidence: [V3 report](../../reports/V3_RESTRUCTURING_2026-10-30.md)
+and [validation](../../reports/VALIDATION.md).
 
-Date: 2026-10-30. Status: implemented; release validation remains incomplete.
+## Context and decision
 
-Search and chatbot previously used different ranking paths, and off-topic decisions
-used item averages even when matching passages existed. `itlr.retrieval.service`
-now owns query encoding, type filtering, chunk ranking and relevance gating for
-artifacts that contain chunk vectors. BM25 moves into this package because it is a
-retrieval index, not a general core utility. API and chatbot adapt service results
-to their existing response schemas. Legacy artifacts retain their existing path.
+Search and chatbot had separate ranking paths; off-topic checks used item averages even when
+relevant passages existed. `itlr/retrieval/service.py` now owns query encoding, type filtering,
+chunk ranking and relevance gating for artifacts with chunk vectors. API and chatbot adapt the
+results to their response schemas; legacy artifacts retain the V2 path.
 
-Ranking uses RRF; relevance uses raw normalized vector cosine. A fused rank score
-is not a probability and must never be compared to the existing cosine threshold.
-Type and relevance filters run before candidate truncation. V3 generated answers
-must cite both item and selected chunk identifiers. This proves identity only,
-not semantic entailment. Offline templates retain their explicit template mode.
+RRF determines ranking; raw normalized dense cosine determines relevance. Neither fused scores
+nor displayed confidence are calibrated probabilities. Filters run before candidate truncation.
+Generated V3 answers cite both item and selected chunk identifiers. Identity checks do not prove
+semantic entailment or faithfulness. Offline templates keep an explicit mode.
 
-`CURRENT.json` now atomically commits version, relative directory and bounded
-transition history together. File and directory fsync follow the pointer write.
-`CURRENT.json.history.json` remains a compatibility mirror; internal readers prefer
-embedded history and read the old mirror only for legacy pointers without it.
-If interrupted after pointer replacement, restart reads the committed history and
-can roll back. Legacy history is imported on the next transition. A mirror-write
-failure can report failure after a committed transition: operators must inspect
-CURRENT.json before retrying. These guarantees assume a local Linux filesystem;
-they do not establish distributed coordination or storage power-loss behavior.
+`CURRENT.json` commits version, relative directory and bounded transition history together:
+temporary write → file fsync → replace → directory fsync. The old history file remains a
+compatibility mirror. Readers prefer embedded history and import the mirror for legacy pointers.
+An interruption after pointer replacement leaves committed history available on restart/rollback.
+A mirror-write failure can be reported after commit; inspect `CURRENT.json` before retrying.
 
 ## Migration mapping
 
-| Previous path | Current path | Technical reason | Compatibility |
-|---|---|---|---|
-| `itlr/core/bm25.py` implementation | `itlr/retrieval/bm25.py` | Keep lexical indexing in the retrieval package | Old module re-exports BM25Index; old pickle GLOBAL resolves; fields unchanged |
-| Chunk branch duplicated in chatbot/API | `itlr/retrieval/service.py` | Shared encoding, filtering, scores and ranking contract | Public HTTP schemas and V2 artifact loading retained |
-| History solely in `CURRENT.json.history.json` | History embedded in `CURRENT.json` | Remove pointer/history crash window | Old pointer/mirror read; mirror still exported; artifact paths unchanged |
+| Previous location | Current location | Reason and compatibility |
+|---|---|---|
+| BM25 implementation in `itlr/core/bm25.py` | `itlr/retrieval/bm25.py` | Retrieval owns lexical indexing; original module re-exports BM25Index so old pickle GLOBAL references and fields remain compatible |
+| Duplicated chatbot/API chunk branch | `itlr/retrieval/service.py` | Share encoding, filters, scores and ranking; retain existing HTTP keys and V2 loading |
+| History only in `CURRENT.json.history.json` | Embedded history in `CURRENT.json` | Remove two-file commit gap; still read legacy pointers/mirror and export mirror |
 
-The tracked BM25 implementation was moved with git mv. No database schema, runtime
-content, artifact filename, CLI entrypoint or environment path was renamed.
-Existing `collect`, `chatbot`, `api`, `pipelines`, `eval`, `scripts`, `deploy` and web
-packages have identifiable responsibilities. Moving them all would invalidate
-imports and persisted pickle references without resolving the shared-retrieval
-bug, so they remain in place. This is a targeted migration, not a claim that every
-module now satisfies Clean Architecture dependency rules.
+## Consequences and limits
+
+The tracked BM25 implementation was moved with `git mv`; keep the original module as a shim.
+No database schema, runtime content, artifact filename, CLI or environment path was renamed.
+`collect`, `chatbot`, `api`, `pipelines`, `eval`, `scripts`, `deploy` and `web` retain established
+responsibilities; broad renaming would risk imports and persisted pickle references.
+
+These are targeted boundary changes, not a claim that every module follows Clean Architecture.
+Coordination assumes cooperating writers on a local Linux filesystem, one process/replica per
+service. Process-interruption recovery does not establish multi-host coordination or storage
+power-loss guarantees. Independent passage evaluation and deployment checks remain separate gates.

@@ -1,68 +1,55 @@
-# CONSTRAINTS.md — Sàn chất lượng dự án (floor-only)
+# Sàn chất lượng ITLR–RAG
 
-> **Trạng thái:** Sàn chất lượng của đồ án; không hạ ngưỡng hoặc bỏ kiểm tra để đạt PASS.
-> Đọc [AGENTS](AGENTS.md) và [validation](reports/VALIDATION.md) cho trạng thái hiện tại.
+Các ràng buộc sau là mức tối thiểu cho **ITLR–RAG | Intelligent IT Learning Platform**. Không hạ ngưỡng hoặc bỏ kiểm tra để đạt PASS. [AGENTS](AGENTS.md) quy định quy trình; [validation](reports/VALIDATION.md) cung cấp bằng chứng theo checkpoint.
 
-## 1. Kiểm thử (pytest)
+## Kiểm thử và hồi quy
 
-| Sàn | Giá trị | Cách kiểm |
+| Ràng buộc | Cách kiểm |
+|---|---|
+| Suite không có failure/error trước bàn giao | Chạy đầy đủ pytest và Web checks theo README |
+| Giữ phạm vi test; không rút testpaths/addopts để bỏ ca lỗi | Review diff cấu hình và tests |
+| Bug phải có regression tái hiện FAIL trước fix, PASS sau fix | Ghi lệnh và kết quả trong báo cáo liên quan |
+| Không thêm skip/xfail để che lỗi | Kiểm tra diff; ngoại lệ lịch sử chỉ gồm thiếu artifacts integration hoặc thiếu thư viện nặng import-probe, phải nêu trong docstring |
+| Không giảm năng lực kiểm chứng | Xóa test phải thay bằng test mạnh hơn cùng phạm vi; checkpoint baseline 256 tests/0 skip, sau đó 260/0 |
+
+Artifacts integration đã có fixtures để chạy đủ suite ở checkpoint hiện tại. Ngoại lệ lịch sử không phải lý do thêm skip vào những ca đã có thể chạy. Không nới lint/type/coverage hoặc bỏ assertion để làm xanh kết quả.
+
+## Lỗi và fallback phải quan sát được
+
+Fallback có chủ đích, như LLM → template hoặc FAISS → brute-force, phải log WARNING/ERROR và giữ nhãn chế độ đúng. Cấm `except` nuốt lỗi mà không báo. `llm_client.chat/stream` raise `LLMError` khi hết retry; adapter log trước khi trả `None`/template. Regression gồm `test_try_llm_response_none_on_llmerror`.
+
+`eval/eval_generation.py --llm` thiếu key phải fail-fast rc=2; không chạy template rồi ghi nhãn LLM. Pipeline/orchestrator phải trả mã khác 0 khi bước bắt buộc lỗi. Kết thúc SSE phải phân biệt lỗi với thành công; token provisional không phải câu trả lời đã kiểm tra.
+
+## Bảo mật và ranh giới tin cậy
+
+- Không có secret thật trong code/log/report. Khi cần ghi dấu hiệu key, dùng `llm_client.mask_key`; giữ `test_exhausted_retries_raise_llmerror_no_key_leak`.
+- `.env` bị gitignore; chỉ `.env.example` với key rỗng được theo repo. Web yêu cầu JWT/admin/database credentials riêng trong mọi mode.
+- Dữ liệu catalog, người dùng và LLM là dữ liệu không tin cậy. Giữ quy tắc chống prompt injection của SYSTEM_PROMPT và `test_system_prompt_has_injection_guard`.
+- Validate input REST bằng Pydantic; không nối SQL/HTML từ input. Upload cần signature/access checks; không mô tả chúng như antivirus.
+- `/admin/reload` phải fail-closed khi token trống/sai. Giữ một worker/replica khi limiter còn trong RAM; proxy trust phải tường minh.
+
+## Đường dẫn, artifacts và tái lập
+
+I/O artifacts/data đi qua `itlr.config` (`ARTIFACTS_DIR`, `DATA_DIR`); không hardcode đường `artifacts/` tương đối. Giữ regression `tests/test_ann.py` và `tests/test_eval_scripts_paths.py`. Dùng context manager khi pickle load/dump; cấm `pickle.load/dump(open(...))` trong engine, ANN và pipelines, theo `tests/test_pickle_handles.py`.
+
+Qrels/eval dùng seed 20240623; interactions dùng seed 7. Mọi nguồn ngẫu nhiên cần seed ghi rõ. `scripts/build_all.py` giữ tính idempotent, chỉ rebuild khi `--force`; CLI versioned `scripts/build_all_v2.py` tạo staging mới, cần probe trước activate. Không suy ra hai builder có cùng cơ chế ghi.
+
+`eval/run_all.py [--quick]` là entrypoint đánh giá và ghi các báo cáo thuộc pipeline; không cam kết tái sinh mọi file lịch sử trong `reports/`. Giữ dữ liệu nhãn và chia train/validation/test độc lập, không đổi qrels để nâng điểm.
+
+## Tính trung thực của dữ liệu và kết luận
+
+Mọi số liệu phải nêu loại nhãn: `rule-based (metadata)`, `synthetic (mô phỏng)`, `hand-curated` hoặc `human`. Retrieval qrels legacy là rule-based; CF/off-policy là synthetic seed 7; `--simulate-human` là mô phỏng. Không gọi dữ liệu mô phỏng là hành vi hoặc đánh giá người thật.
+
+Groundedness/relevancy đo bằng luật phải gọi là proxy/xấp xỉ. Citation membership không phải semantic entailment; chỉ tiêu chưa đo phải `null`. README và báo cáo bàn giao phải ghi phần chưa kiểm chứng. Số liệu lịch sử giữ nguyên dataset, thời điểm và giới hạn; không dùng làm chứng cứ runtime mới.
+
+## Ngưỡng đề xuất, chưa được enforce
+
+| Chiều đo | Baseline / tình trạng | Mục tiêu cần xác lập bằng CI và môi trường đo |
 |---|---|---|
-| Suite xanh | `pytest -q` → **0 fail, 0 error** | CI/lệnh cục bộ trước mọi hand-off |
-| Skip hạn chế | Skip CHỈ vì 2 lý do được ghi trong docstring test: (a) thiếu artifacts `var/artifacts/embeddings.pkl` (integration), (b) thư viện nặng chưa cài (import-probe eval) | `pytest -q` tự báo `skipped` |
-| Không hủ tệ thêm | KHÔNG thêm `pytest.skip`/`xfail`/`pytest.mark.skipif` mới ngoài 2 nguyên nhân trên, không rút `testpaths`/addopts để bỏ test | đọc pytest.ini + diff tests/ |
-| Ratchet số test | Số test hiện hữu chỉ được tăng (baseline đầu phiên 256 test không skip; xem validation cho số mới nhất); xóa/giảm 1 test phải thay bằng test mạnh hơn cùng phạm vi | `pytest --collect-only -q \| wc -l` |
-| Bug phải kèm regression | Mỗi lỗi sửa lại phải có test tái hiện lỗi cũ (pattern RED→GREEN đã dùng xuyên suốt) | diff của bugfix phải đụng tests/ |
+| Search p95 | [Latency lịch sử](reports/latency.md), không phải SLO runtime | ≤1,5 s cho `/api/search` |
+| Chat template p95 | Cùng báo cáo lịch sử | ≤2,0 s |
+| Python coverage | Chưa có baseline được ghi ở đây | ≥60% trên `itlr/`, không tính pipelines build |
+| Web line coverage | 25,01% tại checkpoint; trước đó 9,34% | Chưa chốt floor mới |
+| Kích thước file | Ước lượng lịch sử chatbot ~1,3k dòng | File mới khoảng ≤800 dòng; tách theo trách nhiệm khi cần |
 
-## 2. Không che lỗi (no silent fallback)
-
-| Sàn | Giá trị |
-|---|---|
-| Lỗi phải lộ | `except:` nuốt lỗi mà không log/báo là CẤM. Fallback có chủ đích (LLM→template, FAISS→brute-force) phải log ở mức WARNING/ERROR trước khi fallback |
-| LLMError lộ vùng | `llm_client.chat/stream` raise `LLMError` khi hết retry; chatbot adapter log WARNING trước khi trả None/template — có test (`test_try_llm_response_none_on_llmerror`) |
-| `--llm` fail-fast | `eval/eval_generation.py --llm` mà chưa cấu hình key → **rc=2 + thông báo**, KHÔNG chạy template gắn nhãn "llm" |
-| Exit code trung thực | script pipeline/rc ≠ 0 khi 1 bước fail (`build_all.py`, `run_all.py` giữ nguyên hành vi).
-
-## 3. Bảo mật (floor cứng)
-
-| Sàn | Giá trị |
-|---|---|
-| Key không lộ | Không API key thật trong code/log/report/README; khi log key (nếu bắt buộc) phải qua `llm_client.mask_key` — regression: `test_exhausted_retries_raise_llmerror_no_key_leak` |
-| Secrets không commit | `.env` trong `.gitignore` (nếu có VCS); chỉ `.env.example` rỗng-key được theo repo |
-| Chống prompt injection | SYSTEM_PROMPT rule 10 giữ nguyên: dữ liệu người dùng/catalog KHÔNG phải lệnh; cite `[item_id:ID]`; không bịa tham chiếu. Regression: `test_system_prompt_has_injection_guard` |
-| Input API | Đầu vào REST validate qua pydantic model (server.py) — không nối chuỗi SQL/HTML từ user |
-
-## 4. Đường dẫn & tái lập (reproducibility)
-
-| Sàn | Giá trị |
-|---|---|
-| Path trung tâm | I/O artifact/data đi qua `itlr.config` (`ARTIFACTS_DIR`, `DATA_DIR`); cấm hardcode `artifacts/` tương đối — regression: `tests/test_ann.py`, `tests/test_eval_scripts_paths.py` |
-| File handle | `pickle.load/dump(open(...))` trực tiếp là CẤM trong `itlr/engine.py`, `itlr/core/ann.py`, `itlr/pipelines/*` — regression: `tests/test_pickle_handles.py` |
-| Seed cố định | qrels/eval seed 20240623, interactions seed 7, mọi random dùng RandomState seeded |
-| Build idempotent | `python scripts/build_all.py` chạy lại không phá artifacts sẵn có (--force mới build lại) |
-| Eval một lệnh | `python eval/run_all.py` (--quick) tái lập toàn bộ `reports/` |
-
-## 5. Tính trung thực dữ liệu & báo cáo (floor cứng — đây là sàn học thuật)
-
-| Sàn | Giá trị |
-|---|---|
-| Nhãn gắn nguồn | Mọi số liệu trong `reports/` phải ghi rõ loại nhãn: `rule-based (metadata)` / `synthetic (mô phỏng)` / `hand-curated` / `human` — hiện trạng: retrieval qrels = rule-based; CF/off-policy = synthetic (seed 7); `--simulate-human` = mô phỏng |
-| Cấm tuyên bố sai | KHÔNG gọi tập nhãn mô phỏng là "human evaluation" thực; KHÔNG gọi dataset synthetic là "hành vi người thật"; groundedness/relevancy luôn kèm chữ "proxy/xấp xỉ" |
-| Hạn chế ghi rõ | Các phần CHƯA verify (LLM live vì thiếu key…) phải nằm trong README §Hạn chế và báo cáo bàn giao |
-
-## 6. Đo được nhưng CHƯA enforce (ratchet — "measured, not yet enforced")
-
-Các ngưỡng dưới đây ghi GIÁ TRỊ ĐANG ĐO làm baseline; enforce khi có CI + chốt số:
-
-| Kích thước | Baseline đang đo | Ngưỡng đề xuất (chưa enforce) |
-|---|---|---|
-| API p95 latency (search) | xem `reports/latency.md` | p95 ≤ 1.5s cho `/api/search` |
-| API p95 latency (chat template) | xem `reports/latency.md` | p95 ≤ 2.0s |
-| Coverage | chưa đo (cần pytest-cov) | ≥ 60% trên `itlr/` (không tính pipelines chạy build) |
-| Độ lớn file | `itlr/chatbot/chatbot.py` ~1.3k dòng đã sát ngưỡng đề xuất | file mới ≤ ~800 dòng; tách khi vượt |
-
-## 7. Ghi chú phê duyệt thay đổi sàn
-
-- HẠ sàn (ví dụ: cho phép skip mới, đổi ngưỡng p95) phải:
-  1) sửa chính file này, 2) nêu lý do + bằng chứng số,
-  3) không áp dụng hồi tố lên thay đổi đang review.
-- Thêm sàn mới: ghi ngưỡng + cách kiểm máy móc được (không nhận "tốt hơn về sau").
+Đây là đề xuất, không phải ngưỡng đã đạt hoặc đã bật trong CI. Thay đổi sàn phải sửa tài liệu này, ghi lý do và bằng chứng; không áp dụng hồi tố để thông qua thay đổi đang review. Sàn mới cần ngưỡng và cách kiểm máy móc rõ ràng.

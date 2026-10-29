@@ -1,31 +1,16 @@
-> **Ngữ cảnh đồ án — 2026-10-30:** Tài liệu lịch sử: giữ số đo, phạm vi và kế hoạch tại thời điểm ghi. Không coi đây là chứng nhận thương mại hoặc trạng thái runtime hiện tại. Xem [README hiện tại](../README.md).
+# ITLR–RAG | Intelligent IT Learning Platform
 
-# Agent Skills inventory
+## Historical workflow inventory
 
-- api-and-interface-design
-- browser-testing-with-devtools
-- ci-cd-and-automation
-- code-review-and-quality
-- code-simplification
-- constraint-driven-development
-- context-engineering
-- debugging-and-error-recovery
-- deprecation-and-migration
-- documentation-and-adrs
-- doubt-driven-development
-- frontend-ui-engineering
-- git-workflow-and-versioning
-- idea-refine
-- incremental-implementation
-- interview-me
-- observability-and-instrumentation
-- performance-optimization
-- planning-and-task-breakdown
-- security-and-hardening
-- shipping-and-launch
-- source-driven-development
-- spec-driven-development
-- test-driven-development
-- using-agent-skills
+Historical record: 2026-10-29. This document describes evidence and decisions at that checkpoint. See the [current platform guide](../README.md) and [current validation](VALIDATION.md) for later changes and runtime status.
 
-All 25 SKILL.md files inventoried. Reading and application recorded per task in FINAL_REMEDIATION.md.
+The remediation session inventoried all 25 installed Addy `SKILL.md` files. This is an environment snapshot rather than a requirement to install or invoke every skill. Task-specific application is recorded in [FINAL_REMEDIATION.md](FINAL_REMEDIATION.md).
+
+| Area | Inventoried workflows |
+|---|---|
+| Interfaces and UI | api-and-interface-design; browser-testing-with-devtools; frontend-ui-engineering |
+| Delivery and Git | ci-cd-and-automation; git-workflow-and-versioning; incremental-implementation; shipping-and-launch |
+| Quality and diagnosis | code-review-and-quality; code-simplification; constraint-driven-development; debugging-and-error-recovery; doubt-driven-development; test-driven-development |
+| Security and runtime | security-and-hardening; observability-and-instrumentation; performance-optimization |
+| Design and planning | deprecation-and-migration; idea-refine; interview-me; planning-and-task-breakdown; spec-driven-development |
+| Documentation and context | context-engineering; documentation-and-adrs; source-driven-development; using-agent-skills |

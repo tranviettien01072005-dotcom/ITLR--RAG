@@ -1,19 +1,23 @@
-> **Ngữ cảnh đồ án — 2026-10-30:** Tài liệu lịch sử: giữ số đo, phạm vi và kế hoạch tại thời điểm ghi. Không coi đây là chứng nhận thương mại hoặc trạng thái runtime hiện tại. Xem [README hiện tại](../README.md).
+# ITLR–RAG | Intelligent IT Learning Platform
 
-# Đánh giá cổng off-topic của chatbot
+## Off-topic relevance gate calibration
 
-*Bộ test: 121 câu (60 IT / 61 ngoài lĩnh vực). Tín hiệu cổng = `query_relevance_max`.*
+Historical record: 2026-10-27. This document describes evidence and decisions at that checkpoint. See the [current platform guide](../README.md) and [current validation](VALIDATION.md) for later changes and runtime status.
 
-- **AUC (ROC) = 0.9825**
-- Điểm TB: IT = 0.834 · ngoài lĩnh vực = 0.786
+The gate used `query_relevance_max` on 121 authored questions: 60 IT and 61 outside the domain. ROC AUC was 0.9825. Mean relevance score was 0.834 for IT and 0.786 outside the domain.
 
-| Ngưỡng | Precision | Recall | F1 |
+### Operating points
+
+| Threshold | Precision | Recall | F1 |
 |---|---|---|---|
-| 0.55 (hiện tại) | 0.496 | 1.000 | 0.663 |
-| **0.800 (tối ưu F1)** | 0.881 | 0.983 | 0.929 |
+| 0.55 (historical runtime) | 0.496 | 1.000 | 0.663 |
+| **0.800 (best observed F1)** | 0.881 | 0.983 | 0.929 |
 
-### Bảng quét ngưỡng (trích)
-| Ngưỡng | P | R | F1 |
+The 0.55 threshold was the runtime setting at this historical checkpoint. The observed F1 optimum, 0.800, was a recommendation rather than an applied runtime change. Current runtime calibration must be checked separately, especially for the later V3 cosine path.
+
+### Threshold sweep excerpt
+
+| Threshold | P | R | F1 |
 |---|---|---|---|
 | 0.40 | 0.496 | 1.000 | 0.663 |
 | 0.45 | 0.496 | 1.000 | 0.663 |
@@ -23,4 +27,4 @@
 | 0.65 | 0.496 | 1.000 | 0.663 |
 | 0.70 | 0.496 | 1.000 | 0.663 |
 
-*Kết luận: ngưỡng cổng được biện minh bằng **dữ liệu** (tối ưu F1 + AUC) thay vì cảm tính. Mở rộng bộ test -> con số đáng tin hơn.*
+The same small dataset selected and evaluated the threshold. Its optimum does not establish generalization to other workloads; a larger independent question set is needed before adopting it as a platform-wide setting.

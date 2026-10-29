@@ -1,19 +1,16 @@
-> **Ngữ cảnh đồ án — 2026-10-30:** Tài liệu lịch sử: giữ số đo, phạm vi và kế hoạch tại thời điểm ghi. Không coi đây là chứng nhận thương mại hoặc trạng thái runtime hiện tại. Xem [README hiện tại](../README.md).
+# ITLR–RAG | Intelligent IT Learning Platform
 
-What this change does: It closes browser rendering, credentials, upload and artifact trust boundaries and adds executable CI gates. It preserves the existing uncommitted application work. Expected deployment is one process and one replica per service.
+## Security remediation review
 
-## Must fix before release
+Historical record: 2026-10-29. This document describes evidence and decisions at that checkpoint. See the [current platform guide](../README.md) and [current validation](VALIDATION.md) for later changes and runtime status.
 
-1. **Full dense retrieval cannot be verified in this environment** (`requirements.txt`, runtime `var/artifacts/`).
-   - **What this is:** E5/FAISS plus reranker drive the production search path.
-   - **Problem:** Model dependencies/cache and artifacts are missing. Fixture lexical tests cannot establish production quality or latency.
-   - **Fix:** Install declared dependencies, run trusted V2 build/probe and real query evaluation in the target runtime.
-   - **If we skip it:** A release can pass unit tests and still return 503 for search/chat.
-2. **Upload scanning remains incomplete** (`web/src/middleware/uploads.ts`).
-   - **What this is:** Shared validation checks actual file signatures before route persistence.
-   - **Problem:** Signatures do not detect embedded malware; worker heap caps do not bound every native allocation.
-   - **Fix:** Keep unsupported formats rejected; gate public document upload launch on resource isolation and scanning policy.
-   - **If we skip it:** Crafted accepted documents can still attack downstream parsers/clients.
+The reviewed change tightened rendering, credentials, upload and artifact trust boundaries and added executable CI gates. Existing uncommitted application work was preserved. The deployment assumption remained one process and replica per service.
 
-Verdict: Do not ship publicly; see FINAL_REMEDIATION.md for measured gates and remaining blockers.
-Not checked: Browser rendering, real PostgreSQL user flows, live DeepSeek and full dense runtime. Node vm and mock API regressions cover specific boundaries only.
+### Open release gates
+
+| Gate | Evidence gap | Required follow-up |
+|---|---|---|
+| Dense retrieval (`requirements.txt`, `var/artifacts/`) | E5/FAISS/reranker dependencies, cache and artifacts were absent in the review environment. Lexical fixtures cannot establish neural quality or latency; search/chat may still return 503. | Install declared dependencies, perform trusted V2 build/probe and evaluate actual queries on the target runtime. The subsequent [local model verification](LOCAL_MODELS.md) addresses part of this historical gap. |
+| Upload isolation (`web/src/middleware/uploads.ts`) | Shared validation verifies signatures, but embedded malware remains possible. Worker heap caps do not cover all native allocations. | Reject unsupported formats and verify scanning policy/resource isolation before public document uploads. |
+
+The recommendation at this checkpoint was to withhold public release. See [FINAL_REMEDIATION.md](FINAL_REMEDIATION.md) for measured gates and unresolved blockers. Browser rendering, PostgreSQL user flows, live DeepSeek and full dense runtime were unverified; Node vm and mocked API checks established only specific regressions.

@@ -1,21 +1,22 @@
-> **Ngữ cảnh đồ án — 2026-10-30:** Tài liệu lịch sử: giữ số đo, phạm vi và kế hoạch tại thời điểm ghi. Không coi đây là chứng nhận thương mại hoặc trạng thái runtime hiện tại. Xem [README hiện tại](../README.md).
+# ITLR–RAG | Intelligent IT Learning Platform
 
-# Đánh giá off-policy / counterfactual (D)
+## Off-policy estimator simulation (D)
 
-*Mô phỏng bandit ngữ cảnh GROUNDED trên 5000 item thật; 6000 vòng; reward known-truth.*
+Historical record: 2026-10-27. This document describes evidence and decisions at that checkpoint. See the [current platform guide](../README.md) and [current validation](VALIDATION.md) for later changes and runtime status.
 
-## So sánh ước lượng vs giá trị THẬT
+A contextual-bandit simulation used the 5,000-item legacy synthetic catalog for 6,000 rounds with known reward truth. The original report called these items real; catalog provenance establishes synthetic data. No production clicks or real learner outcomes were measured.
 
-| Đại lượng | Giá trị | CI 95% | Phủ giá trị thật target? |
+### Estimates against known policy values
+
+| Quantity | Value | 95% CI | Covers target truth? |
 |---|---|---|---|
-| **Giá trị thật — policy MỚI** | **0.5465** | — | (mốc) |
-| Giá trị thật — policy CŨ | 0.4289 | — | — |
-| Naive (CTR quan sát) | 0.4425 | — | lệch -0.1040 |
-| IPS | 0.5703 | [0.5518, 0.5880] | không |
-| SNIPS | 0.5585 | [0.5440, 0.5721] | có |
-| DR | 0.5540 | [0.5400, 0.5673] | có |
+| **New policy truth** | **0.5465** | — | Reference |
+| Old policy truth | 0.4289 | — | — |
+| Naive observed CTR | 0.4425 | — | Bias -0.1040 |
+| IPS | 0.5703 | [0.5518, 0.5880] | No |
+| SNIPS | 0.5585 | [0.5440, 0.5721] | Yes |
+| DR | 0.5540 | [0.5400, 0.5673] | Yes |
 
-- **Effective Sample Size** = 4686/6000 (ESS thấp -> trọng số lệch -> ưu tiên SNIPS/DR + clip).
-- **Kết luận:** estimator off-policy ước lượng đúng giá trị policy MỚI **chỉ từ log của policy cũ**, trong khi naive lệch — đúng tinh thần đánh giá counterfactual chuẩn công nghiệp.
+Effective sample size was 4686/6000. The original recommendation was to consider SNIPS/DR and weight clipping when importance weights are uneven. Here SNIPS and DR intervals cover the target truth, while the IPS interval does not; naive observed CTR is lower by -0.1040. These finite-sample results do not prove universal unbiasedness or interval coverage.
 
-*Đây là MÔ PHỎNG để kiểm chứng tính không thiên lệch của estimator (vì cần biết ground-truth). Khi có log click thật từ web app, dùng `itlr/eval/off_policy.py` y nguyên.*
+The experiment estimates a new policy from simulated logs of an older policy. `itlr/eval/off_policy.py` is the historical implementation entry point. Applying it to real clicks requires appropriate logging propensities, support and reward assumptions to be checked for that dataset; this run does not establish them.

@@ -1,97 +1,86 @@
-> **Ngữ cảnh đồ án — 2026-10-30:** Tài liệu lịch sử: giữ số đo, phạm vi và kế hoạch tại thời điểm ghi. Không coi đây là chứng nhận thương mại hoặc trạng thái runtime hiện tại. Xem [README hiện tại](../README.md).
+# ITLR–RAG | Intelligent IT Learning Platform — Improvement plan
 
-# Implementation Plan: Product-grade RAG Learning Upgrade
+Updated **2026-10-30**. This plan carries forward the earlier security, evaluation, retrieval,
+generation and packaging roadmap. It describes acceptance criteria; completion requires dated
+execution evidence in [Validation](../reports/VALIDATION.md). For implemented behavior and
+compatibility boundaries, read [README](../README.md), [project memory](../docs/PROJECT_MEMORY.md)
+and [ADR-010](../docs/decisions/ADR-010-shared-retrieval-and-atomic-state.md).
 
-## Mục tiêu
+## Objective and working rules
 
-Nâng ITLR RAG từ research prototype thành một hệ thống RAG có thể vận hành, đánh giá và tái lập; đồng thời dùng chính từng phase như một giáo trình thực hành về retrieval, reranking, grounding, evaluation và production engineering.
+Improve the platform’s reliability, source-backed learning support and reproducible evaluation.
+Keep offline experiments distinct from runtime behavior. Do not change qrels, leak holdout data,
+weaken assertions or relabel simulated data to improve results. Preserve user changes, database
+content and active artifacts. No commit/push or paid API call is implied by this plan.
 
-## Nguyên tắc
+Each behavior change requires a reproduced failure or baseline, a focused implementation,
+regression evidence and diff review. Improvements need a matching corpus/configuration and
+confidence intervals or paired comparisons where appropriate; historical metrics are not a
+baseline for a different runtime. Keep unmeasured metrics `null`.
 
-- Không tối ưu điểm bằng cách thay đổi qrels hoặc làm rò thông tin giữa train/test.
-- Mọi cải thiện phải có baseline, confidence interval hoặc paired significance test khi phù hợp.
-- Tách rõ offline evaluation, online serving và provenance của dữ liệu/nhãn.
-- Mỗi phase kết thúc bằng test, benchmark và một bài học RAG ngắn.
+## 1. Security and operating boundaries
 
-## Lộ trình
+Retain explicit secrets, safe text rendering/CSP, authenticated admin reload, bounded requests,
+upload validation/access controls, trusted-proxy configuration and one worker/replica per service.
+Credential rotation belongs to the operator if a real value has been exposed; changing examples
+alone does not rotate an existing credential. Preserve secret scanning and dependency checks.
 
-### Phase 0 — Baseline và an toàn
+Acceptance requires rejection of unauthorized reload, malicious rendering, oversized requests
+and unsupported upload content. Target-host memory/parser limits, malware handling, real account
+flows and proxy configuration need their own evidence; unit tests do not certify deployment.
+See [web remediation](../web/SECURITY_REMEDIATION.md).
 
-- Xoay/revoke credential trong `.env.example`; thêm secret scanning.
-- Sanitize Markdown/HTML, bỏ các `innerHTML` không cần thiết.
-- Bảo vệ hoặc vô hiệu hóa `/admin/reload` khi không có auth.
-- Thêm giới hạn độ dài request, history và metadata; trả HTTP 4xx/5xx đúng ngữ nghĩa.
+## 2. Evaluation validity and reproducibility
 
-**Nghiệm thu:** không còn credential-shaped value; test payload XSS không thực thi; admin endpoint bị từ chối khi thiếu quyền; request quá lớn bị reject.
+Retain citation/NaN edge-case checks and nonzero exit codes when evaluation stages fail. Record
+seed, corpus hash, config and source revision with label provenance (`human`, `simulated`,
+`synthetic`, `imported`). Distinguish metadata qrels from independent relevance judgments.
 
-**Bài học:** threat model cho RAG và vì sao output của LLM phải được coi là untrusted input.
+The next evidence set should include independent passage qrels, clean/noisy query groups,
+query-level holdout and reproducible comparisons of enabled lexical, dense and reranking stages.
+Do not claim real-user quality from simulated human labels or CF clicks. Citation identity and
+token-overlap proxies are separate from semantic faithfulness. Follow
+[ADR-004](../docs/decisions/ADR-004-evaluation-design.md).
 
-### Phase 1 — Evaluation đáng tin cậy
+## 3. Retrieval and reranking
 
-- Sửa hallucination evaluator khi `valid_ratio == 0` và khi không có citation.
-- Sửa formatter NaN/unknown và bổ sung test edge cases.
-- Làm `run_all.py` trả exit code khác 0 nếu bất kỳ stage nào thất bại.
-- Gắn provenance cho nhãn: `human`, `simulated`, `synthetic`, `imported`.
-- Lưu seed, dataset hash, config hash và git/source revision (hoặc archive hash vì repo hiện không có Git).
+For chunk artifacts, keep shared encoding/filtering/relevance/ranking across search and chatbot.
+Keep legacy V2 loading and the BM25 compatibility shim. Tune normalization, top-k, character/fusion
+weights and relevance thresholds only on validation data, then assess holdout quality.
 
-**Nghiệm thu:** một lỗi trong bất kỳ stage nào làm CI fail; báo cáo phân biệt rõ simulated-human; chạy lại cùng seed cho kết quả tái lập.
+Benchmark CrossEncoder quality, latency and memory before enabling it. Evaluate RRF/MMR against
+accuracy/diversity trade-offs; add cache or batching only when measured cost justifies it.
+Define latency/capacity targets before judging a run against an SLO. Eight-document experiments
+do not establish full-corpus gains, multiuser capacity or production suitability.
 
-**Bài học:** NDCG/Recall, leakage, qrels, statistical significance và evaluation validity.
+## 4. Generation and streaming
 
-### Checkpoint A
+Keep selected item/chunk identity validation, bounded context and duplicate removal. Define
+answerability and refusal behavior for missing or out-of-scope evidence. Sources arrive early;
+tokens remain provisional until the final validated answer. Errors/cancellation must not persist
+partial output as successful completion.
 
-- `pytest` pass.
-- Có baseline report mới, không dùng report cũ.
-- Có bảng so sánh TF-IDF, BM25, E5, E5+char, reranker.
+Evaluate citation precision/recall, entailment/faithfulness and refusal precision separately on
+independent cases. Tests rejecting invalid references do not establish a universal 100% semantic
+accuracy result. Run local inference and authenticated persistence flows with explicit configuration;
+use paid providers only when separately authorized.
 
-### Phase 2 — Cải thiện retrieval có kiểm soát
+## 5. Packaging, observability and deployment evidence
 
-- Xây query set theo nhóm intent và độ nhiễu, mỗi nhóm có qrels độc lập.
-- Tuning E5 normalization, top-k, char weight và fusion weight trên validation split.
-- Benchmark cross-encoder theo latency/quality; thêm cache và batch nếu có lợi.
-- Kiểm tra RRF/MMR theo Pareto frontier accuracy–diversity thay vì mặc định bật tất cả.
-- Tách đánh giá clean/noisy/temporal thành các track rõ ràng.
+Wheel package-data/discovery checks have recorded follow-up evidence in the
+[V3 report](../reports/V3_RESTRUCTURING_2026-10-30.md); retain them and verify installation in a
+clean supported environment before a release. Preserve dependency constraints and health/readiness
+contracts. Record retrieval/rerank timing, usage, citation validity, refusals and errors without secrets.
 
-**Nghiệm thu:** báo cáo có confidence interval; không có test leakage; tăng NDCG/Recall trên holdout mà không làm p95 latency vượt SLO đã đặt.
+Exercise PostgreSQL-backed learning/account flows, browser journeys, Docker/proxy configuration,
+backup/restore, activation/reload/rollback and resource limits. Local Linux locks do not coordinate
+multiple hosts. Split orchestration modules only when a concrete defect or maintenance need
+justifies the import/compatibility cost; broad renaming is not a release requirement.
 
-**Bài học:** dense vs lexical retrieval, hybrid fusion, reranking, MMR và trade-off latency.
+## Delivery order and decision criteria
 
-### Phase 3 — Grounded generation và streaming
-
-- Chuẩn hóa citation schema: citation phải trỏ đến một retrieved chunk hợp lệ.
-- Thêm context budget, duplicate removal và answerability/refusal policy.
-- Xử lý lỗi giữa stream bằng event trạng thái rõ ràng (`partial`, `error`, `done`).
-- Đánh giá groundedness, citation precision/recall và refusal precision riêng biệt.
-
-**Nghiệm thu:** citation invalid bị bắt 100%; partial stream không bị báo thành công; câu hỏi ngoài phạm vi nhận refusal có lý do.
-
-**Bài học:** context assembly, attribution, groundedness và failure semantics.
-
-### Phase 4 — Packaging và vận hành
-
-- Sửa package discovery và package-data để wheel chứa toàn bộ runtime cần thiết.
-- Thêm clean-environment install smoke test.
-- Pin dependency bằng lock/constraints; thêm health/readiness checks.
-- Metrics: retrieval latency, rerank latency, token usage, refusal rate, citation validity, error rate.
-- Tách `chatbot.py` thành các module: intent, retrieval, generation, streaming, references.
-
-**Nghiệm thu:** wheel cài được trong môi trường sạch và chạy search/chat; có dashboard/log schema; p50/p95 có SLO.
-
-**Bài học:** RAG observability, reproducible builds và production boundaries.
-
-## Thứ tự triển khai đề xuất
-
-1. Phase 0 security.
-2. Phase 1 evaluation correctness.
-3. Phase 4 packaging tối thiểu để mọi benchmark chạy trên artifact thật.
-4. Phase 2 retrieval tuning.
-5. Phase 3 generation/streaming.
-6. Phase 4 observability và refactor.
-
-## Tiêu chí thành công tổng thể
-
-- Không có secret, XSS path hoặc unauthenticated destructive admin action.
-- Evaluation tái lập và phân biệt đúng dữ liệu thật/mô phỏng.
-- Holdout NDCG/Recall tăng có ý nghĩa so với baseline hiện tại.
-- Citation validity và refusal precision đạt ngưỡng đã công bố.
-- Wheel cài sạch, API có giới hạn và metrics đủ để debug regression.
+Address security/evaluation regressions first, then minimal packaging needed for trustworthy
+experiments, retrieval calibration, generation evaluation and operational exercises. The
+[checklist](todo.md) tracks remaining evidence rather than restating historical unchecked plans.
+A release decision requires current results and explicit acceptance of known limits; passing
+regression suites alone does not close database, browser, quality or capacity gates.
