@@ -29,3 +29,21 @@ def test_policy_flags_require_json_booleans(tmp_path, field, value):
 def test_ndcg_uses_logarithmic_rank_discount():
     assert _ndcg_at_k([2, 1], {1: 3, 2: 1}, 2) == pytest.approx(
         (1 + 7 / math.log2(3)) / (7 + 1 / math.log2(3)))
+
+
+def test_rrf_repeated_document_in_one_ranking_does_not_inflate_weight():
+    from itlr.core.recommender import reciprocal_rank_fusion
+    assert reciprocal_rank_fusion([[1, 1, 2], [2, 1]]) == reciprocal_rank_fusion([[1, 2], [2, 1]])
+
+
+def test_pipeline_encodes_query_once_per_rank(monkeypatch):
+    from itlr.core import pipeline
+    from types import SimpleNamespace
+    import numpy as np
+    calls = []
+    def scores(*args):
+        calls.append(True)
+        return np.array([.9, .2])
+    monkeypatch.setattr(pipeline, '_base_scores', scores)
+    assert pipeline.rank(SimpleNamespace(), 'docker', pipeline.StageConfig()) == [0, 1]
+    assert len(calls) == 1

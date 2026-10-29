@@ -23,29 +23,43 @@ class ChunkIndex:
         self.bm25 = BM25Index().fit([r['chunk_text'] for r in rows])
 
     def search(self, query, vector, *, top_k=8, candidate_k=32, reranker=None,
-               allowed_item_ids=None, min_relevance=-1.):
+               allowed_item_ids=None, min_relevance=-1., unique_items=False):
         import faiss
         if top_k < 1 or candidate_k < 1:
             raise ValueError('Positive retrieval limits required')
+        candidate_k = max(candidate_k, top_k)
         vector = np.asarray(vector, dtype='float32').reshape(1, -1).copy()
         if (vector.shape[1] != self.ann.d or not np.isfinite(vector).all()
                 or not np.linalg.norm(vector)):
             raise ValueError('Invalid query vector')
         faiss.normalize_L2(vector)
         scores, ids = self.ann.search(vector, len(self.rows))
-        dense_scores = dict(zip(ids[0].tolist(), scores[0].tolist()))
+        dense_scores = dict(zip(ids[0].tolist(), np.clip(scores[0], -1., 1.).tolist()))
+
+        def select(ranking):
+            selected, seen = [], set()
+            for idx in ranking:
+                item_id = int(self.rows[idx]['item_id'])
+                if unique_items and item_id in seen:
+                    continue
+                seen.add(item_id)
+                selected.append(idx)
+                if len(selected) == candidate_k:
+                    break
+            return selected
+
         allowed = {i for i,r in enumerate(self.rows)
                    if (allowed_item_ids is None or int(r['item_id']) in allowed_item_ids)
-                   and dense_scores[i] >= min_relevance}
-        dense = [i for i in ids[0].tolist() if i in allowed][:candidate_k]
+                   and dense_scores[i] + 1e-6 >= min_relevance}
+        dense = select(sorted(allowed, key=lambda i: (-dense_scores[i], i)))
         lexical = self.bm25.score_query(query)
-        sparse = sorted((i for i,s in enumerate(lexical) if s > 0 and i in allowed),
-                        key=lambda i: (-lexical[i], i))[:candidate_k]
+        sparse = select(sorted((i for i,s in enumerate(lexical) if s > 0 and i in allowed),
+                               key=lambda i: (-lexical[i], i)))
         fused = {}
         for ranking in (dense, sparse):
             for rank, idx in enumerate(ranking, 1):
                 fused[idx] = fused.get(idx, 0.) + 1 / (60 + rank)
-        ranked = sorted(fused, key=lambda i: (-fused[i], i))[:candidate_k]
+        ranked = select(sorted(fused, key=lambda i: (-fused[i], i)))
         if reranker is not None and ranked:
             scores = np.asarray(reranker.predict(
                 [[query, self.rows[i]['chunk_text']] for i in ranked],

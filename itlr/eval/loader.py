@@ -16,7 +16,7 @@ def build_rank_context(with_ltr: bool = False) -> P.RankContext:
     from itlr.engine import load_engine
 
     engine = load_engine()
-    retrieval_model = pickle.load(open(config.artifact("retrieval_model.pkl"), "rb"))
+    retrieval_model = engine.chatbot.retrieval_model
     si = engine.search_index
     ctx = P.RankContext(
         item_list=engine.items,
@@ -28,7 +28,7 @@ def build_rank_context(with_ltr: bool = False) -> P.RankContext:
         query_prefix=si.get("query_prefix", ""),
         ann=si.get("ann"),
         reranker=si.get("reranker"),
-        cf_popularity=engine.cf_model.get("popularity"),
+        cf_popularity=(engine.cf_model or {}).get("popularity"),
     )
     if with_ltr:
         attach_ltr_scorer(ctx)
@@ -44,7 +44,8 @@ def attach_ltr_scorer(ctx: P.RankContext) -> bool:
         return False
     from itlr.eval import ltr_features as LF
 
-    bundle = pickle.load(open(path, "rb"))
+    with open(path, "rb") as handle:
+        bundle = pickle.load(handle)
     booster = bundle["booster"]
     with_cross = bundle.get("with_cross", True)
 

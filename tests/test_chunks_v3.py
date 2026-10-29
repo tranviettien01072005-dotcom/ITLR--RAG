@@ -38,3 +38,29 @@ def test_citation_rejects_chunk_not_in_selected_evidence():
     sources = [dict(item_id=1, chunk_id='1:2', evidence_kind='source_text')]
     assert validate_citations('[item_id:1] [chunk_id:1:99]', sources)['status'] == 'invalid'
     assert validate_citations('[item_id:1] [chunk_id:1:2]', sources)['status'] == 'valid'
+
+
+def test_chunk_top_k_larger_than_default_candidate_pool():
+    from itlr.core.chunks import ChunkIndex
+    rows = [dict(item_id=i, chunk_idx=0, chunk_text='docker') for i in range(40)]
+    index = ChunkIndex(rows, np.tile([1., 0.], (40, 1)))
+    assert len(index.search('docker', [1., 0.], top_k=40)) == 40
+
+
+def test_item_search_diversifies_before_candidate_truncation():
+    from itlr.core.chunks import ChunkIndex
+    rows = [dict(item_id=1, chunk_idx=i, chunk_text='docker') for i in range(40)]
+    rows.append(dict(item_id=2, chunk_idx=0, chunk_text='docker volumes'))
+    index = ChunkIndex(rows, np.array([[1., 0.]] * 40 + [[.8, .6]]))
+    hits = index.search('docker', [1., 0.], top_k=2, unique_items=True)
+    assert [h['item_id'] for h in hits] == [1, 2]
+    assert len(index.search('docker', [1., 0.], top_k=2)) == 2
+
+
+def test_cosine_threshold_is_inclusive_at_one_after_normalization():
+    from itlr.core.chunks import ChunkIndex
+    rows = [dict(item_id=1, chunk_idx=0, chunk_text='docker')]
+    index = ChunkIndex(rows, [[1., 2., 3.]])
+    hits = index.search('docker', [1., 2., 3.], min_relevance=1.)
+    assert len(hits) == 1
+    assert hits[0]['dense_score'] <= 1.

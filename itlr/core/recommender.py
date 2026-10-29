@@ -457,7 +457,7 @@ def reciprocal_rank_fusion(rankings, k=60):
     """Fuse multiple ranked lists using RRF."""
     scores = {}
     for ranking in rankings:
-        for rank, idx in enumerate(ranking):
+        for rank, idx in enumerate(dict.fromkeys(ranking)):
             scores[idx] = scores.get(idx, 0.0) + 1.0 / (k + rank + 1)
     return sorted(scores.items(), key=lambda x: x[1], reverse=True)
 

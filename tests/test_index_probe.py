@@ -136,3 +136,25 @@ def test_self_retrieval_rejects_zero_top_k(tmp_path):
     d = _mini_artifacts(tmp_path, n=2)
     with pytest.raises(ValueError, match='positive'):
         self_retrieval_sanity(d, top_k=0)
+
+
+def test_engine_probe_accepts_quoted_directory_as_data(monkeypatch, tmp_path):
+    import subprocess
+    from types import SimpleNamespace
+    from itlr.indexv2 import engine_probe
+    path = tmp_path / "index's folder"
+    def run(args, **kwargs):
+        compile(args[2], '<probe>', 'exec')
+        assert kwargs['env']['ITLR_ARTIFACTS_DIR'] == str(path)
+        return SimpleNamespace(stdout='ENGINE_PROBE_OK 1', stderr='', returncode=0)
+    monkeypatch.setattr(subprocess, 'run', run)
+    assert engine_probe(path)['ok'] is True
+
+
+def test_engine_probe_requires_successful_exit(monkeypatch, tmp_path):
+    import subprocess
+    from types import SimpleNamespace
+    from itlr.indexv2 import engine_probe
+    monkeypatch.setattr(subprocess, 'run', lambda *a, **kw: SimpleNamespace(
+        stdout='ENGINE_PROBE_OK 1', stderr='shutdown failed', returncode=1))
+    assert engine_probe(tmp_path)['ok'] is False

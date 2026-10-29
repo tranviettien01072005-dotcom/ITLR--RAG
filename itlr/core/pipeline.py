@@ -93,11 +93,12 @@ def _base_scores(ctx: RankContext, query: str, source: str) -> np.ndarray:
     raise ValueError(f"Nguồn ứng viên không hợp lệ: {source}")
 
 
-def candidate_generation(ctx: RankContext, query: str, cfg: StageConfig) -> List[int]:
+def candidate_generation(ctx: RankContext, query: str, cfg: StageConfig,
+                         base_scores: Optional[np.ndarray] = None) -> List[int]:
     """Stage 0: trả về danh sách vị trí item ứng viên (đã xếp theo điểm thô giảm dần)."""
     if cfg.candidate_source == "rag_fusion":
         return _rag_fusion_candidates(ctx, query, cfg)
-    scores = _base_scores(ctx, query, cfg.candidate_source)
+    scores = base_scores if base_scores is not None else _base_scores(ctx, query, cfg.candidate_source)
     k = min(cfg.candidate_k, scores.shape[0])
     top = np.argpartition(scores, -k)[-k:]
     top = top[np.argsort(scores[top])[::-1]]
@@ -202,7 +203,7 @@ def rank(ctx: RankContext, query: str, cfg: StageConfig, top_n: int = 500) -> Li
     base = None
     if cfg.candidate_source != "rag_fusion":
         base = _base_scores(ctx, query, cfg.candidate_source)
-    candidates = candidate_generation(ctx, query, cfg)
+    candidates = candidate_generation(ctx, query, cfg, base_scores=base)
     ranked = l1_rank(ctx, query, candidates, cfg, base_scores=base)
     ranked = l2_rerank(ctx, query, ranked, cfg)
     ranked = l3_reorder(ctx, ranked, cfg)

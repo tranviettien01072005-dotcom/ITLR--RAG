@@ -131,24 +131,24 @@ def probe(artifacts: str | Path, *, min_self_recall=0.8, with_engine=True) -> tu
 
 def engine_probe(artifacts: str | Path, timeout=600) -> dict:
     """Nạp engine THẬT (torch + faiss) trong subprocess: rc=0 ↔ artifacts dùng được."""
+    import os
     import subprocess
     import sys
 
     script = (
-        "import sys, os; os.environ['ITLR_ARTIFACTS_DIR']=r'%s'\n"
-        "sys.path.insert(0, r'%s')\n"
         "from itlr.engine import load_engine\n"
         "eng = load_engine()\n"
         "res = eng.search('kubernetes', min_pct=10)\n"
         "assert res['results'], 'không có kết quả search'\n"
         "print('ENGINE_PROBE_OK', len(res['results']))\n"
-    ) % (artifacts, str(config.ROOT))
+    )
+    env = {**os.environ, "ITLR_ARTIFACTS_DIR": str(Path(artifacts).resolve())}
     try:
         r = subprocess.run([sys.executable, "-c", script], capture_output=True,
-                           text=True, timeout=timeout)
+                           text=True, timeout=timeout, env=env, cwd=config.ROOT)
     except subprocess.TimeoutExpired:
         return {"ok": False, "msg": "engine_probe timeout"}
-    ok = ("ENGINE_PROBE_OK" in r.stdout)
+    ok = r.returncode == 0 and "ENGINE_PROBE_OK" in r.stdout
     return {"ok": ok, "msg": (r.stdout.strip().splitlines()[-1] if r.stdout.strip()
                               else (r.stderr.strip().splitlines()[-1]
                                     if r.stderr.strip() else "no output")),

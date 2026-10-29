@@ -64,15 +64,10 @@ class RecommenderEngine:
         if self.search_index.get("retrieval") is not None:
             from itlr.core.recommender import row_to_dict
             hits = self.search_index["retrieval"].search(search_query,item_type=item_type,
-                                                       min_relevance=min_pct/100.)
-            results = []
-            seen = set()
-            for hit in hits:
-                if hit["item_id"] in seen:
-                    continue
-                seen.add(hit["item_id"])
-                results.append({**row_to_dict(hit["item"],score=hit["dense_score"]),
-                                "chunk_id":hit["chunk_id"],"excerpt":hit["excerpt"]})
+                                                       min_relevance=min_pct/100., unique_items=True)
+            results = [{**row_to_dict(hit["item"], score=hit["dense_score"]),
+                        "chunk_id": hit["chunk_id"], "excerpt": hit["excerpt"]}
+                       for hit in hits]
         else:
             results = search_by_embedding(
                 search_query, self.items, self.model, self.search_index["embeddings"],
