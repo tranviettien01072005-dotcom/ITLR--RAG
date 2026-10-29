@@ -160,8 +160,8 @@ versions/<YYYYMMDD-HHMMSS>/      # artifacts đầy đủ + MANIFEST.json (probe
 ```
 
 - **Kích hoạt**: chỉ phiên bản có manifest `probe: ok` mới được `activate()`.
-  Con trỏ ghi nguyên tử (tmp + rename). Engine (`itlr.config.current_dir()`) đọc lại
-  con trỏ **mỗi lần mở file** → restart cũng không cache rác.
+  Con trỏ ghi nguyên tử (tmp + rename). Engine (`itlr.config.current_dir()`) cố định
+  thư mục active trong toàn bộ một lần load để không trộn hai phiên bản.
 - **Rollback** (quay về phiên bản activate liền trước):
 
   ```bash
@@ -193,7 +193,7 @@ cat var/data/last_build.json                        # phiên bản đã activate
 Kiểm thử nhanh hồi quy:
 
 ```bash
-.venv/bin/python -m pytest tests/ -q            # 152 tests xanh là floor hiện thời
+.venv/bin/python -m pytest tests/ -q            # kết quả phiên hiện tại: reports/FINAL_REMEDIATION.md
 ```
 
 ## 5. Giám sát & cảnh báo (gợi ý tối thiểu)
@@ -215,3 +215,26 @@ Kiểm thử nhanh hồi quy:
   VnExpress vì chưa có giấy phép mở; mỗi doc lưu `origin`, `crawl_license`, `crawl_lang`).
 - Dữ liệu tương tác CF (nếu bật --with-cf) là **giả lập seed 7** — ghi rõ ở ADR-005;
   tuyệt đối không dùng làm dữ liệu thật cho báo cáo đánh giá.
+
+## 7. Security remediation (2026-10-29)
+
+Chưa đủ bằng chứng production-ready: xem `reports/FINAL_REMEDIATION.md`.
+API chỉ một worker và một replica (limiter trong RAM). Docker bind host loopback;
+command mặc định `--workers 1 --no-proxy-headers`. Nếu cần IP client qua proxy,
+chỉ dùng `--proxy-headers --forwarded-allow-ips=<IP proxy thực>` và proxy phải ghi đè
+forwarding headers. Không dùng `*`. Web dùng `TRUSTED_PROXIES` với CIDR thực.
+
+Production đặt `ITLR_REQUIRE_ARTIFACT_MANIFEST=1`. Build/probe phải do builder tin cậy;
+mount artifacts read-only cho API. Hash SHA256 phát hiện file thay đổi, không thay thế
+chữ ký hay quyền filesystem. Manifest cũ thiếu inventory phải trusted re-probe trước activate.
+`/live` là liveness; `/health` là readiness engine, trả 503 khi chưa build.
+
+Web riêng: Node 22+, PostgreSQL; `cd web`, `npm ci`, cấu hình `web/.env` từ mẫu
+với JWT/admin/DB credentials riêng, `npm run migrate`, `npm run build`, `npm start`.
+`/health` kiểm tra process; `/ready` kiểm tra PostgreSQL. Không public upload documents
+trước khi xác minh scanning/isolation và các giới hạn ghi trong `web/SECURITY_REMEDIATION.md`.
+
+Kiểm chứng trước release: `python -m pytest tests/`, `cd web && npm run typecheck &&
+npm run lint && npm test && npm run build && npm audit --audit-level=high`;
+`python -m pip_audit` và `python -m bandit -r itlr scripts -lll`.
+CI có gates nhưng một workflow chưa chạy trên GitHub không phải bằng chứng CI xanh.

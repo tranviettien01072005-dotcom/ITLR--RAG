@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import argparse
 import logging
+import os
 import re
 from pathlib import Path
 
@@ -119,7 +120,10 @@ def assemble_itlr_items(max_items=None, source_ids=None) -> pd.DataFrame:
             "origin": f"crawl:{d['source_id']}",
             "crawl_license": d["license"],
             "crawl_lang": d["lang"],
-            "crawl_hash": d["content_hash"][:16],
+            "crawl_hash": d["content_hash"],
+            "full_text": text_full,
+            "source_updated_at": d.get("published_at") or "",
+            "source_fetched_at": d["fetched_at"],
         })
     store.close()
     df = pd.DataFrame(rows)
@@ -144,7 +148,8 @@ def _legacy_floor_id() -> int:
         return 0
 
 
-PROVENANCE_COLS = ["origin", "crawl_license", "crawl_lang", "crawl_hash"]
+PROVENANCE_COLS = ["origin", "crawl_license", "crawl_lang", "crawl_hash",
+                   "full_text", "source_updated_at", "source_fetched_at"]
 
 
 def build_catalog_v2(out_path=None, max_items=None, source_ids=None) -> pd.DataFrame:
@@ -169,6 +174,10 @@ def build_catalog_v2(out_path=None, max_items=None, source_ids=None) -> pd.DataF
     legacy["crawl_lang"] = ""
     legacy["crawl_hash"] = ""
 
+    for column in ("full_text", "source_updated_at", "source_fetched_at"):
+        legacy[column] = ""
+    if os.environ.get("ITLR_REAL_ONLY") == "1":
+        legacy = legacy.iloc[:0]
     crawl = assemble_itlr_items(max_items=max_items, source_ids=source_ids)
     if not crawl.empty:
         keep = []

@@ -16,6 +16,8 @@ Quy tắc:
 
 from __future__ import annotations
 
+import hashlib
+import re
 import json
 import os
 import shutil
@@ -33,7 +35,12 @@ class VersionError(RuntimeError):
 
 
 def _dir(root: Path, version: str) -> Path:
-    return Path(root) / "versions" / version
+    if not isinstance(version, str) or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_.-]{0,127}", version):
+        raise VersionError("Invalid artifact version identifier")
+    candidate = Path(root) / "versions" / version
+    if not candidate.resolve().is_relative_to(Path(root).resolve()):
+        raise VersionError("Artifact version escapes trusted root")
+    return candidate
 
 
 def create_version_dir(root=None, version: str | None = None) -> Path:
@@ -53,11 +60,38 @@ def _id(now: float | None = None) -> str:
 
 def write_manifest(version_dir, manifest: dict) -> None:
     vdir = Path(version_dir)
+    manifest = {**manifest, "sha256": artifact_hashes(vdir), "integrity_schema": 1}
     (vdir / MANIFEST).write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
 MANIFEST = "MANIFEST.json"
+
+
+def artifact_hashes(version_dir) -> dict[str, str]:
+    """Local build integrity, not authentication: the artifact directory must be trusted."""
+    hashes = {}
+    for p in sorted(Path(version_dir).iterdir()):
+        if p.name == MANIFEST:
+            continue
+        if p.is_symlink():
+            raise VersionError("Symlink artifacts are not allowed")
+        if p.is_file():
+            with p.open("rb") as stream:
+                hashes[p.name] = hashlib.file_digest(stream, "sha256").hexdigest()
+    return hashes
+
+
+def verify_integrity(version_dir, *, required=False) -> None:
+    p = Path(version_dir) / MANIFEST
+    if not p.exists() and not required:
+        return  # Legacy local builds; production must require a manifest.
+    try:
+        manifest = json.loads(p.read_text(encoding="utf-8"))
+        if manifest.get("integrity_schema") != 1 or manifest.get("sha256") != artifact_hashes(version_dir):
+            raise VersionError("Artifact integrity mismatch; rebuild and probe trusted artifacts")
+    except (OSError, ValueError, TypeError) as exc:
+        raise VersionError("Invalid artifact integrity manifest") from exc
 
 
 def probe_ok(version_dir) -> bool:
@@ -91,18 +125,17 @@ def current_version(root=None) -> str | None:
 def current_dir(root=None) -> Path:
     """Thư mục artifacts đang hoạt động: con trỏ CURRENT.json → dir, không con trỏ → root."""
     root = Path(root or config.ARTIFACTS_DIR)
+    pointer = root / "CURRENT.json"
+    if not pointer.exists():
+        return root
     try:
-        meta = json.loads((root / "CURRENT.json").read_text(encoding="utf-8"))
-        d = meta.get("dir")
-        if d:
-            cand = Path(d)
-            if not cand.is_absolute():
-                cand = root / d
-            if cand.is_dir():
-                return cand
-    except Exception:
-        pass
-    return root
+        meta = json.loads(pointer.read_text(encoding="utf-8"))
+        candidate = _dir(root, meta["version"])
+        if meta.get("dir") != f"versions/{meta['version']}" or not candidate.is_dir():
+            raise VersionError("Invalid active artifact directory")
+        return candidate
+    except (OSError, ValueError, KeyError, TypeError) as exc:
+        raise VersionError("Invalid artifact pointer") from exc
 
 
 def _write_pointer(root: Path, version: str) -> None:
@@ -139,6 +172,7 @@ def activate(root=None, version: str | None = None) -> str:
     if not probe_ok(d):
         raise VersionError(
             f"Phiên bản '{version}' CHỨA MANIFEST probe ok — chạy kiểm thử trước khi kích hoạt.")
+    verify_integrity(d, required=True)
     prev = current_version(root)
     _write_pointer(root, version)
     _append_history(root, "activate", version)
@@ -163,6 +197,10 @@ def rollback(root=None) -> bool:
     prev = history_prev_version(root)
     if not prev:
         return False
+    d = _dir(root, prev)
+    if not probe_ok(d):
+        raise VersionError("Previous artifact version has no successful probe")
+    verify_integrity(d, required=True)
     cur = current_version(root)
     _write_pointer(root, prev)
     _append_history(root, "rollback" if cur else "activate", prev)

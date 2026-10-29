@@ -110,3 +110,32 @@
 - DeepSeek là mặc định generation; `DEEPSEEK_MODEL=deepseek-flash` override qua env.
   Tên model + base_url đã verify với docs chính thức (https://api-docs.deepseek.com/,
   2026-10-27); chưa verify LIVE call vì môi trường không có `DEEPSEEK_API_KEY`.
+
+## 2026-10-29 — Security/runtime remediation (unreleased)
+
+- Static UI renders external values safely; restricts Markdown and URLs; local scripts and CSP.
+- Web requires explicit credentials, validates upload signatures and protects pending attachments.
+- Constrain proxy trust and single-worker deployment; bound metric path cardinality.
+- Verify artifact hashes/path confinement and pin active directory per engine load.
+- Add Python/TypeScript/security CI and offline fixture pipeline regression.
+- Full production release remains gated; actual results: reports/FINAL_REMEDIATION.md.
+
+## Local models install — 2026-10-29 (in progress)
+
+Installed Torch 2.15.0+cpu, sentence-transformers 6.2.0, FAISS 1.15.1, pyarrow26.
+Model caches: var/hf (E5-base), var/ollama/models (qwen2.5:3b). Ollama executable
+0.40.13 in var/ollama/bin; full runtime archive is partial, llama-server not yet present.
+Downloads encountered github DNS failures and HF timeouts. Do not claim inference PASS.
+Fixed resolve_preset(full HF ID) to preserve registered E5 query/passage prefixes;
+regression reproduced FAIL then PASS. Full Python suite:201 passed,5 skipped (33.37s),
+before usable neural index. Caches/downloads excluded from git. Claude-Mem unavailable.
+
+## Local model verification complete — 2026-10-29
+
+E5-base weights downloaded, real768d embedding smoke PASS; Qwen2.5:3b downloaded,
+SHA256 verified and CPU inference PASS through Ollama0.40.13. V2 build/probe/activate
+PASS on5,000 synthetic items (version20261029-204546). Real HTTP health/search/chat200;
+API Qwen response57.01s with valid retrieved citation2716. Reranker disabled, CF unbuilt.
+Direct80-token Qwen smoke omitted citation; no general groundedness/hallucination claim.
+Evidence reports/LOCAL_MODELS.md and raw JSON; startup deploy/LOCAL_MODELS.md.
+DeepSeek, PostgreSQL/browser and other release gates remain unverified.

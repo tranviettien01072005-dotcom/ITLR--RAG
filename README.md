@@ -167,7 +167,7 @@ itlr/
   eval/                # metrics, diversity, significance, off_policy, cf_eval, ltr_features, loader
 eval/                  # entrypoints đánh giá (run_all, run_evaluation, eval_cf, ...)
 scripts/               # build_all.py — một lệnh build toàn bộ artifacts
-tests/                 # pytest — 70 test (đơn vị + hồi quy paths + API integration)
+tests/                 # pytest — kết quả hiện tại: reports/FINAL_REMEDIATION.md
 reports/               # kết quả thực nghiệm đầu ra
 ```
 
@@ -202,3 +202,13 @@ CI 20240623...). Thay đổi môi trường model embedding → phải build l�
   (https://api-docs.deepseek.com/, verify 2026-10-27 — model này do DeepSeek-V4.1-Flash-1017
   phục vụ); nếu cần model khác chỉ đổi `DEEPSEEK_MODEL` (vd `deepseek-v4-pro`) — không sửa
   code. Bảng giá trong `PRICE_PER_1M` là ước tính (chưa check trang pricing).
+
+## Security remediation 2026-10-29
+
+Trạng thái phát hành và kết quả kiểm chứng hiện tại: [FINAL_REMEDIATION](reports/FINAL_REMEDIATION.md).
+Không dùng benchmark lịch sử ở trên làm bằng chứng môi trường hiện tại chạy được.
+Có CI Python/TypeScript/security trong `.github/workflows/ci.yml`.
+Deploy một worker/replica, trusted proxy tường minh, manifest strict và hướng dẫn web
+riêng: [DEPLOY](deploy/DEPLOY.md#7-security-remediation-2026-10-29).
+UI tĩnh chỉ render Markdown giới hạn (bold/code/newline), không render HTML hay link Markdown;
+link catalog chỉ chấp nhận HTTP(S). `/live` tách biệt `/health` readiness.

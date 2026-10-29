@@ -25,3 +25,11 @@ var/data/last_build.json
 
 # reports/ GIỮ trong repo: là kết quả eval lặp lại được (từ eval/run_all.py),
 # ai checkout cần thấy số thật đi kèm code.
+
+# Local model runtimes/download caches
+var/cache/
+var/downloads/
+var/ollama/
+var/hf/
+
+var/data/web_items.csv

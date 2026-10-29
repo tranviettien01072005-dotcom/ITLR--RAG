@@ -5,7 +5,6 @@ Mọi nơi cần tới var/artifacts/ hoặc var/data/ nên dùng các hằng/h�
 """
 
 import os
-import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -43,20 +42,8 @@ def _resolve_active_dir() -> Path:
     override = os.environ.get("ITLR_ARTIFACTS_DIR")
     if override:
         return Path(override)
-    try:
-        p = _pointer_file()
-        if p.exists():
-            meta = json.loads(p.read_text(encoding="utf-8"))
-            d = meta.get("dir")
-            if d:
-                cand = Path(d)
-                if not cand.is_absolute():
-                    cand = ARTIFACTS_DIR / d
-                if cand.is_dir():
-                    return cand
-    except Exception:
-        pass
-    return ARTIFACTS_DIR
+    from itlr.versioning import current_dir as resolve_version
+    return resolve_version(ARTIFACTS_DIR)
 
 
 def current_dir() -> Path:

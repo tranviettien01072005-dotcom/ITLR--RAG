@@ -1,0 +1,72 @@
+import { promises as fsp } from "node:fs";
+import { ITEMS_CSV } from "../config/catalog";
+import { existsSync, readFileSync } from "node:fs";
+
+export { extractText } from "./dataset-extract";
+
+export function cleanForCsv(text: string, max = 3000): string {
+  return (text || "").replace(/\s+/g, " ").trim().slice(0, max);
+}
+
+const CSV = ITEMS_CSV;
+const COLS = [
+  "item_id",
+  "title",
+  "type",
+  "level",
+  "description",
+  "category",
+  "topics",
+  "instructor",
+  "platform",
+  "link",
+];
+let nextId: number | null = null;
+
+function readLastId(): number {
+  if (!existsSync(CSV)) return 0;
+  const lines = readFileSync(CSV, "utf8").trimEnd().split(/\r?\n/);
+  for (let i = lines.length - 1; i >= 1; i--) {
+    const n = parseInt(lines[i].split(",")[0], 10);
+    if (!Number.isNaN(n)) return n;
+  }
+  return 0;
+}
+
+function csvField(v: unknown): string {
+  const s = v == null ? "" : String(v);
+  return /[",\n\r]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+}
+
+export interface CatalogRow {
+  title: string;
+  description: string;
+  type?: string;
+  level?: string;
+  category?: string;
+  topics?: string;
+  instructor?: string;
+  platform?: string;
+  link?: string;
+}
+
+export async function appendCatalogRow(row: CatalogRow): Promise<number> {
+  if (nextId == null) nextId = readLastId();
+  nextId += 1;
+  const id = nextId;
+  const rec: Record<string, unknown> = {
+    item_id: id,
+    title: row.title || `Tài liệu ${id}`,
+    type: row.type || "Tài liệu",
+    level: row.level || "",
+    description: cleanForCsv(row.description || row.title || ""),
+    category: row.category || "Tài liệu cộng đồng",
+    topics: row.topics || "",
+    instructor: row.instructor || "",
+    platform: row.platform || "Tải lên",
+    link: row.link || "",
+  };
+  const line = COLS.map((c) => csvField(rec[c])).join(",") + "\n";
+  await fsp.appendFile(CSV, line, "utf8");
+  return id;
+}

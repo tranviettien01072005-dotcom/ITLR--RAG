@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %> · IT Learning</title>
+  <%# Font Inter tách theo unicode-range -> KHÔNG preload (preload subset không khớp ký tự
+      đang hiển thị sẽ gây cảnh báo "preloaded but not used"). @font-face + font-display:swap
+      trong styles.css tự tải đúng subset cần. %>
+  <link rel="stylesheet" href="/styles.css?v=<%= ASSET_VER %>">
+  <script src="/init.js"></script>
+</head>
+<body class="page-<%= (typeof path!=='undefined' ? ((path.split('/')[1])||'home') : 'home') %>"<% if (user) { %> data-user-id="<%= user.id %>"<% } %>>
+<nav class="nav">
+  <a class="brand" href="/">📚 IT Learning</a>
+  <div class="nav-links">
+    <% if (user) { %>
+      <a href="/search" class="<%= (typeof path!=='undefined'&&path.startsWith('/search'))?'active':'' %>">Tìm kiếm</a>
+      <a href="/learning" class="<%= (typeof path!=='undefined'&&path.startsWith('/learning'))?'active':'' %>">Lộ trình học</a>
+      <a href="/chat" class="<%= (typeof path!=='undefined'&&path.startsWith('/chat'))?'active':'' %>">Trợ lý CNTT</a>
+      <a href="/blog" class="<%= (typeof path!=='undefined'&&path.startsWith('/blog'))?'active':'' %>">Cộng đồng</a>
+      <a href="/friends" data-nav="friends" class="<%= (typeof path!=='undefined'&&path.startsWith('/friends'))?'active':'' %>">Bạn bè<span class="nav-badge" hidden>0</span></a>
+      <a href="/messages" data-nav="messages" class="<%= (typeof path!=='undefined'&&path.startsWith('/messages'))?'active':'' %>">Tin nhắn<span class="nav-badge" hidden>0</span></a>
+      <a href="/dashboard" class="<%= (typeof path!=='undefined'&&path.startsWith('/dashboard'))?'active':'' %>">Bảng điều khiển</a>
+      <a href="/account" class="nav-user <%= (typeof path!=='undefined'&&path.startsWith('/account'))?'active':'' %>">👤 <%= user.name %></a>
+      <form action="/logout" method="post" class="inline"><%- include('csrf') %><button class="btn-ghost">Đăng xuất</button></form>
+    <% } else { %>
+      <a href="/login">Đăng nhập</a>
+      <a href="/register" class="btn-primary-sm">Đăng ký</a>
+    <% } %>
+  </div>
+</nav>
+<main class="container">

@@ -205,6 +205,7 @@ def build_field_corpus(items, field):
                 + repeat(item_type, 2)
                 + repeat(instructor, 1)
                 + repeat(platform, 1)
+                + normalize_text(row.get("full_text", "") if isinstance(row.get("full_text", ""), str) else "").split()
             )
         corpus.append(" ".join(tokens))
     return corpus
@@ -504,6 +505,10 @@ def row_to_dict(row, score=None, tfidf_score=None):
         "platform": row["platform"],
         "link": clean_link(row["link"]),
     }
+    for key in ("origin", "crawl_license", "crawl_lang", "crawl_hash", "source_updated_at", "source_fetched_at"):
+        value = row.get(key, "")
+        if isinstance(value, str) and value:
+            result[key] = value
     if "level" in row and str(row["level"]).strip():
         result["level"] = row["level"]
     if score is not None:

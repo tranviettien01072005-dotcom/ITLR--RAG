@@ -115,6 +115,8 @@ def probe(artifacts: str | Path, *, min_self_recall=0.8, with_engine=True) -> tu
         report["checks"].append({"check": "self_retrieval", "ok": ok,
                                  "detail": f"recall={ratio:.3f} min={min_self_recall}"})
         if ok and with_engine:
+            # The engine verifies bytes before unpickling, including in strict mode.
+            write_manifest(artifacts, {"probe": "pending", "report": report})
             ev = engine_probe(artifacts)
             report["engine_probe"] = ev
             ok = ev.get("ok", False)

@@ -18,10 +18,15 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
+import json
 import os
 import pickle
+import subprocess
 import sys
 import time
+from dataclasses import replace
+from datetime import datetime, timezone
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -71,7 +76,9 @@ def build_context() -> P.RankContext:
     """Nạp artifacts qua load_engine (model/ann/reranker) + retrieval_model -> RankContext."""
     from itlr.engine import load_engine
     engine = load_engine()
-    retrieval_model = pickle.load(open(config.artifact("retrieval_model.pkl"), "rb"))
+    model_path = config.artifact("retrieval_model.pkl")
+    with open(model_path, "rb") as f:
+        retrieval_model = pickle.load(f)
     si = engine.search_index
     return P.RankContext(
         item_list=engine.items,
@@ -84,6 +91,68 @@ def build_context() -> P.RankContext:
         ann=si.get("ann"),
         reranker=si.get("reranker"),
     )
+
+
+def effective_configs(no_rerank: bool, reranker_available: bool) -> tuple[dict, bool]:
+    """Chọn cấu hình trung thực với tầng rerank thực tế.
+
+    Khi rerank bị tắt/không khả dụng, cấu hình "+ Cross-Encoder" trùng y hệt "+ L1 hybrid
+    signals" -> KHÔNG báo cáo nó như một tầng riêng (tránh bảng ablation giả). Cấu hình Full
+    vẫn chạy nhưng đổi tên rõ "(no rerank)".
+    """
+    configs = P.ablation_configs()
+    rerank_effective = (not no_rerank) and reranker_available
+    selected: dict = {}
+    for name, cfg in configs.items():
+        if cfg.use_rerank and not rerank_effective:
+            if name == "+ Cross-Encoder":
+                continue
+            cfg = replace(cfg, use_rerank=False, name=f"{name} (no rerank)")
+            name = cfg.name
+        selected[name] = cfg
+    return selected, rerank_effective
+
+
+def _sha256(path: str) -> str:
+    h = hashlib.sha256()
+    with open(path, "rb") as f:
+        for chunk in iter(lambda: f.read(1 << 20), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def _git_sha() -> str:
+    try:
+        out = subprocess.run(["git", "rev-parse", "HEAD"], cwd=str(config.ROOT),
+                             capture_output=True, text=True, timeout=10)
+        return out.stdout.strip() if out.returncode == 0 else "unknown"
+    except Exception:  # noqa: BLE001 — provenance không được làm hỏng eval
+        return "unknown"
+
+
+def write_provenance(suffix: str, *, judgments_path: str, n_queries: int,
+                     rerank_requested: bool, rerank_available: bool,
+                     rerank_effective: bool, configs: list[str],
+                     max_queries: int, noisy: bool) -> str:
+    """Ghi reports/provenance<suffix>.json — bằng chứng cấu hình đã chạy, không phải nhãn người."""
+    payload = {
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "git_sha": _git_sha(),
+        "qrels_path": judgments_path,
+        "qrels_sha256": _sha256(config.data_file(judgments_path)),
+        "n_queries": n_queries,
+        "max_queries": max_queries,
+        "noisy_queries": bool(noisy),
+        "rerank_requested": bool(rerank_requested),
+        "reranker_available": bool(rerank_available),
+        "rerank_effective": bool(rerank_effective),
+        "configs": configs,
+        "labels": "rule-based synthetic qrels (KHÔNG phải nhãn người)",
+    }
+    out = config.ROOT / "reports" / f"provenance{suffix}.json"
+    os.makedirs(out.parent, exist_ok=True)
+    out.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    return str(out)
 
 
 def grades_for_ranking(positions, id_for_pos, rel_map):
@@ -143,14 +212,17 @@ def main():
     ctx = build_context()
     id_for_pos = ctx.item_list["item_id"].astype(int).to_numpy()
     n_items = len(ctx.item_list)
+    reranker_available = ctx.reranker is not None
     print(f"  xong sau {time.time()-t0:.1f}s | {n_items} items"
           f" | ANN={'có' if ctx.ann is not None else 'không'}"
-          f" | reranker={'có' if ctx.reranker is not None else 'không'}")
+          f" | reranker={'có' if reranker_available else 'không'}")
 
-    configs = P.ablation_configs()
+    configs, rerank_effective = effective_configs(args.no_rerank, reranker_available)
     if args.no_rerank:
-        for cfg in configs.values():
-            cfg.use_rerank = False
+        print("[!] --no-rerank: bỏ dòng '+ Cross-Encoder' (sẽ trùng '+ L1 hybrid signals').")
+    elif not reranker_available:
+        print("[!] Không nạp được reranker: bỏ dòng '+ Cross-Encoder'; "
+              "cấu hình Full chạy ở chế độ '(no rerank)'.")
 
     results = {}
     ndcg_by_cfg = {}
@@ -192,35 +264,64 @@ def main():
         sig_rows.append((name, cmp))
 
     diverse_name = "+ RAG-Fusion + MMR (Full)"
+    if diverse_name not in rec_lists_by_cfg:
+        diverse_name = next((n for n in rec_lists_by_cfg if n.startswith("+ RAG-Fusion")),
+                            full_name)
     ba = diversity.beyond_accuracy_report(
         rec_lists_by_cfg.get(diverse_name, rec_lists_by_cfg[full_name]), n_items,
         embeddings=ctx.embeddings,
         popularity=None,
     )
 
-    write_tables(results, sig_rows, ba, full_name, len(qrels), suffix, args.noisy)
+    write_tables(results, sig_rows, ba, full_name, len(qrels), suffix, args.noisy,
+                 judgments_path=args.judgments,
+                 rerank_requested=not args.no_rerank,
+                 rerank_available=reranker_available,
+                 rerank_effective=rerank_effective)
+    prov = write_provenance(
+        suffix, judgments_path=args.judgments, n_queries=len(qrels),
+        rerank_requested=not args.no_rerank, rerank_available=reranker_available,
+        rerank_effective=rerank_effective, configs=list(configs),
+        max_queries=args.max_queries, noisy=args.noisy)
+    print(f"-> {prov}")
     print(f"-> reports/tables{suffix}.md")
     print(f"\nHoàn tất. Xem reports/tables{suffix}.md để có bảng ablation + kiểm định.")
+    return 0
 
 
-def write_tables(results, sig_rows, ba, full_name, n_queries, suffix="", noisy=False):
+def write_tables(results, sig_rows, ba, full_name, n_queries, suffix="", noisy=False, *,
+                 judgments_path="eval/relevance_judgments.csv",
+                 rerank_requested=True, rerank_available=True, rerank_effective=True):
     lines = []
     mode = "NHIỄU (bỏ dấu + lỗi gõ)" if noisy else "sạch"
+    noisy_table = f"tables{suffix}_noisy.md"
     lines.append(f"# Kết quả đánh giá — Bảng ablation per-stage (truy vấn {mode})\n")
     lines.append(f"*Số truy vấn: {n_queries}. Metric macro-average trên nhãn bán-tự-động "
-                 f"(`data/eval/relevance_judgments.csv`).*\n")
+                 f"(`{judgments_path}`).*\n")
+    lines.append("> **Nguồn nhãn:** qrels rule-based sinh từ metadata catalog, KHÔNG phải "
+                 "nhãn người. Không dùng bảng này để tuyên bố chất lượng theo nhãn người.\n")
+    if rerank_effective:
+        rerank_note = "**BẬT** (cross-encoder đã nạp)."
+    elif not rerank_requested:
+        rerank_note = ("**TẮT** bởi `--no-rerank`: dòng `+ Cross-Encoder` bị bỏ vì sẽ trùng "
+                       "`+ L1 hybrid signals`.")
+    else:
+        rerank_note = ("**KHÔNG KHẢ DỤNG**: không nạp được reranker; dòng `+ Cross-Encoder` bị bỏ, "
+                       "cấu hình Full chạy `(no rerank)`.")
+    lines.append(f"> **Rerank:** {rerank_note}\n")
     if noisy:
-        lines.append("> Truy vấn bị **bỏ dấu + chèn lỗi gõ**, nhãn liên quan giữ nguyên. "
-                     "Bảng này đo **độ bền** của hệ trước input tiếng Việt đời thực: khớp từ "
-                     "vựng chính xác (TF-IDF/BM25) sụt mạnh, kênh ngữ nghĩa + char n-gram bỏ dấu "
-                     "giữ được chất lượng.\n")
+        lines.append(f"> Truy vấn bị **bỏ dấu + chèn lỗi gõ**, nhãn liên quan giữ nguyên. "
+                     f"Bảng này đo **độ bền** của hệ trước input tiếng Việt đời thực: khớp từ "
+                     f"vựng chính xác (TF-IDF/BM25) sụt mạnh, kênh ngữ nghĩa + char n-gram bỏ dấu "
+                     f"giữ được chất lượng.\n")
     else:
         lines.append("> Lưu ý: nhãn tự động ≈ khớp topic chính xác nên các cấu hình từ vựng "
                      "(TF-IDF/BM25) gần chạm trần — bảng sạch chủ yếu xác nhận **recall** của tầng "
                      "sinh ứng viên. Khác biệt phương pháp thể hiện rõ ở bảng **truy vấn nhiễu** "
-                     "(`tables_noisy.md`) và trên **nhãn người gán** (`evaluate_human.py`). "
+                     f"(`{noisy_table}`) và trên **nhãn người gán** (`evaluate_human.py`). "
                      "Cấu hình **Full** thêm MMR -> đánh đổi một phần độ chính xác lấy **đa dạng** "
-                     "(xem mục beyond-accuracy); **+ Cross-Encoder** là mốc độ-chính-xác cao nhất.\n")
+                     "(xem mục beyond-accuracy); **+ Cross-Encoder** là mốc độ-chính-xác cao nhất "
+                     "khi rerank thực sự bật.\n")
 
     lines.append("## Bảng ablation (headline metrics)\n")
     header = "| Cấu hình | " + " | ".join(HEADLINE) + " |"
@@ -250,9 +351,10 @@ def write_tables(results, sig_rows, ba, full_name, n_queries, suffix="", noisy=F
         lines.append(f"| {k} | {v:.4f} |")
     lines.append("")
 
+    os.makedirs(config.ROOT / "reports", exist_ok=True)
     with open(config.ROOT / "reports" / f"tables{suffix}.md", "w", encoding="utf-8") as f:
         f.write("\n".join(lines))
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main() or 0)

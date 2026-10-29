@@ -93,6 +93,31 @@ def ranking_on_human(df: pd.DataFrame):
     return agg, per_cfg_ndcg
 
 
+def no_labels_report(path: str) -> list[str]:
+    """Report trung thực khi chưa có nhãn người thật (không giữ số cũ trong reports/)."""
+    return [
+        "# Đánh giá trên nhãn người gán (B3)\n",
+        "> **KHÔNG CÓ NHÃN NGƯỜI THẬT.** Cột `human_label` trong "
+        f"`{path}` đang trống hoặc không tồn tại.",
+        "> Mọi con số human-eval cũ (n=228, kappa≈0.719) **không tái lập được** từ dữ "
+        "liệu hiện tại và KHÔNG được dùng trong báo cáo chính thức.",
+        "> Nhãn mô phỏng (nếu có) nằm ở `human_judgments_simulated.csv` và phải ghi rõ "
+        "là mô phỏng — xem ADR-003/ADR-004.\n",
+        "## Việc cần làm\n",
+        "1. Gán tay `human_label` (1=liên quan, 0=không) theo "
+        "`eval/prepare_labeling_sheet.py`.",
+        "2. Chạy lại `python eval/evaluate_human.py` để có Cohen's Kappa thật.\n",
+    ]
+
+
+def write_report(lines: list[str]) -> None:
+    out = config.ROOT / "reports" / "human_eval.md"
+    os.makedirs(out.parent, exist_ok=True)
+    with open(out, "w", encoding="utf-8") as f:
+        f.write("\n".join(lines))
+    print("\n-> reports/human_eval.md")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--with-ranking", action="store_true")
@@ -101,9 +126,10 @@ def main():
     path = config.data_file("eval/human_judgments.csv")
     df = load_human(path)
     if df.empty:
-        print(f"[!] {path}: chưa có human_label nào được gán. Hãy gán tay cột human_label "
-              f"(1=liên quan, 0=không) rồi chạy lại.")
-        return
+        print(f"[!] {path}: chưa có human_label nào được gán. Ghi report trung thực "
+              f"(n=0) thay vì giữ số cũ.")
+        write_report(no_labels_report(path))
+        return 0
 
     rep = kappa_report(df)
     print("== Đồng thuận nhãn tự động vs người gán (B3) ==")
@@ -145,4 +171,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main() or 0)

@@ -47,6 +47,9 @@ def resolve_preset(name=None):
     name = name or os.environ.get("EMBEDDING_MODEL", DEFAULT_PRESET)
     if name in PRESETS:
         return dict(PRESETS[name])
+    for preset in PRESETS.values():
+        if name == preset["model_name"]:
+            return dict(preset)
     return {"model_name": name, "query_prefix": "", "passage_prefix": "", "dim": None}
 
 

@@ -76,10 +76,13 @@ def main():
     auc = roc_auc(labels, scores)
     grid = np.linspace(0.30, 0.80, 51)
     best = max(((t, *prf_at(labels, scores, t)) for t in grid), key=lambda x: x[3])
-    cur = prf_at(labels, scores, 0.55)
+    from itlr.chatbot.chatbot import _offtopic_gate
+    current_thr = _offtopic_gate()
+    cur = prf_at(labels, scores, current_thr)
 
     print(f"\nAUC (ROC) = {auc:.4f}")
-    print(f"Ngưỡng hiện tại 0.55: P={cur[0]:.3f} R={cur[1]:.3f} F1={cur[2]:.3f}")
+    print(f"Ngưỡng runtime hiện tại {current_thr:.3f} (env ITLR_OFFTOPIC_GATE có thể override): "
+          f"P={cur[0]:.3f} R={cur[1]:.3f} F1={cur[2]:.3f}")
     print(f"Ngưỡng tối ưu F1 = {best[0]:.3f}: P={best[1]:.3f} R={best[2]:.3f} F1={best[3]:.3f}")
     print("IT score TB:", round(float(df[df.label==1].score.mean()), 3),
           "| ngoài lĩnh vực TB:", round(float(df[df.label==0].score.mean()), 3))
@@ -91,7 +94,7 @@ def main():
              f"- Điểm TB: IT = {df[df.label==1].score.mean():.3f} · ngoài lĩnh vực = {df[df.label==0].score.mean():.3f}\n",
              "| Ngưỡng | Precision | Recall | F1 |",
              "|---|---|---|---|",
-             f"| 0.55 (hiện tại) | {cur[0]:.3f} | {cur[1]:.3f} | {cur[2]:.3f} |",
+             f"| Ngưỡng runtime **{current_thr:.3f}** | {cur[0]:.3f} | {cur[1]:.3f} | {cur[2]:.3f} |",
              f"| **{best[0]:.3f} (tối ưu F1)** | {best[1]:.3f} | {best[2]:.3f} | {best[3]:.3f} |"]
     lines.append("\n### Bảng quét ngưỡng (trích)\n| Ngưỡng | P | R | F1 |\n|---|---|---|---|")
     for t in np.linspace(0.40, 0.70, 7):

@@ -1,0 +1,17 @@
+{
+  "model": "intfloat/multilingual-e5-base",
+  "revision": "d128750597153bb5987e10b1c3493a34e5a4502a",
+  "shape": [
+    3,
+    768
+  ],
+  "unit_norm": true,
+  "scores": [
+    0.8994658589363098,
+    0.7318390607833862,
+    0.7293598651885986
+  ],
+  "top_index": 0,
+  "seconds": 19.791298051000012,
+  "scope": "real E5 inference on synthetic three-passage smoke"
+}

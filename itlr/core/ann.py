@@ -10,11 +10,14 @@ Mọi hàm fail-safe: lỗi/không có thư viện -> trả None, hệ thống v
 thuộc cwd) — KHÔNG hardcode thư mục tương đối "artifacts/".
 """
 
+import logging
 import pickle
 
 import numpy as np
 
 from itlr import config
+
+LOG = logging.getLogger("itlr.ann")
 
 ANN_INDEX_FAISS = "ann_index.faiss"
 ANN_INDEX_HNSW = "ann_index.hnsw"
@@ -22,8 +25,13 @@ ANN_META = "ann_meta.pkl"
 
 
 def _dir(artifacts_dir) -> str:
-    """Quyết định thư mục artifact: caller truyền -> dùng; không -> config.ARTIFACTS_DIR."""
-    return str(artifacts_dir) if artifacts_dir is not None else str(config.ARTIFACTS_DIR)
+    """Thư mục artifact: caller truyền -> dùng; không -> thư mục ĐANG ACTIVE.
+
+    Phải dùng config.current_dir() (theo CURRENT.json), không phải ARTIFACTS_DIR gốc:
+    build theo phiên bản đặt ANN trong versions/<id>/, còn gốc chỉ là nơi chứa pointer.
+    """
+    return (str(artifacts_dir) if artifacts_dir is not None
+            else str(config.current_dir()))
 
 
 def _try_import_faiss():
@@ -71,14 +79,29 @@ def build_ann(embeddings, artifacts_dir=None):
     return None
 
 
-def load_ann(artifacts_dir=None):
-    """Nạp chỉ mục đã build. Trả về dict {backend, index} hoặc None nếu không có/không nạp được."""
+def load_ann(artifacts_dir=None, expected_n=None, expected_dim=None):
+    """Nạp chỉ mục đã build. Trả về dict {backend, index} hoặc None nếu không có/không nạp được.
+
+    expected_n/expected_dim: nếu caller biết kích thước hiện tại (engine), ANN phải khớp
+    tuyệt đối. Lệch ⇒ trả None + log ERROR để caller fallback brute-force, thay vì trả
+    kết quả sai do index cũ trỏ nhầm hàng.
+    """
     out_dir = _dir(artifacts_dir)
     meta_path = f"{out_dir}/{ANN_META}"
     try:
         with open(meta_path, "rb") as f:
             meta = pickle.load(f)
-    except Exception:
+    except Exception as exc:  # noqa: BLE001 — thiếu/hỏng meta là fail-safe, nhưng phải log
+        LOG.warning("ANN không nạp được meta tại %s (%s) — dùng brute-force.", meta_path, exc)
+        return None
+
+    if expected_n is not None and int(meta.get("n", -1)) != int(expected_n):
+        LOG.error("ANN lệch số hàng: meta.n=%s, hiện tại=%s — từ chối index cũ.",
+                  meta.get("n"), expected_n)
+        return None
+    if expected_dim is not None and int(meta.get("dim", -1)) != int(expected_dim):
+        LOG.error("ANN lệch chiều: meta.dim=%s, hiện tại=%s — từ chối index cũ.",
+                  meta.get("dim"), expected_dim)
         return None
 
     backend = meta.get("backend")

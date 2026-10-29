@@ -66,3 +66,21 @@ class TestContentKey:
     def test_hash_shape(self):
         k = url_util.content_key("https://dev.to/a")
         assert isinstance(k, str) and len(k) == 42 and k.startswith("u:")  # "u:" + sha1 hex 40
+
+
+def test_content_key_sha1_is_explicitly_nonsecurity(monkeypatch):
+    """URL IDs stay stable while declaring the digest is not an integrity primitive."""
+    import hashlib
+    from itlr.collect import url_util
+
+    original = hashlib.sha1
+    calls = []
+
+    def checked_sha1(data, **kwargs):
+        calls.append(kwargs)
+        return original(data, **kwargs)
+
+    expected = 'u:' + original(b'https://example.com/article', usedforsecurity=False).hexdigest()
+    monkeypatch.setattr(url_util.hashlib, 'sha1', checked_sha1)
+    assert url_util.content_key('https://example.com/article?utm_source=test') == expected
+    assert calls == [{'usedforsecurity': False}]

@@ -17,12 +17,15 @@
        Lấy mẫu phân tầng ~N cặp (query, item) trải đều các mức grade tự động -> cột
        `human_label` để NGƯỜI gán tay (1 = liên quan, 0 = không). Cột `auto_grade` giữ để
        tính Cohen's Kappa (đồng thuận auto vs người) sau khi gán xong.
-       Cờ --simulate-human: điền `human_label` bằng MÔ PHỎNG có nhiễu (CHỈ để chạy thử
-       pipeline đầu-cuối) — phải thay bằng nhãn người THẬT trước khi dùng làm số liệu chính thức.
+
+       Cờ --simulate-human ghi nhãn MÔ PHỎNG ra file RIÊNG
+       `data/eval/human_judgments_simulated.csv`, TUYỆT ĐỐI không ghi đè
+       `human_judgments.csv` (nhãn người thật). File mô phỏng chỉ để chạy thử pipeline
+       đầu-cuối và không được dùng làm số liệu chính thức (ADR-003/ADR-004).
 
 Cách chạy:
-    python scripts/eval/make_judgments.py
-    python scripts/eval/make_judgments.py --queries-per-cat 3 --human-pool 250 --simulate-human
+    python eval/make_judgments.py
+    python eval/make_judgments.py --queries-per-cat 3 --human-pool 250 --simulate-human
 """
 
 from __future__ import annotations
@@ -228,6 +231,42 @@ def write_csv(path: str, rows: list, fieldnames: list):
         w.writerows(rows)
 
 
+HUMAN_JUDGMENTS = "eval/human_judgments.csv"
+SIMULATED_HUMAN_JUDGMENTS = "eval/human_judgments_simulated.csv"
+
+
+def human_output_relpath(simulate: bool) -> str:
+    """Nhãn mô phỏng phải ra file riêng — không bao giờ trộn với nhãn người thật."""
+    return SIMULATED_HUMAN_JUDGMENTS if simulate else HUMAN_JUDGMENTS
+
+
+def count_labeled_rows(path: str) -> int:
+    """Số dòng đã có human_label khác rỗng (0 nếu file chưa tồn tại)."""
+    if not os.path.exists(path):
+        return 0
+    with open(path, newline="", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        if "human_label" not in (reader.fieldnames or []):
+            return 0
+        return sum(1 for row in reader if str(row.get("human_label", "")).strip())
+
+
+def write_human_pool(relpath: str, pool: list, *, simulate: bool, force: bool = False) -> str:
+    """Ghi pool nhãn người; chặn ghi đè nếu file đích đã có nhãn thật.
+
+    Trả về đường dẫn tuyệt đối. Raise FileExistsError nếu sẽ làm mất nhãn người thật.
+    """
+    path = config.data_file(relpath)
+    if not simulate and not force:
+        labeled = count_labeled_rows(path)
+        if labeled:
+            raise FileExistsError(
+                f"{path} đang có {labeled} nhãn người thật — từ chối ghi đè. "
+                f"Dùng --force chỉ khi chắc chắn muốn tạo lại khung (sẽ mất nhãn cũ).")
+    write_csv(path, pool, ["query_id", "query", "item_id", "auto_grade", "human_label"])
+    return path
+
+
 def sample_human_pool(qrels_rows: list, all_item_ids: list, pool_size: int, seed: int) -> list:
     """Lấy mẫu phân tầng cặp (query,item) cho người gán: trộn grade 2 / grade 1 / grade 0.
 
@@ -293,7 +332,9 @@ def main():
                     help="Truy vấn câu hỏi tự nhiên từ glossary (không chứa token topic) -> "
                          "phá trần lexical, buộc hiểu ngữ nghĩa")
     ap.add_argument("--simulate-human", action="store_true",
-                    help="Điền nhãn người MÔ PHỎNG (chỉ để chạy thử pipeline)")
+                    help="Ghi nhãn MÔ PHỎNG ra human_judgments_simulated.csv (không đụng nhãn thật)")
+    ap.add_argument("--force", action="store_true",
+                    help="Cho phép ghi đè human_judgments.csv đã có nhãn thật (nguy hiểm)")
     ap.add_argument("--out", default="eval/relevance_judgments.csv",
                     help="Đường dẫn qrels đầu ra (tương đối DATA_DIR)")
     ap.add_argument("--no-human", action="store_true",
@@ -325,18 +366,24 @@ def main():
           f" | TB {len(qrels)/max(n_q,1):.0f} item liên quan/truy vấn")
 
     if args.no_human:
-        return
+        return 0
     all_ids = items["item_id"].astype(int).tolist()
     pool = sample_human_pool(qrels, all_ids, args.human_pool, args.seed)
     if args.simulate_human:
         simulate_human(pool, args.seed)
-        print("   [!] human_label = MÔ PHỎNG (--simulate-human) — thay bằng nhãn người THẬT trước khi báo cáo")
-    hum_path = config.data_file("eval/human_judgments.csv")
-    write_csv(hum_path, pool, ["query_id", "query", "item_id", "auto_grade", "human_label"])
+        print("   [!] human_label = MÔ PHỎNG — file riêng, KHÔNG dùng cho báo cáo chính thức")
+    try:
+        hum_path = write_human_pool(
+            human_output_relpath(args.simulate_human), pool,
+            simulate=args.simulate_human, force=args.force)
+    except FileExistsError as exc:
+        print(f"[LỖI] {exc}", file=sys.stderr)
+        return 2
     print(f"-> {hum_path}")
-    print(f"   {len(pool)} cặp (query,item) chờ người gán "
-          f"({'ĐÃ mô phỏng' if args.simulate_human else 'human_label TRỐNG — cần gán tay'})")
+    print(f"   {len(pool)} cặp (query,item) "
+          f"({'ĐÃ mô phỏng — không phải nhãn người' if args.simulate_human else 'human_label TRỐNG — cần gán tay'})")
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main() or 0)

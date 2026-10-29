@@ -12,10 +12,13 @@ services:
     container_name: itlr-api
     env_file: .env
     ports:
-      - "8000:8000"
+      - "127.0.0.1:8000:8000"
     volumes:
       # Dữ liệu runtime: artifacts (phiên bản), SQLite crawler, HF cache — ngoài image.
       - ./var:/app/var
+    environment:
+      WEB_CONCURRENCY: "1"
+      ITLR_REQUIRE_ARTIFACT_MANIFEST: "1"
     restart: unless-stopped
     # CPU-only deploy: giới hạn CPU cho job crawl/build tranh chấp với server. Điều chỉnh theo máy.
     deploy:

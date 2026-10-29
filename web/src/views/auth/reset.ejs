@@ -1,0 +1,32 @@
+<%- include('../partials/header') %>
+
+<div class="auth-split">
+  <div class="auth-box">
+    <h1>Đặt lại mật khẩu</h1>
+    <% if (!valid) { %>
+      <div class="alert">
+        Link đặt lại mật khẩu không hợp lệ, đã bị dùng hoặc đã hết hạn.<br>
+        <a href="/forgot">Yêu cầu link mới →</a>
+      </div>
+    <% } else { %>
+      <p class="muted">Đặt mật khẩu mới cho tài khoản của bạn.</p>
+      <% if (errors && errors.length) { %>
+        <div class="alert"><% errors.forEach(function (e) { %><%= e %><br><% }); %></div>
+      <% } %>
+      <form action="/reset/<%= token %>" method="post">
+        <%- include('../partials/csrf') %>
+        <label>Mật khẩu mới
+          <input type="password" name="password" required minlength="8" autocomplete="new-password">
+        </label>
+        <label>Xác nhận mật khẩu
+          <input type="password" name="confirm" required minlength="8" autocomplete="new-password">
+        </label>
+        <p class="muted small"><%= PASSWORD_HINT %></p>
+        <button class="btn-primary block" type="submit">Đặt mật khẩu mới</button>
+      </form>
+    <% } %>
+  </div>
+  <%- include('../partials/auth-aside') %>
+</div>
+
+<%- include('../partials/footer') %>

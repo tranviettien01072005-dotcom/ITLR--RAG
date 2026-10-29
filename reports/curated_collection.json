@@ -1,0 +1,904 @@
+{
+  "selection": "Authored official documentation URL allowlist; availability/content checks automated; not human evaluation",
+  "attempted": 128,
+  "ok": [
+    {
+      "url": "https://docs.python.org/3/tutorial/appetite.html",
+      "title": "1. Whetting Your Appetite",
+      "hash": "19a9acc8644af5ffa3164962f420f0dc587e5336104b714b41918a421b5cf80e",
+      "chars": 4417,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/tutorial/interpreter.html",
+      "title": "2. Using the Python Interpreter",
+      "hash": "4c8f54489f995a9b10317c35fc9cad69f1ce1f38ea9a2bac7b49ba6e9c28d5dc",
+      "chars": 5589,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/tutorial/introduction.html",
+      "title": "3. An Informal Introduction to Python",
+      "hash": "44950268b2dbbc328b65314c4a8207634a5b14c5e2b43f023b4ea4538092e4a7",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/tutorial/controlflow.html",
+      "title": "4. More Control Flow Tools",
+      "hash": "d8071a253daaa3a399962c670c2a0722bc8cb97966f14cbc2c8673091c8fff7a",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/tutorial/datastructures.html",
+      "title": "5. Data Structures",
+      "hash": "69c6bfd488be36c306415b39b604000e089ef1dacdde3d0487e0b0ac6ba62324",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/tutorial/modules.html",
+      "title": "6. Modules",
+      "hash": "a3bb2f51f771cccf04aff7f4edfde9f62a9dd9b91c73467dbba2566388477597",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/tutorial/inputoutput.html",
+      "title": "7. Input and output",
+      "hash": "394895e6103a0c24b4e5e4469fe467691544c2507028fa245007fb363d07a4fc",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/tutorial/errors.html",
+      "title": "8. Errors and Exceptions",
+      "hash": "9ff22f889330cf54b62bce49b723ce986f488e3d1e9e027c8e05fed4d0b4b950",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/tutorial/classes.html",
+      "title": "9. Classes",
+      "hash": "bc395a85358e2605ba636d8fe35ded95608a1538f212d2f5b9216338c06a756c",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/tutorial/stdlib.html",
+      "title": "10. Brief tour of the standard library",
+      "hash": "e2bd000d79d406f5ba018a96a0e639600ca43627b7aeb8772471b624a5dcfe5a",
+      "chars": 10067,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/tutorial/stdlib2.html",
+      "title": "11. Brief tour of the standard library — part II",
+      "hash": "f4080e1051abb813a404001dd892fa3db47186296ecd1abb707ac2b77b7f069a",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/tutorial/venv.html",
+      "title": "12. Virtual Environments and Packages",
+      "hash": "c9420135f2e11576d49b950834b7a6e5932226bde111de5f3730c052be288399",
+      "chars": 6995,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/tutorial/whatnow.html",
+      "title": "13. What Now?",
+      "hash": "ab37203da57be07b99c32976ce3e1e97886e2a8fa80178d3f0786f889ee10f55",
+      "chars": 2965,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/tutorial/interactive.html",
+      "title": "14. Interactive Input Editing and History Substitution",
+      "hash": "3c55377ed67358424f898846bba39894ef07ecc42c3dabc37fe2ca452793eba8",
+      "chars": 1964,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/tutorial/floatingpoint.html",
+      "title": "15. Floating-Point Arithmetic:  Issues and Limitations",
+      "hash": "a1e762fb949186cc1c2edcc37072a621ec708f8e48b53ba215325e8685adca8c",
+      "chars": 11820,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/functions.html",
+      "title": "Built-in functions",
+      "hash": "43964fcb4f9e3a95aa784b43371140b25d458670ecb8f47b783d9eee40c82b32",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/stdtypes.html",
+      "title": "Built-in Types",
+      "hash": "2e3122fb787bf90e6ddfbbc830cd72ddcf985ea8c3ade36683883e26c4dcc897",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/exceptions.html",
+      "title": "Built-in Exceptions",
+      "hash": "f8ba8e57593c457629c68b4985494edcce5aa93f034b7c073d369b4bf1373380",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/string.html",
+      "title": "string — Common string operations",
+      "hash": "f246f52b92c69c352ee303ccce9f6656f5b2bbd7c9d544a0621f875509cba9b1",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/re.html",
+      "title": "re — Regular expression operations",
+      "hash": "859c28e9090bc4ce86e363eafbd5ca4a338d602239a44ba1ca25da3e066789ee",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/datetime.html",
+      "title": "datetime — Basic date and time types",
+      "hash": "aa7f893709924e5ac6df41c05f031de9c3d1ebd4bb04d1f78b55259138615a4d",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/collections.html",
+      "title": "collections — Container datatypes",
+      "hash": "ffe637d124efb301c1d00fe19cf0d4fc04b375c74bf3431d6142334fdc451483",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/heapq.html",
+      "title": "heapq — Heap queue algorithm",
+      "hash": "bc1ff4cea8e1060156f2154bee601e2858a068bcaa0fcd157c5da0bdd426d10a",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/array.html",
+      "title": "array — Efficient arrays of numeric values",
+      "hash": "f0a12bf4dbc90075f5c618dfba3bf036b7d44f78071d0faeb58b563001be4589",
+      "chars": 8683,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/enum.html",
+      "title": "enum — Support for enumerations",
+      "hash": "dd1357a8b9598602b3d2951a4485adadcf805ae9b6e5a482fb4b5273d36a9e17",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/math.html",
+      "title": "math — Mathematical functions",
+      "hash": "eac25594eb41ff7455e16aac53bbaab157b7b7ccdf83ba5793f90d329d886fbe",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/random.html",
+      "title": "random — Generate pseudo-random numbers",
+      "hash": "a19016105bffce5bf577845f201295544002adf2296497200c6025271059cdce",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/statistics.html",
+      "title": "statistics — Mathematical statistics functions",
+      "hash": "4ff1a3d619af8848170518afb560ce5d68bbd36474ec57b769bb38fb637deeec",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/itertools.html",
+      "title": "itertools — Functions creating iterators for efficient looping",
+      "hash": "e11994e9e473a0cc6f5a45ab76567fa9ede02fdf4756a343505b95e8ac69b1c2",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/functools.html",
+      "title": "functools — Higher-order functions and operations on callable objects",
+      "hash": "4e2e295318daaf06b5853917228e1e509ca18b8e43b0130959100e6fbd99e631",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/pathlib.html",
+      "title": "pathlib — Object-oriented filesystem paths",
+      "hash": "c265de222b361c5a11b4e71ee9c72daca1210d31cb543d0e2b6c8ca12f62d08c",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/os.html",
+      "title": "os — Miscellaneous operating system interfaces",
+      "hash": "76e36c582c26a478012b4bfbd797e0553280636550d3fba3e5779dc2df18b384",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/io.html",
+      "title": "io — Core tools for working with streams",
+      "hash": "611be6f7c37eda357565db8ccbf14ba3dc2c78f813b054e9f35f750e5eb0d7ed",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/time.html",
+      "title": "time — Time access and conversions",
+      "hash": "9d9ec455aa43e12da82b1ed25e379dad1c57cc94e0ca4cf6c6785e374c49794f",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/argparse.html",
+      "title": "argparse — Parser for command-line options, arguments and subcommands",
+      "hash": "07fc90c3ece180a0146c1fc2facfd709701e2917760bf8c0271813cfeed8f211",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/logging.html",
+      "title": "logging — Logging facility for Python",
+      "hash": "a7c42fa34a89348f412e591c4c487757fe4fa38bcc14a99af372034dd788cf28",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/json.html",
+      "title": "json — JSON encoder and decoder",
+      "hash": "f6fa6d8b1475698ca837324ce04ffbb636fd27b2dad0e31f98257a26fa4aa177",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/csv.html",
+      "title": "csv — CSV file reading and writing",
+      "hash": "fcd96b49351f7da134ed298b30ff4b0aebcbb806f2edf39f9a8d978893ffb841",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/sqlite3.html",
+      "title": "sqlite3 — DB-API 2.0 interface for SQLite databases",
+      "hash": "21c1441cc166fb85869b0405c90d4529fb2fa68cfb0ddb1893589f985eaa342a",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/urllib.request.html",
+      "title": "urllib.request — Extensible library for opening URLs",
+      "hash": "767cc94084348f36eee8a0ae8d0b32b84e55fdaf3f9ecaf6d3fd068893ba183c",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/http.client.html",
+      "title": "http.client — HTTP protocol client",
+      "hash": "ab3085f4d98d61f8331a0d65717c9c75a2c2e45a6b3382fbea3a7f72afeeebaa",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/unittest.html",
+      "title": "unittest — Unit testing framework",
+      "hash": "5e6a776ce7b13e5f7badfb18abe4d28441865d5afd746ae52fbc162fbb348e0b",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/doctest.html",
+      "title": "doctest — Test interactive Python examples",
+      "hash": "6262f4d09a59babbd0eaeca606f89347c65c529922a60a0c342546fc5cc59641",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/typing.html",
+      "title": "typing — Support for type hints",
+      "hash": "a2496123512d511dae0fded892a45ca25dc03028587ce641d97108e321752bfa",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/dataclasses.html",
+      "title": "dataclasses — Data Classes",
+      "hash": "b4fea5fc37377a33762c37717da22c20211df2b0b49a0c3a9e1c37f170f9ae44",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/asyncio.html",
+      "title": "asyncio — Asynchronous I/O",
+      "hash": "f0f2fa73e6e640d116fad3da67c8b3e2cc4bdc82ec42f50fcdd54fdd09ccda30",
+      "chars": 2575,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/concurrent.futures.html",
+      "title": "concurrent.futures — Launching parallel tasks",
+      "hash": "0b1575c12aaf6bf2e19890d242e583927a7ce8c5930a19c5ef5a996e79c89091",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/threading.html",
+      "title": "threading — Thread-based parallelism",
+      "hash": "99d5a7983b3d86a1bce106a97b612d602b2bc69d9011d2f65c68c6ebaa5c5757",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/subprocess.html",
+      "title": "subprocess — Subprocess management",
+      "hash": "e4e9f6e6ae953acc57942fb16226f6f4f8ae28a50a1ea313ee633309eeaf4013",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/venv.html",
+      "title": "venv — Creation of virtual environments",
+      "hash": "a13e6eb6ef160349f245aedc06210f4baa9cfdd361d52966a0ff5a9b6c807c49",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/zipfile.html",
+      "title": "zipfile — Work with ZIP archives",
+      "hash": "b739a49e6a5c6a6f4f0c83381b129a8e270c3773246897124c963946981d766c",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/tempfile.html",
+      "title": "tempfile — Generate temporary files and directories",
+      "hash": "5f8f826e5c20e1e9ad0bbccdce55604f3a8bcd6c646b93807fbab04d43cffb9e",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/shutil.html",
+      "title": "shutil — High-level file operations",
+      "hash": "d202fd695be2cec78e9ccdacacbb4460529def997353482a6241b8f2fe9ece87",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/secrets.html",
+      "title": "secrets — Generate secure random numbers for managing secrets",
+      "hash": "dfb88b524688e8daabb5138845f96c5e7a228bb2b2ea985c18741027dbee201d",
+      "chars": 4889,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/hashlib.html",
+      "title": "hashlib — Secure hashes and message digests",
+      "hash": "fa7ba9eedf92227d01f574f9a781b3b66e4a6c447f66da928e14b8e3db9735d8",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/hmac.html",
+      "title": "hmac — Keyed-Hashing for Message Authentication",
+      "hash": "24c87a5b3125487067ea659e21904ca93cfc4fe8ea0b205fafb4f7cce51336b1",
+      "chars": 4190,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/ipaddress.html",
+      "title": "ipaddress — IPv4/IPv6 manipulation library",
+      "hash": "16bef1123a04a80fdd90640d28649b628740bfa08f634a632d28478a2460d517",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/socketserver.html",
+      "title": "socketserver — A framework for network servers",
+      "hash": "b64d9d105e4bb8312a3268e2685e0adde483b758171836679d41d548d319ab35",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/socket.html",
+      "title": "socket — Low-level networking interface",
+      "hash": "318bf3f1dd25e018568b5984aba425a106768046298c7fe3b704439108bf0e73",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/http.server.html",
+      "title": "http.server — HTTP servers",
+      "hash": "9c781a3fe771023a161d849b4dc8f999316c8a32c63ff00c7625f42226b83f78",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/email.html",
+      "title": "email — An email and MIME handling package",
+      "hash": "0847d46feb1558e534f62f3343a00e68ee93353be15098195eaea779b16af8a7",
+      "chars": 5894,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/base64.html",
+      "title": "base64 — Base16, Base32, Base64, Base85 Data Encodings",
+      "hash": "aaefd49011b8428c7f1997d5da1ef55d4abc1e1bbc8ae3fed1ef05351e7f1cb7",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/configparser.html",
+      "title": "configparser — Configuration file parser",
+      "hash": "c116e617f4acc8c0d2467a37fb661bedac1299a80017b44dbb27ad7e88a1e84f",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/pprint.html",
+      "title": "pprint — Data pretty printer",
+      "hash": "ed923d852c38715b996b8c94781bb06a73801e8a3e766c0e65b05a529a9267fb",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/uuid.html",
+      "title": "uuid — UUID objects according to RFC 9562",
+      "hash": "ed2028bd8254f6f2eb38493c0666723d2077a571a67cc44bd7f0164e87ee1d00",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/decimal.html",
+      "title": "decimal — Decimal fixed-point and floating-point arithmetic",
+      "hash": "5a660e0ce3845cc4680170679c9d7f949848f11d40f1ab516461c88c9babb733",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/fractions.html",
+      "title": "fractions — Rational numbers",
+      "hash": "cafd7cea56fc8db8c5e7c1901b765d3a502051c9923360b8a3c353a8a84bb662",
+      "chars": 7857,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/contextlib.html",
+      "title": "contextlib — Utilities for with-statement contexts",
+      "hash": "d89da0555bae4d99820fe9271f8a554b6b2803cd8b06dc080c5830d6e42a1ada",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/inspect.html",
+      "title": "inspect — Inspect live objects",
+      "hash": "91a857e4fc2d4c5a261a2dfe9a4665d267eaa853e5d5572c0a08b001fe5677d1",
+      "chars": 12000,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://docs.python.org/3/library/copy.html",
+      "title": "copy — Shallow and deep copy operations",
+      "hash": "54359cb16e544e46902388feedd70d6403a46c59853d1b80500ecb11a22901a0",
+      "chars": 3826,
+      "license": "PSF-2.0; https://docs.python.org/3/license.html"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML",
+      "title": "HTML: HyperText Markup Language | MDN",
+      "hash": "5124668f3b1b78fd882193a1ce24bf286ade85ece61cc900382daf531611e9bc",
+      "chars": 6745,
+      "license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS",
+      "title": "CSS: Cascading Style Sheets | MDN",
+      "hash": "759e3b235772e24495bc36e564d9ca01216c949c6365486b2c31d827d09a2a1b",
+      "chars": 4324,
+      "license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+      "title": "JavaScript | MDN",
+      "hash": "3066c1a94a2b1567b6761640cbc282f5945b4096edb9fd836353561232a82c86",
+      "chars": 5728,
+      "license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP",
+      "title": "HTTP: Hypertext Transfer Protocol | MDN",
+      "hash": "c92ef480f2f244cf8bcd627c1697563882f767fb53fdebaa6529de85d503b421",
+      "chars": 10383,
+      "license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model",
+      "title": "Document Object Model (DOM) - Web APIs | MDN",
+      "hash": "b857c9b0e5f6e3dbe67fb9b4ee76bc373913b0ad932e8ab1bc8f1cf9d03255e1",
+      "chars": 12000,
+      "license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/Accessibility",
+      "title": "Accessibility | MDN",
+      "hash": "76ec8dbd5d4849b7829057689b8259d7814dc1a6a70491b89999564344c76e5d",
+      "chars": 6530,
+      "license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/a",
+      "title": "<a> HTML anchor element - HTML | MDN",
+      "hash": "80922ec056d856f53cd2902413a8414ef83e82747addc77fd283a0c54a695550",
+      "chars": 12000,
+      "license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/form",
+      "title": "<form> HTML form element - HTML | MDN",
+      "hash": "27e1081b14b1548c690dfea4298370d6b8311a09bf746648db1d149e298c98f6",
+      "chars": 7150,
+      "license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input",
+      "title": "<input> HTML input element - HTML | MDN",
+      "hash": "f6032ab408c9fb48197ddeb3620d7dc4c71f8dc5f19c60afa021027bfde9bbc5",
+      "chars": 12000,
+      "license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/button",
+      "title": "<button> HTML button element - HTML | MDN",
+      "hash": "0acc41a985ee5419245ec1223877ec5c5e588c987758b02142fec2abdade8300",
+      "chars": 12000,
+      "license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/table",
+      "title": "<table> HTML table element - HTML | MDN",
+      "hash": "4fb75e7098d9acf6cf3abdedcac40e1936d65ccc67cafb68e91d62fb0a7be249",
+      "chars": 12000,
+      "license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/img",
+      "title": "<img> HTML image embed element - HTML | MDN",
+      "hash": "4b95236edfc26427f92b082533950e7fca9197bfc88e9f67004290164fc19b4d",
+      "chars": 12000,
+      "license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/section",
+      "title": "<section> HTML generic section element - HTML | MDN",
+      "hash": "cfef4c77a76f321ed31e3b80a4bedf9ac35cc903fa24b364ba8489ff7ba9514c",
+      "chars": 4507,
+      "license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/display",
+      "title": "display CSS property - CSS | MDN",
+      "hash": "dae394756ad535ed2eb0f107f988c1bb9183cfb48a278ce4e2c395e158ae26e3",
+      "chars": 12000,
+      "license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/margin",
+      "title": "margin CSS property - CSS | MDN",
+      "hash": "f37974588f59757e8acc150c58e1f0babb4e5803b9cfe86c753fd0826ddb4af3",
+      "chars": 5990,
+      "license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/padding",
+      "title": "padding CSS property - CSS | MDN",
+      "hash": "b7960a3d9475540def98e54c04997937f94b0bb8a7c30c0e746616842a780382",
+      "chars": 4305,
+      "license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/color",
+      "title": "color CSS property - CSS | MDN",
+      "hash": "d8328ead5c42b5becc2076d2fc9f230447cdb8837e3b8a363565234103cef192",
+      "chars": 4192,
+      "license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex",
+      "title": "flex CSS property - CSS | MDN",
+      "hash": "ca2b3a30ec35489a4f013de1511eae932b42b59e9fa3e52a2260a2d965d84d95",
+      "chars": 9519,
+      "license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/grid",
+      "title": "grid CSS property - CSS | MDN",
+      "hash": "bf3fb8aefe369a087e926299c6c60621dfde806968ae09a42a3abef593f78f4e",
+      "chars": 8490,
+      "license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries",
+      "title": "Using media queries - CSS | MDN",
+      "hash": "bc64a10d64dee26f89628a99c5b04def9f88c397afaba6d22d8c0edf81b3c70a",
+      "chars": 11292,
+      "license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Introduction",
+      "title": "Introduction - JavaScript | MDN",
+      "hash": "1a3fe5fc7f59bd705e8a7451776c74b9cd14864cb8144da77c7e46a1efac4ab8",
+      "chars": 10335,
+      "license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types",
+      "title": "Grammar and types - JavaScript | MDN",
+      "hash": "a8561c769ef8404a1c0040a2d51255b6f7e290f48e8562cc04e924d5391242dc",
+      "chars": 12000,
+      "license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling",
+      "title": "Control flow and error handling - JavaScript | MDN",
+      "hash": "a1dd78fa73fc898713799936c7a00d8d2516e72bb8764367b04e50d71a2bdb28",
+      "chars": 12000,
+      "license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration",
+      "title": "Loops and iteration - JavaScript | MDN",
+      "hash": "00809fcac6097efe158babdf39355d9695c4b3277a33e06f9944c1ae879fe395",
+      "chars": 11383,
+      "license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions",
+      "title": "Functions - JavaScript | MDN",
+      "hash": "59c8b905189ae129d9be6cbf75bf7472486790ba264610deccdd86c81d4d4316",
+      "chars": 12000,
+      "license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Indexed_collections",
+      "title": "Indexed collections - JavaScript | MDN",
+      "hash": "f4748cd9b2165910d53e83f0c4362a83a74660b7bf4c8dd73b6ddd57d4a71353",
+      "chars": 12000,
+      "license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_objects",
+      "title": "Working with objects - JavaScript | MDN",
+      "hash": "a3dce04ddab7b750b941e190b56acc4ee9a0ded9cf427fdb2c97b8fb8956a8dd",
+      "chars": 12000,
+      "license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises",
+      "title": "Using promises - JavaScript | MDN",
+      "hash": "ff6986134a7fe821ace8f397994075d0006e13c6bcc196126d2c3c364835de76",
+      "chars": 12000,
+      "license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function",
+      "title": "async function - JavaScript | MDN",
+      "hash": "47077e4e302483f413a3c75372561b2f823f63954707c197a4696a356ad790a0",
+      "chars": 11816,
+      "license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch",
+      "title": "Using the Fetch API - Web APIs | MDN",
+      "hash": "b23ecd142bb94603165eea5acda6b504a1b5bc1a7be6f6604281825088b6153d",
+      "chars": 12000,
+      "license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector",
+      "title": "Document: querySelector() method - Web APIs | MDN",
+      "hash": "52d7c81bc0959fd3fd23160de222f82917b6e4a9844846b33b9b3b6893e0afc7",
+      "chars": 4810,
+      "license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener",
+      "title": "EventTarget: addEventListener() method - Web APIs | MDN",
+      "hash": "b7bf56b28e194733d69fec0080f0f8c0a37d900edda9258e90ffbd8e52b31769",
+      "chars": 12000,
+      "license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods",
+      "title": "HTTP request methods - HTTP | MDN",
+      "hash": "dc67908cd836d679d3e958487ac588eb707e4b5b5a8003bb7d3276a91daf6bab",
+      "chars": 2375,
+      "license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status",
+      "title": "HTTP response status codes - HTTP | MDN",
+      "hash": "844f306cdc39b944436d8f3d04d595849183b0b08376be2efadec0804946e897",
+      "chars": 12000,
+      "license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS",
+      "title": "Cross-Origin Resource Sharing (CORS) - HTTP | MDN",
+      "hash": "dfd465a3fc22cbe605e7741f4f1595d9a0e61b38dadde9548d0370332d01f470",
+      "chars": 12000,
+      "license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/Security",
+      "title": "Security | MDN",
+      "hash": "0ab472ae577c94d92d10bb85819e747c5faf8bbc18ce8623d88c1cec07bd1d8a",
+      "chars": 6070,
+      "license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license"
+    },
+    {
+      "url": "https://docs.docker.com/get-started/",
+      "title": "Get started",
+      "hash": "7047102e12f9486e1c04047d4e9338463c00d900a8b43a353f7e85deb9801f6d",
+      "chars": 696,
+      "license": "Apache-2.0; https://github.com/docker/docs/blob/main/LICENSE"
+    },
+    {
+      "url": "https://docs.docker.com/get-started/docker-overview/",
+      "title": "What is Docker?",
+      "hash": "425c6d7d90af58e9420ea0947ca7f66f4b0c07eebe2c521ab92cec4282705e6d",
+      "chars": 8836,
+      "license": "Apache-2.0; https://github.com/docker/docs/blob/main/LICENSE"
+    },
+    {
+      "url": "https://docs.docker.com/get-started/introduction/",
+      "title": "Build and share a containerized application",
+      "hash": "0262514d815794392569330e26f34102f5d70e8d7f3a79cfdc1e1be02f8bd1ae",
+      "chars": 5261,
+      "license": "Apache-2.0; https://github.com/docker/docs/blob/main/LICENSE"
+    },
+    {
+      "url": "https://docs.docker.com/get-started/introduction/get-docker-desktop/",
+      "title": "Get Docker",
+      "hash": "58de9f4028658c6a423252ce874793c25076c6953e5f4010a03f15d5041dfb74",
+      "chars": 1296,
+      "license": "Apache-2.0; https://github.com/docker/docs/blob/main/LICENSE"
+    },
+    {
+      "url": "https://docs.docker.com/get-started/introduction/develop-with-containers/",
+      "title": "Build and share a containerized application",
+      "hash": "0262514d815794392569330e26f34102f5d70e8d7f3a79cfdc1e1be02f8bd1ae",
+      "chars": 5261,
+      "license": "Apache-2.0; https://github.com/docker/docs/blob/main/LICENSE"
+    },
+    {
+      "url": "https://docs.docker.com/get-started/introduction/build-and-push-first-image/",
+      "title": "Build and share a containerized application",
+      "hash": "0262514d815794392569330e26f34102f5d70e8d7f3a79cfdc1e1be02f8bd1ae",
+      "chars": 5261,
+      "license": "Apache-2.0; https://github.com/docker/docs/blob/main/LICENSE"
+    },
+    {
+      "url": "https://docs.docker.com/get-started/introduction/whats-next/",
+      "title": "Build and share a containerized application",
+      "hash": "0262514d815794392569330e26f34102f5d70e8d7f3a79cfdc1e1be02f8bd1ae",
+      "chars": 5261,
+      "license": "Apache-2.0; https://github.com/docker/docs/blob/main/LICENSE"
+    },
+    {
+      "url": "https://docs.docker.com/get-started/docker-concepts/the-basics/what-is-a-container/",
+      "title": "What is a container?",
+      "hash": "eb26756f6691ea30f1db31836986c96fba5d2413c6db643bf0dccc69fbca3702",
+      "chars": 6561,
+      "license": "Apache-2.0; https://github.com/docker/docs/blob/main/LICENSE"
+    },
+    {
+      "url": "https://docs.docker.com/get-started/docker-concepts/the-basics/what-is-an-image/",
+      "title": "What is an image?",
+      "hash": "4756d6a7258a271ee7b424ddce18f5ef2137fd09f485578b24046ef74cd4265e",
+      "chars": 7977,
+      "license": "Apache-2.0; https://github.com/docker/docs/blob/main/LICENSE"
+    },
+    {
+      "url": "https://docs.docker.com/get-started/docker-concepts/the-basics/what-is-a-registry/",
+      "title": "What is a registry?",
+      "hash": "76e1c203cb918ab795255626ccb4a7ff7d5e03cb5628ea86c4fc7859c168be6c",
+      "chars": 5253,
+      "license": "Apache-2.0; https://github.com/docker/docs/blob/main/LICENSE"
+    },
+    {
+      "url": "https://docs.docker.com/get-started/docker-concepts/building-images/writing-a-dockerfile/",
+      "title": "Writing a Dockerfile",
+      "hash": "09b4ea4bd8738d8b3ce87b65637bf944f9933424bf5fc0cabcb8b874e052d5fb",
+      "chars": 4947,
+      "license": "Apache-2.0; https://github.com/docker/docs/blob/main/LICENSE"
+    },
+    {
+      "url": "https://docs.docker.com/get-started/docker-concepts/running-containers/publishing-ports/",
+      "title": "Publishing and exposing ports",
+      "hash": "158b6360a7c526a4070f7b39f4405a78dbe1655eb2745d769727dfa666cc0f37",
+      "chars": 5660,
+      "license": "Apache-2.0; https://github.com/docker/docs/blob/main/LICENSE"
+    },
+    {
+      "url": "https://docs.docker.com/get-started/workshop/",
+      "title": "Build and share a containerized application",
+      "hash": "0262514d815794392569330e26f34102f5d70e8d7f3a79cfdc1e1be02f8bd1ae",
+      "chars": 5261,
+      "license": "Apache-2.0; https://github.com/docker/docs/blob/main/LICENSE"
+    },
+    {
+      "url": "https://docs.docker.com/get-started/workshop/02_our_app/",
+      "title": "Build and share a containerized application",
+      "hash": "0262514d815794392569330e26f34102f5d70e8d7f3a79cfdc1e1be02f8bd1ae",
+      "chars": 5261,
+      "license": "Apache-2.0; https://github.com/docker/docs/blob/main/LICENSE"
+    },
+    {
+      "url": "https://docs.docker.com/get-started/workshop/03_updating_app/",
+      "title": "Build and share a containerized application",
+      "hash": "0262514d815794392569330e26f34102f5d70e8d7f3a79cfdc1e1be02f8bd1ae",
+      "chars": 5261,
+      "license": "Apache-2.0; https://github.com/docker/docs/blob/main/LICENSE"
+    },
+    {
+      "url": "https://docs.docker.com/get-started/workshop/05_persisting_data/",
+      "title": "Build and share a containerized application",
+      "hash": "0262514d815794392569330e26f34102f5d70e8d7f3a79cfdc1e1be02f8bd1ae",
+      "chars": 5261,
+      "license": "Apache-2.0; https://github.com/docker/docs/blob/main/LICENSE"
+    },
+    {
+      "url": "https://docs.docker.com/get-started/workshop/06_bind_mounts/",
+      "title": "Build and share a containerized application",
+      "hash": "0262514d815794392569330e26f34102f5d70e8d7f3a79cfdc1e1be02f8bd1ae",
+      "chars": 5261,
+      "license": "Apache-2.0; https://github.com/docker/docs/blob/main/LICENSE"
+    },
+    {
+      "url": "https://docs.docker.com/get-started/workshop/07_multi_container/",
+      "title": "Build and share a containerized application",
+      "hash": "0262514d815794392569330e26f34102f5d70e8d7f3a79cfdc1e1be02f8bd1ae",
+      "chars": 5261,
+      "license": "Apache-2.0; https://github.com/docker/docs/blob/main/LICENSE"
+    },
+    {
+      "url": "https://docs.docker.com/get-started/workshop/08_using_compose/",
+      "title": "Build and share a containerized application",
+      "hash": "0262514d815794392569330e26f34102f5d70e8d7f3a79cfdc1e1be02f8bd1ae",
+      "chars": 5261,
+      "license": "Apache-2.0; https://github.com/docker/docs/blob/main/LICENSE"
+    },
+    {
+      "url": "https://docs.docker.com/compose/intro/compose-application-model/",
+      "title": "How Compose works",
+      "hash": "407a1e0715a4a23362851266727aa8df9c664209895f035f48263053d70aec6a",
+      "chars": 7133,
+      "license": "Apache-2.0; https://github.com/docker/docs/blob/main/LICENSE"
+    },
+    {
+      "url": "https://docs.docker.com/reference/dockerfile/",
+      "title": "Dockerfile reference",
+      "hash": "4ee3fd055dd80a3dcf7a14cde8b483e85689ca7f518d161158ad5db71caf5191",
+      "chars": 12000,
+      "license": "Apache-2.0; https://github.com/docker/docs/blob/main/LICENSE"
+    },
+    {
+      "url": "https://docs.docker.com/engine/security/",
+      "title": "Docker Engine security",
+      "hash": "d3104a055251cb462071d09fa281e770e9fba393a1c1d98c54a603378205965a",
+      "chars": 12000,
+      "license": "Apache-2.0; https://github.com/docker/docs/blob/main/LICENSE"
+    }
+  ],
+  "failed": [],
+  "retrieved_at": "2026-10-29T14:26:32Z"
+}

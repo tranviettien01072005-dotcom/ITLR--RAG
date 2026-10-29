@@ -106,3 +106,36 @@ ratchet mode (không hạ sàn). Review biên bản: `docs/review-2026-10-27.md`
   (không phải `tables_noisy.md`).
 - Không để ký tự rác (CJK/Cyrillic/...) vào .py/.md; nếu thấy xuất hiện trong code mới thì
   sửa ngay, không che bằng fallback.
+
+## Security remediation — 2026-10-29 (current session)
+
+Preserved pre-existing uncommitted Python and web changes. Added safe static rendering/CSP,
+fail-closed web configuration, upload signature/access boundaries, single-worker/proxy constraints,
+SHA256 artifact inventory/path confinement and CI gates (ADR-009).
+Actual runtime differs from historical memory: Python 3.14.3, no neural model cache/artifacts;
+Node22 downloaded to /tmp for web checks. See reports/FINAL_REMEDIATION.md for authoritative
+current test counts, dependency audit and unverified release gates. Historical benchmark numbers
+are not current execution evidence. Claude-Mem tools unavailable; no save_memory call claimed.
+
+Current remediation evidence: Python 200 passed/5 pre-existing skips; web 22 passed;
+full neural RAG/DeepSeek/PostgreSQL/browser remain NOT VERIFIED.
+
+## Local models install — 2026-10-29 (in progress)
+
+Installed Torch 2.15.0+cpu, sentence-transformers 6.2.0, FAISS 1.15.1, pyarrow26.
+Model caches: var/hf (E5-base), var/ollama/models (qwen2.5:3b). Ollama executable
+0.40.13 in var/ollama/bin; full runtime archive is partial, llama-server not yet present.
+Downloads encountered github DNS failures and HF timeouts. Do not claim inference PASS.
+Fixed resolve_preset(full HF ID) to preserve registered E5 query/passage prefixes;
+regression reproduced FAIL then PASS. Full Python suite:201 passed,5 skipped (33.37s),
+before usable neural index. Caches/downloads excluded from git. Claude-Mem unavailable.
+
+## Local model verification complete — 2026-10-29
+
+E5-base weights downloaded, real768d embedding smoke PASS; Qwen2.5:3b downloaded,
+SHA256 verified and CPU inference PASS through Ollama0.40.13. V2 build/probe/activate
+PASS on5,000 synthetic items (version20261029-204546). Real HTTP health/search/chat200;
+API Qwen response57.01s with valid retrieved citation2716. Reranker disabled, CF unbuilt.
+Direct80-token Qwen smoke omitted citation; no general groundedness/hallucination claim.
+Evidence reports/LOCAL_MODELS.md and raw JSON; startup deploy/LOCAL_MODELS.md.
+DeepSeek, PostgreSQL/browser and other release gates remain unverified.

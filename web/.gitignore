@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.env
+*.log
+
+# Generated reports and browser output
+coverage/
+playwright-report/
+test-results/
+
+var/data/web_items.csv

@@ -28,12 +28,37 @@ def _tokens(text: str) -> set[str]:
 
 
 def title_similarity(a: str, b: str) -> float:
-    """Jaccard trên token tiêu đề — used for cross-source near-dup detection."""
+    """Jaccard trên token tiêu đề — dùng cho cross-source near-dup detection.
+
+    Jaccard (giao/hợp) chứ KHÔNG phải overlap coefficient (giao/min): tiêu đề ngắn chung
+    vài token phổ biến ("hướng dẫn", "2026") từng cho điểm 1.0 và chặn nhầm bài khác.
+    """
     ta, tb = _tokens(a), _tokens(b)
     if not ta or not tb:
         return 0.0
     inter = ta & tb
-    return len(inter) / max(1, min(len(ta), len(tb)))
+    return len(inter) / len(ta | tb)
+
+
+def is_near_dup_title(a: str, b: str, threshold: float = 0.80) -> bool:
+    """True nếu hai tiêu đề gần trùng NGHĨA (không phải chỉ khác số thứ tự).
+
+    Loại trường hợp series "Bài học số 1" vs "Bài học số 2": token khác nhau chỉ là số
+    -> KHÔNG coi là trùng. Biến thể như "... cho người mới" vs "... cho người mới nhất"
+    (khác token chữ) vẫn bị bắt khi Jaccard >= threshold.
+    """
+    ta, tb = _tokens(a), _tokens(b)
+    if not ta or not tb:
+        return False
+    diff = ta ^ tb
+    if diff and all(t.isdigit() for t in diff):
+        return False
+    return len(ta & tb) / len(ta | tb) >= threshold
+
+
+def normalize_title(title: str) -> str:
+    """Khóa title ổn định: lowercase + gộp whitespace (dùng cho title_seen)."""
+    return " ".join(str(title or "").lower().split())
 
 
 def passes_quality(title: str, text: str, *, min_title_chars=10, min_text_chars=350,

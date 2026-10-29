@@ -73,7 +73,7 @@ def content_key(url) -> str:
     norm = normalize_url(url)
     if not norm:
         return ""
-    digest = hashlib.sha1(norm.encode("utf-8")).hexdigest()
+    digest = hashlib.sha1(norm.encode("utf-8"), usedforsecurity=False).hexdigest()
     return f"u:{digest}"
 
 

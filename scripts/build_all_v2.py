@@ -75,6 +75,7 @@ def check_outputs(version_dir: Path, required: list[str]) -> list[str]:
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--real-only", action="store_true", help="Index only real collected sources; preserve synthetic legacy CSV")
     ap.add_argument("--dry-run", action="store_true", help="Chỉ in plan, không chạy")
     ap.add_argument("--no-activate", action="store_true",
                     help="Build + probe nhưng KHÔNG ghi CURRENT.json (quyết định activate sau)")
@@ -101,7 +102,9 @@ def main() -> int:
           "char_vectorizer.pkl", "char_matrix.pkl"]),
     ]
     if args.with_cf:
-        steps.append(("interactions_fake", "itlr.pipelines.generate_interactions", None, False))
+        # Mọi step là bộ 3 (name, module, outputs). outputs=None nghĩa là bước phụ
+        # (interactions CSV nằm ngoài staging) — chỉ kiểm tra ở nhánh bên dưới.
+        steps.append(("interactions_fake", "itlr.pipelines.generate_interactions", None))
         steps.append(("cf_model", "itlr.pipelines.build_cf", ["cf_model.pkl"]))
 
     if args.dry_run:
@@ -112,6 +115,9 @@ def main() -> int:
              % args.keep)
         _log(f"  CF: {'kèm theo (--with-cf — tương tác giả, KHÔNG dữ liệu thật)' if args.with_cf else 'bỏ qua (tùy chọn V2)'}")
         return 0
+
+    if args.real_only:
+        os.environ["ITLR_REAL_ONLY"] = "1"
 
     # ---- Bước 1: catalog ----
     t_build = time.time()

@@ -24,14 +24,50 @@ from contextlib import asynccontextmanager  # noqa: E402
 from pathlib import Path  # noqa: E402
 from typing import List, Optional, Union  # noqa: E402
 
-from fastapi import FastAPI, HTTPException, Request  # noqa: E402
-from fastapi.responses import FileResponse, PlainTextResponse, StreamingResponse  # noqa: E402
+from fastapi import Depends, FastAPI, HTTPException, Request  # noqa: E402
+from fastapi.responses import (  # noqa: E402
+    FileResponse,
+    JSONResponse,
+    PlainTextResponse,
+    StreamingResponse,
+)  # noqa: E402
 from fastapi.staticfiles import StaticFiles  # noqa: E402
-from pydantic import BaseModel  # noqa: E402
+from pydantic import BaseModel, Field, field_validator  # noqa: E402
 
+from itlr.api import ratelimit  # noqa: E402
 from itlr.engine import load_engine  # noqa: E402
 
 STATIC_DIR = Path(__file__).resolve().parent / "static"
+
+# Sàn nhập: chặn payload khổng lồ trước khi tới engine/LLM (DoS + lãng phí token).
+QUERY_MAX_CHARS = 500
+CHAT_MESSAGE_MAX_CHARS = 2000
+CHAT_HISTORY_MAX_MSGS = 20
+CHAT_CONTENT_MAX_CHARS = 4000
+INTERESTED_MAX_ITEMS = 200
+
+# Rate mặc định (per IP/phút). 0 qua env = tắt bucket đó.
+RATE_SEARCH_DEFAULT = 120
+RATE_CHAT_DEFAULT = 30
+
+
+def _engine():
+    """load_engine nhưng thiếu artifacts ⇒ 503 (không để 500 âm thầm)."""
+    try:
+        return load_engine()
+    except FileNotFoundError:
+        raise HTTPException(
+            status_code=503,
+            detail="Artifacts chưa build (chạy scripts/build_all_v2.py)")
+
+
+def _rate_dependency(bucket: str, default_per_min: int):
+    def dep(request: Request) -> None:
+        ratelimit.enforce(request, bucket=bucket, default_per_min=default_per_min)
+    return dep
+
+_search_rate = _rate_dependency("SEARCH", RATE_SEARCH_DEFAULT)
+_chat_rate = _rate_dependency("CHAT", RATE_CHAT_DEFAULT)
 
 
 def _log(msg):
@@ -80,6 +116,7 @@ def _prewarm_ollama():
 @asynccontextmanager
 async def lifespan(_app):
     """Nạp artifacts ngay khi khởi động để lỗi thiếu artifacts lộ sớm, request đầu nhanh."""
+    ratelimit.validate_workers()
     try:
         load_engine()
         _log("[OK] Engine sẵn sàng — API tại http://localhost:8000")
@@ -110,14 +147,27 @@ async def _track_metrics(request: Request, call_next):
         _METRICS["errors_total"] += 1
         raise
     dt_ms = (time.perf_counter() - t0) * 1000.0
-    route = request.url.path
+    matched = request.scope.get("route")
+    route = getattr(matched, "path", "unmatched")
     r = _METRICS["by_route"].setdefault(route, {"count": 0, "ms_sum": 0.0, "ms_max": 0.0})
     r["count"] += 1
     r["ms_sum"] += dt_ms
     r["ms_max"] = max(r["ms_max"], dt_ms)
     if resp.status_code >= 500:
         _METRICS["errors_total"] += 1
+    resp.headers["Content-Security-Policy"] = ("default-src 'self'; script-src 'self'; "
+        "style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; "
+        "object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'")
+    resp.headers["X-Content-Type-Options"] = "nosniff"
+    resp.headers["X-Frame-Options"] = "DENY"
+    resp.headers["Referrer-Policy"] = "no-referrer"
+    resp.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
     return resp
+
+
+@app.get("/live")
+def live():
+    return {"status": "ok"}
 
 
 @app.get("/health")
@@ -134,8 +184,19 @@ def health():
 
 
 @app.get("/metrics", response_class=PlainTextResponse)
-def metrics():
-    """Phơi metric quan sát hệ thống dạng text (đếm request, độ trễ TB/đỉnh mỗi route)."""
+def metrics(request: Request):
+    """Phơi metric quan sát hệ thống dạng text (đếm request, độ trễ TB/đỉnh mỗi route).
+
+    Bảo vệ: khi đặt ITLR_ADMIN_TOKEN thì /metrics đòi X-Admin-Token (prod); không đặt
+    token thì chỉ cho phép client loopback (dev gỡ lỗi local) — không phải endpoint
+    công khai cung cấp nhịp truy vấn cho kẻ quét.
+    """
+    if not _metrics_allowed(request):
+        if _admin_token_expected():
+            raise HTTPException(status_code=403, detail="Cần header X-Admin-Token.")
+        raise HTTPException(
+            status_code=403,
+            detail="/metrics chỉ mở cho loopback khi chưa cấu hình ITLR_ADMIN_TOKEN.")
     lines = [
         f"requests_total {_METRICS['requests_total']}",
         f"errors_total {_METRICS['errors_total']}",
@@ -150,24 +211,45 @@ def metrics():
 
 
 class SearchReq(BaseModel):
-    query: str
-    type: Optional[str] = None
-    min_pct: int = 90
+    query: str = Field(min_length=1, max_length=QUERY_MAX_CHARS)
+    type: Optional[str] = Field(default=None, max_length=50)
+    min_pct: int = Field(default=90, ge=0, le=100)
 
 
 class ChatMsg(BaseModel):
-    role: str
-    content: str
+    role: str = Field(min_length=1, max_length=20)
+    content: str = Field(min_length=1, max_length=CHAT_CONTENT_MAX_CHARS)
+
+    @field_validator("role")
+    @classmethod
+    def _known_role(cls, v: str) -> str:
+        if v not in ("user", "assistant"):
+            raise ValueError("role phải là 'user' hoặc 'assistant'")
+        return v
 
 
 class ChatReq(BaseModel):
-    message: str
+    message: str = Field(min_length=1, max_length=CHAT_MESSAGE_MAX_CHARS)
     history: List[ChatMsg] = []
+
+    @field_validator("history")
+    @classmethod
+    def _history_cap(cls, v: List[ChatMsg]) -> List[ChatMsg]:
+        if len(v) > CHAT_HISTORY_MAX_MSGS:
+            raise ValueError(f"history tối đa {CHAT_HISTORY_MAX_MSGS} tin nhắn")
+        return v
 
 
 class ForYouReq(BaseModel):
     persona: Union[int, str]
     interested: List[int] = []
+
+    @field_validator("interested")
+    @classmethod
+    def _interested_cap(cls, v: List[int]) -> List[int]:
+        if len(v) > INTERESTED_MAX_ITEMS:
+            raise ValueError(f"interested tối đa {INTERESTED_MAX_ITEMS} item")
+        return v
 
 
 def _cf_unavailable_detail() -> str:
@@ -175,9 +257,9 @@ def _cf_unavailable_detail() -> str:
             "chọn V2). Search, chatbot và evaluation không bị ảnh hưởng.")
 
 
-@app.post("/api/search")
+@app.post("/api/search", dependencies=[Depends(_search_rate)])
 def api_search(req: SearchReq):
-    eng = load_engine()
+    eng = _engine()
     item_type = req.type if req.type in ("Khóa học", "Tài liệu") else None
     return eng.search(req.query, item_type=item_type, min_pct=req.min_pct)
 
@@ -187,29 +269,33 @@ _CHAT_ERROR_MSG = (
 )
 
 
-@app.post("/api/chat")
+@app.post("/api/chat", dependencies=[Depends(_chat_rate)])
 def api_chat(req: ChatReq):
-    eng = load_engine()
+    eng = _engine()
     history = [{"role": m.role, "content": m.content} for m in req.history]
     try:
         result = eng.chat(req.message, history=history)
     except Exception as e:  # noqa: BLE001
         _log(f"[!] /api/chat lỗi: {e}")
-        return {"response": _CHAT_ERROR_MSG, "recommendations": [], "intent": "error"}
-    return {
-        "response": result["response"],
-        "recommendations": result.get("recommendations", []),
-        "intent": result.get("intent"),
-    }
+        # 503: lỗi TẠM THỜI ở tầng chatbot/LLM — client thấy rõ lỗi kiểu HTTP,
+        # báo cáo lỗi không còn bị che bởi HTTP 200 "giả thành công".
+        return JSONResponse(
+            status_code=503,
+            content={"response": _CHAT_ERROR_MSG, "recommendations": [],
+                     "intent": "error"})
+    return result
 
 
-@app.post("/api/chat/stream")
+@app.post("/api/chat/stream", dependencies=[Depends(_chat_rate)])
 def api_chat_stream(req: ChatReq):
     """Trả lời chatbot dạng SSE — mỗi frame là 1 dòng `data: {json}` rồi dòng trống.
 
     Model local (Ollama) chậm ~30-135s/câu; nếu chờ cả câu, proxy/Heroku (timeout 30s) trả
-    503 trước khi xong. Stream đẩy chữ ngay khi sinh nên không chạm hard-timeout."""
-    eng = load_engine()
+    503 trước khi xong. Stream đẩy chữ ngay khi sinh nên không chạm hard-timeout.
+    Lỗi TRƯỚC khi stream bắt đầu ⇒ 503 thật; lỗi giữa stream ⇒ frame json vì không thể
+    đổi status sau khi header đã gửi.
+    """
+    eng = _engine()
     history = [{"role": m.role, "content": m.content} for m in req.history]
 
     def _frame(obj):
@@ -220,12 +306,16 @@ def api_chat_stream(req: ChatReq):
             for ev, data in eng.chat_stream(req.message, history=history):
                 if ev == "text":
                     yield _frame({"type": "text", "text": data})
-                elif ev == "meta":
-                    yield _frame({"type": "meta", "intent": data.get("intent"),
-                                  "recommendations": data.get("recommendations", [])})
+                elif ev == "sources":
+                    yield _frame({"type": "sources", "sources": data})
+                elif ev in {"meta", "final"}:
+                    yield _frame({"type": ev, **data})
         except Exception as e:  # noqa: BLE001
             _log(f"[!] /api/chat/stream lỗi: {e}")
-            yield _frame({"type": "text", "text": "\n\n_" + _CHAT_ERROR_MSG + "_"})
+            yield _frame({"type": "error", "message": _CHAT_ERROR_MSG})
+            yield _frame({"type": "final", "response": _CHAT_ERROR_MSG, "intent": "error",
+                          "sources": [], "recommendations": [], "provisional": False,
+                          "generation_mode": "error", "generation_error": "stream_failed"})
         yield _frame({"type": "done"})
 
     return StreamingResponse(
@@ -249,6 +339,16 @@ def _admin_authorized(request: Request) -> bool:
     if not expected:
         return False
     return secrets.compare_digest(given, expected)
+
+
+_LOOPBACK_HOSTS = frozenset({"127.0.0.1", "::1", "localhost"})
+
+
+def _metrics_allowed(request: Request) -> bool:
+    """Token cấu hình ⇒ đòi token (prod). Không token ⇒ chỉ loopback (dev local)."""
+    if _admin_token_expected():
+        return _admin_authorized(request)
+    return ratelimit.client_ip(request) in _LOOPBACK_HOSTS
 
 
 @app.post("/admin/reload")
@@ -282,7 +382,7 @@ def api_personas():
     from itlr.engine import CFUnavailable
 
     try:
-        return load_engine().personas()
+        return _engine().personas()
     except CFUnavailable:
         raise HTTPException(status_code=503, detail=_cf_unavailable_detail())
 
@@ -292,7 +392,7 @@ def api_for_you(req: ForYouReq):
     from itlr.engine import CFUnavailable
 
     try:
-        return load_engine().for_you(req.persona, interested_item_ids=req.interested)
+        return _engine().for_you(req.persona, interested_item_ids=req.interested)
     except CFUnavailable:
         raise HTTPException(status_code=503, detail=_cf_unavailable_detail())
     except (KeyError, ValueError):

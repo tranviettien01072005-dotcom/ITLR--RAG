@@ -1,0 +1,121 @@
+name: Quality gates
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: quality-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      USE_OLLAMA: '0'
+      HF_HUB_OFFLINE: '1'
+      TRANSFORMERS_OFFLINE: '1'
+      DISABLE_RERANKER: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: python -m pip install -r requirements.txt
+      - run: python -m pip check
+      - run: python -m compileall -q itlr scripts eval
+      - run: python -m pytest -q tests --junitxml=reports/pytest.xml
+      - name: API and fixture pipeline integration
+        run: python -m pytest -q tests/test_api_hardening.py tests/test_collect_runner.py tests/test_index_probe.py tests/test_pipeline_fixture.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: python-results
+          path: reports/pytest.xml
+  web:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - run: npm ci
+      - name: Ephemeral test configuration
+        run: |
+          echo "JWT_SECRET=$(openssl rand -hex 32)" >> "$GITHUB_ENV"
+          echo "ADMIN_PASSCODE=$(openssl rand -hex 24)" >> "$GITHUB_ENV"
+          echo 'DATABASE_URL=postgresql://test:ci-test-only-connection@127.0.0.1:5432/itlr_test' >> "$GITHUB_ENV"
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build
+      - run: npm audit --audit-level=high
+  security:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: python -m pip install -r requirements.txt pip-audit bandit
+      - name: Dependency vulnerabilities (no ignored advisories)
+        run: python -m pip_audit --progress-spinner off
+      - name: High severity static analysis
+        run: python -m bandit -r itlr scripts -lll
+  web-integration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: itlr_ci
+          POSTGRES_DB: itlr_ci
+          # Disposable test database; only runner loopback can reach this port.
+          POSTGRES_HOST_AUTH_METHOD: trust
+        ports:
+          - 127.0.0.1:5432:5432
+        options: >-
+          --health-cmd "pg_isready -U itlr_ci -d itlr_ci"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - run: npm ci
+      - name: Configure isolated integration credentials
+        run: |
+          echo "JWT_SECRET=$(openssl rand -hex 32)" >> "$GITHUB_ENV"
+          echo "ADMIN_PASSCODE=$(openssl rand -hex 24)" >> "$GITHUB_ENV"
+          echo "DATABASE_URL=postgresql://itlr_ci:$(openssl rand -hex 24)@127.0.0.1:5432/itlr_ci" >> "$GITHUB_ENV"
+      - run: npm run migrate
+      - name: HTTP login integration
+        run: |
+          npm run dev > /tmp/itlr-web.log 2>&1 &
+          web_pid=$!
+          trap 'kill "$web_pid" 2>/dev/null || true' EXIT
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://127.0.0.1:3000/login > /tmp/login.html; then break; fi
+            sleep 1
+          done
+          curl --fail --silent --dump-header /tmp/login.headers http://127.0.0.1:3000/login > /tmp/login.html
+          grep -qi content-security-policy /tmp/login.headers
+          grep -qi nosniff /tmp/login.headers
+          grep -q '<form' /tmp/login.html

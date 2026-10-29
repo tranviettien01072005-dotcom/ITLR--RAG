@@ -133,6 +133,28 @@ class CollectStore:
                 return d
         return None
 
+    def find_near_dup_title(self, title: str, threshold: float = 0.80) -> dict | None:
+        """Tìm doc đang active có tiêu đề gần trùng (Jaccard token >= threshold).
+
+        Khác `find_title_dup` (chỉ khớp CHÍNH XÁC sau chuẩn hóa), hàm này bắt được biến thể
+        tiêu đề giữa các nguồn ("Hướng dẫn Docker (2026)" vs "Hướng dẫn Docker"). So sánh
+        trên toàn bộ title_seen — quy mô crawl hiện tại (vài nghìn) chấp nhận được; nếu lớn
+        hơn nên chuyển sang FTS5.
+        """
+        from itlr.collect.quality import is_near_dup_title, title_similarity
+
+        # Quét TẤT CẢ candidate đạt is_near_dup_title (khác số thứ tự là series, không trùng) —
+        # candidate điểm cao nhất có thể là series, trong khi biến thể chữ có điểm thấp hơn.
+        for row in self._conn.execute(
+                "SELECT d.* FROM title_seen t JOIN docs d ON d.content_key=t.content_key "
+                "WHERE d.status='active' ORDER BY d.doc_id DESC"):
+            score = title_similarity(row["title"], title)
+            if score < threshold:
+                continue
+            if is_near_dup_title(row["title"], title, threshold):
+                return dict(row)
+        return None
+
     def upsert_doc(self, doc: dict) -> dict:
         """Upsert theo content_key; nhận biết NEW / CHANGED / UNCHANGED bằng content_hash.
 
@@ -188,7 +210,9 @@ class CollectStore:
                 "revision": existing["revision"] + 1}
 
     def _remember_title(self, doc: dict) -> None:
-        norm = (doc.get("title") or "").strip().lower()
+        from itlr.collect.quality import normalize_title
+
+        norm = normalize_title(doc.get("title"))
         if len(norm) < 8:
             return
         self._conn.execute(
@@ -201,12 +225,16 @@ class CollectStore:
         self._conn.commit()
 
     def mark_missing(self, source_id: str) -> int:
-        """Đánh dấu doc của nguồn không còn thấy trong lượt chạy (nếu quá 2 lượt, coi missing)."""
-        self._conn.execute(
+        """Đánh dấu doc của nguồn không còn thấy trong lượt chạy -> missing.
+
+        Trả số bản ghi vừa chuyển từ active sang missing. Dùng `reconcile_source` để
+        mark + restore trong CÙNG transaction.
+        """
+        cur = self._conn.execute(
             "UPDATE docs SET status='missing', updated_at=? WHERE source_id=? AND status='active'",
             (utcnow(), source_id))
         self._conn.commit()
-        return 0  # đếm được qua stats
+        return int(cur.rowcount)
 
     def reactivated_count(self, source_id: str) -> int:
         cur = self._conn.execute(
@@ -214,16 +242,40 @@ class CollectStore:
         return int(cur.fetchone()[0])
 
     def link_seen(self, source_id: str, keys: set[str]) -> int:
-        """Đặt active lại cho các doc thấy trong lượt này; trả số doc 'missing' bị phục hồi."""
-        cur = self._conn.execute(
-            "SELECT COUNT(*) FROM docs WHERE source_id=? AND status='missing'", (source_id,))
-        n = int(cur.fetchone()[0])
-        if keys:
+        """Đặt active lại cho các doc thấy trong lượt này; trả số doc 'missing' được phục hồi."""
+        if not keys:
+            return 0
+        cur = self._conn.executemany(
+            "UPDATE docs SET status='active', updated_at=? "
+            "WHERE content_key=? AND source_id=? AND status='missing'",
+            [(utcnow(), k, source_id) for k in keys])
+        self._conn.commit()
+        return int(cur.rowcount)
+
+    def reconcile_source(self, source_id: str, seen_keys: set[str]) -> dict:
+        """Đồng bộ trạng thái active/missing của MỘT nguồn trong một transaction.
+
+        - Doc active nhưng URL không còn trong listing đầy đủ -> missing.
+        - Doc missing nhưng xuất hiện lại -> active (restored).
+        Chỉ gọi khi listing LẤY ĐỦ; listing lỗi một phần mà gọi sẽ đánh missing nhầm.
+        """
+        now = utcnow()
+        active_keys = {row[0] for row in self._conn.execute(
+            "SELECT content_key FROM docs WHERE source_id=? AND status='active'", (source_id,))}
+        missing_keys = {row[0] for row in self._conn.execute(
+            "SELECT content_key FROM docs WHERE source_id=? AND status='missing'", (source_id,))}
+        newly_missing = len(active_keys - set(seen_keys))
+        restored = len(missing_keys & set(seen_keys))
+        self._conn.execute(
+            "UPDATE docs SET status='missing', updated_at=? "
+            "WHERE source_id=? AND status='active'", (now, source_id))
+        if seen_keys:
             self._conn.executemany(
-                "UPDATE docs SET status='active', updated_at=? WHERE content_key=?",
-                [(utcnow(), k) for k in keys])
-            self._conn.commit()
-        return n
+                "UPDATE docs SET status='active', updated_at=? "
+                "WHERE content_key=? AND source_id=? AND status='missing'",
+                [(now, k, source_id) for k in seen_keys])
+        self._conn.commit()
+        return {"marked_missing": newly_missing, "restored": restored}
 
     def stats(self) -> dict[str, Any]:
         out = {

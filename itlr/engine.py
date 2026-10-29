@@ -8,6 +8,7 @@ Collaborative Filtering) được giữ nguyên — engine chỉ gói lại cho 
 """
 
 import logging
+import os
 import pickle
 from functools import lru_cache
 from pathlib import Path
@@ -118,15 +119,21 @@ def load_engine():
 
     Ném FileNotFoundError nếu thiếu artifacts -> caller hiển thị hướng dẫn build.
     """
-    with open(config.artifact("item_list.pkl"), "rb") as f:
+    from itlr.versioning import verify_integrity
+
+    active_dir = config.current_dir()
+    verify_integrity(active_dir, required=os.environ.get("ITLR_REQUIRE_ARTIFACT_MANIFEST") == "1")
+    def artifact(name):
+        return str(active_dir / name)
+    with open(artifact("item_list.pkl"), "rb") as f:
         items = pickle.load(f).reset_index(drop=True)
-    with open(config.artifact("search_meta.pkl"), "rb") as f:
+    with open(artifact("search_meta.pkl"), "rb") as f:
         meta = pickle.load(f)
-    with open(config.artifact("retrieval_model.pkl"), "rb") as f:
+    with open(artifact("retrieval_model.pkl"), "rb") as f:
         retrieval_model = pickle.load(f)
     # CF là TUỲ CHỌN V2: thiếu cf_model.pkl → log WARNING, engine vẫn chạy
     # (search/chatbot giữ nguyên; endpoint CF sẽ trả 503). KHÔNG nuốt lỗi cho artifact khác.
-    cf_path = config.artifact("cf_model.pkl")
+    cf_path = artifact("cf_model.pkl")
     if Path(cf_path).is_file():
         with open(cf_path, "rb") as f:
             cf_model = pickle.load(f)
@@ -140,12 +147,19 @@ def load_engine():
         "char_matrix": None,
         "query_prefix": meta.get("query_prefix", ""),
     }
-    with open(config.artifact("embeddings.pkl"), "rb") as f:
+    with open(artifact("embeddings.pkl"), "rb") as f:
         search_index["embeddings"] = pickle.load(f)
-    with open(config.artifact("char_vectorizer.pkl"), "rb") as f:
+    with open(artifact("char_vectorizer.pkl"), "rb") as f:
         search_index["char_vectorizer"] = pickle.load(f)
-    with open(config.artifact("char_matrix.pkl"), "rb") as f:
+    with open(artifact("char_matrix.pkl"), "rb") as f:
         search_index["char_matrix"] = pickle.load(f)
+
+    chunk_path = active_dir / "chunk_meta.pkl"
+    if chunk_path.is_file():
+        with chunk_path.open("rb") as handle:
+            chunk_meta = pickle.load(handle)
+        search_index["chunk_meta"] = (chunk_meta.get("rows", []) if isinstance(chunk_meta, dict)
+                                      else chunk_meta.to_dict("records") if hasattr(chunk_meta, "to_dict") else chunk_meta)
 
     from sentence_transformers import SentenceTransformer
 
@@ -154,7 +168,9 @@ def load_engine():
     from itlr.core.rerank import get_reranker
 
     model = SentenceTransformer(meta["model_name"])
-    ann = load_ann()
+    # ANN phải thuộc đúng version đang active và đúng shape với embeddings/items.
+    # load_ann tự trả None (fallback brute-force) nếu meta lệch — xem itlr/core/ann.py.
+    ann = load_ann(artifacts_dir=active_dir, expected_n=len(items), expected_dim=meta.get("dim"))
     reranker = get_reranker()
     search_index["ann"] = ann
     search_index["reranker"] = reranker

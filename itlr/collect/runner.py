@@ -19,7 +19,7 @@ import time
 from itlr.collect.adapters import api_candidates, rss_candidates, web_candidates
 from itlr.collect.extract import extract_meta, extract_page_text, strip_boilerplate
 from itlr.collect.http import HttpError, HttpFetcher, RateLimiter, RobotsCtx
-from itlr.collect.quality import content_hash, cut_text, passes_quality, title_similarity
+from itlr.collect.quality import content_hash, cut_text, passes_quality
 from itlr.collect.store import CollectStore
 from itlr.collect.url_util import content_key, normalize_url
 from itlr.collect.sources import Source, SourceSet
@@ -48,7 +48,8 @@ class CollectRunner:
     @staticmethod
     def _fresh_stats() -> dict:
         base = {"sources": {}, "robots_blocked": 0, "fetch_errors": 0,
-                "quality_rejected": 0, "duplicates_skipped": 0, "skipped_recheck": 0}
+                "quality_rejected": 0, "duplicates_skipped": 0, "skipped_recheck": 0,
+                "missing_marked": 0, "restored": 0}
         return base
 
     def run(self, sources: tuple[Source, ...] | None = None) -> dict:
@@ -68,7 +69,7 @@ class CollectRunner:
         self._stats["seconds"] = round(time.time() - t0, 1)
         totals = self._stats["totals"] = {
             "new": 0, "updated": 0, "unchanged": 0, "quality_rejected": 0,
-            "duplicates": 0, "skipped": 0}
+            "duplicates": 0, "skipped": 0, "missing": 0, "restored": 0}
         for s in self._stats["sources"].values():
             for k in totals:
                 totals[k] += int(s.get(k, 0))
@@ -77,10 +78,13 @@ class CollectRunner:
     # ---------- per source ----------
     def _collect_source(self, src: Source) -> None:
         self.store.upsert_source(src.as_dict())
-        entries = self._list_entries(src)
+        entries, listing_complete = self._list_entries(src)
         seen_keys: set[str] = set()
+        # Tất cả URL hợp lệ trong listing (kể cả phần vượt budget) — dùng để reconcile,
+        # tránh đánh 'missing' nhầm các bài chỉ bị cắt bởi max_items_per_run.
+        listed_keys = {content_key(e.url) for e in entries if content_key(e.url)}
         counts = {"new": 0, "updated": 0, "unchanged": 0, "quality_rejected": 0,
-                  "duplicates": 0, "skipped": 0}
+                  "duplicates": 0, "skipped": 0, "missing": 0, "restored": 0}
         budget = src.max_items_per_run or (self.sset.defaults.get("max_items_per_run")) or 25
 
         for entry in entries[:budget]:
@@ -101,14 +105,14 @@ class CollectRunner:
                 self._stats["skipped_recheck"] += 1
                 continue
 
-            if doc0 is None:
-                # chống trùng tiêu đề giữa nguồn (near-dup không URL trùng)
-                dup = self.store.find_title_dup(entry.title.strip().lower())
-                if dup is not None and title_similarity(dup["title"], entry.title) \
-                        >= NEAR_DUP_TITLE_TH:
-                    LOG.info("Chống trùng tiêu đề (lặp gần với doc %s): %s",
+            if doc0 is None and entry.title.strip():
+                # Chống trùng tiêu đề giữa nguồn (near-dup không URL trùng).
+                dup = self.store.find_near_dup_title(entry.title, NEAR_DUP_TITLE_TH)
+                if dup is not None:
+                    LOG.info("Chống trùng tiêu đề (gần với doc %s): %s",
                              dup["doc_id"], entry.title[:60])
                     counts["duplicates"] += 1
+                    self._stats["duplicates_skipped"] += 1
                     continue
 
             try:
@@ -128,26 +132,41 @@ class CollectRunner:
                   "updated_quality": "updated", "unchanged": "unchanged"}.get(
                       res["event"], "unchanged")
             counts[ev] += 1
+
+        # Đồng bộ active/missing CHỈ khi listing lấy đủ và có ít nhất một mục — listing lỗi
+        # một phần hoặc rỗng bất thường không được phép đánh missing hàng loạt.
+        if listing_complete and entries:
+            rec = self.store.reconcile_source(src.source_id, listed_keys)
+            counts["missing"] = rec["marked_missing"]
+            counts["restored"] = rec["restored"]
+            self._stats["missing_marked"] += rec["marked_missing"]
+            self._stats["restored"] += rec["restored"]
+        elif not listing_complete:
+            LOG.warning("Nguồn %s: listing KHÔNG đầy đủ — bỏ qua đồng bộ missing.", src.source_id)
+
         self._stats["sources"][src.source_id] = counts
         LOG.info("[OK] Nguồn %s: %s", src.source_id, counts)
 
-    def _list_entries(self, src: Source):
+    def _list_entries(self, src: Source) -> tuple[list, bool]:
+        """Trả (entries, listing_complete). complete=False nếu bất kỳ trang listing lỗi."""
         if src.kind == "api":
             _, payload = self.fetcher.fetch(src.list_url)
-            return api_candidates(src, payload)
+            return api_candidates(src, payload), True
         if src.kind == "rss":
             _, payload = self.fetcher.fetch(src.feed_url)
-            return rss_candidates(src, payload)
+            return rss_candidates(src, payload), True
         # web: mọi trang listing
         entries = []
+        complete = True
         for lu in src.list_urls:
             try:
                 _, payload = self.fetcher.fetch(lu)
                 entries += web_candidates(src, payload.decode("utf-8", errors="replace"), lu)
             except HttpError as exc:
+                complete = False
                 LOG.warning("[!] Listing %s lỗi: %s (bỏ qua trang này)", lu, exc)
                 self._stats["fetch_errors"] += 1
-        return entries
+        return entries, complete
 
     def _fetch_article(self, src: Source, entry, ckey: str, norm_url: str) -> dict | None:
         """Fetch trang bài viết + trích + lọc. Trả None nếu từ chối (chất lượng/robots)."""

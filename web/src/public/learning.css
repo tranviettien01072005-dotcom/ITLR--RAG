@@ -1,0 +1,29 @@
+.learning-intro { margin:2rem 0}
+.learning-layout { display:grid; grid-template-columns:minmax(260px,370px) minmax(0,1fr); gap:2rem; align-items:start}
+.learning-panel,.learning-summary,.learning-resource { border:1px solid var(--line); border-radius:12px; padding:1.25rem; background:var(--surface)}
+.learning-panel h2,.learning-roadmap h2 { font-size:1.2rem; margin:0 0 1rem}
+.learning-panel h2:not(:first-child) { margin-top:1.5rem}
+.learning-panel label,.learning-progress-form label { display:block; margin:.65rem 0}
+.learning-panel textarea,.learning-panel select,.learning-progress-form input { width:100%; box-sizing:border-box; padding:.65rem; border:1px solid var(--line); border-radius:6px; background:var(--surface); color:inherit; font:inherit}
+.learning-panel textarea { resize:vertical}
+.learning-row { display:flex; align-items:center; gap:.6rem; flex-wrap:wrap}
+.learning-row select { flex:1; min-width:140px}
+.learning-row input { width:90px}
+.learning-question { border:0; margin:1rem 0; padding:0}
+.learning-question legend { font-weight:600; line-height:1.5}
+.learning-choice { display:flex!important; align-items:center; gap:.5rem; min-height:38px; cursor:pointer}
+.learning-choice input { width:auto}
+.learning-choice input:focus-visible { outline:3px solid var(--brand-500)}
+.learning-summary { margin-bottom:1.5rem}
+.learning-summary progress { display:block; width:100%; height:18px; margin-top:.5rem; accent-color:var(--brand-600)}
+.learning-steps { padding-left:1.5rem}
+.learning-steps>li { margin-bottom:2rem; padding-left:.5rem}
+.learning-resource { margin:.8rem 0; overflow-wrap:anywhere}
+.learning-resource h4 { margin:0 0 .5rem}
+.learning-roadmap p,.learning-panel p { line-height:1.6}
+.learning-panel button:disabled,.learning-resource button:disabled { opacity:.6; cursor:wait}
+#learning-message:not(:empty) { padding:1rem; margin-bottom:1rem}
+@media(max-width:800px) { .learning-layout { grid-template-columns:1fr}
+.learning-intro { margin-top:1rem}
+.learning-panel { padding:1rem}
+}

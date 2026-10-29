@@ -97,16 +97,20 @@ def load_catalog_items(path=None) -> "pd.DataFrame":
     return items
 
 
-def main():
-    items = load_catalog_items()
-
+def index_catalog(items):
     keep_cols = [
         "item_id", "title", "type", "description", "category",
         "topics", "instructor", "platform", "link",
     ]
     if "level" in items.columns:
         keep_cols.insert(3, "level")
-    item_list = items[keep_cols].copy()
+    keep_cols.extend(c for c in ("origin", "crawl_license", "crawl_lang", "crawl_hash", "full_text", "source_updated_at", "source_fetched_at") if c in items.columns)
+    return items[keep_cols].copy()
+
+
+def main():
+    items = load_catalog_items()
+    item_list = index_catalog(items)
 
     fields = ["full", "title", "topics"]
     vectorizers = {}

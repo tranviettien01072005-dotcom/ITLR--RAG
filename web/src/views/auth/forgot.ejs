@@ -1,0 +1,29 @@
+<%- include('../partials/header') %>
+
+<div class="auth-split">
+  <div class="auth-box">
+    <h1>Quên mật khẩu</h1>
+    <% if (error) { %><div class="alert"><%= error %></div><% } %>
+    <% if (done) { %>
+      <div class="ok-box">
+        ✅ Đã xử lý yêu cầu của bạn.
+        <p>Nếu email này đã đăng ký, một link đặt lại mật khẩu đã được gửi tới hộp thư của bạn.
+           Link có hiệu lực hạn chế về thời gian và chỉ dùng một lần.</p>
+        <p class="muted small">Không thấy email? Kiểm tra thư mục Spam, hoặc thử gửi lại sau ít phút.</p>
+        <a class="btn-primary block" href="/login" style="margin-top:14px">Đến trang đăng nhập</a>
+      </div>
+    <% } else { %>
+      <p class="muted">Nhập email đã đăng ký, hệ thống sẽ gửi một link đặt lại mật khẩu.
+         Mật khẩu hiện tại của bạn KHÔNG bị thay đổi cho đến khi bạn tự đặt lại qua link.</p>
+      <form action="/forgot" method="post">
+        <%- include('../partials/csrf') %>
+        <label>Email<input type="email" name="email" value="<%= email || '' %>" required></label>
+        <button class="btn-primary block" type="submit">Gửi link đặt lại</button>
+      </form>
+      <p class="muted"><a href="/login">← Quay lại đăng nhập</a></p>
+    <% } %>
+  </div>
+  <%- include('../partials/auth-aside') %>
+</div>
+
+<%- include('../partials/footer') %>

@@ -42,6 +42,9 @@ CHUNK_OVERLAP = 120
 
 def build_text(row) -> str:
     """Câu tự nhiên để encode (lowercase — khớp lưu ý search_by_embedding legacy)."""
+    full_text = row.get("full_text", "")
+    if isinstance(full_text, str) and full_text.strip():
+        return full_text.strip()
     return (
         f"{str(row['title']).strip()}. "
         f"Thể loại: {str(row['category']).strip()}. "
@@ -90,7 +93,7 @@ def main() -> int:
             all_passages.append(ch)
             owner.append(i)
             chunk_meta_rows.append({"item_id": int(row["item_id"]), "chunk_idx": j,
-                                    "chunk_text": ch[:400]})
+                                    "chunk_text": ch})
     print(f"[i] Đoạn (chunks): {len(all_passages)} từ {n} items "
           f"(trung bình {len(all_passages)/max(1, n):.2f}/item)")
 

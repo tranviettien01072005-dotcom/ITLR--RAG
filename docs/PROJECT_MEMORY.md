@@ -151,3 +151,36 @@ python scripts/build_all.py --force --step collaborative
 | 2026-10-27 (chiều) | Audit + review 9 findings; sửa eval/ann/paths/chatbot; 70/70 tests; build 11 artifacts thật với 1.800 users; `eval/run_all.py` 8/8 OK; ADR-001…004; CHANGELOG/README/CONSTRAINTS; DeepSeek verified docs chính thức. |
 | 2026-10-27 (chìều muộn) | `eval_offtopic.py` rc=0 (AUC 0.9825, ngưỡng tối ưu 0.800); `eval_generation.py` template rc=0; lưu 6 memory #102–#107 + xác minh truy xuất; tạo `AGENTS.md` + `docs/PROJECT_MEMORY.md`. |
 | 2026-10-29 | Commit/push V2 data collection, versioning, deployment assets và test suite lên `origin/main`; health item count hardening bổ sung; working tree sạch. |
+
+## Security remediation — 2026-10-29 (current session)
+
+Preserved pre-existing uncommitted Python and web changes. Added safe static rendering/CSP,
+fail-closed web configuration, upload signature/access boundaries, single-worker/proxy constraints,
+SHA256 artifact inventory/path confinement and CI gates (ADR-009).
+Actual runtime differs from historical memory: Python 3.14.3, no neural model cache/artifacts;
+Node22 downloaded to /tmp for web checks. See reports/FINAL_REMEDIATION.md for authoritative
+current test counts, dependency audit and unverified release gates. Historical benchmark numbers
+are not current execution evidence. Claude-Mem tools unavailable; no save_memory call claimed.
+
+Current remediation evidence: Python 200 passed/5 pre-existing skips; web 22 passed;
+full neural RAG/DeepSeek/PostgreSQL/browser remain NOT VERIFIED.
+
+## Local models install — 2026-10-29 (in progress)
+
+Installed Torch 2.15.0+cpu, sentence-transformers 6.2.0, FAISS 1.15.1, pyarrow26.
+Model caches: var/hf (E5-base), var/ollama/models (qwen2.5:3b). Ollama executable
+0.40.13 in var/ollama/bin; full runtime archive is partial, llama-server not yet present.
+Downloads encountered github DNS failures and HF timeouts. Do not claim inference PASS.
+Fixed resolve_preset(full HF ID) to preserve registered E5 query/passage prefixes;
+regression reproduced FAIL then PASS. Full Python suite:201 passed,5 skipped (33.37s),
+before usable neural index. Caches/downloads excluded from git. Claude-Mem unavailable.
+
+## Local model verification complete — 2026-10-29
+
+E5-base weights downloaded, real768d embedding smoke PASS; Qwen2.5:3b downloaded,
+SHA256 verified and CPU inference PASS through Ollama0.40.13. V2 build/probe/activate
+PASS on5,000 synthetic items (version20261029-204546). Real HTTP health/search/chat200;
+API Qwen response57.01s with valid retrieved citation2716. Reranker disabled, CF unbuilt.
+Direct80-token Qwen smoke omitted citation; no general groundedness/hallucination claim.
+Evidence reports/LOCAL_MODELS.md and raw JSON; startup deploy/LOCAL_MODELS.md.
+DeepSeek, PostgreSQL/browser and other release gates remain unverified.

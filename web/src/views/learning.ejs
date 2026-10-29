@@ -1,0 +1,53 @@
+<%- include('partials/header') %>
+<link rel="stylesheet" href="/learning.css?v=<%= ASSET_VER %>">
+<div class="learning-intro">
+  <p class="muted">Mục tiêu → Đánh giá → Lộ trình → Thực hành</p>
+  <h1 class="page-title">Lộ trình học của bạn</h1>
+  <p>Chọn hướng đi, kiểm tra kiến thức nền và học với tài nguyên có nguồn thật.</p>
+</div>
+<div id="learning-message" role="status" aria-live="polite"></div>
+<div class="learning-layout">
+  <section class="learning-panel" aria-labelledby="goal-heading">
+    <h2 id="goal-heading">1. Chọn mục tiêu</h2>
+    <form method="get" action="/learning">
+      <label for="track">Hướng học</label>
+      <div class="learning-row"><select id="track" name="track"><% Object.entries(tracks).forEach(([key,label]) => { %><option value="<%= key %>" <%= key === track ? 'selected' : '' %>><%= label %></option><% }) %></select><button class="btn-ghost" type="submit">Đổi hướng</button></div>
+    </form>
+    <form id="diagnostic-form" data-track="<%= track %>">
+      <%- include('partials/csrf') %>
+      <label for="goal">Bạn muốn làm được điều gì?</label>
+      <textarea id="goal" name="goal" required minlength="5" maxlength="240" rows="3" placeholder="Ví dụ: tự viết công cụ Python xử lý dữ liệu CSV"><%= profile && profile.track === track ? profile.goal : '' %></textarea>
+      <h2>2. Kiểm tra đầu vào</h2>
+      <p class="muted">3 câu hỏi, chấm theo quy tắc: đúng từ 2 câu → mức có nền tảng. Đây là gợi ý khởi đầu, không phải chứng nhận năng lực.</p>
+      <% quiz.forEach((q, i) => { %>
+      <fieldset class="learning-question"><legend><%= i + 1 %>. <%= q.prompt %></legend>
+        <% q.options.forEach((option, j) => { %><label class="learning-choice"><input type="radio" name="q<%= i %>" value="<%= j %>" required> <span><%= option %></span></label><% }) %>
+      </fieldset><% }) %>
+      <button type="submit" class="btn-primary"><%= profile ? 'Đánh giá lại & cập nhật lộ trình' : 'Tạo lộ trình của tôi' %></button>
+      <% if (profile) { %><p class="muted">Đánh giá lại thay mục tiêu hiện tại; các tài nguyên và tiến độ đã lưu vẫn được giữ.</p><% } %>
+    </form>
+  </section>
+  <section class="learning-roadmap" aria-labelledby="roadmap-heading">
+    <h2 id="roadmap-heading">3. Lộ trình & tiến độ</h2>
+    <% if (!profile) { %>
+      <div class="empty"><h3>Bắt đầu từ điều bạn muốn làm</h3><p>Hoàn thành phần bên cạnh để nhận 3 chặng học có thứ tự và điều kiện tiên quyết.</p></div>
+    <% } else { const all = roadmap.flatMap(s => s.resources); const completed = all.filter(r => r.status === 'completed').length; %>
+      <div class="learning-summary"><h3><%= tracks[profile.track] %></h3><p><%= profile.goal %></p><p>Kết quả đầu vào: <strong><%= profile.score %>/3</strong> · <%= profile.level === 'beginner' ? 'Bắt đầu từ nền tảng' : 'Đã có nền tảng' %></p><label for="journey-progress"><%= completed %>/<%= all.length %> tài nguyên hoàn thành</label><progress id="journey-progress" max="<%= all.length || 1 %>" value="<%= completed %>"></progress><p class="muted">Tiến độ do bạn tự cập nhật, đồng bộ với khóa học đã lưu trong tài khoản.</p></div>
+      <ol class="learning-steps"><% roadmap.forEach((step, index) => { %><li>
+        <h3>Chặng <%= index + 1 %> · <%= step.title %></h3><p><%= step.outcome %></p><p class="muted">Tiên quyết: <%= step.prerequisite %> · <%= step.suggestion %></p>
+        <% if (!step.resources.length) { %><p class="alert">Chưa có tài nguyên nguồn thật phù hợp cho chặng này. <a href="/search?q=<%= encodeURIComponent(step.title) %>">Tìm thêm tài nguyên</a>.</p><% } %>
+        <% step.resources.forEach(resource => { %>
+          <article class="learning-resource"><h4><a href="/courses/<%= resource.item_id %>"><%= resource.title %></a></h4><p class="muted"><%= resource.platform || 'Nguồn gốc' %> · <%= resource.level || 'Chưa phân mức' %></p><p><a href="<%= resource.link %>" target="_blank" rel="noopener noreferrer">Mở tài nguyên gốc ↗</a></p>
+            <form class="learning-progress-form" data-course-id="<%= resource.item_id %>">
+              <label for="progress-<%= resource.item_id %>">Tiến độ tự đánh giá (%)</label><div class="learning-row"><input id="progress-<%= resource.item_id %>" name="progress" type="number" min="0" max="100" step="1" required value="<%= resource.progress || 0 %>"><button type="submit" class="btn-ghost"><%= resource.status ? 'Cập nhật' : 'Lưu vào danh sách học' %></button></div>
+              <p class="meta"><%= resource.status === 'completed' ? 'Hoàn thành' : resource.status === 'in_progress' ? 'Đang học' : resource.status === 'saved' ? 'Đã lưu' : 'Chưa lưu' %> · <%= resource.progress || 0 %>%</p>
+            </form>
+          </article>
+        <% }) %>
+      </li><% }) %></ol>
+      <a href="/dashboard" class="btn-ghost">Xem tất cả tài nguyên đã lưu</a>
+    <% } %>
+  </section>
+</div>
+<script src="/learning.js?v=<%= ASSET_VER %>" defer></script>
+<%- include('partials/footer') %>

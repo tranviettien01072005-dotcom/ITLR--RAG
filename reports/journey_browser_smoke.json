@@ -1,0 +1,9 @@
+{
+  "registration": true,
+  "diagnostic": true,
+  "realResources": 6,
+  "persistedProgress": 40,
+  "mobileOverflow": false,
+  "pageErrors": [],
+  "anonymousBlocked": true
+}
