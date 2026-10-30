@@ -120,7 +120,7 @@ improvement, HTTP latency SLO or statistical significance is claimed.
 - EducationalChatbot still owns intent-specific response orchestration and the
   legacy engine remains large. Further extraction needs separate contracts; not
   every long function was rewritten or every unused symbol proven removable.
-- Upload callers still append asynchronously and ID allocation remains local.
+- Upload callers still append asynchronously; ID allocation is now serialized within the process and recomputed from the file for each write. Multi-worker coordination still needs a shared sequence/lock.
   SQL writes, CSV export and index activation are not a shared transaction.
   Stop cooperating writers during the documented release/rollback procedure.
 - Deployment configuration is prepared, not executed. API non-root runtime,

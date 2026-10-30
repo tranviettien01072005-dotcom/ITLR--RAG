@@ -7,6 +7,7 @@
 - Log streaming generation failures consistently and remove redundant console fallback branches.
 - Add template characterization, catalog regression and Web HTTP health/readiness tests.
 - Actual results and release blockers: [architecture checkpoint](reports/ARCHITECTURE_REFACTOR_2026-10-30.md).
+- Serialize catalog CSV appends and recompute the last ID inside the write queue; the documented single-worker limit remains.
 
 ## 2026-10-30 - Deployment preparation and process boundaries
 
