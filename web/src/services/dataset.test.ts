@@ -32,3 +32,15 @@ it("rejects an unknown header without appending data", async () => {
   await expect(appendCatalogRow({ title: "Python", description: "Practice" })).rejects.toThrow("Unsupported catalog CSV columns");
   expect(readFileSync(state.csv, "utf8")).toBe(original);
 });
+
+it("serializes concurrent appends so IDs remain unique and ordered", async () => {
+  writeFileSync(state.csv, `${base}\n`);
+  const { appendCatalogRow } = await import("./dataset");
+  const ids = await Promise.all([
+    appendCatalogRow({ title: "One", description: "A" }),
+    appendCatalogRow({ title: "Two", description: "B" }),
+    appendCatalogRow({ title: "Three", description: "C" }),
+  ]);
+  expect(ids.sort((a, b) => a - b)).toEqual([1, 2, 3]);
+  expect(readFileSync(state.csv, "utf8").trimEnd().split("\n")).toHaveLength(4);
+});

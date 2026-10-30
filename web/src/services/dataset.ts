@@ -10,7 +10,7 @@ export function cleanForCsv(text: string, max = 3000): string {
 }
 
 const CSV = ITEMS_CSV;
-let nextId: number | null = null;
+let catalogWrite = Promise.resolve();
 
 function readLastId(): number {
   if (!existsSync(CSV)) return 0;
@@ -40,23 +40,26 @@ export interface CatalogRow {
 }
 
 export async function appendCatalogRow(row: CatalogRow): Promise<number> {
-  const columns = await readCatalogColumns(CSV);
-  if (nextId == null) nextId = readLastId();
-  nextId += 1;
-  const id = nextId;
-  const rec: Record<string, unknown> = {
-    item_id: id,
-    title: row.title || `Tài liệu ${id}`,
-    type: row.type || "Tài liệu",
-    level: row.level || "",
-    description: cleanForCsv(row.description || row.title || ""),
-    category: row.category || "Tài liệu cộng đồng",
-    topics: row.topics || "",
-    instructor: row.instructor || "",
-    platform: row.platform || "Tải lên",
-    link: row.link || "",
-  };
-  const line = columns.map((c) => csvField(rec[c])).join(",") + "\n";
-  await fsp.appendFile(CSV, line, "utf8");
-  return id;
+  // shortcut: process-local queue; scale Web beyond one worker only with a shared sequence/lock.
+  const write = catalogWrite.then(async () => {
+    const columns = await readCatalogColumns(CSV);
+    const id = readLastId() + 1;
+    const rec: Record<string, unknown> = {
+      item_id: id,
+      title: row.title || `Tài liệu ${id}`,
+      type: row.type || "Tài liệu",
+      level: row.level || "",
+      description: cleanForCsv(row.description || row.title || ""),
+      category: row.category || "Tài liệu cộng đồng",
+      topics: row.topics || "",
+      instructor: row.instructor || "",
+      platform: row.platform || "Tải lên",
+      link: row.link || "",
+    };
+    const line = columns.map((c) => csvField(rec[c])).join(",") + "\n";
+    await fsp.appendFile(CSV, line, "utf8");
+    return id;
+  });
+  catalogWrite = write.then(() => undefined, () => undefined);
+  return write;
 }
