@@ -1,0 +1,79 @@
+FFF                                                                      [100%]
+=================================== FAILURES ===================================
+____________ test_runtime_does_not_hide_estimator_version_mismatch _____________
+
+    def test_runtime_does_not_hide_estimator_version_mismatch():
+        import importlib
+        import warnings
+        from sklearn.exceptions import InconsistentVersionWarning
+        from itlr.utils import runtime_patches
+    
+        with warnings.catch_warnings(record=True) as caught:
+            warnings.simplefilter('default', InconsistentVersionWarning)
+            importlib.reload(runtime_patches)
+            warnings.warn(InconsistentVersionWarning(
+                estimator_name='fixture', current_sklearn_version='1', original_sklearn_version='0'))
+>       assert any(isinstance(w.message, InconsistentVersionWarning) for w in caught)
+E       assert False
+E        +  where False = any(<generator object test_runtime_does_not_hide_estimator_version_mismatch.<locals>.<genexpr> at 0x704a405c4310>)
+
+tests/test_pickle_handles.py:56: AssertionError
+________________ test_repickle_dump_failure_preserves_original _________________
+
+tmp_path = PosixPath('/tmp/pytest-of-o/pytest-6/test_repickle_dump_failure_pre0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x704a26c18d60>
+
+    def test_repickle_dump_failure_preserves_original(tmp_path, monkeypatch):
+        import pickle
+        from itlr.utils import repickle
+    
+        path = tmp_path / 'fixture.pkl'
+        original = pickle.dumps({'trusted': 'original'})
+        path.write_bytes(original)
+        monkeypatch.setattr(repickle, 'TARGETS', ['fixture.pkl'])
+        monkeypatch.setattr(repickle.config, 'artifact', lambda name: str(tmp_path / name))
+    
+        def fail_dump(obj, stream, **kwargs):
+            stream.write(b'partial')
+            raise OSError('fixture disk full')
+    
+        monkeypatch.setattr(repickle.pickle, 'dump', fail_dump)
+        result = repickle.main()
+>       assert path.read_bytes() == original
+E       AssertionError: assert b'partial' == b'\x80\x05\x9...riginal\x94s.'
+E         
+E         At index 0 diff: b'p' != b'\x80'
+E         Use -v to get more diff
+
+tests/test_pickle_handles.py:75: AssertionError
+----------------------------- Captured stdout call -----------------------------
+[ERR] fixture.pkl: OSError('fixture disk full')
+__________ test_repickle_does_not_restamp_incompatible_sklearn_model ___________
+
+tmp_path = PosixPath('/tmp/pytest-of-o/pytest-6/test_repickle_does_not_restamp0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x704a23af9cd0>
+
+    def test_repickle_does_not_restamp_incompatible_sklearn_model(tmp_path, monkeypatch):
+        import pickle
+        import sklearn
+        from sklearn.feature_extraction.text import TfidfVectorizer
+        from itlr.utils import repickle
+    
+        path = tmp_path / 'fixture.pkl'
+        original = pickle.dumps(TfidfVectorizer()).replace(sklearn.__version__.encode(), b'0.0.0')
+        path.write_bytes(original)
+        monkeypatch.setattr(repickle, 'TARGETS', ['fixture.pkl'])
+        monkeypatch.setattr(repickle.config, 'artifact', lambda name: str(tmp_path / name))
+>       assert repickle.main() == 1
+E       AssertionError: assert None == 1
+E        +  where None = <function main at 0x704a253afe20>()
+E        +    where <function main at 0x704a253afe20> = <module 'itlr.utils.repickle' from '/home/o/ITLR--RAG/itlr/utils/repickle.py'>.main
+
+tests/test_pickle_handles.py:91: AssertionError
+----------------------------- Captured stdout call -----------------------------
+[OK] re-pickled fixture.pkl
+=========================== short test summary info ============================
+FAILED tests/test_pickle_handles.py::test_runtime_does_not_hide_estimator_version_mismatch
+FAILED tests/test_pickle_handles.py::test_repickle_dump_failure_preserves_original
+FAILED tests/test_pickle_handles.py::test_repickle_does_not_restamp_incompatible_sklearn_model
+3 failed, 6 deselected in 2.34s

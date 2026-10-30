@@ -51,6 +51,11 @@ it("reports interrupted streams and server failures instead of retrying generati
   await expect(ui.consume(new Response('data: {"type":"error","error":"service unavailable"}\n\n', { headers: { "content-type": "text/event-stream" } }), () => {})).rejects.toThrow("service unavailable");
 });
 
+it("rejects a final event whose terminal done frame was lost", async () => {
+  await expect(client().consume(new Response('data: {"type":"final","response":"ok"}\n\n',
+    { headers: { "content-type": "text/event-stream" } }), () => {})).rejects.toThrow("gián đoạn");
+});
+
 it("rejects an oversized complete frame before delivering it", async () => {
   const ui = client();
   let delivered = false;

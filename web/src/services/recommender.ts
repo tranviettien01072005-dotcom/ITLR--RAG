@@ -1,6 +1,7 @@
 import { env } from "../config/env";
 import { readChatEvents } from "./chat-stream";
 
+export const DEFAULT_SEARCH_MIN_PCT = 84;
 
 export interface RecItem {
   origin?: string;
@@ -64,7 +65,7 @@ function post<T>(path: string, body: unknown, timeoutMs = DEFAULT_TIMEOUT): Prom
 }
 
 export const recommender = {
-  search(query: string, type?: string | null, minPct = 90): Promise<SearchResult> {
+  search(query: string, type?: string | null, minPct = DEFAULT_SEARCH_MIN_PCT): Promise<SearchResult> {
     return post<SearchResult>("/api/search", { query, type: type || null, min_pct: minPct });
   },
   chat(message: string, history: { role: string; content: string }[] = []): Promise<ChatResult> {

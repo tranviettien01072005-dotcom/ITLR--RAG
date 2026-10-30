@@ -1,6 +1,10 @@
 # Cài đặt và vận hành ITLR–RAG
 
-Audit tiếp nối: timeout LLM phải hữu hạn và >0. Video hỗ trợ byte range đơn/suffix; multipart/unsupported/malformed trả representation đầy đủ. **NOT READY**: Docker/PostgreSQL/HTTPS/backup-restore chưa được thực chạy ở lượt này. [Bằng chứng](../reports/AUDIT_INCREMENT_2026-10-30.md).
+Review mới: search default 84 có calibration/holdout; LLM timeout phải hữu hạn và >0,
+stream kiểm thêm elapsed budget tại NDJSON boundaries. **NOT READY**: Docker/PG16/Caddy
+production deployment và local generation reliability chưa được xác nhận. PostgreSQL18
+native cô lập đã kiểm migration, auth, backup/restore và Chrome với upstream fixture.
+[Release evidence và giới hạn](../reports/RELEASE_READINESS_FINAL.md).
 
 For the complete HTTPS/Web/API/PostgreSQL stack use [the production runbook](PRODUCTION.md) and `compose.production.yml`. The original `docker-compose.yml` remains API/refresh only. Web restarts no longer run migration or catalog sync automatically.
 

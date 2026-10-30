@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { query } from "../db/pool";
 import { requireAuth } from "../middleware/auth";
-import { recommender, RecItem } from "../services/recommender";
+import { recommender, RecItem, DEFAULT_SEARCH_MIN_PCT } from "../services/recommender";
 import { renderChatMd, storedChatSchema, safeSourceUrl, ChatSource } from "../services/chat-stream";
 import { fetchPosts } from "../services/posts";
 import { LessonRow } from "../db/types";
@@ -49,9 +49,9 @@ pagesRouter.get("/search", async (req, res) => {
   const q = (req.query.q as string | undefined)?.trim() || "";
   const type = (req.query.type as string | undefined) || "";
   const level = ((req.query.level as string | undefined) || "").normalize("NFC");
-  let minPct = parseInt((req.query.min_pct as string) || "90", 10);
-  if (Number.isNaN(minPct)) minPct = 90;
-  minPct = Math.min(100, Math.max(85, minPct));
+  let minPct = parseInt((req.query.min_pct as string) || String(DEFAULT_SEARCH_MIN_PCT), 10);
+  if (Number.isNaN(minPct)) minPct = DEFAULT_SEARCH_MIN_PCT;
+  minPct = Math.min(100, Math.max(0, minPct));
   const savedIds = await savedIdSet(req.user?.id);
   const base = { q, type, level, levels: LEVELS, minPct, savedIds };
   if (!q) {

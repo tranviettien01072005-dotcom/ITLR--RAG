@@ -1,0 +1,74 @@
+{
+  "checks": [
+    {
+      "width": 390,
+      "scroll": 390,
+      "password": true,
+      "claim": false,
+      "title": "\u0110\u0103ng nh\u1eadp \u00b7 IT Learning",
+      "page": "login",
+      "viewport": 390
+    },
+    {
+      "width": 390,
+      "scroll": 390,
+      "password": true,
+      "claim": false,
+      "title": "\u0110\u0103ng k\u00fd \u00b7 IT Learning",
+      "page": "register",
+      "viewport": 390
+    },
+    {
+      "width": 1280,
+      "scroll": 1280,
+      "password": true,
+      "claim": false,
+      "title": "\u0110\u0103ng nh\u1eadp \u00b7 IT Learning",
+      "page": "login",
+      "viewport": 1280
+    },
+    {
+      "width": 1280,
+      "scroll": 1270,
+      "password": true,
+      "claim": false,
+      "title": "\u0110\u0103ng k\u00fd \u00b7 IT Learning",
+      "page": "register",
+      "viewport": 1280
+    },
+    {
+      "client_protocol": {
+        "types": [
+          "text",
+          "final",
+          "done"
+        ],
+        "rejects_missing_done": true,
+        "no_html_injection": true,
+        "no_script_url": true
+      }
+    },
+    {
+      "path": "/health",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/ready",
+      "method": "GET",
+      "status": 503
+    },
+    {
+      "path": "/api/chat",
+      "method": "GET",
+      "status": 401
+    },
+    {
+      "path": "/api/chat",
+      "method": "POST",
+      "status": 403
+    }
+  ],
+  "console_errors": [],
+  "scope": "public forms and denial only; PostgreSQL unavailable"
+}

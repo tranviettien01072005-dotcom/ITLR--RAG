@@ -50,6 +50,12 @@ it("cancels the upstream body when the consumer stops", async () => {
   expect(cancelled).toBe(true);
 });
 
+it("rejects EOF after final without the terminal done event", async () => {
+  await expect((async () => {
+    for await (const _event of readChatEvents(body(['data: {"type":"final","response":"ok"}\n\n']))) { /* consume */ }
+  })()).rejects.toThrow("Incomplete chat stream");
+});
+
 import { renderChatMd } from "./chat-stream";
 it("links only retrieved citation IDs and escapes model markup", () => {
   const html = renderChatMd('<img src=x onerror=alert(1)> [item_id:7] [item_id:99] [bad](javascript:alert(1))', [{ item_id: 7 }]);
@@ -62,12 +68,12 @@ it("links only retrieved citation IDs and escapes model markup", () => {
 it("preserves multibyte UTF-8 split across network chunks", async () => {
   const response = "T\u00e0i li\u1ec7u \u65e5\u672c\u8a9e";
   const stream = new ReadableStream<Uint8Array>({ start(controller) {
-    for (const byte of new TextEncoder().encode(`data: ${JSON.stringify({ type: "final", response })}\n\n`)) {
+    for (const byte of new TextEncoder().encode(`data: ${JSON.stringify({ type: "final", response })}\n\ndata: {"type":"done"}\n\n`)) {
       controller.enqueue(new Uint8Array([byte]));
     }
     controller.close();
   } });
   const events = [];
   for await (const event of readChatEvents(stream)) events.push(event);
-  expect(events).toEqual([expect.objectContaining({ type: "final", response })]);
+  expect(events).toEqual([expect.objectContaining({ type: "final", response }), { type: "done" }]);
 });

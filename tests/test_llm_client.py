@@ -5,6 +5,7 @@ Không dùng key thật: mọi test đều mock SDK (fake client được nạp 
 """
 
 import types
+import json
 
 import pytest
 
@@ -16,7 +17,8 @@ def clean_env(monkeypatch):
     """Xóa mọi biến env LLM để test không phụ thuộc môi trường thật; dọn cache module."""
     for var in ("DEEPSEEK_API_KEY", "DEEPSEEK_BASE_URL", "DEEPSEEK_MODEL",
                 "OPENAI_API_KEY", "OPENAI_MODEL", "USE_OLLAMA",
-                "OLLAMA_BASE_URL", "DEEPSEEK_RETRIES", "DEEPSEEK_TIMEOUT_S"):
+                "OLLAMA_BASE_URL", "OLLAMA_MODEL", "OLLAMA_TIMEOUT",
+                "DEEPSEEK_RETRIES", "DEEPSEEK_TIMEOUT_S", "DEEPSEEK_STREAM_TIMEOUT_S"):
         monkeypatch.delenv(var, raising=False)
     lc.reset_cache()
     yield
@@ -290,6 +292,85 @@ def test_ollama_completion_and_timeout_contract(monkeypatch):
         list(lc.stream([]))
 
 
+def test_ollama_continuous_tokens_cannot_bypass_generation_budget(monkeypatch):
+    monkeypatch.setattr(lc, 'provider_status', lambda: 'ollama')
+    monkeypatch.setattr(lc, 'ollama_model', lambda: 'fixture')
+    monkeypatch.setenv('OLLAMA_TIMEOUT', '1')
+    ticks = iter([0., .4, .8, 1.2, 1.6])
+    monkeypatch.setattr(lc.time, 'monotonic', lambda: next(ticks))
+    closed = []
+
+    class Response:
+        def __enter__(self):
+            return iter([b'{"message":{"content":"piece"},"done":false}'] * 3 +
+                        [b'{"done":true,"done_reason":"stop"}'])
+
+        def __exit__(self, *args):
+            closed.append(True)
+
+    monkeypatch.setattr(lc.urllib.request, 'urlopen', lambda *a, **kw: Response())
+    with pytest.raises(lc.LLMError, match='budget'):
+        list(lc.stream([]))
+    assert closed == [True]
+
+
+@pytest.mark.parametrize('payload', [
+    {'message': {'content': 'partial'}, 'done': True, 'done_reason': 'length'},
+    {'message': {'content': 'partial'}, 'done': False},
+    {'message': {'content': 'partial'}},
+    {'error': 'upstream failure'},
+    {'message': {'content': 123}, 'done': True},
+    [],
+])
+def test_ollama_nonstream_rejects_invalid_completion(monkeypatch, payload):
+    monkeypatch.setattr(lc, 'provider_status', lambda: 'ollama')
+    monkeypatch.setattr(lc, 'ollama_model', lambda: 'fixture')
+    closed = []
+
+    class Response:
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *args):
+            closed.append(True)
+
+        def read(self):
+            return json.dumps(payload).encode()
+
+    monkeypatch.setattr(lc.urllib.request, 'urlopen', lambda *a, **kw: Response())
+    with pytest.raises(lc.LLMError):
+        lc.chat([])
+    assert closed == [True]
+
+
+def test_ollama_explicit_model_is_not_substituted(monkeypatch):
+    monkeypatch.setenv('OLLAMA_MODEL', 'qwen2.5:3b')
+    monkeypatch.setattr(lc, 'ollama_reachable', lambda: True)
+    lc._OLLAMA_CACHE['models'] = ['qwen2.5:1.5b']
+    assert lc.ollama_model() == 'qwen2.5:3b'
+
+
+@pytest.mark.parametrize('streaming', [False, True])
+def test_ollama_applies_history_budget(monkeypatch, streaming):
+    monkeypatch.setattr(lc, 'provider_status', lambda: 'ollama')
+    messages = [{'role': 'system', 'content': 'system'},
+                {'role': 'user', 'content': 'old' * 30},
+                {'role': 'user', 'content': 'latest'}]
+    received = []
+
+    def generate(msgs, **kwargs):
+        received.extend(msgs)
+        return iter(['answer']) if streaming else 'answer'
+
+    monkeypatch.setattr(lc, '_stream_ollama' if streaming else 'ollama_chat', generate)
+    if streaming:
+        assert list(lc.stream(messages, char_budget=20)) == ['answer']
+    else:
+        assert lc.chat(messages, char_budget=20).text == 'answer'
+    assert received == [messages[0], messages[-1]]
+    assert len(messages) == 3
+
+
 def test_usage_tracker_records(wire, monkeypatch):
     wire.set({"text": "hi"})
     monkeypatch.setenv("DEEPSEEK_API_KEY", "sk")
@@ -328,6 +409,21 @@ def test_timeout_must_be_finite_positive(monkeypatch, value, streaming):
     monkeypatch.setenv(name, value)
     with pytest.raises(lc.LLMError, match=name):
         lc.timeout_for('deepseek', streaming)
+
+
+@pytest.mark.parametrize('streaming', [False, True])
+def test_documented_ollama_timeout_overrides_cloud_timeout(monkeypatch, streaming):
+    monkeypatch.setenv('OLLAMA_TIMEOUT', '123')
+    monkeypatch.setenv('DEEPSEEK_TIMEOUT_S', '5')
+    monkeypatch.setenv('DEEPSEEK_STREAM_TIMEOUT_S', '6')
+    assert lc.timeout_for('ollama', streaming) == 123
+
+
+@pytest.mark.parametrize('value', ['invalid', 'nan', 'inf', '0', '-1'])
+def test_ollama_timeout_must_be_finite_positive(monkeypatch, value):
+    monkeypatch.setenv('OLLAMA_TIMEOUT', value)
+    with pytest.raises(lc.LLMError, match='OLLAMA_TIMEOUT'):
+        lc.timeout_for('ollama', False)
 
 
 @pytest.mark.parametrize('mode', ['chat', 'chat-error', 'stream', 'stream-error', 'cancel'])

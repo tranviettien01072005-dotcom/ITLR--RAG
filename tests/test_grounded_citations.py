@@ -63,6 +63,34 @@ def test_synthetic_source_not_real_evidence(monkeypatch):
     assert result["sources"][0]["evidence_kind"] == "synthetic"
 
 
+@pytest.mark.parametrize('streaming', [False, True])
+@pytest.mark.parametrize('kind', ['final', 'generate'])
+def test_public_recommendations_are_json_safe_without_full_source_text(monkeypatch, streaming, kind):
+    import json
+
+    bot = prepared(monkeypatch)
+    _, p = bot._prepare('q')
+    item = {'item_id': 5001, 'title': 'Python', 'source_updated_at': float('nan'),
+            'full_text': 'private internal snapshot body'}
+    if kind == 'final':
+        p = dict(response='hello', intent='greeting', sources=[], recommendations=[item])
+    else:
+        p['all_recs'] = [item]
+    monkeypatch.setattr(bot, '_prepare', lambda *a: (kind, p))
+    monkeypatch.setattr(cb, 'try_llm_response', lambda *a, **kw: 'Python [item_id:5001]')
+    monkeypatch.setattr(cb, 'try_llm_response_stream', lambda *a, **kw: iter(['Python [item_id:5001]']))
+    if streaming:
+        events = list(bot.chat_stream('q'))
+        for _, event in events:
+            json.dumps(event, allow_nan=False)
+        result = events[-1][1]
+    else:
+        result = bot.chat('q')
+        json.dumps(result, allow_nan=False)
+    assert result['recommendations'][0]['source_updated_at'] is None
+    assert 'full_text' not in result['recommendations'][0]
+
+
 def test_stream_failure_after_token_never_finalizes_partial(monkeypatch):
     from itlr.chatbot import llm_client
     bot = prepared(monkeypatch)

@@ -1,0 +1,79 @@
+{
+  "ok": false,
+  "report": {
+    "dir": "/tmp/itlr-system-audit/staging",
+    "checks": [
+      {
+        "check": "required_files",
+        "ok": true,
+        "detail": "thi\u1ebfu: []"
+      },
+      {
+        "check": "rows_align",
+        "ok": true,
+        "detail": "items=118 emb=118 char=118"
+      },
+      {
+        "check": "dim_match",
+        "ok": true,
+        "detail": "emb=768 meta=None"
+      },
+      {
+        "check": "no_nan",
+        "ok": true,
+        "detail": "NaN/Inf trong embeddings!"
+      },
+      {
+        "check": "norm_l2",
+        "ok": true,
+        "detail": "norm range [1.0000, 1.0000]"
+      },
+      {
+        "check": "retrieval_model.vectorizers",
+        "ok": true,
+        "detail": "thi\u1ebfu kh\u00f3a trong retrieval_model"
+      },
+      {
+        "check": "retrieval_model.matrices",
+        "ok": true,
+        "detail": "thi\u1ebfu kh\u00f3a trong retrieval_model"
+      },
+      {
+        "check": "retrieval_model.bm25",
+        "ok": true,
+        "detail": "thi\u1ebfu kh\u00f3a trong retrieval_model"
+      },
+      {
+        "check": "retrieval_model.categories",
+        "ok": true,
+        "detail": "thi\u1ebfu kh\u00f3a trong retrieval_model"
+      },
+      {
+        "check": "item_ids_unique",
+        "ok": true,
+        "detail": "item_id tr\u00f9ng l\u1eb7p!"
+      },
+      {
+        "check": "self_retrieval",
+        "ok": true,
+        "detail": "recall=1.000 min=0.8"
+      },
+      {
+        "check": "engine_probe",
+        "ok": false,
+        "detail": "itlr.versioning.VersionError: Artifact integrity mismatch; rebuild and probe trusted artifacts"
+      }
+    ],
+    "self_retrieval": {
+      "n_samples": 30,
+      "hits": 30,
+      "threshold": 0.8,
+      "misses": []
+    },
+    "engine_probe": {
+      "ok": false,
+      "msg": "itlr.versioning.VersionError: Artifact integrity mismatch; rebuild and probe trusted artifacts",
+      "rc": 1
+    }
+  }
+}

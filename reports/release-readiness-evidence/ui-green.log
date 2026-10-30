@@ -1,0 +1,68 @@
+
+> it-learning-platform@1.0.0 test
+> vitest run --coverage --run src/services/chat-ui.test.ts
+
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (vitest.config.ts:1:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.12 /home/o/ITLR--RAG/web
+      Coverage enabled with v8
+
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  21:59:33
+   Duration  1.09s (transform 35ms, setup 0ms, import 61ms, tests 288ms, environment 0ms)
+
+ % Coverage report from v8
+-------------------|---------|----------|---------|---------|-------------------
+File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-------------------|---------|----------|---------|---------|-------------------
+All files          |       0 |        0 |       0 |       0 |                   
+ src               |       0 |        0 |       0 |       0 |                   
+  app.ts           |       0 |        0 |       0 |       0 | 17-73             
+ src/config        |       0 |        0 |       0 |       0 |                   
+  catalog.ts       |       0 |        0 |     100 |       0 | 7-10              
+  env.ts           |       0 |        0 |       0 |       0 | 3-53              
+ src/db            |       0 |        0 |       0 |       0 |                   
+  check.ts         |       0 |        0 |       0 |       0 | 11-110            
+  migrate.ts       |       0 |      100 |       0 |       0 | 6-14              
+  pool.ts          |       0 |      100 |       0 |       0 | 4-12              
+  seed-courses.ts  |       0 |      100 |       0 |       0 | 4                 
+  sync-courses.ts  |       0 |        0 |       0 |       0 | 9-29              
+ src/middleware    |       0 |        0 |       0 |       0 |                   
+  auth.ts          |       0 |        0 |       0 |       0 | 23-104            
+  security.ts      |       0 |        0 |       0 |       0 | 7-82              
+  uploads.ts       |       0 |        0 |       0 |       0 | 6-33              
+ src/routes        |       0 |        0 |       0 |       0 |                   
+  admin.routes.ts  |       0 |        0 |       0 |       0 | 14-354            
+  api.routes.ts    |       0 |        0 |       0 |       0 | 14-402            
+  auth.routes.ts   |       0 |        0 |       0 |       0 | 23-315            
+  chat.handlers.ts |       0 |        0 |       0 |       0 | 7-71              
+  ...ing.routes.ts |       0 |        0 |       0 |       0 | 6-51              
+  pages.routes.ts  |       0 |        0 |       0 |       0 | 9-203             
+  social.routes.ts |       0 |        0 |       0 |       0 | 13-443            
+ src/services      |       0 |        0 |       0 |       0 |                   
+  catalog-csv.ts   |       0 |        0 |       0 |       0 | 4-19              
+  chat-history.ts  |       0 |        0 |       0 |       0 | 4-36              
+  chat-stream.ts   |       0 |        0 |       0 |       0 | 4-82              
+  ...et-extract.ts |       0 |        0 |       0 |       0 | 4-38              
+  dataset.ts       |       0 |        0 |       0 |       0 | 9-64              
+  http-range.ts    |       0 |        0 |       0 |       0 | 14-45             
+  learning.ts      |       0 |        0 |       0 |       0 | 3-90              
+  mailer.ts        |       0 |        0 |       0 |       0 | 3-33              
+  markdown.ts      |       0 |        0 |       0 |       0 | 3-13              
+  password.ts      |       0 |        0 |       0 |       0 | 3-54              
+  posts.ts         |       0 |        0 |       0 |       0 | 9-64              
+  realtime.ts      |       0 |        0 |       0 |       0 | 8-37              
+  recommender.ts   |       0 |        0 |       0 |       0 | 4-102             
+  social.ts        |       0 |        0 |       0 |       0 | 6-42              
+-------------------|---------|----------|---------|---------|-------------------
+
+=============================== Coverage summary ===============================
+Statements   : 0% ( 0/1616 )
+Branches     : 0% ( 0/1026 )
+Functions    : 0% ( 0/267 )
+Lines        : 0% ( 0/1364 )
+================================================================================

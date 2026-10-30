@@ -113,9 +113,26 @@ cloud-provider failover. API startup may prewarm local Ollama as a lifecycle tas
 HTTP response is scoped by a context manager. Importing these modules does not start
 that prewarm task (it runs from lifespan).
 
-Release audit: API/Web `min_pct=90` maps to a raw dense cosine floor of 0.90;
-V3 applies that floor before both dense and BM25 candidate truncation/RRF. This is
-not a probability. The new real-snapshot release benchmark compares lexical search
-with/without MMR, not E5/FAISS/CrossEncoder. No ranking/threshold change was justified.
-API health currently exposes readiness/items/CF, not a loaded-version fingerprint.
-See [release evidence](../reports/RELEASE_VALIDATION_2026-10-30.md).
+Search now defaults to `min_pct=84`, selected on frozen development judgments;
+explicit 90 still means raw cosine 0.90. V3 applies the floor before dense/BM25
+candidate truncation and RRF; it is not a probability. Preserve the raw E5 query
+unless a real correction/abbreviation is needed. Glossary augmentation applies to
+bare aliases, not specific questions merely mentioning a topic. Ranking weights
+and the independent chatbot off-topic gate remain unchanged.
+
+Web parses final/done and validates stream completion before saving the final
+answer. The browser also delays success/conversation state until consume() resolves
+after final/done and clean EOF; post-final parser errors clear the provisional draft.
+Early sources/tokens stay provisional. Only the context copy of owned
+history is shortened to FastAPI's per-message bound; stored PostgreSQL text remains
+intact. `citations.public_item` shares JSON-safe metadata handling for sources and
+recommendations; non-finite metadata becomes null and full snapshot bodies stay
+inside retrieval artifacts. The shared Ollama request builder owns transport
+payloads for both modes; stream elapsed budget is checked at NDJSON boundaries.
+
+Unused preparation category/prefix work was removed with output parity checks.
+Existing orchestration modules and public compatibility aliases remain; no new
+service hierarchy, renamed pickle path or PostgreSQL schema was introduced.
+API health still exposes readiness/items/CF, not a loaded-version fingerprint.
+See [ADR-012](decisions/ADR-012-calibrated-search-and-stream-completion.md) and
+[engineering evidence](../reports/FINAL_ENGINEERING_REVIEW.md).

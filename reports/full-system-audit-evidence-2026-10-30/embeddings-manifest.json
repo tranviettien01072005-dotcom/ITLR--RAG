@@ -1,0 +1,11 @@
+{
+  "step": "embeddings_v2",
+  "model_name": "intfloat/multilingual-e5-base",
+  "n_items": 118,
+  "n_chunks": 1576,
+  "dim": 768,
+  "ann_backend": "faiss",
+  "items_csv": "/tmp/itlr-system-audit/catalog.csv",
+  "catalog_sha256_16": "708afec586fda42c",
+  "ok": true
+}

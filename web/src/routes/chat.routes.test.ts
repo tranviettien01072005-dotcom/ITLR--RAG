@@ -22,6 +22,14 @@ function response() {
 }
 function request(body: unknown) { return { body, user: { id: 7 } }; }
 beforeEach(() => { vi.resetAllMocks(); mocks.history.mockResolvedValue([]); mocks.save.mockResolvedValue(9); });
+it.each(["/chat", "/chat/stream"])("rejects messages beyond the FastAPI limit at %s", async path => {
+  const res = response();
+  await handler(path)(request({ message: "x".repeat(2001) }) as never, res as never, vi.fn());
+  expect(res.status).toHaveBeenCalledWith(400);
+  expect(mocks.history).not.toHaveBeenCalled();
+  expect(mocks.chat).not.toHaveBeenCalled();
+  expect(mocks.stream).not.toHaveBeenCalled();
+});
 it("rejects foreign conversations before contacting the model", async () => {
   mocks.history.mockResolvedValue(null); const res = response();
   await handler("/chat/stream")(request({ message: "hello", conversation_id: 42 }) as never, res as never, vi.fn());
@@ -53,6 +61,18 @@ it("aborts upstream when the browser disconnects", async () => {
   });
   await handler("/chat/stream")(request({ message: "hello" }) as never, res as never, vi.fn());
   expect(signal?.aborted).toBe(true); expect(mocks.save).not.toHaveBeenCalled();
+});
+
+it("does not persist a final response when upstream subsequently fails", async () => {
+  const res = response();
+  mocks.stream.mockImplementation(async function* () {
+    yield { type: "final", response: "unconfirmed final", sources: [] };
+    throw new Error("transport failed before done");
+  });
+  await handler("/chat/stream")(request({ message: "hello" }) as never, res as never, vi.fn());
+  expect(mocks.save).not.toHaveBeenCalled();
+  expect(res.write.mock.calls.some(call => String(call[0]).includes('"type":"final"'))).toBe(false);
+  expect(res.write).toHaveBeenCalledWith(expect.stringContaining('"type":"error"'));
 });
 it("reports interrupted upstream and failed persistence explicitly", async () => {
   const res = response();

@@ -1,0 +1,53 @@
+ M AGENTS.md
+ M CHANGELOG.md
+ M CONSTRAINTS.md
+ M README.md
+ M deploy/DEPLOY.md
+ M deploy/LOCAL_MODELS.md
+ M docs/ARCHITECTURE.md
+ M docs/PROJECT_MEMORY.md
+ M itlr/api/server.py
+ M itlr/chatbot/chatbot.py
+ M itlr/chatbot/citations.py
+ M itlr/chatbot/llm_client.py
+ M itlr/engine.py
+ M itlr/retrieval/service.py
+ M itlr/utils/repickle.py
+ M itlr/utils/runtime_patches.py
+ M itlr/versioning.py
+ M reports/VALIDATION.md
+ M tests/test_artifact_integrity.py
+ M tests/test_grounded_citations.py
+ M tests/test_llm_client.py
+ M tests/test_pickle_handles.py
+ M tests/test_retrieval_service.py
+ M web/src/public/app.js
+ M web/src/public/chat-stream.js
+ M web/src/routes/chat.handlers.ts
+ M web/src/routes/chat.routes.test.ts
+ M web/src/routes/pages.routes.ts
+ M web/src/services/chat-client.test.ts
+ M web/src/services/chat-history.test.ts
+ M web/src/services/chat-history.ts
+ M web/src/services/chat-stream.test.ts
+ M web/src/services/chat-stream.ts
+ M web/src/services/dataset-extract.test.ts
+ M web/src/services/dataset-extract.ts
+ M web/src/services/recommender-stream.test.ts
+ M web/src/services/recommender.ts
+ M web/src/views/chat.ejs
+ M web/src/views/home.ejs
+ M web/src/views/partials/auth-aside.ejs
+ M web/src/views/search.ejs
+ M web/vitest.config.ts
+?? docs/decisions/ADR-012-calibrated-search-and-stream-completion.md
+?? eval/engineering_confirmation_queries.jsonl
+?? eval/engineering_queries.jsonl
+?? reports/FINAL_ENGINEERING_REVIEW.md
+?? reports/FULL_SYSTEM_AUDIT_2026-10-30.md
+?? reports/RELEASE_READINESS_FINAL.md
+?? reports/final-engineering-evidence/
+?? reports/full-system-audit-evidence-2026-10-30/
+?? reports/release-readiness-evidence/
+?? tests/test_engineering_eval.py
+?? web/src/services/chat-ui.test.ts

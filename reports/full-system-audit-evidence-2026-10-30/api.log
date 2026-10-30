@@ -1,0 +1,38 @@
+INFO:     Started server process [36574]
+INFO:     Waiting for application startup.
+Thiếu /tmp/itlr-system-audit/staging/cf_model.pkl — Collaborative Filtering bị tắt (tùy chọn V2); /api/personas và /api/for-you sẽ trả 503 cho tới khi build CF.
+Could not reach the Hub (Cannot reach https://huggingface.co/api/models/intfloat/multilingual-e5-base: offline mode is enabled. To disable it, please unset the `HF_HUB_OFFLINE` environment variable.). Using cached commit hash for 'intfloat/multilingual-e5-base'.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:18080 (Press CTRL+C to quit)
+[OK] Engine sẵn sàng — API tại http://localhost:8000
+INFO:     127.0.0.1:56976 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56992 - "POST /api/search HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56994 - "POST /api/search HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:57004 - "GET /api/personas HTTP/1.1" 503 Service Unavailable
+[!] /admin/reload auth fail từ 127.0.0.1
+INFO:     127.0.0.1:57012 - "POST /admin/reload HTTP/1.1" 403 Forbidden
+INFO:     127.0.0.1:57014 - "POST /api/for-you HTTP/1.1" 503 Service Unavailable
+[OK] Đã pre-warm Ollama (qwen2.5:3b) — chatbot sẵn sàng trả lời nhanh.
+INFO:     127.0.0.1:57030 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54736 - "POST /api/chat/stream HTTP/1.1" 200 OK
+chat_stream generation failed
+Traceback (most recent call last):
+  File "/home/o/ITLR--RAG/itlr/chatbot/chatbot.py", line 416, in chat_stream
+    for chunk in try_llm_response_stream(p["sys_prompt"], p["llm_message"], history=p["history"], strict=True):
+                 ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/o/ITLR--RAG/itlr/chatbot/llm_adapter.py", line 46, in try_llm_response_stream
+    yield from llm_client.stream(messages)
+  File "/home/o/ITLR--RAG/itlr/chatbot/llm_client.py", line 452, in stream
+    yield from _stream_ollama(messages, num_predict=max_tokens, temperature=temperature)
+  File "/home/o/ITLR--RAG/itlr/chatbot/llm_client.py", line 225, in _stream_ollama
+    raise LLMError('Incomplete Ollama text completion')
+itlr.chatbot.llm_client.LLMError: Incomplete Ollama text completion
+Thiếu /tmp/itlr-system-audit/staging/cf_model.pkl — Collaborative Filtering bị tắt (tùy chọn V2); /api/personas và /api/for-you sẽ trả 503 cho tới khi build CF.
+Could not reach the Hub (Cannot reach https://huggingface.co/api/models/intfloat/multilingual-e5-base: offline mode is enabled. To disable it, please unset the `HF_HUB_OFFLINE` environment variable.). Using cached commit hash for 'intfloat/multilingual-e5-base'.
+INFO:     127.0.0.1:49198 - "POST /admin/reload HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [36574]
+/usr/lib/python3.14/multiprocessing/resource_tracker.py:396: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/loky-36574-k0dx_4xw'}
+  warnings.warn(

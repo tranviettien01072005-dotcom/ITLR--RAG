@@ -67,3 +67,12 @@ def test_engine_rejects_changed_pickle_before_deserialization(tmp_path, monkeypa
 def test_strict_mode_rejects_missing_manifest(tmp_path):
     with pytest.raises(versioning.VersionError):
         versioning.verify_integrity(tmp_path, required=True)
+
+
+def test_manifest_survives_first_flat_engine_read_lock(tmp_path):
+    from itlr.locking import file_lock
+
+    (tmp_path / 'item_list.pkl').write_bytes(b'trusted fixture')
+    versioning.write_manifest(tmp_path, {'probe': 'pending'})
+    with file_lock(tmp_path / '.activation.lock', shared=True):
+        versioning.verify_integrity(tmp_path, required=True)

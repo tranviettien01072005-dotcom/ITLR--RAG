@@ -1,0 +1,21 @@
+============================================================
+Tuned Model: Multi-field TF-IDF + BM25 + Hybrid v2 + MMR
+============================================================
+Items: 118
+TF-IDF features (full): 12000
+
+Retrieval Quality (10 labeled queries):
+  Category accuracy @top1: 20.0%
+  Topic relevance @top1:   40.0%
+  Avg top-1 score:         22.4%
+
+Query-based retrieval samples:
+  Q: Machine Learning khóa học
+     -> 2. Using the Python Interpreter (Lập trình) 18.6%
+     -> HTTP: Hypertext Transfer Protocol | MDN (Lập trình) 18.0%
+  Q: tài liệu Docker Kubernetes DevOps
+     -> What is Docker? (DevOps) 49.7%
+     -> Docker Engine security (DevOps) 47.8%
+  Q: học Python lập trình cơ bản
+     -> 2. Using the Python Interpreter (Lập trình) 47.8%
+     -> Logging — Logging facility for Python (Lập trình) 45.5%

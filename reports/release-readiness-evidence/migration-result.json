@@ -1,0 +1,21 @@
+{
+  "migrationRuns": 2,
+  "fixtureCourses": 3,
+  "tables": [
+    "attachments",
+    "conversations",
+    "courses",
+    "direct_messages",
+    "enrollments",
+    "friendships",
+    "learning_profiles",
+    "lesson_progress",
+    "lessons",
+    "messages",
+    "password_resets",
+    "post_comments",
+    "post_likes",
+    "posts",
+    "users"
+  ]
+}

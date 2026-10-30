@@ -1,0 +1,9 @@
+Client: Docker Engine - Community
+ Version:           29.9.2
+ API version:       1.56
+ Go version:        go1.26.10
+ Git commit:        a82e528
+ Built:             Tue Oct 20 18:45:12 2026
+ OS/Arch:           linux/amd64
+ Context:           default
+permission denied while trying to connect to the docker API at unix:///var/run/docker.sock

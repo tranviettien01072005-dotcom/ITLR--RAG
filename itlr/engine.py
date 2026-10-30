@@ -15,6 +15,7 @@ from pathlib import Path
 
 from itlr import config
 from itlr.core.recommender import recommend_for_user, search_by_embedding
+from itlr.retrieval.service import DEFAULT_SEARCH_MIN_PCT
 
 LOG = logging.getLogger("itlr.engine")
 
@@ -33,26 +34,31 @@ class RecommenderEngine:
         self.cf_model = cf_model   # None khi chưa build CF (tính năng tùy chọn)
         self.chatbot = chatbot
 
-    def search(self, query, item_type=None, min_pct=90):
+    def search(self, query, item_type=None, min_pct=DEFAULT_SEARCH_MIN_PCT):
         """Tìm kiếm ngữ nghĩa — logic hiểu truy vấn của tab Tìm kiếm.
 
         Mở rộng viết tắt + sửa lỗi chính tả + bổ sung tên/chủ đề khái niệm (nếu truy vấn
         là một khái niệm trong glossary), rồi truy hồi qua `search_by_embedding`.
         Trả dict: {results, display, note, corrected}.
         """
-        from itlr.chatbot.knowledge_base import CONCEPTS, safe_concept_match
+        from itlr.chatbot.knowledge_base import CONCEPTS, safe_concept_match, _key
         from itlr.chatbot.query_understanding import understand_query
 
         if not query or not query.strip():
             return {"results": [], "display": "", "note": "", "corrected": False}
 
         understanding = understand_query(query, self.search_index.get("vocab") or frozenset())
-        search_query = understanding["corrected"] or query
+        search_query = query
+        if understanding["corrections"] or understanding["expansions"]:
+            search_query = understanding["corrected"] or query
 
         matched = None
         mkey = safe_concept_match(query)
-        if mkey:
-            matched = CONCEPTS[mkey]
+        # Expand bare aliases, not a specific question merely mentioning the concept.
+        concept = CONCEPTS[mkey] if mkey else None
+        if concept and _key(query) in {_key(alias) for alias in
+                                      [concept['name'], *concept.get('aliases', [])]}:
+            matched = concept
             search_query = f"{search_query} {matched['name']} {' '.join(matched.get('topics', []))}"
 
         notes = []

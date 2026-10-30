@@ -1,0 +1,732 @@
+{
+  "protocol_limits": "AI-authored source-disjoint sample, not human evaluation. Qrels incomplete: unjudged items unknown, not automatically irrelevant. No tuning. Default floor84, reranker disabled as prior runtime-search baseline.",
+  "case_sha256": "2a3a98e2d207b7c4932ced6ec87b3d7db9668c8b543730545e9a76d10abe6dd1",
+  "model": "intfloat/multilingual-e5-base",
+  "default_floor": 84,
+  "reranker_enabled": false,
+  "cases": [
+    {
+      "id": "blind-positive-01",
+      "query": "I put a Dockerfile parser directive below an ordinary comment. Will BuildKit still interpret it as a directive, and where should I put it?",
+      "rewritten": "i put a dockerfile parser directive below an ordinary comment will buildkit still interpreter it as a directive and where should i put it",
+      "expected": [
+        5002
+      ],
+      "ranked": [
+        5002,
+        5012,
+        5066
+      ],
+      "note": "",
+      "ms": 240.6678040006227,
+      "metrics": {
+        "1": {
+          "recall": 1.0,
+          "precision_judged": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        },
+        "5": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        },
+        "8": {
+          "recall": 1.0,
+          "precision_judged": 0.125,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        }
+      }
+    },
+    {
+      "id": "blind-positive-02",
+      "query": "When organizing container images, how does a repository fit inside a registry?",
+      "rewritten": "when organizing container images how dos a repository fit inside a registry",
+      "expected": [
+        5013
+      ],
+      "ranked": [
+        5013,
+        5021,
+        5002,
+        5004,
+        5014
+      ],
+      "note": "",
+      "ms": 160.74857800049358,
+      "metrics": {
+        "1": {
+          "recall": 1.0,
+          "precision_judged": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        },
+        "5": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        },
+        "8": {
+          "recall": 1.0,
+          "precision_judged": 0.125,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        }
+      }
+    },
+    {
+      "id": "blind-positive-03",
+      "query": "My JavaScript fetch request gets an HTTP 404, but the promise does not reject. Is that expected, and what should I check before reading JSON?",
+      "rewritten": "my javascript fetch request gets an http 404 but the promise dos not reject is thuat expected and what should i check before reading json",
+      "expected": [
+        5029
+      ],
+      "ranked": [
+        5029,
+        5024,
+        5031,
+        5030
+      ],
+      "note": "",
+      "ms": 230.14098199928412,
+      "metrics": {
+        "1": {
+          "recall": 1.0,
+          "precision_judged": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        },
+        "5": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        },
+        "8": {
+          "recall": 1.0,
+          "precision_judged": 0.125,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        }
+      }
+    },
+    {
+      "id": "blind-positive-04",
+      "query": "For a purely decorative image, what does an empty alt attribute signal to non-visual browsers, and what happens to its broken-image icon if loading fails?",
+      "rewritten": "for a purely decorative image what dos an empty alt attribute signal to non visual browser and what happens to its broken image icon if loading fails",
+      "expected": [
+        5047
+      ],
+      "ranked": [
+        5047,
+        5052
+      ],
+      "note": "",
+      "ms": 232.24443500112102,
+      "metrics": {
+        "1": {
+          "recall": 1.0,
+          "precision_judged": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        },
+        "5": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        },
+        "8": {
+          "recall": 1.0,
+          "precision_judged": 0.125,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        }
+      }
+    },
+    {
+      "id": "blind-positive-05",
+      "query": "A keyboard user has focused an HTML anchor. Which key activates it, and which attribute must be present for that documented behavior?",
+      "rewritten": "a keyboard user has focused an html anchor which key activates it and which attribute must be present for thuat document behavior",
+      "expected": [
+        5052
+      ],
+      "ranked": [
+        5052,
+        5049,
+        5050
+      ],
+      "note": "",
+      "ms": 157.02111100108596,
+      "metrics": {
+        "1": {
+          "recall": 1.0,
+          "precision_judged": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        },
+        "5": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        },
+        "8": {
+          "recall": 1.0,
+          "precision_judged": 0.125,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        }
+      }
+    },
+    {
+      "id": "blind-positive-06",
+      "query": "I need a Python UUID but want to avoid embedding my computer’s network address. How do uuid1() and uuid4() differ here?",
+      "rewritten": "i need a python uuid but wan to avoid embedding my computer s network address how do uuid1 and uuid4 differ here",
+      "expected": [
+        5064
+      ],
+      "ranked": [
+        5064,
+        5070
+      ],
+      "note": "",
+      "ms": 145.75423899987072,
+      "metrics": {
+        "1": {
+          "recall": 1.0,
+          "precision_judged": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        },
+        "5": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        },
+        "8": {
+          "recall": 1.0,
+          "precision_judged": 0.125,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        }
+      }
+    },
+    {
+      "id": "blind-positive-07",
+      "query": "Khi dùng configparser để đọc tệp INI do người lạ gửi, tài liệu cảnh báo rủi ro tài nguyên nào và đề xuất giới hạn gì?",
+      "rewritten": "Khi dùng configparser để đọc tệp INI do người lạ gửi, tài liệu cảnh báo rủi ro tài nguyên nào và đề xuất giới hạn gì?",
+      "expected": [
+        5066
+      ],
+      "ranked": [],
+      "note": "",
+      "ms": 159.27963700050896,
+      "metrics": {
+        "1": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        },
+        "5": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        },
+        "8": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      }
+    },
+    {
+      "id": "blind-positive-08",
+      "query": "Nếu truyền một số nguyên không âm nhỏ hơn 2**32 vào ipaddress.ip_address(), mặc định Python coi đó là IPv4 hay IPv6? Hàm báo lỗi gì khi địa chỉ không hợp lệ?",
+      "rewritten": "nếu truyền một số nguyên không âm nhỏ hơn 2 32 vào address ip_address mặc định python coi đó là ipv4 hay ipv6 hàm báo lỗi gì khi địa chỉ không hợp lệ",
+      "expected": [
+        5072
+      ],
+      "ranked": [
+        5070,
+        5072
+      ],
+      "note": "",
+      "ms": 203.0596910008171,
+      "metrics": {
+        "1": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        },
+        "5": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 0.5,
+          "ndcg": 0.6309297535714575,
+          "empty_result": null
+        },
+        "8": {
+          "recall": 1.0,
+          "precision_judged": 0.125,
+          "mrr": 0.5,
+          "ndcg": 0.6309297535714575,
+          "empty_result": null
+        }
+      }
+    },
+    {
+      "id": "blind-positive-09",
+      "query": "Tôi dùng tempfile.mkstemp() hoặc tempfile.mkdtemp(); hai hàm này tự dọn dẹp hay tôi phải tự làm? Chúng khác nhóm giao diện cấp cao ở điểm đó thế nào?",
+      "rewritten": "Tôi dùng tempfile.mkstemp() hoặc tempfile.mkdtemp(); hai hàm này tự dọn dẹp hay tôi phải tự làm? Chúng khác nhóm giao diện cấp cao ở điểm đó thế nào?",
+      "expected": [
+        5077
+      ],
+      "ranked": [
+        5077
+      ],
+      "note": "",
+      "ms": 212.2845239991875,
+      "metrics": {
+        "1": {
+          "recall": 1.0,
+          "precision_judged": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        },
+        "5": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        },
+        "8": {
+          "recall": 1.0,
+          "precision_judged": 0.125,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        }
+      }
+    },
+    {
+      "id": "blind-positive-10",
+      "query": "Trong subprocess.run(), tôi muốn gộp stderr vào stdout. Có thể vừa dùng capture_output=True vừa truyền stdout và stderr không, và tài liệu hướng dẫn đặt chúng thế nào?",
+      "rewritten": "trong subprocess run tôi muốn gộp stderr vào stdout có thể vừa dùng capture_output tue vừa truyền stdout và stderr không và tài liệu hướng dẫn đặt chúng thế nào",
+      "expected": [
+        5080
+      ],
+      "ranked": [
+        5080
+      ],
+      "note": "",
+      "ms": 190.38770699989982,
+      "metrics": {
+        "1": {
+          "recall": 1.0,
+          "precision_judged": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        },
+        "5": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        },
+        "8": {
+          "recall": 1.0,
+          "precision_judged": 0.125,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        }
+      }
+    },
+    {
+      "id": "blind-positive-11",
+      "query": "Sau khi khai báo các đối số dòng lệnh với argparse, phương thức nào thực sự phân tích chúng và kết quả được đặt trong kiểu đối tượng nào?",
+      "rewritten": "Sau khi khai báo các đối số dòng lệnh với argparse, phương thức nào thực sự phân tích chúng và kết quả được đặt trong kiểu đối tượng nào?",
+      "expected": [
+        5094
+      ],
+      "ranked": [],
+      "note": "",
+      "ms": 154.21924300062528,
+      "metrics": {
+        "1": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        },
+        "5": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        },
+        "8": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      }
+    },
+    {
+      "id": "blind-positive-12",
+      "query": "Tôi giữ một min-heap kích thước cố định. Nếu không muốn giá trị trả về lớn hơn phần tử mới đưa vào, vì sao nên cân nhắc heappushpop() thay cho heapreplace()?",
+      "rewritten": "tôi giữ một min heap kích thước cố định nếu không muốn giá trị trả về lớn hơn phần tử mới đưa vào vì sao nên cân nhắc heappushpop hay cho heapreplace",
+      "expected": [
+        5106
+      ],
+      "ranked": [
+        5106
+      ],
+      "note": "",
+      "ms": 175.3567670002667,
+      "metrics": {
+        "1": {
+          "recall": 1.0,
+          "precision_judged": 1.0,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        },
+        "5": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        },
+        "8": {
+          "recall": 1.0,
+          "precision_judged": 0.125,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        }
+      }
+    },
+    {
+      "id": "blind-negative-01",
+      "query": "Which restaurant near my home has the best fresh oysters tonight?",
+      "rewritten": "Which restaurant near my home has the best fresh oysters tonight?",
+      "expected": [],
+      "ranked": [],
+      "note": "",
+      "ms": 117.29660300079559,
+      "metrics": {
+        "1": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        },
+        "5": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        },
+        "8": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        }
+      }
+    },
+    {
+      "id": "blind-negative-02",
+      "query": "Cây lan trên ban công nhà tôi đang bị vàng lá; chính xác nó mắc bệnh gì và cần phun thuốc nào?",
+      "rewritten": "Cây lan trên ban công nhà tôi đang bị vàng lá; chính xác nó mắc bệnh gì và cần phun thuốc nào?",
+      "expected": [],
+      "ranked": [],
+      "note": "",
+      "ms": 140.86126599977433,
+      "metrics": {
+        "1": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        },
+        "5": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        },
+        "8": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        }
+      }
+    },
+    {
+      "id": "blind-negative-03",
+      "query": "What is the current one-time login code sent to my personal email account?",
+      "rewritten": "What is the current one-time login code sent to my personal email account?",
+      "expected": [],
+      "ranked": [],
+      "note": "",
+      "ms": 122.10405100086064,
+      "metrics": {
+        "1": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        },
+        "5": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        },
+        "8": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        }
+      }
+    },
+    {
+      "id": "blind-negative-04",
+      "query": "Mật khẩu PostgreSQL production đang dùng nội bộ của công ty tôi là gì?",
+      "rewritten": "Mật khẩu PostgreSQL production đang dùng nội bộ của công ty tôi là gì?",
+      "expected": [],
+      "ranked": [],
+      "note": "",
+      "ms": 117.15987500065239,
+      "metrics": {
+        "1": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        },
+        "5": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        },
+        "8": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        }
+      }
+    },
+    {
+      "id": "blind-negative-05",
+      "query": "For a Kubernetes StatefulSet, which exact manifest fields configure persistent volume claim retention when the set is deleted or scaled down?",
+      "rewritten": "for a kubernetes statefulset which exact manifest fields configure persistent volume claim retention when the set is deleted or scaled don",
+      "expected": [],
+      "ranked": [],
+      "note": "",
+      "ms": 160.08286400028737,
+      "metrics": {
+        "1": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        },
+        "5": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        },
+        "8": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        }
+      }
+    },
+    {
+      "id": "blind-negative-06",
+      "query": "Trong Rust, cú pháp ràng buộc lifetime chính xác cho hàm trả về tham chiếu dài nhất từ hai tham chiếu đầu vào là gì?",
+      "rewritten": "Trong Rust, cú pháp ràng buộc lifetime chính xác cho hàm trả về tham chiếu dài nhất từ hai tham chiếu đầu vào là gì?",
+      "expected": [],
+      "ranked": [],
+      "note": "",
+      "ms": 162.64010799932294,
+      "metrics": {
+        "1": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        },
+        "5": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        },
+        "8": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        }
+      }
+    },
+    {
+      "id": "blind-negative-07",
+      "query": "What CUDA kernel code uses shared-memory tiling to multiply two matrices, including the required synchronization points?",
+      "rewritten": "what cua kernel code uses shared memory tiling to multiply two matrices including the required synchronization points",
+      "expected": [],
+      "ranked": [],
+      "note": "",
+      "ms": 139.0186119988357,
+      "metrics": {
+        "1": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        },
+        "5": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        },
+        "8": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        }
+      }
+    },
+    {
+      "id": "blind-negative-08",
+      "query": "Hãy cho cấu hình Cisco IOS đầy đủ để thiết lập BGP route reflector với hai client và giải thích lệnh cluster-id.",
+      "rewritten": "hãy cho cấu hình cisco ios đầy đủ để thiết lập bgp router reflector với hai client và giải thích lệnh cluster id",
+      "expected": [],
+      "ranked": [],
+      "note": "",
+      "ms": 127.78499299929535,
+      "metrics": {
+        "1": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        },
+        "5": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        },
+        "8": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        }
+      }
+    }
+  ],
+  "metrics": {
+    "1": {
+      "recall": 0.75,
+      "precision_judged": 0.75,
+      "mrr": 0.75,
+      "ndcg": 0.75
+    },
+    "5": {
+      "recall": 0.8333333333333334,
+      "precision_judged": 0.16666666666666666,
+      "mrr": 0.7916666666666666,
+      "ndcg": 0.8025774794642881
+    },
+    "8": {
+      "recall": 0.8333333333333334,
+      "precision_judged": 0.10416666666666667,
+      "mrr": 0.7916666666666666,
+      "ndcg": 0.8025774794642881
+    }
+  },
+  "negative_empty_rate": 1.0,
+  "counts": {
+    "positive": 12,
+    "negative": 8
+  }
+}

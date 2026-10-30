@@ -9,9 +9,14 @@ INSUFFICIENT_EVIDENCE = (
 )
 
 
+def public_item(item):
+    """Keep catalog metadata JSON-safe without returning internal snapshot bodies."""
+    return {k: None if isinstance(v, float) and not math.isfinite(v) else v
+            for k, v in item.items() if k != "full_text"}
+
+
 def source_contract(source):
-    item = {k: None if isinstance(v, float) and not math.isfinite(v) else v
-            for k, v in source.get("item", source).items() if k != "full_text"}
+    item = public_item(source.get("item", source))
     origin = item.get("origin")
     origin = origin if isinstance(origin, str) else "unknown"
     excerpt = source.get("excerpt", item.get("description", ""))

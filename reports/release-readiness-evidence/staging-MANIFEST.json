@@ -1,0 +1,96 @@
+{
+  "probe": "ok",
+  "report": {
+    "dir": "/tmp/itlr-system-audit/staging",
+    "checks": [
+      {
+        "check": "required_files",
+        "ok": true,
+        "detail": "thiếu: []"
+      },
+      {
+        "check": "rows_align",
+        "ok": true,
+        "detail": "items=118 emb=118 char=118"
+      },
+      {
+        "check": "dim_match",
+        "ok": true,
+        "detail": "emb=768 meta=None"
+      },
+      {
+        "check": "no_nan",
+        "ok": true,
+        "detail": "NaN/Inf trong embeddings!"
+      },
+      {
+        "check": "norm_l2",
+        "ok": true,
+        "detail": "norm range [1.0000, 1.0000]"
+      },
+      {
+        "check": "retrieval_model.vectorizers",
+        "ok": true,
+        "detail": "thiếu khóa trong retrieval_model"
+      },
+      {
+        "check": "retrieval_model.matrices",
+        "ok": true,
+        "detail": "thiếu khóa trong retrieval_model"
+      },
+      {
+        "check": "retrieval_model.bm25",
+        "ok": true,
+        "detail": "thiếu khóa trong retrieval_model"
+      },
+      {
+        "check": "retrieval_model.categories",
+        "ok": true,
+        "detail": "thiếu khóa trong retrieval_model"
+      },
+      {
+        "check": "item_ids_unique",
+        "ok": true,
+        "detail": "item_id trùng lặp!"
+      },
+      {
+        "check": "self_retrieval",
+        "ok": true,
+        "detail": "recall=1.000 min=0.8"
+      },
+      {
+        "check": "engine_probe",
+        "ok": true,
+        "detail": "ENGINE_PROBE_OK 8"
+      }
+    ],
+    "self_retrieval": {
+      "n_samples": 30,
+      "hits": 30,
+      "threshold": 0.8,
+      "misses": []
+    },
+    "engine_probe": {
+      "ok": true,
+      "msg": "ENGINE_PROBE_OK 8",
+      "rc": 0
+    }
+  },
+  "sha256": {
+    ".activation.lock": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "EMBEDDINGS_MANIFEST.json": "11c3b4645d545f35c110f41deb339ebb37489c6bddb24919c61eb96916f9633e",
+    "ann_index.faiss": "78682be14175fc098ce2e04afbd1c9d295f3a034afb05ed01be9754e8858506e",
+    "ann_meta.pkl": "b4c1f870016f16fec2088e6a97fc4de3b4cc0159133075317c60fe626458f4f4",
+    "char_matrix.pkl": "e0c54a9f1b782495f7660a464daa443cbfd26fa38a63602f1db23335a95a290d",
+    "char_vectorizer.pkl": "b33a922e61cc4e157accdbaa2de3b69dec3bda87e2742affffe2229239074401",
+    "chunk_embeddings.pkl": "62ba4d208809987f577f854498aba8e80e92befba3d26f1fdfbf497cd03f1ccc",
+    "chunk_meta.pkl": "aa14d68aac382fed123eeee325c5542812082b91e9b6d964d7be27dc050b261e",
+    "embeddings.pkl": "72c740ac26d814f53c4df73c4d1cc21f45a2d1fb244b697ea75607bdb6d07976",
+    "item_list.pkl": "c9a09e471611022b2d9581837625cb39bff8585fc6790d40686ee08ed101f396",
+    "retrieval_model.pkl": "5186cdad4a89b18bd1cec12c499e85f88eaa1c46e589981ce909e7fea9b8af38",
+    "search_meta.pkl": "4b44abceea78c27102a25deb944ecfc6fe774a0fc47dca503e24b5c1f42d7b0b",
+    "tfidf_matrix.pkl": "ddad6fec3eb6ff36e377e9a9d9692fd65cc87be8e9a3420e466aee4ea2117b6a",
+    "tfidf_vectorizer.pkl": "fdf742aa27b3c5fb98bf8993612adf1003ab65d790b33ce5991b55819b4dbb73"
+  },
+  "integrity_schema": 1
+}

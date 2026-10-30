@@ -1,0 +1,5429 @@
+{
+  "scope": "static inventory, not exhaustive reachability or runtime proof",
+  "files": [
+    {
+      "file": "itlr/__init__.py",
+      "lines": 1,
+      "kind": "source",
+      "imports": [],
+      "functions": []
+    },
+    {
+      "file": "itlr/api/__init__.py",
+      "lines": 1,
+      "kind": "source",
+      "imports": [],
+      "functions": []
+    },
+    {
+      "file": "itlr/api/__main__.py",
+      "lines": 18,
+      "kind": "source",
+      "imports": [
+        "os",
+        "uvicorn"
+      ],
+      "functions": [
+        {
+          "name": "main",
+          "line": 6,
+          "lines": 9,
+          "branch_nodes": 0
+        }
+      ]
+    },
+    {
+      "file": "itlr/api/ratelimit.py",
+      "lines": 83,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "collections",
+        "fastapi",
+        "os",
+        "threading",
+        "time"
+      ],
+      "functions": [
+        {
+          "name": "_env_int",
+          "line": 28,
+          "lines": 11,
+          "branch_nodes": 3
+        },
+        {
+          "name": "client_ip",
+          "line": 41,
+          "lines": 3,
+          "branch_nodes": 1
+        },
+        {
+          "name": "enforce",
+          "line": 46,
+          "lines": 25,
+          "branch_nodes": 6
+        },
+        {
+          "name": "reset",
+          "line": 73,
+          "lines": 4,
+          "branch_nodes": 0
+        },
+        {
+          "name": "validate_workers",
+          "line": 79,
+          "lines": 5,
+          "branch_nodes": 2
+        }
+      ]
+    },
+    {
+      "file": "itlr/api/server.py",
+      "lines": 432,
+      "kind": "source",
+      "imports": [
+        "contextlib",
+        "fastapi",
+        "fastapi.responses",
+        "fastapi.staticfiles",
+        "itlr.api",
+        "itlr.chatbot.chatbot",
+        "itlr.engine",
+        "itlr.retrieval.service",
+        "itlr.utils.runtime_patches",
+        "itlr.versioning",
+        "json",
+        "os",
+        "pathlib",
+        "pydantic",
+        "secrets",
+        "sys",
+        "threading",
+        "time",
+        "typing",
+        "urllib.request"
+      ],
+      "functions": [
+        {
+          "name": "_artifact_load_error",
+          "line": 57,
+          "lines": 5,
+          "branch_nodes": 0
+        },
+        {
+          "name": "_engine",
+          "line": 64,
+          "lines": 6,
+          "branch_nodes": 1
+        },
+        {
+          "name": "_rate_dependency",
+          "line": 72,
+          "lines": 4,
+          "branch_nodes": 0
+        },
+        {
+          "name": "_log",
+          "line": 82,
+          "lines": 10,
+          "branch_nodes": 2
+        },
+        {
+          "name": "_prewarm_ollama",
+          "line": 94,
+          "lines": 33,
+          "branch_nodes": 4
+        },
+        {
+          "name": "lifespan",
+          "line": 130,
+          "lines": 15,
+          "branch_nodes": 1
+        },
+        {
+          "name": "_track_metrics",
+          "line": 154,
+          "lines": 25,
+          "branch_nodes": 2
+        },
+        {
+          "name": "live",
+          "line": 182,
+          "lines": 2,
+          "branch_nodes": 0
+        },
+        {
+          "name": "health",
+          "line": 187,
+          "lines": 9,
+          "branch_nodes": 2
+        },
+        {
+          "name": "metrics",
+          "line": 199,
+          "lines": 24,
+          "branch_nodes": 4
+        },
+        {
+          "name": "_cf_unavailable_detail",
+          "line": 267,
+          "lines": 3,
+          "branch_nodes": 0
+        },
+        {
+          "name": "api_search",
+          "line": 273,
+          "lines": 4,
+          "branch_nodes": 1
+        },
+        {
+          "name": "api_chat",
+          "line": 285,
+          "lines": 14,
+          "branch_nodes": 1
+        },
+        {
+          "name": "api_chat_stream",
+          "line": 302,
+          "lines": 36,
+          "branch_nodes": 5
+        },
+        {
+          "name": "_admin_token_expected",
+          "line": 340,
+          "lines": 4,
+          "branch_nodes": 0
+        },
+        {
+          "name": "_admin_authorized",
+          "line": 346,
+          "lines": 10,
+          "branch_nodes": 1
+        },
+        {
+          "name": "_metrics_allowed",
+          "line": 361,
+          "lines": 5,
+          "branch_nodes": 1
+        },
+        {
+          "name": "admin_reload",
+          "line": 369,
+          "lines": 27,
+          "branch_nodes": 5
+        },
+        {
+          "name": "api_personas",
+          "line": 399,
+          "lines": 7,
+          "branch_nodes": 1
+        },
+        {
+          "name": "api_for_you",
+          "line": 409,
+          "lines": 9,
+          "branch_nodes": 2
+        },
+        {
+          "name": "api_suggested",
+          "line": 421,
+          "lines": 4,
+          "branch_nodes": 0
+        },
+        {
+          "name": "index",
+          "line": 431,
+          "lines": 2,
+          "branch_nodes": 0
+        },
+        {
+          "name": "dep",
+          "line": 73,
+          "lines": 2,
+          "branch_nodes": 0
+        },
+        {
+          "name": "_warm",
+          "line": 108,
+          "lines": 17,
+          "branch_nodes": 2
+        },
+        {
+          "name": "_known_role",
+          "line": 237,
+          "lines": 4,
+          "branch_nodes": 1
+        },
+        {
+          "name": "_history_cap",
+          "line": 249,
+          "lines": 4,
+          "branch_nodes": 1
+        },
+        {
+          "name": "_interested_cap",
+          "line": 261,
+          "lines": 4,
+          "branch_nodes": 1
+        },
+        {
+          "name": "_frame",
+          "line": 313,
+          "lines": 2,
+          "branch_nodes": 0
+        },
+        {
+          "name": "gen",
+          "line": 316,
+          "lines": 16,
+          "branch_nodes": 5
+        }
+      ]
+    },
+    {
+      "file": "itlr/chatbot/__init__.py",
+      "lines": 1,
+      "kind": "source",
+      "imports": [],
+      "functions": []
+    },
+    {
+      "file": "itlr/chatbot/chatbot.py",
+      "lines": 915,
+      "kind": "source",
+      "imports": [
+        "itlr.chatbot",
+        "itlr.chatbot.citations",
+        "itlr.chatbot.intent_router",
+        "itlr.chatbot.knowledge_base",
+        "itlr.chatbot.llm_adapter",
+        "itlr.chatbot.presentation",
+        "itlr.chatbot.query_understanding",
+        "itlr.core.rag",
+        "itlr.core.recommender",
+        "logging",
+        "os",
+        "re"
+      ],
+      "functions": [
+        {
+          "name": "_offtopic_gate",
+          "line": 72,
+          "lines": 16,
+          "branch_nodes": 3
+        },
+        {
+          "name": "below_offtopic_gate",
+          "line": 90,
+          "lines": 3,
+          "branch_nodes": 1
+        },
+        {
+          "name": "_is_greeting",
+          "line": 128,
+          "lines": 2,
+          "branch_nodes": 0
+        },
+        {
+          "name": "detect_item_type",
+          "line": 132,
+          "lines": 6,
+          "branch_nodes": 2
+        },
+        {
+          "name": "detect_response_mode",
+          "line": 140,
+          "lines": 12,
+          "branch_nodes": 4
+        },
+        {
+          "name": "_resolve_followup",
+          "line": 159,
+          "lines": 14,
+          "branch_nodes": 2
+        },
+        {
+          "name": "_route_multi",
+          "line": 178,
+          "lines": 29,
+          "branch_nodes": 9
+        },
+        {
+          "name": "_is_reasoning_query",
+          "line": 216,
+          "lines": 3,
+          "branch_nodes": 0
+        },
+        {
+          "name": "_is_explanation_query",
+          "line": 230,
+          "lines": 4,
+          "branch_nodes": 0
+        },
+        {
+          "name": "_llm_available",
+          "line": 236,
+          "lines": 6,
+          "branch_nodes": 0
+        },
+        {
+          "name": "__init__",
+          "line": 265,
+          "lines": 11,
+          "branch_nodes": 0
+        },
+        {
+          "name": "_is_off_topic",
+          "line": 277,
+          "lines": 41,
+          "branch_nodes": 11
+        },
+        {
+          "name": "_semantic_retrieve",
+          "line": 319,
+          "lines": 43,
+          "branch_nodes": 5
+        },
+        {
+          "name": "_public_sources",
+          "line": 363,
+          "lines": 3,
+          "branch_nodes": 0
+        },
+        {
+          "name": "_final_result",
+          "line": 367,
+          "lines": 11,
+          "branch_nodes": 0
+        },
+        {
+          "name": "_generated_result",
+          "line": 379,
+          "lines": 12,
+          "branch_nodes": 3
+        },
+        {
+          "name": "chat",
+          "line": 392,
+          "lines": 6,
+          "branch_nodes": 2
+        },
+        {
+          "name": "chat_stream",
+          "line": 399,
+          "lines": 30,
+          "branch_nodes": 7
+        },
+        {
+          "name": "_prepare",
+          "line": 430,
+          "lines": 164,
+          "branch_nodes": 28
+        },
+        {
+          "name": "_quick_resources",
+          "line": 596,
+          "lines": 44,
+          "branch_nodes": 5
+        },
+        {
+          "name": "_filter_items",
+          "line": 642,
+          "lines": 13,
+          "branch_nodes": 4
+        },
+        {
+          "name": "_answer_definition",
+          "line": 656,
+          "lines": 21,
+          "branch_nodes": 7
+        },
+        {
+          "name": "_answer_comparison",
+          "line": 678,
+          "lines": 27,
+          "branch_nodes": 8
+        },
+        {
+          "name": "_answer_career_path",
+          "line": 706,
+          "lines": 39,
+          "branch_nodes": 7
+        },
+        {
+          "name": "_answer_interview",
+          "line": 746,
+          "lines": 19,
+          "branch_nodes": 3
+        },
+        {
+          "name": "_answer_salary",
+          "line": 766,
+          "lines": 14,
+          "branch_nodes": 1
+        },
+        {
+          "name": "_answer_career_guidance",
+          "line": 781,
+          "lines": 13,
+          "branch_nodes": 1
+        },
+        {
+          "name": "_answer_skill_gap",
+          "line": 795,
+          "lines": 20,
+          "branch_nodes": 4
+        },
+        {
+          "name": "_answer_next_skill",
+          "line": 816,
+          "lines": 26,
+          "branch_nodes": 6
+        },
+        {
+          "name": "_answer_time_estimate",
+          "line": 843,
+          "lines": 31,
+          "branch_nodes": 4
+        },
+        {
+          "name": "_answer_admin_stat",
+          "line": 875,
+          "lines": 41,
+          "branch_nodes": 5
+        },
+        {
+          "name": "_ov",
+          "line": 629,
+          "lines": 5,
+          "branch_nodes": 0
+        }
+      ]
+    },
+    {
+      "file": "itlr/chatbot/citations.py",
+      "lines": 52,
+      "kind": "source",
+      "imports": [
+        "math",
+        "re",
+        "urllib.parse"
+      ],
+      "functions": [
+        {
+          "name": "public_item",
+          "line": 12,
+          "lines": 4,
+          "branch_nodes": 1
+        },
+        {
+          "name": "source_contract",
+          "line": 18,
+          "lines": 19,
+          "branch_nodes": 7
+        },
+        {
+          "name": "validate_citations",
+          "line": 39,
+          "lines": 14,
+          "branch_nodes": 2
+        }
+      ]
+    },
+    {
+      "file": "itlr/chatbot/intent_router.py",
+      "lines": 156,
+      "kind": "source",
+      "imports": [
+        "itlr.chatbot.knowledge_base",
+        "itlr.core.recommender",
+        "re"
+      ],
+      "functions": [
+        {
+          "name": "_split_comparison",
+          "line": 23,
+          "lines": 7,
+          "branch_nodes": 1
+        },
+        {
+          "name": "_known_skills",
+          "line": 38,
+          "lines": 5,
+          "branch_nodes": 1
+        },
+        {
+          "name": "route_intent",
+          "line": 45,
+          "lines": 75,
+          "branch_nodes": 17
+        },
+        {
+          "name": "_detect_level",
+          "line": 122,
+          "lines": 6,
+          "branch_nodes": 2
+        },
+        {
+          "name": "detect_filters",
+          "line": 138,
+          "lines": 19,
+          "branch_nodes": 6
+        }
+      ]
+    },
+    {
+      "file": "itlr/chatbot/knowledge_base.py",
+      "lines": 325,
+      "kind": "source",
+      "imports": [
+        "itlr.core.recommender",
+        "json",
+        "pathlib"
+      ],
+      "functions": [
+        {
+          "name": "_key",
+          "line": 15,
+          "lines": 2,
+          "branch_nodes": 0
+        },
+        {
+          "name": "_load_concepts",
+          "line": 22,
+          "lines": 16,
+          "branch_nodes": 1
+        },
+        {
+          "name": "_load_roles",
+          "line": 46,
+          "lines": 3,
+          "branch_nodes": 0
+        },
+        {
+          "name": "canon_entity",
+          "line": 107,
+          "lines": 7,
+          "branch_nodes": 2
+        },
+        {
+          "name": "comparison_verdict",
+          "line": 116,
+          "lines": 6,
+          "branch_nodes": 1
+        },
+        {
+          "name": "find_concepts",
+          "line": 124,
+          "lines": 19,
+          "branch_nodes": 5
+        },
+        {
+          "name": "safe_concepts",
+          "line": 145,
+          "lines": 22,
+          "branch_nodes": 6
+        },
+        {
+          "name": "safe_concept_match",
+          "line": 169,
+          "lines": 4,
+          "branch_nodes": 1
+        },
+        {
+          "name": "find_career",
+          "line": 175,
+          "lines": 11,
+          "branch_nodes": 5
+        },
+        {
+          "name": "find_roadmap_field",
+          "line": 191,
+          "lines": 25,
+          "branch_nodes": 7
+        },
+        {
+          "name": "find_role_key",
+          "line": 218,
+          "lines": 5,
+          "branch_nodes": 0
+        },
+        {
+          "name": "role_interview",
+          "line": 225,
+          "lines": 2,
+          "branch_nodes": 0
+        },
+        {
+          "name": "role_salary",
+          "line": 229,
+          "lines": 2,
+          "branch_nodes": 0
+        },
+        {
+          "name": "role_description",
+          "line": 233,
+          "lines": 2,
+          "branch_nodes": 0
+        },
+        {
+          "name": "role_roadmap",
+          "line": 237,
+          "lines": 3,
+          "branch_nodes": 0
+        },
+        {
+          "name": "_build_skill_vocab",
+          "line": 242,
+          "lines": 17,
+          "branch_nodes": 8
+        },
+        {
+          "name": "extract_skills",
+          "line": 263,
+          "lines": 10,
+          "branch_nodes": 3
+        },
+        {
+          "name": "clean_known",
+          "line": 275,
+          "lines": 9,
+          "branch_nodes": 2
+        },
+        {
+          "name": "career_skill_gap",
+          "line": 286,
+          "lines": 9,
+          "branch_nodes": 3
+        },
+        {
+          "name": "next_skills",
+          "line": 297,
+          "lines": 10,
+          "branch_nodes": 3
+        },
+        {
+          "name": "estimate_skill_time",
+          "line": 312,
+          "lines": 5,
+          "branch_nodes": 0
+        },
+        {
+          "name": "estimate_career_time",
+          "line": 319,
+          "lines": 7,
+          "branch_nodes": 0
+        },
+        {
+          "name": "add",
+          "line": 244,
+          "lines": 2,
+          "branch_nodes": 0
+        }
+      ]
+    },
+    {
+      "file": "itlr/chatbot/llm_adapter.py",
+      "lines": 51,
+      "kind": "source",
+      "imports": [
+        "itlr.chatbot",
+        "logging"
+      ],
+      "functions": [
+        {
+          "name": "try_llm_response",
+          "line": 8,
+          "lines": 16,
+          "branch_nodes": 1
+        },
+        {
+          "name": "_history_msgs",
+          "line": 26,
+          "lines": 7,
+          "branch_nodes": 2
+        },
+        {
+          "name": "try_llm_response_stream",
+          "line": 35,
+          "lines": 17,
+          "branch_nodes": 2
+        }
+      ]
+    },
+    {
+      "file": "itlr/chatbot/llm_client.py",
+      "lines": 455,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "contextlib",
+        "dataclasses",
+        "json",
+        "logging",
+        "math",
+        "openai",
+        "os",
+        "threading",
+        "time",
+        "typing",
+        "urllib.parse",
+        "urllib.request"
+      ],
+      "functions": [
+        {
+          "name": "mask_key",
+          "line": 77,
+          "lines": 6,
+          "branch_nodes": 1
+        },
+        {
+          "name": "_safe_err_text",
+          "line": 85,
+          "lines": 7,
+          "branch_nodes": 2
+        },
+        {
+          "name": "api_key",
+          "line": 94,
+          "lines": 7,
+          "branch_nodes": 2
+        },
+        {
+          "name": "default_model",
+          "line": 103,
+          "lines": 4,
+          "branch_nodes": 0
+        },
+        {
+          "name": "base_url",
+          "line": 109,
+          "lines": 8,
+          "branch_nodes": 1
+        },
+        {
+          "name": "timeout_for",
+          "line": 119,
+          "lines": 11,
+          "branch_nodes": 5
+        },
+        {
+          "name": "ollama_reachable",
+          "line": 135,
+          "lines": 15,
+          "branch_nodes": 2
+        },
+        {
+          "name": "ollama_model",
+          "line": 152,
+          "lines": 13,
+          "branch_nodes": 4
+        },
+        {
+          "name": "_ollama_request",
+          "line": 167,
+          "lines": 13,
+          "branch_nodes": 0
+        },
+        {
+          "name": "ollama_chat",
+          "line": 182,
+          "lines": 13,
+          "branch_nodes": 3
+        },
+        {
+          "name": "_stream_ollama",
+          "line": 197,
+          "lines": 30,
+          "branch_nodes": 10
+        },
+        {
+          "name": "provider_status",
+          "line": 232,
+          "lines": 9,
+          "branch_nodes": 4
+        },
+        {
+          "name": "llm_available",
+          "line": 243,
+          "lines": 3,
+          "branch_nodes": 0
+        },
+        {
+          "name": "reset_cache",
+          "line": 248,
+          "lines": 8,
+          "branch_nodes": 0
+        },
+        {
+          "name": "_record_usage",
+          "line": 258,
+          "lines": 16,
+          "branch_nodes": 0
+        },
+        {
+          "name": "usage_snapshot",
+          "line": 276,
+          "lines": 10,
+          "branch_nodes": 0
+        },
+        {
+          "name": "trim_messages",
+          "line": 288,
+          "lines": 19,
+          "branch_nodes": 4
+        },
+        {
+          "name": "_make_client",
+          "line": 309,
+          "lines": 9,
+          "branch_nodes": 0
+        },
+        {
+          "name": "_completions_kwargs",
+          "line": 320,
+          "lines": 9,
+          "branch_nodes": 0
+        },
+        {
+          "name": "_retries",
+          "line": 331,
+          "lines": 5,
+          "branch_nodes": 1
+        },
+        {
+          "name": "_validate_text_completion",
+          "line": 338,
+          "lines": 4,
+          "branch_nodes": 1
+        },
+        {
+          "name": "chat",
+          "line": 344,
+          "lines": 53,
+          "branch_nodes": 7
+        },
+        {
+          "name": "stream",
+          "line": 399,
+          "lines": 57,
+          "branch_nodes": 13
+        }
+      ]
+    },
+    {
+      "file": "itlr/chatbot/opencode_client.py",
+      "lines": 27,
+      "kind": "source",
+      "imports": [
+        "shutil",
+        "subprocess"
+      ],
+      "functions": [
+        {
+          "name": "get_ai_response",
+          "line": 6,
+          "lines": 22,
+          "branch_nodes": 2
+        }
+      ]
+    },
+    {
+      "file": "itlr/chatbot/presentation.py",
+      "lines": 593,
+      "kind": "source",
+      "imports": [
+        "collections",
+        "itlr.chatbot",
+        "itlr.core.recommender"
+      ],
+      "functions": [
+        {
+          "name": "difficulty_rank",
+          "line": 16,
+          "lines": 19,
+          "branch_nodes": 3
+        },
+        {
+          "name": "suggest_followups",
+          "line": 37,
+          "lines": 12,
+          "branch_nodes": 1
+        },
+        {
+          "name": "followup_block",
+          "line": 51,
+          "lines": 4,
+          "branch_nodes": 0
+        },
+        {
+          "name": "dedupe_items",
+          "line": 57,
+          "lines": 9,
+          "branch_nodes": 2
+        },
+        {
+          "name": "matched_keywords",
+          "line": 68,
+          "lines": 16,
+          "branch_nodes": 2
+        },
+        {
+          "name": "grounding_line",
+          "line": 86,
+          "lines": 7,
+          "branch_nodes": 1
+        },
+        {
+          "name": "format_sources_inline",
+          "line": 95,
+          "lines": 10,
+          "branch_nodes": 3
+        },
+        {
+          "name": "topics_list",
+          "line": 107,
+          "lines": 2,
+          "branch_nodes": 0
+        },
+        {
+          "name": "primary_topic",
+          "line": 111,
+          "lines": 4,
+          "branch_nodes": 1
+        },
+        {
+          "name": "dominant_category",
+          "line": 117,
+          "lines": 12,
+          "branch_nodes": 1
+        },
+        {
+          "name": "category_stage_items",
+          "line": 131,
+          "lines": 41,
+          "branch_nodes": 10
+        },
+        {
+          "name": "format_item_detailed",
+          "line": 174,
+          "lines": 32,
+          "branch_nodes": 11
+        },
+        {
+          "name": "format_items_detailed",
+          "line": 208,
+          "lines": 6,
+          "branch_nodes": 0
+        },
+        {
+          "name": "stage_overview",
+          "line": 216,
+          "lines": 19,
+          "branch_nodes": 6
+        },
+        {
+          "name": "_pick",
+          "line": 291,
+          "lines": 2,
+          "branch_nodes": 0
+        },
+        {
+          "name": "aggregate_facts",
+          "line": 295,
+          "lines": 27,
+          "branch_nodes": 6
+        },
+        {
+          "name": "topic_context_snippets",
+          "line": 324,
+          "lines": 9,
+          "branch_nodes": 3
+        },
+        {
+          "name": "build_overview",
+          "line": 335,
+          "lines": 14,
+          "branch_nodes": 2
+        },
+        {
+          "name": "concept_overview_block",
+          "line": 351,
+          "lines": 41,
+          "branch_nodes": 12
+        },
+        {
+          "name": "practical_tips",
+          "line": 394,
+          "lines": 20,
+          "branch_nodes": 3
+        },
+        {
+          "name": "synthesize_answer",
+          "line": 416,
+          "lines": 178,
+          "branch_nodes": 20
+        },
+        {
+          "name": "take",
+          "line": 442,
+          "lines": 11,
+          "branch_nodes": 4
+        },
+        {
+          "name": "render_stage",
+          "line": 479,
+          "lines": 11,
+          "branch_nodes": 1
+        },
+        {
+          "name": "backfill",
+          "line": 461,
+          "lines": 10,
+          "branch_nodes": 2
+        }
+      ]
+    },
+    {
+      "file": "itlr/chatbot/query_understanding.py",
+      "lines": 228,
+      "kind": "source",
+      "imports": [
+        "difflib",
+        "itlr.chatbot.knowledge_base",
+        "itlr.core.recommender",
+        "logging",
+        "re"
+      ],
+      "functions": [
+        {
+          "name": "build_query_vocab",
+          "line": 98,
+          "lines": 29,
+          "branch_nodes": 10
+        },
+        {
+          "name": "_correct_token",
+          "line": 129,
+          "lines": 16,
+          "branch_nodes": 4
+        },
+        {
+          "name": "understand_query",
+          "line": 147,
+          "lines": 44,
+          "branch_nodes": 5
+        },
+        {
+          "name": "_as_sentence",
+          "line": 206,
+          "lines": 4,
+          "branch_nodes": 1
+        },
+        {
+          "name": "intent_note",
+          "line": 212,
+          "lines": 17,
+          "branch_nodes": 3
+        },
+        {
+          "name": "_add_phrase",
+          "line": 104,
+          "lines": 4,
+          "branch_nodes": 2
+        }
+      ]
+    },
+    {
+      "file": "itlr/collect/__init__.py",
+      "lines": 21,
+      "kind": "source",
+      "imports": [
+        "itlr.collect.url_util"
+      ],
+      "functions": []
+    },
+    {
+      "file": "itlr/collect/adapters.py",
+      "lines": 158,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "datetime",
+        "feedparser",
+        "itlr.collect.extract",
+        "json",
+        "logging",
+        "re",
+        "urllib.parse"
+      ],
+      "functions": [
+        {
+          "name": "iso8601_or_empty",
+          "line": 33,
+          "lines": 16,
+          "branch_nodes": 4
+        },
+        {
+          "name": "_get_path",
+          "line": 51,
+          "lines": 12,
+          "branch_nodes": 5
+        },
+        {
+          "name": "api_candidates",
+          "line": 65,
+          "lines": 37,
+          "branch_nodes": 8
+        },
+        {
+          "name": "rss_candidates",
+          "line": 104,
+          "lines": 33,
+          "branch_nodes": 7
+        },
+        {
+          "name": "web_candidates",
+          "line": 139,
+          "lines": 20,
+          "branch_nodes": 4
+        }
+      ]
+    },
+    {
+      "file": "itlr/collect/chunk.py",
+      "lines": 86,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "re"
+      ],
+      "functions": [
+        {
+          "name": "chunk_text",
+          "line": 17,
+          "lines": 62,
+          "branch_nodes": 16
+        },
+        {
+          "name": "_split_sentences",
+          "line": 81,
+          "lines": 2,
+          "branch_nodes": 0
+        },
+        {
+          "name": "_cut_by_chars",
+          "line": 85,
+          "lines": 2,
+          "branch_nodes": 0
+        }
+      ]
+    },
+    {
+      "file": "itlr/collect/extract.py",
+      "lines": 223,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "bs4",
+        "json",
+        "logging",
+        "urllib.parse"
+      ],
+      "functions": [
+        {
+          "name": "_soup",
+          "line": 27,
+          "lines": 2,
+          "branch_nodes": 0
+        },
+        {
+          "name": "_is_bad",
+          "line": 31,
+          "lines": 4,
+          "branch_nodes": 0
+        },
+        {
+          "name": "_clean_html_soup",
+          "line": 37,
+          "lines": 15,
+          "branch_nodes": 6
+        },
+        {
+          "name": "_content_count",
+          "line": 54,
+          "lines": 6,
+          "branch_nodes": 0
+        },
+        {
+          "name": "_pick_main",
+          "line": 62,
+          "lines": 21,
+          "branch_nodes": 5
+        },
+        {
+          "name": "extract_page_text",
+          "line": 85,
+          "lines": 24,
+          "branch_nodes": 7
+        },
+        {
+          "name": "_first_meta",
+          "line": 111,
+          "lines": 6,
+          "branch_nodes": 2
+        },
+        {
+          "name": "_jsonld_published",
+          "line": 119,
+          "lines": 21,
+          "branch_nodes": 10
+        },
+        {
+          "name": "extract_meta",
+          "line": 142,
+          "lines": 19,
+          "branch_nodes": 3
+        },
+        {
+          "name": "extract_listing_links",
+          "line": 163,
+          "lines": 39,
+          "branch_nodes": 9
+        },
+        {
+          "name": "strip_boilerplate",
+          "line": 211,
+          "lines": 13,
+          "branch_nodes": 4
+        }
+      ]
+    },
+    {
+      "file": "itlr/collect/http.py",
+      "lines": 246,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "httpx",
+        "ipaddress",
+        "logging",
+        "random",
+        "socket",
+        "time",
+        "urllib.parse",
+        "urllib.request",
+        "urllib.robotparser"
+      ],
+      "functions": [
+        {
+          "name": "_validate_public_url",
+          "line": 142,
+          "lines": 17,
+          "branch_nodes": 5
+        },
+        {
+          "name": "__init__",
+          "line": 32,
+          "lines": 6,
+          "branch_nodes": 0
+        },
+        {
+          "name": "_default_fetch",
+          "line": 40,
+          "lines": 10,
+          "branch_nodes": 0
+        },
+        {
+          "name": "_robots_for",
+          "line": 51,
+          "lines": 30,
+          "branch_nodes": 4
+        },
+        {
+          "name": "allowed",
+          "line": 82,
+          "lines": 19,
+          "branch_nodes": 5
+        },
+        {
+          "name": "__init__",
+          "line": 109,
+          "lines": 5,
+          "branch_nodes": 0
+        },
+        {
+          "name": "wait",
+          "line": 115,
+          "lines": 13,
+          "branch_nodes": 2
+        },
+        {
+          "name": "__init__",
+          "line": 168,
+          "lines": 14,
+          "branch_nodes": 0
+        },
+        {
+          "name": "_new_client",
+          "line": 183,
+          "lines": 7,
+          "branch_nodes": 0
+        },
+        {
+          "name": "_throttle",
+          "line": 191,
+          "lines": 3,
+          "branch_nodes": 1
+        },
+        {
+          "name": "fetch",
+          "line": 195,
+          "lines": 52,
+          "branch_nodes": 12
+        },
+        {
+          "name": "before_request",
+          "line": 197,
+          "lines": 9,
+          "branch_nodes": 2
+        },
+        {
+          "name": "redirect_request",
+          "line": 44,
+          "lines": 3,
+          "branch_nodes": 0
+        }
+      ]
+    },
+    {
+      "file": "itlr/collect/normalize.py",
+      "lines": 242,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "argparse",
+        "itlr",
+        "itlr.collect.chunk",
+        "itlr.collect.quality",
+        "itlr.collect.store",
+        "itlr.collect.url_util",
+        "logging",
+        "os",
+        "pandas",
+        "pathlib",
+        "re",
+        "sys"
+      ],
+      "functions": [
+        {
+          "name": "_rule_regex",
+          "line": 63,
+          "lines": 3,
+          "branch_nodes": 0
+        },
+        {
+          "name": "classify_category",
+          "line": 68,
+          "lines": 10,
+          "branch_nodes": 4
+        },
+        {
+          "name": "_chunk_stats",
+          "line": 80,
+          "lines": 3,
+          "branch_nodes": 0
+        },
+        {
+          "name": "assemble_itlr_items",
+          "line": 85,
+          "lines": 53,
+          "branch_nodes": 8
+        },
+        {
+          "name": "_legacy_floor_id",
+          "line": 140,
+          "lines": 9,
+          "branch_nodes": 2
+        },
+        {
+          "name": "build_catalog_v2",
+          "line": 155,
+          "lines": 56,
+          "branch_nodes": 10
+        },
+        {
+          "name": "_platform_name",
+          "line": 213,
+          "lines": 3,
+          "branch_nodes": 0
+        },
+        {
+          "name": "main",
+          "line": 218,
+          "lines": 20,
+          "branch_nodes": 2
+        }
+      ]
+    },
+    {
+      "file": "itlr/collect/quality.py",
+      "lines": 96,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "hashlib",
+        "re"
+      ],
+      "functions": [
+        {
+          "name": "content_hash",
+          "line": 15,
+          "lines": 6,
+          "branch_nodes": 1
+        },
+        {
+          "name": "_tokens",
+          "line": 26,
+          "lines": 2,
+          "branch_nodes": 0
+        },
+        {
+          "name": "title_similarity",
+          "line": 30,
+          "lines": 11,
+          "branch_nodes": 1
+        },
+        {
+          "name": "is_near_dup_title",
+          "line": 43,
+          "lines": 14,
+          "branch_nodes": 2
+        },
+        {
+          "name": "normalize_title",
+          "line": 59,
+          "lines": 3,
+          "branch_nodes": 0
+        },
+        {
+          "name": "passes_quality",
+          "line": 64,
+          "lines": 19,
+          "branch_nodes": 5
+        },
+        {
+          "name": "cut_text",
+          "line": 85,
+          "lines": 12,
+          "branch_nodes": 3
+        }
+      ]
+    },
+    {
+      "file": "itlr/collect/runner.py",
+      "lines": 254,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "datetime",
+        "itlr",
+        "itlr.collect.adapters",
+        "itlr.collect.extract",
+        "itlr.collect.http",
+        "itlr.collect.quality",
+        "itlr.collect.sources",
+        "itlr.collect.store",
+        "itlr.collect.url_util",
+        "logging",
+        "time"
+      ],
+      "functions": [
+        {
+          "name": "_fetched_recently",
+          "line": 240,
+          "lines": 9,
+          "branch_nodes": 1
+        },
+        {
+          "name": "_now",
+          "line": 251,
+          "lines": 4,
+          "branch_nodes": 0
+        },
+        {
+          "name": "__init__",
+          "line": 33,
+          "lines": 14,
+          "branch_nodes": 1
+        },
+        {
+          "name": "_fresh_stats",
+          "line": 49,
+          "lines": 5,
+          "branch_nodes": 0
+        },
+        {
+          "name": "run",
+          "line": 55,
+          "lines": 22,
+          "branch_nodes": 5
+        },
+        {
+          "name": "_collect_source",
+          "line": 79,
+          "lines": 76,
+          "branch_nodes": 11
+        },
+        {
+          "name": "_list_entries",
+          "line": 156,
+          "lines": 26,
+          "branch_nodes": 5
+        },
+        {
+          "name": "_fetch_article",
+          "line": 183,
+          "lines": 55,
+          "branch_nodes": 8
+        },
+        {
+          "name": "fetch_listing",
+          "line": 158,
+          "lines": 5,
+          "branch_nodes": 1
+        }
+      ]
+    },
+    {
+      "file": "itlr/collect/sources.py",
+      "lines": 179,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "itlr",
+        "json",
+        "pathlib"
+      ],
+      "functions": [
+        {
+          "name": "_load_json",
+          "line": 84,
+          "lines": 7,
+          "branch_nodes": 2
+        },
+        {
+          "name": "load_sources",
+          "line": 93,
+          "lines": 26,
+          "branch_nodes": 7
+        },
+        {
+          "name": "_one_source",
+          "line": 121,
+          "lines": 59,
+          "branch_nodes": 11
+        },
+        {
+          "name": "as_dict",
+          "line": 45,
+          "lines": 25,
+          "branch_nodes": 0
+        },
+        {
+          "name": "ids",
+          "line": 77,
+          "lines": 2,
+          "branch_nodes": 0
+        },
+        {
+          "name": "req",
+          "line": 122,
+          "lines": 5,
+          "branch_nodes": 1
+        },
+        {
+          "name": "policy_flag",
+          "line": 132,
+          "lines": 5,
+          "branch_nodes": 1
+        },
+        {
+          "name": "dflt",
+          "line": 141,
+          "lines": 3,
+          "branch_nodes": 0
+        }
+      ]
+    },
+    {
+      "file": "itlr/collect/store.py",
+      "lines": 345,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "datetime",
+        "itlr.collect.quality",
+        "pathlib",
+        "sqlite3",
+        "typing"
+      ],
+      "functions": [
+        {
+          "name": "utcnow",
+          "line": 74,
+          "lines": 2,
+          "branch_nodes": 0
+        },
+        {
+          "name": "__init__",
+          "line": 81,
+          "lines": 8,
+          "branch_nodes": 0
+        },
+        {
+          "name": "close",
+          "line": 90,
+          "lines": 5,
+          "branch_nodes": 0
+        },
+        {
+          "name": "upsert_source",
+          "line": 97,
+          "lines": 21,
+          "branch_nodes": 2
+        },
+        {
+          "name": "source_row",
+          "line": 119,
+          "lines": 4,
+          "branch_nodes": 1
+        },
+        {
+          "name": "get_doc_by_key",
+          "line": 125,
+          "lines": 4,
+          "branch_nodes": 1
+        },
+        {
+          "name": "find_title_dup",
+          "line": 130,
+          "lines": 10,
+          "branch_nodes": 2
+        },
+        {
+          "name": "find_near_dup_title",
+          "line": 141,
+          "lines": 21,
+          "branch_nodes": 3
+        },
+        {
+          "name": "upsert_doc",
+          "line": 163,
+          "lines": 54,
+          "branch_nodes": 3
+        },
+        {
+          "name": "_remember_title",
+          "line": 218,
+          "lines": 10,
+          "branch_nodes": 1
+        },
+        {
+          "name": "_touch",
+          "line": 229,
+          "lines": 3,
+          "branch_nodes": 0
+        },
+        {
+          "name": "mark_missing",
+          "line": 233,
+          "lines": 11,
+          "branch_nodes": 0
+        },
+        {
+          "name": "reactivated_count",
+          "line": 245,
+          "lines": 4,
+          "branch_nodes": 0
+        },
+        {
+          "name": "link_seen",
+          "line": 250,
+          "lines": 10,
+          "branch_nodes": 1
+        },
+        {
+          "name": "reconcile_source",
+          "line": 261,
+          "lines": 24,
+          "branch_nodes": 1
+        },
+        {
+          "name": "stats",
+          "line": 286,
+          "lines": 16,
+          "branch_nodes": 1
+        },
+        {
+          "name": "assign_item_id",
+          "line": 304,
+          "lines": 12,
+          "branch_nodes": 1
+        },
+        {
+          "name": "_next_item_id",
+          "line": 317,
+          "lines": 4,
+          "branch_nodes": 0
+        },
+        {
+          "name": "set_item_floor",
+          "line": 322,
+          "lines": 6,
+          "branch_nodes": 0
+        },
+        {
+          "name": "item_id_lookup",
+          "line": 329,
+          "lines": 4,
+          "branch_nodes": 1
+        },
+        {
+          "name": "docs_for_index",
+          "line": 335,
+          "lines": 11,
+          "branch_nodes": 2
+        }
+      ]
+    },
+    {
+      "file": "itlr/collect/url_util.py",
+      "lines": 91,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "hashlib",
+        "urllib.parse"
+      ],
+      "functions": [
+        {
+          "name": "normalize_url",
+          "line": 20,
+          "lines": 47,
+          "branch_nodes": 13
+        },
+        {
+          "name": "content_key",
+          "line": 69,
+          "lines": 11,
+          "branch_nodes": 1
+        },
+        {
+          "name": "same_site",
+          "line": 82,
+          "lines": 10,
+          "branch_nodes": 2
+        },
+        {
+          "name": "host",
+          "line": 84,
+          "lines": 6,
+          "branch_nodes": 2
+        }
+      ]
+    },
+    {
+      "file": "itlr/config.py",
+      "lines": 55,
+      "kind": "source",
+      "imports": [
+        "itlr.versioning",
+        "os",
+        "pathlib"
+      ],
+      "functions": [
+        {
+          "name": "_resolve_active_dir",
+          "line": 31,
+          "lines": 12,
+          "branch_nodes": 1
+        },
+        {
+          "name": "current_dir",
+          "line": 45,
+          "lines": 3,
+          "branch_nodes": 0
+        },
+        {
+          "name": "artifact",
+          "line": 50,
+          "lines": 2,
+          "branch_nodes": 0
+        },
+        {
+          "name": "data_file",
+          "line": 54,
+          "lines": 2,
+          "branch_nodes": 0
+        }
+      ]
+    },
+    {
+      "file": "itlr/core/__init__.py",
+      "lines": 1,
+      "kind": "source",
+      "imports": [],
+      "functions": []
+    },
+    {
+      "file": "itlr/core/ann.py",
+      "lines": 148,
+      "kind": "source",
+      "imports": [
+        "faiss",
+        "hnswlib",
+        "itlr",
+        "logging",
+        "numpy",
+        "pickle"
+      ],
+      "functions": [
+        {
+          "name": "_dir",
+          "line": 27,
+          "lines": 8,
+          "branch_nodes": 1
+        },
+        {
+          "name": "_try_import_faiss",
+          "line": 37,
+          "lines": 6,
+          "branch_nodes": 1
+        },
+        {
+          "name": "_try_import_hnswlib",
+          "line": 45,
+          "lines": 6,
+          "branch_nodes": 1
+        },
+        {
+          "name": "build_ann",
+          "line": 53,
+          "lines": 27,
+          "branch_nodes": 2
+        },
+        {
+          "name": "load_ann",
+          "line": 82,
+          "lines": 50,
+          "branch_nodes": 9
+        },
+        {
+          "name": "ann_search",
+          "line": 134,
+          "lines": 15,
+          "branch_nodes": 4
+        }
+      ]
+    },
+    {
+      "file": "itlr/core/bm25.py",
+      "lines": 4,
+      "kind": "source",
+      "imports": [
+        "itlr.retrieval.bm25"
+      ],
+      "functions": []
+    },
+    {
+      "file": "itlr/core/chunks.py",
+      "lines": 73,
+      "kind": "source",
+      "imports": [
+        "faiss",
+        "itlr.retrieval.bm25",
+        "numpy"
+      ],
+      "functions": [
+        {
+          "name": "__init__",
+          "line": 8,
+          "lines": 16,
+          "branch_nodes": 2
+        },
+        {
+          "name": "search",
+          "line": 25,
+          "lines": 49,
+          "branch_nodes": 9
+        },
+        {
+          "name": "select",
+          "line": 39,
+          "lines": 11,
+          "branch_nodes": 3
+        }
+      ]
+    },
+    {
+      "file": "itlr/core/display.py",
+      "lines": 58,
+      "kind": "source",
+      "imports": [
+        "re"
+      ],
+      "functions": [
+        {
+          "name": "_collapse_repeats",
+          "line": 6,
+          "lines": 27,
+          "branch_nodes": 6
+        },
+        {
+          "name": "clean_display_text",
+          "line": 41,
+          "lines": 11,
+          "branch_nodes": 1
+        },
+        {
+          "name": "clean_link",
+          "line": 54,
+          "lines": 5,
+          "branch_nodes": 1
+        }
+      ]
+    },
+    {
+      "file": "itlr/core/embeddings.py",
+      "lines": 92,
+      "kind": "source",
+      "imports": [
+        "numpy",
+        "os",
+        "sentence_transformers"
+      ],
+      "functions": [
+        {
+          "name": "resolve_preset",
+          "line": 45,
+          "lines": 9,
+          "branch_nodes": 3
+        },
+        {
+          "name": "load_model",
+          "line": 56,
+          "lines": 5,
+          "branch_nodes": 0
+        },
+        {
+          "name": "encode_passages",
+          "line": 63,
+          "lines": 12,
+          "branch_nodes": 1
+        },
+        {
+          "name": "encode_query",
+          "line": 77,
+          "lines": 7,
+          "branch_nodes": 0
+        },
+        {
+          "name": "meta_from_preset",
+          "line": 86,
+          "lines": 7,
+          "branch_nodes": 0
+        }
+      ]
+    },
+    {
+      "file": "itlr/core/pipeline.py",
+      "lines": 231,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "itlr.core",
+        "itlr.core.rerank",
+        "numpy",
+        "typing"
+      ],
+      "functions": [
+        {
+          "name": "_tfidf_scores",
+          "line": 64,
+          "lines": 2,
+          "branch_nodes": 0
+        },
+        {
+          "name": "_bm25_scores",
+          "line": 68,
+          "lines": 3,
+          "branch_nodes": 0
+        },
+        {
+          "name": "_embedding_scores",
+          "line": 73,
+          "lines": 7,
+          "branch_nodes": 0
+        },
+        {
+          "name": "_base_scores",
+          "line": 82,
+          "lines": 12,
+          "branch_nodes": 4
+        },
+        {
+          "name": "candidate_generation",
+          "line": 96,
+          "lines": 10,
+          "branch_nodes": 2
+        },
+        {
+          "name": "_query_variants",
+          "line": 108,
+          "lines": 11,
+          "branch_nodes": 1
+        },
+        {
+          "name": "_rag_fusion_candidates",
+          "line": 121,
+          "lines": 11,
+          "branch_nodes": 1
+        },
+        {
+          "name": "l1_rank",
+          "line": 134,
+          "lines": 25,
+          "branch_nodes": 6
+        },
+        {
+          "name": "l2_rerank",
+          "line": 161,
+          "lines": 21,
+          "branch_nodes": 3
+        },
+        {
+          "name": "l3_reorder",
+          "line": 184,
+          "lines": 15,
+          "branch_nodes": 1
+        },
+        {
+          "name": "rank",
+          "line": 201,
+          "lines": 10,
+          "branch_nodes": 1
+        },
+        {
+          "name": "ablation_configs",
+          "line": 213,
+          "lines": 19,
+          "branch_nodes": 0
+        },
+        {
+          "name": "__post_init__",
+          "line": 44,
+          "lines": 3,
+          "branch_nodes": 0
+        }
+      ]
+    },
+    {
+      "file": "itlr/core/rag.py",
+      "lines": 275,
+      "kind": "source",
+      "imports": [
+        "itlr.core.recommender",
+        "numpy",
+        "re",
+        "sklearn.metrics.pairwise"
+      ],
+      "functions": [
+        {
+          "name": "item_to_document",
+          "line": 17,
+          "lines": 11,
+          "branch_nodes": 0
+        },
+        {
+          "name": "expand_query",
+          "line": 52,
+          "lines": 22,
+          "branch_nodes": 6
+        },
+        {
+          "name": "enrich_query_with_history",
+          "line": 76,
+          "lines": 7,
+          "branch_nodes": 2
+        },
+        {
+          "name": "__init__",
+          "line": 90,
+          "lines": 5,
+          "branch_nodes": 0
+        },
+        {
+          "name": "_topic_index_lookup",
+          "line": 96,
+          "lines": 10,
+          "branch_nodes": 3
+        },
+        {
+          "name": "_multi_query_retrieve",
+          "line": 107,
+          "lines": 29,
+          "branch_nodes": 6
+        },
+        {
+          "name": "_rerank_fused",
+          "line": 137,
+          "lines": 27,
+          "branch_nodes": 3
+        },
+        {
+          "name": "detect_category",
+          "line": 165,
+          "lines": 2,
+          "branch_nodes": 0
+        },
+        {
+          "name": "retrieve",
+          "line": 168,
+          "lines": 49,
+          "branch_nodes": 5
+        },
+        {
+          "name": "get_recommendations",
+          "line": 220,
+          "lines": 45,
+          "branch_nodes": 4
+        },
+        {
+          "name": "build_context",
+          "line": 266,
+          "lines": 10,
+          "branch_nodes": 1
+        }
+      ]
+    },
+    {
+      "file": "itlr/core/recommender.py",
+      "lines": 884,
+      "kind": "source",
+      "imports": [
+        "itlr.core.ann",
+        "itlr.core.display",
+        "itlr.core.rerank",
+        "nltk.stem.porter",
+        "numpy",
+        "re",
+        "sklearn.feature_extraction.text",
+        "sklearn.metrics.pairwise",
+        "unicodedata"
+      ],
+      "functions": [
+        {
+          "name": "calibrate_confidence",
+          "line": 32,
+          "lines": 9,
+          "branch_nodes": 0
+        },
+        {
+          "name": "normalize_text",
+          "line": 93,
+          "lines": 4,
+          "branch_nodes": 0
+        },
+        {
+          "name": "strip_accents",
+          "line": 99,
+          "lines": 5,
+          "branch_nodes": 0
+        },
+        {
+          "name": "maybe_stem",
+          "line": 106,
+          "lines": 4,
+          "branch_nodes": 1
+        },
+        {
+          "name": "tokenize",
+          "line": 112,
+          "lines": 9,
+          "branch_nodes": 2
+        },
+        {
+          "name": "extract_query_tokens",
+          "line": 123,
+          "lines": 6,
+          "branch_nodes": 0
+        },
+        {
+          "name": "remove_space",
+          "line": 131,
+          "lines": 2,
+          "branch_nodes": 0
+        },
+        {
+          "name": "repeat",
+          "line": 135,
+          "lines": 2,
+          "branch_nodes": 0
+        },
+        {
+          "name": "build_field_corpus",
+          "line": 139,
+          "lines": 30,
+          "branch_nodes": 5
+        },
+        {
+          "name": "tags_to_corpus",
+          "line": 171,
+          "lines": 2,
+          "branch_nodes": 0
+        },
+        {
+          "name": "create_vectorizer",
+          "line": 175,
+          "lines": 9,
+          "branch_nodes": 0
+        },
+        {
+          "name": "compute_similarity",
+          "line": 186,
+          "lines": 2,
+          "branch_nodes": 0
+        },
+        {
+          "name": "parse_topics",
+          "line": 190,
+          "lines": 2,
+          "branch_nodes": 0
+        },
+        {
+          "name": "topic_jaccard",
+          "line": 194,
+          "lines": 5,
+          "branch_nodes": 1
+        },
+        {
+          "name": "topic_containment",
+          "line": 201,
+          "lines": 5,
+          "branch_nodes": 1
+        },
+        {
+          "name": "title_keyword_overlap",
+          "line": 208,
+          "lines": 7,
+          "branch_nodes": 1
+        },
+        {
+          "name": "category_bonus",
+          "line": 217,
+          "lines": 17,
+          "branch_nodes": 4
+        },
+        {
+          "name": "hybrid_score",
+          "line": 236,
+          "lines": 9,
+          "branch_nodes": 1
+        },
+        {
+          "name": "hybrid_score_v2",
+          "line": 247,
+          "lines": 25,
+          "branch_nodes": 0
+        },
+        {
+          "name": "query_item_score",
+          "line": 274,
+          "lines": 34,
+          "branch_nodes": 2
+        },
+        {
+          "name": "detect_category_from_query",
+          "line": 368,
+          "lines": 43,
+          "branch_nodes": 13
+        },
+        {
+          "name": "reciprocal_rank_fusion",
+          "line": 413,
+          "lines": 7,
+          "branch_nodes": 2
+        },
+        {
+          "name": "mmr_rerank",
+          "line": 422,
+          "lines": 29,
+          "branch_nodes": 5
+        },
+        {
+          "name": "row_to_dict",
+          "line": 453,
+          "lines": 23,
+          "branch_nodes": 5
+        },
+        {
+          "name": "_fuse_tfidf_scores",
+          "line": 478,
+          "lines": 14,
+          "branch_nodes": 2
+        },
+        {
+          "name": "search_by_query",
+          "line": 494,
+          "lines": 65,
+          "branch_nodes": 7
+        },
+        {
+          "name": "recommend_by_query",
+          "line": 561,
+          "lines": 41,
+          "branch_nodes": 4
+        },
+        {
+          "name": "recommend",
+          "line": 604,
+          "lines": 19,
+          "branch_nodes": 0
+        },
+        {
+          "name": "_rerank_doc",
+          "line": 628,
+          "lines": 6,
+          "branch_nodes": 0
+        },
+        {
+          "name": "_combined_scores",
+          "line": 636,
+          "lines": 26,
+          "branch_nodes": 3
+        },
+        {
+          "name": "_gather_candidates",
+          "line": 664,
+          "lines": 15,
+          "branch_nodes": 4
+        },
+        {
+          "name": "_rerank_calibrate",
+          "line": 681,
+          "lines": 17,
+          "branch_nodes": 2
+        },
+        {
+          "name": "_apply_mmr",
+          "line": 700,
+          "lines": 16,
+          "branch_nodes": 1
+        },
+        {
+          "name": "search_by_embedding",
+          "line": 718,
+          "lines": 32,
+          "branch_nodes": 2
+        },
+        {
+          "name": "multi_query_search",
+          "line": 752,
+          "lines": 62,
+          "branch_nodes": 8
+        },
+        {
+          "name": "query_relevance_max",
+          "line": 816,
+          "lines": 12,
+          "branch_nodes": 0
+        },
+        {
+          "name": "recommend_for_user",
+          "line": 830,
+          "lines": 30,
+          "branch_nodes": 6
+        },
+        {
+          "name": "build_retrieval_model",
+          "line": 862,
+          "lines": 13,
+          "branch_nodes": 0
+        },
+        {
+          "name": "_build_topic_index",
+          "line": 877,
+          "lines": 8,
+          "branch_nodes": 3
+        }
+      ]
+    },
+    {
+      "file": "itlr/core/rerank.py",
+      "lines": 82,
+      "kind": "source",
+      "imports": [
+        "logging",
+        "numpy",
+        "os",
+        "sentence_transformers",
+        "threading"
+      ],
+      "functions": [
+        {
+          "name": "get_reranker",
+          "line": 22,
+          "lines": 24,
+          "branch_nodes": 4
+        },
+        {
+          "name": "_sigmoid",
+          "line": 48,
+          "lines": 4,
+          "branch_nodes": 0
+        },
+        {
+          "name": "rerank",
+          "line": 54,
+          "lines": 29,
+          "branch_nodes": 7
+        }
+      ]
+    },
+    {
+      "file": "itlr/data/__init__.py",
+      "lines": 1,
+      "kind": "source",
+      "imports": [],
+      "functions": []
+    },
+    {
+      "file": "itlr/data/generate_interactions.py",
+      "lines": 104,
+      "kind": "source",
+      "imports": [
+        "csv",
+        "itlr",
+        "itlr.core.recommender",
+        "numpy",
+        "os",
+        "pandas",
+        "sys"
+      ],
+      "functions": [
+        {
+          "name": "build_item_factors",
+          "line": 41,
+          "lines": 21,
+          "branch_nodes": 6
+        },
+        {
+          "name": "main",
+          "line": 64,
+          "lines": 37,
+          "branch_nodes": 2
+        }
+      ]
+    },
+    {
+      "file": "itlr/data/generate_items.py",
+      "lines": 562,
+      "kind": "source",
+      "imports": [
+        "collections",
+        "csv",
+        "itertools",
+        "itlr",
+        "os",
+        "random",
+        "sys"
+      ],
+      "functions": [
+        {
+          "name": "slugify",
+          "line": 416,
+          "lines": 2,
+          "branch_nodes": 0
+        },
+        {
+          "name": "make_link",
+          "line": 420,
+          "lines": 3,
+          "branch_nodes": 0
+        },
+        {
+          "name": "pick_track_topics",
+          "line": 425,
+          "lines": 24,
+          "branch_nodes": 5
+        },
+        {
+          "name": "make_title",
+          "line": 451,
+          "lines": 12,
+          "branch_nodes": 4
+        },
+        {
+          "name": "make_description",
+          "line": 465,
+          "lines": 18,
+          "branch_nodes": 1
+        },
+        {
+          "name": "generate_items",
+          "line": 485,
+          "lines": 45,
+          "branch_nodes": 2
+        },
+        {
+          "name": "main",
+          "line": 532,
+          "lines": 27,
+          "branch_nodes": 1
+        }
+      ]
+    },
+    {
+      "file": "itlr/engine.py",
+      "lines": 247,
+      "kind": "source",
+      "imports": [
+        "itlr",
+        "itlr.chatbot.chatbot",
+        "itlr.chatbot.knowledge_base",
+        "itlr.chatbot.query_understanding",
+        "itlr.core.ann",
+        "itlr.core.chunks",
+        "itlr.core.recommender",
+        "itlr.core.rerank",
+        "itlr.locking",
+        "itlr.retrieval.service",
+        "itlr.versioning",
+        "logging",
+        "os",
+        "pathlib",
+        "pickle",
+        "sentence_transformers",
+        "threading"
+      ],
+      "functions": [
+        {
+          "name": "_load_engine",
+          "line": 130,
+          "lines": 84,
+          "branch_nodes": 7
+        },
+        {
+          "name": "load_engine",
+          "line": 220,
+          "lines": 9,
+          "branch_nodes": 2
+        },
+        {
+          "name": "_reload_engine",
+          "line": 231,
+          "lines": 7,
+          "branch_nodes": 0
+        },
+        {
+          "name": "_clear_engine",
+          "line": 240,
+          "lines": 4,
+          "branch_nodes": 0
+        },
+        {
+          "name": "__init__",
+          "line": 30,
+          "lines": 6,
+          "branch_nodes": 0
+        },
+        {
+          "name": "search",
+          "line": 37,
+          "lines": 56,
+          "branch_nodes": 7
+        },
+        {
+          "name": "chat",
+          "line": 94,
+          "lines": 3,
+          "branch_nodes": 0
+        },
+        {
+          "name": "chat_stream",
+          "line": 98,
+          "lines": 3,
+          "branch_nodes": 0
+        },
+        {
+          "name": "personas",
+          "line": 102,
+          "lines": 5,
+          "branch_nodes": 0
+        },
+        {
+          "name": "for_you",
+          "line": 108,
+          "lines": 11,
+          "branch_nodes": 0
+        },
+        {
+          "name": "_require_cf",
+          "line": 120,
+          "lines": 8,
+          "branch_nodes": 1
+        },
+        {
+          "name": "artifact",
+          "line": 139,
+          "lines": 2,
+          "branch_nodes": 0
+        }
+      ]
+    },
+    {
+      "file": "itlr/eval/__init__.py",
+      "lines": 14,
+      "kind": "source",
+      "imports": [
+        "itlr.eval"
+      ],
+      "functions": []
+    },
+    {
+      "file": "itlr/eval/cf_eval.py",
+      "lines": 232,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "itlr.core.recommender",
+        "itlr.eval",
+        "numpy",
+        "random",
+        "scipy.sparse",
+        "typing"
+      ],
+      "functions": [
+        {
+          "name": "build_item_sim",
+          "line": 24,
+          "lines": 31,
+          "branch_nodes": 3
+        },
+        {
+          "name": "temporal_split_clean",
+          "line": 57,
+          "lines": 49,
+          "branch_nodes": 10
+        },
+        {
+          "name": "_recommend_positions",
+          "line": 108,
+          "lines": 5,
+          "branch_nodes": 0
+        },
+        {
+          "name": "leave_one_out",
+          "line": 115,
+          "lines": 39,
+          "branch_nodes": 8
+        },
+        {
+          "name": "temporal_split",
+          "line": 156,
+          "lines": 41,
+          "branch_nodes": 9
+        },
+        {
+          "name": "popularity_baseline_loo",
+          "line": 199,
+          "lines": 34,
+          "branch_nodes": 7
+        }
+      ]
+    },
+    {
+      "file": "itlr/eval/diversity.py",
+      "lines": 116,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "numpy",
+        "typing"
+      ],
+      "functions": [
+        {
+          "name": "catalog_coverage",
+          "line": 16,
+          "lines": 8,
+          "branch_nodes": 2
+        },
+        {
+          "name": "intra_list_diversity",
+          "line": 26,
+          "lines": 14,
+          "branch_nodes": 1
+        },
+        {
+          "name": "mean_intra_list_diversity",
+          "line": 42,
+          "lines": 3,
+          "branch_nodes": 1
+        },
+        {
+          "name": "novelty",
+          "line": 47,
+          "lines": 16,
+          "branch_nodes": 4
+        },
+        {
+          "name": "serendipity",
+          "line": 65,
+          "lines": 18,
+          "branch_nodes": 3
+        },
+        {
+          "name": "gini_index",
+          "line": 85,
+          "lines": 14,
+          "branch_nodes": 3
+        },
+        {
+          "name": "beyond_accuracy_report",
+          "line": 101,
+          "lines": 16,
+          "branch_nodes": 2
+        }
+      ]
+    },
+    {
+      "file": "itlr/eval/loader.py",
+      "lines": 58,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "itlr",
+        "itlr.core",
+        "itlr.engine",
+        "itlr.eval",
+        "os",
+        "pickle"
+      ],
+      "functions": [
+        {
+          "name": "build_rank_context",
+          "line": 15,
+          "lines": 21,
+          "branch_nodes": 1
+        },
+        {
+          "name": "attach_ltr_scorer",
+          "line": 38,
+          "lines": 21,
+          "branch_nodes": 1
+        },
+        {
+          "name": "scorer",
+          "line": 52,
+          "lines": 4,
+          "branch_nodes": 0
+        }
+      ]
+    },
+    {
+      "file": "itlr/eval/ltr_features.py",
+      "lines": 103,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "itlr.core",
+        "itlr.core.rerank",
+        "numpy",
+        "sklearn.metrics.pairwise",
+        "typing"
+      ],
+      "functions": [
+        {
+          "name": "query_score_vectors",
+          "line": 28,
+          "lines": 21,
+          "branch_nodes": 1
+        },
+        {
+          "name": "_cross_scores",
+          "line": 51,
+          "lines": 12,
+          "branch_nodes": 3
+        },
+        {
+          "name": "extract_features",
+          "line": 65,
+          "lines": 39,
+          "branch_nodes": 7
+        }
+      ]
+    },
+    {
+      "file": "itlr/eval/metrics.py",
+      "lines": 146,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "numpy",
+        "typing"
+      ],
+      "functions": [
+        {
+          "name": "_as_array",
+          "line": 24,
+          "lines": 2,
+          "branch_nodes": 0
+        },
+        {
+          "name": "precision_at_k",
+          "line": 28,
+          "lines": 8,
+          "branch_nodes": 2
+        },
+        {
+          "name": "recall_at_k",
+          "line": 38,
+          "lines": 6,
+          "branch_nodes": 1
+        },
+        {
+          "name": "hit_rate_at_k",
+          "line": 46,
+          "lines": 4,
+          "branch_nodes": 1
+        },
+        {
+          "name": "dcg_at_k",
+          "line": 52,
+          "lines": 8,
+          "branch_nodes": 1
+        },
+        {
+          "name": "ndcg_at_k",
+          "line": 62,
+          "lines": 14,
+          "branch_nodes": 2
+        },
+        {
+          "name": "average_precision",
+          "line": 78,
+          "lines": 14,
+          "branch_nodes": 2
+        },
+        {
+          "name": "reciprocal_rank",
+          "line": 94,
+          "lines": 7,
+          "branch_nodes": 1
+        },
+        {
+          "name": "per_query_metrics",
+          "line": 103,
+          "lines": 16,
+          "branch_nodes": 1
+        },
+        {
+          "name": "evaluate_run",
+          "line": 121,
+          "lines": 8,
+          "branch_nodes": 1
+        },
+        {
+          "name": "evaluate_rankings",
+          "line": 131,
+          "lines": 16,
+          "branch_nodes": 2
+        }
+      ]
+    },
+    {
+      "file": "itlr/eval/off_policy.py",
+      "lines": 136,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "numpy",
+        "typing"
+      ],
+      "functions": [
+        {
+          "name": "_weights",
+          "line": 30,
+          "lines": 7,
+          "branch_nodes": 1
+        },
+        {
+          "name": "ips",
+          "line": 39,
+          "lines": 5,
+          "branch_nodes": 0
+        },
+        {
+          "name": "snips",
+          "line": 46,
+          "lines": 8,
+          "branch_nodes": 1
+        },
+        {
+          "name": "doubly_robust",
+          "line": 56,
+          "lines": 19,
+          "branch_nodes": 0
+        },
+        {
+          "name": "_bootstrap_ci",
+          "line": 77,
+          "lines": 13,
+          "branch_nodes": 1
+        },
+        {
+          "name": "evaluate_policy",
+          "line": 92,
+          "lines": 28,
+          "branch_nodes": 1
+        },
+        {
+          "name": "effective_sample_size",
+          "line": 122,
+          "lines": 10,
+          "branch_nodes": 1
+        },
+        {
+          "name": "naive_on_policy_value",
+          "line": 134,
+          "lines": 3,
+          "branch_nodes": 0
+        }
+      ]
+    },
+    {
+      "file": "itlr/eval/significance.py",
+      "lines": 129,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "math",
+        "numpy",
+        "scipy",
+        "typing"
+      ],
+      "functions": [
+        {
+          "name": "paired_bootstrap",
+          "line": 19,
+          "lines": 36,
+          "branch_nodes": 3
+        },
+        {
+          "name": "_t_sf",
+          "line": 57,
+          "lines": 8,
+          "branch_nodes": 1
+        },
+        {
+          "name": "paired_t_test",
+          "line": 67,
+          "lines": 15,
+          "branch_nodes": 5
+        },
+        {
+          "name": "compare",
+          "line": 84,
+          "lines": 20,
+          "branch_nodes": 2
+        },
+        {
+          "name": "cohen_kappa",
+          "line": 106,
+          "lines": 24,
+          "branch_nodes": 3
+        }
+      ]
+    },
+    {
+      "file": "itlr/indexv2.py",
+      "lines": 155,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "itlr",
+        "itlr.versioning",
+        "logging",
+        "numpy",
+        "os",
+        "pathlib",
+        "pickle",
+        "sklearn.metrics.pairwise",
+        "subprocess",
+        "sys"
+      ],
+      "functions": [
+        {
+          "name": "validate_artifacts",
+          "line": 30,
+          "lines": 43,
+          "branch_nodes": 2
+        },
+        {
+          "name": "self_retrieval_sanity",
+          "line": 75,
+          "lines": 33,
+          "branch_nodes": 3
+        },
+        {
+          "name": "probe",
+          "line": 110,
+          "lines": 20,
+          "branch_nodes": 3
+        },
+        {
+          "name": "engine_probe",
+          "line": 132,
+          "lines": 24,
+          "branch_nodes": 3
+        },
+        {
+          "name": "check",
+          "line": 35,
+          "lines": 2,
+          "branch_nodes": 0
+        }
+      ]
+    },
+    {
+      "file": "itlr/locking.py",
+      "lines": 47,
+      "kind": "source",
+      "imports": [
+        "contextlib",
+        "fcntl",
+        "functools",
+        "itlr",
+        "msvcrt",
+        "pathlib",
+        "threading"
+      ],
+      "functions": [
+        {
+          "name": "file_lock",
+          "line": 21,
+          "lines": 17,
+          "branch_nodes": 3
+        },
+        {
+          "name": "artifact_locked",
+          "line": 40,
+          "lines": 8,
+          "branch_nodes": 0
+        },
+        {
+          "name": "wrapped",
+          "line": 42,
+          "lines": 5,
+          "branch_nodes": 0
+        }
+      ]
+    },
+    {
+      "file": "itlr/pipelines/__init__.py",
+      "lines": 1,
+      "kind": "source",
+      "imports": [],
+      "functions": []
+    },
+    {
+      "file": "itlr/pipelines/build_cf.py",
+      "lines": 110,
+      "kind": "source",
+      "imports": [
+        "collections",
+        "itlr",
+        "numpy",
+        "pandas",
+        "pathlib",
+        "pickle",
+        "scipy.sparse"
+      ],
+      "functions": [
+        {
+          "name": "top_k_per_row",
+          "line": 26,
+          "lines": 14,
+          "branch_nodes": 2
+        },
+        {
+          "name": "main",
+          "line": 42,
+          "lines": 65,
+          "branch_nodes": 3
+        }
+      ]
+    },
+    {
+      "file": "itlr/pipelines/build_embeddings.py",
+      "lines": 88,
+      "kind": "source",
+      "imports": [
+        "itlr",
+        "itlr.core.ann",
+        "itlr.core.embeddings",
+        "itlr.core.recommender",
+        "os",
+        "pickle",
+        "sklearn.feature_extraction.text"
+      ],
+      "functions": [
+        {
+          "name": "build_char_index",
+          "line": 29,
+          "lines": 13,
+          "branch_nodes": 0
+        },
+        {
+          "name": "build_text",
+          "line": 44,
+          "lines": 9,
+          "branch_nodes": 0
+        },
+        {
+          "name": "main",
+          "line": 55,
+          "lines": 30,
+          "branch_nodes": 2
+        }
+      ]
+    },
+    {
+      "file": "itlr/pipelines/build_embeddings_v2.py",
+      "lines": 166,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "hashlib",
+        "itlr",
+        "itlr.collect.chunk",
+        "itlr.core.ann",
+        "itlr.core.embeddings",
+        "itlr.core.recommender",
+        "json",
+        "numpy",
+        "os",
+        "pickle",
+        "sklearn.feature_extraction.text",
+        "sys",
+        "time"
+      ],
+      "functions": [
+        {
+          "name": "build_text",
+          "line": 43,
+          "lines": 11,
+          "branch_nodes": 1
+        },
+        {
+          "name": "build_char_index",
+          "line": 56,
+          "lines": 13,
+          "branch_nodes": 0
+        },
+        {
+          "name": "main",
+          "line": 71,
+          "lines": 92,
+          "branch_nodes": 7
+        }
+      ]
+    },
+    {
+      "file": "itlr/pipelines/build_model.py",
+      "lines": 166,
+      "kind": "source",
+      "imports": [
+        "itlr",
+        "itlr.core.recommender",
+        "itlr.retrieval.bm25",
+        "os",
+        "pandas",
+        "pickle",
+        "sys"
+      ],
+      "functions": [
+        {
+          "name": "evaluate_retrieval",
+          "line": 41,
+          "lines": 37,
+          "branch_nodes": 7
+        },
+        {
+          "name": "load_catalog_items",
+          "line": 80,
+          "lines": 18,
+          "branch_nodes": 1
+        },
+        {
+          "name": "index_catalog",
+          "line": 100,
+          "lines": 9,
+          "branch_nodes": 1
+        },
+        {
+          "name": "main",
+          "line": 111,
+          "lines": 52,
+          "branch_nodes": 3
+        }
+      ]
+    },
+    {
+      "file": "itlr/pipelines/generate_interactions.py",
+      "lines": 176,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "argparse",
+        "itlr",
+        "numpy",
+        "os",
+        "pandas",
+        "sys"
+      ],
+      "functions": [
+        {
+          "name": "_personas",
+          "line": 39,
+          "lines": 12,
+          "branch_nodes": 1
+        },
+        {
+          "name": "generate_interactions",
+          "line": 53,
+          "lines": 71,
+          "branch_nodes": 11
+        },
+        {
+          "name": "user_meets_min_history",
+          "line": 126,
+          "lines": 5,
+          "branch_nodes": 0
+        },
+        {
+          "name": "write_interactions",
+          "line": 133,
+          "lines": 5,
+          "branch_nodes": 0
+        },
+        {
+          "name": "main",
+          "line": 140,
+          "lines": 33,
+          "branch_nodes": 1
+        }
+      ]
+    },
+    {
+      "file": "itlr/retrieval/__init__.py",
+      "lines": 1,
+      "kind": "source",
+      "imports": [],
+      "functions": []
+    },
+    {
+      "file": "itlr/retrieval/bm25.py",
+      "lines": 76,
+      "kind": "source",
+      "imports": [
+        "collections",
+        "itlr.core.recommender",
+        "math"
+      ],
+      "functions": [
+        {
+          "name": "__init__",
+          "line": 12,
+          "lines": 8,
+          "branch_nodes": 0
+        },
+        {
+          "name": "fit",
+          "line": 21,
+          "lines": 23,
+          "branch_nodes": 3
+        },
+        {
+          "name": "score_query",
+          "line": 45,
+          "lines": 23,
+          "branch_nodes": 7
+        },
+        {
+          "name": "normalize_scores",
+          "line": 69,
+          "lines": 8,
+          "branch_nodes": 2
+        }
+      ]
+    },
+    {
+      "file": "itlr/retrieval/service.py",
+      "lines": 34,
+      "kind": "source",
+      "imports": [
+        "itlr.core.embeddings"
+      ],
+      "functions": [
+        {
+          "name": "__init__",
+          "line": 8,
+          "lines": 6,
+          "branch_nodes": 0
+        },
+        {
+          "name": "vector",
+          "line": 15,
+          "lines": 2,
+          "branch_nodes": 0
+        },
+        {
+          "name": "relevance",
+          "line": 18,
+          "lines": 6,
+          "branch_nodes": 3
+        },
+        {
+          "name": "search",
+          "line": 25,
+          "lines": 10,
+          "branch_nodes": 3
+        }
+      ]
+    },
+    {
+      "file": "itlr/utils/__init__.py",
+      "lines": 1,
+      "kind": "source",
+      "imports": [],
+      "functions": []
+    },
+    {
+      "file": "itlr/utils/repickle.py",
+      "lines": 92,
+      "kind": "source",
+      "imports": [
+        "itlr",
+        "itlr.chatbot",
+        "itlr.core",
+        "os",
+        "pathlib",
+        "pickle",
+        "sklearn.exceptions",
+        "sys",
+        "tempfile",
+        "warnings"
+      ],
+      "functions": [
+        {
+          "name": "main",
+          "line": 57,
+          "lines": 32,
+          "branch_nodes": 5
+        }
+      ]
+    },
+    {
+      "file": "itlr/utils/runtime_patches.py",
+      "lines": 44,
+      "kind": "source",
+      "imports": [
+        "asyncio.proactor_events",
+        "functools",
+        "logging",
+        "sys",
+        "transformers.utils"
+      ],
+      "functions": [
+        {
+          "name": "_silence_conn_reset",
+          "line": 30,
+          "lines": 9,
+          "branch_nodes": 1
+        },
+        {
+          "name": "wrapper",
+          "line": 32,
+          "lines": 5,
+          "branch_nodes": 1
+        }
+      ]
+    },
+    {
+      "file": "itlr/versioning.py",
+      "lines": 253,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "hashlib",
+        "itlr",
+        "itlr.locking",
+        "itlr.versioning",
+        "json",
+        "os",
+        "pathlib",
+        "re",
+        "shutil",
+        "time",
+        "uuid"
+      ],
+      "functions": [
+        {
+          "name": "_dir",
+          "line": 39,
+          "lines": 7,
+          "branch_nodes": 2
+        },
+        {
+          "name": "create_version_dir",
+          "line": 48,
+          "lines": 9,
+          "branch_nodes": 0
+        },
+        {
+          "name": "_id",
+          "line": 59,
+          "lines": 3,
+          "branch_nodes": 0
+        },
+        {
+          "name": "write_manifest",
+          "line": 63,
+          "lines": 10,
+          "branch_nodes": 1
+        },
+        {
+          "name": "artifact_hashes",
+          "line": 78,
+          "lines": 12,
+          "branch_nodes": 4
+        },
+        {
+          "name": "verify_integrity",
+          "line": 92,
+          "lines": 10,
+          "branch_nodes": 3
+        },
+        {
+          "name": "probe_ok",
+          "line": 104,
+          "lines": 7,
+          "branch_nodes": 1
+        },
+        {
+          "name": "list_versions",
+          "line": 113,
+          "lines": 8,
+          "branch_nodes": 1
+        },
+        {
+          "name": "current_version",
+          "line": 123,
+          "lines": 7,
+          "branch_nodes": 1
+        },
+        {
+          "name": "current_dir",
+          "line": 132,
+          "lines": 14,
+          "branch_nodes": 3
+        },
+        {
+          "name": "_write_pointer",
+          "line": 148,
+          "lines": 17,
+          "branch_nodes": 1
+        },
+        {
+          "name": "_append_history",
+          "line": 167,
+          "lines": 6,
+          "branch_nodes": 0
+        },
+        {
+          "name": "activate",
+          "line": 176,
+          "lines": 16,
+          "branch_nodes": 3
+        },
+        {
+          "name": "history_prev_version",
+          "line": 194,
+          "lines": 10,
+          "branch_nodes": 2
+        },
+        {
+          "name": "rollback",
+          "line": 207,
+          "lines": 14,
+          "branch_nodes": 4
+        },
+        {
+          "name": "read_history",
+          "line": 223,
+          "lines": 18,
+          "branch_nodes": 6
+        },
+        {
+          "name": "garbage_collect",
+          "line": 244,
+          "lines": 10,
+          "branch_nodes": 2
+        }
+      ]
+    },
+    {
+      "file": "scripts/build_all.py",
+      "lines": 103,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "argparse",
+        "itlr.config",
+        "pathlib",
+        "subprocess",
+        "sys",
+        "time"
+      ],
+      "functions": [
+        {
+          "name": "_artifacts_dir",
+          "line": 37,
+          "lines": 3,
+          "branch_nodes": 0
+        },
+        {
+          "name": "plan",
+          "line": 42,
+          "lines": 8,
+          "branch_nodes": 2
+        },
+        {
+          "name": "main",
+          "line": 52,
+          "lines": 48,
+          "branch_nodes": 9
+        }
+      ]
+    },
+    {
+      "file": "scripts/build_all_v2.py",
+      "lines": 212,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "argparse",
+        "itlr",
+        "itlr.collect.normalize",
+        "itlr.indexv2",
+        "itlr.locking",
+        "json",
+        "os",
+        "pathlib",
+        "subprocess",
+        "sys",
+        "time",
+        "traceback"
+      ],
+      "functions": [
+        {
+          "name": "_log",
+          "line": 39,
+          "lines": 6,
+          "branch_nodes": 1
+        },
+        {
+          "name": "build_catalog",
+          "line": 47,
+          "lines": 13,
+          "branch_nodes": 1
+        },
+        {
+          "name": "run_step",
+          "line": 62,
+          "lines": 6,
+          "branch_nodes": 0
+        },
+        {
+          "name": "check_outputs",
+          "line": 70,
+          "lines": 3,
+          "branch_nodes": 0
+        },
+        {
+          "name": "main",
+          "line": 75,
+          "lines": 131,
+          "branch_nodes": 16
+        }
+      ]
+    },
+    {
+      "file": "scripts/collect_curated.py",
+      "lines": 88,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "argparse",
+        "hashlib",
+        "itlr",
+        "itlr.collect.extract",
+        "itlr.collect.http",
+        "itlr.collect.sources",
+        "itlr.collect.store",
+        "itlr.collect.url_util",
+        "json",
+        "logging",
+        "pathlib",
+        "sys",
+        "urllib.parse"
+      ],
+      "functions": [
+        {
+          "name": "selected_urls",
+          "line": 20,
+          "lines": 14,
+          "branch_nodes": 5
+        },
+        {
+          "name": "parse_page",
+          "line": 36,
+          "lines": 4,
+          "branch_nodes": 0
+        },
+        {
+          "name": "main",
+          "line": 42,
+          "lines": 44,
+          "branch_nodes": 7
+        }
+      ]
+    },
+    {
+      "file": "scripts/collect_data.py",
+      "lines": 120,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "argparse",
+        "itlr",
+        "itlr.collect.http",
+        "itlr.collect.runner",
+        "itlr.collect.sources",
+        "itlr.collect.store",
+        "itlr.locking",
+        "json",
+        "logging",
+        "pathlib",
+        "sys"
+      ],
+      "functions": [
+        {
+          "name": "setup_logging",
+          "line": 35,
+          "lines": 10,
+          "branch_nodes": 1
+        },
+        {
+          "name": "list_sources",
+          "line": 47,
+          "lines": 8,
+          "branch_nodes": 2
+        },
+        {
+          "name": "main",
+          "line": 57,
+          "lines": 57,
+          "branch_nodes": 6
+        }
+      ]
+    },
+    {
+      "file": "scripts/export_web_catalog.py",
+      "lines": 31,
+      "kind": "source",
+      "imports": [
+        "csv",
+        "hashlib",
+        "itlr",
+        "json",
+        "pathlib",
+        "sys"
+      ],
+      "functions": [
+        {
+          "name": "export",
+          "line": 14,
+          "lines": 16,
+          "branch_nodes": 1
+        }
+      ]
+    },
+    {
+      "file": "scripts/import_curated_snapshot.py",
+      "lines": 48,
+      "kind": "source",
+      "imports": [
+        "hashlib",
+        "itlr",
+        "itlr.collect.sources",
+        "itlr.collect.store",
+        "itlr.collect.url_util",
+        "json",
+        "pathlib",
+        "scripts.collect_curated",
+        "sqlite3",
+        "sys"
+      ],
+      "functions": [
+        {
+          "name": "validate_row",
+          "line": 16,
+          "lines": 9,
+          "branch_nodes": 3
+        },
+        {
+          "name": "main",
+          "line": 27,
+          "lines": 20,
+          "branch_nodes": 3
+        }
+      ]
+    },
+    {
+      "file": "scripts/refresh_pipeline.py",
+      "lines": 135,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "argparse",
+        "itlr.locking",
+        "json",
+        "pathlib",
+        "subprocess",
+        "sys",
+        "time"
+      ],
+      "functions": [
+        {
+          "name": "_run",
+          "line": 26,
+          "lines": 3,
+          "branch_nodes": 0
+        },
+        {
+          "name": "_write_summary",
+          "line": 31,
+          "lines": 7,
+          "branch_nodes": 1
+        },
+        {
+          "name": "main",
+          "line": 40,
+          "lines": 89,
+          "branch_nodes": 14
+        }
+      ]
+    },
+    {
+      "file": "scripts/verify_local_models.py",
+      "lines": 78,
+      "kind": "source",
+      "imports": [
+        "itlr.chatbot.llm_client",
+        "json",
+        "os",
+        "pathlib",
+        "subprocess",
+        "sys",
+        "time",
+        "urllib.request"
+      ],
+      "functions": [
+        {
+          "name": "main",
+          "line": 14,
+          "lines": 61,
+          "branch_nodes": 10
+        },
+        {
+          "name": "request",
+          "line": 38,
+          "lines": 6,
+          "branch_nodes": 1
+        }
+      ]
+    },
+    {
+      "file": "eval/adapt_real_data.py",
+      "lines": 279,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "argparse",
+        "ast",
+        "collections",
+        "glob",
+        "itlr",
+        "os",
+        "pandas",
+        "re",
+        "sys"
+      ],
+      "functions": [
+        {
+          "name": "_find_col",
+          "line": 74,
+          "lines": 5,
+          "branch_nodes": 2
+        },
+        {
+          "name": "clean_topics",
+          "line": 81,
+          "lines": 15,
+          "branch_nodes": 4
+        },
+        {
+          "name": "clean_text",
+          "line": 98,
+          "lines": 13,
+          "branch_nodes": 4
+        },
+        {
+          "name": "norm_title",
+          "line": 113,
+          "lines": 3,
+          "branch_nodes": 0
+        },
+        {
+          "name": "norm_category",
+          "line": 125,
+          "lines": 3,
+          "branch_nodes": 0
+        },
+        {
+          "name": "map_level",
+          "line": 130,
+          "lines": 6,
+          "branch_nodes": 2
+        },
+        {
+          "name": "adapt",
+          "line": 138,
+          "lines": 46,
+          "branch_nodes": 12
+        },
+        {
+          "name": "build_catalog",
+          "line": 186,
+          "lines": 20,
+          "branch_nodes": 2
+        },
+        {
+          "name": "distribution_stats",
+          "line": 208,
+          "lines": 14,
+          "branch_nodes": 1
+        },
+        {
+          "name": "write_compare",
+          "line": 224,
+          "lines": 23,
+          "branch_nodes": 5
+        },
+        {
+          "name": "main",
+          "line": 249,
+          "lines": 27,
+          "branch_nodes": 3
+        }
+      ]
+    },
+    {
+      "file": "eval/bench_chunks_v3.py",
+      "lines": 85,
+      "kind": "source",
+      "imports": [
+        "itlr.collect.chunk",
+        "itlr.core.chunks",
+        "itlr.core.embeddings",
+        "itlr.eval.metrics",
+        "json",
+        "numpy",
+        "os",
+        "pathlib",
+        "resource",
+        "sys",
+        "time"
+      ],
+      "functions": [
+        {
+          "name": "main",
+          "line": 35,
+          "lines": 49,
+          "branch_nodes": 10
+        }
+      ]
+    },
+    {
+      "file": "eval/bench_latency.py",
+      "lines": 208,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "argparse",
+        "itlr",
+        "itlr.core",
+        "itlr.eval.loader",
+        "numpy",
+        "os",
+        "psutil",
+        "sys",
+        "time"
+      ],
+      "functions": [
+        {
+          "name": "pct",
+          "line": 37,
+          "lines": 2,
+          "branch_nodes": 0
+        },
+        {
+          "name": "time_calls",
+          "line": 41,
+          "lines": 11,
+          "branch_nodes": 3
+        },
+        {
+          "name": "stage_latencies",
+          "line": 54,
+          "lines": 41,
+          "branch_nodes": 2
+        },
+        {
+          "name": "faiss_vs_brute",
+          "line": 97,
+          "lines": 14,
+          "branch_nodes": 1
+        },
+        {
+          "name": "memory_footprint",
+          "line": 113,
+          "lines": 19,
+          "branch_nodes": 4
+        },
+        {
+          "name": "fmt_table",
+          "line": 134,
+          "lines": 9,
+          "branch_nodes": 2
+        },
+        {
+          "name": "main",
+          "line": 145,
+          "lines": 60,
+          "branch_nodes": 8
+        }
+      ]
+    },
+    {
+      "file": "eval/build_ltr.py",
+      "lines": 278,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "argparse",
+        "itlr",
+        "itlr.core",
+        "itlr.core.recommender",
+        "itlr.eval",
+        "itlr.eval.loader",
+        "lightgbm",
+        "matplotlib",
+        "matplotlib.pyplot",
+        "numpy",
+        "os",
+        "pandas",
+        "pickle",
+        "random",
+        "shap",
+        "sys",
+        "time"
+      ],
+      "functions": [
+        {
+          "name": "perturb",
+          "line": 37,
+          "lines": 13,
+          "branch_nodes": 3
+        },
+        {
+          "name": "load_qrels",
+          "line": 52,
+          "lines": 7,
+          "branch_nodes": 1
+        },
+        {
+          "name": "build_training_data",
+          "line": 61,
+          "lines": 35,
+          "branch_nodes": 5
+        },
+        {
+          "name": "ndcg_per_query_pipeline",
+          "line": 98,
+          "lines": 10,
+          "branch_nodes": 2
+        },
+        {
+          "name": "main",
+          "line": 110,
+          "lines": 114,
+          "branch_nodes": 5
+        },
+        {
+          "name": "_make_scorer",
+          "line": 226,
+          "lines": 6,
+          "branch_nodes": 0
+        },
+        {
+          "name": "make_plots",
+          "line": 234,
+          "lines": 41,
+          "branch_nodes": 5
+        },
+        {
+          "name": "scorer",
+          "line": 227,
+          "lines": 4,
+          "branch_nodes": 0
+        }
+      ]
+    },
+    {
+      "file": "eval/eval_cf.py",
+      "lines": 98,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "argparse",
+        "collections",
+        "itlr",
+        "itlr.eval",
+        "os",
+        "pandas",
+        "pickle",
+        "sys"
+      ],
+      "functions": [
+        {
+          "name": "build_histories",
+          "line": 30,
+          "lines": 9,
+          "branch_nodes": 1
+        },
+        {
+          "name": "main",
+          "line": 41,
+          "lines": 54,
+          "branch_nodes": 6
+        }
+      ]
+    },
+    {
+      "file": "eval/eval_fixture.py",
+      "lines": 70,
+      "kind": "source",
+      "imports": [
+        "itlr.core.recommender",
+        "itlr.retrieval.bm25",
+        "json",
+        "numpy",
+        "pandas",
+        "pathlib",
+        "sys",
+        "time"
+      ],
+      "functions": [
+        {
+          "name": "main",
+          "line": 21,
+          "lines": 46,
+          "branch_nodes": 8
+        }
+      ]
+    },
+    {
+      "file": "eval/eval_generation.py",
+      "lines": 319,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "argparse",
+        "csv",
+        "itlr",
+        "itlr.chatbot",
+        "itlr.engine",
+        "json",
+        "os",
+        "pandas",
+        "re",
+        "sys"
+      ],
+      "functions": [
+        {
+          "name": "extract_citations",
+          "line": 46,
+          "lines": 3,
+          "branch_nodes": 0
+        },
+        {
+          "name": "citation_stats",
+          "line": 51,
+          "lines": 15,
+          "branch_nodes": 1
+        },
+        {
+          "name": "ngram_grounded_ratio",
+          "line": 66,
+          "lines": 19,
+          "branch_nodes": 5
+        },
+        {
+          "name": "relevancy_proxy",
+          "line": 87,
+          "lines": 11,
+          "branch_nodes": 1
+        },
+        {
+          "name": "is_refusal",
+          "line": 100,
+          "lines": 4,
+          "branch_nodes": 0
+        },
+        {
+          "name": "_default_testset_path",
+          "line": 109,
+          "lines": 2,
+          "branch_nodes": 0
+        },
+        {
+          "name": "_build_testset",
+          "line": 168,
+          "lines": 11,
+          "branch_nodes": 0
+        },
+        {
+          "name": "run_case",
+          "line": 181,
+          "lines": 39,
+          "branch_nodes": 3
+        },
+        {
+          "name": "main",
+          "line": 222,
+          "lines": 94,
+          "branch_nodes": 11
+        },
+        {
+          "name": "tokenize",
+          "line": 68,
+          "lines": 2,
+          "branch_nodes": 0
+        },
+        {
+          "name": "keywords",
+          "line": 89,
+          "lines": 3,
+          "branch_nodes": 0
+        },
+        {
+          "name": "_finite",
+          "line": 302,
+          "lines": 3,
+          "branch_nodes": 1
+        }
+      ]
+    },
+    {
+      "file": "eval/eval_lexical_real.py",
+      "lines": 127,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "argparse",
+        "itlr.core.recommender",
+        "itlr.eval.metrics",
+        "itlr.retrieval.bm25",
+        "json",
+        "numpy",
+        "pandas",
+        "pathlib",
+        "sys",
+        "time"
+      ],
+      "functions": [
+        {
+          "name": "load_items",
+          "line": 45,
+          "lines": 5,
+          "branch_nodes": 0
+        },
+        {
+          "name": "build_model",
+          "line": 52,
+          "lines": 8,
+          "branch_nodes": 1
+        },
+        {
+          "name": "main",
+          "line": 62,
+          "lines": 62,
+          "branch_nodes": 9
+        }
+      ]
+    },
+    {
+      "file": "eval/eval_off_policy.py",
+      "lines": 192,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "argparse",
+        "itlr",
+        "itlr.eval",
+        "numpy",
+        "os",
+        "pandas",
+        "sklearn.linear_model",
+        "sys"
+      ],
+      "functions": [
+        {
+          "name": "softmax",
+          "line": 35,
+          "lines": 4,
+          "branch_nodes": 0
+        },
+        {
+          "name": "simulate",
+          "line": 41,
+          "lines": 56,
+          "branch_nodes": 1
+        },
+        {
+          "name": "fit_reward_model",
+          "line": 99,
+          "lines": 16,
+          "branch_nodes": 1
+        },
+        {
+          "name": "main",
+          "line": 117,
+          "lines": 72,
+          "branch_nodes": 6
+        },
+        {
+          "name": "q",
+          "line": 111,
+          "lines": 3,
+          "branch_nodes": 0
+        },
+        {
+          "name": "covered",
+          "line": 148,
+          "lines": 2,
+          "branch_nodes": 0
+        }
+      ]
+    },
+    {
+      "file": "eval/eval_offtopic.py",
+      "lines": 113,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "itlr",
+        "itlr.chatbot.chatbot",
+        "itlr.core.recommender",
+        "itlr.engine",
+        "numpy",
+        "os",
+        "pandas",
+        "sys"
+      ],
+      "functions": [
+        {
+          "name": "roc_auc",
+          "line": 28,
+          "lines": 14,
+          "branch_nodes": 1
+        },
+        {
+          "name": "prf_at",
+          "line": 44,
+          "lines": 10,
+          "branch_nodes": 3
+        },
+        {
+          "name": "main",
+          "line": 56,
+          "lines": 54,
+          "branch_nodes": 2
+        }
+      ]
+    },
+    {
+      "file": "eval/eval_release_retrieval.py",
+      "lines": 124,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "argparse",
+        "ctypes",
+        "eval.eval_lexical_real",
+        "hashlib",
+        "itlr.core.recommender",
+        "itlr.eval.metrics",
+        "json",
+        "numpy",
+        "os",
+        "pathlib",
+        "resource",
+        "sys",
+        "time"
+      ],
+      "functions": [
+        {
+          "name": "peak_process_rss_mib",
+          "line": 21,
+          "lines": 21,
+          "branch_nodes": 3
+        },
+        {
+          "name": "metrics",
+          "line": 44,
+          "lines": 10,
+          "branch_nodes": 2
+        },
+        {
+          "name": "main",
+          "line": 56,
+          "lines": 65,
+          "branch_nodes": 15
+        }
+      ]
+    },
+    {
+      "file": "eval/eval_v2_real.py",
+      "lines": 203,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "argparse",
+        "itlr",
+        "itlr.chatbot.chatbot",
+        "itlr.engine",
+        "itlr.eval.metrics",
+        "json",
+        "os",
+        "pandas",
+        "pathlib",
+        "re",
+        "statistics",
+        "sys",
+        "time"
+      ],
+      "functions": [
+        {
+          "name": "_ndcg_at_k",
+          "line": 38,
+          "lines": 5,
+          "branch_nodes": 0
+        },
+        {
+          "name": "_mrr_at_k",
+          "line": 45,
+          "lines": 5,
+          "branch_nodes": 2
+        },
+        {
+          "name": "_recall_at_k",
+          "line": 52,
+          "lines": 6,
+          "branch_nodes": 1
+        },
+        {
+          "name": "load_engine",
+          "line": 60,
+          "lines": 5,
+          "branch_nodes": 0
+        },
+        {
+          "name": "main",
+          "line": 67,
+          "lines": 133,
+          "branch_nodes": 18
+        }
+      ]
+    },
+    {
+      "file": "eval/evaluate_human.py",
+      "lines": 174,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "argparse",
+        "collections",
+        "itlr",
+        "itlr.core",
+        "itlr.engine",
+        "itlr.eval",
+        "os",
+        "pandas",
+        "pickle",
+        "sys"
+      ],
+      "functions": [
+        {
+          "name": "load_human",
+          "line": 33,
+          "lines": 6,
+          "branch_nodes": 0
+        },
+        {
+          "name": "kappa_report",
+          "line": 41,
+          "lines": 9,
+          "branch_nodes": 0
+        },
+        {
+          "name": "ranking_on_human",
+          "line": 52,
+          "lines": 42,
+          "branch_nodes": 3
+        },
+        {
+          "name": "no_labels_report",
+          "line": 96,
+          "lines": 15,
+          "branch_nodes": 0
+        },
+        {
+          "name": "write_report",
+          "line": 113,
+          "lines": 6,
+          "branch_nodes": 0
+        },
+        {
+          "name": "main",
+          "line": 121,
+          "lines": 50,
+          "branch_nodes": 8
+        }
+      ]
+    },
+    {
+      "file": "eval/make_judgments.py",
+      "lines": 389,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "argparse",
+        "collections",
+        "csv",
+        "itlr",
+        "itlr.core.recommender",
+        "json",
+        "os",
+        "pandas",
+        "random",
+        "sys"
+      ],
+      "functions": [
+        {
+          "name": "top_topics_per_category",
+          "line": 54,
+          "lines": 32,
+          "branch_nodes": 8
+        },
+        {
+          "name": "build_queries",
+          "line": 88,
+          "lines": 15,
+          "branch_nodes": 2
+        },
+        {
+          "name": "_mask_terms",
+          "line": 114,
+          "lines": 13,
+          "branch_nodes": 3
+        },
+        {
+          "name": "_natural_query_text",
+          "line": 129,
+          "lines": 15,
+          "branch_nodes": 4
+        },
+        {
+          "name": "load_glossary_natural_queries",
+          "line": 146,
+          "lines": 42,
+          "branch_nodes": 9
+        },
+        {
+          "name": "grade_item",
+          "line": 190,
+          "lines": 11,
+          "branch_nodes": 2
+        },
+        {
+          "name": "generate_relevance",
+          "line": 203,
+          "lines": 21,
+          "branch_nodes": 4
+        },
+        {
+          "name": "write_csv",
+          "line": 226,
+          "lines": 6,
+          "branch_nodes": 0
+        },
+        {
+          "name": "human_output_relpath",
+          "line": 238,
+          "lines": 3,
+          "branch_nodes": 1
+        },
+        {
+          "name": "count_labeled_rows",
+          "line": 243,
+          "lines": 9,
+          "branch_nodes": 2
+        },
+        {
+          "name": "write_human_pool",
+          "line": 254,
+          "lines": 14,
+          "branch_nodes": 2
+        },
+        {
+          "name": "sample_human_pool",
+          "line": 270,
+          "lines": 43,
+          "branch_nodes": 8
+        },
+        {
+          "name": "simulate_human",
+          "line": 315,
+          "lines": 10,
+          "branch_nodes": 3
+        },
+        {
+          "name": "main",
+          "line": 327,
+          "lines": 59,
+          "branch_nodes": 6
+        }
+      ]
+    },
+    {
+      "file": "eval/prepare_labeling_sheet.py",
+      "lines": 87,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "argparse",
+        "itlr",
+        "os",
+        "pandas",
+        "sys"
+      ],
+      "functions": [
+        {
+          "name": "prepare",
+          "line": 35,
+          "lines": 16,
+          "branch_nodes": 0
+        },
+        {
+          "name": "merge",
+          "line": 53,
+          "lines": 20,
+          "branch_nodes": 4
+        },
+        {
+          "name": "main",
+          "line": 75,
+          "lines": 9,
+          "branch_nodes": 1
+        }
+      ]
+    },
+    {
+      "file": "eval/run_all.py",
+      "lines": 117,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "argparse",
+        "os",
+        "subprocess",
+        "sys",
+        "time"
+      ],
+      "functions": [
+        {
+          "name": "run",
+          "line": 31,
+          "lines": 6,
+          "branch_nodes": 1
+        },
+        {
+          "name": "build_steps",
+          "line": 39,
+          "lines": 36,
+          "branch_nodes": 8
+        },
+        {
+          "name": "main",
+          "line": 77,
+          "lines": 37,
+          "branch_nodes": 7
+        }
+      ]
+    },
+    {
+      "file": "eval/run_evaluation.py",
+      "lines": 360,
+      "kind": "source",
+      "imports": [
+        "__future__",
+        "argparse",
+        "csv",
+        "dataclasses",
+        "datetime",
+        "hashlib",
+        "itlr",
+        "itlr.core",
+        "itlr.core.recommender",
+        "itlr.engine",
+        "itlr.eval",
+        "json",
+        "os",
+        "pandas",
+        "pickle",
+        "random",
+        "subprocess",
+        "sys",
+        "time"
+      ],
+      "functions": [
+        {
+          "name": "perturb_query",
+          "line": 46,
+          "lines": 15,
+          "branch_nodes": 3
+        },
+        {
+          "name": "load_qrels",
+          "line": 63,
+          "lines": 10,
+          "branch_nodes": 1
+        },
+        {
+          "name": "build_context",
+          "line": 75,
+          "lines": 19,
+          "branch_nodes": 0
+        },
+        {
+          "name": "effective_configs",
+          "line": 96,
+          "lines": 18,
+          "branch_nodes": 3
+        },
+        {
+          "name": "_sha256",
+          "line": 116,
+          "lines": 6,
+          "branch_nodes": 1
+        },
+        {
+          "name": "_git_sha",
+          "line": 124,
+          "lines": 7,
+          "branch_nodes": 2
+        },
+        {
+          "name": "write_provenance",
+          "line": 133,
+          "lines": 23,
+          "branch_nodes": 0
+        },
+        {
+          "name": "grades_for_ranking",
+          "line": 158,
+          "lines": 3,
+          "branch_nodes": 0
+        },
+        {
+          "name": "evaluate_config",
+          "line": 163,
+          "lines": 17,
+          "branch_nodes": 2
+        },
+        {
+          "name": "fmt",
+          "line": 182,
+          "lines": 2,
+          "branch_nodes": 1
+        },
+        {
+          "name": "main",
+          "line": 186,
+          "lines": 104,
+          "branch_nodes": 14
+        },
+        {
+          "name": "write_tables",
+          "line": 292,
+          "lines": 65,
+          "branch_nodes": 9
+        }
+      ]
+    },
+    {
+      "file": "web/src/app.test.ts",
+      "lines": 36,
+      "kind": "test",
+      "imports": [
+        "vitest",
+        "node:http",
+        "node:net",
+        "./app"
+      ]
+    },
+    {
+      "file": "web/src/app.ts",
+      "lines": 74,
+      "kind": "source",
+      "imports": [
+        "node:path",
+        "./services/dataset-extract",
+        "express",
+        "cookie-parser",
+        "./config/env",
+        "./db/pool",
+        "./middleware/auth",
+        "./middleware/security",
+        "./routes/auth.routes",
+        "./routes/pages.routes",
+        "./routes/api.routes",
+        "./routes/admin.routes",
+        "./routes/social.routes",
+        "./routes/learning.routes"
+      ]
+    },
+    {
+      "file": "web/src/config/catalog.ts",
+      "lines": 10,
+      "kind": "source",
+      "imports": [
+        "node:path"
+      ]
+    },
+    {
+      "file": "web/src/config/env.test.ts",
+      "lines": 28,
+      "kind": "test",
+      "imports": [
+        "vitest"
+      ]
+    },
+    {
+      "file": "web/src/config/env.ts",
+      "lines": 55,
+      "kind": "source",
+      "imports": [
+        "dotenv"
+      ]
+    },
+    {
+      "file": "web/src/db/check.ts",
+      "lines": 111,
+      "kind": "source",
+      "imports": [
+        "./pool"
+      ]
+    },
+    {
+      "file": "web/src/db/migrate.ts",
+      "lines": 15,
+      "kind": "source",
+      "imports": [
+        "node:fs",
+        "node:path",
+        "./pool"
+      ]
+    },
+    {
+      "file": "web/src/db/pool.ts",
+      "lines": 13,
+      "kind": "source",
+      "imports": [
+        "pg",
+        "../config/env"
+      ]
+    },
+    {
+      "file": "web/src/db/seed-courses.ts",
+      "lines": 4,
+      "kind": "source",
+      "imports": [
+        "./pool",
+        "./sync-courses"
+      ]
+    },
+    {
+      "file": "web/src/db/sync-courses.ts",
+      "lines": 30,
+      "kind": "source",
+      "imports": [
+        "node:fs",
+        "node:stream/promises",
+        "pg-copy-streams",
+        "./pool",
+        "../config/catalog",
+        "../services/catalog-csv"
+      ]
+    },
+    {
+      "file": "web/src/db/types.ts",
+      "lines": 145,
+      "kind": "source",
+      "imports": []
+    },
+    {
+      "file": "web/src/middleware/auth.test.ts",
+      "lines": 57,
+      "kind": "test",
+      "imports": [
+        "vitest",
+        "express",
+        "./auth",
+        "../db/pool"
+      ]
+    },
+    {
+      "file": "web/src/middleware/auth.ts",
+      "lines": 105,
+      "kind": "source",
+      "imports": [
+        "express",
+        "node:crypto",
+        "jsonwebtoken",
+        "../config/env",
+        "../db/pool"
+      ]
+    },
+    {
+      "file": "web/src/middleware/security.test.ts",
+      "lines": 58,
+      "kind": "test",
+      "imports": [
+        "vitest",
+        "./security"
+      ]
+    },
+    {
+      "file": "web/src/middleware/security.ts",
+      "lines": 88,
+      "kind": "source",
+      "imports": [
+        "express",
+        "node:crypto",
+        "helmet",
+        "express-rate-limit",
+        "../config/env"
+      ]
+    },
+    {
+      "file": "web/src/middleware/uploads.test.ts",
+      "lines": 28,
+      "kind": "test",
+      "imports": [
+        "vitest",
+        "./uploads"
+      ]
+    },
+    {
+      "file": "web/src/middleware/uploads.ts",
+      "lines": 35,
+      "kind": "source",
+      "imports": [
+        "node:path",
+        "express"
+      ]
+    },
+    {
+      "file": "web/src/routes/admin-login.test.ts",
+      "lines": 55,
+      "kind": "test",
+      "imports": [
+        "vitest",
+        "./admin.routes"
+      ]
+    },
+    {
+      "file": "web/src/routes/admin-security.test.ts",
+      "lines": 24,
+      "kind": "test",
+      "imports": [
+        "vitest",
+        "./admin.routes"
+      ]
+    },
+    {
+      "file": "web/src/routes/admin.routes.ts",
+      "lines": 355,
+      "kind": "source",
+      "imports": [
+        "../middleware/uploads",
+        "node:path",
+        "express",
+        "jsonwebtoken",
+        "multer",
+        "../db/pool",
+        "../config/env",
+        "../middleware/auth",
+        "../middleware/security",
+        "../services/social",
+        "../services/dataset",
+        "../db/types"
+      ]
+    },
+    {
+      "file": "web/src/routes/api.routes.ts",
+      "lines": 403,
+      "kind": "source",
+      "imports": [
+        "./chat.handlers",
+        "../middleware/uploads",
+        "node:path",
+        "express",
+        "multer",
+        "zod",
+        "../db/pool",
+        "../middleware/auth",
+        "../services/dataset",
+        "../services/realtime",
+        "../services/social",
+        "../services/http-range"
+      ]
+    },
+    {
+      "file": "web/src/routes/auth-security.test.ts",
+      "lines": 42,
+      "kind": "test",
+      "imports": [
+        "vitest",
+        "./auth.routes",
+        "../db/pool"
+      ]
+    },
+    {
+      "file": "web/src/routes/auth.routes.ts",
+      "lines": 316,
+      "kind": "source",
+      "imports": [
+        "express",
+        "bcryptjs",
+        "zod",
+        "../db/pool",
+        "../middleware/auth",
+        "../services/password",
+        "../services/mailer",
+        "../config/env",
+        "../middleware/security"
+      ]
+    },
+    {
+      "file": "web/src/routes/chat-page.test.ts",
+      "lines": 42,
+      "kind": "test",
+      "imports": [
+        "vitest",
+        "../db/pool",
+        "./pages.routes"
+      ]
+    },
+    {
+      "file": "web/src/routes/chat.handlers.ts",
+      "lines": 73,
+      "kind": "source",
+      "imports": [
+        "express",
+        "zod",
+        "../services/recommender",
+        "../services/chat-stream",
+        "../services/chat-history"
+      ]
+    },
+    {
+      "file": "web/src/routes/chat.routes.test.ts",
+      "lines": 87,
+      "kind": "test",
+      "imports": [
+        "node:events",
+        "vitest",
+        "./api.routes",
+        "../middleware/auth"
+      ]
+    },
+    {
+      "file": "web/src/routes/learning.routes.test.ts",
+      "lines": 61,
+      "kind": "test",
+      "imports": [
+        "vitest",
+        "../db/pool",
+        "./learning.routes"
+      ]
+    },
+    {
+      "file": "web/src/routes/learning.routes.ts",
+      "lines": 52,
+      "kind": "source",
+      "imports": [
+        "express",
+        "../db/pool",
+        "../middleware/auth",
+        "../services/learning"
+      ]
+    },
+    {
+      "file": "web/src/routes/media-range.test.ts",
+      "lines": 75,
+      "kind": "test",
+      "imports": [
+        "vitest",
+        "express",
+        "node:http",
+        "node:net",
+        "./api.routes",
+        "./social.routes"
+      ]
+    },
+    {
+      "file": "web/src/routes/pages.routes.ts",
+      "lines": 204,
+      "kind": "source",
+      "imports": [
+        "express",
+        "../db/pool",
+        "../middleware/auth",
+        "../services/recommender",
+        "../services/chat-stream",
+        "../services/posts",
+        "../db/types"
+      ]
+    },
+    {
+      "file": "web/src/routes/realtime-lifecycle.test.ts",
+      "lines": 36,
+      "kind": "test",
+      "imports": [
+        "node:events",
+        "vitest",
+        "express",
+        "./api.routes"
+      ]
+    },
+    {
+      "file": "web/src/routes/social.routes.ts",
+      "lines": 444,
+      "kind": "source",
+      "imports": [
+        "../middleware/uploads",
+        "node:path",
+        "express",
+        "multer",
+        "../db/pool",
+        "../middleware/auth",
+        "../services/social",
+        "../services/posts",
+        "../services/realtime",
+        "../services/http-range",
+        "../db/types"
+      ]
+    },
+    {
+      "file": "web/src/routes/upload-extraction.test.ts",
+      "lines": 17,
+      "kind": "test",
+      "imports": [
+        "vitest",
+        "./api.routes"
+      ]
+    },
+    {
+      "file": "web/src/server.ts",
+      "lines": 31,
+      "kind": "source",
+      "imports": [
+        "./app",
+        "./config/env",
+        "./db/pool"
+      ]
+    },
+    {
+      "file": "web/src/services/catalog-csv.ts",
+      "lines": 21,
+      "kind": "source",
+      "imports": [
+        "node:fs",
+        "node:readline"
+      ]
+    },
+    {
+      "file": "web/src/services/chat-client.test.ts",
+      "lines": 65,
+      "kind": "test",
+      "imports": [
+        "node:fs",
+        "node:vm",
+        "node:path",
+        "vitest"
+      ]
+    },
+    {
+      "file": "web/src/services/chat-history.test.ts",
+      "lines": 53,
+      "kind": "test",
+      "imports": [
+        "vitest",
+        "./chat-history"
+      ]
+    },
+    {
+      "file": "web/src/services/chat-history.ts",
+      "lines": 38,
+      "kind": "source",
+      "imports": [
+        "../db/pool"
+      ]
+    },
+    {
+      "file": "web/src/services/chat-stream.test.ts",
+      "lines": 79,
+      "kind": "test",
+      "imports": [
+        "vitest",
+        "./chat-stream",
+        "./chat-stream"
+      ]
+    },
+    {
+      "file": "web/src/services/chat-stream.ts",
+      "lines": 84,
+      "kind": "source",
+      "imports": [
+        "zod",
+        "./markdown"
+      ]
+    },
+    {
+      "file": "web/src/services/dataset-extract.test.ts",
+      "lines": 14,
+      "kind": "test",
+      "imports": [
+        "vitest",
+        "./dataset-extract"
+      ]
+    },
+    {
+      "file": "web/src/services/dataset-extract.ts",
+      "lines": 39,
+      "kind": "source",
+      "imports": [
+        "node:worker_threads"
+      ]
+    },
+    {
+      "file": "web/src/services/dataset.test.ts",
+      "lines": 46,
+      "kind": "test",
+      "imports": [
+        "vitest",
+        "node:fs",
+        "node:os",
+        "node:path"
+      ]
+    },
+    {
+      "file": "web/src/services/dataset.ts",
+      "lines": 65,
+      "kind": "source",
+      "imports": [
+        "node:fs",
+        "../config/catalog",
+        "node:fs",
+        "./catalog-csv",
+        "./dataset-extract"
+      ]
+    },
+    {
+      "file": "web/src/services/http-range.ts",
+      "lines": 46,
+      "kind": "source",
+      "imports": [
+        "express"
+      ]
+    },
+    {
+      "file": "web/src/services/learning.test.ts",
+      "lines": 59,
+      "kind": "test",
+      "imports": [
+        "vitest",
+        "./learning"
+      ]
+    },
+    {
+      "file": "web/src/services/learning.ts",
+      "lines": 92,
+      "kind": "source",
+      "imports": [
+        "zod"
+      ]
+    },
+    {
+      "file": "web/src/services/mailer.ts",
+      "lines": 34,
+      "kind": "source",
+      "imports": [
+        "nodemailer"
+      ]
+    },
+    {
+      "file": "web/src/services/markdown.test.ts",
+      "lines": 31,
+      "kind": "test",
+      "imports": [
+        "vitest",
+        "./markdown"
+      ]
+    },
+    {
+      "file": "web/src/services/markdown.ts",
+      "lines": 18,
+      "kind": "source",
+      "imports": [
+        "markdown-it"
+      ]
+    },
+    {
+      "file": "web/src/services/password.ts",
+      "lines": 55,
+      "kind": "source",
+      "imports": [
+        "node:crypto"
+      ]
+    },
+    {
+      "file": "web/src/services/posts.ts",
+      "lines": 65,
+      "kind": "source",
+      "imports": [
+        "../db/pool",
+        "../db/types"
+      ]
+    },
+    {
+      "file": "web/src/services/realtime.ts",
+      "lines": 38,
+      "kind": "source",
+      "imports": [
+        "express"
+      ]
+    },
+    {
+      "file": "web/src/services/recommender-stream.test.ts",
+      "lines": 49,
+      "kind": "test",
+      "imports": [
+        "vitest",
+        "./recommender"
+      ]
+    },
+    {
+      "file": "web/src/services/recommender.ts",
+      "lines": 104,
+      "kind": "source",
+      "imports": [
+        "../config/env",
+        "./chat-stream"
+      ]
+    },
+    {
+      "file": "web/src/services/social.test.ts",
+      "lines": 59,
+      "kind": "test",
+      "imports": [
+        "vitest",
+        "./social"
+      ]
+    },
+    {
+      "file": "web/src/services/social.ts",
+      "lines": 43,
+      "kind": "source",
+      "imports": [
+        "../db/pool"
+      ]
+    },
+    {
+      "file": "web/src/services/static-ui.test.ts",
+      "lines": 37,
+      "kind": "test",
+      "imports": [
+        "node:fs",
+        "node:path",
+        "node:vm",
+        "vitest"
+      ]
+    },
+    {
+      "file": "web/src/views/views.test.ts",
+      "lines": 13,
+      "kind": "test",
+      "imports": [
+        "node:fs",
+        "node:path",
+        "vitest"
+      ]
+    }
+  ],
+  "counts": {
+    "python": 89,
+    "typescript": 59
+  },
+  "exact_duplicate_top_level_bodies": []
+}

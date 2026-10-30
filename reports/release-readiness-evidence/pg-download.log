@@ -1,0 +1,3 @@
+Get:1 http://vn.archive.ubuntu.com/ubuntu resolute-updates/main amd64 postgresql-18 amd64 18.6-0ubuntu0.26.04.1 [6002 kB]
+Get:2 http://vn.archive.ubuntu.com/ubuntu resolute-updates/main amd64 postgresql-client-18 amd64 18.6-0ubuntu0.26.04.1 [1401 kB]
+Fetched 7404 kB in 1s (6186 kB/s)

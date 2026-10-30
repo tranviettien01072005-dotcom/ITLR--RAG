@@ -1,0 +1,95 @@
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (vitest.config.ts:1:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.12 /home/o/ITLR--RAG/web
+
+ ❯ src/services/chat-client.test.ts (7 tests | 1 failed) 126ms
+   × rejects a final event whose terminal done frame was lost 6ms
+ ❯ src/services/chat-stream.test.ts (15 tests | 1 failed) 66ms
+   × rejects EOF after final without the terminal done event 5ms
+ ❯ src/routes/chat.routes.test.ts (7 tests | 1 failed) 44ms
+   × does not persist a final response when upstream subsequently fails 8ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/routes/chat.routes.test.ts > does not persist a final response when upstream subsequently fails
+AssertionError: expected "vi.fn()" to not be called at all, but actually been called 1 times
+
+Received:
+
+  1st vi.fn() call:
+
+    Array [
+      7,
+      undefined,
+      "hello",
+      "unconfirmed final",
+      Object {
+        "citation_validation": undefined,
+        "generation_mode": undefined,
+        "sources": Array [],
+      },
+    ]
+
+
+Number of calls: 1
+
+ ❯ src/routes/chat.routes.test.ts:65:26
+     63|   });
+     64|   await handler("/chat/stream")(request({ message: "hello" }) as never…
+     65|   expect(mocks.save).not.toHaveBeenCalled();
+       |                          ^
+     66|   expect(res.write.mock.calls.some(call => String(call[0]).includes('"…
+     67|   expect(res.write).toHaveBeenCalledWith(expect.stringContaining('"typ…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  src/services/chat-client.test.ts > rejects a final event whose terminal done frame was lost
+AssertionError: promise resolved "undefined" instead of rejecting
+
+- Expected:
+Error {
+  "message": "rejected promise",
+}
+
++ Received:
+undefined
+
+ ❯ src/services/chat-client.test.ts:56:70
+     54| it("rejects a final event whose terminal done frame was lost", async (…
+     55|   await expect(client().consume(new Response('data: {"type":"final","r…
+     56|     { headers: { "content-type": "text/event-stream" } }), () => {})).…
+       |                                                                      ^
+     57| });
+     58|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  src/services/chat-stream.test.ts > rejects EOF after final without the terminal done event
+AssertionError: promise resolved "undefined" instead of rejecting
+
+- Expected:
+Error {
+  "message": "rejected promise",
+}
+
++ Received:
+undefined
+
+ ❯ src/services/chat-stream.test.ts:56:8
+     54|   await expect((async () => {
+     55|     for await (const _event of readChatEvents(body(['data: {"type":"fi…
+     56|   })()).rejects.toThrow("Incomplete chat stream");
+       |        ^
+     57| });
+     58|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  3 failed (3)
+      Tests  3 failed | 26 passed (29)
+   Start at  20:32:17
+   Duration  880ms (transform 335ms, setup 0ms, import 949ms, tests 236ms, environment 1ms)
+

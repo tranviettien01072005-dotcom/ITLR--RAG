@@ -62,6 +62,11 @@ def _id(now: float | None = None) -> str:
 
 def write_manifest(version_dir, manifest: dict) -> None:
     vdir = Path(version_dir)
+    # A flat engine load creates this lock before verifying the inventory.
+    try:
+        (vdir / '.activation.lock').touch(exist_ok=False)
+    except FileExistsError:
+        pass
     manifest = {**manifest, "sha256": artifact_hashes(vdir), "integrity_schema": 1}
     (vdir / MANIFEST).write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")

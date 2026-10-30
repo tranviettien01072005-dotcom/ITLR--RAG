@@ -10,7 +10,7 @@
     if (!response.ok || !response.body || !(response.headers.get("content-type") || "").includes("text/event-stream")) {
       throw new Error("Không mở được luồng trả lời. Hãy đăng nhập lại hoặc thử lại.");
     }
-    var reader = response.body.getReader(), decoder = new TextDecoder("utf-8", { fatal: true }), buffer = "", finalized = false;
+    var reader = response.body.getReader(), decoder = new TextDecoder("utf-8", { fatal: true }), buffer = "", finalized = false, ended = false;
     try {
       while (true) {
         var chunk = await reader.read();
@@ -24,14 +24,19 @@
           var data = frame.split(/\r?\n/).filter(function (line) { return line.indexOf("data:") === 0; }).map(function (line) { return line.slice(5).trimStart(); }).join("\n");
           if (!data) continue;
           var event = JSON.parse(data);
+          if (ended || (finalized && event.type !== "done")) throw new Error("Invalid stream sequence");
           if (event.type === "error") throw new Error(event.error || "Luồng trả lời gặp lỗi.");
           if (event.type === "final") finalized = true;
+          if (event.type === "done") {
+            if (!finalized) throw new Error("Missing final response");
+            ended = true;
+          }
           onEvent(event);
         }
         if (buffer.length > 1200000) throw new Error("Phản hồi quá lớn.");
       }
       buffer += decoder.decode();
-      if (!finalized || buffer.trim()) throw new Error("Luồng trả lời bị gián đoạn. Hãy thử lại.");
+      if (!finalized || !ended || buffer.trim()) throw new Error("Luồng trả lời bị gián đoạn. Hãy thử lại.");
     } finally {
       await reader.cancel().catch(function () {});
       reader.releaseLock();

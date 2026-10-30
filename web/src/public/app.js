@@ -386,7 +386,7 @@
       container.append(sources, answer, status);
       var controller = new AbortController(); activeRequest = controller;
       submit.disabled = true; input.disabled = true; stop.hidden = false;
-      var started = performance.now(), firstToken = null, accumulated = "", completed = false;
+      var started = performance.now(), firstToken = null, accumulated = "", finalEvent = null;
       status.textContent = "Đang truy xuất nguồn…";
       var timer = setInterval(function () {
         status.textContent = (firstToken === null ? "Đang truy xuất / chờ mô hình… " : "Đang tạo bản nháp, chưa kiểm tra trích dẫn… ") +
@@ -404,30 +404,30 @@
             accumulated += event.text || "";
             answer.textContent = accumulated;
           } else if (event.type === "final") {
-            completed = true; clearInterval(timer);
-            // Only this server-rendered, HTML-disabled Markdown reaches an HTML sink.
-            answer.innerHTML = event.response_html || esc(event.response || "");
-            window.ITLRChatStream.sourcesInto(sources, event.sources);
-            var times = event.timings || {};
-            status.textContent = "Hoàn tất · " + ((times.total_ms || performance.now() - started) / 1000).toFixed(1) + "s" +
-              (firstToken === null ? "" : " · token đầu " + ((times.first_token_ms || firstToken) / 1000).toFixed(1) + "s") +
-              " · nguồn " + ((times.sources_ms || 0) / 1000).toFixed(1) + "s" +
-              (event.generation_mode === "insufficient_evidence" ? " · Chưa đủ bằng chứng." :
-                event.generation_mode === "template_fallback" ? " · Mô hình gặp lỗi, dùng câu trả lời dự phòng." :
-                event.generation_mode === "template" ? " · Câu trả lời theo mẫu." : " · Đã kiểm tra ID trích dẫn; nội dung cần được đối chiếu với nguồn.");
-            if (event.conversation_id && !conversationId) {
-              conversationId = event.conversation_id;
-              log.dataset.conv = conversationId;
-              addConvToSidebar(conversationId, text.slice(0, 60));
-              window.history.replaceState(null, "", "/chat?c=" + conversationId);
-            }
+            finalEvent = event;
           }
         });
-      } catch (error) {
-        if (!completed) {
-          answer.textContent = "";
-          status.textContent = controller.signal.aborted ? "Đã dừng hiển thị. Tải lại lịch sử để kiểm tra câu trả lời đã lưu." : (error.message || "Lỗi kết nối. Hãy thử lại.");
+        clearInterval(timer);
+        var event = finalEvent;
+        // Only this server-rendered, HTML-disabled Markdown reaches an HTML sink.
+        answer.innerHTML = event.response_html || esc(event.response || "");
+        window.ITLRChatStream.sourcesInto(sources, event.sources);
+        var times = event.timings || {};
+        status.textContent = "Hoàn tất · " + ((times.total_ms || performance.now() - started) / 1000).toFixed(1) + "s" +
+          (firstToken === null ? "" : " · token đầu " + ((times.first_token_ms || firstToken) / 1000).toFixed(1) + "s") +
+          " · nguồn " + ((times.sources_ms || 0) / 1000).toFixed(1) + "s" +
+          (event.generation_mode === "insufficient_evidence" ? " · Chưa đủ bằng chứng." :
+            event.generation_mode === "template_fallback" ? " · Mô hình gặp lỗi, dùng câu trả lời dự phòng." :
+            event.generation_mode === "template" ? " · Câu trả lời theo mẫu." : " · Đã kiểm tra ID trích dẫn; nội dung cần được đối chiếu với nguồn.");
+        if (event.conversation_id && !conversationId) {
+          conversationId = event.conversation_id;
+          log.dataset.conv = conversationId;
+          addConvToSidebar(conversationId, text.slice(0, 60));
+          window.history.replaceState(null, "", "/chat?c=" + conversationId);
         }
+      } catch (error) {
+        answer.textContent = "";
+        status.textContent = controller.signal.aborted ? "Đã dừng hiển thị. Tải lại lịch sử để kiểm tra câu trả lời đã lưu." : (error.message || "Lỗi kết nối. Hãy thử lại.");
       } finally {
         clearInterval(timer); activeRequest = null;
         submit.disabled = false; input.disabled = false; stop.hidden = true; input.focus();

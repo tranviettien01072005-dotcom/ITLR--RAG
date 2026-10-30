@@ -12,6 +12,21 @@ it("loads the authenticated conversation's last twenty messages in chronological
   db.query.mockResolvedValueOnce([{}]).mockResolvedValueOnce([{ role: "assistant", content: "a" }, { role: "user", content: "q" }]);
   expect(await ownedChatHistory(2, 9)).toEqual([{ role: "user", content: "q" }, { role: "assistant", content: "a" }]);
 });
+
+it("bounds provider history without changing stored messages or splitting Unicode", async () => {
+  const content = "a" + "😀".repeat(2500);
+  const rows = [{ role: "assistant", content }];
+  db.query.mockResolvedValueOnce([{}]).mockResolvedValueOnce(rows);
+  const history = await ownedChatHistory(2, 9);
+  expect(history![0].content.length).toBeLessThanOrEqual(4000);
+  expect(history![0].content).not.toMatch(/[\uD800-\uDBFF]$/);
+  expect(rows[0].content).toBe(content);
+});
+
+it("omits empty legacy messages from provider context", async () => {
+  db.query.mockResolvedValueOnce([{}]).mockResolvedValueOnce([{ role: "assistant", content: "" }]);
+  expect(await ownedChatHistory(2, 9)).toEqual([]);
+});
 it("locks ownership before saving and commits both messages together", async () => {
   expect(await saveChat(2, 9, "question", "answer")).toBe(9);
   expect(db.client.query.mock.calls[1]).toEqual([expect.stringContaining("user_id = $2 FOR UPDATE"), [9, 2]]);

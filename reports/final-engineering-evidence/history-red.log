@@ -1,0 +1,107 @@
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (vitest.config.ts:1:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.12 /home/o/ITLR--RAG/web
+
+ ❯ src/services/chat-history.test.ts (8 tests | 2 failed) 38ms
+   × bounds provider history without changing stored messages or splitting Unicode 6ms
+   × omits empty legacy messages from provider context 9ms
+ ❯ src/routes/chat.routes.test.ts (9 tests | 2 failed) 57ms
+   × rejects messages beyond the FastAPI limit at /chat 21ms
+   × rejects messages beyond the FastAPI limit at /chat/stream 4ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/routes/chat.routes.test.ts > rejects messages beyond the FastAPI limit at /chat
+AssertionError: expected "vi.fn()" to be called with arguments: [ 400 ]
+
+Received:
+
+  1st vi.fn() call:
+
+  [
+-   400,
++   502,
+  ]
+
+
+Number of calls: 1
+
+ ❯ src/routes/chat.routes.test.ts:28:22
+     26|   const res = response();
+     27|   await handler(path)(request({ message: "x".repeat(2001) }) as never,…
+     28|   expect(res.status).toHaveBeenCalledWith(400);
+       |                      ^
+     29|   expect(mocks.history).not.toHaveBeenCalled();
+     30|   expect(mocks.chat).not.toHaveBeenCalled();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  src/routes/chat.routes.test.ts > rejects messages beyond the FastAPI limit at /chat/stream
+AssertionError: expected "vi.fn()" to be called with arguments: [ 400 ]
+
+Received:
+
+  1st vi.fn() call:
+
+  [
+-   400,
++   200,
+  ]
+
+
+Number of calls: 1
+
+ ❯ src/routes/chat.routes.test.ts:28:22
+     26|   const res = response();
+     27|   await handler(path)(request({ message: "x".repeat(2001) }) as never,…
+     28|   expect(res.status).toHaveBeenCalledWith(400);
+       |                      ^
+     29|   expect(mocks.history).not.toHaveBeenCalled();
+     30|   expect(mocks.chat).not.toHaveBeenCalled();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  src/services/chat-history.test.ts > bounds provider history without changing stored messages or splitting Unicode
+AssertionError: expected 5001 to be less than or equal to 4000
+ ❯ src/services/chat-history.test.ts:21:38
+     19|   db.query.mockResolvedValueOnce([{}]).mockResolvedValueOnce(rows);
+     20|   const history = await ownedChatHistory(2, 9);
+     21|   expect(history![0].content.length).toBeLessThanOrEqual(4000);
+       |                                      ^
+     22|   expect(history![0].content).not.toMatch(/[\uD800-\uDBFF]$/);
+     23|   expect(rows[0].content).toBe(content);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  src/services/chat-history.test.ts > omits empty legacy messages from provider context
+AssertionError: expected [ { role: 'assistant', content: '' } ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   {
++     "content": "",
++     "role": "assistant",
++   },
++ ]
+
+ ❯ src/services/chat-history.test.ts:28:40
+     26| it("omits empty legacy messages from provider context", async () => {
+     27|   db.query.mockResolvedValueOnce([{}]).mockResolvedValueOnce([{ role: …
+     28|   expect(await ownedChatHistory(2, 9)).toEqual([]);
+       |                                        ^
+     29| });
+     30| it("locks ownership before saving and commits both messages together",…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  4 failed | 13 passed (17)
+   Start at  20:46:51
+   Duration  837ms (transform 231ms, setup 0ms, import 564ms, tests 96ms, environment 0ms)
+

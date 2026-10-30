@@ -1,0 +1,12 @@
+{
+  "report_links": "PASS",
+  "diff_whitespace": "checked separately",
+  "temporary_ports_listening": {
+    "15432": false,
+    "18030": false,
+    "18031": false,
+    "18443": false,
+    "18080": false
+  },
+  "frozen_cases_sha256": "2a3a98e2d207b7c4932ced6ec87b3d7db9668c8b543730545e9a76d10abe6dd1"
+}

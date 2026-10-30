@@ -1,0 +1,36 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+__________ test_glossary_expansion_preserves_specific_question_intent __________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f7c66603490>
+
+    def test_glossary_expansion_preserves_specific_question_intent(monkeypatch):
+        from types import SimpleNamespace
+        from itlr.engine import RecommenderEngine
+        from itlr.chatbot import query_understanding, knowledge_base
+    
+        seen = []
+    
+        def search(query, **kwargs):
+            seen.append(query)
+            return []
+    
+        monkeypatch.setattr(query_understanding, 'understand_query', lambda q, *a: dict(
+            corrected=q, expansions=[], display=q, corrections=[]))
+        monkeypatch.setattr(knowledge_base, 'safe_concept_match', lambda *a: 'token')
+        monkeypatch.setitem(knowledge_base.CONCEPTS, 'token', dict(
+            name='Token', aliases=['token'], topics=['authentication', 'security']))
+        engine = RecommenderEngine(None, None, {'retrieval': SimpleNamespace(search=search)}, None, None)
+        question = 'What is the secret session token for my logged-in user?'
+        engine.search(question)
+>       assert seen[-1] == question
+E       AssertionError: assert 'What is the ...tion security' == 'What is the ...gged-in user?'
+E         
+E         Skipping 44 identical leading characters in diff, use -v to show
+E         - ed-in user?
+E         + ed-in user? Token authentication security
+
+tests/test_retrieval_service.py:72: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_retrieval_service.py::test_glossary_expansion_preserves_specific_question_intent
+1 failed, 6 deselected in 1.49s

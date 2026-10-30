@@ -1,0 +1,15 @@
+{
+  "scope": "temporary root only; repository active CURRENT untouched; direct engine load, not HTTP reload",
+  "checks": [
+    "fixture-a trusted copy integrity",
+    "fixture-b trusted copy integrity",
+    "isolated pointer a",
+    "real E5 engine load a,118items,retrieval",
+    "isolated pointer b",
+    "real engine reload b",
+    "isolated rollback a",
+    "tampered copy activation rejected",
+    "failed switch retains previous pointer"
+  ],
+  "elapsed_s": 19.10743185800129
+}

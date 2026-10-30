@@ -1,0 +1,7 @@
+Thiếu /tmp/itlr-system-audit/staging/cf_model.pkl — Collaborative Filtering bị tắt (tùy chọn V2); /api/personas và /api/for-you sẽ trả 503 cho tới khi build CF.
+Could not reach the Hub (Cannot reach https://huggingface.co/api/models/intfloat/multilingual-e5-base: offline mode is enabled. To disable it, please unset the `HF_HUB_OFFLINE` environment variable.). Using cached commit hash for 'intfloat/multilingual-e5-base'.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  92%|█████████▏| 183/199 [00:00<00:00, 1781.68it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1855.23it/s]
+Thiếu /tmp/itlr-system-audit/staging/cf_model.pkl — Collaborative Filtering bị tắt (tùy chọn V2); /api/personas và /api/for-you sẽ trả 503 cho tới khi build CF.
+Could not reach the Hub (Cannot reach https://huggingface.co/api/models/intfloat/multilingual-e5-base: offline mode is enabled. To disable it, please unset the `HF_HUB_OFFLINE` environment variable.). Using cached commit hash for 'intfloat/multilingual-e5-base'.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  85%|████████▍ | 169/199 [00:00<00:00, 1687.84it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1758.00it/s]
+PASS: threaded engine reload and cache clear completed

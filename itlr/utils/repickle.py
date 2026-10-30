@@ -1,5 +1,7 @@
-"""Re-pickle artifacts để (1) đóng dấu phiên bản scikit-learn hiện hành và
-(2) cập nhật ĐƯỜNG DẪN MODULE sau khi tái cấu trúc sang package itlr/.
+"""Re-pickle trusted offline copies to update historical Python module paths.
+
+Không chuyển phiên bản sklearn bằng cách đóng dấu lại pickle; mismatch phải rebuild.
+Ghi atomic từng file; chạy probe lại sau migration trước khi operator activate.
 
 Vì sao cần: pickle lưu lớp/hàm tùy biến theo đường dẫn module (vd hàm tokenizer
 `recommender_utils.tokenize`, lớp `bm25_utils.BM25Index`). Sau khi di chuyển code
@@ -14,8 +16,12 @@ Chạy MỘT lần sau tái cấu trúc:  python -m itlr.utils.repickle
 """
 
 import pickle
+import os
 import sys
+import tempfile
 import warnings
+from pathlib import Path
+from sklearn.exceptions import InconsistentVersionWarning
 
 from itlr import config
 from itlr.core import ann as _ann
@@ -48,25 +54,39 @@ TARGETS = [
 ]
 
 
-def main():
+def main() -> int:
     for old, mod in _ALIASES.items():
         sys.modules.setdefault(old, mod)
 
+    failed = False
     for name in TARGETS:
-        path = config.artifact(name)
+        path = Path(config.artifact(name))
+        if not path.is_file():
+            print(f"[skip] không thấy {name}")
+            continue
+        temporary = None
         try:
             with warnings.catch_warnings():
-                warnings.simplefilter("ignore")
+                warnings.simplefilter("error", InconsistentVersionWarning)
                 with open(path, "rb") as f:
                     obj = pickle.load(f)
-            with open(path, "wb") as f:
+            with tempfile.NamedTemporaryFile(dir=path.parent, prefix=f'.{name}.', delete=False) as f:
+                temporary = Path(f.name)
                 pickle.dump(obj, f, protocol=pickle.HIGHEST_PROTOCOL)
+                f.flush()
+                os.fsync(f.fileno())
+            temporary.chmod(path.stat().st_mode & 0o777)
+            os.replace(temporary, path)
+            temporary = None
             print(f"[OK] re-pickled {name}")
-        except FileNotFoundError:
-            print(f"[skip] không thấy {name}")
-        except Exception as e:  # pragma: no cover
+        except Exception as e:
+            failed = True
             print(f"[ERR] {name}: {e!r}")
+        finally:
+            if temporary is not None:
+                temporary.unlink(missing_ok=True)
+    return int(failed)
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

@@ -1,0 +1,224 @@
+FFFF..FFF                                                                [100%]
+=================================== FAILURES ===================================
+__________ test_ollama_nonstream_rejects_invalid_completion[payload0] __________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x700f81eb3820>
+payload = {'message': {'content': 'partial'}, 'done': True, 'done_reason': 'length'}
+
+    @pytest.mark.parametrize('payload', [
+        {'message': {'content': 'partial'}, 'done': True, 'done_reason': 'length'},
+        {'message': {'content': 'partial'}, 'done': False},
+        {'message': {'content': 'partial'}},
+        {'error': 'upstream failure'},
+        {'message': {'content': 123}, 'done': True},
+        [],
+    ])
+    def test_ollama_nonstream_rejects_invalid_completion(monkeypatch, payload):
+        monkeypatch.setattr(lc, 'provider_status', lambda: 'ollama')
+        monkeypatch.setattr(lc, 'ollama_model', lambda: 'fixture')
+        closed = []
+    
+        class Response:
+            def __enter__(self):
+                return self
+    
+            def __exit__(self, *args):
+                closed.append(True)
+    
+            def read(self):
+                return json.dumps(payload).encode()
+    
+        monkeypatch.setattr(lc.urllib.request, 'urlopen', lambda *a, **kw: Response())
+>       with pytest.raises(lc.LLMError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE LLMError
+
+tests/test_llm_client.py:318: Failed
+__________ test_ollama_nonstream_rejects_invalid_completion[payload1] __________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x700f81eb3e10>
+payload = {'message': {'content': 'partial'}, 'done': False}
+
+    @pytest.mark.parametrize('payload', [
+        {'message': {'content': 'partial'}, 'done': True, 'done_reason': 'length'},
+        {'message': {'content': 'partial'}, 'done': False},
+        {'message': {'content': 'partial'}},
+        {'error': 'upstream failure'},
+        {'message': {'content': 123}, 'done': True},
+        [],
+    ])
+    def test_ollama_nonstream_rejects_invalid_completion(monkeypatch, payload):
+        monkeypatch.setattr(lc, 'provider_status', lambda: 'ollama')
+        monkeypatch.setattr(lc, 'ollama_model', lambda: 'fixture')
+        closed = []
+    
+        class Response:
+            def __enter__(self):
+                return self
+    
+            def __exit__(self, *args):
+                closed.append(True)
+    
+            def read(self):
+                return json.dumps(payload).encode()
+    
+        monkeypatch.setattr(lc.urllib.request, 'urlopen', lambda *a, **kw: Response())
+>       with pytest.raises(lc.LLMError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE LLMError
+
+tests/test_llm_client.py:318: Failed
+__________ test_ollama_nonstream_rejects_invalid_completion[payload2] __________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x700f81e670b0>
+payload = {'message': {'content': 'partial'}}
+
+    @pytest.mark.parametrize('payload', [
+        {'message': {'content': 'partial'}, 'done': True, 'done_reason': 'length'},
+        {'message': {'content': 'partial'}, 'done': False},
+        {'message': {'content': 'partial'}},
+        {'error': 'upstream failure'},
+        {'message': {'content': 123}, 'done': True},
+        [],
+    ])
+    def test_ollama_nonstream_rejects_invalid_completion(monkeypatch, payload):
+        monkeypatch.setattr(lc, 'provider_status', lambda: 'ollama')
+        monkeypatch.setattr(lc, 'ollama_model', lambda: 'fixture')
+        closed = []
+    
+        class Response:
+            def __enter__(self):
+                return self
+    
+            def __exit__(self, *args):
+                closed.append(True)
+    
+            def read(self):
+                return json.dumps(payload).encode()
+    
+        monkeypatch.setattr(lc.urllib.request, 'urlopen', lambda *a, **kw: Response())
+>       with pytest.raises(lc.LLMError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE LLMError
+
+tests/test_llm_client.py:318: Failed
+__________ test_ollama_nonstream_rejects_invalid_completion[payload3] __________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x700f81e01370>
+payload = {'error': 'upstream failure'}
+
+    @pytest.mark.parametrize('payload', [
+        {'message': {'content': 'partial'}, 'done': True, 'done_reason': 'length'},
+        {'message': {'content': 'partial'}, 'done': False},
+        {'message': {'content': 'partial'}},
+        {'error': 'upstream failure'},
+        {'message': {'content': 123}, 'done': True},
+        [],
+    ])
+    def test_ollama_nonstream_rejects_invalid_completion(monkeypatch, payload):
+        monkeypatch.setattr(lc, 'provider_status', lambda: 'ollama')
+        monkeypatch.setattr(lc, 'ollama_model', lambda: 'fixture')
+        closed = []
+    
+        class Response:
+            def __enter__(self):
+                return self
+    
+            def __exit__(self, *args):
+                closed.append(True)
+    
+            def read(self):
+                return json.dumps(payload).encode()
+    
+        monkeypatch.setattr(lc.urllib.request, 'urlopen', lambda *a, **kw: Response())
+>       with pytest.raises(lc.LLMError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE LLMError
+
+tests/test_llm_client.py:318: Failed
+________________ test_ollama_explicit_model_is_not_substituted _________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x700f81f36950>
+
+    def test_ollama_explicit_model_is_not_substituted(monkeypatch):
+        monkeypatch.setenv('OLLAMA_MODEL', 'qwen2.5:3b')
+        monkeypatch.setattr(lc, 'ollama_reachable', lambda: True)
+        lc._OLLAMA_CACHE['models'] = ['qwen2.5:1.5b']
+>       assert lc.ollama_model() == 'qwen2.5:3b'
+E       AssertionError: assert 'qwen2.5:1.5b' == 'qwen2.5:3b'
+E         
+E         - qwen2.5:3b
+E         ?         ^
+E         + qwen2.5:1.5b
+E         ?         ^^^
+
+tests/test_llm_client.py:327: AssertionError
+__________________ test_ollama_applies_history_budget[False] ___________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x700f81e5ea80>
+streaming = False
+
+    @pytest.mark.parametrize('streaming', [False, True])
+    def test_ollama_applies_history_budget(monkeypatch, streaming):
+        monkeypatch.setattr(lc, 'provider_status', lambda: 'ollama')
+        messages = [{'role': 'system', 'content': 'system'},
+                    {'role': 'user', 'content': 'old' * 30},
+                    {'role': 'user', 'content': 'latest'}]
+        received = []
+    
+        def generate(msgs, **kwargs):
+            received.extend(msgs)
+            return iter(['answer']) if streaming else 'answer'
+    
+        monkeypatch.setattr(lc, '_stream_ollama' if streaming else 'ollama_chat', generate)
+        if streaming:
+            assert list(lc.stream(messages, char_budget=20)) == ['answer']
+        else:
+            assert lc.chat(messages, char_budget=20).text == 'answer'
+>       assert received == [messages[0], messages[-1]]
+E       AssertionError: assert [{'role': 'sy...t': 'latest'}] == [{'role': 'sy...t': 'latest'}]
+E         
+E         At index 1 diff: {'role': 'user', 'content': 'oldoldoldoldoldoldoldoldoldoldoldoldoldoldoldoldoldoldoldoldoldoldoldoldoldoldoldoldoldold'} != {'role': 'user', 'content': 'latest'}
+E         Left contains one more item: {'role': 'user', 'content': 'latest'}
+E         Use -v to get more diff
+
+tests/test_llm_client.py:347: AssertionError
+___________________ test_ollama_applies_history_budget[True] ___________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x700f81e5e210>
+streaming = True
+
+    @pytest.mark.parametrize('streaming', [False, True])
+    def test_ollama_applies_history_budget(monkeypatch, streaming):
+        monkeypatch.setattr(lc, 'provider_status', lambda: 'ollama')
+        messages = [{'role': 'system', 'content': 'system'},
+                    {'role': 'user', 'content': 'old' * 30},
+                    {'role': 'user', 'content': 'latest'}]
+        received = []
+    
+        def generate(msgs, **kwargs):
+            received.extend(msgs)
+            return iter(['answer']) if streaming else 'answer'
+    
+        monkeypatch.setattr(lc, '_stream_ollama' if streaming else 'ollama_chat', generate)
+        if streaming:
+            assert list(lc.stream(messages, char_budget=20)) == ['answer']
+        else:
+            assert lc.chat(messages, char_budget=20).text == 'answer'
+>       assert received == [messages[0], messages[-1]]
+E       AssertionError: assert [{'role': 'sy...t': 'latest'}] == [{'role': 'sy...t': 'latest'}]
+E         
+E         At index 1 diff: {'role': 'user', 'content': 'oldoldoldoldoldoldoldoldoldoldoldoldoldoldoldoldoldoldoldoldoldoldoldoldoldoldoldoldoldold'} != {'role': 'user', 'content': 'latest'}
+E         Left contains one more item: {'role': 'user', 'content': 'latest'}
+E         Use -v to get more diff
+
+tests/test_llm_client.py:347: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_llm_client.py::test_ollama_nonstream_rejects_invalid_completion[payload0]
+FAILED tests/test_llm_client.py::test_ollama_nonstream_rejects_invalid_completion[payload1]
+FAILED tests/test_llm_client.py::test_ollama_nonstream_rejects_invalid_completion[payload2]
+FAILED tests/test_llm_client.py::test_ollama_nonstream_rejects_invalid_completion[payload3]
+FAILED tests/test_llm_client.py::test_ollama_explicit_model_is_not_substituted
+FAILED tests/test_llm_client.py::test_ollama_applies_history_budget[False] - ...
+FAILED tests/test_llm_client.py::test_ollama_applies_history_budget[True] - A...
+7 failed, 2 passed, 53 deselected in 0.26s

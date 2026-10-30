@@ -18,9 +18,9 @@
   <button class="btn-primary" type="submit">Tìm</button>
   <div class="sim-row">
     <label>Mức độ tương đồng tối thiểu: <b id="simval"><%= minPct %></b>%</label>
-    <input type="range" name="min_pct" min="85" max="100" value="<%= minPct %>"
+    <input type="range" name="min_pct" min="0" max="100" value="<%= minPct %>"
            data-value-target="simval">
-    <span class="muted small">Các mục thực sự liên quan luôn đạt 90–100%.</span>
+    <span class="muted small">Ngưỡng tương đồng cosine; điểm số không phải xác suất câu trả lời đúng.</span>
   </div>
 </form>
 

@@ -1,8 +1,13 @@
 # ITLR–RAG | Intelligent IT Learning Platform — Validation
 
-Latest release/evaluation evidence: [release validation](RELEASE_VALIDATION_2026-10-30.md). Neural V3, generation and staging remain blocked/unmeasured.
+Latest release validation: **445 Python PASS/0 skip**, statements **66,70%**;
+**145 Web PASS**, lines **46,55%**. Typecheck/lint/build/compileall/pip check PASS.
+Native PostgreSQL18 fixture migration/HTTP/DB/backup/restore và Chrome journeys PASS;
+real local E5/Qwen requests ghi riêng completion, timeout và fallback.
+[Release readiness và NO-GO](RELEASE_READINESS_FINAL.md) phân biệt các gate.
+Những checkpoint sau là lịch sử.
 
-## Checkpoint hiện hành — refactor trách nhiệm module
+## Checkpoint trước — refactor trách nhiệm module
 
 | Gate | Kết quả thực chạy |
 |---|---|

@@ -36,6 +36,7 @@ from pydantic import BaseModel, Field, field_validator  # noqa: E402
 
 from itlr.api import ratelimit  # noqa: E402
 from itlr.engine import load_engine  # noqa: E402
+from itlr.retrieval.service import DEFAULT_SEARCH_MIN_PCT  # noqa: E402
 from itlr.versioning import VersionError  # noqa: E402
 
 STATIC_DIR = Path(__file__).resolve().parent / "static"
@@ -224,7 +225,7 @@ def metrics(request: Request):
 class SearchReq(BaseModel):
     query: str = Field(min_length=1, max_length=QUERY_MAX_CHARS)
     type: Optional[str] = Field(default=None, max_length=50)
-    min_pct: int = Field(default=90, ge=0, le=100)
+    min_pct: int = Field(default=DEFAULT_SEARCH_MIN_PCT, ge=0, le=100)
 
 
 class ChatMsg(BaseModel):

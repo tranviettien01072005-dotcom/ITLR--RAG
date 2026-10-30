@@ -1,0 +1,3125 @@
+{
+  "cpu_scope": "ps lifetime-average percent; not per-request attribution",
+  "samples": [
+    {
+      "time": 1793372504.374269,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "35608",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "38.6",
+          "rss_kib": "2225608",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "12.5",
+          "rss_kib": "1787916",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372505.4174867,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36124",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "38.7",
+          "rss_kib": "2271216",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "13.0",
+          "rss_kib": "1790548",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372506.455755,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36124",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "38.8",
+          "rss_kib": "2271216",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "12.8",
+          "rss_kib": "1790548",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372507.4962378,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36124",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "38.8",
+          "rss_kib": "2271216",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "12.7",
+          "rss_kib": "1790548",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372508.538696,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36124",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "38.9",
+          "rss_kib": "2271216",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "12.6",
+          "rss_kib": "1790548",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372509.5828564,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36124",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "39.0",
+          "rss_kib": "2271216",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "12.5",
+          "rss_kib": "1790548",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372510.6222575,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36124",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "39.1",
+          "rss_kib": "2271216",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "12.3",
+          "rss_kib": "1790548",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372511.6597505,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36124",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "39.1",
+          "rss_kib": "2271216",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "12.2",
+          "rss_kib": "1790548",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372512.6992157,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36124",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "39.2",
+          "rss_kib": "2271216",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "12.1",
+          "rss_kib": "1790548",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372513.7392716,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36124",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "39.3",
+          "rss_kib": "2271216",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "12.0",
+          "rss_kib": "1790548",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372514.7747054,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36124",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "39.4",
+          "rss_kib": "2271216",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "11.9",
+          "rss_kib": "1790548",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372515.8139815,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36124",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "39.4",
+          "rss_kib": "2271216",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "11.8",
+          "rss_kib": "1790548",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372516.8491974,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36124",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "39.5",
+          "rss_kib": "2271216",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "11.7",
+          "rss_kib": "1790548",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372517.8888614,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36124",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "39.6",
+          "rss_kib": "2271216",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "11.6",
+          "rss_kib": "1790548",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372518.9285352,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36124",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "39.6",
+          "rss_kib": "2271216",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "11.5",
+          "rss_kib": "1790548",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372519.9708798,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36124",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "39.7",
+          "rss_kib": "2271216",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "11.4",
+          "rss_kib": "1790548",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372521.0113366,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36124",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "39.8",
+          "rss_kib": "2271216",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "11.3",
+          "rss_kib": "1790548",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372522.0492396,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36124",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "39.9",
+          "rss_kib": "2271216",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "11.2",
+          "rss_kib": "1790548",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372523.0870779,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36132",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "39.9",
+          "rss_kib": "2271220",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "11.1",
+          "rss_kib": "1790548",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372524.1281521,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36132",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "40.0",
+          "rss_kib": "2271220",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "11.0",
+          "rss_kib": "1790548",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372525.1697085,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36132",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "40.1",
+          "rss_kib": "2271220",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "10.9",
+          "rss_kib": "1790548",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372526.2082343,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36132",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "40.1",
+          "rss_kib": "2271220",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "10.8",
+          "rss_kib": "1790548",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372527.2489233,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36132",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "40.2",
+          "rss_kib": "2271220",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "10.7",
+          "rss_kib": "1790548",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372528.2871418,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36132",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "40.3",
+          "rss_kib": "2271220",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "10.6",
+          "rss_kib": "1790548",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372529.3296683,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36132",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "40.4",
+          "rss_kib": "2271220",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "10.5",
+          "rss_kib": "1790548",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372530.370426,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36132",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "40.4",
+          "rss_kib": "2271220",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "10.5",
+          "rss_kib": "1790548",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372531.412936,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36432",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "40.5",
+          "rss_kib": "2271220",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "10.4",
+          "rss_kib": "1790548",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372532.4537303,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36472",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "40.6",
+          "rss_kib": "2271220",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "10.3",
+          "rss_kib": "1790548",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372533.4965043,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36472",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "40.6",
+          "rss_kib": "2271220",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "10.2",
+          "rss_kib": "1790548",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372534.5375252,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36472",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "40.7",
+          "rss_kib": "2271220",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "10.1",
+          "rss_kib": "1790548",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372535.5772169,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36476",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "40.8",
+          "rss_kib": "2271220",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "10.1",
+          "rss_kib": "1790548",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372536.6263983,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36476",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "40.8",
+          "rss_kib": "2271220",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "10.0",
+          "rss_kib": "1790548",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372537.6679409,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36476",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "40.9",
+          "rss_kib": "2271220",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "9.9",
+          "rss_kib": "1790548",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372538.705828,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36476",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "41.0",
+          "rss_kib": "2271220",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "9.8",
+          "rss_kib": "1790548",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372539.7448702,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36476",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "41.1",
+          "rss_kib": "2271220",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "9.8",
+          "rss_kib": "1790548",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372540.7804165,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36476",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "41.1",
+          "rss_kib": "2271220",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "9.7",
+          "rss_kib": "1790548",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372541.8239923,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36484",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "41.2",
+          "rss_kib": "2271260",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "9.6",
+          "rss_kib": "1790548",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372542.875226,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36484",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "41.3",
+          "rss_kib": "2271316",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "9.5",
+          "rss_kib": "1790548",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372543.9161558,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36484",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "41.3",
+          "rss_kib": "2271380",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "9.5",
+          "rss_kib": "1790548",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372544.9465659,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36484",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "41.4",
+          "rss_kib": "2271436",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "9.4",
+          "rss_kib": "1790548",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372545.9878213,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36484",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "41.5",
+          "rss_kib": "2271492",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "9.3",
+          "rss_kib": "1790548",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372547.0254269,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36484",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "41.5",
+          "rss_kib": "2271556",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "9.3",
+          "rss_kib": "1790548",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372548.066225,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36484",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "41.6",
+          "rss_kib": "2271556",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "9.2",
+          "rss_kib": "1790548",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372549.1049204,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36484",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "41.7",
+          "rss_kib": "2271596",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "9.1",
+          "rss_kib": "1790548",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372550.147451,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "36484",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "41.8",
+          "rss_kib": "2271604",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "9.1",
+          "rss_kib": "1790560",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372551.1896975,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37076",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "41.8",
+          "rss_kib": "2325904",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "9.4",
+          "rss_kib": "1792584",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372552.2330155,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37076",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "41.9",
+          "rss_kib": "2325904",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "9.4",
+          "rss_kib": "1792584",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372553.2781403,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37076",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "42.0",
+          "rss_kib": "2325904",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "9.3",
+          "rss_kib": "1792584",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372554.3195586,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37076",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "42.0",
+          "rss_kib": "2325904",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "9.2",
+          "rss_kib": "1792584",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372555.36061,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37076",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "42.1",
+          "rss_kib": "2325904",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "9.2",
+          "rss_kib": "1792584",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372556.4019222,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37076",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "42.2",
+          "rss_kib": "2325904",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "9.1",
+          "rss_kib": "1792584",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372557.446504,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37076",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "42.3",
+          "rss_kib": "2325904",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "9.0",
+          "rss_kib": "1792584",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372558.496803,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37076",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "42.3",
+          "rss_kib": "2325904",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "9.0",
+          "rss_kib": "1792584",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372559.542585,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37076",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "42.4",
+          "rss_kib": "2325904",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "8.9",
+          "rss_kib": "1792584",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372560.5856266,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37076",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "42.5",
+          "rss_kib": "2325904",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "8.9",
+          "rss_kib": "1792584",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372561.629734,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37076",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "42.5",
+          "rss_kib": "2325904",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "8.8",
+          "rss_kib": "1792584",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372562.6743193,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37076",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "42.6",
+          "rss_kib": "2325904",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "8.8",
+          "rss_kib": "1792584",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372563.7176874,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37076",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "42.7",
+          "rss_kib": "2325904",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "8.7",
+          "rss_kib": "1792584",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372564.7627249,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37076",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "42.7",
+          "rss_kib": "2325904",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "8.6",
+          "rss_kib": "1792584",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372565.809789,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37076",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "42.8",
+          "rss_kib": "2325904",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "8.6",
+          "rss_kib": "1792584",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372566.8497705,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37076",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "42.9",
+          "rss_kib": "2325904",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "8.5",
+          "rss_kib": "1792584",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372567.8901534,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37076",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "43.0",
+          "rss_kib": "2325924",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "8.5",
+          "rss_kib": "1792584",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372568.9320278,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37076",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "43.0",
+          "rss_kib": "2325924",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "8.4",
+          "rss_kib": "1792584",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372569.9717839,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37076",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "43.1",
+          "rss_kib": "2325924",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "8.4",
+          "rss_kib": "1792584",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372571.0170605,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37076",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "43.2",
+          "rss_kib": "2325924",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "8.3",
+          "rss_kib": "1792584",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372572.0513701,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37076",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "43.2",
+          "rss_kib": "2325924",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "8.3",
+          "rss_kib": "1792584",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372573.10154,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37092",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "43.3",
+          "rss_kib": "2325944",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "8.2",
+          "rss_kib": "1792584",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372574.1944406,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37092",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "43.4",
+          "rss_kib": "2325944",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "8.2",
+          "rss_kib": "1792584",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372575.3267763,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37092",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "43.4",
+          "rss_kib": "2325944",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "8.1",
+          "rss_kib": "1792584",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372576.4351947,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37092",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "43.5",
+          "rss_kib": "2325944",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "8.1",
+          "rss_kib": "1792584",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372577.5794377,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37092",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "43.6",
+          "rss_kib": "2325944",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "8.0",
+          "rss_kib": "1792584",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372578.7861273,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37092",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "43.6",
+          "rss_kib": "2325944",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "8.0",
+          "rss_kib": "1792584",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372579.9060051,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37092",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "43.7",
+          "rss_kib": "2325944",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "7.9",
+          "rss_kib": "1792584",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372581.1189435,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37092",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "43.8",
+          "rss_kib": "2325944",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "7.9",
+          "rss_kib": "1792584",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372582.2884011,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37092",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "43.9",
+          "rss_kib": "2325944",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "7.8",
+          "rss_kib": "1792584",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372583.5433936,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37092",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "43.9",
+          "rss_kib": "2325944",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "7.8",
+          "rss_kib": "1792584",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372584.637606,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37092",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "44.0",
+          "rss_kib": "2325944",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "7.7",
+          "rss_kib": "1792584",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372585.7013297,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37092",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "44.1",
+          "rss_kib": "2325944",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "7.7",
+          "rss_kib": "1792584",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372586.7477245,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37092",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "44.1",
+          "rss_kib": "2325944",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "7.6",
+          "rss_kib": "1792584",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372587.792861,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37092",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "44.2",
+          "rss_kib": "2325944",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "7.6",
+          "rss_kib": "1792584",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372588.835943,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37092",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "44.3",
+          "rss_kib": "2325944",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "7.5",
+          "rss_kib": "1792584",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372589.8776078,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37092",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "44.4",
+          "rss_kib": "2325944",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "7.5",
+          "rss_kib": "1792584",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372590.916524,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37092",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "44.4",
+          "rss_kib": "2325944",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "7.5",
+          "rss_kib": "1792584",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372591.958212,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37092",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "44.5",
+          "rss_kib": "2326840",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "7.4",
+          "rss_kib": "1792584",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372592.9973307,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37092",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "44.6",
+          "rss_kib": "2327480",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "7.4",
+          "rss_kib": "1792584",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372594.0375655,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37092",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "44.6",
+          "rss_kib": "2328120",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "7.3",
+          "rss_kib": "1792584",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372595.092302,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37092",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "44.7",
+          "rss_kib": "2328760",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "7.3",
+          "rss_kib": "1792584",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372596.1380103,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37180",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "44.8",
+          "rss_kib": "2329416",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "7.5",
+          "rss_kib": "1792600",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372597.1881196,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37180",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "44.8",
+          "rss_kib": "2330056",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "7.4",
+          "rss_kib": "1792600",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372598.2367263,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37180",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "44.9",
+          "rss_kib": "2330688",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "7.4",
+          "rss_kib": "1792600",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372599.2718508,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37180",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "45.0",
+          "rss_kib": "2331016",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "7.4",
+          "rss_kib": "1792600",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372600.3198674,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37180",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "45.1",
+          "rss_kib": "2331656",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "7.3",
+          "rss_kib": "1792600",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372601.3819072,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37180",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "45.1",
+          "rss_kib": "2332296",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "7.3",
+          "rss_kib": "1792600",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372602.4287765,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37180",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "45.2",
+          "rss_kib": "2332928",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "7.3",
+          "rss_kib": "1792600",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372603.479365,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37180",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "45.3",
+          "rss_kib": "2333132",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "7.2",
+          "rss_kib": "1792600",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372604.5248845,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37180",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "45.3",
+          "rss_kib": "2333132",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "7.2",
+          "rss_kib": "1792600",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372605.5704534,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37180",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "45.4",
+          "rss_kib": "2333248",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "7.1",
+          "rss_kib": "1792600",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372606.6193073,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37180",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "45.5",
+          "rss_kib": "2333712",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "7.1",
+          "rss_kib": "1792600",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372607.666305,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37180",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "45.5",
+          "rss_kib": "2334180",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "7.1",
+          "rss_kib": "1792600",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372608.711677,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37180",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "45.6",
+          "rss_kib": "2334184",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "7.0",
+          "rss_kib": "1792600",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372609.7551367,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37180",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "45.7",
+          "rss_kib": "2334184",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "7.0",
+          "rss_kib": "1792600",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372610.82401,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37180",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "45.7",
+          "rss_kib": "2334504",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "7.0",
+          "rss_kib": "1792600",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372611.866153,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37180",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "45.8",
+          "rss_kib": "2334548",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "6.9",
+          "rss_kib": "1792600",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372612.901527,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37180",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "45.9",
+          "rss_kib": "2334548",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "6.9",
+          "rss_kib": "1792600",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372613.933534,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37272",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "45.9",
+          "rss_kib": "2361976",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "6.9",
+          "rss_kib": "1792600",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372614.9726636,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37272",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "46.0",
+          "rss_kib": "2361976",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "6.8",
+          "rss_kib": "1792600",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372616.0095804,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37272",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "46.1",
+          "rss_kib": "2361976",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "6.8",
+          "rss_kib": "1792600",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372617.0497808,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37272",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "46.1",
+          "rss_kib": "2361976",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "6.8",
+          "rss_kib": "1792600",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372618.0992692,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37272",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "46.2",
+          "rss_kib": "2361976",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "6.7",
+          "rss_kib": "1792600",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372619.1525438,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37272",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "46.3",
+          "rss_kib": "2361976",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "6.7",
+          "rss_kib": "1792600",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372620.1939278,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37272",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "46.4",
+          "rss_kib": "2361976",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "6.7",
+          "rss_kib": "1792600",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372621.241161,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37272",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "46.4",
+          "rss_kib": "2361976",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "6.6",
+          "rss_kib": "1792600",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372622.2895055,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37272",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "46.5",
+          "rss_kib": "2361976",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "6.6",
+          "rss_kib": "1792600",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372623.3226645,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37272",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "46.6",
+          "rss_kib": "2361976",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "6.6",
+          "rss_kib": "1792600",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372624.3577588,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37272",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "46.6",
+          "rss_kib": "2361976",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "6.5",
+          "rss_kib": "1792600",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372625.3931992,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37272",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "46.7",
+          "rss_kib": "2361976",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "6.5",
+          "rss_kib": "1792600",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372626.4330118,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37944",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "46.8",
+          "rss_kib": "2362532",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "6.9",
+          "rss_kib": "1800540",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372627.4771802,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37948",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "46.8",
+          "rss_kib": "2363152",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "6.9",
+          "rss_kib": "1800540",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372628.5488458,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37948",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "46.9",
+          "rss_kib": "2363168",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "6.9",
+          "rss_kib": "1800540",
+          "comm": "python"
+        }
+      ]
+    },
+    {
+      "time": 1793372629.7057917,
+      "processes": [
+        {
+          "pid": "25391",
+          "ppid": "1",
+          "cpu_percent_lifetime": "1.0",
+          "rss_kib": "37948",
+          "comm": "ollama"
+        },
+        {
+          "pid": "41275",
+          "ppid": "25391",
+          "cpu_percent_lifetime": "47.0",
+          "rss_kib": "2363184",
+          "comm": "llama-server"
+        },
+        {
+          "pid": "53579",
+          "ppid": "53578",
+          "cpu_percent_lifetime": "6.8",
+          "rss_kib": "1800540",
+          "comm": "python"
+        }
+      ]
+    }
+  ]
+}

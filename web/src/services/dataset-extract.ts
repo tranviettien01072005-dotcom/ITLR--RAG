@@ -17,7 +17,7 @@ export async function extractText(buf: Buffer, ext: string): Promise<string> {
       const worker = new Worker(`
         const { parentPort, workerData } = require('node:worker_threads');
         (async () => {
-          const parser = require(workerData.module), b = Buffer.from(workerData.buffer);
+          const parser = require(workerData.module), b = new Uint8Array(workerData.buffer);
           const text = (await parser(b, { max: 100 })).text;
           parentPort.postMessage(String(text || '').slice(0, 100000));
         })().catch(e => {

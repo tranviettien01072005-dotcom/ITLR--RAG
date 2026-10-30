@@ -1,0 +1,58 @@
+
+> it-learning-platform@1.0.0 test
+> vitest run --coverage
+
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (vitest.config.ts:1:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.12 /home/o/ITLR--RAG/web
+      Coverage enabled with v8
+
+ ❯ src/routes/realtime-lifecycle.test.ts (0 test)
+ ❯ src/routes/upload-extraction.test.ts (0 test)
+Warning: Indexing all PDF objects
+ ❯ src/app.test.ts (0 test)
+ ❯ src/routes/media-range.test.ts (0 test)
+Warning: Indexing all PDF objects
+Warning: Indexing all PDF objects
+Warning: Indexing all PDF objects
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/app.test.ts [ src/app.test.ts ]
+Error: Thiếu biến môi trường JWT_SECRET. Hãy tạo web/.env từ .env.example.
+ ❯ required src/config/env.ts:8:11
+      6|   const v = process.env[name] ?? fallback;
+      7|   if (v === undefined || v === "") {
+      8|     throw new Error(`Thiếu biến môi trường ${name}. Hãy tạo web/.env t…
+       |           ^
+      9|   }
+     10|   return v;
+ ❯ src/config/env.ts:15:19
+ ❯ src/app.ts:6:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  src/routes/media-range.test.ts [ src/routes/media-range.test.ts ]
+ FAIL  src/routes/realtime-lifecycle.test.ts [ src/routes/realtime-lifecycle.test.ts ]
+ FAIL  src/routes/upload-extraction.test.ts [ src/routes/upload-extraction.test.ts ]
+Error: Thiếu biến môi trường JWT_SECRET. Hãy tạo web/.env từ .env.example.
+ ❯ required src/config/env.ts:8:11
+      6|   const v = process.env[name] ?? fallback;
+      7|   if (v === undefined || v === "") {
+      8|     throw new Error(`Thiếu biến môi trường ${name}. Hãy tạo web/.env t…
+       |           ^
+      9|   }
+     10|   return v;
+ ❯ src/config/env.ts:15:19
+ ❯ src/services/recommender.ts:1:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+
+ Test Files  4 failed | 21 passed (25)
+      Tests  110 passed (110)
+   Start at  19:45:13
+   Duration  6.76s (transform 2.41s, setup 0ms, import 9.16s, tests 4.50s, environment 15ms)
+

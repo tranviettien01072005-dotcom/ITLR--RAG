@@ -1,0 +1,16 @@
+{
+  "ownServicesStopped": true,
+  "ports": {
+    "18030": {
+      "listening": false
+    },
+    "18031": {
+      "listening": false
+    },
+    "15432": {
+      "listening": false
+    }
+  },
+  "dataPreserved": true,
+  "otherServicesUntouched": true
+}

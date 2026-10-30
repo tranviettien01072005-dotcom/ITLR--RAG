@@ -28,6 +28,23 @@ env -u DEEPSEEK_API_KEY -u OPENAI_API_KEY \
 
 Giao diện chính vẫn là Web cổng 3000. Đặt `USE_OLLAMA=0` khi chỉ cần template/extractive; giữ nhãn mode đúng khi lưu kết quả. CrossEncoder bị tắt trong cấu hình CPU này vì chưa có kiểm chứng reranker thật tương ứng.
 
+`OLLAMA_BASE_URL=http://127.0.0.1:11434` chọn endpoint local tường minh. Nếu Ollama
+đã chạy qua `ollama` trên PATH, dùng daemon đó; không cần khởi chạy thêm binary
+trong `var/ollama`. `OLLAMA_MODEL` được giữ nguyên: thiếu model sẽ báo lỗi thay vì
+tự thay bằng model khác. `OLLAMA_TIMEOUT` phải là số hữu hạn dương, áp dụng cho cả
+chat và stream; stream kiểm elapsed budget tại từng NDJSON event, không chỉ chờ I/O.
+Trong một blocking read đang bị stall, deadline chưa phải hard wall-clock; read timeout
+vẫn áp dụng. Khi chưa đặt, giữ timeout legacy 90/240 giây qua
+`DEEPSEEK_TIMEOUT_S`/`DEEPSEEK_STREAM_TIMEOUT_S`. Các tên legacy này không chọn cloud
+provider. Cả chat và stream qua adapter chung áp dụng history character budget;
+đây là xấp xỉ, không phải token accounting chính xác.
+
+Non-stream Ollama chỉ nhận response `done=true` với finish reason `stop` hoặc thiếu
+reason (compatibility). Completion `length`, error hoặc schema không hợp lệ báo
+`LLMError`. Khi thử máy mới, luôn unset cloud keys như lệnh trên. Không có artifacts
+trong checkout thì cần build/probe staging riêng trước khi chạy health/search/chat;
+không lấy kết quả smoke lịch sử dưới đây làm readiness hiện tại.
+
 ## Chạy lại smoke có chủ đích
 
 Script dưới khởi chạy/dừng API kiểm tra riêng trên cổng **18001**. Nó thực hiện inference local; kiểm cổng trống và model sẵn sàng trước khi chạy:
@@ -41,3 +58,20 @@ env -u DEEPSEEK_API_KEY -u OPENAI_API_KEY \
 [Evidence model local](../reports/LOCAL_MODELS.md) ghi build/probe/activate trên **5.000 items synthetic**, version **20261029-204546**, HTTP health/search/chat 200 và Qwen trả lời API **57,01 s** với citation retrieved **2716** hợp lệ. Smoke Qwen trực tiếp **80 token** lại không có citation. Các quan sát này chứng minh model thật đã chạy trong cấu hình đó; chưa chứng minh faithfulness, tỷ lệ hallucination, corpus thật hiện tại hoặc toàn bộ luồng Web/DB.
 
 CF chưa build trong checkpoint này, reranker tắt. Số item và version hiện hành phải đọc `/health`/pointer, không lấy từ smoke lịch sử. Không suy ra DeepSeek live hay Docker đã kiểm chứng từ inference Ollama local.
+
+Audit Linux 2026-10-30 mới hơn dùng 118 snapshot thật/1576 chunks trong staging
+riêng: E5 build/probe PASS, nhưng API Qwen non-stream 61,15 s thiếu citation, stream
+533,73 s bị cắt và final trả `insufficient_evidence`. Ở checkpoint đó chưa có elapsed
+budget tại event boundaries. Không lấy HTTP 200 làm generation PASS.
+Xem [full-system audit](../reports/FULL_SYSTEM_AUDIT_2026-10-30.md); không tự dùng
+staging audit làm active index hoặc chạy migration/seed để thử giao diện.
+
+Engineering continuation: test budget 2 s với Qwen thật kết thúc bằng LLMError sau
+2,14 s; API HTTP404 chat/stream khoảng 6 s với citation hợp lệ. Đây là một smoke,
+không phải SLO hoặc đánh giá faithfulness. Prompt ngắn/temperature khác đã thử nhưng
+không đủ chất lượng để đổi runtime defaults. Search default mới 84; explicit 90
+giữ floor cũ. Xem [engineering review](../reports/FINAL_ENGINEERING_REVIEW.md).
+
+Utility `itlr.utils.repickle` chỉ dùng trên bản sao offline tin cậy; mismatch sklearn
+phải rebuild bằng môi trường phù hợp. Utility ghi atomic từng file và trả lỗi khi
+thất bại, không cấp lại manifest/probe hoặc activation. Không chạy trên active data.

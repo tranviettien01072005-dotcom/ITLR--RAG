@@ -6,6 +6,42 @@ publish, migration hoặc gọi provider trả phí.
 
 ## Trạng thái đã kiểm chứng
 
+- Release validation mới: **445 Python / 145 Web PASS**, coverage **66,70% / 46,55%**.
+  Sửa UI báo success trước EOF/done và PDF Buffer/parser incompatibility bằng RED→GREEN.
+  Bộ nguồn mới Recall@5 83,33%, EN6/6 VI4/6; không tuning, AI labels chưa phải human.
+  PostgreSQL18 native cô lập: migration2 lần, HTTP/DB36 checks, Chrome9, backup/restore15 bảng.
+  Real E5 artifact copy load/reload/rollback/tamper rejection PASS trên temporary root.
+  Qwen smoke thật hoàn tất, RAG requests budget45s timeout/fallback trên máy dùng chung;
+  chưa chứng minh cancellation upstream, token budget, capacity/faithfulness. **NO-GO**.
+  [Release report](../reports/RELEASE_READINESS_FINAL.md); các số phía dưới là checkpoint trước.
+- Engineering review hiện tại: **445 Python PASS/0 skip**, statements **66,70%**;
+  **140 Web PASS**, lines **46,48%**. [Báo cáo](../reports/FINAL_ENGINEERING_REVIEW.md).
+- Search default **84**, chọn trên dev; giữ explicit overrides, RRF weights và gate
+  chatbot 0,80. Query không có typo/abbreviation giữ nguyên; chỉ mở rộng bare alias.
+  Raw release Recall@5 4,76% → 92,86%; engine holdout 83,33%, confirmation 62,50%.
+  Negatives đều bị loại trong các tập cuối; labels không phải human panel độc lập.
+- Đã sửa Web final-before-done persistence, EOF thiếu done, giới hạn message/history
+  khớp FastAPI mà không sửa DB, JSON NaN trong recommendations. Giữ strict citation.
+- Ollama elapsed budget kiểm tại NDJSON boundaries; test thật 2 s dừng sau 2,14 s.
+  Live API HTTP404 chat/stream khoảng 6 s, citation hợp lệ nhưng entailment chưa đo.
+  Prompt/sampling experiments chưa đủ chất lượng nên không đưa vào runtime.
+- Re-pickle dùng atomic replacement, giữ original khi lỗi, từ chối sklearn mismatch;
+  runtime không còn che warning version. Không chạy migration vào artifacts thực.
+- Baseline/full-system audit trước: **431 Python PASS/0 skip**, coverage statements
+  **66,13%**; **132 Web PASS**, lines **45,31%**. E5 768d inference offline và Qwen2.5
+  3B generation/stream/truncation/cancellation thật đã chạy; public login/register
+  qua Chrome ở 390/1280px PASS. [Full-system audit](../reports/FULL_SYSTEM_AUDIT_2026-10-30.md)
+  phân biệt các gate và dữ liệu staging. Không activation/migration/commit/push.
+- Bốn lỗi Ollama đã sửa: explicit model bị thay, non-stream thiếu completion
+  validation, bỏ history budget, bỏ `OLLAMA_TIMEOUT`; Vitest đã cô lập credentials.
+- Sửa first-flat-probe integrity mismatch do `.activation.lock` sinh sau inventory;
+  giữ hash checks. E5 staging riêng 118 docs/1576 chunks probe PASS, không activation.
+  Raw-query neural Recall@5 với floor 0,90 chỉ 4,76%; diagnostic floor 0 đạt
+  Recall@10 100% nhưng trả cả negatives. Giữ defaults, NO-GO chờ calibration độc lập.
+- API staging HTTP/SSE/reload PASS protocol nhưng generation không đạt: non-stream
+  61,15 s thiếu citation, SSE 533,73 s bị cắt, final đánh dấu insufficient_evidence.
+  Có một loky semaphore warning lúc shutdown; chưa có bằng chứng soak/leak đã sạch.
+- Số 414/132 Windows dưới đây là checkpoint trước phiên Linux này.
 - Python: **414 PASS/0 skip**, 86,51s; 5603 statements / 1920 missed, khoảng 65,73%.
 - Web: **132 PASS/25 files**, line coverage 45,31%; typecheck/lint/build PASS.
 - Compileall và pip check PASS. Lệnh, log và inventory:
@@ -26,9 +62,10 @@ publish, migration hoặc gọi provider trả phí.
 
 ## Blockers
 
-Docker/PostgreSQL/HTTPS staging, backup/restore, Linux lifecycle runtime và đánh giá
-neural/generation độc lập chưa được xác nhận trong checkpoint này. Mermaid chỉ được
-review cấu trúc; chưa có parser/render. Không có thao tác DB/index, paid API, commit/push.
+Docker/PG16/Caddy production lifecycle, independent human generation quality và
+upstream cancellation/capacity chưa được xác nhận. PostgreSQL18 native/backup/restore,
+Chrome và artifact lifecycle đã chạy trên fixtures riêng; không thay deployment production.
+Không production DB/index changes, paid API, commit/push. Xem release report cho phạm vi mới.
 
 ## Nhật ký lịch sử
 

@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    from pathlib import Path; paths=[Path("web/src/views/home.ejs"),Path("web/src/views/partials/auth-aside.ejs")]; assert all("50.000" not in p.read_text() for p in paths), "unsupported 50,000-resource capacity claim"
+                                                                                                                           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unsupported 50,000-resource capacity claim

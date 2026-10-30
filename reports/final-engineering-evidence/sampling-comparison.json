@@ -1,0 +1,272 @@
+[
+  {
+    "split": "release",
+    "query": "How does Docker daemon access affect root privileges?",
+    "temperature": 0.3,
+    "max_tokens": 256,
+    "input_chars": 5562,
+    "seconds": 38.827430125999854,
+    "ttft_seconds": 34.596811678999984,
+    "answer": "[Docker daemon access affects root privileges] [item_id:5001] [chunk_id:5001:9] [5001:9]",
+    "terminal": {
+      "model": "qwen2.5:3b",
+      "created_at": "2026-10-30T13:35:19.06493776Z",
+      "done": true,
+      "done_reason": "stop",
+      "total_duration": 38826577843,
+      "load_duration": 4280102863,
+      "prompt_eval_count": 1295,
+      "prompt_eval_cached_count": 0,
+      "prompt_eval_duration": 30302285000,
+      "eval_count": 37,
+      "eval_duration": 4230009000
+    },
+    "citation": {
+      "status": "valid",
+      "cited_ids": [
+        5001
+      ],
+      "invalid_ids": [],
+      "malformed": false,
+      "invalid_chunk_ids": [],
+      "missing_chunk_item_ids": [],
+      "semantic_grounding": "not_verified"
+    }
+  },
+  {
+    "split": "release",
+    "query": "How does Docker daemon access affect root privileges?",
+    "temperature": 0.0,
+    "max_tokens": 256,
+    "input_chars": 5562,
+    "seconds": 30.21194341299997,
+    "ttft_seconds": 0.1448193739997805,
+    "answer": "[Docker daemon access affects root privileges] [item_id:5001] [chunk_id:5001:9] Docker Engine security [URL: https://docs.docker.com/engine/security] \n\n[Docker daemon requires root privileges unless you opt-in to Rootless mode] [item_id:5001] [chunk_id:5001:9] Docker Engine security [URL: https://docs.docker.com/engine/security] \n\n[Docker daemon access can be controlled with fine-grained access control] [item_id:5001] [chunk_id:5001:15] Docker Engine security [URL: https://docs.docker.com/engine/security] \n\n[Docker daemon access can be secured with HTTPS and certificates] [item_id:5001] [chunk_id:5001:7] Docker Engine security [URL: https://docs.docker.com/engine/security] \n\n[Docker daemon access can be restricted to a trusted network or VPN] [item_id:5001] [chunk_id:5001:10] Docker Engine security [URL: https://docs.docker.com/engine/security] \n\n[Docker daemon access can be managed with User Namespaces] [item_id:",
+    "terminal": {
+      "model": "qwen2.5:3b",
+      "created_at": "2026-10-30T13:35:49.277708024Z",
+      "done": true,
+      "done_reason": "length",
+      "total_duration": 30211114323,
+      "load_duration": 1400069,
+      "prompt_eval_count": 1295,
+      "prompt_eval_cached_count": 1294,
+      "prompt_eval_duration": 114004000,
+      "eval_count": 256,
+      "eval_duration": 30066791000
+    },
+    "citation": {
+      "status": "valid",
+      "cited_ids": [
+        5001
+      ],
+      "invalid_ids": [],
+      "malformed": false,
+      "invalid_chunk_ids": [],
+      "missing_chunk_item_ids": [],
+      "semantic_grounding": "not_verified"
+    }
+  },
+  {
+    "split": "dev",
+    "query": "HTTP 404 Not Found cho biết điều gì về tài nguyên được yêu cầu?",
+    "temperature": 0.3,
+    "max_tokens": 256,
+    "input_chars": 5811,
+    "seconds": 39.33635030000005,
+    "ttft_seconds": 34.336892656999225,
+    "answer": "HTTP status code 404 Not Found cho biết rằng tài nguyên yêu cầu được server không tìm thấy. [item_id:5025] [chunk_id:5025:9]",
+    "terminal": {
+      "model": "qwen2.5:3b",
+      "created_at": "2026-10-30T13:36:28.69812038Z",
+      "done": true,
+      "done_reason": "stop",
+      "total_duration": 39335636410,
+      "load_duration": 1019410,
+      "prompt_eval_count": 1420,
+      "prompt_eval_cached_count": 197,
+      "prompt_eval_duration": 34285146999,
+      "eval_count": 43,
+      "eval_duration": 4998897000
+    },
+    "citation": {
+      "status": "valid",
+      "cited_ids": [
+        5025
+      ],
+      "invalid_ids": [],
+      "malformed": false,
+      "invalid_chunk_ids": [],
+      "missing_chunk_item_ids": [],
+      "semantic_grounding": "not_verified"
+    }
+  },
+  {
+    "split": "dev",
+    "query": "HTTP 404 Not Found cho biết điều gì về tài nguyên được yêu cầu?",
+    "temperature": 0.0,
+    "max_tokens": 256,
+    "input_chars": 5811,
+    "seconds": 4.771648601000379,
+    "ttft_seconds": 0.1377728430006755,
+    "answer": "HTTP 404 Not Found cho biết rằng tài nguyên được yêu cầu không tồn tại. [item_id:5025] [chunk_id:5025:9]",
+    "terminal": {
+      "model": "qwen2.5:3b",
+      "created_at": "2026-10-30T13:36:33.470185802Z",
+      "done": true,
+      "done_reason": "stop",
+      "total_duration": 4770904822,
+      "load_duration": 1063475,
+      "prompt_eval_count": 1420,
+      "prompt_eval_cached_count": 1419,
+      "prompt_eval_duration": 112574000,
+      "eval_count": 40,
+      "eval_duration": 4633580000
+    },
+    "citation": {
+      "status": "valid",
+      "cited_ids": [
+        5025
+      ],
+      "invalid_ids": [],
+      "malformed": false,
+      "invalid_chunk_ids": [],
+      "missing_chunk_item_ids": [],
+      "semantic_grounding": "not_verified"
+    }
+  },
+  {
+    "split": "holdout",
+    "query": "Phải bind giá trị Python vào câu SQL SQLite như thế nào để tránh SQL injection?",
+    "temperature": 0.3,
+    "max_tokens": 256,
+    "input_chars": 5604,
+    "seconds": 53.67576222000025,
+    "ttft_seconds": 29.85051368800032,
+    "answer": "Để tránh SQL injection khi bind giá trị Python vào câu SQL SQLite, bạn nên sử dụng placeholders thay vì string formatting. Trong đoạn trích nguồn, có một ví dụ cụ thể:\n\n[item_id:5090] [chunk_id:5090:6]\n\n>>> con . execute ( \"INSERT INTO movies (title, year) VALUES(?, ?, ?)\" , data ) \n\nTrong đoạn này, con . execute() được gọi với một chuỗi SQL và một tuple chứa các giá trị Python cần được bind vào placeholders trong chuỗi SQL. Thay vì sử dụng chuỗi như sau:\n\n>>> con . execute ( \"INSERT INTO movies (title, year) VALUES('Monty Python and the Holy Grail', 1975)\" )\n\nthì sử dụng placeholders giúp tránh được SQL injection. Các placeholders được đánh dấu bằng dấu hỏi thay thế (?), và các giá trị Python cần bind được đưa vào một tuple sau chuỗi SQL.",
+    "terminal": {
+      "model": "qwen2.5:3b",
+      "created_at": "2026-10-30T13:37:27.258583984Z",
+      "done": true,
+      "done_reason": "stop",
+      "total_duration": 53675042760,
+      "load_duration": 710766,
+      "prompt_eval_count": 1398,
+      "prompt_eval_cached_count": 197,
+      "prompt_eval_duration": 29800914000,
+      "eval_count": 201,
+      "eval_duration": 23824795000
+    },
+    "citation": {
+      "status": "valid",
+      "cited_ids": [
+        5090
+      ],
+      "invalid_ids": [],
+      "malformed": false,
+      "invalid_chunk_ids": [],
+      "missing_chunk_item_ids": [],
+      "semantic_grounding": "not_verified"
+    }
+  },
+  {
+    "split": "holdout",
+    "query": "Phải bind giá trị Python vào câu SQL SQLite như thế nào để tránh SQL injection?",
+    "temperature": 0.0,
+    "max_tokens": 256,
+    "input_chars": 5604,
+    "seconds": 32.12471117699988,
+    "ttft_seconds": 0.14134443600050872,
+    "answer": "Để tránh SQL injection khi bind giá trị Python vào câu SQL SQLite, bạn nên sử dụng placeholders thay vì string formatting. Trong đoạn trích nguồn, nó được mô tả như sau:\n\n[chunk_id:5090:8] sqlite3 — DB-API 2.0 interface for SQLite databases\nURL: https://docs.python.org/3/library/sqlite3.html\nĐoạn trích (5090:8):\nAlways use placeholders instead of string formatting to bind Python values to SQL statements, to avoid SQL injection (see How to use placeholders to bind values in SQL queries for more details).\n\nVì vậy, để bind giá trị Python vào câu SQL SQLite mà không sợ bị SQL injection, bạn nên sử dụng placeholders. Ví dụ:\n\n```sql\nINSERT INTO my_table (column1, column2) VALUES(?, ?)\n```\n\nTrong Python, bạn có thể làm như sau:\n\n```python\ndata = (value1, value2)\ncur.execute(\"INSERT INTO my_table (column1, column2) VALUES(?, ?)\", data)\n```\n\nĐây là cách sử dụng placeholders để bind giá trị Python vào câu SQL SQLite mà không cần phải sử dụng string formatting, giúp tránh được nguy cơ",
+    "terminal": {
+      "model": "qwen2.5:3b",
+      "created_at": "2026-10-30T13:37:59.383957236Z",
+      "done": true,
+      "done_reason": "length",
+      "total_duration": 32123939960,
+      "load_duration": 1101767,
+      "prompt_eval_count": 1398,
+      "prompt_eval_cached_count": 1397,
+      "prompt_eval_duration": 119065000,
+      "eval_count": 256,
+      "eval_duration": 31983075000
+    },
+    "citation": {
+      "status": "missing",
+      "cited_ids": [],
+      "invalid_ids": [],
+      "malformed": false,
+      "invalid_chunk_ids": [],
+      "missing_chunk_item_ids": [],
+      "semantic_grounding": "not_verified"
+    }
+  },
+  {
+    "split": "holdout",
+    "query": "Which Python copy operation recursively copies nested objects?",
+    "temperature": 0.3,
+    "max_tokens": 256,
+    "input_chars": 5893,
+    "seconds": 69.20018087300014,
+    "ttft_seconds": 37.76656255100079,
+    "answer": "[item_id:5059] [chunk_id:5059:3] copy — Shallow and deep copy operations URL: https://docs.python.org/3/library/copy.html Đoạn trích (5059:3): \"and slicing can create an instance of the base type when copying an instance of a subclass, whereas copy.copy() normally returns an instance of the same type. Classes can use the same interfaces to control copying that they use to control pickling. See the description of module pickle for information on these methods. In fact, the copy module uses the registered pickle functions from the copyreg module. In order for a class to define its own copy implementation, it can define special methods __copy__() and __deepcopy__() . object. __deepcopy__ ( self , memo ) ¶ Called to implement the deep copy operation; it is passed one argument, the memo dictionary. If the __deepcopy__ implementation needs to make a deep copy of a component, it should call the deepcopy() function\" [item_id:5059] [chunk_id:5059:3] copy — Shallow and deep copy operations URL: https://docs.python.org/3/library/copy.htmlĐoạn tr",
+    "terminal": {
+      "model": "qwen2.5:3b",
+      "created_at": "2026-10-30T13:39:08.678108377Z",
+      "done": true,
+      "done_reason": "length",
+      "total_duration": 69199249438,
+      "load_duration": 900313,
+      "prompt_eval_count": 1394,
+      "prompt_eval_cached_count": 197,
+      "prompt_eval_duration": 37699474000,
+      "eval_count": 256,
+      "eval_duration": 31433171000
+    },
+    "citation": {
+      "status": "valid",
+      "cited_ids": [
+        5059
+      ],
+      "invalid_ids": [],
+      "malformed": false,
+      "invalid_chunk_ids": [],
+      "missing_chunk_item_ids": [],
+      "semantic_grounding": "not_verified"
+    }
+  },
+  {
+    "split": "holdout",
+    "query": "Which Python copy operation recursively copies nested objects?",
+    "temperature": 0.0,
+    "max_tokens": 256,
+    "input_chars": 5893,
+    "seconds": 31.109130025000013,
+    "ttft_seconds": 0.13964646299973538,
+    "answer": "Để thực hiện sao chép đệ quy của các đối tượng chứa các đối tượng khác nhau, Python sử dụng các hàm __copy__ và __deepcopy__. Hàm __deepcopy__ được gọi để sao chép các đối tượng chứa các đối tượng khác. Dưới đây là đoạn mã từ tài liệu Python mô tả cách __deepcopy__ thực hiện sao chép đệ quy:\n\n[item_id:5059] [chunk_id:5059:2] copy — Shallow and deep copy operations\nURL: https://docs.python.org/3/library/copy.html\nĐoạn trích (5059:2):\nction avoids these problems by: keeping a memo dictionary of objects already copied during the current copying pass; and letting user-defined classes override the copying operation or the set of components copied. This module does not copy types like module, method, stack trace, stack frame, file, socket, window, or any similar types. It does “copy” functions and classes (shallow and deeply), by returning the original object unchanged; this is compatible with the way these are treated by the pickle module. Shallow copies of many collections can be made using the corresponding copy() method",
+    "terminal": {
+      "model": "qwen2.5:3b",
+      "created_at": "2026-10-30T13:39:39.788002195Z",
+      "done": true,
+      "done_reason": "length",
+      "total_duration": 31108337083,
+      "load_duration": 991603,
+      "prompt_eval_count": 1394,
+      "prompt_eval_cached_count": 1393,
+      "prompt_eval_duration": 116370000,
+      "eval_count": 256,
+      "eval_duration": 30969113000
+    },
+    "citation": {
+      "status": "valid",
+      "cited_ids": [
+        5059
+      ],
+      "invalid_ids": [],
+      "malformed": false,
+      "invalid_chunk_ids": [],
+      "missing_chunk_item_ids": [],
+      "semantic_grounding": "not_verified"
+    }
+  }
+]

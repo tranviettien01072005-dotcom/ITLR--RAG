@@ -4,10 +4,21 @@
 
 ITLR–RAG hỗ trợ học Công nghệ thông tin bằng tiếng Việt: tìm tài nguyên, hỏi đáp theo tài liệu, xây lộ trình và theo dõi tiến độ. Web Express + TypeScript + EJS tại cổng 3000 quản lý trải nghiệm người dùng; FastAPI tại cổng 8000 cung cấp retrieval, chatbot và gợi ý tài nguyên.
 
-Repository đang được phát triển. Baseline trước đợt refactor hiện tại là **387 Python PASS/0 skip, 124 Web PASS**; kết quả mới và phạm vi kiểm chứng xem [validation](reports/VALIDATION.md). Chưa đủ bằng chứng để xác nhận production-ready.
+Repository đang được phát triển; kết quả từng checkpoint và phạm vi kiểm chứng xem [validation](reports/VALIDATION.md). Chưa đủ bằng chứng để xác nhận production-ready.
 
-Checkpoint release validation mới: **414 Python PASS/0 skip, 132 Web PASS**; coverage
-Python statements **65,73%**, Web lines **45,31%**. [Kết quả và NO-GO](reports/RELEASE_VALIDATION_2026-10-30.md).
+Release validation Linux: **445 Python PASS/0 skip, 145 Web PASS**; coverage
+Python statements **66,70%**, Web lines **46,55%**. Native PostgreSQL18/backup/restore
+và Chrome DB journeys đã chạy trên fixtures cô lập; Docker production chưa chạy.
+[Kết quả, bằng chứng và NO-GO](reports/RELEASE_READINESS_FINAL.md).
+[Full-system audit trước](reports/FULL_SYSTEM_AUDIT_2026-10-30.md) được giữ nguyên.
+
+Search mặc định `min_pct=84` (cosine 0,84); truyền `min_pct=90` để giữ floor cũ.
+Raw retrieval Recall@5 trên 23 frozen queries tăng 4,76% → 92,86%; holdout end-to-end
+83,33%, tập xác nhận 62,50%, nhãn engineer-authored chưa độc lập. Các tập đo giữ
+negative rejection, chưa chứng minh precision/faithfulness production. Qwen vẫn có
+thể sai nội dung hoặc không hoàn tất; bộ mới source-disjoint đạt Recall@5 83,33%
+(12 positives/8 negatives, fresh AI author, chưa phải human panel). Suite xanh không
+thay kiểm chứng generation, cancellation upstream và deployment production.
 
 ## Khả năng (Features)
 

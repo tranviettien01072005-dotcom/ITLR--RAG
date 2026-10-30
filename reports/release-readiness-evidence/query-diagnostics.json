@@ -1,0 +1,2023 @@
+{
+  "protocol_limits": "AI-authored source-disjoint sample, not human evaluation. Qrels incomplete: unjudged items unknown, not automatically irrelevant. No tuning. Default floor84, reranker disabled as prior runtime-search baseline.",
+  "prior_evidence_sha256": "bf3c0c0cc0010edc2ecd8e0e8fbf4b75115bd9d3d0a838a8328349b47eff0ad9",
+  "candidate_policy": "existing candidate_k32, unique_items true; ungated diagnostic floor0 only, never used for engine results",
+  "reranker_status": "available offline; diagnostic only, same floor84 and existing RRF candidates",
+  "prior_misses": [
+    {
+      "group": "release_after",
+      "prior": {
+        "id": "noise-venv",
+        "query": "tao moi truong ao Pythn venv va kich hoat",
+        "expected": [
+          5117
+        ],
+        "ranked": [],
+        "note": "",
+        "ms": 64.0261480002664,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      "current": {
+        "id": "noise-venv",
+        "query": "tao moi truong ao Pythn venv va kich hoat",
+        "rewritten": "tao moi tuong ao python venv va kich hoa",
+        "expected": [
+          5117
+        ],
+        "ranked": [],
+        "note": "",
+        "ms": 137.5344980006048,
+        "metrics": {
+          "1": {
+            "recall": 0.0,
+            "precision_judged": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "empty_result": null
+          },
+          "5": {
+            "recall": 0.0,
+            "precision_judged": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "empty_result": null
+          },
+          "8": {
+            "recall": 0.0,
+            "precision_judged": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "empty_result": null
+          }
+        }
+      },
+      "raw": {
+        "query": "tao moi truong ao Pythn venv va kich hoat",
+        "targets": [
+          {
+            "item_id": 5117,
+            "best_dense_cosine": 0.7673994898796082,
+            "best_dense_chunk_id": "5117:7",
+            "dense_item_rank": 21,
+            "bm25_item_rank": 2,
+            "best_bm25_score": 7.522188224435077,
+            "passes_dense_floor84": false,
+            "ungated_rrf_rank": 4,
+            "gated84_rrf_rank": null,
+            "reranked84_rank": null
+          }
+        ],
+        "ungated_rrf_top32": [
+          5052,
+          5079,
+          5066,
+          5117,
+          5040,
+          5014,
+          5049,
+          5113,
+          5128,
+          5024,
+          5116,
+          5122,
+          5114,
+          5127,
+          5102,
+          5045,
+          5125,
+          5106,
+          5048,
+          5109,
+          5002,
+          5098,
+          5044,
+          5099,
+          5065,
+          5126,
+          5107,
+          5074,
+          5047,
+          5050,
+          5091,
+          5090
+        ],
+        "gated84_rrf_top32": [],
+        "reranked84_top8": []
+      },
+      "rewritten": {
+        "query": "tao moi tuong ao python venv va kich hoa",
+        "targets": [
+          {
+            "item_id": 5117,
+            "best_dense_cosine": 0.7812272310256958,
+            "best_dense_chunk_id": "5117:7",
+            "dense_item_rank": 13,
+            "bm25_item_rank": 2,
+            "best_bm25_score": 15.69712837528693,
+            "passes_dense_floor84": false,
+            "ungated_rrf_rank": 5,
+            "gated84_rrf_rank": null,
+            "reranked84_rank": null
+          }
+        ],
+        "ungated_rrf_top32": [
+          5128,
+          5090,
+          5114,
+          5079,
+          5117,
+          5116,
+          5052,
+          5065,
+          5066,
+          5127,
+          5085,
+          5113,
+          5024,
+          5014,
+          5087,
+          5096,
+          5126,
+          5097,
+          5122,
+          5123,
+          5109,
+          5125,
+          5002,
+          5120,
+          5083,
+          5040,
+          5060,
+          5070,
+          5088,
+          5092,
+          5015,
+          5031
+        ],
+        "gated84_rrf_top32": [],
+        "reranked84_top8": []
+      }
+    },
+    {
+      "group": "release_after",
+      "prior": {
+        "id": "multi-python",
+        "query": "Tạo môi trường venv cho Python, sau đó dùng try except để xử lý lỗi trong chương trình.",
+        "expected": [
+          5117,
+          5121
+        ],
+        "ranked": [
+          5061,
+          5117
+        ],
+        "note": "",
+        "ms": 78.42605199948594,
+        "metrics": {
+          "recall": 0.5,
+          "precision_judged": 0.2,
+          "mrr": 0.5,
+          "ndcg": 0.38685280723454163,
+          "empty_result": null
+        }
+      },
+      "current": {
+        "id": "multi-python",
+        "query": "Tạo môi trường venv cho Python, sau đó dùng try except để xử lý lỗi trong chương trình.",
+        "rewritten": "Tạo môi trường venv cho Python, sau đó dùng try except để xử lý lỗi trong chương trình.",
+        "expected": [
+          5117,
+          5121
+        ],
+        "ranked": [
+          5061,
+          5117
+        ],
+        "note": "",
+        "ms": 202.64632899852586,
+        "metrics": {
+          "1": {
+            "recall": 0.0,
+            "precision_judged": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "empty_result": null
+          },
+          "5": {
+            "recall": 0.5,
+            "precision_judged": 0.2,
+            "mrr": 0.5,
+            "ndcg": 0.38685280723454163,
+            "empty_result": null
+          },
+          "8": {
+            "recall": 0.5,
+            "precision_judged": 0.125,
+            "mrr": 0.5,
+            "ndcg": 0.38685280723454163,
+            "empty_result": null
+          }
+        }
+      },
+      "raw": {
+        "query": "Tạo môi trường venv cho Python, sau đó dùng try except để xử lý lỗi trong chương trình.",
+        "targets": [
+          {
+            "item_id": 5117,
+            "best_dense_cosine": 0.8401626348495483,
+            "best_dense_chunk_id": "5117:2",
+            "dense_item_rank": 2,
+            "bm25_item_rank": 5,
+            "best_bm25_score": 9.803420201281838,
+            "passes_dense_floor84": true,
+            "ungated_rrf_rank": 1,
+            "gated84_rrf_rank": 2,
+            "reranked84_rank": 1
+          },
+          {
+            "item_id": 5121,
+            "best_dense_cosine": 0.8335901498794556,
+            "best_dense_chunk_id": "5121:9",
+            "dense_item_rank": 4,
+            "bm25_item_rank": 1,
+            "best_bm25_score": 18.032429262806858,
+            "passes_dense_floor84": false,
+            "ungated_rrf_rank": 7,
+            "gated84_rrf_rank": null,
+            "reranked84_rank": null
+          }
+        ],
+        "ungated_rrf_top32": [
+          5117,
+          5079,
+          5086,
+          5125,
+          5093,
+          5061,
+          5121,
+          5111,
+          5097,
+          5036,
+          5123,
+          5107,
+          5128,
+          5094,
+          5110,
+          5124,
+          5080,
+          5099,
+          5002,
+          5082,
+          5031,
+          5098,
+          5096,
+          5126,
+          5120,
+          5069,
+          5078,
+          5060,
+          5122,
+          5076,
+          5081,
+          5100
+        ],
+        "gated84_rrf_top32": [
+          5061,
+          5117
+        ],
+        "reranked84_top8": [
+          5117,
+          5061
+        ]
+      },
+      "rewritten": {
+        "query": "Tạo môi trường venv cho Python, sau đó dùng try except để xử lý lỗi trong chương trình.",
+        "targets": [
+          {
+            "item_id": 5117,
+            "best_dense_cosine": 0.8401626348495483,
+            "best_dense_chunk_id": "5117:2",
+            "dense_item_rank": 2,
+            "bm25_item_rank": 5,
+            "best_bm25_score": 9.803420201281838,
+            "passes_dense_floor84": true,
+            "ungated_rrf_rank": 1,
+            "gated84_rrf_rank": 2,
+            "reranked84_rank": 1
+          },
+          {
+            "item_id": 5121,
+            "best_dense_cosine": 0.8335901498794556,
+            "best_dense_chunk_id": "5121:9",
+            "dense_item_rank": 4,
+            "bm25_item_rank": 1,
+            "best_bm25_score": 18.032429262806858,
+            "passes_dense_floor84": false,
+            "ungated_rrf_rank": 7,
+            "gated84_rrf_rank": null,
+            "reranked84_rank": null
+          }
+        ],
+        "ungated_rrf_top32": [
+          5117,
+          5079,
+          5086,
+          5125,
+          5093,
+          5061,
+          5121,
+          5111,
+          5097,
+          5036,
+          5123,
+          5107,
+          5128,
+          5094,
+          5110,
+          5124,
+          5080,
+          5099,
+          5002,
+          5082,
+          5031,
+          5098,
+          5096,
+          5126,
+          5120,
+          5069,
+          5078,
+          5060,
+          5122,
+          5076,
+          5081,
+          5100
+        ],
+        "gated84_rrf_top32": [
+          5061,
+          5117
+        ],
+        "reranked84_top8": [
+          5117,
+          5061
+        ]
+      }
+    },
+    {
+      "group": "holdout_after",
+      "prior": {
+        "id": "holdout-vi-5027",
+        "query": "Làm thế nào đăng ký callback chạy khi EventTarget nhận một sự kiện?",
+        "expected": [
+          5027
+        ],
+        "ranked": [],
+        "note": "",
+        "ms": 62.08360500022536,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      "current": {
+        "id": "holdout-vi-5027",
+        "query": "Làm thế nào đăng ký callback chạy khi EventTarget nhận một sự kiện?",
+        "rewritten": "Làm thế nào đăng ký callback chạy khi EventTarget nhận một sự kiện?",
+        "expected": [
+          5027
+        ],
+        "ranked": [],
+        "note": "",
+        "ms": 289.8879330005002,
+        "metrics": {
+          "1": {
+            "recall": 0.0,
+            "precision_judged": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "empty_result": null
+          },
+          "5": {
+            "recall": 0.0,
+            "precision_judged": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "empty_result": null
+          },
+          "8": {
+            "recall": 0.0,
+            "precision_judged": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "empty_result": null
+          }
+        }
+      },
+      "raw": {
+        "query": "Làm thế nào đăng ký callback chạy khi EventTarget nhận một sự kiện?",
+        "targets": [
+          {
+            "item_id": 5027,
+            "best_dense_cosine": 0.8262399435043335,
+            "best_dense_chunk_id": "5027:7",
+            "dense_item_rank": 1,
+            "bm25_item_rank": 1,
+            "best_bm25_score": 8.629870766252798,
+            "passes_dense_floor84": false,
+            "ungated_rrf_rank": 1,
+            "gated84_rrf_rank": null,
+            "reranked84_rank": null
+          }
+        ],
+        "ungated_rrf_top32": [
+          5027,
+          5090,
+          5024,
+          5031,
+          5085,
+          5033,
+          5054,
+          5093,
+          5039,
+          5029,
+          5051,
+          5030,
+          5081,
+          5047,
+          5118,
+          5060,
+          5028,
+          5083,
+          5040,
+          5061,
+          5076,
+          5082,
+          5123,
+          5113,
+          5071,
+          5088,
+          5070,
+          5052,
+          5036,
+          5066,
+          5063,
+          5025
+        ],
+        "gated84_rrf_top32": [],
+        "reranked84_top8": []
+      },
+      "rewritten": {
+        "query": "Làm thế nào đăng ký callback chạy khi EventTarget nhận một sự kiện?",
+        "targets": [
+          {
+            "item_id": 5027,
+            "best_dense_cosine": 0.8262399435043335,
+            "best_dense_chunk_id": "5027:7",
+            "dense_item_rank": 1,
+            "bm25_item_rank": 1,
+            "best_bm25_score": 8.629870766252798,
+            "passes_dense_floor84": false,
+            "ungated_rrf_rank": 1,
+            "gated84_rrf_rank": null,
+            "reranked84_rank": null
+          }
+        ],
+        "ungated_rrf_top32": [
+          5027,
+          5090,
+          5024,
+          5031,
+          5085,
+          5033,
+          5054,
+          5093,
+          5039,
+          5029,
+          5051,
+          5030,
+          5081,
+          5047,
+          5118,
+          5060,
+          5028,
+          5083,
+          5040,
+          5061,
+          5076,
+          5082,
+          5123,
+          5113,
+          5071,
+          5088,
+          5070,
+          5052,
+          5036,
+          5066,
+          5063,
+          5025
+        ],
+        "gated84_rrf_top32": [],
+        "reranked84_top8": []
+      }
+    },
+    {
+      "group": "holdout_after",
+      "prior": {
+        "id": "holdout-vi-5082",
+        "query": "Các executor chạy thread và process Python cùng triển khai interface nào?",
+        "expected": [
+          5082
+        ],
+        "ranked": [
+          5081
+        ],
+        "note": "",
+        "ms": 59.75808899893309,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      "current": {
+        "id": "holdout-vi-5082",
+        "query": "Các executor chạy thread và process Python cùng triển khai interface nào?",
+        "rewritten": "Các executor chạy thread và process Python cùng triển khai interface nào?",
+        "expected": [
+          5082
+        ],
+        "ranked": [
+          5081
+        ],
+        "note": "",
+        "ms": 220.39661800044996,
+        "metrics": {
+          "1": {
+            "recall": 0.0,
+            "precision_judged": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "empty_result": null
+          },
+          "5": {
+            "recall": 0.0,
+            "precision_judged": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "empty_result": null
+          },
+          "8": {
+            "recall": 0.0,
+            "precision_judged": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "empty_result": null
+          }
+        }
+      },
+      "raw": {
+        "query": "Các executor chạy thread và process Python cùng triển khai interface nào?",
+        "targets": [
+          {
+            "item_id": 5082,
+            "best_dense_cosine": 0.8396360874176025,
+            "best_dense_chunk_id": "5082:0",
+            "dense_item_rank": 2,
+            "bm25_item_rank": 1,
+            "best_bm25_score": 17.249661756432886,
+            "passes_dense_floor84": false,
+            "ungated_rrf_rank": 1,
+            "gated84_rrf_rank": null,
+            "reranked84_rank": null
+          }
+        ],
+        "ungated_rrf_top32": [
+          5082,
+          5071,
+          5118,
+          5079,
+          5070,
+          5081,
+          5092,
+          5097,
+          5061,
+          5001,
+          5127,
+          5090,
+          5080,
+          5083,
+          5095,
+          5102,
+          5115,
+          5069,
+          5128,
+          5074,
+          5119,
+          5120,
+          5089,
+          5087,
+          5123,
+          5078,
+          5121,
+          5029,
+          5094,
+          5098,
+          5054,
+          5113
+        ],
+        "gated84_rrf_top32": [
+          5081
+        ],
+        "reranked84_top8": [
+          5081
+        ]
+      },
+      "rewritten": {
+        "query": "Các executor chạy thread và process Python cùng triển khai interface nào?",
+        "targets": [
+          {
+            "item_id": 5082,
+            "best_dense_cosine": 0.8396360874176025,
+            "best_dense_chunk_id": "5082:0",
+            "dense_item_rank": 2,
+            "bm25_item_rank": 1,
+            "best_bm25_score": 17.249661756432886,
+            "passes_dense_floor84": false,
+            "ungated_rrf_rank": 1,
+            "gated84_rrf_rank": null,
+            "reranked84_rank": null
+          }
+        ],
+        "ungated_rrf_top32": [
+          5082,
+          5071,
+          5118,
+          5079,
+          5070,
+          5081,
+          5092,
+          5097,
+          5061,
+          5001,
+          5127,
+          5090,
+          5080,
+          5083,
+          5095,
+          5102,
+          5115,
+          5069,
+          5128,
+          5074,
+          5119,
+          5120,
+          5089,
+          5087,
+          5123,
+          5078,
+          5121,
+          5029,
+          5094,
+          5098,
+          5054,
+          5113
+        ],
+        "gated84_rrf_top32": [
+          5081
+        ],
+        "reranked84_top8": [
+          5081
+        ]
+      }
+    },
+    {
+      "group": "confirmation_after",
+      "prior": {
+        "id": "confirmation-vi-5031",
+        "query": "JavaScript Promise biểu diễn điều gì về việc hoàn tất một tác vụ bất đồng bộ?",
+        "expected": [
+          5031
+        ],
+        "ranked": [],
+        "note": "",
+        "ms": 71.19191199853958,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      "current": {
+        "id": "confirmation-vi-5031",
+        "query": "JavaScript Promise biểu diễn điều gì về việc hoàn tất một tác vụ bất đồng bộ?",
+        "rewritten": "JavaScript Promise biểu diễn điều gì về việc hoàn tất một tác vụ bất đồng bộ?",
+        "expected": [
+          5031
+        ],
+        "ranked": [],
+        "note": "",
+        "ms": 154.53751499990176,
+        "metrics": {
+          "1": {
+            "recall": 0.0,
+            "precision_judged": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "empty_result": null
+          },
+          "5": {
+            "recall": 0.0,
+            "precision_judged": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "empty_result": null
+          },
+          "8": {
+            "recall": 0.0,
+            "precision_judged": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "empty_result": null
+          }
+        }
+      },
+      "raw": {
+        "query": "JavaScript Promise biểu diễn điều gì về việc hoàn tất một tác vụ bất đồng bộ?",
+        "targets": [
+          {
+            "item_id": 5031,
+            "best_dense_cosine": 0.8341883420944214,
+            "best_dense_chunk_id": "5031:5",
+            "dense_item_rank": 1,
+            "bm25_item_rank": 3,
+            "best_bm25_score": 8.094450018276644,
+            "passes_dense_floor84": false,
+            "ungated_rrf_rank": 3,
+            "gated84_rrf_rank": null,
+            "reranked84_rank": null
+          }
+        ],
+        "ungated_rrf_top32": [
+          5125,
+          5030,
+          5031,
+          5029,
+          5036,
+          5024,
+          5038,
+          5027,
+          5056,
+          5035,
+          5054,
+          5037,
+          5047,
+          5032,
+          5034,
+          5053,
+          5061,
+          5092,
+          5033,
+          5082,
+          5058,
+          5052,
+          5097,
+          5049,
+          5066,
+          5113,
+          5060,
+          5012,
+          5025,
+          5023,
+          5048,
+          5028
+        ],
+        "gated84_rrf_top32": [],
+        "reranked84_top8": []
+      },
+      "rewritten": {
+        "query": "JavaScript Promise biểu diễn điều gì về việc hoàn tất một tác vụ bất đồng bộ?",
+        "targets": [
+          {
+            "item_id": 5031,
+            "best_dense_cosine": 0.8341883420944214,
+            "best_dense_chunk_id": "5031:5",
+            "dense_item_rank": 1,
+            "bm25_item_rank": 3,
+            "best_bm25_score": 8.094450018276644,
+            "passes_dense_floor84": false,
+            "ungated_rrf_rank": 3,
+            "gated84_rrf_rank": null,
+            "reranked84_rank": null
+          }
+        ],
+        "ungated_rrf_top32": [
+          5125,
+          5030,
+          5031,
+          5029,
+          5036,
+          5024,
+          5038,
+          5027,
+          5056,
+          5035,
+          5054,
+          5037,
+          5047,
+          5032,
+          5034,
+          5053,
+          5061,
+          5092,
+          5033,
+          5082,
+          5058,
+          5052,
+          5097,
+          5049,
+          5066,
+          5113,
+          5060,
+          5012,
+          5025,
+          5023,
+          5048,
+          5028
+        ],
+        "gated84_rrf_top32": [],
+        "reranked84_top8": []
+      }
+    },
+    {
+      "group": "confirmation_after",
+      "prior": {
+        "id": "confirmation-vi-5062",
+        "query": "Module Python nào hỗ trợ số hữu tỉ thông qua Fraction?",
+        "expected": [
+          5062
+        ],
+        "ranked": [],
+        "note": "",
+        "ms": 69.85820499903639,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      "current": {
+        "id": "confirmation-vi-5062",
+        "query": "Module Python nào hỗ trợ số hữu tỉ thông qua Fraction?",
+        "rewritten": "Module Python nào hỗ trợ số hữu tỉ thông qua Fraction?",
+        "expected": [
+          5062
+        ],
+        "ranked": [],
+        "note": "",
+        "ms": 227.44828199938638,
+        "metrics": {
+          "1": {
+            "recall": 0.0,
+            "precision_judged": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "empty_result": null
+          },
+          "5": {
+            "recall": 0.0,
+            "precision_judged": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "empty_result": null
+          },
+          "8": {
+            "recall": 0.0,
+            "precision_judged": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "empty_result": null
+          }
+        }
+      },
+      "raw": {
+        "query": "Module Python nào hỗ trợ số hữu tỉ thông qua Fraction?",
+        "targets": [
+          {
+            "item_id": 5062,
+            "best_dense_cosine": 0.8389824628829956,
+            "best_dense_chunk_id": "5062:2",
+            "dense_item_rank": 1,
+            "bm25_item_rank": 5,
+            "best_bm25_score": 9.281821771534121,
+            "passes_dense_floor84": false,
+            "ungated_rrf_rank": 6,
+            "gated84_rrf_rank": null,
+            "reranked84_rank": null
+          }
+        ],
+        "ungated_rrf_top32": [
+          5112,
+          5108,
+          5099,
+          5102,
+          5090,
+          5062,
+          5123,
+          5079,
+          5114,
+          5097,
+          5103,
+          5063,
+          5118,
+          5101,
+          5126,
+          5116,
+          5087,
+          5105,
+          5122,
+          5119,
+          5128,
+          5085,
+          5113,
+          5086,
+          5095,
+          5110,
+          5127,
+          5081,
+          5082,
+          5066,
+          5117,
+          5060
+        ],
+        "gated84_rrf_top32": [],
+        "reranked84_top8": []
+      },
+      "rewritten": {
+        "query": "Module Python nào hỗ trợ số hữu tỉ thông qua Fraction?",
+        "targets": [
+          {
+            "item_id": 5062,
+            "best_dense_cosine": 0.8389824628829956,
+            "best_dense_chunk_id": "5062:2",
+            "dense_item_rank": 1,
+            "bm25_item_rank": 5,
+            "best_bm25_score": 9.281821771534121,
+            "passes_dense_floor84": false,
+            "ungated_rrf_rank": 6,
+            "gated84_rrf_rank": null,
+            "reranked84_rank": null
+          }
+        ],
+        "ungated_rrf_top32": [
+          5112,
+          5108,
+          5099,
+          5102,
+          5090,
+          5062,
+          5123,
+          5079,
+          5114,
+          5097,
+          5103,
+          5063,
+          5118,
+          5101,
+          5126,
+          5116,
+          5087,
+          5105,
+          5122,
+          5119,
+          5128,
+          5085,
+          5113,
+          5086,
+          5095,
+          5110,
+          5127,
+          5081,
+          5082,
+          5066,
+          5117,
+          5060
+        ],
+        "gated84_rrf_top32": [],
+        "reranked84_top8": []
+      }
+    },
+    {
+      "group": "confirmation_after",
+      "prior": {
+        "id": "confirmation-vi-5073",
+        "query": "Module Python nào triển khai HMAC để xác thực thông điệp?",
+        "expected": [
+          5073
+        ],
+        "ranked": [],
+        "note": "",
+        "ms": 56.01656700127933,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      "current": {
+        "id": "confirmation-vi-5073",
+        "query": "Module Python nào triển khai HMAC để xác thực thông điệp?",
+        "rewritten": "module python nào triển khai mac để xác thực thông điệp",
+        "expected": [
+          5073
+        ],
+        "ranked": [],
+        "note": "",
+        "ms": 567.3159610014409,
+        "metrics": {
+          "1": {
+            "recall": 0.0,
+            "precision_judged": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "empty_result": null
+          },
+          "5": {
+            "recall": 0.0,
+            "precision_judged": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "empty_result": null
+          },
+          "8": {
+            "recall": 0.0,
+            "precision_judged": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "empty_result": null
+          }
+        }
+      },
+      "raw": {
+        "query": "Module Python nào triển khai HMAC để xác thực thông điệp?",
+        "targets": [
+          {
+            "item_id": 5073,
+            "best_dense_cosine": 0.8489254713058472,
+            "best_dense_chunk_id": "5073:0",
+            "dense_item_rank": 1,
+            "bm25_item_rank": 1,
+            "best_bm25_score": 12.079880889340842,
+            "passes_dense_floor84": true,
+            "ungated_rrf_rank": 6,
+            "gated84_rrf_rank": 1,
+            "reranked84_rank": 1
+          }
+        ],
+        "ungated_rrf_top32": [
+          5060,
+          5087,
+          5120,
+          5075,
+          5070,
+          5073,
+          5074,
+          5123,
+          5079,
+          5119,
+          5097,
+          5068,
+          5093,
+          5116,
+          5118,
+          5128,
+          5080,
+          5085,
+          5086,
+          5088,
+          5127,
+          5081,
+          5117,
+          5069,
+          5092,
+          5113,
+          5082,
+          5091,
+          5100,
+          5107,
+          5090,
+          5121
+        ],
+        "gated84_rrf_top32": [
+          5073
+        ],
+        "reranked84_top8": [
+          5073
+        ]
+      },
+      "rewritten": {
+        "query": "module python nào triển khai mac để xác thực thông điệp",
+        "targets": [
+          {
+            "item_id": 5073,
+            "best_dense_cosine": 0.8257248401641846,
+            "best_dense_chunk_id": "5073:1",
+            "dense_item_rank": 1,
+            "bm25_item_rank": 20,
+            "best_bm25_score": 4.98341701986463,
+            "passes_dense_floor84": false,
+            "ungated_rrf_rank": 3,
+            "gated84_rrf_rank": null,
+            "reranked84_rank": null
+          }
+        ],
+        "ungated_rrf_top32": [
+          5087,
+          5060,
+          5073,
+          5123,
+          5079,
+          5080,
+          5113,
+          5086,
+          5097,
+          5064,
+          5119,
+          5019,
+          5066,
+          5076,
+          5014,
+          5116,
+          5074,
+          5128,
+          5068,
+          5085,
+          5118,
+          5117,
+          5127,
+          5069,
+          5081,
+          5065,
+          5092,
+          5093,
+          5091,
+          5070,
+          5100,
+          5121
+        ],
+        "gated84_rrf_top32": [],
+        "reranked84_top8": []
+      }
+    },
+    {
+      "group": "confirmation_after",
+      "prior": {
+        "id": "confirmation-vi-5084",
+        "query": "Decorator Python nào sinh __init__ và __repr__ từ các field có type annotation?",
+        "expected": [
+          5084
+        ],
+        "ranked": [],
+        "note": "",
+        "ms": 75.32607600114716,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      "current": {
+        "id": "confirmation-vi-5084",
+        "query": "Decorator Python nào sinh __init__ và __repr__ từ các field có type annotation?",
+        "rewritten": "Decorator Python nào sinh __init__ và __repr__ từ các field có type annotation?",
+        "expected": [
+          5084
+        ],
+        "ranked": [],
+        "note": "",
+        "ms": 159.91698899961193,
+        "metrics": {
+          "1": {
+            "recall": 0.0,
+            "precision_judged": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "empty_result": null
+          },
+          "5": {
+            "recall": 0.0,
+            "precision_judged": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "empty_result": null
+          },
+          "8": {
+            "recall": 0.0,
+            "precision_judged": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "empty_result": null
+          }
+        }
+      },
+      "raw": {
+        "query": "Decorator Python nào sinh __init__ và __repr__ từ các field có type annotation?",
+        "targets": [
+          {
+            "item_id": 5084,
+            "best_dense_cosine": 0.8309469223022461,
+            "best_dense_chunk_id": "5084:3",
+            "dense_item_rank": 1,
+            "bm25_item_rank": 1,
+            "best_bm25_score": 27.576358247053715,
+            "passes_dense_floor84": false,
+            "ungated_rrf_rank": 3,
+            "gated84_rrf_rank": null,
+            "reranked84_rank": null
+          }
+        ],
+        "ungated_rrf_top32": [
+          5060,
+          5107,
+          5084,
+          5085,
+          5051,
+          5099,
+          5110,
+          5118,
+          5061,
+          5059,
+          5050,
+          5104,
+          5065,
+          5094,
+          5103,
+          5113,
+          5042,
+          5120,
+          5090,
+          5092,
+          5025,
+          5106,
+          5122,
+          5091,
+          5032,
+          5093,
+          5062,
+          5078,
+          5088,
+          5040,
+          5069,
+          5123
+        ],
+        "gated84_rrf_top32": [],
+        "reranked84_top8": []
+      },
+      "rewritten": {
+        "query": "Decorator Python nào sinh __init__ và __repr__ từ các field có type annotation?",
+        "targets": [
+          {
+            "item_id": 5084,
+            "best_dense_cosine": 0.8309469223022461,
+            "best_dense_chunk_id": "5084:3",
+            "dense_item_rank": 1,
+            "bm25_item_rank": 1,
+            "best_bm25_score": 27.576358247053715,
+            "passes_dense_floor84": false,
+            "ungated_rrf_rank": 3,
+            "gated84_rrf_rank": null,
+            "reranked84_rank": null
+          }
+        ],
+        "ungated_rrf_top32": [
+          5060,
+          5107,
+          5084,
+          5085,
+          5051,
+          5099,
+          5110,
+          5118,
+          5061,
+          5059,
+          5050,
+          5104,
+          5065,
+          5094,
+          5103,
+          5113,
+          5042,
+          5120,
+          5090,
+          5092,
+          5025,
+          5106,
+          5122,
+          5091,
+          5032,
+          5093,
+          5062,
+          5078,
+          5088,
+          5040,
+          5069,
+          5123
+        ],
+        "gated84_rrf_top32": [],
+        "reranked84_top8": []
+      }
+    },
+    {
+      "group": "confirmation_after",
+      "prior": {
+        "id": "confirmation-vi-5098",
+        "query": "Module Python nào biểu diễn đường dẫn filesystem thành object?",
+        "expected": [
+          5098
+        ],
+        "ranked": [],
+        "note": "",
+        "ms": 57.31876299978467,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      "current": {
+        "id": "confirmation-vi-5098",
+        "query": "Module Python nào biểu diễn đường dẫn filesystem thành object?",
+        "rewritten": "Module Python nào biểu diễn đường dẫn filesystem thành object?",
+        "expected": [
+          5098
+        ],
+        "ranked": [],
+        "note": "",
+        "ms": 227.2524110012455,
+        "metrics": {
+          "1": {
+            "recall": 0.0,
+            "precision_judged": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "empty_result": null
+          },
+          "5": {
+            "recall": 0.0,
+            "precision_judged": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "empty_result": null
+          },
+          "8": {
+            "recall": 0.0,
+            "precision_judged": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "empty_result": null
+          }
+        }
+      },
+      "raw": {
+        "query": "Module Python nào biểu diễn đường dẫn filesystem thành object?",
+        "targets": [
+          {
+            "item_id": 5098,
+            "best_dense_cosine": 0.8351908922195435,
+            "best_dense_chunk_id": "5098:0",
+            "dense_item_rank": 1,
+            "bm25_item_rank": 4,
+            "best_bm25_score": 9.024002824015682,
+            "passes_dense_floor84": false,
+            "ungated_rrf_rank": 1,
+            "gated84_rrf_rank": null,
+            "reranked84_rank": null
+          }
+        ],
+        "ungated_rrf_top32": [
+          5098,
+          5060,
+          5118,
+          5078,
+          5087,
+          5074,
+          5123,
+          5079,
+          5097,
+          5119,
+          5067,
+          5070,
+          5089,
+          5092,
+          5077,
+          5059,
+          5091,
+          5081,
+          5096,
+          5065,
+          5094,
+          5086,
+          5111,
+          5001,
+          5066,
+          5120,
+          5080,
+          5116,
+          5107,
+          5113,
+          5071,
+          5110
+        ],
+        "gated84_rrf_top32": [],
+        "reranked84_top8": []
+      },
+      "rewritten": {
+        "query": "Module Python nào biểu diễn đường dẫn filesystem thành object?",
+        "targets": [
+          {
+            "item_id": 5098,
+            "best_dense_cosine": 0.8351908922195435,
+            "best_dense_chunk_id": "5098:0",
+            "dense_item_rank": 1,
+            "bm25_item_rank": 4,
+            "best_bm25_score": 9.024002824015682,
+            "passes_dense_floor84": false,
+            "ungated_rrf_rank": 1,
+            "gated84_rrf_rank": null,
+            "reranked84_rank": null
+          }
+        ],
+        "ungated_rrf_top32": [
+          5098,
+          5060,
+          5118,
+          5078,
+          5087,
+          5074,
+          5123,
+          5079,
+          5097,
+          5119,
+          5067,
+          5070,
+          5089,
+          5092,
+          5077,
+          5059,
+          5091,
+          5081,
+          5096,
+          5065,
+          5094,
+          5086,
+          5111,
+          5001,
+          5066,
+          5120,
+          5080,
+          5116,
+          5107,
+          5113,
+          5071,
+          5110
+        ],
+        "gated84_rrf_top32": [],
+        "reranked84_top8": []
+      }
+    },
+    {
+      "group": "confirmation_after",
+      "prior": {
+        "id": "confirmation-vi-5109",
+        "query": "Module Python nào hỗ trợ so khớp biểu thức chính quy trên chuỗi?",
+        "expected": [
+          5109
+        ],
+        "ranked": [],
+        "note": "",
+        "ms": 57.310179001433426,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      "current": {
+        "id": "confirmation-vi-5109",
+        "query": "Module Python nào hỗ trợ so khớp biểu thức chính quy trên chuỗi?",
+        "rewritten": "Module Python nào hỗ trợ so khớp biểu thức chính quy trên chuỗi?",
+        "expected": [
+          5109
+        ],
+        "ranked": [],
+        "note": "",
+        "ms": 279.54166999916197,
+        "metrics": {
+          "1": {
+            "recall": 0.0,
+            "precision_judged": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "empty_result": null
+          },
+          "5": {
+            "recall": 0.0,
+            "precision_judged": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "empty_result": null
+          },
+          "8": {
+            "recall": 0.0,
+            "precision_judged": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "empty_result": null
+          }
+        }
+      },
+      "raw": {
+        "query": "Module Python nào hỗ trợ so khớp biểu thức chính quy trên chuỗi?",
+        "targets": [
+          {
+            "item_id": 5109,
+            "best_dense_cosine": 0.8100125789642334,
+            "best_dense_chunk_id": "5109:11",
+            "dense_item_rank": 2,
+            "bm25_item_rank": 17,
+            "best_bm25_score": 5.469122572086308,
+            "passes_dense_floor84": false,
+            "ungated_rrf_rank": 1,
+            "gated84_rrf_rank": null,
+            "reranked84_rank": null
+          }
+        ],
+        "ungated_rrf_top32": [
+          5109,
+          5115,
+          5074,
+          5122,
+          5123,
+          5079,
+          5097,
+          5119,
+          5113,
+          5116,
+          5059,
+          5085,
+          5093,
+          5082,
+          5108,
+          5111,
+          5087,
+          5120,
+          5107,
+          5040,
+          5118,
+          5128,
+          5060,
+          5121,
+          5092,
+          5086,
+          5126,
+          5100,
+          5081,
+          5114,
+          5127,
+          5080
+        ],
+        "gated84_rrf_top32": [],
+        "reranked84_top8": []
+      },
+      "rewritten": {
+        "query": "Module Python nào hỗ trợ so khớp biểu thức chính quy trên chuỗi?",
+        "targets": [
+          {
+            "item_id": 5109,
+            "best_dense_cosine": 0.8100125789642334,
+            "best_dense_chunk_id": "5109:11",
+            "dense_item_rank": 2,
+            "bm25_item_rank": 17,
+            "best_bm25_score": 5.469122572086308,
+            "passes_dense_floor84": false,
+            "ungated_rrf_rank": 1,
+            "gated84_rrf_rank": null,
+            "reranked84_rank": null
+          }
+        ],
+        "ungated_rrf_top32": [
+          5109,
+          5115,
+          5074,
+          5122,
+          5123,
+          5079,
+          5097,
+          5119,
+          5113,
+          5116,
+          5059,
+          5085,
+          5093,
+          5082,
+          5108,
+          5111,
+          5087,
+          5120,
+          5107,
+          5040,
+          5118,
+          5128,
+          5060,
+          5121,
+          5092,
+          5086,
+          5126,
+          5100,
+          5081,
+          5114,
+          5127,
+          5080
+        ],
+        "gated84_rrf_top32": [],
+        "reranked84_top8": []
+      }
+    },
+    {
+      "group": "blind_current",
+      "prior": {
+        "id": "blind-positive-07",
+        "query": "Khi dùng configparser để đọc tệp INI do người lạ gửi, tài liệu cảnh báo rủi ro tài nguyên nào và đề xuất giới hạn gì?",
+        "rewritten": "Khi dùng configparser để đọc tệp INI do người lạ gửi, tài liệu cảnh báo rủi ro tài nguyên nào và đề xuất giới hạn gì?",
+        "expected": [
+          5066
+        ],
+        "ranked": [],
+        "note": "",
+        "ms": 159.27963700050896,
+        "metrics": {
+          "1": {
+            "recall": 0.0,
+            "precision_judged": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "empty_result": null
+          },
+          "5": {
+            "recall": 0.0,
+            "precision_judged": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "empty_result": null
+          },
+          "8": {
+            "recall": 0.0,
+            "precision_judged": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "empty_result": null
+          }
+        }
+      },
+      "current": {
+        "id": "blind-positive-07",
+        "query": "Khi dùng configparser để đọc tệp INI do người lạ gửi, tài liệu cảnh báo rủi ro tài nguyên nào và đề xuất giới hạn gì?",
+        "rewritten": "Khi dùng configparser để đọc tệp INI do người lạ gửi, tài liệu cảnh báo rủi ro tài nguyên nào và đề xuất giới hạn gì?",
+        "expected": [
+          5066
+        ],
+        "ranked": [],
+        "note": "",
+        "ms": 174.77005100045062,
+        "metrics": {
+          "1": {
+            "recall": 0.0,
+            "precision_judged": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "empty_result": null
+          },
+          "5": {
+            "recall": 0.0,
+            "precision_judged": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "empty_result": null
+          },
+          "8": {
+            "recall": 0.0,
+            "precision_judged": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "empty_result": null
+          }
+        }
+      },
+      "raw": {
+        "query": "Khi dùng configparser để đọc tệp INI do người lạ gửi, tài liệu cảnh báo rủi ro tài nguyên nào và đề xuất giới hạn gì?",
+        "targets": [
+          {
+            "item_id": 5066,
+            "best_dense_cosine": 0.8245291709899902,
+            "best_dense_chunk_id": "5066:5",
+            "dense_item_rank": 1,
+            "bm25_item_rank": 1,
+            "best_bm25_score": 19.944032423829512,
+            "passes_dense_floor84": false,
+            "ungated_rrf_rank": 1,
+            "gated84_rrf_rank": null,
+            "reranked84_rank": null
+          }
+        ],
+        "ungated_rrf_top32": [
+          5066,
+          5096,
+          5112,
+          5024,
+          5002,
+          5047,
+          5094,
+          5023,
+          5080,
+          5025,
+          5068,
+          5029,
+          5082,
+          5065,
+          5014,
+          5127,
+          5086,
+          5118,
+          5069,
+          5093,
+          5063,
+          5052,
+          5090,
+          5001,
+          5040,
+          5097,
+          5092,
+          5113,
+          5105,
+          5078,
+          5088,
+          5072
+        ],
+        "gated84_rrf_top32": [],
+        "reranked84_top8": []
+      },
+      "rewritten": {
+        "query": "Khi dùng configparser để đọc tệp INI do người lạ gửi, tài liệu cảnh báo rủi ro tài nguyên nào và đề xuất giới hạn gì?",
+        "targets": [
+          {
+            "item_id": 5066,
+            "best_dense_cosine": 0.8245291709899902,
+            "best_dense_chunk_id": "5066:5",
+            "dense_item_rank": 1,
+            "bm25_item_rank": 1,
+            "best_bm25_score": 19.944032423829512,
+            "passes_dense_floor84": false,
+            "ungated_rrf_rank": 1,
+            "gated84_rrf_rank": null,
+            "reranked84_rank": null
+          }
+        ],
+        "ungated_rrf_top32": [
+          5066,
+          5096,
+          5112,
+          5024,
+          5002,
+          5047,
+          5094,
+          5023,
+          5080,
+          5025,
+          5068,
+          5029,
+          5082,
+          5065,
+          5014,
+          5127,
+          5086,
+          5118,
+          5069,
+          5093,
+          5063,
+          5052,
+          5090,
+          5001,
+          5040,
+          5097,
+          5092,
+          5113,
+          5105,
+          5078,
+          5088,
+          5072
+        ],
+        "gated84_rrf_top32": [],
+        "reranked84_top8": []
+      }
+    },
+    {
+      "group": "blind_current",
+      "prior": {
+        "id": "blind-positive-11",
+        "query": "Sau khi khai báo các đối số dòng lệnh với argparse, phương thức nào thực sự phân tích chúng và kết quả được đặt trong kiểu đối tượng nào?",
+        "rewritten": "Sau khi khai báo các đối số dòng lệnh với argparse, phương thức nào thực sự phân tích chúng và kết quả được đặt trong kiểu đối tượng nào?",
+        "expected": [
+          5094
+        ],
+        "ranked": [],
+        "note": "",
+        "ms": 154.21924300062528,
+        "metrics": {
+          "1": {
+            "recall": 0.0,
+            "precision_judged": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "empty_result": null
+          },
+          "5": {
+            "recall": 0.0,
+            "precision_judged": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "empty_result": null
+          },
+          "8": {
+            "recall": 0.0,
+            "precision_judged": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "empty_result": null
+          }
+        }
+      },
+      "current": {
+        "id": "blind-positive-11",
+        "query": "Sau khi khai báo các đối số dòng lệnh với argparse, phương thức nào thực sự phân tích chúng và kết quả được đặt trong kiểu đối tượng nào?",
+        "rewritten": "Sau khi khai báo các đối số dòng lệnh với argparse, phương thức nào thực sự phân tích chúng và kết quả được đặt trong kiểu đối tượng nào?",
+        "expected": [
+          5094
+        ],
+        "ranked": [],
+        "note": "",
+        "ms": 281.5630149998469,
+        "metrics": {
+          "1": {
+            "recall": 0.0,
+            "precision_judged": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "empty_result": null
+          },
+          "5": {
+            "recall": 0.0,
+            "precision_judged": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "empty_result": null
+          },
+          "8": {
+            "recall": 0.0,
+            "precision_judged": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "empty_result": null
+          }
+        }
+      },
+      "raw": {
+        "query": "Sau khi khai báo các đối số dòng lệnh với argparse, phương thức nào thực sự phân tích chúng và kết quả được đặt trong kiểu đối tượng nào?",
+        "targets": [
+          {
+            "item_id": 5094,
+            "best_dense_cosine": 0.8183125257492065,
+            "best_dense_chunk_id": "5094:0",
+            "dense_item_rank": 1,
+            "bm25_item_rank": 1,
+            "best_bm25_score": 9.074093559382337,
+            "passes_dense_floor84": false,
+            "ungated_rrf_rank": 1,
+            "gated84_rrf_rank": null,
+            "reranked84_rank": null
+          }
+        ],
+        "ungated_rrf_top32": [
+          5094,
+          5107,
+          5119,
+          5113,
+          5125,
+          5063,
+          5086,
+          5040,
+          5099,
+          5085,
+          5060,
+          5002,
+          5093,
+          5114,
+          5121,
+          5110,
+          5065,
+          5122,
+          5066,
+          5036,
+          5061,
+          5080,
+          5092,
+          5031,
+          5049,
+          5111,
+          5124,
+          5034,
+          5050,
+          5108,
+          5056,
+          5069
+        ],
+        "gated84_rrf_top32": [],
+        "reranked84_top8": []
+      },
+      "rewritten": {
+        "query": "Sau khi khai báo các đối số dòng lệnh với argparse, phương thức nào thực sự phân tích chúng và kết quả được đặt trong kiểu đối tượng nào?",
+        "targets": [
+          {
+            "item_id": 5094,
+            "best_dense_cosine": 0.8183125257492065,
+            "best_dense_chunk_id": "5094:0",
+            "dense_item_rank": 1,
+            "bm25_item_rank": 1,
+            "best_bm25_score": 9.074093559382337,
+            "passes_dense_floor84": false,
+            "ungated_rrf_rank": 1,
+            "gated84_rrf_rank": null,
+            "reranked84_rank": null
+          }
+        ],
+        "ungated_rrf_top32": [
+          5094,
+          5107,
+          5119,
+          5113,
+          5125,
+          5063,
+          5086,
+          5040,
+          5099,
+          5085,
+          5060,
+          5002,
+          5093,
+          5114,
+          5121,
+          5110,
+          5065,
+          5122,
+          5066,
+          5036,
+          5061,
+          5080,
+          5092,
+          5031,
+          5049,
+          5111,
+          5124,
+          5034,
+          5050,
+          5108,
+          5056,
+          5069
+        ],
+        "gated84_rrf_top32": [],
+        "reranked84_top8": []
+      }
+    }
+  ],
+  "peak_rss_mib": 2434.2578125
+}

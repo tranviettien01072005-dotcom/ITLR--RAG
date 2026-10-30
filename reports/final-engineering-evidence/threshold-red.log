@@ -1,0 +1,31 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+____ test_search_default_uses_calibrated_floor_and_keeps_explicit_override _____
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7d7c7fabb360>
+
+    def test_search_default_uses_calibrated_floor_and_keeps_explicit_override(monkeypatch):
+        from itlr.api.server import SearchReq
+        from itlr.engine import RecommenderEngine
+        from itlr.chatbot import query_understanding, knowledge_base
+        from itlr.core.chunks import ChunkIndex
+    
+        service = fixture_service()
+        service.index = ChunkIndex([dict(item_id=1, chunk_idx=0, chunk_text='docker')],
+                                   [[.86, (1 - .86**2)**.5]])
+        service.items[1].update(title='Docker', category='DevOps', topics='docker',
+                                description='Docker', instructor='', platform='Docs',
+                                link='https://example.org')
+        monkeypatch.setattr(query_understanding, 'understand_query', lambda *a: dict(
+            corrected='docker', expansions=[], display='docker', corrections=[]))
+        monkeypatch.setattr(knowledge_base, 'safe_concept_match', lambda *a: None)
+        engine = RecommenderEngine(None, None, {'retrieval': service}, None, None)
+>       assert SearchReq(query='docker').min_pct == 84
+E       AssertionError: assert 90 == 84
+E        +  where 90 = SearchReq(query='docker', type=None, min_pct=90).min_pct
+E        +    where SearchReq(query='docker', type=None, min_pct=90) = <class 'itlr.api.server.SearchReq'>(query='docker')
+
+tests/test_retrieval_service.py:48: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_retrieval_service.py::test_search_default_uses_calibrated_floor_and_keeps_explicit_override
+1 failed, 5 deselected in 2.79s

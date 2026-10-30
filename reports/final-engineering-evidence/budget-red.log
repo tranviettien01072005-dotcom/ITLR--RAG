@@ -1,0 +1,31 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+________ test_ollama_continuous_tokens_cannot_bypass_generation_budget _________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x79cf02df36f0>
+
+    def test_ollama_continuous_tokens_cannot_bypass_generation_budget(monkeypatch):
+        monkeypatch.setattr(lc, 'provider_status', lambda: 'ollama')
+        monkeypatch.setattr(lc, 'ollama_model', lambda: 'fixture')
+        monkeypatch.setenv('OLLAMA_TIMEOUT', '1')
+        ticks = iter([0., .4, .8, 1.2, 1.6])
+        monkeypatch.setattr(lc.time, 'monotonic', lambda: next(ticks))
+        closed = []
+    
+        class Response:
+            def __enter__(self):
+                return iter([b'{"message":{"content":"piece"},"done":false}'] * 3 +
+                            [b'{"done":true,"done_reason":"stop"}'])
+    
+            def __exit__(self, *args):
+                closed.append(True)
+    
+        monkeypatch.setattr(lc.urllib.request, 'urlopen', lambda *a, **kw: Response())
+>       with pytest.raises(lc.LLMError, match='budget'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE LLMError
+
+tests/test_llm_client.py:312: Failed
+=========================== short test summary info ============================
+FAILED tests/test_llm_client.py::test_ollama_continuous_tokens_cannot_bypass_generation_budget
+1 failed, 69 deselected in 0.18s

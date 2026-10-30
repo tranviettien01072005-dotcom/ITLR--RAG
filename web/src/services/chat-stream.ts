@@ -52,6 +52,7 @@ export async function* readChatEvents(body: ReadableStream<Uint8Array>): AsyncGe
         if (!data) continue;
         const event = eventSchema.parse(JSON.parse(data));
         if (ended) throw new Error("Event after stream completion");
+        if (finalized && event.type !== "done") throw new Error("Event after final response");
         if (event.type === "text") {
           totalText += event.text.length;
           if (finalized || totalText > 1_000_000) throw new Error("Invalid stream sequence");
@@ -67,7 +68,7 @@ export async function* readChatEvents(body: ReadableStream<Uint8Array>): AsyncGe
       if (buffer.length > 1_100_000) throw new Error("Stream event too large");
     }
     buffer += decoder.decode();
-    if (buffer.trim() || !finalized) throw new Error("Incomplete chat stream");
+    if (buffer.trim() || !finalized || !ended) throw new Error("Incomplete chat stream");
   } finally {
     await reader.cancel().catch(() => {});
     reader.releaseLock();

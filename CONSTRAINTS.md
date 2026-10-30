@@ -4,10 +4,11 @@ Các ràng buộc sau là mức tối thiểu cho **ITLR–RAG | Intelligent IT 
 
 ## Kiểm thử và hồi quy
 
-Baseline hiện hành: **414 Python PASS/0 skip**, **132 Web PASS**, coverage Python
-statements khoảng **65,73%**, Web lines **45,31%**. Đây là số đo local, không phải
+Baseline hiện hành: **445 Python PASS/0 skip**, **145 Web PASS**, coverage Python
+statements khoảng **66,70%**, Web lines **46,55%**, theo
+[release validation](reports/RELEASE_READINESS_FINAL.md). Đây là số đo local, không phải
 coverage threshold đã được CI enforce. So sánh cùng phạm vi đo sau refactor; không
-giảm coverage hoặc bỏ assertion để đạt PASS. Các checkpoint 256/260 bên dưới là lịch sử.
+giảm coverage hoặc bỏ assertion để đạt PASS. Các checkpoint 256/260/414 bên dưới là lịch sử.
 
 | Ràng buộc | Cách kiểm |
 |---|---|
@@ -53,8 +54,8 @@ Groundedness/relevancy đo bằng luật phải gọi là proxy/xấp xỉ. Cita
 |---|---|---|
 | Search p95 | [Latency lịch sử](reports/latency.md), không phải SLO runtime | ≤1,5 s cho `/api/search` |
 | Chat template p95 | Cùng báo cáo lịch sử | ≤2,0 s |
-| Python coverage | 65,73% statements trên `itlr/`, gồm pipelines; khác phạm vi với mục tiêu bên phải | ≥60% trên `itlr/`, không tính pipelines build |
-| Web line coverage | 45,31% ở checkpoint refactor hiện hành | Chưa chốt floor mới |
+| Python coverage | 66,70% statements trên `itlr/`, gồm pipelines; khác phạm vi với mục tiêu bên phải | ≥60% trên `itlr/`, không tính pipelines build |
+| Web line coverage | 46,48% ở checkpoint engineering hiện hành | Chưa chốt floor mới |
 | Kích thước file | Chatbot 932 dòng, recommender 884 dòng sau extraction | File mới khoảng ≤800 dòng; tách theo trách nhiệm khi cần |
 
 Đây là đề xuất, không phải ngưỡng đã đạt hoặc đã bật trong CI. Thay đổi sàn phải sửa tài liệu này, ghi lý do và bằng chứng; không áp dụng hồi tố để thông qua thay đổi đang review. Sàn mới cần ngưỡng và cách kiểm máy móc rõ ràng.

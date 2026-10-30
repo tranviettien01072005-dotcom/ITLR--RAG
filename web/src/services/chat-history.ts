@@ -7,7 +7,10 @@ export async function ownedChatHistory(userId: number, conversationId?: number) 
   const rows = await query<{ role: string; content: string }>(
     "SELECT role, content FROM messages WHERE conversation_id = $1 ORDER BY id DESC LIMIT 20", [conversationId],
   );
-  return rows.reverse().filter(row => row.role === "user" || row.role === "assistant");
+  return rows.reverse()
+    .filter(row => (row.role === "user" || row.role === "assistant") && row.content.length > 0)
+    // FastAPI caps each history message at 4000 chars; keep the DB text intact.
+    .map(row => ({ ...row, content: row.content.slice(0, 4000).replace(/[\uD800-\uDBFF]$/, "") }));
 }
 
 export async function saveChat(userId: number, conversationId: number | undefined, message: string, response: string, metadata: Record<string, unknown> = {}): Promise<number> {

@@ -1,0 +1,17 @@
+{
+  "scope": "Real Chrome CDP -> rebuilt Express -> isolated PostgreSQL; deterministic upstream fixture. Completion boundary cases intercept browser HTTP responses, not real model output.",
+  "checks": [
+    "real-browser-login-after-postgres-restart",
+    "learning-progress-survives-db-restart",
+    "persisted-chat-renders-in-browser",
+    "real-browser-sse-persists-and-completes",
+    "browser-reload-confirms-persisted-chat",
+    "final-missing-done-browser-never-completes",
+    "final-invalid-utf8-browser-never-completes",
+    "final-done-browser-completes",
+    "browser-no-uncaught-exceptions"
+  ],
+  "passed": 9,
+  "interceptedResponses": 3,
+  "runtimeExceptions": []
+}

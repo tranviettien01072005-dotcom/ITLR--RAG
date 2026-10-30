@@ -26,7 +26,10 @@ Cập nhật: 2026-10-30. Tên sản phẩm: **ITLR–RAG | Intelligent IT Learn
 
 Artifacts cũ giữ đường V2. Không xóa hoặc di chuyển shim `itlr/core/bm25.py`: pickle cũ còn tham chiếu module này. `/admin/reload` yêu cầu `X-Admin-Token` khớp `ITLR_ADMIN_TOKEN`; chưa cấu hình phải 403. CF tùy chọn; thiếu model phải trả 503 tại personas/for-you và không làm hỏng retrieval.
 
-Checkpoint hiện hành và blockers: [restructuring continuation](reports/RESTRUCTURING_CONTINUATION_2026-10-30.md). Baseline hiện tại 414 Python PASS/0 skip và 132 Web PASS; số lịch sử bên dưới không phải lần chạy mới.
+Checkpoint hiện hành và blockers: [engineering review](reports/FINAL_ENGINEERING_REVIEW.md).
+Baseline mới 445 Python PASS/0 skip và 140 Web PASS. Checkpoint 414/132 ở
+[restructuring continuation](reports/RESTRUCTURING_CONTINUATION_2026-10-30.md) là lịch sử;
+không trình bày các số này như lần chạy mới.
 
 ## Kiểm chứng trước bàn giao
 

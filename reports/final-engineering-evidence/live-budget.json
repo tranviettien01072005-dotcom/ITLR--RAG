@@ -1,0 +1,9 @@
+{
+  "model": "qwen2.5:3b",
+  "mock": false,
+  "configured_budget_s": 2,
+  "elapsed_s": 2.1404552570002124,
+  "deltas_received": 2,
+  "error": "Ollama generation time budget exhausted",
+  "completed": false
+}

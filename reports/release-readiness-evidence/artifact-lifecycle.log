@@ -1,0 +1,7 @@
+Thiếu /tmp/itlr-release/artifact-lifecycle-v2/versions/fixture-a/cf_model.pkl — Collaborative Filtering bị tắt (tùy chọn V2); /api/personas và /api/for-you sẽ trả 503 cho tới khi build CF.
+Could not reach the Hub (Cannot reach https://huggingface.co/api/models/intfloat/multilingual-e5-base: offline mode is enabled. To disable it, please unset the `HF_HUB_OFFLINE` environment variable.). Using cached commit hash for 'intfloat/multilingual-e5-base'.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 6525.22it/s]
+Thiếu /tmp/itlr-release/artifact-lifecycle-v2/versions/fixture-b/cf_model.pkl — Collaborative Filtering bị tắt (tùy chọn V2); /api/personas và /api/for-you sẽ trả 503 cho tới khi build CF.
+Could not reach the Hub (Cannot reach https://huggingface.co/api/models/intfloat/multilingual-e5-base: offline mode is enabled. To disable it, please unset the `HF_HUB_OFFLINE` environment variable.). Using cached commit hash for 'intfloat/multilingual-e5-base'.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 4722.49it/s]
+['fixture-a trusted copy integrity', 'fixture-b trusted copy integrity', 'isolated pointer a', 'real E5 engine load a,118items,retrieval', 'isolated pointer b', 'real engine reload b', 'isolated rollback a', 'tampered copy activation rejected', 'failed switch retains previous pointer']

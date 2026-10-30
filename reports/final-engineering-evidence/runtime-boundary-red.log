@@ -1,0 +1,465 @@
+F.FFFF                                                                   [100%]
+=================================== FAILURES ===================================
+____ test_dense_search_keeps_raw_text_unless_a_correction_is_needed[False] _____
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7d618250a2c0>
+changed = False
+
+    @pytest.mark.parametrize('changed', [False, True])
+    def test_dense_search_keeps_raw_text_unless_a_correction_is_needed(monkeypatch, changed):
+        from types import SimpleNamespace
+        from itlr.engine import RecommenderEngine
+        from itlr.chatbot import query_understanding, knowledge_base
+    
+        question = 'Which Python function handles this case?'
+        normalized = 'which python function handles this case'
+        seen = []
+        monkeypatch.setattr(query_understanding, 'understand_query', lambda *a: dict(
+            corrected=normalized, expansions=[], display=normalized,
+            corrections=[('fixture', 'corrected')] if changed else []))
+        monkeypatch.setattr(knowledge_base, 'safe_concept_match', lambda *a: None)
+    
+        def search(query, **kwargs):
+            seen.append(query)
+            return []
+    
+        engine = RecommenderEngine(None, None, {'retrieval': SimpleNamespace(search=search)}, None, None)
+        engine.search(question)
+>       assert seen == [normalized if changed else question]
+E       AssertionError: assert ['which pytho...es this case'] == ['Which Pytho...s this case?']
+E         
+E         At index 0 diff: 'which python function handles this case' != 'Which Python function handles this case?'
+E         Use -v to get more diff
+
+tests/test_retrieval_service.py:98: AssertionError
+_ test_public_recommendations_are_json_safe_without_full_source_text[final-False] _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7d6143e22f90>
+streaming = False, kind = 'final'
+
+    @pytest.mark.parametrize('streaming', [False, True])
+    @pytest.mark.parametrize('kind', ['final', 'generate'])
+    def test_public_recommendations_are_json_safe_without_full_source_text(monkeypatch, streaming, kind):
+        import json
+    
+        bot = prepared(monkeypatch)
+        _, p = bot._prepare('q')
+        item = {'item_id': 5001, 'title': 'Python', 'source_updated_at': float('nan'),
+                'full_text': 'private internal snapshot body'}
+        if kind == 'final':
+            p = dict(response='hello', intent='greeting', sources=[], recommendations=[item])
+        else:
+            p['all_recs'] = [item]
+        monkeypatch.setattr(bot, '_prepare', lambda *a: (kind, p))
+        monkeypatch.setattr(cb, 'try_llm_response', lambda *a, **kw: 'Python [item_id:5001]')
+        monkeypatch.setattr(cb, 'try_llm_response_stream', lambda *a, **kw: iter(['Python [item_id:5001]']))
+        if streaming:
+            events = list(bot.chat_stream('q'))
+            for _, event in events:
+                json.dumps(event, allow_nan=False)
+            result = events[-1][1]
+        else:
+            result = bot.chat('q')
+>           json.dumps(result, allow_nan=False)
+
+tests/test_grounded_citations.py:89: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.14/json/__init__.py:242: in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+/usr/lib/python3.14/json/encoder.py:202: in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <json.encoder.JSONEncoder object at 0x7d6143c3ad50>
+o = {'response': 'hello', 'intent': 'greeting', 'sources': [], 'recommendations': [{'item_id': 5001, 'title': 'Python', 'source_updated_at': nan, 'full_text': 'private internal snapshot body'}], ...}
+_one_shot = True
+
+    def iterencode(self, o, _one_shot=False):
+        """Encode the given object and yield each string
+        representation as available.
+    
+        For example::
+    
+            for chunk in JSONEncoder().iterencode(bigobject):
+                mysocket.write(chunk)
+    
+        """
+        if self.check_circular:
+            markers = {}
+        else:
+            markers = None
+        if self.ensure_ascii:
+            _encoder = encode_basestring_ascii
+        else:
+            _encoder = encode_basestring
+    
+        def floatstr(o, allow_nan=self.allow_nan,
+                _repr=float.__repr__, _inf=INFINITY, _neginf=-INFINITY):
+            # Check for specials.  Note that this type of test is processor
+            # and/or platform-specific, so do tests which don't depend on the
+            # internals.
+    
+            if o != o:
+                text = 'NaN'
+            elif o == _inf:
+                text = 'Infinity'
+            elif o == _neginf:
+                text = '-Infinity'
+            else:
+                return _repr(o)
+    
+            if not allow_nan:
+                raise ValueError(
+                    "Out of range float values are not JSON compliant: " +
+                    repr(o))
+    
+            return text
+    
+    
+        if self.indent is None or isinstance(self.indent, str):
+            indent = self.indent
+        else:
+            indent = ' ' * self.indent
+        if _one_shot and c_make_encoder is not None:
+            _iterencode = c_make_encoder(
+                markers, self.default, _encoder, indent,
+                self.key_separator, self.item_separator, self.sort_keys,
+                self.skipkeys, self.allow_nan)
+        else:
+            _iterencode = _make_iterencode(
+                markers, self.default, _encoder, indent, floatstr,
+                self.key_separator, self.item_separator, self.sort_keys,
+                self.skipkeys, _one_shot)
+>       return _iterencode(o, 0)
+               ^^^^^^^^^^^^^^^^^
+E       ValueError: Out of range float values are not JSON compliant: nan
+E       when serializing dict item 'source_updated_at'
+E       when serializing list item 0
+E       when serializing dict item 'recommendations'
+
+/usr/lib/python3.14/json/encoder.py:263: ValueError
+_ test_public_recommendations_are_json_safe_without_full_source_text[final-True] _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7d6143b29370>
+streaming = True, kind = 'final'
+
+    @pytest.mark.parametrize('streaming', [False, True])
+    @pytest.mark.parametrize('kind', ['final', 'generate'])
+    def test_public_recommendations_are_json_safe_without_full_source_text(monkeypatch, streaming, kind):
+        import json
+    
+        bot = prepared(monkeypatch)
+        _, p = bot._prepare('q')
+        item = {'item_id': 5001, 'title': 'Python', 'source_updated_at': float('nan'),
+                'full_text': 'private internal snapshot body'}
+        if kind == 'final':
+            p = dict(response='hello', intent='greeting', sources=[], recommendations=[item])
+        else:
+            p['all_recs'] = [item]
+        monkeypatch.setattr(bot, '_prepare', lambda *a: (kind, p))
+        monkeypatch.setattr(cb, 'try_llm_response', lambda *a, **kw: 'Python [item_id:5001]')
+        monkeypatch.setattr(cb, 'try_llm_response_stream', lambda *a, **kw: iter(['Python [item_id:5001]']))
+        if streaming:
+            events = list(bot.chat_stream('q'))
+            for _, event in events:
+>               json.dumps(event, allow_nan=False)
+
+tests/test_grounded_citations.py:85: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.14/json/__init__.py:242: in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+/usr/lib/python3.14/json/encoder.py:202: in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <json.encoder.JSONEncoder object at 0x7d6143c3f360>
+o = {'intent': 'greeting', 'recommendations': [{'item_id': 5001, 'title': 'Python', 'source_updated_at': nan, 'full_text': 'private internal snapshot body'}], 'generation_mode': 'template', 'provisional': False, ...}
+_one_shot = True
+
+    def iterencode(self, o, _one_shot=False):
+        """Encode the given object and yield each string
+        representation as available.
+    
+        For example::
+    
+            for chunk in JSONEncoder().iterencode(bigobject):
+                mysocket.write(chunk)
+    
+        """
+        if self.check_circular:
+            markers = {}
+        else:
+            markers = None
+        if self.ensure_ascii:
+            _encoder = encode_basestring_ascii
+        else:
+            _encoder = encode_basestring
+    
+        def floatstr(o, allow_nan=self.allow_nan,
+                _repr=float.__repr__, _inf=INFINITY, _neginf=-INFINITY):
+            # Check for specials.  Note that this type of test is processor
+            # and/or platform-specific, so do tests which don't depend on the
+            # internals.
+    
+            if o != o:
+                text = 'NaN'
+            elif o == _inf:
+                text = 'Infinity'
+            elif o == _neginf:
+                text = '-Infinity'
+            else:
+                return _repr(o)
+    
+            if not allow_nan:
+                raise ValueError(
+                    "Out of range float values are not JSON compliant: " +
+                    repr(o))
+    
+            return text
+    
+    
+        if self.indent is None or isinstance(self.indent, str):
+            indent = self.indent
+        else:
+            indent = ' ' * self.indent
+        if _one_shot and c_make_encoder is not None:
+            _iterencode = c_make_encoder(
+                markers, self.default, _encoder, indent,
+                self.key_separator, self.item_separator, self.sort_keys,
+                self.skipkeys, self.allow_nan)
+        else:
+            _iterencode = _make_iterencode(
+                markers, self.default, _encoder, indent, floatstr,
+                self.key_separator, self.item_separator, self.sort_keys,
+                self.skipkeys, _one_shot)
+>       return _iterencode(o, 0)
+               ^^^^^^^^^^^^^^^^^
+E       ValueError: Out of range float values are not JSON compliant: nan
+E       when serializing dict item 'source_updated_at'
+E       when serializing list item 0
+E       when serializing dict item 'recommendations'
+
+/usr/lib/python3.14/json/encoder.py:263: ValueError
+_ test_public_recommendations_are_json_safe_without_full_source_text[generate-False] _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7d6143b297b0>
+streaming = False, kind = 'generate'
+
+    @pytest.mark.parametrize('streaming', [False, True])
+    @pytest.mark.parametrize('kind', ['final', 'generate'])
+    def test_public_recommendations_are_json_safe_without_full_source_text(monkeypatch, streaming, kind):
+        import json
+    
+        bot = prepared(monkeypatch)
+        _, p = bot._prepare('q')
+        item = {'item_id': 5001, 'title': 'Python', 'source_updated_at': float('nan'),
+                'full_text': 'private internal snapshot body'}
+        if kind == 'final':
+            p = dict(response='hello', intent='greeting', sources=[], recommendations=[item])
+        else:
+            p['all_recs'] = [item]
+        monkeypatch.setattr(bot, '_prepare', lambda *a: (kind, p))
+        monkeypatch.setattr(cb, 'try_llm_response', lambda *a, **kw: 'Python [item_id:5001]')
+        monkeypatch.setattr(cb, 'try_llm_response_stream', lambda *a, **kw: iter(['Python [item_id:5001]']))
+        if streaming:
+            events = list(bot.chat_stream('q'))
+            for _, event in events:
+                json.dumps(event, allow_nan=False)
+            result = events[-1][1]
+        else:
+            result = bot.chat('q')
+>           json.dumps(result, allow_nan=False)
+
+tests/test_grounded_citations.py:89: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.14/json/__init__.py:242: in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+/usr/lib/python3.14/json/encoder.py:202: in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <json.encoder.JSONEncoder object at 0x7d6143bbc050>
+o = {'response': 'Python [item_id:5001]', 'intent': 'answer', 'sources': [{'item_id': 5001, 'title': 'Python', 'origin': '...: [{'item_id': 5001, 'title': 'Python', 'source_updated_at': nan, 'full_text': 'private internal snapshot body'}], ...}
+_one_shot = True
+
+    def iterencode(self, o, _one_shot=False):
+        """Encode the given object and yield each string
+        representation as available.
+    
+        For example::
+    
+            for chunk in JSONEncoder().iterencode(bigobject):
+                mysocket.write(chunk)
+    
+        """
+        if self.check_circular:
+            markers = {}
+        else:
+            markers = None
+        if self.ensure_ascii:
+            _encoder = encode_basestring_ascii
+        else:
+            _encoder = encode_basestring
+    
+        def floatstr(o, allow_nan=self.allow_nan,
+                _repr=float.__repr__, _inf=INFINITY, _neginf=-INFINITY):
+            # Check for specials.  Note that this type of test is processor
+            # and/or platform-specific, so do tests which don't depend on the
+            # internals.
+    
+            if o != o:
+                text = 'NaN'
+            elif o == _inf:
+                text = 'Infinity'
+            elif o == _neginf:
+                text = '-Infinity'
+            else:
+                return _repr(o)
+    
+            if not allow_nan:
+                raise ValueError(
+                    "Out of range float values are not JSON compliant: " +
+                    repr(o))
+    
+            return text
+    
+    
+        if self.indent is None or isinstance(self.indent, str):
+            indent = self.indent
+        else:
+            indent = ' ' * self.indent
+        if _one_shot and c_make_encoder is not None:
+            _iterencode = c_make_encoder(
+                markers, self.default, _encoder, indent,
+                self.key_separator, self.item_separator, self.sort_keys,
+                self.skipkeys, self.allow_nan)
+        else:
+            _iterencode = _make_iterencode(
+                markers, self.default, _encoder, indent, floatstr,
+                self.key_separator, self.item_separator, self.sort_keys,
+                self.skipkeys, _one_shot)
+>       return _iterencode(o, 0)
+               ^^^^^^^^^^^^^^^^^
+E       ValueError: Out of range float values are not JSON compliant: nan
+E       when serializing dict item 'source_updated_at'
+E       when serializing list item 0
+E       when serializing dict item 'recommendations'
+
+/usr/lib/python3.14/json/encoder.py:263: ValueError
+_ test_public_recommendations_are_json_safe_without_full_source_text[generate-True] _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7d6143b52a50>
+streaming = True, kind = 'generate'
+
+    @pytest.mark.parametrize('streaming', [False, True])
+    @pytest.mark.parametrize('kind', ['final', 'generate'])
+    def test_public_recommendations_are_json_safe_without_full_source_text(monkeypatch, streaming, kind):
+        import json
+    
+        bot = prepared(monkeypatch)
+        _, p = bot._prepare('q')
+        item = {'item_id': 5001, 'title': 'Python', 'source_updated_at': float('nan'),
+                'full_text': 'private internal snapshot body'}
+        if kind == 'final':
+            p = dict(response='hello', intent='greeting', sources=[], recommendations=[item])
+        else:
+            p['all_recs'] = [item]
+        monkeypatch.setattr(bot, '_prepare', lambda *a: (kind, p))
+        monkeypatch.setattr(cb, 'try_llm_response', lambda *a, **kw: 'Python [item_id:5001]')
+        monkeypatch.setattr(cb, 'try_llm_response_stream', lambda *a, **kw: iter(['Python [item_id:5001]']))
+        if streaming:
+            events = list(bot.chat_stream('q'))
+            for _, event in events:
+>               json.dumps(event, allow_nan=False)
+
+tests/test_grounded_citations.py:85: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.14/json/__init__.py:242: in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+/usr/lib/python3.14/json/encoder.py:202: in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <json.encoder.JSONEncoder object at 0x7d6143b29ae0>
+o = {'intent': 'answer', 'recommendations': [{'item_id': 5001, 'title': 'Python', 'source_updated_at': nan, 'full_text': 'private internal snapshot body'}], 'generation_mode': 'generating', 'provisional': True, ...}
+_one_shot = True
+
+    def iterencode(self, o, _one_shot=False):
+        """Encode the given object and yield each string
+        representation as available.
+    
+        For example::
+    
+            for chunk in JSONEncoder().iterencode(bigobject):
+                mysocket.write(chunk)
+    
+        """
+        if self.check_circular:
+            markers = {}
+        else:
+            markers = None
+        if self.ensure_ascii:
+            _encoder = encode_basestring_ascii
+        else:
+            _encoder = encode_basestring
+    
+        def floatstr(o, allow_nan=self.allow_nan,
+                _repr=float.__repr__, _inf=INFINITY, _neginf=-INFINITY):
+            # Check for specials.  Note that this type of test is processor
+            # and/or platform-specific, so do tests which don't depend on the
+            # internals.
+    
+            if o != o:
+                text = 'NaN'
+            elif o == _inf:
+                text = 'Infinity'
+            elif o == _neginf:
+                text = '-Infinity'
+            else:
+                return _repr(o)
+    
+            if not allow_nan:
+                raise ValueError(
+                    "Out of range float values are not JSON compliant: " +
+                    repr(o))
+    
+            return text
+    
+    
+        if self.indent is None or isinstance(self.indent, str):
+            indent = self.indent
+        else:
+            indent = ' ' * self.indent
+        if _one_shot and c_make_encoder is not None:
+            _iterencode = c_make_encoder(
+                markers, self.default, _encoder, indent,
+                self.key_separator, self.item_separator, self.sort_keys,
+                self.skipkeys, self.allow_nan)
+        else:
+            _iterencode = _make_iterencode(
+                markers, self.default, _encoder, indent, floatstr,
+                self.key_separator, self.item_separator, self.sort_keys,
+                self.skipkeys, _one_shot)
+>       return _iterencode(o, 0)
+               ^^^^^^^^^^^^^^^^^
+E       ValueError: Out of range float values are not JSON compliant: nan
+E       when serializing dict item 'source_updated_at'
+E       when serializing list item 0
+E       when serializing dict item 'recommendations'
+
+/usr/lib/python3.14/json/encoder.py:263: ValueError
+=========================== short test summary info ============================
+FAILED tests/test_retrieval_service.py::test_dense_search_keeps_raw_text_unless_a_correction_is_needed[False]
+FAILED tests/test_grounded_citations.py::test_public_recommendations_are_json_safe_without_full_source_text[final-False]
+FAILED tests/test_grounded_citations.py::test_public_recommendations_are_json_safe_without_full_source_text[final-True]
+FAILED tests/test_grounded_citations.py::test_public_recommendations_are_json_safe_without_full_source_text[generate-False]
+FAILED tests/test_grounded_citations.py::test_public_recommendations_are_json_safe_without_full_source_text[generate-True]
+5 failed, 1 passed, 18 deselected in 1.78s

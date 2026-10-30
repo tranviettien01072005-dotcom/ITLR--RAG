@@ -1,0 +1,1811 @@
+{
+  "corpus_items": 118,
+  "chunks": 1576,
+  "model": "intfloat/multilingual-e5-base",
+  "dim": 768,
+  "prefixes": [
+    "query: ",
+    "passage: "
+  ],
+  "normalization": "L2",
+  "reranker": false,
+  "faiss": true,
+  "bm25": true,
+  "rrf": true,
+  "labels": "frozen engineer-authored item judgments; incomplete, no independent human panel",
+  "query_count": 23,
+  "repeats": 2,
+  "results": {
+    "default_cosine_090": {
+      "floor": 0.9,
+      "cases": [
+        {
+          "id": "en-5001",
+          "kind": "english",
+          "query": "How does Docker daemon access affect root privileges?",
+          "ranked": [],
+          "expected": [
+            5001
+          ],
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "en-5003",
+          "kind": "english",
+          "query": "How do services networks and volumes work together in Compose?",
+          "ranked": [],
+          "expected": [
+            5003
+          ],
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "en-5011",
+          "kind": "english",
+          "query": "How do I publish a container port to a host port?",
+          "ranked": [
+            5011
+          ],
+          "expected": [
+            5011
+          ],
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "en-5024",
+          "kind": "english",
+          "query": "How does a browser use a preflight request for cross origin HTTP?",
+          "ranked": [],
+          "expected": [
+            5024
+          ],
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "en-5028",
+          "kind": "english",
+          "query": "How do I select the first DOM element matching a CSS selector?",
+          "ranked": [],
+          "expected": [
+            5028
+          ],
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "en-5117",
+          "kind": "english",
+          "query": "How do I create and activate a Python virtual environment?",
+          "ranked": [],
+          "expected": [
+            5117
+          ],
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "en-5121",
+          "kind": "english",
+          "query": "How do I handle exceptions with try and except in Python?",
+          "ranked": [],
+          "expected": [
+            5121
+          ],
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "en-5126",
+          "kind": "english",
+          "query": "How do Python lists support indexing and slicing?",
+          "ranked": [],
+          "expected": [
+            5126
+          ],
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "vi-5001",
+          "kind": "vietnamese",
+          "query": "Vì sao quyền truy cập Docker daemon có thể dẫn đến quyền root?",
+          "ranked": [],
+          "expected": [
+            5001
+          ],
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "vi-5003",
+          "kind": "vietnamese",
+          "query": "Docker Compose định nghĩa services networks và volumes trong YAML như thế nào?",
+          "ranked": [],
+          "expected": [
+            5003
+          ],
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "vi-5011",
+          "kind": "vietnamese",
+          "query": "Làm sao publish cổng container Docker ra host bằng docker run -p?",
+          "ranked": [],
+          "expected": [
+            5011
+          ],
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "vi-5024",
+          "kind": "vietnamese",
+          "query": "Vì sao trình duyệt gửi CORS preflight request trước HTTP request khác origin?",
+          "ranked": [],
+          "expected": [
+            5024
+          ],
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "vi-5028",
+          "kind": "vietnamese",
+          "query": "querySelector trả về phần tử đầu tiên khớp CSS selector hay toàn bộ phần tử?",
+          "ranked": [],
+          "expected": [
+            5028
+          ],
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "vi-5117",
+          "kind": "vietnamese",
+          "query": "Tạo và kích hoạt môi trường ảo Python với venv như thế nào?",
+          "ranked": [],
+          "expected": [
+            5117
+          ],
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "vi-5121",
+          "kind": "vietnamese",
+          "query": "Xử lý lỗi Python bằng try except như thế nào?",
+          "ranked": [],
+          "expected": [
+            5121
+          ],
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "vi-5126",
+          "kind": "vietnamese",
+          "query": "Python list hỗ trợ indexing và slicing như thế nào?",
+          "ranked": [],
+          "expected": [
+            5126
+          ],
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "noise-port",
+          "kind": "noisy",
+          "query": "lam sao publsh cong Docker container bang docker run -p ra host",
+          "ranked": [],
+          "expected": [
+            5011
+          ],
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "noise-venv",
+          "kind": "noisy",
+          "query": "tao moi truong ao Pythn venv va kich hoat",
+          "ranked": [],
+          "expected": [
+            5117
+          ],
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "noise-cors",
+          "kind": "noisy",
+          "query": "CORS prefligt request khac origin la gi",
+          "ranked": [],
+          "expected": [
+            5024
+          ],
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "multi-python",
+          "kind": "multistep",
+          "query": "Tạo môi trường venv cho Python, sau đó dùng try except để xử lý lỗi trong chương trình.",
+          "ranked": [],
+          "expected": [
+            5117,
+            5121
+          ],
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "multi-docker",
+          "kind": "multistep",
+          "query": "Dùng Compose YAML để cấu hình services rồi publish port container ra host như thế nào?",
+          "ranked": [],
+          "expected": [
+            5003,
+            5011
+          ],
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "none-private",
+          "kind": "unanswerable",
+          "query": "Mật khẩu tài khoản cá nhân hiện tại của tôi là gì?",
+          "ranked": [],
+          "expected": [],
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "none-live",
+          "kind": "unanswerable",
+          "query": "Nhiệt độ ngoài trời ngay lúc này ở nhà tôi là bao nhiêu?",
+          "ranked": [],
+          "expected": [],
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        }
+      ],
+      "aggregate": {
+        "1": {
+          "recall": 0.047619047619047616,
+          "precision_judged": 0.047619047619047616,
+          "mrr": 0.047619047619047616,
+          "ndcg": 0.047619047619047616
+        },
+        "5": {
+          "recall": 0.047619047619047616,
+          "precision_judged": 0.009523809523809525,
+          "mrr": 0.047619047619047616,
+          "ndcg": 0.047619047619047616
+        },
+        "10": {
+          "recall": 0.047619047619047616,
+          "precision_judged": 0.004761904761904762,
+          "mrr": 0.047619047619047616,
+          "ndcg": 0.047619047619047616
+        }
+      },
+      "latency_ms": {
+        "p50": 83.35915799943905,
+        "p95": 101.59512500013079,
+        "p99": 102.97795209999094
+      },
+      "negative_empty_rate": 1.0
+    },
+    "diagnostic_no_floor": {
+      "floor": 0.0,
+      "cases": [
+        {
+          "id": "en-5001",
+          "kind": "english",
+          "query": "How does Docker daemon access affect root privileges?",
+          "ranked": [
+            5001,
+            5013,
+            5019,
+            5047,
+            5029,
+            5022,
+            5118,
+            5077,
+            5021,
+            5002
+          ],
+          "expected": [
+            5001
+          ],
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "en-5003",
+          "kind": "english",
+          "query": "How do services networks and volumes work together in Compose?",
+          "ranked": [
+            5011,
+            5021,
+            5025,
+            5013,
+            5029,
+            5003,
+            5004,
+            5054,
+            5071,
+            5070
+          ],
+          "expected": [
+            5003
+          ],
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.16666666666666666,
+              "ndcg": 0.3562071871080222,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "en-5011",
+          "kind": "english",
+          "query": "How do I publish a container port to a host port?",
+          "ranked": [
+            5015,
+            5004,
+            5001,
+            5047,
+            5070,
+            5116,
+            5011,
+            5052,
+            5021,
+            5088
+          ],
+          "expected": [
+            5011
+          ],
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.14285714285714285,
+              "ndcg": 0.3333333333333333,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "en-5024",
+          "kind": "english",
+          "query": "How does a browser use a preflight request for cross origin HTTP?",
+          "ranked": [
+            5052,
+            5055,
+            5058,
+            5023,
+            5089,
+            5082,
+            5024,
+            5029,
+            5047,
+            5025
+          ],
+          "expected": [
+            5024
+          ],
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.14285714285714285,
+              "ndcg": 0.3333333333333333,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "en-5028",
+          "kind": "english",
+          "query": "How do I select the first DOM element matching a CSS selector?",
+          "ranked": [
+            5057,
+            5035,
+            5053,
+            5028,
+            5040,
+            5054,
+            5041,
+            5051,
+            5046,
+            5100
+          ],
+          "expected": [
+            5028
+          ],
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 0.25,
+              "ndcg": 0.43067655807339306,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.25,
+              "ndcg": 0.43067655807339306,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "en-5117",
+          "kind": "english",
+          "query": "How do I create and activate a Python virtual environment?",
+          "ranked": [
+            5079,
+            5097,
+            5116,
+            5107,
+            5125,
+            5117,
+            5090,
+            5048,
+            5032,
+            5126
+          ],
+          "expected": [
+            5117
+          ],
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.16666666666666666,
+              "ndcg": 0.3562071871080222,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "en-5121",
+          "kind": "english",
+          "query": "How do I handle exceptions with try and except in Python?",
+          "ranked": [
+            5111,
+            5125,
+            5081,
+            5098,
+            5093,
+            5080,
+            5082,
+            5086,
+            5121,
+            5061
+          ],
+          "expected": [
+            5121
+          ],
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.1111111111111111,
+              "ndcg": 0.3010299956639812,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "en-5126",
+          "kind": "english",
+          "query": "How do Python lists support indexing and slicing?",
+          "ranked": [
+            5033,
+            5059,
+            5122,
+            5118,
+            5111,
+            5126,
+            5124,
+            5106,
+            5105,
+            5113
+          ],
+          "expected": [
+            5126
+          ],
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.16666666666666666,
+              "ndcg": 0.3562071871080222,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "vi-5001",
+          "kind": "vietnamese",
+          "query": "Vì sao quyền truy cập Docker daemon có thể dẫn đến quyền root?",
+          "ranked": [
+            5001,
+            5019,
+            5022,
+            5015,
+            5021,
+            5002,
+            5014,
+            5003,
+            5024,
+            5098
+          ],
+          "expected": [
+            5001
+          ],
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "vi-5003",
+          "kind": "vietnamese",
+          "query": "Docker Compose định nghĩa services networks và volumes trong YAML như thế nào?",
+          "ranked": [
+            5004,
+            5011,
+            5021,
+            5013,
+            5092,
+            5022,
+            5088,
+            5003,
+            5002,
+            5001
+          ],
+          "expected": [
+            5003
+          ],
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.125,
+              "ndcg": 0.31546487678572877,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "vi-5011",
+          "kind": "vietnamese",
+          "query": "Làm sao publish cổng container Docker ra host bằng docker run -p?",
+          "ranked": [
+            5004,
+            5013,
+            5012,
+            5022,
+            5019,
+            5047,
+            5088,
+            5011,
+            5015,
+            5021
+          ],
+          "expected": [
+            5011
+          ],
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.125,
+              "ndcg": 0.31546487678572877,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "vi-5024",
+          "kind": "vietnamese",
+          "query": "Vì sao trình duyệt gửi CORS preflight request trước HTTP request khác origin?",
+          "ranked": [
+            5024,
+            5029,
+            5055,
+            5089,
+            5058,
+            5023,
+            5033,
+            5049,
+            5082,
+            5001
+          ],
+          "expected": [
+            5024
+          ],
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "vi-5028",
+          "kind": "vietnamese",
+          "query": "querySelector trả về phần tử đầu tiên khớp CSS selector hay toàn bộ phần tử?",
+          "ranked": [
+            5028,
+            5057,
+            5051,
+            5053,
+            5058,
+            5054,
+            5046,
+            5100,
+            5039,
+            5040
+          ],
+          "expected": [
+            5028
+          ],
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "vi-5117",
+          "kind": "vietnamese",
+          "query": "Tạo và kích hoạt môi trường ảo Python với venv như thế nào?",
+          "ranked": [
+            5117,
+            5128,
+            5066,
+            5079,
+            5097,
+            5116,
+            5065,
+            5107,
+            5080,
+            5127
+          ],
+          "expected": [
+            5117
+          ],
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "vi-5121",
+          "kind": "vietnamese",
+          "query": "Xử lý lỗi Python bằng try except như thế nào?",
+          "ranked": [
+            5121,
+            5086,
+            5125,
+            5098,
+            5093,
+            5061,
+            5111,
+            5036,
+            5128,
+            5076
+          ],
+          "expected": [
+            5121
+          ],
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "vi-5126",
+          "kind": "vietnamese",
+          "query": "Python list hỗ trợ indexing và slicing như thế nào?",
+          "ranked": [
+            5126,
+            5033,
+            5059,
+            5118,
+            5113,
+            5111,
+            5107,
+            5120,
+            5106,
+            5124
+          ],
+          "expected": [
+            5126
+          ],
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "noise-port",
+          "kind": "noisy",
+          "query": "lam sao publsh cong Docker container bang docker run -p ra host",
+          "ranked": [
+            5015,
+            5013,
+            5004,
+            5012,
+            5022,
+            5019,
+            5052,
+            5047,
+            5011,
+            5001
+          ],
+          "expected": [
+            5011
+          ],
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.1111111111111111,
+              "ndcg": 0.3010299956639812,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "noise-venv",
+          "kind": "noisy",
+          "query": "tao moi truong ao Pythn venv va kich hoat",
+          "ranked": [
+            5052,
+            5079,
+            5066,
+            5117,
+            5040,
+            5014,
+            5049,
+            5113,
+            5128,
+            5024
+          ],
+          "expected": [
+            5117
+          ],
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 0.25,
+              "ndcg": 0.43067655807339306,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.25,
+              "ndcg": 0.43067655807339306,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "noise-cors",
+          "kind": "noisy",
+          "query": "CORS prefligt request khac origin la gi",
+          "ranked": [
+            5029,
+            5024,
+            5089,
+            5052,
+            5055,
+            5058,
+            5023,
+            5033,
+            5047,
+            5025
+          ],
+          "expected": [
+            5024
+          ],
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 0.5,
+              "ndcg": 0.6309297535714575,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.5,
+              "ndcg": 0.6309297535714575,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "multi-python",
+          "kind": "multistep",
+          "query": "Tạo môi trường venv cho Python, sau đó dùng try except để xử lý lỗi trong chương trình.",
+          "ranked": [
+            5117,
+            5079,
+            5086,
+            5125,
+            5093,
+            5061,
+            5121,
+            5111,
+            5097,
+            5036
+          ],
+          "expected": [
+            5117,
+            5121
+          ],
+          "metrics": {
+            "1": {
+              "recall": 0.5,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.5,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 0.6131471927654584,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 0.8175295903539445,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "multi-docker",
+          "kind": "multistep",
+          "query": "Dùng Compose YAML để cấu hình services rồi publish port container ra host như thế nào?",
+          "ranked": [
+            5003,
+            5004,
+            5012,
+            5015,
+            5013,
+            5071,
+            5116,
+            5069,
+            5011,
+            5088
+          ],
+          "expected": [
+            5003,
+            5011
+          ],
+          "metrics": {
+            "1": {
+              "recall": 0.5,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.5,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 0.6131471927654584,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 0.7977228895450266,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "none-private",
+          "kind": "unanswerable",
+          "query": "Mật khẩu tài khoản cá nhân hiện tại của tôi là gì?",
+          "ranked": [
+            5023,
+            5025,
+            5040,
+            5075,
+            5066,
+            5014,
+            5024,
+            5029,
+            5051,
+            5074
+          ],
+          "expected": [],
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            }
+          }
+        },
+        {
+          "id": "none-live",
+          "kind": "unanswerable",
+          "query": "Nhiệt độ ngoài trời ngay lúc này ở nhà tôi là bao nhiêu?",
+          "ranked": [
+            5040,
+            5033,
+            5066,
+            5048,
+            5042,
+            5028,
+            5044,
+            5049,
+            5045,
+            5095
+          ],
+          "expected": [],
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            }
+          }
+        }
+      ],
+      "aggregate": {
+        "1": {
+          "recall": 0.38095238095238093,
+          "precision_judged": 0.42857142857142855,
+          "mrr": 0.42857142857142855,
+          "ndcg": 0.42857142857142855
+        },
+        "5": {
+          "recall": 0.5238095238095238,
+          "precision_judged": 0.1142857142857143,
+          "mrr": 0.47619047619047616,
+          "ndcg": 0.4627893931071029
+        },
+        "10": {
+          "recall": 1.0,
+          "precision_judged": 0.10952380952380955,
+          "mrr": 0.5360922146636432,
+          "ndcg": 0.6226577772622557
+        }
+      },
+      "latency_ms": {
+        "p50": 80.65606250011115,
+        "p95": 97.2243102498851,
+        "p99": 106.72605585000379
+      },
+      "negative_empty_rate": 0.0
+    }
+  },
+  "corpus_sha256": "34811da304d7e0b6645e2523c6557a84b9240345f3a420b6425c43fd4c8d3190",
+  "queries_sha256": "b7760b733697c716373d379ecd685f193f67874a9e0957b7fcc3a5e913be8dfc",
+  "peak_rss_mib": 1760.01953125,
+  "memory_scope": "probe parent + engine + benchmark process high-water; excludes Ollama/API process",
+  "faithfulness": null,
+  "hallucination": null
+}

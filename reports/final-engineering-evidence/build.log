@@ -1,0 +1,4 @@
+
+> it-learning-platform@1.0.0 build
+> tsc -p tsconfig.json && node -e "const fs=require('node:fs'); for (const name of ['views','public']) fs.cpSync('src/'+name,'dist/'+name,{recursive:true}); fs.copyFileSync('src/db/schema.sql','dist/db/schema.sql');"
+

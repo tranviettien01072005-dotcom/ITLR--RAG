@@ -1,0 +1,8 @@
+pg_dump exit=0
+pg_restore exit=0
+pg_ctl exit=0
+waiting for server to shut down.... done
+server stopped
+pg_ctl exit=0
+waiting for server to start.... done
+server started

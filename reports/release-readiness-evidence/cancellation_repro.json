@@ -1,0 +1,5 @@
+{
+  "generator_closed_after_disconnect": false,
+  "scope": "isolated ASGI retained-response mock, not real socket/provider cancellation proof",
+  "generator_closed_after_wrapper_aclose": false
+}

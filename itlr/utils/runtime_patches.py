@@ -1,11 +1,8 @@
-"""Dọn nhiễu console — gom 3 thứ VÔ HẠI nhưng gây rối log khi chạy app.
+"""Giảm log tiến trình model và lỗi transport Windows khi browser đóng kết nối.
 
-  1) InconsistentVersionWarning của scikit-learn: artifacts pickle ở sklearn 1.9.0
-     nhưng runtime là 1.8.0. Đã re-pickle để đóng dấu đúng phiên bản (xem
-     repickle_artifacts.py); filter dưới đây là lớp chắn cho mọi estimator còn sót.
-  2) "LOAD REPORT ... position_ids UNEXPECTED" + thanh tiến trình tải trọng số:
+  1) "LOAD REPORT ... position_ids UNEXPECTED" + thanh tiến trình tải trọng số:
      log dài dòng của transformers/sentence-transformers khi nạp model — chỉ giữ ERROR.
-  3) ConnectionResetError [WinError 10054]: ProactorEventLoop của asyncio trên Windows
+  2) ConnectionResetError [WinError 10054]: ProactorEventLoop của asyncio trên Windows
      ném ra khi trình duyệt đóng WebSocket đột ngột. KHÔNG phải lỗi ứng dụng -> nuốt.
 
 Import module này TRƯỚC khi nạp model (đặt ở đầu app.py) để có hiệu lực sớm nhất.
@@ -13,14 +10,6 @@ Import module này TRƯỚC khi nạp model (đặt ở đầu app.py) để có
 
 import logging
 import sys
-import warnings
-
-try:
-    from sklearn.exceptions import InconsistentVersionWarning
-
-    warnings.filterwarnings("ignore", category=InconsistentVersionWarning)
-except Exception:
-    pass
 
 for _name in ("transformers", "sentence_transformers"):
     logging.getLogger(_name).setLevel(logging.ERROR)

@@ -1,0 +1,140 @@
+[
+  {
+    "split": "release",
+    "query": "How does Docker daemon access affect root privileges?",
+    "source_count": 2,
+    "input_chars": 2658,
+    "temperature": 0.3,
+    "max_tokens": 384,
+    "seconds": 23.856966432999798,
+    "ttft_seconds": 13.583181013000285,
+    "answer": "Docker daemon requires root privileges unless you opt-in to Rootless mode. [item_id:5001] [chunk_id:5001:9] Điều này có nghĩa là chỉ có những người dùng đáng tin cậy mới được cho phép kiểm soát Docker daemon, điều này là một hậu quả của một số tính năng mạnh mẽ của Docker. [item_id:5001] [chunk_id:5001:9]",
+    "terminal": {
+      "model": "qwen2.5:3b",
+      "created_at": "2026-10-30T13:40:33.390539085Z",
+      "done": true,
+      "done_reason": "stop",
+      "total_duration": 23856279549,
+      "load_duration": 889849,
+      "prompt_eval_count": 625,
+      "prompt_eval_cached_count": 160,
+      "prompt_eval_duration": 13535528000,
+      "eval_count": 95,
+      "eval_duration": 10273532000
+    },
+    "citation": {
+      "status": "valid",
+      "cited_ids": [
+        5001
+      ],
+      "invalid_ids": [],
+      "malformed": false,
+      "invalid_chunk_ids": [],
+      "missing_chunk_item_ids": [],
+      "semantic_grounding": "not_verified"
+    }
+  },
+  {
+    "split": "dev",
+    "query": "HTTP 404 Not Found cho biết điều gì về tài nguyên được yêu cầu?",
+    "source_count": 3,
+    "input_chars": 3553,
+    "temperature": 0.3,
+    "max_tokens": 384,
+    "seconds": 22.80587014699995,
+    "ttft_seconds": 18.54466383700037,
+    "answer": "HTTP 404 Not Found cho biết rằng tài nguyên được yêu cầu không tồn tại. [item_id:5025][chunk_id:5025:6]",
+    "terminal": {
+      "model": "qwen2.5:3b",
+      "created_at": "2026-10-30T13:40:56.26481712Z",
+      "done": true,
+      "done_reason": "stop",
+      "total_duration": 22805113030,
+      "load_duration": 765600,
+      "prompt_eval_count": 853,
+      "prompt_eval_cached_count": 170,
+      "prompt_eval_duration": 18511914000,
+      "eval_count": 39,
+      "eval_duration": 4260944000
+    },
+    "citation": {
+      "status": "valid",
+      "cited_ids": [
+        5025
+      ],
+      "invalid_ids": [],
+      "malformed": false,
+      "invalid_chunk_ids": [],
+      "missing_chunk_item_ids": [],
+      "semantic_grounding": "not_verified"
+    }
+  },
+  {
+    "split": "holdout",
+    "query": "Phải bind giá trị Python vào câu SQL SQLite như thế nào để tránh SQL injection?",
+    "source_count": 2,
+    "input_chars": 2385,
+    "temperature": 0.3,
+    "max_tokens": 384,
+    "seconds": 22.506437547000132,
+    "ttft_seconds": 12.988048774000163,
+    "answer": "Để tránh SQL injection khi bind giá trị Python vào câu SQL SQLite, bạn nên sử dụng placeholders trong câu SQL. Ví dụ, thay vì sử dụng câu SQL như \"SELECT * FROM users WHERE id = ? AND username = ?\", bạn nên sử dụng \"SELECT * FROM users WHERE id = ? AND username = ?\". [item_id:5090] [chunk_id:5090:8]",
+    "terminal": {
+      "model": "qwen2.5:3b",
+      "created_at": "2026-10-30T13:41:18.886644494Z",
+      "done": true,
+      "done_reason": "stop",
+      "total_duration": 22505727450,
+      "load_duration": 864691,
+      "prompt_eval_count": 585,
+      "prompt_eval_cached_count": 170,
+      "prompt_eval_duration": 12952746000,
+      "eval_count": 88,
+      "eval_duration": 9518139000
+    },
+    "citation": {
+      "status": "valid",
+      "cited_ids": [
+        5090
+      ],
+      "invalid_ids": [],
+      "malformed": false,
+      "invalid_chunk_ids": [],
+      "missing_chunk_item_ids": [],
+      "semantic_grounding": "not_verified"
+    }
+  },
+  {
+    "split": "holdout",
+    "query": "Which Python copy operation recursively copies nested objects?",
+    "source_count": 3,
+    "input_chars": 3610,
+    "temperature": 0.3,
+    "max_tokens": 384,
+    "seconds": 30.029365898000833,
+    "ttft_seconds": 20.884446161000596,
+    "answer": "Deep copy (item_id:5059 [chunk_id:5059:1]) constructs a new compound object and recursively inserts copies of the objects found in the original. Do đó, deepcopy() là cách để thực hiện sao chép đệ quy của các đối tượng phức hợp. [item_id:5059 [chunk_id:5059:1]]",
+    "terminal": {
+      "model": "qwen2.5:3b",
+      "created_at": "2026-10-30T13:41:48.99595253Z",
+      "done": true,
+      "done_reason": "stop",
+      "total_duration": 30028502756,
+      "load_duration": 961009,
+      "prompt_eval_count": 839,
+      "prompt_eval_cached_count": 170,
+      "prompt_eval_duration": 20847792000,
+      "eval_count": 82,
+      "eval_duration": 9144644000
+    },
+    "citation": {
+      "status": "invalid",
+      "cited_ids": [],
+      "invalid_ids": [],
+      "malformed": true,
+      "invalid_chunk_ids": [],
+      "missing_chunk_item_ids": [],
+      "semantic_grounding": "not_verified"
+    }
+  }
+]

@@ -1,0 +1,5 @@
+Could not reach the Hub (Cannot reach https://huggingface.co/api/models/intfloat/multilingual-e5-base: offline mode is enabled. To disable it, please unset the `HF_HUB_OFFLINE` environment variable.). Using cached commit hash for 'intfloat/multilingual-e5-base'.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  88%|████████▊ | 176/199 [00:00<00:00, 1759.51it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1718.92it/s]
+Could not reach the Hub (Cannot reach https://huggingface.co/api/models/intfloat/multilingual-e5-base: offline mode is enabled. To disable it, please unset the `HF_HUB_OFFLINE` environment variable.). Using cached commit hash for 'intfloat/multilingual-e5-base'.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  70%|███████   | 140/199 [00:00<00:00, 1398.63it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1579.59it/s]
+two model loads completed

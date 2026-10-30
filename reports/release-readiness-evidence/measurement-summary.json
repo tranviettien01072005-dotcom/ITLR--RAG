@@ -1,0 +1,23 @@
+{
+  "resource_peak_samples": {
+    "ollama": {
+      "rss_mib": 37.05859375,
+      "lifetime_cpu_percent_max": 1.0
+    },
+    "llama-server": {
+      "rss_mib": 2307.796875,
+      "lifetime_cpu_percent_max": 47.0
+    },
+    "python": {
+      "rss_mib": 1758.33984375,
+      "lifetime_cpu_percent_max": 13.0
+    }
+  },
+  "cpu_scope": "ps lifetime averages; not instantaneous/request attribution",
+  "independent_retrieval_latency_ms": {
+    "p50": 159.68125050039816,
+    "p95": 232.6656034510961,
+    "p99": 239.0673638907174
+  },
+  "run_environment": "shared host; CPU contention, no latency speedup inference"
+}

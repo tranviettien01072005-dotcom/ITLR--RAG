@@ -1,6 +1,8 @@
 """Shared chunk retrieval contract for search, chat and relevance gating."""
 from itlr.core.embeddings import encode_query
 
+DEFAULT_SEARCH_MIN_PCT = 84
+
 
 class RetrievalService:
     def __init__(self, index, items, encoder, query_prefix='', reranker=None):

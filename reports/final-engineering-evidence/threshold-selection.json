@@ -1,0 +1,7089 @@
+{
+  "cases_sha256": "5297f61a8520a2a63fc3d202470d47ffe9abb0b10a2c91ca444765f51873b1f8",
+  "selection_scope": "development only, source-item disjoint from holdout",
+  "selected_floor": 0.84,
+  "sweep": {
+    "0.7": {
+      "metrics": {
+        "1": {
+          "recall": 0.4166666666666667,
+          "precision_judged": 0.4166666666666667,
+          "mrr": 0.4166666666666667,
+          "ndcg": 0.4166666666666667
+        },
+        "5": {
+          "recall": 0.8333333333333334,
+          "precision_judged": 0.16666666666666666,
+          "mrr": 0.5513888888888888,
+          "ndcg": 0.6207049265732827
+        },
+        "10": {
+          "recall": 1.0,
+          "precision_judged": 0.10000000000000002,
+          "mrr": 0.5716269841269842,
+          "ndcg": 0.6725714398775512
+        }
+      },
+      "negative_empty_rate": 0.0,
+      "latency_ms": {
+        "p50": 56.54305500047485,
+        "p95": 61.830768100207926,
+        "p99": 66.34295842022765
+      },
+      "cases": [
+        {
+          "id": "dev-en-5025",
+          "kind": "en",
+          "ranked": [
+            5125,
+            5089,
+            5025,
+            5055,
+            5088,
+            5111,
+            5029,
+            5069,
+            5099,
+            5047
+          ],
+          "expected": [
+            5025
+          ],
+          "max_cosine": 0.8456014394760132,
+          "latency_ms": 67.47100600023259,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 0.3333333333333333,
+              "ndcg": 0.5,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.3333333333333333,
+              "ndcg": 0.5,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5025",
+          "kind": "vi",
+          "ranked": [
+            5025,
+            5029,
+            5088,
+            5023,
+            5125,
+            5052,
+            5111,
+            5069,
+            5118,
+            5055
+          ],
+          "expected": [
+            5025
+          ],
+          "max_cosine": 0.8348667621612549,
+          "latency_ms": 60.47714400028781,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5030",
+          "kind": "en",
+          "ranked": [
+            5031,
+            5083,
+            5060,
+            5113,
+            5061,
+            5037,
+            5027,
+            5073,
+            5054,
+            5030
+          ],
+          "expected": [
+            5030
+          ],
+          "max_cosine": 0.8879246115684509,
+          "latency_ms": 55.947482000192394,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.1,
+              "ndcg": 0.2890648263178879,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5030",
+          "kind": "vi",
+          "ranked": [
+            5030,
+            5031,
+            5029,
+            5113,
+            5083,
+            5061,
+            5060,
+            5037,
+            5034,
+            5027
+          ],
+          "expected": [
+            5030
+          ],
+          "max_cosine": 0.8714125156402588,
+          "latency_ms": 57.627443999990646,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5040",
+          "kind": "en",
+          "ranked": [
+            5040,
+            5044,
+            5043,
+            5041,
+            5042,
+            5047,
+            5057,
+            5045,
+            5077,
+            5048
+          ],
+          "expected": [
+            5040
+          ],
+          "max_cosine": 0.8867350816726685,
+          "latency_ms": 55.177774999719986,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5040",
+          "kind": "vi",
+          "ranked": [
+            5040,
+            5057,
+            5048,
+            5043,
+            5053,
+            5058,
+            5045,
+            5049,
+            5044,
+            5077
+          ],
+          "expected": [
+            5040
+          ],
+          "max_cosine": 0.8390862941741943,
+          "latency_ms": 57.39651899966702,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5061",
+          "kind": "en",
+          "ranked": [
+            5077,
+            5090,
+            5086,
+            5078,
+            5063,
+            5065,
+            5061,
+            5096,
+            5107,
+            5082
+          ],
+          "expected": [
+            5061
+          ],
+          "max_cosine": 0.8594181537628174,
+          "latency_ms": 50.11537100017449,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.14285714285714285,
+              "ndcg": 0.3333333333333333,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5061",
+          "kind": "vi",
+          "ranked": [
+            5096,
+            5051,
+            5061,
+            5077,
+            5079,
+            5090,
+            5063,
+            5078,
+            5082,
+            5111
+          ],
+          "expected": [
+            5061
+          ],
+          "max_cosine": 0.8519970178604126,
+          "latency_ms": 56.89518799954385,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 0.3333333333333333,
+              "ndcg": 0.5,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.3333333333333333,
+              "ndcg": 0.5,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5075",
+          "kind": "en",
+          "ranked": [
+            5075,
+            5073,
+            5128,
+            5118,
+            5093,
+            5102,
+            5064,
+            5119,
+            5074,
+            5116
+          ],
+          "expected": [
+            5075
+          ],
+          "max_cosine": 0.862079381942749,
+          "latency_ms": 55.41708500004461,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5075",
+          "kind": "vi",
+          "ranked": [
+            5073,
+            5075,
+            5102,
+            5074,
+            5123,
+            5079,
+            5080,
+            5097,
+            5119,
+            5118
+          ],
+          "expected": [
+            5075
+          ],
+          "max_cosine": 0.8527359962463379,
+          "latency_ms": 56.91500899956736,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 0.5,
+              "ndcg": 0.6309297535714575,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.5,
+              "ndcg": 0.6309297535714575,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5092",
+          "kind": "en",
+          "ranked": [
+            5065,
+            5067,
+            5056,
+            5035,
+            5092,
+            5096,
+            5118,
+            5122,
+            5029,
+            5032
+          ],
+          "expected": [
+            5092
+          ],
+          "max_cosine": 0.8793765306472778,
+          "latency_ms": 60.709910000696254,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 0.2,
+              "ndcg": 0.38685280723454163,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.2,
+              "ndcg": 0.38685280723454163,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5092",
+          "kind": "vi",
+          "ranked": [
+            5065,
+            5119,
+            5056,
+            5092,
+            5029,
+            5122,
+            5032,
+            5123,
+            5047,
+            5110
+          ],
+          "expected": [
+            5092
+          ],
+          "max_cosine": 0.8568012714385986,
+          "latency_ms": 60.83543200020358,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 0.25,
+              "ndcg": 0.43067655807339306,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.25,
+              "ndcg": 0.43067655807339306,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-negative-0",
+          "kind": "offtopic",
+          "ranked": [
+            5091,
+            5126,
+            5040,
+            5121,
+            5065,
+            5122,
+            5031,
+            5060,
+            5078,
+            5066
+          ],
+          "expected": [],
+          "max_cosine": 0.8041677474975586,
+          "latency_ms": 50.10556900015217,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            }
+          }
+        },
+        {
+          "id": "dev-negative-1",
+          "kind": "offtopic",
+          "ranked": [
+            5040,
+            5045,
+            5066,
+            5024,
+            5033,
+            5048,
+            5031,
+            5060,
+            5028,
+            5002
+          ],
+          "expected": [],
+          "max_cosine": 0.7282268404960632,
+          "latency_ms": 53.35446699973545,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            }
+          }
+        },
+        {
+          "id": "dev-negative-2",
+          "kind": "offtopic",
+          "ranked": [
+            5042,
+            5044,
+            5038,
+            5040,
+            5098,
+            5033,
+            5054,
+            5025,
+            5122,
+            5027
+          ],
+          "expected": [],
+          "max_cosine": 0.7803794741630554,
+          "latency_ms": 48.44969599980686,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            }
+          }
+        },
+        {
+          "id": "dev-negative-3",
+          "kind": "offtopic",
+          "ranked": [
+            5040,
+            5033,
+            5066,
+            5024,
+            5123,
+            5064,
+            5025,
+            5048,
+            5045,
+            5070
+          ],
+          "expected": [],
+          "max_cosine": 0.7565621137619019,
+          "latency_ms": 56.33450300047116,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            }
+          }
+        },
+        {
+          "id": "dev-negative-4",
+          "kind": "unanswerable",
+          "ranked": [
+            5023,
+            5116,
+            5013,
+            5074,
+            5075,
+            5044,
+            5128,
+            5025,
+            5053,
+            5066
+          ],
+          "expected": [],
+          "max_cosine": 0.8181040287017822,
+          "latency_ms": 47.98073900019517,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            }
+          }
+        },
+        {
+          "id": "dev-negative-5",
+          "kind": "unanswerable",
+          "ranked": [
+            5066,
+            5068,
+            5069,
+            5013,
+            5097,
+            5079,
+            5001,
+            5072,
+            5024,
+            5014
+          ],
+          "expected": [],
+          "max_cosine": 0.8240176439285278,
+          "latency_ms": 56.75160700047854,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            }
+          }
+        }
+      ]
+    },
+    "0.74": {
+      "metrics": {
+        "1": {
+          "recall": 0.4166666666666667,
+          "precision_judged": 0.4166666666666667,
+          "mrr": 0.4166666666666667,
+          "ndcg": 0.4166666666666667
+        },
+        "5": {
+          "recall": 0.8333333333333334,
+          "precision_judged": 0.16666666666666666,
+          "mrr": 0.5513888888888888,
+          "ndcg": 0.6207049265732827
+        },
+        "10": {
+          "recall": 1.0,
+          "precision_judged": 0.10000000000000002,
+          "mrr": 0.570138888888889,
+          "ndcg": 0.6710824018319174
+        }
+      },
+      "negative_empty_rate": 0.16666666666666666,
+      "latency_ms": {
+        "p50": 56.062626500079205,
+        "p95": 61.50688805000754,
+        "p99": 65.74473440983637
+      },
+      "cases": [
+        {
+          "id": "dev-en-5025",
+          "kind": "en",
+          "ranked": [
+            5125,
+            5089,
+            5025,
+            5055,
+            5088,
+            5111,
+            5029,
+            5069,
+            5099,
+            5047
+          ],
+          "expected": [
+            5025
+          ],
+          "max_cosine": 0.8456014394760132,
+          "latency_ms": 66.80419599979359,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 0.3333333333333333,
+              "ndcg": 0.5,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.3333333333333333,
+              "ndcg": 0.5,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5025",
+          "kind": "vi",
+          "ranked": [
+            5025,
+            5049,
+            5029,
+            5088,
+            5023,
+            5125,
+            5052,
+            5111,
+            5069,
+            5118
+          ],
+          "expected": [
+            5025
+          ],
+          "max_cosine": 0.8348667621612549,
+          "latency_ms": 59.64201000006142,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5030",
+          "kind": "en",
+          "ranked": [
+            5031,
+            5083,
+            5060,
+            5113,
+            5061,
+            5037,
+            5027,
+            5073,
+            5054,
+            5030
+          ],
+          "expected": [
+            5030
+          ],
+          "max_cosine": 0.8879246115684509,
+          "latency_ms": 55.11644100079138,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.1,
+              "ndcg": 0.2890648263178879,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5030",
+          "kind": "vi",
+          "ranked": [
+            5030,
+            5031,
+            5029,
+            5113,
+            5083,
+            5061,
+            5060,
+            5037,
+            5034,
+            5027
+          ],
+          "expected": [
+            5030
+          ],
+          "max_cosine": 0.8714125156402588,
+          "latency_ms": 56.94913400020596,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5040",
+          "kind": "en",
+          "ranked": [
+            5040,
+            5044,
+            5043,
+            5041,
+            5042,
+            5047,
+            5057,
+            5045,
+            5077,
+            5048
+          ],
+          "expected": [
+            5040
+          ],
+          "max_cosine": 0.8867350816726685,
+          "latency_ms": 54.779722000603215,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5040",
+          "kind": "vi",
+          "ranked": [
+            5040,
+            5057,
+            5048,
+            5043,
+            5053,
+            5058,
+            5037,
+            5045,
+            5049,
+            5044
+          ],
+          "expected": [
+            5040
+          ],
+          "max_cosine": 0.8390862941741943,
+          "latency_ms": 56.908454000222264,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5061",
+          "kind": "en",
+          "ranked": [
+            5077,
+            5090,
+            5086,
+            5078,
+            5081,
+            5063,
+            5065,
+            5061,
+            5096,
+            5107
+          ],
+          "expected": [
+            5061
+          ],
+          "max_cosine": 0.8594181537628174,
+          "latency_ms": 49.90065799938748,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.125,
+              "ndcg": 0.31546487678572877,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5061",
+          "kind": "vi",
+          "ranked": [
+            5096,
+            5051,
+            5061,
+            5077,
+            5079,
+            5090,
+            5063,
+            5078,
+            5082,
+            5111
+          ],
+          "expected": [
+            5061
+          ],
+          "max_cosine": 0.8519970178604126,
+          "latency_ms": 57.00921399966319,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 0.3333333333333333,
+              "ndcg": 0.5,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.3333333333333333,
+              "ndcg": 0.5,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5075",
+          "kind": "en",
+          "ranked": [
+            5075,
+            5073,
+            5128,
+            5118,
+            5093,
+            5102,
+            5064,
+            5119,
+            5074,
+            5116
+          ],
+          "expected": [
+            5075
+          ],
+          "max_cosine": 0.862079381942749,
+          "latency_ms": 55.17219900048076,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5075",
+          "kind": "vi",
+          "ranked": [
+            5073,
+            5075,
+            5102,
+            5074,
+            5123,
+            5079,
+            5080,
+            5097,
+            5119,
+            5118
+          ],
+          "expected": [
+            5075
+          ],
+          "max_cosine": 0.8527359962463379,
+          "latency_ms": 56.87811699954182,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 0.5,
+              "ndcg": 0.6309297535714575,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.5,
+              "ndcg": 0.6309297535714575,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5092",
+          "kind": "en",
+          "ranked": [
+            5065,
+            5067,
+            5056,
+            5035,
+            5092,
+            5096,
+            5118,
+            5122,
+            5029,
+            5032
+          ],
+          "expected": [
+            5092
+          ],
+          "max_cosine": 0.8793765306472778,
+          "latency_ms": 60.545944000296004,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 0.2,
+              "ndcg": 0.38685280723454163,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.2,
+              "ndcg": 0.38685280723454163,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5092",
+          "kind": "vi",
+          "ranked": [
+            5065,
+            5119,
+            5056,
+            5092,
+            5029,
+            5122,
+            5032,
+            5123,
+            5024,
+            5051
+          ],
+          "expected": [
+            5092
+          ],
+          "max_cosine": 0.8568012714385986,
+          "latency_ms": 60.5720690000453,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 0.25,
+              "ndcg": 0.43067655807339306,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.25,
+              "ndcg": 0.43067655807339306,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-negative-0",
+          "kind": "offtopic",
+          "ranked": [
+            5091,
+            5126,
+            5124,
+            5040,
+            5121,
+            5065,
+            5122,
+            5031,
+            5060,
+            5068
+          ],
+          "expected": [],
+          "max_cosine": 0.8041677474975586,
+          "latency_ms": 49.47618499954842,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            }
+          }
+        },
+        {
+          "id": "dev-negative-1",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7282268404960632,
+          "latency_ms": 53.05826800031355,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-2",
+          "kind": "offtopic",
+          "ranked": [
+            5042,
+            5044,
+            5116,
+            5027,
+            5038,
+            5063,
+            5114,
+            5040,
+            5098,
+            5033
+          ],
+          "expected": [],
+          "max_cosine": 0.7803794741630554,
+          "latency_ms": 47.61496199989779,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            }
+          }
+        },
+        {
+          "id": "dev-negative-3",
+          "kind": "offtopic",
+          "ranked": [
+            5040,
+            5033,
+            5066,
+            5024,
+            5123,
+            5064,
+            5025,
+            5048,
+            5045
+          ],
+          "expected": [],
+          "max_cosine": 0.7565621137619019,
+          "latency_ms": 55.72536699946795,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            }
+          }
+        },
+        {
+          "id": "dev-negative-4",
+          "kind": "unanswerable",
+          "ranked": [
+            5023,
+            5116,
+            5013,
+            5074,
+            5075,
+            5044,
+            5128,
+            5025,
+            5053,
+            5066
+          ],
+          "expected": [],
+          "max_cosine": 0.8181040287017822,
+          "latency_ms": 47.70972599999368,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            }
+          }
+        },
+        {
+          "id": "dev-negative-5",
+          "kind": "unanswerable",
+          "ranked": [
+            5066,
+            5068,
+            5069,
+            5013,
+            5097,
+            5079,
+            5001,
+            5072,
+            5024,
+            5014
+          ],
+          "expected": [],
+          "max_cosine": 0.8240176439285278,
+          "latency_ms": 56.39988600069046,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            }
+          }
+        }
+      ]
+    },
+    "0.76": {
+      "metrics": {
+        "1": {
+          "recall": 0.4166666666666667,
+          "precision_judged": 0.4166666666666667,
+          "mrr": 0.4166666666666667,
+          "ndcg": 0.4166666666666667
+        },
+        "5": {
+          "recall": 0.8333333333333334,
+          "precision_judged": 0.16666666666666666,
+          "mrr": 0.5333333333333333,
+          "ndcg": 0.6054990403489439
+        },
+        "10": {
+          "recall": 1.0,
+          "precision_judged": 0.10000000000000002,
+          "mrr": 0.5520833333333334,
+          "ndcg": 0.6558765156075786
+        }
+      },
+      "negative_empty_rate": 0.3333333333333333,
+      "latency_ms": {
+        "p50": 56.27598699993541,
+        "p95": 61.31950630046958,
+        "p99": 65.62781086010544
+      },
+      "cases": [
+        {
+          "id": "dev-en-5025",
+          "kind": "en",
+          "ranked": [
+            5125,
+            5089,
+            5072,
+            5025,
+            5055,
+            5088,
+            5029,
+            5099,
+            5069,
+            5118
+          ],
+          "expected": [
+            5025
+          ],
+          "max_cosine": 0.8456014394760132,
+          "latency_ms": 66.70488700001442,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 0.25,
+              "ndcg": 0.43067655807339306,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.25,
+              "ndcg": 0.43067655807339306,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5025",
+          "kind": "vi",
+          "ranked": [
+            5025,
+            5049,
+            5029,
+            5088,
+            5023,
+            5125,
+            5052,
+            5111,
+            5069,
+            5118
+          ],
+          "expected": [
+            5025
+          ],
+          "max_cosine": 0.8348667621612549,
+          "latency_ms": 59.827048999977706,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5030",
+          "kind": "en",
+          "ranked": [
+            5031,
+            5083,
+            5060,
+            5113,
+            5061,
+            5037,
+            5027,
+            5073,
+            5054,
+            5030
+          ],
+          "expected": [
+            5030
+          ],
+          "max_cosine": 0.8879246115684509,
+          "latency_ms": 56.3226999993276,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.1,
+              "ndcg": 0.2890648263178879,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5030",
+          "kind": "vi",
+          "ranked": [
+            5030,
+            5031,
+            5029,
+            5113,
+            5083,
+            5061,
+            5060,
+            5037,
+            5034,
+            5027
+          ],
+          "expected": [
+            5030
+          ],
+          "max_cosine": 0.8714125156402588,
+          "latency_ms": 57.30488400058675,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5040",
+          "kind": "en",
+          "ranked": [
+            5040,
+            5044,
+            5043,
+            5041,
+            5042,
+            5047,
+            5032,
+            5053,
+            5067,
+            5057
+          ],
+          "expected": [
+            5040
+          ],
+          "max_cosine": 0.8867350816726685,
+          "latency_ms": 54.635381000480265,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5040",
+          "kind": "vi",
+          "ranked": [
+            5040,
+            5048,
+            5057,
+            5043,
+            5053,
+            5058,
+            5037,
+            5045,
+            5049,
+            5044
+          ],
+          "expected": [
+            5040
+          ],
+          "max_cosine": 0.8390862941741943,
+          "latency_ms": 56.60936200001743,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5061",
+          "kind": "en",
+          "ranked": [
+            5077,
+            5090,
+            5086,
+            5078,
+            5081,
+            5063,
+            5065,
+            5061,
+            5096,
+            5107
+          ],
+          "expected": [
+            5061
+          ],
+          "max_cosine": 0.8594181537628174,
+          "latency_ms": 50.20121899997321,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.125,
+              "ndcg": 0.31546487678572877,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5061",
+          "kind": "vi",
+          "ranked": [
+            5096,
+            5127,
+            5051,
+            5061,
+            5077,
+            5079,
+            5090,
+            5063,
+            5078,
+            5082
+          ],
+          "expected": [
+            5061
+          ],
+          "max_cosine": 0.8519970178604126,
+          "latency_ms": 56.72389499977726,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 0.25,
+              "ndcg": 0.43067655807339306,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.25,
+              "ndcg": 0.43067655807339306,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5075",
+          "kind": "en",
+          "ranked": [
+            5075,
+            5073,
+            5128,
+            5118,
+            5093,
+            5102,
+            5064,
+            5119,
+            5074,
+            5116
+          ],
+          "expected": [
+            5075
+          ],
+          "max_cosine": 0.862079381942749,
+          "latency_ms": 54.719690000638366,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5075",
+          "kind": "vi",
+          "ranked": [
+            5073,
+            5075,
+            5102,
+            5074,
+            5123,
+            5079,
+            5080,
+            5097,
+            5119,
+            5118
+          ],
+          "expected": [
+            5075
+          ],
+          "max_cosine": 0.8527359962463379,
+          "latency_ms": 56.539158999839856,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 0.5,
+              "ndcg": 0.6309297535714575,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.5,
+              "ndcg": 0.6309297535714575,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5092",
+          "kind": "en",
+          "ranked": [
+            5065,
+            5067,
+            5056,
+            5035,
+            5092,
+            5096,
+            5118,
+            5122,
+            5029,
+            5032
+          ],
+          "expected": [
+            5092
+          ],
+          "max_cosine": 0.8793765306472778,
+          "latency_ms": 60.369145000549906,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 0.2,
+              "ndcg": 0.38685280723454163,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.2,
+              "ndcg": 0.38685280723454163,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5092",
+          "kind": "vi",
+          "ranked": [
+            5065,
+            5119,
+            5056,
+            5082,
+            5092,
+            5029,
+            5122,
+            5032,
+            5123,
+            5051
+          ],
+          "expected": [
+            5092
+          ],
+          "max_cosine": 0.8568012714385986,
+          "latency_ms": 60.274379000475165,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 0.2,
+              "ndcg": 0.38685280723454163,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.2,
+              "ndcg": 0.38685280723454163,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-negative-0",
+          "kind": "offtopic",
+          "ranked": [
+            5091,
+            5031,
+            5126,
+            5119,
+            5124,
+            5040,
+            5122,
+            5065,
+            5046,
+            5060
+          ],
+          "expected": [],
+          "max_cosine": 0.8041677474975586,
+          "latency_ms": 49.17188599938527,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            }
+          }
+        },
+        {
+          "id": "dev-negative-1",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7282268404960632,
+          "latency_ms": 53.040464999867254,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-2",
+          "kind": "offtopic",
+          "ranked": [
+            5042,
+            5044,
+            5116,
+            5063,
+            5038,
+            5114,
+            5040,
+            5033,
+            5025,
+            5066
+          ],
+          "expected": [],
+          "max_cosine": 0.7803794741630554,
+          "latency_ms": 47.39053700086515,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            }
+          }
+        },
+        {
+          "id": "dev-negative-3",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7565621137619019,
+          "latency_ms": 55.68521200075338,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-4",
+          "kind": "unanswerable",
+          "ranked": [
+            5023,
+            5116,
+            5013,
+            5074,
+            5075,
+            5044,
+            5128,
+            5025,
+            5053,
+            5066
+          ],
+          "expected": [],
+          "max_cosine": 0.8181040287017822,
+          "latency_ms": 47.40653699991526,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            }
+          }
+        },
+        {
+          "id": "dev-negative-5",
+          "kind": "unanswerable",
+          "ranked": [
+            5066,
+            5068,
+            5069,
+            5013,
+            5097,
+            5079,
+            5001,
+            5072,
+            5024,
+            5014
+          ],
+          "expected": [],
+          "max_cosine": 0.8240176439285278,
+          "latency_ms": 56.22927400054323,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            }
+          }
+        }
+      ]
+    },
+    "0.78": {
+      "metrics": {
+        "1": {
+          "recall": 0.4166666666666667,
+          "precision_judged": 0.4166666666666667,
+          "mrr": 0.4166666666666667,
+          "ndcg": 0.4166666666666667
+        },
+        "5": {
+          "recall": 0.5833333333333334,
+          "precision_judged": 0.11666666666666665,
+          "mrr": 0.4611111111111111,
+          "ndcg": 0.49057106726954514
+        },
+        "10": {
+          "recall": 0.9166666666666666,
+          "precision_judged": 0.09166666666666667,
+          "mrr": 0.4974537037037037,
+          "ndcg": 0.5901231110266689
+        }
+      },
+      "negative_empty_rate": 0.3333333333333333,
+      "latency_ms": {
+        "p50": 55.85281950015997,
+        "p95": 61.89483420021133,
+        "p99": 65.81829004033351
+      },
+      "cases": [
+        {
+          "id": "dev-en-5025",
+          "kind": "en",
+          "ranked": [
+            5125,
+            5089,
+            5072,
+            5051,
+            5049,
+            5003,
+            5001,
+            5048,
+            5025,
+            5055
+          ],
+          "expected": [
+            5025
+          ],
+          "max_cosine": 0.8456014394760132,
+          "latency_ms": 66.79915400036407,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.1111111111111111,
+              "ndcg": 0.3010299956639812,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5025",
+          "kind": "vi",
+          "ranked": [
+            5025,
+            5088,
+            5058,
+            5051,
+            5049,
+            5002,
+            5029,
+            5023,
+            5052,
+            5024
+          ],
+          "expected": [
+            5025
+          ],
+          "max_cosine": 0.8348667621612549,
+          "latency_ms": 59.31020699972578,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5030",
+          "kind": "en",
+          "ranked": [
+            5031,
+            5083,
+            5060,
+            5113,
+            5061,
+            5027,
+            5037,
+            5073,
+            5054,
+            5047
+          ],
+          "expected": [
+            5030
+          ],
+          "max_cosine": 0.8879246115684509,
+          "latency_ms": 54.74042500009091,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5030",
+          "kind": "vi",
+          "ranked": [
+            5030,
+            5031,
+            5029,
+            5113,
+            5083,
+            5061,
+            5060,
+            5037,
+            5036,
+            5038
+          ],
+          "expected": [
+            5030
+          ],
+          "max_cosine": 0.8714125156402588,
+          "latency_ms": 56.74708799961081,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5040",
+          "kind": "en",
+          "ranked": [
+            5040,
+            5044,
+            5043,
+            5041,
+            5042,
+            5047,
+            5032,
+            5053,
+            5067,
+            5057
+          ],
+          "expected": [
+            5040
+          ],
+          "max_cosine": 0.8867350816726685,
+          "latency_ms": 54.25508299958892,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5040",
+          "kind": "vi",
+          "ranked": [
+            5040,
+            5048,
+            5057,
+            5043,
+            5041,
+            5042,
+            5053,
+            5058,
+            5037,
+            5045
+          ],
+          "expected": [
+            5040
+          ],
+          "max_cosine": 0.8390862941741943,
+          "latency_ms": 56.615338999108644,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5061",
+          "kind": "en",
+          "ranked": [
+            5077,
+            5086,
+            5090,
+            5078,
+            5081,
+            5063,
+            5071,
+            5065,
+            5051,
+            5061
+          ],
+          "expected": [
+            5061
+          ],
+          "max_cosine": 0.8594181537628174,
+          "latency_ms": 48.9578070000789,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.1,
+              "ndcg": 0.2890648263178879,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5061",
+          "kind": "vi",
+          "ranked": [
+            5096,
+            5111,
+            5127,
+            5117,
+            5086,
+            5051,
+            5118,
+            5061,
+            5077,
+            5079
+          ],
+          "expected": [
+            5061
+          ],
+          "max_cosine": 0.8519970178604126,
+          "latency_ms": 56.04270399999223,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.125,
+              "ndcg": 0.31546487678572877,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5075",
+          "kind": "en",
+          "ranked": [
+            5075,
+            5073,
+            5128,
+            5118,
+            5080,
+            5093,
+            5079,
+            5101,
+            5102,
+            5064
+          ],
+          "expected": [
+            5075
+          ],
+          "max_cosine": 0.862079381942749,
+          "latency_ms": 54.35525300072186,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5075",
+          "kind": "vi",
+          "ranked": [
+            5073,
+            5077,
+            5075,
+            5102,
+            5074,
+            5123,
+            5097,
+            5080,
+            5119,
+            5118
+          ],
+          "expected": [
+            5075
+          ],
+          "max_cosine": 0.8527359962463379,
+          "latency_ms": 56.20811500011769,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 0.3333333333333333,
+              "ndcg": 0.5,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.3333333333333333,
+              "ndcg": 0.5,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5092",
+          "kind": "en",
+          "ranked": [
+            5065,
+            5067,
+            5056,
+            5035,
+            5092,
+            5096,
+            5118,
+            5122,
+            5029,
+            5032
+          ],
+          "expected": [
+            5092
+          ],
+          "max_cosine": 0.8793765306472778,
+          "latency_ms": 59.973566000735445,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 0.2,
+              "ndcg": 0.38685280723454163,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.2,
+              "ndcg": 0.38685280723454163,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5092",
+          "kind": "vi",
+          "ranked": [
+            5065,
+            5119,
+            5082,
+            5056,
+            5127,
+            5116,
+            5089,
+            5035,
+            5037,
+            5092
+          ],
+          "expected": [
+            5092
+          ],
+          "max_cosine": 0.8568012714385986,
+          "latency_ms": 61.02936600018438,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.1,
+              "ndcg": 0.2890648263178879,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-negative-0",
+          "kind": "offtopic",
+          "ranked": [
+            5091,
+            5031,
+            5040,
+            5122,
+            5060,
+            5066,
+            5128
+          ],
+          "expected": [],
+          "max_cosine": 0.8041677474975586,
+          "latency_ms": 49.22654099937063,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            }
+          }
+        },
+        {
+          "id": "dev-negative-1",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7282268404960632,
+          "latency_ms": 53.11600400000316,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-2",
+          "kind": "offtopic",
+          "ranked": [
+            5040
+          ],
+          "expected": [],
+          "max_cosine": 0.7803794741630554,
+          "latency_ms": 47.286241000620066,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            }
+          }
+        },
+        {
+          "id": "dev-negative-3",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7565621137619019,
+          "latency_ms": 55.81842500032508,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-4",
+          "kind": "unanswerable",
+          "ranked": [
+            5023,
+            5116,
+            5114,
+            5038,
+            5013,
+            5074,
+            5075,
+            5128,
+            5025,
+            5098
+          ],
+          "expected": [],
+          "max_cosine": 0.8181040287017822,
+          "latency_ms": 47.06526800055144,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            }
+          }
+        },
+        {
+          "id": "dev-negative-5",
+          "kind": "unanswerable",
+          "ranked": [
+            5066,
+            5001,
+            5068,
+            5013,
+            5069,
+            5097,
+            5037,
+            5079,
+            5072,
+            5024
+          ],
+          "expected": [],
+          "max_cosine": 0.8240176439285278,
+          "latency_ms": 55.887213999994856,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            }
+          }
+        }
+      ]
+    },
+    "0.8": {
+      "metrics": {
+        "1": {
+          "recall": 0.4166666666666667,
+          "precision_judged": 0.4166666666666667,
+          "mrr": 0.4166666666666667,
+          "ndcg": 0.4166666666666667
+        },
+        "5": {
+          "recall": 0.5,
+          "precision_judged": 0.09999999999999999,
+          "mrr": 0.4375,
+          "ndcg": 0.4525563798394494
+        },
+        "10": {
+          "recall": 0.6666666666666666,
+          "precision_judged": 0.06666666666666667,
+          "mrr": 0.4583333333333333,
+          "ndcg": 0.5051338593037376
+        }
+      },
+      "negative_empty_rate": 0.5,
+      "latency_ms": {
+        "p50": 55.67665400030819,
+        "p95": 60.65647990017168,
+        "p99": 64.96772478025376
+      },
+      "cases": [
+        {
+          "id": "dev-en-5025",
+          "kind": "en",
+          "ranked": [
+            5089,
+            5125,
+            5069,
+            5047,
+            5052,
+            5072,
+            5039,
+            5025,
+            5055,
+            5088
+          ],
+          "expected": [
+            5025
+          ],
+          "max_cosine": 0.8456014394760132,
+          "latency_ms": 66.0455360002743,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.125,
+              "ndcg": 0.31546487678572877,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5025",
+          "kind": "vi",
+          "ranked": [
+            5025,
+            5029,
+            5023
+          ],
+          "expected": [
+            5025
+          ],
+          "max_cosine": 0.8348667621612549,
+          "latency_ms": 59.244763000606326,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5030",
+          "kind": "en",
+          "ranked": [
+            5031,
+            5083,
+            5060,
+            5113,
+            5061,
+            5027,
+            5034,
+            5037,
+            5073,
+            5097
+          ],
+          "expected": [
+            5030
+          ],
+          "max_cosine": 0.8879246115684509,
+          "latency_ms": 54.47428800016496,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5030",
+          "kind": "vi",
+          "ranked": [
+            5030,
+            5031,
+            5029,
+            5113,
+            5083,
+            5061,
+            5060,
+            5056,
+            5085,
+            5034
+          ],
+          "expected": [
+            5030
+          ],
+          "max_cosine": 0.8714125156402588,
+          "latency_ms": 56.647401999725844,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5040",
+          "kind": "en",
+          "ranked": [
+            5040,
+            5044,
+            5043,
+            5041,
+            5049,
+            5032,
+            5058,
+            5057,
+            5045,
+            5048
+          ],
+          "expected": [
+            5040
+          ],
+          "max_cosine": 0.8867350816726685,
+          "latency_ms": 54.07986299996992,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5040",
+          "kind": "vi",
+          "ranked": [
+            5040,
+            5045,
+            5048,
+            5057
+          ],
+          "expected": [
+            5040
+          ],
+          "max_cosine": 0.8390862941741943,
+          "latency_ms": 56.49315699974977,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5061",
+          "kind": "en",
+          "ranked": [
+            5077,
+            5081,
+            5086,
+            5117,
+            5082,
+            5090,
+            5078,
+            5115,
+            5060,
+            5063
+          ],
+          "expected": [
+            5061
+          ],
+          "max_cosine": 0.8594181537628174,
+          "latency_ms": 48.77594100071292,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5061",
+          "kind": "vi",
+          "ranked": [
+            5077,
+            5079,
+            5111,
+            5096,
+            5127,
+            5081,
+            5082,
+            5061,
+            5063,
+            5107
+          ],
+          "expected": [
+            5061
+          ],
+          "max_cosine": 0.8519970178604126,
+          "latency_ms": 55.91692899906775,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.125,
+              "ndcg": 0.31546487678572877,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5075",
+          "kind": "en",
+          "ranked": [
+            5075,
+            5073,
+            5128,
+            5123,
+            5081,
+            5080,
+            5118,
+            5082,
+            5102,
+            5119
+          ],
+          "expected": [
+            5075
+          ],
+          "max_cosine": 0.862079381942749,
+          "latency_ms": 54.209578001064074,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5075",
+          "kind": "vi",
+          "ranked": [
+            5073,
+            5116,
+            5119,
+            5118,
+            5123,
+            5060,
+            5081,
+            5077,
+            5084,
+            5079
+          ],
+          "expected": [
+            5075
+          ],
+          "max_cosine": 0.8527359962463379,
+          "latency_ms": 55.96041500029969,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5092",
+          "kind": "en",
+          "ranked": [
+            5065,
+            5067,
+            5105,
+            5056,
+            5035,
+            5118,
+            5124,
+            5082,
+            5090,
+            5060
+          ],
+          "expected": [
+            5092
+          ],
+          "max_cosine": 0.8793765306472778,
+          "latency_ms": 59.567241999502585,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5092",
+          "kind": "vi",
+          "ranked": [
+            5065,
+            5029,
+            5060,
+            5092,
+            5122,
+            5032,
+            5110,
+            5096
+          ],
+          "expected": [
+            5092
+          ],
+          "max_cosine": 0.8568012714385986,
+          "latency_ms": 59.70547000015358,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 0.25,
+              "ndcg": 0.43067655807339306,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.25,
+              "ndcg": 0.43067655807339306,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-negative-0",
+          "kind": "offtopic",
+          "ranked": [
+            5091
+          ],
+          "expected": [],
+          "max_cosine": 0.8041677474975586,
+          "latency_ms": 49.080184999183984,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            }
+          }
+        },
+        {
+          "id": "dev-negative-1",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7282268404960632,
+          "latency_ms": 53.03234600069118,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-2",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7803794741630554,
+          "latency_ms": 47.299824000219814,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-3",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7565621137619019,
+          "latency_ms": 55.671084000096016,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-4",
+          "kind": "unanswerable",
+          "ranked": [
+            5023,
+            5075,
+            5128,
+            5025,
+            5066
+          ],
+          "expected": [],
+          "max_cosine": 0.8181040287017822,
+          "latency_ms": 46.884709000551084,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            }
+          }
+        },
+        {
+          "id": "dev-negative-5",
+          "kind": "unanswerable",
+          "ranked": [
+            5001,
+            5066,
+            5068,
+            5032,
+            5099,
+            5072,
+            5024,
+            5014,
+            5025,
+            5002
+          ],
+          "expected": [],
+          "max_cosine": 0.8240176439285278,
+          "latency_ms": 55.682224000520364,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            }
+          }
+        }
+      ]
+    },
+    "0.82": {
+      "metrics": {
+        "1": {
+          "recall": 0.5,
+          "precision_judged": 0.5,
+          "mrr": 0.5,
+          "ndcg": 0.5
+        },
+        "5": {
+          "recall": 0.8333333333333334,
+          "precision_judged": 0.16666666666666666,
+          "mrr": 0.6527777777777778,
+          "ndcg": 0.6993991050595311
+        },
+        "10": {
+          "recall": 1.0,
+          "precision_judged": 0.10000000000000002,
+          "mrr": 0.6694444444444444,
+          "ndcg": 0.7475765761125123
+        }
+      },
+      "negative_empty_rate": 0.8333333333333334,
+      "latency_ms": {
+        "p50": 55.6975610002155,
+        "p95": 60.62451885013615,
+        "p99": 64.91621577007207
+      },
+      "cases": [
+        {
+          "id": "dev-en-5025",
+          "kind": "en",
+          "ranked": [
+            5055,
+            5088,
+            5025
+          ],
+          "expected": [
+            5025
+          ],
+          "max_cosine": 0.8456014394760132,
+          "latency_ms": 65.98914000005607,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 0.3333333333333333,
+              "ndcg": 0.5,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.3333333333333333,
+              "ndcg": 0.5,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5025",
+          "kind": "vi",
+          "ranked": [
+            5025
+          ],
+          "expected": [
+            5025
+          ],
+          "max_cosine": 0.8348667621612549,
+          "latency_ms": 59.16554299983545,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5030",
+          "kind": "en",
+          "ranked": [
+            5031,
+            5083,
+            5060,
+            5113,
+            5061,
+            5085,
+            5027,
+            5071,
+            5082,
+            5030
+          ],
+          "expected": [
+            5030
+          ],
+          "max_cosine": 0.8879246115684509,
+          "latency_ms": 54.37893599992094,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.1,
+              "ndcg": 0.2890648263178879,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5030",
+          "kind": "vi",
+          "ranked": [
+            5030,
+            5031,
+            5113
+          ],
+          "expected": [
+            5030
+          ],
+          "max_cosine": 0.8714125156402588,
+          "latency_ms": 56.61528000018734,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5040",
+          "kind": "en",
+          "ranked": [
+            5040,
+            5057,
+            5044,
+            5041,
+            5045
+          ],
+          "expected": [
+            5040
+          ],
+          "max_cosine": 0.8867350816726685,
+          "latency_ms": 54.14268099957553,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5040",
+          "kind": "vi",
+          "ranked": [
+            5040
+          ],
+          "expected": [
+            5040
+          ],
+          "max_cosine": 0.8390862941741943,
+          "latency_ms": 56.59233599999425,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5061",
+          "kind": "en",
+          "ranked": [
+            5077,
+            5061,
+            5107
+          ],
+          "expected": [
+            5061
+          ],
+          "max_cosine": 0.8594181537628174,
+          "latency_ms": 49.5498279997264,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 0.5,
+              "ndcg": 0.6309297535714575,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.5,
+              "ndcg": 0.6309297535714575,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5061",
+          "kind": "vi",
+          "ranked": [
+            5077,
+            5061
+          ],
+          "expected": [
+            5061
+          ],
+          "max_cosine": 0.8519970178604126,
+          "latency_ms": 56.005967999226414,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 0.5,
+              "ndcg": 0.6309297535714575,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.5,
+              "ndcg": 0.6309297535714575,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5075",
+          "kind": "en",
+          "ranked": [
+            5075,
+            5073,
+            5119,
+            5102
+          ],
+          "expected": [
+            5075
+          ],
+          "max_cosine": 0.862079381942749,
+          "latency_ms": 54.172050000488525,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5075",
+          "kind": "vi",
+          "ranked": [
+            5102,
+            5075
+          ],
+          "expected": [
+            5075
+          ],
+          "max_cosine": 0.8527359962463379,
+          "latency_ms": 55.93846800002211,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 0.5,
+              "ndcg": 0.6309297535714575,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.5,
+              "ndcg": 0.6309297535714575,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5092",
+          "kind": "en",
+          "ranked": [
+            5065,
+            5029,
+            5118,
+            5105,
+            5032,
+            5122,
+            5126,
+            5081,
+            5096,
+            5092
+          ],
+          "expected": [
+            5092
+          ],
+          "max_cosine": 0.8793765306472778,
+          "latency_ms": 59.39563700030703,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.1,
+              "ndcg": 0.2890648263178879,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5092",
+          "kind": "vi",
+          "ranked": [
+            5092
+          ],
+          "expected": [
+            5092
+          ],
+          "max_cosine": 0.8568012714385986,
+          "latency_ms": 59.67782100015029,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-negative-0",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.8041677474975586,
+          "latency_ms": 49.055154999223305,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-1",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7282268404960632,
+          "latency_ms": 53.08742600027472,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-2",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7803794741630554,
+          "latency_ms": 47.352752000733744,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-3",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7565621137619019,
+          "latency_ms": 55.7310399999551,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-4",
+          "kind": "unanswerable",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.8181040287017822,
+          "latency_ms": 46.92730299939285,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-5",
+          "kind": "unanswerable",
+          "ranked": [
+            5001
+          ],
+          "expected": [],
+          "max_cosine": 0.8240176439285278,
+          "latency_ms": 55.6640820004759,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": false
+            }
+          }
+        }
+      ]
+    },
+    "0.84": {
+      "metrics": {
+        "1": {
+          "recall": 0.6666666666666666,
+          "precision_judged": 0.6666666666666666,
+          "mrr": 0.6666666666666666,
+          "ndcg": 0.6666666666666666
+        },
+        "5": {
+          "recall": 0.8333333333333334,
+          "precision_judged": 0.16666666666666666,
+          "mrr": 0.725,
+          "ndcg": 0.7514818800671667
+        },
+        "10": {
+          "recall": 0.8333333333333334,
+          "precision_judged": 0.08333333333333333,
+          "mrr": 0.725,
+          "ndcg": 0.7514818800671667
+        }
+      },
+      "negative_empty_rate": 1.0,
+      "latency_ms": {
+        "p50": 55.661068000063096,
+        "p95": 60.71986924971497,
+        "p99": 64.94461064959977
+      },
+      "cases": [
+        {
+          "id": "dev-en-5025",
+          "kind": "en",
+          "ranked": [
+            5025
+          ],
+          "expected": [
+            5025
+          ],
+          "max_cosine": 0.8456014394760132,
+          "latency_ms": 66.00079599957098,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5025",
+          "kind": "vi",
+          "ranked": [],
+          "expected": [
+            5025
+          ],
+          "max_cosine": 0.8348667621612549,
+          "latency_ms": 59.14805199972761,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5030",
+          "kind": "en",
+          "ranked": [
+            5031,
+            5083,
+            5029,
+            5113,
+            5030
+          ],
+          "expected": [
+            5030
+          ],
+          "max_cosine": 0.8879246115684509,
+          "latency_ms": 54.410634000305436,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 0.2,
+              "ndcg": 0.38685280723454163,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.2,
+              "ndcg": 0.38685280723454163,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5030",
+          "kind": "vi",
+          "ranked": [
+            5030,
+            5031
+          ],
+          "expected": [
+            5030
+          ],
+          "max_cosine": 0.8714125156402588,
+          "latency_ms": 56.56240699954651,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5040",
+          "kind": "en",
+          "ranked": [
+            5040
+          ],
+          "expected": [
+            5040
+          ],
+          "max_cosine": 0.8867350816726685,
+          "latency_ms": 54.01887099924352,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5040",
+          "kind": "vi",
+          "ranked": [],
+          "expected": [
+            5040
+          ],
+          "max_cosine": 0.8390862941741943,
+          "latency_ms": 56.463308998900175,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5061",
+          "kind": "en",
+          "ranked": [
+            5061
+          ],
+          "expected": [
+            5061
+          ],
+          "max_cosine": 0.8594181537628174,
+          "latency_ms": 48.63986300006218,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5061",
+          "kind": "vi",
+          "ranked": [
+            5061
+          ],
+          "expected": [
+            5061
+          ],
+          "max_cosine": 0.8519970178604126,
+          "latency_ms": 55.83323799965001,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5075",
+          "kind": "en",
+          "ranked": [
+            5075
+          ],
+          "expected": [
+            5075
+          ],
+          "max_cosine": 0.862079381942749,
+          "latency_ms": 54.14280800141569,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5075",
+          "kind": "vi",
+          "ranked": [
+            5075
+          ],
+          "expected": [
+            5075
+          ],
+          "max_cosine": 0.8527359962463379,
+          "latency_ms": 55.9026390001236,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5092",
+          "kind": "en",
+          "ranked": [
+            5065,
+            5092
+          ],
+          "expected": [
+            5092
+          ],
+          "max_cosine": 0.8793765306472778,
+          "latency_ms": 59.6008519996758,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 0.5,
+              "ndcg": 0.6309297535714575,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.5,
+              "ndcg": 0.6309297535714575,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5092",
+          "kind": "vi",
+          "ranked": [
+            5092
+          ],
+          "expected": [
+            5092
+          ],
+          "max_cosine": 0.8568012714385986,
+          "latency_ms": 59.787940999740385,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-negative-0",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.8041677474975586,
+          "latency_ms": 49.12219599918899,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-1",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7282268404960632,
+          "latency_ms": 53.05008300001646,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-2",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7803794741630554,
+          "latency_ms": 47.265380000681034,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-3",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7565621137619019,
+          "latency_ms": 55.664266999883694,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-4",
+          "kind": "unanswerable",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.8181040287017822,
+          "latency_ms": 46.95256299964967,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-5",
+          "kind": "unanswerable",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.8240176439285278,
+          "latency_ms": 55.6578690002425,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        }
+      ]
+    },
+    "0.86": {
+      "metrics": {
+        "1": {
+          "recall": 0.4166666666666667,
+          "precision_judged": 0.4166666666666667,
+          "mrr": 0.4166666666666667,
+          "ndcg": 0.4166666666666667
+        },
+        "5": {
+          "recall": 0.4166666666666667,
+          "precision_judged": 0.08333333333333333,
+          "mrr": 0.4166666666666667,
+          "ndcg": 0.4166666666666667
+        },
+        "10": {
+          "recall": 0.4166666666666667,
+          "precision_judged": 0.041666666666666664,
+          "mrr": 0.4166666666666667,
+          "ndcg": 0.4166666666666667
+        }
+      },
+      "negative_empty_rate": 1.0,
+      "latency_ms": {
+        "p50": 55.66370950009514,
+        "p95": 61.0059029005697,
+        "p99": 64.99685418059924
+      },
+      "cases": [
+        {
+          "id": "dev-en-5025",
+          "kind": "en",
+          "ranked": [],
+          "expected": [
+            5025
+          ],
+          "max_cosine": 0.8456014394760132,
+          "latency_ms": 65.99459200060664,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5025",
+          "kind": "vi",
+          "ranked": [],
+          "expected": [
+            5025
+          ],
+          "max_cosine": 0.8348667621612549,
+          "latency_ms": 60.12554600056319,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5030",
+          "kind": "en",
+          "ranked": [
+            5030,
+            5031
+          ],
+          "expected": [
+            5030
+          ],
+          "max_cosine": 0.8879246115684509,
+          "latency_ms": 54.39287600074749,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5030",
+          "kind": "vi",
+          "ranked": [
+            5030,
+            5031
+          ],
+          "expected": [
+            5030
+          ],
+          "max_cosine": 0.8714125156402588,
+          "latency_ms": 56.56741199982207,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5040",
+          "kind": "en",
+          "ranked": [
+            5040
+          ],
+          "expected": [
+            5040
+          ],
+          "max_cosine": 0.8867350816726685,
+          "latency_ms": 54.081168999800866,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5040",
+          "kind": "vi",
+          "ranked": [],
+          "expected": [
+            5040
+          ],
+          "max_cosine": 0.8390862941741943,
+          "latency_ms": 56.50406499989913,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5061",
+          "kind": "en",
+          "ranked": [],
+          "expected": [
+            5061
+          ],
+          "max_cosine": 0.8594181537628174,
+          "latency_ms": 48.56014300003153,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5061",
+          "kind": "vi",
+          "ranked": [],
+          "expected": [
+            5061
+          ],
+          "max_cosine": 0.8519970178604126,
+          "latency_ms": 55.785284000194224,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5075",
+          "kind": "en",
+          "ranked": [
+            5075
+          ],
+          "expected": [
+            5075
+          ],
+          "max_cosine": 0.862079381942749,
+          "latency_ms": 54.089616000055685,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5075",
+          "kind": "vi",
+          "ranked": [],
+          "expected": [
+            5075
+          ],
+          "max_cosine": 0.8527359962463379,
+          "latency_ms": 55.81231900032435,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5092",
+          "kind": "en",
+          "ranked": [
+            5092
+          ],
+          "expected": [
+            5092
+          ],
+          "max_cosine": 0.8793765306472778,
+          "latency_ms": 59.440431000439276,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5092",
+          "kind": "vi",
+          "ranked": [],
+          "expected": [
+            5092
+          ],
+          "max_cosine": 0.8568012714385986,
+          "latency_ms": 59.77957300001435,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-negative-0",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.8041677474975586,
+          "latency_ms": 49.11891499887133,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-1",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7282268404960632,
+          "latency_ms": 53.062486999806424,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-2",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7803794741630554,
+          "latency_ms": 47.35862600045948,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-3",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7565621137619019,
+          "latency_ms": 55.72584699984873,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-4",
+          "kind": "unanswerable",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.8181040287017822,
+          "latency_ms": 46.90874599964445,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-5",
+          "kind": "unanswerable",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.8240176439285278,
+          "latency_ms": 55.60157200034155,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        }
+      ]
+    },
+    "0.88": {
+      "metrics": {
+        "1": {
+          "recall": 0.16666666666666666,
+          "precision_judged": 0.16666666666666666,
+          "mrr": 0.16666666666666666,
+          "ndcg": 0.16666666666666666
+        },
+        "5": {
+          "recall": 0.16666666666666666,
+          "precision_judged": 0.03333333333333333,
+          "mrr": 0.16666666666666666,
+          "ndcg": 0.16666666666666666
+        },
+        "10": {
+          "recall": 0.16666666666666666,
+          "precision_judged": 0.016666666666666666,
+          "mrr": 0.16666666666666666,
+          "ndcg": 0.16666666666666666
+        }
+      },
+      "negative_empty_rate": 1.0,
+      "latency_ms": {
+        "p50": 55.66964000036023,
+        "p95": 60.82810014981987,
+        "p99": 64.92145603010611
+      },
+      "cases": [
+        {
+          "id": "dev-en-5025",
+          "kind": "en",
+          "ranked": [],
+          "expected": [
+            5025
+          ],
+          "max_cosine": 0.8456014394760132,
+          "latency_ms": 65.94479500017769,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5025",
+          "kind": "vi",
+          "ranked": [],
+          "expected": [
+            5025
+          ],
+          "max_cosine": 0.8348667621612549,
+          "latency_ms": 59.160181999686756,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5030",
+          "kind": "en",
+          "ranked": [
+            5030,
+            5031
+          ],
+          "expected": [
+            5030
+          ],
+          "max_cosine": 0.8879246115684509,
+          "latency_ms": 54.37698300011107,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5030",
+          "kind": "vi",
+          "ranked": [],
+          "expected": [
+            5030
+          ],
+          "max_cosine": 0.8714125156402588,
+          "latency_ms": 56.61327699999674,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5040",
+          "kind": "en",
+          "ranked": [
+            5040
+          ],
+          "expected": [
+            5040
+          ],
+          "max_cosine": 0.8867350816726685,
+          "latency_ms": 55.16749099933804,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5040",
+          "kind": "vi",
+          "ranked": [],
+          "expected": [
+            5040
+          ],
+          "max_cosine": 0.8390862941741943,
+          "latency_ms": 56.92553399967437,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5061",
+          "kind": "en",
+          "ranked": [],
+          "expected": [
+            5061
+          ],
+          "max_cosine": 0.8594181537628174,
+          "latency_ms": 49.38831500021479,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5061",
+          "kind": "vi",
+          "ranked": [],
+          "expected": [
+            5061
+          ],
+          "max_cosine": 0.8519970178604126,
+          "latency_ms": 56.56185699990601,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5075",
+          "kind": "en",
+          "ranked": [],
+          "expected": [
+            5075
+          ],
+          "max_cosine": 0.862079381942749,
+          "latency_ms": 54.68421000023227,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5075",
+          "kind": "vi",
+          "ranked": [],
+          "expected": [
+            5075
+          ],
+          "max_cosine": 0.8527359962463379,
+          "latency_ms": 56.17737800002942,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5092",
+          "kind": "en",
+          "ranked": [],
+          "expected": [
+            5092
+          ],
+          "max_cosine": 0.8793765306472778,
+          "latency_ms": 59.647195000252395,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5092",
+          "kind": "vi",
+          "ranked": [],
+          "expected": [
+            5092
+          ],
+          "max_cosine": 0.8568012714385986,
+          "latency_ms": 59.92515399975673,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-negative-0",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.8041677474975586,
+          "latency_ms": 49.16984600004071,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-1",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7282268404960632,
+          "latency_ms": 53.05557700012287,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-2",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7803794741630554,
+          "latency_ms": 47.31891299979907,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-3",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7565621137619019,
+          "latency_ms": 55.69964300048014,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-4",
+          "kind": "unanswerable",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.8181040287017822,
+          "latency_ms": 46.89358100040408,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-5",
+          "kind": "unanswerable",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.8240176439285278,
+          "latency_ms": 55.63963700024033,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        }
+      ]
+    },
+    "0.9": {
+      "metrics": {
+        "1": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        },
+        "5": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        },
+        "10": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        }
+      },
+      "negative_empty_rate": 1.0,
+      "latency_ms": {
+        "p50": 55.776668500129745,
+        "p95": 60.78373055079282,
+        "p99": 64.98425171015695
+      },
+      "cases": [
+        {
+          "id": "dev-en-5025",
+          "kind": "en",
+          "ranked": [],
+          "expected": [
+            5025
+          ],
+          "max_cosine": 0.8456014394760132,
+          "latency_ms": 66.034381999998,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5025",
+          "kind": "vi",
+          "ranked": [],
+          "expected": [
+            5025
+          ],
+          "max_cosine": 0.8348667621612549,
+          "latency_ms": 59.182811999562546,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5030",
+          "kind": "en",
+          "ranked": [],
+          "expected": [
+            5030
+          ],
+          "max_cosine": 0.8879246115684509,
+          "latency_ms": 54.31431400029396,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5030",
+          "kind": "vi",
+          "ranked": [],
+          "expected": [
+            5030
+          ],
+          "max_cosine": 0.8714125156402588,
+          "latency_ms": 56.57140699986485,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5040",
+          "kind": "en",
+          "ranked": [],
+          "expected": [
+            5040
+          ],
+          "max_cosine": 0.8867350816726685,
+          "latency_ms": 54.03488100000686,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5040",
+          "kind": "vi",
+          "ranked": [],
+          "expected": [
+            5040
+          ],
+          "max_cosine": 0.8390862941741943,
+          "latency_ms": 56.49873499896785,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5061",
+          "kind": "en",
+          "ranked": [],
+          "expected": [
+            5061
+          ],
+          "max_cosine": 0.8594181537628174,
+          "latency_ms": 48.723006000727764,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5061",
+          "kind": "vi",
+          "ranked": [],
+          "expected": [
+            5061
+          ],
+          "max_cosine": 0.8519970178604126,
+          "latency_ms": 55.87882699910551,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5075",
+          "kind": "en",
+          "ranked": [],
+          "expected": [
+            5075
+          ],
+          "max_cosine": 0.862079381942749,
+          "latency_ms": 54.26015900047787,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5075",
+          "kind": "vi",
+          "ranked": [],
+          "expected": [
+            5075
+          ],
+          "max_cosine": 0.8527359962463379,
+          "latency_ms": 55.9447639998325,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5092",
+          "kind": "en",
+          "ranked": [],
+          "expected": [
+            5092
+          ],
+          "max_cosine": 0.8793765306472778,
+          "latency_ms": 59.50238000059471,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5092",
+          "kind": "vi",
+          "ranked": [],
+          "expected": [
+            5092
+          ],
+          "max_cosine": 0.8568012714385986,
+          "latency_ms": 59.85714500093309,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-negative-0",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.8041677474975586,
+          "latency_ms": 49.21886899956007,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-1",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7282268404960632,
+          "latency_ms": 53.26086500008387,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-2",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7803794741630554,
+          "latency_ms": 47.44699999992008,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-3",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7565621137619019,
+          "latency_ms": 55.769708000298124,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-4",
+          "kind": "unanswerable",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.8181040287017822,
+          "latency_ms": 46.90866800046933,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-5",
+          "kind": "unanswerable",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.8240176439285278,
+          "latency_ms": 55.783628999961365,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        }
+      ]
+    }
+  }
+}

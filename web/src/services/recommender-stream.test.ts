@@ -2,6 +2,14 @@ import { afterEach, expect, it, vi } from "vitest";
 vi.mock("../config/env", () => ({ env: { recommenderUrl: "http://upstream.test" } }));
 import { recommender } from "./recommender";
 afterEach(() => { vi.unstubAllGlobals(); vi.useRealTimers(); });
+it("uses the calibrated search default and preserves explicit thresholds", async () => {
+  const fetchMock = vi.fn<typeof fetch>(async () => new Response("{}", { headers: { "Content-Type": "application/json" } }));
+  vi.stubGlobal("fetch", fetchMock);
+  await recommender.search("docker");
+  await recommender.search("docker", null, 90);
+  expect(JSON.parse(String(fetchMock.mock.calls[0][1]?.body)).min_pct).toBe(84);
+  expect(JSON.parse(String(fetchMock.mock.calls[1][1]?.body)).min_pct).toBe(90);
+});
 it("requests upstream SSE without waiting for a complete answer", async () => {
   let streamController: ReadableStreamDefaultController<Uint8Array>;
   const body = new ReadableStream<Uint8Array>({ start(c) { streamController = c; } });

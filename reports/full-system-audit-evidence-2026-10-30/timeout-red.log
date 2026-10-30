@@ -1,0 +1,108 @@
+FFFFFFF                                                                  [100%]
+=================================== FAILURES ===================================
+________ test_documented_ollama_timeout_overrides_cloud_timeout[False] _________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x705e9bb3f6f0>
+streaming = False
+
+    @pytest.mark.parametrize('streaming', [False, True])
+    def test_documented_ollama_timeout_overrides_cloud_timeout(monkeypatch, streaming):
+        monkeypatch.setenv('OLLAMA_TIMEOUT', '123')
+        monkeypatch.setenv('DEEPSEEK_TIMEOUT_S', '5')
+        monkeypatch.setenv('DEEPSEEK_STREAM_TIMEOUT_S', '6')
+>       assert lc.timeout_for('ollama', streaming) == 123
+E       AssertionError: assert 5.0 == 123
+E        +  where 5.0 = <function timeout_for at 0x705e9b8e3ed0>('ollama', False)
+E        +    where <function timeout_for at 0x705e9b8e3ed0> = lc.timeout_for
+
+tests/test_llm_client.py:396: AssertionError
+_________ test_documented_ollama_timeout_overrides_cloud_timeout[True] _________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x705e9bb3fbb0>
+streaming = True
+
+    @pytest.mark.parametrize('streaming', [False, True])
+    def test_documented_ollama_timeout_overrides_cloud_timeout(monkeypatch, streaming):
+        monkeypatch.setenv('OLLAMA_TIMEOUT', '123')
+        monkeypatch.setenv('DEEPSEEK_TIMEOUT_S', '5')
+        monkeypatch.setenv('DEEPSEEK_STREAM_TIMEOUT_S', '6')
+>       assert lc.timeout_for('ollama', streaming) == 123
+E       AssertionError: assert 6.0 == 123
+E        +  where 6.0 = <function timeout_for at 0x705e9b8e3ed0>('ollama', True)
+E        +    where <function timeout_for at 0x705e9b8e3ed0> = lc.timeout_for
+
+tests/test_llm_client.py:396: AssertionError
+_____________ test_ollama_timeout_must_be_finite_positive[invalid] _____________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x705e9bb96f90>
+value = 'invalid'
+
+    @pytest.mark.parametrize('value', ['invalid', 'nan', 'inf', '0', '-1'])
+    def test_ollama_timeout_must_be_finite_positive(monkeypatch, value):
+        monkeypatch.setenv('OLLAMA_TIMEOUT', value)
+>       with pytest.raises(lc.LLMError, match='OLLAMA_TIMEOUT'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE LLMError
+
+tests/test_llm_client.py:402: Failed
+_______________ test_ollama_timeout_must_be_finite_positive[nan] _______________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x705e9bdf7460>
+value = 'nan'
+
+    @pytest.mark.parametrize('value', ['invalid', 'nan', 'inf', '0', '-1'])
+    def test_ollama_timeout_must_be_finite_positive(monkeypatch, value):
+        monkeypatch.setenv('OLLAMA_TIMEOUT', value)
+>       with pytest.raises(lc.LLMError, match='OLLAMA_TIMEOUT'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE LLMError
+
+tests/test_llm_client.py:402: Failed
+_______________ test_ollama_timeout_must_be_finite_positive[inf] _______________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x705e9b9319d0>
+value = 'inf'
+
+    @pytest.mark.parametrize('value', ['invalid', 'nan', 'inf', '0', '-1'])
+    def test_ollama_timeout_must_be_finite_positive(monkeypatch, value):
+        monkeypatch.setenv('OLLAMA_TIMEOUT', value)
+>       with pytest.raises(lc.LLMError, match='OLLAMA_TIMEOUT'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE LLMError
+
+tests/test_llm_client.py:402: Failed
+________________ test_ollama_timeout_must_be_finite_positive[0] ________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x705e9b98d050>
+value = '0'
+
+    @pytest.mark.parametrize('value', ['invalid', 'nan', 'inf', '0', '-1'])
+    def test_ollama_timeout_must_be_finite_positive(monkeypatch, value):
+        monkeypatch.setenv('OLLAMA_TIMEOUT', value)
+>       with pytest.raises(lc.LLMError, match='OLLAMA_TIMEOUT'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE LLMError
+
+tests/test_llm_client.py:402: Failed
+_______________ test_ollama_timeout_must_be_finite_positive[-1] ________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x705e9b98ed50>
+value = '-1'
+
+    @pytest.mark.parametrize('value', ['invalid', 'nan', 'inf', '0', '-1'])
+    def test_ollama_timeout_must_be_finite_positive(monkeypatch, value):
+        monkeypatch.setenv('OLLAMA_TIMEOUT', value)
+>       with pytest.raises(lc.LLMError, match='OLLAMA_TIMEOUT'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE LLMError
+
+tests/test_llm_client.py:402: Failed
+=========================== short test summary info ============================
+FAILED tests/test_llm_client.py::test_documented_ollama_timeout_overrides_cloud_timeout[False]
+FAILED tests/test_llm_client.py::test_documented_ollama_timeout_overrides_cloud_timeout[True]
+FAILED tests/test_llm_client.py::test_ollama_timeout_must_be_finite_positive[invalid]
+FAILED tests/test_llm_client.py::test_ollama_timeout_must_be_finite_positive[nan]
+FAILED tests/test_llm_client.py::test_ollama_timeout_must_be_finite_positive[inf]
+FAILED tests/test_llm_client.py::test_ollama_timeout_must_be_finite_positive[0]
+FAILED tests/test_llm_client.py::test_ollama_timeout_must_be_finite_positive[-1]
+7 failed, 62 deselected in 0.24s

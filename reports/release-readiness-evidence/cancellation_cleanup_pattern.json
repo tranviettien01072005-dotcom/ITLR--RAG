@@ -1,0 +1,4 @@
+{
+  "generator_closed_after_disconnect": true,
+  "scope": "isolated lifecycle pattern; no actual provider/socket verification; no hard cancellation deadline"
+}

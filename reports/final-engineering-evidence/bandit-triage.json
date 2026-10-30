@@ -1,0 +1,516 @@
+{
+  "status": "scanner FAIL remains; conditional acceptance is not vulnerability elimination",
+  "findings": [
+    {
+      "file": "itlr/api/server.py",
+      "line": 12,
+      "rule": "B110",
+      "severity": "LOW",
+      "disposition": "Accepted for best-effort console/model logging and Windows transport compatibility; does not wrap retrieval/generation errors."
+    },
+    {
+      "file": "itlr/api/server.py",
+      "line": 90,
+      "rule": "B110",
+      "severity": "LOW",
+      "disposition": "Accepted for best-effort console/model logging and Windows transport compatibility; does not wrap retrieval/generation errors."
+    },
+    {
+      "file": "itlr/api/server.py",
+      "line": 120,
+      "rule": "B310",
+      "severity": "MEDIUM",
+      "disposition": "Conditional risk: operator-configured HTTP(S) local provider/probe endpoint; no untrusted request URL is forwarded. Egress/redirect policy remains operator responsibility."
+    },
+    {
+      "file": "itlr/chatbot/llm_client.py",
+      "line": 141,
+      "rule": "B310",
+      "severity": "MEDIUM",
+      "disposition": "Conditional risk: operator-configured HTTP(S) local provider/probe endpoint; no untrusted request URL is forwarded. Egress/redirect policy remains operator responsibility."
+    },
+    {
+      "file": "itlr/chatbot/llm_client.py",
+      "line": 185,
+      "rule": "B310",
+      "severity": "MEDIUM",
+      "disposition": "Conditional risk: operator-configured HTTP(S) local provider/probe endpoint; no untrusted request URL is forwarded. Egress/redirect policy remains operator responsibility."
+    },
+    {
+      "file": "itlr/chatbot/llm_client.py",
+      "line": 202,
+      "rule": "B310",
+      "severity": "MEDIUM",
+      "disposition": "Conditional risk: operator-configured HTTP(S) local provider/probe endpoint; no untrusted request URL is forwarded. Egress/redirect policy remains operator responsibility."
+    },
+    {
+      "file": "itlr/chatbot/opencode_client.py",
+      "line": 3,
+      "rule": "B404",
+      "severity": "LOW",
+      "disposition": "Import-only subprocess finding; invocation reviewed separately."
+    },
+    {
+      "file": "itlr/chatbot/opencode_client.py",
+      "line": 11,
+      "rule": "B603",
+      "severity": "LOW",
+      "disposition": "Accepted conditional: argument-list subprocess, no shell=True; executable/environment must remain operator controlled."
+    },
+    {
+      "file": "itlr/collect/extract.py",
+      "line": 75,
+      "rule": "B112",
+      "severity": "LOW",
+      "disposition": "Accepted for malformed optional structured-data extraction or decomposed HTML nodes; primary extraction continues."
+    },
+    {
+      "file": "itlr/collect/extract.py",
+      "line": 123,
+      "rule": "B112",
+      "severity": "LOW",
+      "disposition": "Accepted for malformed optional structured-data extraction or decomposed HTML nodes; primary extraction continues."
+    },
+    {
+      "file": "itlr/collect/http.py",
+      "line": 122,
+      "rule": "B311",
+      "severity": "LOW",
+      "disposition": "Accepted: synthetic interactions/evaluation sampling or crawler jitter, not authentication randomness."
+    },
+    {
+      "file": "itlr/collect/http.py",
+      "line": 240,
+      "rule": "B311",
+      "severity": "LOW",
+      "disposition": "Accepted: synthetic interactions/evaluation sampling or crawler jitter, not authentication randomness."
+    },
+    {
+      "file": "itlr/core/ann.py",
+      "line": 14,
+      "rule": "B403",
+      "severity": "LOW",
+      "disposition": "Import-only pickle finding; individual loads separately reviewed."
+    },
+    {
+      "file": "itlr/core/ann.py",
+      "line": 93,
+      "rule": "B301",
+      "severity": "MEDIUM",
+      "disposition": "Conditional risk: trusted local builder artifacts only, filesystem ACL plus runtime hash verification; hashes do not authenticate author. Migration utility now preserves bytes on failure and refuses estimator version mismatch."
+    },
+    {
+      "file": "itlr/data/generate_items.py",
+      "line": 439,
+      "rule": "B311",
+      "severity": "LOW",
+      "disposition": "Accepted: synthetic interactions/evaluation sampling or crawler jitter, not authentication randomness."
+    },
+    {
+      "file": "itlr/data/generate_items.py",
+      "line": 454,
+      "rule": "B311",
+      "severity": "LOW",
+      "disposition": "Accepted: synthetic interactions/evaluation sampling or crawler jitter, not authentication randomness."
+    },
+    {
+      "file": "itlr/data/generate_items.py",
+      "line": 455,
+      "rule": "B311",
+      "severity": "LOW",
+      "disposition": "Accepted: synthetic interactions/evaluation sampling or crawler jitter, not authentication randomness."
+    },
+    {
+      "file": "itlr/data/generate_items.py",
+      "line": 459,
+      "rule": "B311",
+      "severity": "LOW",
+      "disposition": "Accepted: synthetic interactions/evaluation sampling or crawler jitter, not authentication randomness."
+    },
+    {
+      "file": "itlr/data/generate_items.py",
+      "line": 461,
+      "rule": "B311",
+      "severity": "LOW",
+      "disposition": "Accepted: synthetic interactions/evaluation sampling or crawler jitter, not authentication randomness."
+    },
+    {
+      "file": "itlr/data/generate_items.py",
+      "line": 468,
+      "rule": "B311",
+      "severity": "LOW",
+      "disposition": "Accepted: synthetic interactions/evaluation sampling or crawler jitter, not authentication randomness."
+    },
+    {
+      "file": "itlr/data/generate_items.py",
+      "line": 470,
+      "rule": "B311",
+      "severity": "LOW",
+      "disposition": "Accepted: synthetic interactions/evaluation sampling or crawler jitter, not authentication randomness."
+    },
+    {
+      "file": "itlr/data/generate_items.py",
+      "line": 472,
+      "rule": "B311",
+      "severity": "LOW",
+      "disposition": "Accepted: synthetic interactions/evaluation sampling or crawler jitter, not authentication randomness."
+    },
+    {
+      "file": "itlr/data/generate_items.py",
+      "line": 474,
+      "rule": "B311",
+      "severity": "LOW",
+      "disposition": "Accepted: synthetic interactions/evaluation sampling or crawler jitter, not authentication randomness."
+    },
+    {
+      "file": "itlr/data/generate_items.py",
+      "line": 478,
+      "rule": "B311",
+      "severity": "LOW",
+      "disposition": "Accepted: synthetic interactions/evaluation sampling or crawler jitter, not authentication randomness."
+    },
+    {
+      "file": "itlr/data/generate_items.py",
+      "line": 479,
+      "rule": "B311",
+      "severity": "LOW",
+      "disposition": "Accepted: synthetic interactions/evaluation sampling or crawler jitter, not authentication randomness."
+    },
+    {
+      "file": "itlr/data/generate_items.py",
+      "line": 494,
+      "rule": "B311",
+      "severity": "LOW",
+      "disposition": "Accepted: synthetic interactions/evaluation sampling or crawler jitter, not authentication randomness."
+    },
+    {
+      "file": "itlr/data/generate_items.py",
+      "line": 496,
+      "rule": "B311",
+      "severity": "LOW",
+      "disposition": "Accepted: synthetic interactions/evaluation sampling or crawler jitter, not authentication randomness."
+    },
+    {
+      "file": "itlr/data/generate_items.py",
+      "line": 510,
+      "rule": "B311",
+      "severity": "LOW",
+      "disposition": "Accepted: synthetic interactions/evaluation sampling or crawler jitter, not authentication randomness."
+    },
+    {
+      "file": "itlr/data/generate_items.py",
+      "line": 511,
+      "rule": "B311",
+      "severity": "LOW",
+      "disposition": "Accepted: synthetic interactions/evaluation sampling or crawler jitter, not authentication randomness."
+    },
+    {
+      "file": "itlr/engine.py",
+      "line": 12,
+      "rule": "B403",
+      "severity": "LOW",
+      "disposition": "Import-only pickle finding; individual loads separately reviewed."
+    },
+    {
+      "file": "itlr/engine.py",
+      "line": 142,
+      "rule": "B301",
+      "severity": "MEDIUM",
+      "disposition": "Conditional risk: trusted local builder artifacts only, filesystem ACL plus runtime hash verification; hashes do not authenticate author. Migration utility now preserves bytes on failure and refuses estimator version mismatch."
+    },
+    {
+      "file": "itlr/engine.py",
+      "line": 144,
+      "rule": "B301",
+      "severity": "MEDIUM",
+      "disposition": "Conditional risk: trusted local builder artifacts only, filesystem ACL plus runtime hash verification; hashes do not authenticate author. Migration utility now preserves bytes on failure and refuses estimator version mismatch."
+    },
+    {
+      "file": "itlr/engine.py",
+      "line": 146,
+      "rule": "B301",
+      "severity": "MEDIUM",
+      "disposition": "Conditional risk: trusted local builder artifacts only, filesystem ACL plus runtime hash verification; hashes do not authenticate author. Migration utility now preserves bytes on failure and refuses estimator version mismatch."
+    },
+    {
+      "file": "itlr/engine.py",
+      "line": 152,
+      "rule": "B301",
+      "severity": "MEDIUM",
+      "disposition": "Conditional risk: trusted local builder artifacts only, filesystem ACL plus runtime hash verification; hashes do not authenticate author. Migration utility now preserves bytes on failure and refuses estimator version mismatch."
+    },
+    {
+      "file": "itlr/engine.py",
+      "line": 164,
+      "rule": "B301",
+      "severity": "MEDIUM",
+      "disposition": "Conditional risk: trusted local builder artifacts only, filesystem ACL plus runtime hash verification; hashes do not authenticate author. Migration utility now preserves bytes on failure and refuses estimator version mismatch."
+    },
+    {
+      "file": "itlr/engine.py",
+      "line": 166,
+      "rule": "B301",
+      "severity": "MEDIUM",
+      "disposition": "Conditional risk: trusted local builder artifacts only, filesystem ACL plus runtime hash verification; hashes do not authenticate author. Migration utility now preserves bytes on failure and refuses estimator version mismatch."
+    },
+    {
+      "file": "itlr/engine.py",
+      "line": 168,
+      "rule": "B301",
+      "severity": "MEDIUM",
+      "disposition": "Conditional risk: trusted local builder artifacts only, filesystem ACL plus runtime hash verification; hashes do not authenticate author. Migration utility now preserves bytes on failure and refuses estimator version mismatch."
+    },
+    {
+      "file": "itlr/engine.py",
+      "line": 174,
+      "rule": "B301",
+      "severity": "MEDIUM",
+      "disposition": "Conditional risk: trusted local builder artifacts only, filesystem ACL plus runtime hash verification; hashes do not authenticate author. Migration utility now preserves bytes on failure and refuses estimator version mismatch."
+    },
+    {
+      "file": "itlr/engine.py",
+      "line": 187,
+      "rule": "B301",
+      "severity": "MEDIUM",
+      "disposition": "Conditional risk: trusted local builder artifacts only, filesystem ACL plus runtime hash verification; hashes do not authenticate author. Migration utility now preserves bytes on failure and refuses estimator version mismatch."
+    },
+    {
+      "file": "itlr/eval/cf_eval.py",
+      "line": 127,
+      "rule": "B311",
+      "severity": "LOW",
+      "disposition": "Accepted: synthetic interactions/evaluation sampling or crawler jitter, not authentication randomness."
+    },
+    {
+      "file": "itlr/eval/cf_eval.py",
+      "line": 209,
+      "rule": "B311",
+      "severity": "LOW",
+      "disposition": "Accepted: synthetic interactions/evaluation sampling or crawler jitter, not authentication randomness."
+    },
+    {
+      "file": "itlr/eval/loader.py",
+      "line": 9,
+      "rule": "B403",
+      "severity": "LOW",
+      "disposition": "Import-only pickle finding; individual loads separately reviewed."
+    },
+    {
+      "file": "itlr/eval/loader.py",
+      "line": 48,
+      "rule": "B301",
+      "severity": "MEDIUM",
+      "disposition": "Conditional risk: trusted local builder artifacts only, filesystem ACL plus runtime hash verification; hashes do not authenticate author. Migration utility now preserves bytes on failure and refuses estimator version mismatch."
+    },
+    {
+      "file": "itlr/indexv2.py",
+      "line": 15,
+      "rule": "B403",
+      "severity": "LOW",
+      "disposition": "Import-only pickle finding; individual loads separately reviewed."
+    },
+    {
+      "file": "itlr/indexv2.py",
+      "line": 45,
+      "rule": "B301",
+      "severity": "MEDIUM",
+      "disposition": "Conditional risk: trusted local builder artifacts only, filesystem ACL plus runtime hash verification; hashes do not authenticate author. Migration utility now preserves bytes on failure and refuses estimator version mismatch."
+    },
+    {
+      "file": "itlr/indexv2.py",
+      "line": 47,
+      "rule": "B301",
+      "severity": "MEDIUM",
+      "disposition": "Conditional risk: trusted local builder artifacts only, filesystem ACL plus runtime hash verification; hashes do not authenticate author. Migration utility now preserves bytes on failure and refuses estimator version mismatch."
+    },
+    {
+      "file": "itlr/indexv2.py",
+      "line": 49,
+      "rule": "B301",
+      "severity": "MEDIUM",
+      "disposition": "Conditional risk: trusted local builder artifacts only, filesystem ACL plus runtime hash verification; hashes do not authenticate author. Migration utility now preserves bytes on failure and refuses estimator version mismatch."
+    },
+    {
+      "file": "itlr/indexv2.py",
+      "line": 51,
+      "rule": "B301",
+      "severity": "MEDIUM",
+      "disposition": "Conditional risk: trusted local builder artifacts only, filesystem ACL plus runtime hash verification; hashes do not authenticate author. Migration utility now preserves bytes on failure and refuses estimator version mismatch."
+    },
+    {
+      "file": "itlr/indexv2.py",
+      "line": 53,
+      "rule": "B301",
+      "severity": "MEDIUM",
+      "disposition": "Conditional risk: trusted local builder artifacts only, filesystem ACL plus runtime hash verification; hashes do not authenticate author. Migration utility now preserves bytes on failure and refuses estimator version mismatch."
+    },
+    {
+      "file": "itlr/indexv2.py",
+      "line": 80,
+      "rule": "B301",
+      "severity": "MEDIUM",
+      "disposition": "Conditional risk: trusted local builder artifacts only, filesystem ACL plus runtime hash verification; hashes do not authenticate author. Migration utility now preserves bytes on failure and refuses estimator version mismatch."
+    },
+    {
+      "file": "itlr/indexv2.py",
+      "line": 82,
+      "rule": "B301",
+      "severity": "MEDIUM",
+      "disposition": "Conditional risk: trusted local builder artifacts only, filesystem ACL plus runtime hash verification; hashes do not authenticate author. Migration utility now preserves bytes on failure and refuses estimator version mismatch."
+    },
+    {
+      "file": "itlr/indexv2.py",
+      "line": 135,
+      "rule": "B404",
+      "severity": "LOW",
+      "disposition": "Import-only subprocess finding; invocation reviewed separately."
+    },
+    {
+      "file": "itlr/indexv2.py",
+      "line": 147,
+      "rule": "B603",
+      "severity": "LOW",
+      "disposition": "Accepted conditional: argument-list subprocess, no shell=True; executable/environment must remain operator controlled."
+    },
+    {
+      "file": "itlr/pipelines/build_cf.py",
+      "line": 12,
+      "rule": "B403",
+      "severity": "LOW",
+      "disposition": "Import-only pickle finding; individual loads separately reviewed."
+    },
+    {
+      "file": "itlr/pipelines/build_cf.py",
+      "line": 53,
+      "rule": "B301",
+      "severity": "MEDIUM",
+      "disposition": "Conditional risk: trusted local builder artifacts only, filesystem ACL plus runtime hash verification; hashes do not authenticate author. Migration utility now preserves bytes on failure and refuses estimator version mismatch."
+    },
+    {
+      "file": "itlr/pipelines/build_embeddings.py",
+      "line": 14,
+      "rule": "B403",
+      "severity": "LOW",
+      "disposition": "Import-only pickle finding; individual loads separately reviewed."
+    },
+    {
+      "file": "itlr/pipelines/build_embeddings.py",
+      "line": 57,
+      "rule": "B301",
+      "severity": "MEDIUM",
+      "disposition": "Conditional risk: trusted local builder artifacts only, filesystem ACL plus runtime hash verification; hashes do not authenticate author. Migration utility now preserves bytes on failure and refuses estimator version mismatch."
+    },
+    {
+      "file": "itlr/pipelines/build_embeddings_v2.py",
+      "line": 18,
+      "rule": "B403",
+      "severity": "LOW",
+      "disposition": "Import-only pickle finding; individual loads separately reviewed."
+    },
+    {
+      "file": "itlr/pipelines/build_embeddings_v2.py",
+      "line": 74,
+      "rule": "B301",
+      "severity": "MEDIUM",
+      "disposition": "Conditional risk: trusted local builder artifacts only, filesystem ACL plus runtime hash verification; hashes do not authenticate author. Migration utility now preserves bytes on failure and refuses estimator version mismatch."
+    },
+    {
+      "file": "itlr/pipelines/build_model.py",
+      "line": 9,
+      "rule": "B403",
+      "severity": "LOW",
+      "disposition": "Import-only pickle finding; individual loads separately reviewed."
+    },
+    {
+      "file": "itlr/utils/repickle.py",
+      "line": 18,
+      "rule": "B403",
+      "severity": "LOW",
+      "disposition": "Import-only pickle finding; individual loads separately reviewed."
+    },
+    {
+      "file": "itlr/utils/repickle.py",
+      "line": 72,
+      "rule": "B301",
+      "severity": "MEDIUM",
+      "disposition": "Conditional risk: trusted local builder artifacts only, filesystem ACL plus runtime hash verification; hashes do not authenticate author. Migration utility now preserves bytes on failure and refuses estimator version mismatch."
+    },
+    {
+      "file": "itlr/utils/runtime_patches.py",
+      "line": 21,
+      "rule": "B110",
+      "severity": "LOW",
+      "disposition": "Accepted for best-effort console/model logging and Windows transport compatibility; does not wrap retrieval/generation errors."
+    },
+    {
+      "file": "itlr/utils/runtime_patches.py",
+      "line": 43,
+      "rule": "B110",
+      "severity": "LOW",
+      "disposition": "Accepted for best-effort console/model logging and Windows transport compatibility; does not wrap retrieval/generation errors."
+    },
+    {
+      "file": "scripts/build_all.py",
+      "line": 16,
+      "rule": "B404",
+      "severity": "LOW",
+      "disposition": "Import-only subprocess finding; invocation reviewed separately."
+    },
+    {
+      "file": "scripts/build_all.py",
+      "line": 87,
+      "rule": "B603",
+      "severity": "LOW",
+      "disposition": "Accepted conditional: argument-list subprocess, no shell=True; executable/environment must remain operator controlled."
+    },
+    {
+      "file": "scripts/build_all_v2.py",
+      "line": 29,
+      "rule": "B404",
+      "severity": "LOW",
+      "disposition": "Import-only subprocess finding; invocation reviewed separately."
+    },
+    {
+      "file": "scripts/build_all_v2.py",
+      "line": 65,
+      "rule": "B603",
+      "severity": "LOW",
+      "disposition": "Accepted conditional: argument-list subprocess, no shell=True; executable/environment must remain operator controlled."
+    },
+    {
+      "file": "scripts/refresh_pipeline.py",
+      "line": 18,
+      "rule": "B404",
+      "severity": "LOW",
+      "disposition": "Import-only subprocess finding; invocation reviewed separately."
+    },
+    {
+      "file": "scripts/refresh_pipeline.py",
+      "line": 28,
+      "rule": "B603",
+      "severity": "LOW",
+      "disposition": "Accepted conditional: argument-list subprocess, no shell=True; executable/environment must remain operator controlled."
+    },
+    {
+      "file": "scripts/verify_local_models.py",
+      "line": 5,
+      "rule": "B404",
+      "severity": "LOW",
+      "disposition": "Import-only subprocess finding; invocation reviewed separately."
+    },
+    {
+      "file": "scripts/verify_local_models.py",
+      "line": 35,
+      "rule": "B603",
+      "severity": "LOW",
+      "disposition": "Accepted conditional: argument-list subprocess, no shell=True; executable/environment must remain operator controlled."
+    },
+    {
+      "file": "scripts/verify_local_models.py",
+      "line": 42,
+      "rule": "B310",
+      "severity": "MEDIUM",
+      "disposition": "Conditional risk: operator-configured HTTP(S) local provider/probe endpoint; no untrusted request URL is forwarded. Egress/redirect policy remains operator responsibility."
+    }
+  ]
+}

@@ -1,5 +1,46 @@
 # ITLR–RAG | Intelligent IT Learning Platform — Changelog
 
+### Release validation — 2026-10-30
+
+- UI chỉ render final và đổi conversation sau khi parser xác nhận stream hoàn chỉnh;
+  lỗi EOF/UTF-8 không còn bị success flag che. Regression và Chrome thật PASS.
+- PDF worker đưa Uint8Array cho parser; PDF hợp lệ từ HTTP500 → 200, giữ validation
+  và resource limits. Real parser regression RED → GREEN.
+- **445 Python / 145 Web PASS**, coverage **66,70% / 46,55%**. PostgreSQL18 isolated
+  HTTP/DB, backup/restore, Chrome và E5 artifact lifecycle đã kiểm chứng.
+- New source-disjoint AI-authored evaluation Recall@5 83,33%, không tuning.
+  Generation reliability và production deployment vẫn **NO-GO**;
+  [release evidence](reports/RELEASE_READINESS_FINAL.md).
+
+### Production hardening và engineering review — 2026-10-30
+
+- Calibrate search default 90 → 84 trên frozen dev data; giữ explicit thresholds,
+  off-topic gate và ranking weights. Không rewrite query nếu không có correction;
+  chỉ glossary-expand bare aliases. Có holdout/source-disjoint confirmation metrics.
+- Web yêu cầu final/done hoàn chỉnh trước khi lưu history; từ chối stream dở dang,
+  giới hạn message/context phù hợp FastAPI, giữ dữ liệu DB và Unicode.
+- Sửa JSON NaN metadata trong recommendations; không gửi full snapshot bodies.
+  Ollama có elapsed budget tại event boundaries, không nới completion validation.
+- Atomic re-pickle giữ file gốc khi lỗi và không restamp sklearn mismatch; bỏ filter
+  che version warning. Xóa preparation work không dùng, gom Ollama request payload.
+- **445 Python / 140 Web PASS**, coverage **66,70% / 46,48%**. Không commit/push,
+  schema change hoặc activation. [Engineering review và NO-GO](reports/FINAL_ENGINEERING_REVIEW.md).
+
+### Full-system audit Linux local — 2026-10-30
+
+- Ollama giữ model được chỉ định, kiểm tra non-stream completion, dùng history
+  budget ở cả hai chế độ và tôn trọng `OLLAMA_TIMEOUT` đã ghi trong runbook.
+  Regression có RED → GREEN; thiếu model/lỗi local không chuyển provider.
+- Vitest dùng credentials fixture cô lập, chạy được khi không có `web/.env`;
+  runtime vẫn yêu cầu credentials riêng. Bỏ quảng cáo 50.000 tài nguyên không có căn cứ.
+- Sửa first-probe integrity mismatch: tạo `.activation.lock` trước manifest SHA256;
+  giữ kiểm tra hash đầy đủ. Real E5 staging 118 items/1576 chunks probe PASS.
+- Neural benchmark cho thấy recall thấp ở floor mặc định 0,90; giữ threshold và
+  ghi NO-GO chờ calibration độc lập, không tối ưu điểm bằng thay nhãn hoặc bỏ gate.
+- Fresh: 431 Python PASS/0 skip, coverage 66,13%; 132 Web PASS, lines 45,31%.
+  Đã chạy E5/Qwen thật và Chrome public forms; không migration, activation, commit/push.
+  [Bằng chứng và giới hạn production](reports/FULL_SYSTEM_AUDIT_2026-10-30.md).
+
 ### RAG quality và release validation — 2026-10-30
 
 - Thêm 23 frozen queries/evidence trên 118 snapshot thật và evaluator tái lập K=1/5/10,

@@ -1,0 +1,13 @@
+{
+  "scope": "Local self-signed TLS reverse-proxy transport smoke only; Web NODE_ENV=test; PostgreSQL stopped during unauthenticated login GET; not deployment/production-cookie/Caddy/public certificate validation",
+  "certificateTrust": "Explicit private CA certificate supplied to standard verified SSLContext; SAN127.0.0.1 and hostname checked",
+  "tlsVersion": "TLSv1.3",
+  "path": "/login",
+  "status": 200,
+  "passwordFormPresent": true,
+  "hsts": null,
+  "csp": "default-src 'self';base-uri 'self';font-src 'self';form-action 'self';frame-ancestors 'self';img-src 'self' data: blob: https://i.ytimg.com;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' 'unsafe-inline';media-src 'self' blob: data:;frame-src https://www.youtube.com https://www.youtube-nocookie.com;connect-src 'self'",
+  "xContentTypeOptions": "nosniff",
+  "proxyPort": 18443,
+  "productionCookieValidated": false
+}

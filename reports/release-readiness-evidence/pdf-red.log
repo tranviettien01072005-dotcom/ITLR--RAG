@@ -1,0 +1,41 @@
+
+> it-learning-platform@1.0.0 test
+> vitest run --coverage --run src/services/dataset-extract.test.ts
+
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (vitest.config.ts:1:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.12 /home/o/ITLR--RAG/web
+      Coverage enabled with v8
+
+Warning: Indexing all PDF objects
+Warning: Indexing all PDF objects
+Warning: Indexing all PDF objects
+Warning: Indexing all PDF objects
+ ❯ src/services/dataset-extract.test.ts (4 tests | 1 failed) 1602ms
+   × extracts a valid PDF through the real worker and parser 371ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/services/dataset-extract.test.ts > extracts a valid PDF through the real worker and parser
+AssertionError: promise rejected "Error: Document extraction failed" instead of resolving
+ ❯ src/services/dataset-extract.test.ts:23:54
+     21|   pdf += offsets.slice(1).map(offset => `${String(offset).padStart(10,…
+     22|   pdf += `trailer\n<< /Size 6 /Root 1 0 R >>\nstartxref\n${xref}\n%%EO…
+     23|   await expect(extractText(Buffer.from(pdf), ".pdf")).resolves.toConta…
+       |                                                      ^
+     24| });
+     25| it("fails closed for disabled Office formats", async () => {
+
+Caused by: Error: Document extraction failed
+ ❯ [worker eval]:10:26
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 3 passed (4)
+   Start at  22:03:39
+   Duration  3.01s (transform 81ms, setup 0ms, import 125ms, tests 1.60s, environment 0ms)
+

@@ -1,0 +1,3776 @@
+{
+  "selected_floor": 0.84,
+  "embedding": "intfloat/multilingual-e5-base",
+  "reranker": "BAAI/bge-reranker-base",
+  "rerank_pool": 32,
+  "labels": "engineer-authored, source-disjoint split; no independent annotators",
+  "peak_rss_mib": 2565.27734375,
+  "results": {
+    "dev_baseline": {
+      "metrics": {
+        "1": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        },
+        "5": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        },
+        "10": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        }
+      },
+      "negative_empty_rate": 1.0,
+      "latency_ms": {
+        "p50": 55.70035450000432,
+        "p95": 61.146271050620264,
+        "p99": 65.72744940991468
+      },
+      "cases": [
+        {
+          "id": "dev-en-5025",
+          "kind": "en",
+          "ranked": [],
+          "expected": [
+            5025
+          ],
+          "max_cosine": 0.8456014394760132,
+          "latency_ms": 66.8727439997383,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5025",
+          "kind": "vi",
+          "ranked": [],
+          "expected": [
+            5025
+          ],
+          "max_cosine": 0.8348667621612549,
+          "latency_ms": 60.13571700077591,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5030",
+          "kind": "en",
+          "ranked": [],
+          "expected": [
+            5030
+          ],
+          "max_cosine": 0.8879246115684509,
+          "latency_ms": 54.59377800070797,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5030",
+          "kind": "vi",
+          "ranked": [],
+          "expected": [
+            5030
+          ],
+          "max_cosine": 0.8714125156402588,
+          "latency_ms": 56.67855299998337,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5040",
+          "kind": "en",
+          "ranked": [],
+          "expected": [
+            5040
+          ],
+          "max_cosine": 0.8867350816726685,
+          "latency_ms": 54.174163000425324,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5040",
+          "kind": "vi",
+          "ranked": [],
+          "expected": [
+            5040
+          ],
+          "max_cosine": 0.8390862941741943,
+          "latency_ms": 56.604329999572656,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5061",
+          "kind": "en",
+          "ranked": [],
+          "expected": [
+            5061
+          ],
+          "max_cosine": 0.8594181537628174,
+          "latency_ms": 48.69515100017452,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5061",
+          "kind": "vi",
+          "ranked": [],
+          "expected": [
+            5061
+          ],
+          "max_cosine": 0.8519970178604126,
+          "latency_ms": 55.964668999877176,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5075",
+          "kind": "en",
+          "ranked": [],
+          "expected": [
+            5075
+          ],
+          "max_cosine": 0.862079381942749,
+          "latency_ms": 54.27680700086057,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5075",
+          "kind": "vi",
+          "ranked": [],
+          "expected": [
+            5075
+          ],
+          "max_cosine": 0.8527359962463379,
+          "latency_ms": 55.999916000473604,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5092",
+          "kind": "en",
+          "ranked": [],
+          "expected": [
+            5092
+          ],
+          "max_cosine": 0.8793765306472778,
+          "latency_ms": 59.52654000066104,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5092",
+          "kind": "vi",
+          "ranked": [],
+          "expected": [
+            5092
+          ],
+          "max_cosine": 0.8568012714385986,
+          "latency_ms": 59.78356000014173,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-negative-0",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.8041677474975586,
+          "latency_ms": 49.117675999696075,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-1",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7282268404960632,
+          "latency_ms": 53.116908999982115,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-2",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7803794741630554,
+          "latency_ms": 47.42185900067852,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-3",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7565621137619019,
+          "latency_ms": 55.79254399981437,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-4",
+          "kind": "unanswerable",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.8181040287017822,
+          "latency_ms": 46.92559600061941,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-5",
+          "kind": "unanswerable",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.8240176439285278,
+          "latency_ms": 55.608165000194276,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        }
+      ]
+    },
+    "dev_selected": {
+      "metrics": {
+        "1": {
+          "recall": 0.6666666666666666,
+          "precision_judged": 0.6666666666666666,
+          "mrr": 0.6666666666666666,
+          "ndcg": 0.6666666666666666
+        },
+        "5": {
+          "recall": 0.8333333333333334,
+          "precision_judged": 0.16666666666666666,
+          "mrr": 0.725,
+          "ndcg": 0.7514818800671667
+        },
+        "10": {
+          "recall": 0.8333333333333334,
+          "precision_judged": 0.08333333333333333,
+          "mrr": 0.725,
+          "ndcg": 0.7514818800671667
+        }
+      },
+      "negative_empty_rate": 1.0,
+      "latency_ms": {
+        "p50": 55.77694249996057,
+        "p95": 61.32568844964225,
+        "p99": 65.07817528977283
+      },
+      "cases": [
+        {
+          "id": "dev-en-5025",
+          "kind": "en",
+          "ranked": [
+            5025
+          ],
+          "expected": [
+            5025
+          ],
+          "max_cosine": 0.8456014394760132,
+          "latency_ms": 66.01629699980549,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5025",
+          "kind": "vi",
+          "ranked": [],
+          "expected": [
+            5025
+          ],
+          "max_cosine": 0.8348667621612549,
+          "latency_ms": 59.21311299971421,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5030",
+          "kind": "en",
+          "ranked": [
+            5031,
+            5083,
+            5029,
+            5113,
+            5030
+          ],
+          "expected": [
+            5030
+          ],
+          "max_cosine": 0.8879246115684509,
+          "latency_ms": 54.40534799981833,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 0.2,
+              "ndcg": 0.38685280723454163,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.2,
+              "ndcg": 0.38685280723454163,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5030",
+          "kind": "vi",
+          "ranked": [
+            5030,
+            5031
+          ],
+          "expected": [
+            5030
+          ],
+          "max_cosine": 0.8714125156402588,
+          "latency_ms": 56.589863000226615,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5040",
+          "kind": "en",
+          "ranked": [
+            5040
+          ],
+          "expected": [
+            5040
+          ],
+          "max_cosine": 0.8867350816726685,
+          "latency_ms": 54.090589999759686,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5040",
+          "kind": "vi",
+          "ranked": [],
+          "expected": [
+            5040
+          ],
+          "max_cosine": 0.8390862941741943,
+          "latency_ms": 56.45981999987271,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5061",
+          "kind": "en",
+          "ranked": [
+            5061
+          ],
+          "expected": [
+            5061
+          ],
+          "max_cosine": 0.8594181537628174,
+          "latency_ms": 48.64880799959792,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5061",
+          "kind": "vi",
+          "ranked": [
+            5061
+          ],
+          "expected": [
+            5061
+          ],
+          "max_cosine": 0.8519970178604126,
+          "latency_ms": 55.86340399986511,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5075",
+          "kind": "en",
+          "ranked": [
+            5075
+          ],
+          "expected": [
+            5075
+          ],
+          "max_cosine": 0.862079381942749,
+          "latency_ms": 54.19353600063914,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5075",
+          "kind": "vi",
+          "ranked": [
+            5075
+          ],
+          "expected": [
+            5075
+          ],
+          "max_cosine": 0.8527359962463379,
+          "latency_ms": 55.92385500040109,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5092",
+          "kind": "en",
+          "ranked": [
+            5065,
+            5092
+          ],
+          "expected": [
+            5092
+          ],
+          "max_cosine": 0.8793765306472778,
+          "latency_ms": 59.81798599987087,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 0.5,
+              "ndcg": 0.6309297535714575,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.5,
+              "ndcg": 0.6309297535714575,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5092",
+          "kind": "vi",
+          "ranked": [
+            5092
+          ],
+          "expected": [
+            5092
+          ],
+          "max_cosine": 0.8568012714385986,
+          "latency_ms": 60.49793399961345,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-negative-0",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.8041677474975586,
+          "latency_ms": 49.78133100030391,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-1",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7282268404960632,
+          "latency_ms": 53.71955999999045,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-2",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7803794741630554,
+          "latency_ms": 47.590657999535324,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-3",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7565621137619019,
+          "latency_ms": 55.825653999818314,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-4",
+          "kind": "unanswerable",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.8181040287017822,
+          "latency_ms": 47.08655100057513,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-5",
+          "kind": "unanswerable",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.8240176439285278,
+          "latency_ms": 55.728231000102824,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        }
+      ]
+    },
+    "holdout_baseline": {
+      "metrics": {
+        "1": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        },
+        "5": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        },
+        "10": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0
+        }
+      },
+      "negative_empty_rate": 1.0,
+      "latency_ms": {
+        "p50": 55.41074549955738,
+        "p95": 62.95497974979297,
+        "p99": 68.80851835036081
+      },
+      "cases": [
+        {
+          "id": "holdout-en-5027",
+          "kind": "en",
+          "ranked": [],
+          "expected": [
+            5027
+          ],
+          "max_cosine": 0.8512367010116577,
+          "latency_ms": 70.27190300050279,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "holdout-vi-5027",
+          "kind": "vi",
+          "ranked": [],
+          "expected": [
+            5027
+          ],
+          "max_cosine": 0.8262399435043335,
+          "latency_ms": 59.91385700053797,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "holdout-en-5039",
+          "kind": "en",
+          "ranked": [],
+          "expected": [
+            5039
+          ],
+          "max_cosine": 0.8834972381591797,
+          "latency_ms": 49.79207799988217,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "holdout-vi-5039",
+          "kind": "vi",
+          "ranked": [],
+          "expected": [
+            5039
+          ],
+          "max_cosine": 0.8453532457351685,
+          "latency_ms": 49.80514500039135,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "holdout-en-5059",
+          "kind": "en",
+          "ranked": [],
+          "expected": [
+            5059
+          ],
+          "max_cosine": 0.8604741096496582,
+          "latency_ms": 56.94765400039614,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "holdout-vi-5059",
+          "kind": "vi",
+          "ranked": [],
+          "expected": [
+            5059
+          ],
+          "max_cosine": 0.8450333476066589,
+          "latency_ms": 56.031928999800584,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "holdout-en-5078",
+          "kind": "en",
+          "ranked": [],
+          "expected": [
+            5078
+          ],
+          "max_cosine": 0.8869088888168335,
+          "latency_ms": 56.432349000715476,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "holdout-vi-5078",
+          "kind": "vi",
+          "ranked": [],
+          "expected": [
+            5078
+          ],
+          "max_cosine": 0.8710212707519531,
+          "latency_ms": 56.54650100041181,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "holdout-en-5082",
+          "kind": "en",
+          "ranked": [],
+          "expected": [
+            5082
+          ],
+          "max_cosine": 0.8614075779914856,
+          "latency_ms": 54.27569800031051,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "holdout-vi-5082",
+          "kind": "vi",
+          "ranked": [],
+          "expected": [
+            5082
+          ],
+          "max_cosine": 0.8431118726730347,
+          "latency_ms": 54.789561999314174,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "holdout-en-5090",
+          "kind": "en",
+          "ranked": [],
+          "expected": [
+            5090
+          ],
+          "max_cosine": 0.8570597171783447,
+          "latency_ms": 61.66375799966772,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "holdout-vi-5090",
+          "kind": "vi",
+          "ranked": [],
+          "expected": [
+            5090
+          ],
+          "max_cosine": 0.8394242525100708,
+          "latency_ms": 58.87499999971624,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "holdout-negative-0",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.8059806227684021,
+          "latency_ms": 53.782937000505626,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "holdout-negative-1",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7737886905670166,
+          "latency_ms": 52.850373999717704,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "holdout-negative-2",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7941306233406067,
+          "latency_ms": 51.16934499983472,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "holdout-negative-3",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7883728742599487,
+          "latency_ms": 53.54705800073134,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "holdout-negative-4",
+          "kind": "unanswerable",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.8335026502609253,
+          "latency_ms": 53.934997999022016,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "holdout-negative-5",
+          "kind": "unanswerable",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7775165438652039,
+          "latency_ms": 56.626188999871374,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        }
+      ]
+    },
+    "holdout_selected": {
+      "metrics": {
+        "1": {
+          "recall": 0.6666666666666666,
+          "precision_judged": 0.6666666666666666,
+          "mrr": 0.6666666666666666,
+          "ndcg": 0.6666666666666666
+        },
+        "5": {
+          "recall": 0.75,
+          "precision_judged": 0.15,
+          "mrr": 0.7083333333333334,
+          "ndcg": 0.7192441461309548
+        },
+        "10": {
+          "recall": 0.75,
+          "precision_judged": 0.075,
+          "mrr": 0.7083333333333334,
+          "ndcg": 0.7192441461309548
+        }
+      },
+      "negative_empty_rate": 1.0,
+      "latency_ms": {
+        "p50": 55.04006599949207,
+        "p95": 62.703527100484266,
+        "p99": 68.46996382038013
+      },
+      "cases": [
+        {
+          "id": "holdout-en-5027",
+          "kind": "en",
+          "ranked": [
+            5027
+          ],
+          "expected": [
+            5027
+          ],
+          "max_cosine": 0.8512367010116577,
+          "latency_ms": 69.91157300035411,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "holdout-vi-5027",
+          "kind": "vi",
+          "ranked": [],
+          "expected": [
+            5027
+          ],
+          "max_cosine": 0.8262399435043335,
+          "latency_ms": 59.53136199968867,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "holdout-en-5039",
+          "kind": "en",
+          "ranked": [
+            5039
+          ],
+          "expected": [
+            5039
+          ],
+          "max_cosine": 0.8834972381591797,
+          "latency_ms": 48.56579799979954,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "holdout-vi-5039",
+          "kind": "vi",
+          "ranked": [
+            5039
+          ],
+          "expected": [
+            5039
+          ],
+          "max_cosine": 0.8453532457351685,
+          "latency_ms": 49.238885999329796,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "holdout-en-5059",
+          "kind": "en",
+          "ranked": [
+            5059
+          ],
+          "expected": [
+            5059
+          ],
+          "max_cosine": 0.8604741096496582,
+          "latency_ms": 56.33993100036605,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "holdout-vi-5059",
+          "kind": "vi",
+          "ranked": [
+            5059
+          ],
+          "expected": [
+            5059
+          ],
+          "max_cosine": 0.8450333476066589,
+          "latency_ms": 55.66712799918605,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "holdout-en-5078",
+          "kind": "en",
+          "ranked": [
+            5078
+          ],
+          "expected": [
+            5078
+          ],
+          "max_cosine": 0.8869088888168335,
+          "latency_ms": 56.05976700098836,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "holdout-vi-5078",
+          "kind": "vi",
+          "ranked": [
+            5078
+          ],
+          "expected": [
+            5078
+          ],
+          "max_cosine": 0.8710212707519531,
+          "latency_ms": 56.15701800070383,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "holdout-en-5082",
+          "kind": "en",
+          "ranked": [
+            5081,
+            5082
+          ],
+          "expected": [
+            5082
+          ],
+          "max_cosine": 0.8614075779914856,
+          "latency_ms": 53.897496999525174,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 0.5,
+              "ndcg": 0.6309297535714575,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.5,
+              "ndcg": 0.6309297535714575,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "holdout-vi-5082",
+          "kind": "vi",
+          "ranked": [
+            5081
+          ],
+          "expected": [
+            5082
+          ],
+          "max_cosine": 0.8431118726730347,
+          "latency_ms": 54.41300399979809,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "holdout-en-5090",
+          "kind": "en",
+          "ranked": [
+            5090
+          ],
+          "expected": [
+            5090
+          ],
+          "max_cosine": 0.8570597171783447,
+          "latency_ms": 61.43151900050725,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "holdout-vi-5090",
+          "kind": "vi",
+          "ranked": [],
+          "expected": [
+            5090
+          ],
+          "max_cosine": 0.8394242525100708,
+          "latency_ms": 57.74675300017407,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "holdout-negative-0",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.8059806227684021,
+          "latency_ms": 53.48575699918001,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "holdout-negative-1",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7737886905670166,
+          "latency_ms": 52.51644300005864,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "holdout-negative-2",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7941306233406067,
+          "latency_ms": 50.7921879989226,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "holdout-negative-3",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7883728742599487,
+          "latency_ms": 53.14797700066265,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "holdout-negative-4",
+          "kind": "unanswerable",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.8335026502609253,
+          "latency_ms": 53.60412399932102,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "holdout-negative-5",
+          "kind": "unanswerable",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7775165438652039,
+          "latency_ms": 56.275149000612146,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        }
+      ]
+    },
+    "dev_reranker": {
+      "metrics": {
+        "1": {
+          "recall": 0.8333333333333334,
+          "precision_judged": 0.8333333333333334,
+          "mrr": 0.8333333333333334,
+          "ndcg": 0.8333333333333334
+        },
+        "5": {
+          "recall": 0.8333333333333334,
+          "precision_judged": 0.16666666666666666,
+          "mrr": 0.8333333333333334,
+          "ndcg": 0.8333333333333334
+        },
+        "10": {
+          "recall": 0.8333333333333334,
+          "precision_judged": 0.08333333333333333,
+          "mrr": 0.8333333333333334,
+          "ndcg": 0.8333333333333334
+        }
+      },
+      "negative_empty_rate": 1.0,
+      "latency_ms": {
+        "p50": 290.17959549992156,
+        "p95": 853.4691957495838,
+        "p99": 1509.2592271501946
+      },
+      "cases": [
+        {
+          "id": "dev-en-5025",
+          "kind": "en",
+          "ranked": [
+            5025
+          ],
+          "expected": [
+            5025
+          ],
+          "max_cosine": 0.8456014394760132,
+          "latency_ms": 341.59416100010276,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5025",
+          "kind": "vi",
+          "ranked": [],
+          "expected": [
+            5025
+          ],
+          "max_cosine": 0.8348667621612549,
+          "latency_ms": 58.87520000032964,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5030",
+          "kind": "en",
+          "ranked": [
+            5030,
+            5031,
+            5083,
+            5113,
+            5029
+          ],
+          "expected": [
+            5030
+          ],
+          "max_cosine": 0.8879246115684509,
+          "latency_ms": 1673.206735000349,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5030",
+          "kind": "vi",
+          "ranked": [
+            5030,
+            5031
+          ],
+          "expected": [
+            5030
+          ],
+          "max_cosine": 0.8714125156402588,
+          "latency_ms": 631.6506940002,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5040",
+          "kind": "en",
+          "ranked": [
+            5040
+          ],
+          "expected": [
+            5040
+          ],
+          "max_cosine": 0.8867350816726685,
+          "latency_ms": 382.39313200028846,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5040",
+          "kind": "vi",
+          "ranked": [],
+          "expected": [
+            5040
+          ],
+          "max_cosine": 0.8390862941741943,
+          "latency_ms": 56.17383099979634,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5061",
+          "kind": "en",
+          "ranked": [
+            5061
+          ],
+          "expected": [
+            5061
+          ],
+          "max_cosine": 0.8594181537628174,
+          "latency_ms": 319.4399889998749,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5061",
+          "kind": "vi",
+          "ranked": [
+            5061
+          ],
+          "expected": [
+            5061
+          ],
+          "max_cosine": 0.8519970178604126,
+          "latency_ms": 329.67434900001535,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5075",
+          "kind": "en",
+          "ranked": [
+            5075
+          ],
+          "expected": [
+            5075
+          ],
+          "max_cosine": 0.862079381942749,
+          "latency_ms": 297.2391900002549,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5075",
+          "kind": "vi",
+          "ranked": [
+            5075
+          ],
+          "expected": [
+            5075
+          ],
+          "max_cosine": 0.8527359962463379,
+          "latency_ms": 283.1200009995882,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-en-5092",
+          "kind": "en",
+          "ranked": [
+            5092,
+            5065
+          ],
+          "expected": [
+            5092
+          ],
+          "max_cosine": 0.8793765306472778,
+          "latency_ms": 708.8096299994504,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-vi-5092",
+          "kind": "vi",
+          "ranked": [
+            5092
+          ],
+          "expected": [
+            5092
+          ],
+          "max_cosine": 0.8568012714385986,
+          "latency_ms": 512.3439200006032,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "dev-negative-0",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.8041677474975586,
+          "latency_ms": 48.7689080000564,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-1",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7282268404960632,
+          "latency_ms": 52.58978100027889,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-2",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7803794741630554,
+          "latency_ms": 46.94344400013506,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-3",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7565621137619019,
+          "latency_ms": 55.37960200035741,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-4",
+          "kind": "unanswerable",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.8181040287017822,
+          "latency_ms": 47.3193830002856,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "dev-negative-5",
+          "kind": "unanswerable",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.8240176439285278,
+          "latency_ms": 55.80951000047207,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        }
+      ]
+    },
+    "holdout_reranker": {
+      "metrics": {
+        "1": {
+          "recall": 0.6666666666666666,
+          "precision_judged": 0.6666666666666666,
+          "mrr": 0.6666666666666666,
+          "ndcg": 0.6666666666666666
+        },
+        "5": {
+          "recall": 0.75,
+          "precision_judged": 0.15,
+          "mrr": 0.7083333333333334,
+          "ndcg": 0.7192441461309548
+        },
+        "10": {
+          "recall": 0.75,
+          "precision_judged": 0.075,
+          "mrr": 0.7083333333333334,
+          "ndcg": 0.7192441461309548
+        }
+      },
+      "negative_empty_rate": 1.0,
+      "latency_ms": {
+        "p50": 306.31916050015207,
+        "p95": 405.6022332995778,
+        "p99": 553.138584259577
+      },
+      "cases": [
+        {
+          "id": "holdout-en-5027",
+          "kind": "en",
+          "ranked": [
+            5027
+          ],
+          "expected": [
+            5027
+          ],
+          "max_cosine": 0.8512367010116577,
+          "latency_ms": 320.1145329994688,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "holdout-vi-5027",
+          "kind": "vi",
+          "ranked": [],
+          "expected": [
+            5027
+          ],
+          "max_cosine": 0.8262399435043335,
+          "latency_ms": 59.31278600019141,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "holdout-en-5039",
+          "kind": "en",
+          "ranked": [
+            5039
+          ],
+          "expected": [
+            5039
+          ],
+          "max_cosine": 0.8834972381591797,
+          "latency_ms": 323.31367899951147,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "holdout-vi-5039",
+          "kind": "vi",
+          "ranked": [
+            5039
+          ],
+          "expected": [
+            5039
+          ],
+          "max_cosine": 0.8453532457351685,
+          "latency_ms": 319.5891320001465,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "holdout-en-5059",
+          "kind": "en",
+          "ranked": [
+            5059
+          ],
+          "expected": [
+            5059
+          ],
+          "max_cosine": 0.8604741096496582,
+          "latency_ms": 306.17729800087545,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "holdout-vi-5059",
+          "kind": "vi",
+          "ranked": [
+            5059
+          ],
+          "expected": [
+            5059
+          ],
+          "max_cosine": 0.8450333476066589,
+          "latency_ms": 339.0279429995644,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "holdout-en-5078",
+          "kind": "en",
+          "ranked": [
+            5078
+          ],
+          "expected": [
+            5078
+          ],
+          "max_cosine": 0.8869088888168335,
+          "latency_ms": 334.91342500110477,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "holdout-vi-5078",
+          "kind": "vi",
+          "ranked": [
+            5078
+          ],
+          "expected": [
+            5078
+          ],
+          "max_cosine": 0.8710212707519531,
+          "latency_ms": 328.8148239998918,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "holdout-en-5082",
+          "kind": "en",
+          "ranked": [
+            5081,
+            5082
+          ],
+          "expected": [
+            5082
+          ],
+          "max_cosine": 0.8614075779914856,
+          "latency_ms": 590.0226719995771,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 0.5,
+              "ndcg": 0.6309297535714575,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 0.5,
+              "ndcg": 0.6309297535714575,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "holdout-vi-5082",
+          "kind": "vi",
+          "ranked": [
+            5081
+          ],
+          "expected": [
+            5082
+          ],
+          "max_cosine": 0.8431118726730347,
+          "latency_ms": 306.4610229994287,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "holdout-en-5090",
+          "kind": "en",
+          "ranked": [
+            5090
+          ],
+          "expected": [
+            5090
+          ],
+          "max_cosine": 0.8570597171783447,
+          "latency_ms": 373.05744999957824,
+          "metrics": {
+            "1": {
+              "recall": 1.0,
+              "precision_judged": 1.0,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 1.0,
+              "precision_judged": 0.2,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 1.0,
+              "precision_judged": 0.1,
+              "mrr": 1.0,
+              "ndcg": 1.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "holdout-vi-5090",
+          "kind": "vi",
+          "ranked": [],
+          "expected": [
+            5090
+          ],
+          "max_cosine": 0.8394242525100708,
+          "latency_ms": 57.47456999961287,
+          "metrics": {
+            "1": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "5": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            },
+            "10": {
+              "recall": 0.0,
+              "precision_judged": 0.0,
+              "mrr": 0.0,
+              "ndcg": 0.0,
+              "empty_result": null
+            }
+          }
+        },
+        {
+          "id": "holdout-negative-0",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.8059806227684021,
+          "latency_ms": 53.061498999340984,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "holdout-negative-1",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7737886905670166,
+          "latency_ms": 52.037868999832426,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "holdout-negative-2",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7941306233406067,
+          "latency_ms": 50.46393700013141,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "holdout-negative-3",
+          "kind": "offtopic",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7883728742599487,
+          "latency_ms": 52.8327049996733,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "holdout-negative-4",
+          "kind": "unanswerable",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.8335026502609253,
+          "latency_ms": 54.1974889993071,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        },
+        {
+          "id": "holdout-negative-5",
+          "kind": "unanswerable",
+          "ranked": [],
+          "expected": [],
+          "max_cosine": 0.7775165438652039,
+          "latency_ms": 56.22067500007688,
+          "metrics": {
+            "1": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "5": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            },
+            "10": {
+              "recall": null,
+              "precision_judged": null,
+              "mrr": null,
+              "ndcg": null,
+              "empty_result": true
+            }
+          }
+        }
+      ]
+    }
+  }
+}

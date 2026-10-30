@@ -1,0 +1,215 @@
+INFO:     Started server process [53579]
+INFO:     Waiting for application startup.
+Thiếu /tmp/itlr-system-audit/staging/cf_model.pkl — Collaborative Filtering bị tắt (tùy chọn V2); /api/personas và /api/for-you sẽ trả 503 cho tới khi build CF.
+Could not reach the Hub (Cannot reach https://huggingface.co/api/models/intfloat/multilingual-e5-base: offline mode is enabled. To disable it, please unset the `HF_HUB_OFFLINE` environment variable.). Using cached commit hash for 'intfloat/multilingual-e5-base'.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:18080 (Press CTRL+C to quit)
+[OK] Engine sẵn sàng — API tại http://localhost:8000
+INFO:     127.0.0.1:39698 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39706 - "POST /api/chat/stream HTTP/1.1" 200 OK
+chat_stream generation failed
+Traceback (most recent call last):
+  File "/home/o/ITLR--RAG/itlr/chatbot/llm_client.py", line 451, in stream
+    yield from _stream_ollama(messages, num_predict=max_tokens, temperature=temperature)
+  File "/home/o/ITLR--RAG/itlr/chatbot/llm_client.py", line 202, in _stream_ollama
+    with urllib.request.urlopen(req, timeout=timeout_s) as resp:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/urllib/request.py", line 187, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/urllib/request.py", line 487, in open
+    response = self._open(req, data)
+  File "/usr/lib/python3.14/urllib/request.py", line 504, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+                              '_open', req)
+  File "/usr/lib/python3.14/urllib/request.py", line 464, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python3.14/urllib/request.py", line 1350, in http_open
+    return self.do_open(http.client.HTTPConnection, req)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/urllib/request.py", line 1325, in do_open
+    r = h.getresponse()
+  File "/usr/lib/python3.14/http/client.py", line 1459, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "/usr/lib/python3.14/http/client.py", line 336, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "/usr/lib/python3.14/http/client.py", line 297, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+               ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/socket.py", line 725, in readinto
+    return self._sock.recv_into(b)
+           ~~~~~~~~~~~~~~~~~~~~^^^
+TimeoutError: timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/o/ITLR--RAG/itlr/chatbot/chatbot.py", line 419, in chat_stream
+    for chunk in try_llm_response_stream(p["sys_prompt"], p["llm_message"], history=p["history"], strict=True):
+                 ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/o/ITLR--RAG/itlr/chatbot/llm_adapter.py", line 46, in try_llm_response_stream
+    yield from llm_client.stream(messages)
+  File "/home/o/ITLR--RAG/itlr/chatbot/llm_client.py", line 455, in stream
+    raise LLMError(f'ollama stream failed ({_safe_err_text(exc)})') from exc
+itlr.chatbot.llm_client.LLMError: ollama stream failed (TimeoutError: timed out)
+[OK] Đã pre-warm Ollama (qwen2.5:3b) — chatbot sẵn sàng trả lời nhanh.
+INFO:     127.0.0.1:37058 - "POST /api/chat/stream HTTP/1.1" 200 OK
+chat_stream generation failed
+Traceback (most recent call last):
+  File "/home/o/ITLR--RAG/itlr/chatbot/llm_client.py", line 451, in stream
+    yield from _stream_ollama(messages, num_predict=max_tokens, temperature=temperature)
+  File "/home/o/ITLR--RAG/itlr/chatbot/llm_client.py", line 202, in _stream_ollama
+    with urllib.request.urlopen(req, timeout=timeout_s) as resp:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/urllib/request.py", line 187, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/urllib/request.py", line 487, in open
+    response = self._open(req, data)
+  File "/usr/lib/python3.14/urllib/request.py", line 504, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+                              '_open', req)
+  File "/usr/lib/python3.14/urllib/request.py", line 464, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python3.14/urllib/request.py", line 1350, in http_open
+    return self.do_open(http.client.HTTPConnection, req)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/urllib/request.py", line 1325, in do_open
+    r = h.getresponse()
+  File "/usr/lib/python3.14/http/client.py", line 1459, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "/usr/lib/python3.14/http/client.py", line 336, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "/usr/lib/python3.14/http/client.py", line 297, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+               ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/socket.py", line 725, in readinto
+    return self._sock.recv_into(b)
+           ~~~~~~~~~~~~~~~~~~~~^^^
+TimeoutError: timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/o/ITLR--RAG/itlr/chatbot/chatbot.py", line 419, in chat_stream
+    for chunk in try_llm_response_stream(p["sys_prompt"], p["llm_message"], history=p["history"], strict=True):
+                 ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/o/ITLR--RAG/itlr/chatbot/llm_adapter.py", line 46, in try_llm_response_stream
+    yield from llm_client.stream(messages)
+  File "/home/o/ITLR--RAG/itlr/chatbot/llm_client.py", line 455, in stream
+    raise LLMError(f'ollama stream failed ({_safe_err_text(exc)})') from exc
+itlr.chatbot.llm_client.LLMError: ollama stream failed (TimeoutError: timed out)
+INFO:     127.0.0.1:60948 - "POST /api/chat/stream HTTP/1.1" 200 OK
+chat_stream generation failed
+Traceback (most recent call last):
+  File "/home/o/ITLR--RAG/itlr/chatbot/llm_client.py", line 451, in stream
+    yield from _stream_ollama(messages, num_predict=max_tokens, temperature=temperature)
+  File "/home/o/ITLR--RAG/itlr/chatbot/llm_client.py", line 202, in _stream_ollama
+    with urllib.request.urlopen(req, timeout=timeout_s) as resp:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/urllib/request.py", line 187, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/urllib/request.py", line 487, in open
+    response = self._open(req, data)
+  File "/usr/lib/python3.14/urllib/request.py", line 504, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+                              '_open', req)
+  File "/usr/lib/python3.14/urllib/request.py", line 464, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python3.14/urllib/request.py", line 1350, in http_open
+    return self.do_open(http.client.HTTPConnection, req)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/urllib/request.py", line 1325, in do_open
+    r = h.getresponse()
+  File "/usr/lib/python3.14/http/client.py", line 1459, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "/usr/lib/python3.14/http/client.py", line 336, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "/usr/lib/python3.14/http/client.py", line 297, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+               ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/socket.py", line 725, in readinto
+    return self._sock.recv_into(b)
+           ~~~~~~~~~~~~~~~~~~~~^^^
+TimeoutError: timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/o/ITLR--RAG/itlr/chatbot/chatbot.py", line 419, in chat_stream
+    for chunk in try_llm_response_stream(p["sys_prompt"], p["llm_message"], history=p["history"], strict=True):
+                 ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/o/ITLR--RAG/itlr/chatbot/llm_adapter.py", line 46, in try_llm_response_stream
+    yield from llm_client.stream(messages)
+  File "/home/o/ITLR--RAG/itlr/chatbot/llm_client.py", line 455, in stream
+    raise LLMError(f'ollama stream failed ({_safe_err_text(exc)})') from exc
+itlr.chatbot.llm_client.LLMError: ollama stream failed (TimeoutError: timed out)
+INFO:     127.0.0.1:55392 - "POST /api/chat/stream HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55408 - "POST /api/chat/stream HTTP/1.1" 200 OK
+chat_stream generation failed
+Traceback (most recent call last):
+  File "/home/o/ITLR--RAG/itlr/chatbot/llm_client.py", line 451, in stream
+    yield from _stream_ollama(messages, num_predict=max_tokens, temperature=temperature)
+  File "/home/o/ITLR--RAG/itlr/chatbot/llm_client.py", line 202, in _stream_ollama
+    with urllib.request.urlopen(req, timeout=timeout_s) as resp:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/urllib/request.py", line 187, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/urllib/request.py", line 487, in open
+    response = self._open(req, data)
+  File "/usr/lib/python3.14/urllib/request.py", line 504, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+                              '_open', req)
+  File "/usr/lib/python3.14/urllib/request.py", line 464, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python3.14/urllib/request.py", line 1350, in http_open
+    return self.do_open(http.client.HTTPConnection, req)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/urllib/request.py", line 1325, in do_open
+    r = h.getresponse()
+  File "/usr/lib/python3.14/http/client.py", line 1459, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "/usr/lib/python3.14/http/client.py", line 336, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "/usr/lib/python3.14/http/client.py", line 297, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+               ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/socket.py", line 725, in readinto
+    return self._sock.recv_into(b)
+           ~~~~~~~~~~~~~~~~~~~~^^^
+TimeoutError: timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/o/ITLR--RAG/itlr/chatbot/chatbot.py", line 419, in chat_stream
+    for chunk in try_llm_response_stream(p["sys_prompt"], p["llm_message"], history=p["history"], strict=True):
+                 ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/o/ITLR--RAG/itlr/chatbot/llm_adapter.py", line 46, in try_llm_response_stream
+    yield from llm_client.stream(messages)
+  File "/home/o/ITLR--RAG/itlr/chatbot/llm_client.py", line 455, in stream
+    raise LLMError(f'ollama stream failed ({_safe_err_text(exc)})') from exc
+itlr.chatbot.llm_client.LLMError: ollama stream failed (TimeoutError: timed out)
+INFO:     127.0.0.1:48074 - "POST /api/chat/stream HTTP/1.1" 200 OK
+try_llm_response: LLM lỗi -> fallback template (ollama chat thất bại (TimeoutError: timed out))
+INFO:     127.0.0.1:43504 - "POST /api/chat HTTP/1.1" 200 OK
+try_llm_response: LLM lỗi -> fallback template (ollama chat thất bại (TimeoutError: timed out))
+INFO:     127.0.0.1:43498 - "POST /api/chat HTTP/1.1" 200 OK
+try_llm_response: LLM lỗi -> fallback template (ollama chat thất bại (TimeoutError: timed out))
+INFO:     127.0.0.1:60374 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [53579]
+/usr/lib/python3.14/multiprocessing/resource_tracker.py:396: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/loky-53579-lwug47w3'}
+  warnings.warn(

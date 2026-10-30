@@ -1,0 +1,91 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5:3b",
+  "results": [
+    {
+      "id": "en-5001",
+      "kind": "english",
+      "query": "How does Docker daemon access affect root privileges?",
+      "source_url": "https://docs.docker.com/engine/security",
+      "source_quote": "rs (and applications) with Docker implies running the\nDocker daemon. This daemon requires\nroot\nprivileges unless you opt-in\nto\nRootless mode\n, and you should therefore be aware of\nsome important details.\nFirst of all, only trusted users should be allowed to control your\nDocker daemon. This is a direct consequence of some powerfu",
+      "streaming": false,
+      "mock": false,
+      "retrieval": "oracle evidence; not end-to-end",
+      "status": "PASS",
+      "answer": "Source [item_id:5001]: Docker daemon requires root privileges unless Docker is run in Rootless mode. This implies that only trusted users should be allowed to control the Docker daemon to avoid security risks.",
+      "citation_identity": true,
+      "seconds": 19.314352848999988
+    },
+    {
+      "id": "en-5001",
+      "kind": "english",
+      "query": "How does Docker daemon access affect root privileges?",
+      "source_url": "https://docs.docker.com/engine/security",
+      "source_quote": "rs (and applications) with Docker implies running the\nDocker daemon. This daemon requires\nroot\nprivileges unless you opt-in\nto\nRootless mode\n, and you should therefore be aware of\nsome important details.\nFirst of all, only trusted users should be allowed to control your\nDocker daemon. This is a direct consequence of some powerfu",
+      "streaming": true,
+      "mock": false,
+      "retrieval": "oracle evidence; not end-to-end",
+      "status": "PASS",
+      "answer": "Source [item_id:5001]: Docker daemon requires root privileges unless Docker is run in Rootless mode. Only trusted users should control the Docker daemon in Rootless mode to ensure security.",
+      "citation_identity": true,
+      "seconds": 5.228252795999651
+    },
+    {
+      "id": "vi-5001",
+      "kind": "vietnamese",
+      "query": "Vì sao quyền truy cập Docker daemon có thể dẫn đến quyền root?",
+      "source_url": "https://docs.docker.com/engine/security",
+      "source_quote": "rs (and applications) with Docker implies running the\nDocker daemon. This daemon requires\nroot\nprivileges unless you opt-in\nto\nRootless mode\n, and you should therefore be aware of\nsome important details.\nFirst of all, only trusted users should be allowed to control your\nDocker daemon. This is a direct consequence of some powerfu",
+      "streaming": false,
+      "mock": false,
+      "retrieval": "oracle evidence; not end-to-end",
+      "status": "PASS",
+      "answer": "You cannot answer from the source. The source does not provide information on why access to the Docker daemon could lead to root privileges.",
+      "citation_identity": false,
+      "seconds": 4.277334482000697
+    },
+    {
+      "id": "vi-5001",
+      "kind": "vietnamese",
+      "query": "Vì sao quyền truy cập Docker daemon có thể dẫn đến quyền root?",
+      "source_url": "https://docs.docker.com/engine/security",
+      "source_quote": "rs (and applications) with Docker implies running the\nDocker daemon. This daemon requires\nroot\nprivileges unless you opt-in\nto\nRootless mode\n, and you should therefore be aware of\nsome important details.\nFirst of all, only trusted users should be allowed to control your\nDocker daemon. This is a direct consequence of some powerfu",
+      "streaming": true,
+      "mock": false,
+      "retrieval": "oracle evidence; not end-to-end",
+      "status": "PASS",
+      "answer": "You cannot answer from the source. The source does not provide information on why access to the Docker daemon could lead to root privileges.",
+      "citation_identity": false,
+      "seconds": 3.7785262319994217
+    },
+    {
+      "case": "real truncation",
+      "streaming": false,
+      "status": "PASS: truncated completion rejected",
+      "seconds": 1.5164860280001449
+    },
+    {
+      "case": "real truncation",
+      "streaming": true,
+      "status": "PASS: truncated completion rejected",
+      "seconds": 0.14079292099995655
+    },
+    {
+      "case": "unanswerable",
+      "answer": "Insufficient evidence.",
+      "status": "OBSERVED",
+      "seconds": 2.452302000999225
+    },
+    {
+      "case": "cancellation",
+      "status": "PASS",
+      "first_delta": "Python",
+      "seconds": 0.7307319370002006
+    }
+  ],
+  "python_peak_rss_mib": 32.21875,
+  "memory_note": "client only; Ollama runner memory measured separately",
+  "faithfulness": null,
+  "hallucination_rate": null,
+  "human_evaluation": null
+}

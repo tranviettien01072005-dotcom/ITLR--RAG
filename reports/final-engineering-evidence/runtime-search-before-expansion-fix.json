@@ -1,0 +1,2215 @@
+{
+  "dev_before": {
+    "metrics5": {
+      "recall": 0.0,
+      "precision_judged": 0.0,
+      "mrr": 0.0,
+      "ndcg": 0.0
+    },
+    "negative_empty_rate": 1.0,
+    "latency_ms": {
+      "p50": 121.903446000033,
+      "p95": 178.98270155092172,
+      "p99": 201.5666963106923
+    },
+    "cases": [
+      {
+        "id": "dev-en-5025",
+        "query": "What does HTTP 404 Not Found tell a client?",
+        "expected": [
+          5025
+        ],
+        "ranked": [],
+        "note": "khái niệm: Mô hình Máy chủ - Máy khách (Client-Server)",
+        "ms": 207.212695000635,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "dev-vi-5025",
+        "query": "HTTP 404 Not Found cho biết điều gì về tài nguyên được yêu cầu?",
+        "expected": [
+          5025
+        ],
+        "ranked": [],
+        "note": "khái niệm: HTTP / HTTPS",
+        "ms": 148.90563100016152,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "dev-en-5030",
+        "query": "Can an async function use await inside its body?",
+        "expected": [
+          5030
+        ],
+        "ranked": [],
+        "note": "khái niệm: Hàm (Function)",
+        "ms": 124.93868999990809,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "dev-vi-5030",
+        "query": "Có thể dùng await bên trong thân async function trong JavaScript không?",
+        "expected": [
+          5030
+        ],
+        "ranked": [],
+        "note": "khái niệm: JavaScript",
+        "ms": 131.9180469999992,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "dev-en-5040",
+        "query": "Which CSS shorthand configures explicit and implicit grid properties?",
+        "expected": [
+          5040
+        ],
+        "ranked": [],
+        "note": "khái niệm: CSS",
+        "ms": 174.00093800097238,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "dev-vi-5040",
+        "query": "Thuộc tính CSS viết tắt nào cấu hình cả explicit và implicit grid?",
+        "expected": [
+          5040
+        ],
+        "ranked": [],
+        "note": "khái niệm: CSS",
+        "ms": 129.11430399981327,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "dev-en-5061",
+        "query": "What methods define Python context managers?",
+        "expected": [
+          5061
+        ],
+        "ranked": [],
+        "note": "khái niệm: Python",
+        "ms": 116.46586099959677,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "dev-vi-5061",
+        "query": "Context manager Python triển khai hai phương thức nào khi vào và thoát with?",
+        "expected": [
+          5061
+        ],
+        "ranked": [],
+        "note": "khái niệm: Python",
+        "ms": 134.84342400079186,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "dev-en-5075",
+        "query": "Which Python module provides cryptographically strong random security tokens?",
+        "expected": [
+          5075
+        ],
+        "ranked": [],
+        "note": "khái niệm: Python",
+        "ms": 105.95088500122074,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "dev-vi-5075",
+        "query": "Module Python nào tạo số ngẫu nhiên đủ mạnh cho security token?",
+        "expected": [
+          5075
+        ],
+        "ranked": [],
+        "note": "khái niệm: Python",
+        "ms": 105.9324990001187,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "dev-en-5092",
+        "query": "How can Python decode JSON text into objects using json.loads?",
+        "expected": [
+          5092
+        ],
+        "ranked": [],
+        "note": "khái niệm: Python",
+        "ms": 152.62326300035056,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "dev-vi-5092",
+        "query": "Python dùng json.loads để giải mã văn bản JSON thành object như thế nào?",
+        "expected": [
+          5092
+        ],
+        "ranked": [],
+        "note": "khái niệm: Python",
+        "ms": 126.29761199968925,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "dev-negative-0",
+        "query": "How do I bake a chocolate cake without eggs?",
+        "expected": [],
+        "ranked": [],
+        "note": "",
+        "ms": 93.24758399998245,
+        "metrics": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        }
+      },
+      {
+        "id": "dev-negative-1",
+        "query": "Ai đã giành huy chương vàng bơi lội Olympic hôm nay?",
+        "expected": [],
+        "ranked": [],
+        "note": "khái niệm: I/O (Input/Output)",
+        "ms": 118.86820200015791,
+        "metrics": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        }
+      },
+      {
+        "id": "dev-negative-2",
+        "query": "What is the current weather in my street?",
+        "expected": [],
+        "ranked": [],
+        "note": "",
+        "ms": 72.300350999285,
+        "metrics": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        }
+      },
+      {
+        "id": "dev-negative-3",
+        "query": "Tôi muốn đặt vé máy bay từ Hà Nội đến Huế ngày mai.",
+        "expected": [],
+        "ranked": [],
+        "note": "",
+        "ms": 82.03896200029703,
+        "metrics": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        }
+      },
+      {
+        "id": "dev-negative-4",
+        "query": "What is my personal account password right now?",
+        "expected": [],
+        "ranked": [],
+        "note": "",
+        "ms": 67.76494200130401,
+        "metrics": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        }
+      },
+      {
+        "id": "dev-negative-5",
+        "query": "Hãy cung cấp private API key đang dùng trên máy chủ của tôi.",
+        "expected": [],
+        "ranked": [],
+        "note": "mở rộng: backend api server · khái niệm: Mô hình Máy chủ - Máy khách (Client-Server)",
+        "ms": 114.62483200011775,
+        "metrics": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        }
+      }
+    ]
+  },
+  "dev_after": {
+    "metrics5": {
+      "recall": 1.0,
+      "precision_judged": 0.20000000000000004,
+      "mrr": 0.85,
+      "ndcg": 0.8873926928647881
+    },
+    "negative_empty_rate": 1.0,
+    "latency_ms": {
+      "p50": 66.16892750025727,
+      "p95": 78.28283105027366,
+      "p99": 83.33176780924985
+    },
+    "cases": [
+      {
+        "id": "dev-en-5025",
+        "query": "What does HTTP 404 Not Found tell a client?",
+        "expected": [
+          5025
+        ],
+        "ranked": [
+          5055,
+          5025
+        ],
+        "note": "khái niệm: Mô hình Máy chủ - Máy khách (Client-Server)",
+        "ms": 84.59400199899392,
+        "metrics": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 0.5,
+          "ndcg": 0.6309297535714575,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "dev-vi-5025",
+        "query": "HTTP 404 Not Found cho biết điều gì về tài nguyên được yêu cầu?",
+        "expected": [
+          5025
+        ],
+        "ranked": [
+          5025
+        ],
+        "note": "khái niệm: HTTP / HTTPS",
+        "ms": 72.44942900069873,
+        "metrics": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "dev-en-5030",
+        "query": "Can an async function use await inside its body?",
+        "expected": [
+          5030
+        ],
+        "ranked": [
+          5031,
+          5083,
+          5113,
+          5060,
+          5030
+        ],
+        "note": "khái niệm: Hàm (Function)",
+        "ms": 67.14327900044736,
+        "metrics": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 0.2,
+          "ndcg": 0.38685280723454163,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "dev-vi-5030",
+        "query": "Có thể dùng await bên trong thân async function trong JavaScript không?",
+        "expected": [
+          5030
+        ],
+        "ranked": [
+          5030,
+          5031
+        ],
+        "note": "khái niệm: JavaScript",
+        "ms": 64.01012500100478,
+        "metrics": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "dev-en-5040",
+        "query": "Which CSS shorthand configures explicit and implicit grid properties?",
+        "expected": [
+          5040
+        ],
+        "ranked": [
+          5040,
+          5057,
+          5044,
+          5041,
+          5048,
+          5043,
+          5045
+        ],
+        "note": "khái niệm: CSS",
+        "ms": 69.19414799995138,
+        "metrics": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "dev-vi-5040",
+        "query": "Thuộc tính CSS viết tắt nào cấu hình cả explicit và implicit grid?",
+        "expected": [
+          5040
+        ],
+        "ranked": [
+          5040
+        ],
+        "note": "khái niệm: CSS",
+        "ms": 66.89865500084125,
+        "metrics": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "dev-en-5061",
+        "query": "What methods define Python context managers?",
+        "expected": [
+          5061
+        ],
+        "ranked": [
+          5061
+        ],
+        "note": "khái niệm: Python",
+        "ms": 60.914175999641884,
+        "metrics": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "dev-vi-5061",
+        "query": "Context manager Python triển khai hai phương thức nào khi vào và thoát with?",
+        "expected": [
+          5061
+        ],
+        "ranked": [
+          5061
+        ],
+        "note": "khái niệm: Python",
+        "ms": 62.69127099949401,
+        "metrics": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "dev-en-5075",
+        "query": "Which Python module provides cryptographically strong random security tokens?",
+        "expected": [
+          5075
+        ],
+        "ranked": [
+          5075,
+          5073,
+          5102
+        ],
+        "note": "khái niệm: Python",
+        "ms": 65.1270830003341,
+        "metrics": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "dev-vi-5075",
+        "query": "Module Python nào tạo số ngẫu nhiên đủ mạnh cho security token?",
+        "expected": [
+          5075
+        ],
+        "ranked": [
+          5075
+        ],
+        "note": "khái niệm: Python",
+        "ms": 68.14761100031319,
+        "metrics": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "dev-en-5092",
+        "query": "How can Python decode JSON text into objects using json.loads?",
+        "expected": [
+          5092
+        ],
+        "ranked": [
+          5065,
+          5092
+        ],
+        "note": "khái niệm: Python",
+        "ms": 66.42365799962135,
+        "metrics": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 0.5,
+          "ndcg": 0.6309297535714575,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "dev-vi-5092",
+        "query": "Python dùng json.loads để giải mã văn bản JSON thành object như thế nào?",
+        "expected": [
+          5092
+        ],
+        "ranked": [
+          5092
+        ],
+        "note": "khái niệm: Python",
+        "ms": 65.91419700089318,
+        "metrics": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "dev-negative-0",
+        "query": "How do I bake a chocolate cake without eggs?",
+        "expected": [],
+        "ranked": [],
+        "note": "",
+        "ms": 55.61580900030094,
+        "metrics": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        }
+      },
+      {
+        "id": "dev-negative-1",
+        "query": "Ai đã giành huy chương vàng bơi lội Olympic hôm nay?",
+        "expected": [],
+        "ranked": [],
+        "note": "khái niệm: I/O (Input/Output)",
+        "ms": 72.76745700073661,
+        "metrics": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        }
+      },
+      {
+        "id": "dev-negative-2",
+        "query": "What is the current weather in my street?",
+        "expected": [],
+        "ranked": [],
+        "note": "",
+        "ms": 49.64011499941989,
+        "metrics": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        }
+      },
+      {
+        "id": "dev-negative-3",
+        "query": "Tôi muốn đặt vé máy bay từ Hà Nội đến Huế ngày mai.",
+        "expected": [],
+        "ranked": [],
+        "note": "",
+        "ms": 55.639825000980636,
+        "metrics": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        }
+      },
+      {
+        "id": "dev-negative-4",
+        "query": "What is my personal account password right now?",
+        "expected": [],
+        "ranked": [],
+        "note": "",
+        "ms": 49.5350729997881,
+        "metrics": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        }
+      },
+      {
+        "id": "dev-negative-5",
+        "query": "Hãy cung cấp private API key đang dùng trên máy chủ của tôi.",
+        "expected": [],
+        "ranked": [],
+        "note": "mở rộng: backend api server · khái niệm: Mô hình Máy chủ - Máy khách (Client-Server)",
+        "ms": 77.16909500049951,
+        "metrics": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        }
+      }
+    ]
+  },
+  "holdout_before": {
+    "metrics5": {
+      "recall": 0.0,
+      "precision_judged": 0.0,
+      "mrr": 0.0,
+      "ndcg": 0.0
+    },
+    "negative_empty_rate": 1.0,
+    "latency_ms": {
+      "p50": 61.67892149915133,
+      "p95": 87.86975414950574,
+      "p99": 97.71061963132522
+    },
+    "cases": [
+      {
+        "id": "holdout-en-5027",
+        "query": "How can a callback be registered to run when an EventTarget receives an event?",
+        "expected": [
+          5027
+        ],
+        "ranked": [],
+        "note": "",
+        "ms": 64.37591500070994,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "holdout-vi-5027",
+        "query": "Làm thế nào đăng ký callback chạy khi EventTarget nhận một sự kiện?",
+        "expected": [
+          5027
+        ],
+        "ranked": [],
+        "note": "",
+        "ms": 55.99303200142458,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "holdout-en-5039",
+        "query": "What are the parts of a CSS media query?",
+        "expected": [
+          5039
+        ],
+        "ranked": [],
+        "note": "khái niệm: CSS",
+        "ms": 59.95040499874449,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "holdout-vi-5039",
+        "query": "Một CSS media query gồm những thành phần nào?",
+        "expected": [
+          5039
+        ],
+        "ranked": [],
+        "note": "khái niệm: Hệ thống nhúng (Embedded System)",
+        "ms": 80.35189400106901,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "holdout-en-5059",
+        "query": "Which Python copy operation recursively copies nested objects?",
+        "expected": [
+          5059
+        ],
+        "ranked": [],
+        "note": "khái niệm: Python",
+        "ms": 63.40743799955817,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "holdout-vi-5059",
+        "query": "Phép copy Python nào sao chép sâu các object lồng nhau?",
+        "expected": [
+          5059
+        ],
+        "ranked": [],
+        "note": "khái niệm: Python",
+        "ms": 58.39745299999777,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "holdout-en-5078",
+        "query": "What Python module can create, read and append ZIP archives?",
+        "expected": [
+          5078
+        ],
+        "ranked": [],
+        "note": "khái niệm: Python",
+        "ms": 59.30744099896401,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "holdout-vi-5078",
+        "query": "Module Python nào tạo, đọc và ghi thêm vào ZIP archive?",
+        "expected": [
+          5078
+        ],
+        "ranked": [],
+        "note": "khái niệm: Python",
+        "ms": 59.62905100022908,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "holdout-en-5082",
+        "query": "What common interface do Python thread and process executors implement?",
+        "expected": [
+          5082
+        ],
+        "ranked": [],
+        "note": "khái niệm: Tiến trình & Luồng (Process & Thread)",
+        "ms": 85.6989749991044,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "holdout-vi-5082",
+        "query": "Các executor chạy thread và process Python cùng triển khai interface nào?",
+        "expected": [
+          5082
+        ],
+        "ranked": [],
+        "note": "khái niệm: Tiến trình & Luồng (Process & Thread)",
+        "ms": 73.64032199984649,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "holdout-en-5090",
+        "query": "How should Python values be bound to SQLite SQL statements to avoid injection?",
+        "expected": [
+          5090
+        ],
+        "ranked": [],
+        "note": "mở rộng: co so du lieu truy van sql · khái niệm: Python",
+        "ms": 79.27342299990414,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "holdout-vi-5090",
+        "query": "Phải bind giá trị Python vào câu SQL SQLite như thế nào để tránh SQL injection?",
+        "expected": [
+          5090
+        ],
+        "ranked": [],
+        "note": "mở rộng: co so du lieu truy van sql, co so du lieu truy van sql · khái niệm: SQL Injection",
+        "ms": 100.17083600178012,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "holdout-negative-0",
+        "query": "Give me a recipe for Vietnamese beef noodle soup.",
+        "expected": [],
+        "ranked": [],
+        "note": "",
+        "ms": 57.426813000347465,
+        "metrics": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        }
+      },
+      {
+        "id": "holdout-negative-1",
+        "query": "Dự báo tỷ giá vàng tuần sau sẽ tăng bao nhiêu?",
+        "expected": [],
+        "ranked": [],
+        "note": "",
+        "ms": 50.270146999537246,
+        "metrics": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        }
+      },
+      {
+        "id": "holdout-negative-2",
+        "query": "What medicine should I take for a headache?",
+        "expected": [],
+        "ranked": [],
+        "note": "",
+        "ms": 53.68968699985999,
+        "metrics": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        }
+      },
+      {
+        "id": "holdout-negative-3",
+        "query": "Tìm khách sạn có phòng trống tối nay gần sân bay.",
+        "expected": [],
+        "ranked": [],
+        "note": "khái niệm: GAN (Generative Adversarial Network)",
+        "ms": 81.86055900114297,
+        "metrics": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        }
+      },
+      {
+        "id": "holdout-negative-4",
+        "query": "What is the secret session token for my logged-in user?",
+        "expected": [],
+        "ranked": [],
+        "note": "khái niệm: Token",
+        "ms": 69.0951420001511,
+        "metrics": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        }
+      },
+      {
+        "id": "holdout-negative-5",
+        "query": "Nhiệt độ phòng ngủ của tôi ngay lúc này là bao nhiêu?",
+        "expected": [],
+        "ranked": [],
+        "note": "",
+        "ms": 54.0085110005748,
+        "metrics": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        }
+      }
+    ]
+  },
+  "holdout_after": {
+    "metrics5": {
+      "recall": 0.75,
+      "precision_judged": 0.15,
+      "mrr": 0.5694444444444444,
+      "ndcg": 0.6160657717261978
+    },
+    "negative_empty_rate": 0.8333333333333334,
+    "latency_ms": {
+      "p50": 65.81470299988723,
+      "p95": 81.73954575113383,
+      "p99": 90.03405315061171
+    },
+    "cases": [
+      {
+        "id": "holdout-en-5027",
+        "query": "How can a callback be registered to run when an EventTarget receives an event?",
+        "expected": [
+          5027
+        ],
+        "ranked": [
+          5027
+        ],
+        "note": "",
+        "ms": 71.49773300079687,
+        "metrics": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "holdout-vi-5027",
+        "query": "Làm thế nào đăng ký callback chạy khi EventTarget nhận một sự kiện?",
+        "expected": [
+          5027
+        ],
+        "ranked": [],
+        "note": "",
+        "ms": 59.40772400026617,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "holdout-en-5039",
+        "query": "What are the parts of a CSS media query?",
+        "expected": [
+          5039
+        ],
+        "ranked": [
+          5057,
+          5048,
+          5039
+        ],
+        "note": "khái niệm: CSS",
+        "ms": 62.95132600098441,
+        "metrics": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 0.3333333333333333,
+          "ndcg": 0.5,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "holdout-vi-5039",
+        "query": "Một CSS media query gồm những thành phần nào?",
+        "expected": [
+          5039
+        ],
+        "ranked": [],
+        "note": "khái niệm: Hệ thống nhúng (Embedded System)",
+        "ms": 72.9751609997038,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "holdout-en-5059",
+        "query": "Which Python copy operation recursively copies nested objects?",
+        "expected": [
+          5059
+        ],
+        "ranked": [
+          5059,
+          5060,
+          5086
+        ],
+        "note": "khái niệm: Python",
+        "ms": 66.88115900033154,
+        "metrics": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "holdout-vi-5059",
+        "query": "Phép copy Python nào sao chép sâu các object lồng nhau?",
+        "expected": [
+          5059
+        ],
+        "ranked": [
+          5059
+        ],
+        "note": "khái niệm: Python",
+        "ms": 62.87106399940967,
+        "metrics": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "holdout-en-5078",
+        "query": "What Python module can create, read and append ZIP archives?",
+        "expected": [
+          5078
+        ],
+        "ranked": [
+          5078,
+          5116,
+          5119
+        ],
+        "note": "khái niệm: Python",
+        "ms": 63.63461799992365,
+        "metrics": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "holdout-vi-5078",
+        "query": "Module Python nào tạo, đọc và ghi thêm vào ZIP archive?",
+        "expected": [
+          5078
+        ],
+        "ranked": [
+          5078
+        ],
+        "note": "khái niệm: Python",
+        "ms": 64.74824699944293,
+        "metrics": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "holdout-en-5082",
+        "query": "What common interface do Python thread and process executors implement?",
+        "expected": [
+          5082
+        ],
+        "ranked": [
+          5081,
+          5082
+        ],
+        "note": "khái niệm: Tiến trình & Luồng (Process & Thread)",
+        "ms": 79.90987500124902,
+        "metrics": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 0.5,
+          "ndcg": 0.6309297535714575,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "holdout-vi-5082",
+        "query": "Các executor chạy thread và process Python cùng triển khai interface nào?",
+        "expected": [
+          5082
+        ],
+        "ranked": [
+          5081,
+          5082
+        ],
+        "note": "khái niệm: Tiến trình & Luồng (Process & Thread)",
+        "ms": 75.52600000053644,
+        "metrics": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 0.5,
+          "ndcg": 0.6309297535714575,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "holdout-en-5090",
+        "query": "How should Python values be bound to SQLite SQL statements to avoid injection?",
+        "expected": [
+          5090
+        ],
+        "ranked": [
+          5060,
+          5090
+        ],
+        "note": "mở rộng: co so du lieu truy van sql · khái niệm: Python",
+        "ms": 78.33354499962297,
+        "metrics": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 0.5,
+          "ndcg": 0.6309297535714575,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "holdout-vi-5090",
+        "query": "Phải bind giá trị Python vào câu SQL SQLite như thế nào để tránh SQL injection?",
+        "expected": [
+          5090
+        ],
+        "ranked": [],
+        "note": "mở rộng: co so du lieu truy van sql, co so du lieu truy van sql · khái niệm: SQL Injection",
+        "ms": 92.1076800004812,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "holdout-negative-0",
+        "query": "Give me a recipe for Vietnamese beef noodle soup.",
+        "expected": [],
+        "ranked": [],
+        "note": "",
+        "ms": 58.22542399982922,
+        "metrics": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        }
+      },
+      {
+        "id": "holdout-negative-1",
+        "query": "Dự báo tỷ giá vàng tuần sau sẽ tăng bao nhiêu?",
+        "expected": [],
+        "ranked": [],
+        "note": "",
+        "ms": 56.98853899957612,
+        "metrics": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        }
+      },
+      {
+        "id": "holdout-negative-2",
+        "query": "What medicine should I take for a headache?",
+        "expected": [],
+        "ranked": [],
+        "note": "",
+        "ms": 57.8252049999719,
+        "metrics": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        }
+      },
+      {
+        "id": "holdout-negative-3",
+        "query": "Tìm khách sạn có phòng trống tối nay gần sân bay.",
+        "expected": [],
+        "ranked": [],
+        "note": "khái niệm: GAN (Generative Adversarial Network)",
+        "ms": 74.93170500129054,
+        "metrics": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        }
+      },
+      {
+        "id": "holdout-negative-4",
+        "query": "What is the secret session token for my logged-in user?",
+        "expected": [],
+        "ranked": [
+          5023,
+          5075
+        ],
+        "note": "khái niệm: Token",
+        "ms": 67.21305800056143,
+        "metrics": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": false
+        }
+      },
+      {
+        "id": "holdout-negative-5",
+        "query": "Nhiệt độ phòng ngủ của tôi ngay lúc này là bao nhiêu?",
+        "expected": [],
+        "ranked": [],
+        "note": "",
+        "ms": 61.90066799899796,
+        "metrics": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        }
+      }
+    ]
+  },
+  "release_before": {
+    "metrics5": {
+      "recall": 0.09523809523809523,
+      "precision_judged": 0.01904761904761905,
+      "mrr": 0.09523809523809523,
+      "ndcg": 0.09523809523809523
+    },
+    "negative_empty_rate": 1.0,
+    "latency_ms": {
+      "p50": 68.585647000873,
+      "p95": 76.22820920023514,
+      "p99": 78.71009375943686
+    },
+    "cases": [
+      {
+        "id": "en-5001",
+        "query": "How does Docker daemon access affect root privileges?",
+        "expected": [
+          5001
+        ],
+        "ranked": [],
+        "note": "khái niệm: Docker",
+        "ms": 76.24990200019965,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "en-5003",
+        "query": "How do services networks and volumes work together in Compose?",
+        "expected": [
+          5003
+        ],
+        "ranked": [],
+        "note": "",
+        "ms": 57.71227699915471,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "en-5011",
+        "query": "How do I publish a container port to a host port?",
+        "expected": [
+          5011
+        ],
+        "ranked": [
+          5011
+        ],
+        "note": "khái niệm: Container",
+        "ms": 70.05784299872175,
+        "metrics": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "en-5024",
+        "query": "How does a browser use a preflight request for cross origin HTTP?",
+        "expected": [
+          5024
+        ],
+        "ranked": [
+          5024
+        ],
+        "note": "khái niệm: CORS",
+        "ms": 70.14430299932428,
+        "metrics": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "en-5028",
+        "query": "How do I select the first DOM element matching a CSS selector?",
+        "expected": [
+          5028
+        ],
+        "ranked": [],
+        "note": "khái niệm: CSS",
+        "ms": 76.03297400055453,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "en-5117",
+        "query": "How do I create and activate a Python virtual environment?",
+        "expected": [
+          5117
+        ],
+        "ranked": [],
+        "note": "khái niệm: Python",
+        "ms": 66.35210400054348,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "en-5121",
+        "query": "How do I handle exceptions with try and except in Python?",
+        "expected": [
+          5121
+        ],
+        "ranked": [],
+        "note": "khái niệm: Python",
+        "ms": 66.61838699983491,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "en-5126",
+        "query": "How do Python lists support indexing and slicing?",
+        "expected": [
+          5126
+        ],
+        "ranked": [],
+        "note": "khái niệm: Chỉ mục CSDL (Index)",
+        "ms": 71.74518600004376,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "vi-5001",
+        "query": "Vì sao quyền truy cập Docker daemon có thể dẫn đến quyền root?",
+        "expected": [
+          5001
+        ],
+        "ranked": [],
+        "note": "khái niệm: Docker",
+        "ms": 72.96592700004112,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "vi-5003",
+        "query": "Docker Compose định nghĩa services networks và volumes trong YAML như thế nào?",
+        "expected": [
+          5003
+        ],
+        "ranked": [],
+        "note": "khái niệm: Docker",
+        "ms": 68.585647000873,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "vi-5011",
+        "query": "Làm sao publish cổng container Docker ra host bằng docker run -p?",
+        "expected": [
+          5011
+        ],
+        "ranked": [],
+        "note": "khái niệm: Container",
+        "ms": 65.19306100017275,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "vi-5024",
+        "query": "Vì sao trình duyệt gửi CORS preflight request trước HTTP request khác origin?",
+        "expected": [
+          5024
+        ],
+        "ranked": [],
+        "note": "khái niệm: Trình duyệt web (Browser)",
+        "ms": 74.34520100105146,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "vi-5028",
+        "query": "querySelector trả về phần tử đầu tiên khớp CSS selector hay toàn bộ phần tử?",
+        "expected": [
+          5028
+        ],
+        "ranked": [],
+        "note": "khái niệm: CSS",
+        "ms": 72.7464579995285,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "vi-5117",
+        "query": "Tạo và kích hoạt môi trường ảo Python với venv như thế nào?",
+        "expected": [
+          5117
+        ],
+        "ranked": [],
+        "note": "khái niệm: Python",
+        "ms": 65.07455099927029,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "vi-5121",
+        "query": "Xử lý lỗi Python bằng try except như thế nào?",
+        "expected": [
+          5121
+        ],
+        "ranked": [],
+        "note": "khái niệm: Python",
+        "ms": 60.01602700052899,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "vi-5126",
+        "query": "Python list hỗ trợ indexing và slicing như thế nào?",
+        "expected": [
+          5126
+        ],
+        "ranked": [],
+        "note": "khái niệm: Chỉ mục CSDL (Index)",
+        "ms": 64.00602599933336,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "noise-port",
+        "query": "lam sao publsh cong Docker container bang docker run -p ra host",
+        "expected": [
+          5011
+        ],
+        "ranked": [],
+        "note": "khái niệm: Container",
+        "ms": 73.31700100075977,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "noise-venv",
+        "query": "tao moi truong ao Pythn venv va kich hoat",
+        "expected": [
+          5117
+        ],
+        "ranked": [],
+        "note": "",
+        "ms": 55.874638999739545,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "noise-cors",
+        "query": "CORS prefligt request khac origin la gi",
+        "expected": [
+          5024
+        ],
+        "ranked": [],
+        "note": "khái niệm: CORS",
+        "ms": 59.35822000174085,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "multi-python",
+        "query": "Tạo môi trường venv cho Python, sau đó dùng try except để xử lý lỗi trong chương trình.",
+        "expected": [
+          5117,
+          5121
+        ],
+        "ranked": [],
+        "note": "khái niệm: Python",
+        "ms": 71.46873700003198,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "multi-docker",
+        "query": "Dùng Compose YAML để cấu hình services rồi publish port container ra host như thế nào?",
+        "expected": [
+          5003,
+          5011
+        ],
+        "ranked": [],
+        "note": "khái niệm: Container",
+        "ms": 79.40399399922171,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "none-private",
+        "query": "Mật khẩu tài khoản cá nhân hiện tại của tôi là gì?",
+        "expected": [],
+        "ranked": [],
+        "note": "",
+        "ms": 50.898048999442835,
+        "metrics": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        }
+      },
+      {
+        "id": "none-live",
+        "query": "Nhiệt độ ngoài trời ngay lúc này ở nhà tôi là bao nhiêu?",
+        "expected": [],
+        "ranked": [],
+        "note": "",
+        "ms": 54.72839499998372,
+        "metrics": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        }
+      }
+    ]
+  },
+  "release_after": {
+    "metrics5": {
+      "recall": 0.7857142857142857,
+      "precision_judged": 0.17142857142857149,
+      "mrr": 0.5031746031746032,
+      "ndcg": 0.5635438851291891
+    },
+    "negative_empty_rate": 1.0,
+    "latency_ms": {
+      "p50": 63.83515000015905,
+      "p95": 71.47584360027395,
+      "p99": 77.01014900030715
+    },
+    "cases": [
+      {
+        "id": "en-5001",
+        "query": "How does Docker daemon access affect root privileges?",
+        "expected": [
+          5001
+        ],
+        "ranked": [
+          5001,
+          5002,
+          5021
+        ],
+        "note": "khái niệm: Docker",
+        "ms": 61.77050400037842,
+        "metrics": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "en-5003",
+        "query": "How do services networks and volumes work together in Compose?",
+        "expected": [
+          5003
+        ],
+        "ranked": [
+          5004,
+          5003
+        ],
+        "note": "",
+        "ms": 52.10678700132121,
+        "metrics": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 0.5,
+          "ndcg": 0.6309297535714575,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "en-5011",
+        "query": "How do I publish a container port to a host port?",
+        "expected": [
+          5011
+        ],
+        "ranked": [
+          5013,
+          5001,
+          5012,
+          5014,
+          5022,
+          5002,
+          5011,
+          5015
+        ],
+        "note": "khái niệm: Container",
+        "ms": 64.08231500063266,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "en-5024",
+        "query": "How does a browser use a preflight request for cross origin HTTP?",
+        "expected": [
+          5024
+        ],
+        "ranked": [
+          5023,
+          5058,
+          5025,
+          5089,
+          5024,
+          5029,
+          5055,
+          5047
+        ],
+        "note": "khái niệm: CORS",
+        "ms": 65.31411000105436,
+        "metrics": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 0.2,
+          "ndcg": 0.38685280723454163,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "en-5028",
+        "query": "How do I select the first DOM element matching a CSS selector?",
+        "expected": [
+          5028
+        ],
+        "ranked": [
+          5041,
+          5040,
+          5048,
+          5044,
+          5049,
+          5051,
+          5028
+        ],
+        "note": "khái niệm: CSS",
+        "ms": 66.39126799927908,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "en-5117",
+        "query": "How do I create and activate a Python virtual environment?",
+        "expected": [
+          5117
+        ],
+        "ranked": [
+          5079,
+          5117
+        ],
+        "note": "khái niệm: Python",
+        "ms": 58.091125001737964,
+        "metrics": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 0.5,
+          "ndcg": 0.6309297535714575,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "en-5121",
+        "query": "How do I handle exceptions with try and except in Python?",
+        "expected": [
+          5121
+        ],
+        "ranked": [
+          5111,
+          5036,
+          5121,
+          5061
+        ],
+        "note": "khái niệm: Python",
+        "ms": 61.398701998768956,
+        "metrics": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 0.3333333333333333,
+          "ndcg": 0.5,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "en-5126",
+        "query": "How do Python lists support indexing and slicing?",
+        "expected": [
+          5126
+        ],
+        "ranked": [
+          5126,
+          5124
+        ],
+        "note": "khái niệm: Chỉ mục CSDL (Index)",
+        "ms": 62.68882299991674,
+        "metrics": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "vi-5001",
+        "query": "Vì sao quyền truy cập Docker daemon có thể dẫn đến quyền root?",
+        "expected": [
+          5001
+        ],
+        "ranked": [
+          5001
+        ],
+        "note": "khái niệm: Docker",
+        "ms": 63.83515000015905,
+        "metrics": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "vi-5003",
+        "query": "Docker Compose định nghĩa services networks và volumes trong YAML như thế nào?",
+        "expected": [
+          5003
+        ],
+        "ranked": [
+          5003,
+          5004
+        ],
+        "note": "khái niệm: Docker",
+        "ms": 64.52248499954294,
+        "metrics": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "vi-5011",
+        "query": "Làm sao publish cổng container Docker ra host bằng docker run -p?",
+        "expected": [
+          5011
+        ],
+        "ranked": [
+          5015,
+          5001,
+          5011
+        ],
+        "note": "khái niệm: Container",
+        "ms": 60.56096899919794,
+        "metrics": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 0.3333333333333333,
+          "ndcg": 0.5,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "vi-5024",
+        "query": "Vì sao trình duyệt gửi CORS preflight request trước HTTP request khác origin?",
+        "expected": [
+          5024
+        ],
+        "ranked": [
+          5029,
+          5047,
+          5052,
+          5024
+        ],
+        "note": "khái niệm: Trình duyệt web (Browser)",
+        "ms": 70.26409799982503,
+        "metrics": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 0.25,
+          "ndcg": 0.43067655807339306,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "vi-5028",
+        "query": "querySelector trả về phần tử đầu tiên khớp CSS selector hay toàn bộ phần tử?",
+        "expected": [
+          5028
+        ],
+        "ranked": [
+          5028
+        ],
+        "note": "khái niệm: CSS",
+        "ms": 67.70158299877949,
+        "metrics": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "vi-5117",
+        "query": "Tạo và kích hoạt môi trường ảo Python với venv như thế nào?",
+        "expected": [
+          5117
+        ],
+        "ranked": [
+          5079,
+          5117
+        ],
+        "note": "khái niệm: Python",
+        "ms": 64.03656299880822,
+        "metrics": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 0.5,
+          "ndcg": 0.6309297535714575,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "vi-5121",
+        "query": "Xử lý lỗi Python bằng try except như thế nào?",
+        "expected": [
+          5121
+        ],
+        "ranked": [
+          5121
+        ],
+        "note": "khái niệm: Python",
+        "ms": 58.715663999464596,
+        "metrics": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 1.0,
+          "ndcg": 1.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "vi-5126",
+        "query": "Python list hỗ trợ indexing và slicing như thế nào?",
+        "expected": [
+          5126
+        ],
+        "ranked": [],
+        "note": "khái niệm: Chỉ mục CSDL (Index)",
+        "ms": 64.667284999814,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "noise-port",
+        "query": "lam sao publsh cong Docker container bang docker run -p ra host",
+        "expected": [
+          5011
+        ],
+        "ranked": [
+          5015,
+          5013,
+          5021,
+          5011,
+          5001,
+          5004,
+          5002
+        ],
+        "note": "khái niệm: Container",
+        "ms": 70.22361999952409,
+        "metrics": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 0.25,
+          "ndcg": 0.43067655807339306,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "noise-venv",
+        "query": "tao moi truong ao Pythn venv va kich hoat",
+        "expected": [
+          5117
+        ],
+        "ranked": [],
+        "note": "",
+        "ms": 53.40198399971996,
+        "metrics": {
+          "recall": 0.0,
+          "precision_judged": 0.0,
+          "mrr": 0.0,
+          "ndcg": 0.0,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "noise-cors",
+        "query": "CORS prefligt request khac origin la gi",
+        "expected": [
+          5024
+        ],
+        "ranked": [
+          5089,
+          5055,
+          5026,
+          5023,
+          5024,
+          5029,
+          5047,
+          5052
+        ],
+        "note": "khái niệm: CORS",
+        "ms": 63.35949800086382,
+        "metrics": {
+          "recall": 1.0,
+          "precision_judged": 0.2,
+          "mrr": 0.2,
+          "ndcg": 0.38685280723454163,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "multi-python",
+        "query": "Tạo môi trường venv cho Python, sau đó dùng try except để xử lý lỗi trong chương trình.",
+        "expected": [
+          5117,
+          5121
+        ],
+        "ranked": [
+          5061,
+          5117
+        ],
+        "note": "khái niệm: Python",
+        "ms": 78.53313200030243,
+        "metrics": {
+          "recall": 0.5,
+          "precision_judged": 0.2,
+          "mrr": 0.5,
+          "ndcg": 0.38685280723454163,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "multi-docker",
+        "query": "Dùng Compose YAML để cấu hình services rồi publish port container ra host như thế nào?",
+        "expected": [
+          5003,
+          5011
+        ],
+        "ranked": [
+          5003,
+          5004,
+          5011
+        ],
+        "note": "khái niệm: Container",
+        "ms": 71.61048200032383,
+        "metrics": {
+          "recall": 1.0,
+          "precision_judged": 0.4,
+          "mrr": 1.0,
+          "ndcg": 0.9197207891481876,
+          "empty_result": null
+        }
+      },
+      {
+        "id": "none-private",
+        "query": "Mật khẩu tài khoản cá nhân hiện tại của tôi là gì?",
+        "expected": [],
+        "ranked": [],
+        "note": "",
+        "ms": 53.314466998926946,
+        "metrics": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        }
+      },
+      {
+        "id": "none-live",
+        "query": "Nhiệt độ ngoài trời ngay lúc này ở nhà tôi là bao nhiêu?",
+        "expected": [],
+        "ranked": [],
+        "note": "",
+        "ms": 54.584433000854915,
+        "metrics": {
+          "recall": null,
+          "precision_judged": null,
+          "mrr": null,
+          "ndcg": null,
+          "empty_result": true
+        }
+      }
+    ]
+  },
+  "peak_rss_mib": 1764.4375
+}

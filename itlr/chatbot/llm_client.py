@@ -118,6 +118,8 @@ def base_url(provider: str) -> str:
 
 def timeout_for(provider: str, stream: bool) -> float:
     name = 'DEEPSEEK_STREAM_TIMEOUT_S' if stream else 'DEEPSEEK_TIMEOUT_S'
+    if provider == 'ollama' and 'OLLAMA_TIMEOUT' in os.environ:
+        name = 'OLLAMA_TIMEOUT'
     try:
         value = float(os.environ.get(name, '240' if stream else '90'))
     except ValueError as exc:
@@ -148,53 +150,59 @@ def ollama_reachable() -> bool:
 
 
 def ollama_model() -> str:
-    """Chọn model Ollama: OLLAMA_MODEL nếu đặt và có sẵn; nếu không tự chọn đã pull."""
+    """Giữ model được chỉ định; chỉ tự chọn model khi OLLAMA_MODEL chưa đặt."""
     env_model = os.environ.get("OLLAMA_MODEL")
+    if env_model:
+        return env_model
     ollama_reachable()
     models = _OLLAMA_CACHE.get("models", [])
-    if env_model and (not models or env_model in models):
-        return env_model
     if not models:
-        return env_model or DEFAULT_MODELS["ollama"]
+        return DEFAULT_MODELS["ollama"]
     for pref in ("qwen2.5:3b", "qwen2.5:1.5b"):
         if pref in models:
             return pref
     return next((m for m in models if "qwen2.5" in m), models[0])
 
 
-def ollama_chat(messages, *, num_predict: int = 384, temperature: float = 0.5) -> str:
-    """Gọi Ollama non-stream. Raise (caller dịch thành lỗi nghiệp vụ nếu muốn)."""
+def _ollama_request(messages, *, stream: bool, num_predict: int,
+                    temperature: float) -> urllib.request.Request:
     payload = json.dumps({
         "model": ollama_model(),
         "messages": messages,
-        "stream": False,
+        "stream": stream,
         "keep_alive": "2h",
         "options": {"num_predict": int(num_predict), "temperature": float(temperature)},
     }).encode()
-    req = urllib.request.Request(
+    return urllib.request.Request(
         base_url("ollama").rstrip("/") + "/api/chat",
         data=payload, headers={"Content-Type": "application/json"},
     )
+
+
+def ollama_chat(messages, *, num_predict: int = 384, temperature: float = 0.5) -> str:
+    """Gọi Ollama non-stream. Raise (caller dịch thành lỗi nghiệp vụ nếu muốn)."""
+    req = _ollama_request(messages, stream=False, num_predict=num_predict, temperature=temperature)
     with urllib.request.urlopen(req, timeout=timeout_for("ollama", stream=False)) as resp:
         data = json.loads(resp.read())
-    return (data.get("message") or {}).get("content", "").strip()
+    if not isinstance(data, dict) or data.get('error') or data.get('done') is not True:
+        raise LLMError('Invalid or incomplete Ollama completion')
+    if data.get('done_reason') not in (None, 'stop'):
+        raise LLMError('Incomplete Ollama text completion')
+    message = data.get('message')
+    if not isinstance(message, dict) or not isinstance(message.get('content'), str):
+        raise LLMError('Invalid Ollama text completion')
+    return message['content'].strip()
 
 
 def _stream_ollama(messages, *, num_predict: int = 384, temperature: float = 0.5) -> Iterator[str]:
     """Ollama stream=true — yield từng mảnh văn bản ngay khi sinh."""
-    payload = json.dumps({
-        "model": ollama_model(),
-        "messages": messages,
-        "stream": True,
-        "keep_alive": "2h",
-        "options": {"num_predict": int(num_predict), "temperature": float(temperature)},
-    }).encode()
-    req = urllib.request.Request(
-        base_url("ollama").rstrip("/") + "/api/chat",
-        data=payload, headers={"Content-Type": "application/json"},
-    )
-    with urllib.request.urlopen(req, timeout=timeout_for("ollama", stream=True)) as resp:
+    started = time.monotonic()
+    timeout_s = timeout_for("ollama", stream=True)
+    req = _ollama_request(messages, stream=True, num_predict=num_predict, temperature=temperature)
+    with urllib.request.urlopen(req, timeout=timeout_s) as resp:
         for raw in resp:
+            if time.monotonic() - started >= timeout_s:
+                raise LLMError('Ollama generation time budget exhausted')
             raw = raw.strip()
             if not raw:
                 continue
@@ -346,8 +354,8 @@ def chat(messages, *, track_usage: "str | None" = None,
     if provider == "none":
         raise LLMError("chưa cấu hình LLM (key trống và Ollama không chạy)")
 
+    messages = trim_messages(messages, char_budget=char_budget)
     if provider in ("deepseek", "openai"):
-        messages = trim_messages(messages, char_budget=char_budget)
         timeout_s = timeout_for(provider, stream=False)
         backoff = DEFAULT_BACKOFF_S
         for attempt in range(1, _retries() + 1):
@@ -401,8 +409,8 @@ def stream(messages, *, temperature: float = DEFAULT_TEMPERATURE,
     if provider == "none":
         raise LLMError("chưa cấu hình LLM (key trống và Ollama không chạy)")
 
+    messages = trim_messages(messages, char_budget=char_budget)
     if provider in ("deepseek", "openai"):
-        messages = trim_messages(messages, char_budget=char_budget)
         timeout_s = timeout_for(provider, stream=True)
         backoff = DEFAULT_BACKOFF_S
         got_any = False

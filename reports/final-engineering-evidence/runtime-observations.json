@@ -1,0 +1,7 @@
+{
+  "time_utc": "2026-10-30T14:49:37.128472+00:00",
+  "ollama_runner_rss_kib_observed": 2481880,
+  "scope": "after generation tests; not per-request peak",
+  "stopped_audit_server_named_semaphores": 0,
+  "temporary_web_api_ports": "closed at verification; original Ollama daemon retained"
+}

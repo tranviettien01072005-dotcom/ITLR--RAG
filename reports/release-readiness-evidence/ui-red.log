@@ -1,0 +1,42 @@
+
+> it-learning-platform@1.0.0 test
+> vitest run --coverage --run src/services/chat-ui.test.ts
+
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (vitest.config.ts:1:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.12 /home/o/ITLR--RAG/web
+      Coverage enabled with v8
+
+ ❯ src/services/chat-ui.test.ts (4 tests | 3 failed) 308ms
+   × reports invalid completion in the actual chat handler ("missing") 143ms
+   × reports invalid completion in the actual chat handler (255) 54ms
+   × reports invalid completion in the actual chat handler (226) 52ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/services/chat-ui.test.ts > reports invalid completion in the actual chat handler ("missing")
+ FAIL  src/services/chat-ui.test.ts > reports invalid completion in the actual chat handler (255)
+ FAIL  src/services/chat-ui.test.ts > reports invalid completion in the actual chat handler (226)
+AssertionError: expected 'Hoàn tất · 0.0s · nguồn 0.0s · Đã kiể…' not to contain 'Hoàn tất'
+
+Expected: "Hoàn tất"
+Received: "Hoàn tất · 0.0s · nguồn 0.0s · Đã kiểm tra ID trích dẫn; nội dung cần được đối chiếu với nguồn."
+
+ ❯ src/services/chat-ui.test.ts:56:37
+     54| it.each(["missing", [0xff], [0xe2, 0x82]] as const)("reports invalid c…
+     55|   const ui = await submit(typeof tail === "string" ? tail : [...tail]);
+     56|   expect(ui.status.textContent).not.toContain("Hoàn tất");
+       |                                     ^
+     57|   expect(ui.answer.textContent).toBe("");
+     58|   expect(ui.history).toEqual([]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 1 passed (4)
+   Start at  21:59:14
+   Duration  1.19s (transform 35ms, setup 0ms, import 61ms, tests 308ms, environment 0ms)
+
