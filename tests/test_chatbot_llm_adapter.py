@@ -82,6 +82,17 @@ def test_llm_available_deepseek_priority(monkeypatch):
     assert cb._llm_available() is False
 
 
+def test_stream_failure_logs_warning_even_when_console_works(monkeypatch, caplog):
+    def broken_stream(messages, **kwargs):
+        raise lc.LLMError("stream interrupted")
+        yield
+
+    monkeypatch.setattr(lc, "stream", broken_stream)
+    with caplog.at_level(logging.WARNING, logger="itlr.chatbot"):
+        assert list(cb.try_llm_response_stream("SYS", "q")) == []
+    assert any("stream interrupted" in record.message for record in caplog.records)
+
+
 def test_system_prompt_has_injection_guard():
     text = cb.EducationalChatbot.SYSTEM_PROMPT
     low = text.lower()

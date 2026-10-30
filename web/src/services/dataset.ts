@@ -1,6 +1,7 @@
 import { promises as fsp } from "node:fs";
 import { ITEMS_CSV } from "../config/catalog";
 import { existsSync, readFileSync } from "node:fs";
+import { readCatalogColumns } from "./catalog-csv";
 
 export { extractText } from "./dataset-extract";
 
@@ -9,18 +10,6 @@ export function cleanForCsv(text: string, max = 3000): string {
 }
 
 const CSV = ITEMS_CSV;
-const COLS = [
-  "item_id",
-  "title",
-  "type",
-  "level",
-  "description",
-  "category",
-  "topics",
-  "instructor",
-  "platform",
-  "link",
-];
 let nextId: number | null = null;
 
 function readLastId(): number {
@@ -51,6 +40,7 @@ export interface CatalogRow {
 }
 
 export async function appendCatalogRow(row: CatalogRow): Promise<number> {
+  const columns = await readCatalogColumns(CSV);
   if (nextId == null) nextId = readLastId();
   nextId += 1;
   const id = nextId;
@@ -66,7 +56,7 @@ export async function appendCatalogRow(row: CatalogRow): Promise<number> {
     platform: row.platform || "Tải lên",
     link: row.link || "",
   };
-  const line = COLS.map((c) => csvField(rec[c])).join(",") + "\n";
+  const line = columns.map((c) => csvField(rec[c])).join(",") + "\n";
   await fsp.appendFile(CSV, line, "utf8");
   return id;
 }
