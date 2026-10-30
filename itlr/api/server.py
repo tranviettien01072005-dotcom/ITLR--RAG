@@ -116,7 +116,8 @@ def _prewarm_ollama():
         try:
             req = urllib.request.Request(f"{url}/api/chat", data=payload,
                                          headers={"Content-Type": "application/json"})
-            urllib.request.urlopen(req, timeout=300).read()
+            with urllib.request.urlopen(req, timeout=300) as response:
+                response.read()
             _log(f"[OK] Đã pre-warm Ollama ({model}) — chatbot sẵn sàng trả lời nhanh.")
         except Exception as e:  # noqa: BLE001
             _log(f"[!] Pre-warm Ollama lỗi (bỏ qua): {e}")

@@ -1,0 +1,889 @@
+{
+  "scope": "Full text/technical-content review of 53 documents, with source checks and explicitly unexecuted commands. Historical claims are preserved as history, not independently reproduced. Mermaid render NOT VERIFIED. This is not certification of external provider pricing/licenses or production commands.",
+  "documents": [
+    {
+      "file": "AGENTS.md",
+      "status": "Refactored",
+      "content_review": "Workflow, paid-call/data restrictions and baseline checked; architecture contracts preserved.",
+      "environment_references": [
+        "DEEPSEEK_API_KEY",
+        "DISABLE_RERANKER",
+        "ITLR_ADMIN_TOKEN",
+        "MKL_NUM_THREADS",
+        "OMP_NUM_THREADS",
+        "OPENAI_API_KEY",
+        "OPENBLAS_NUM_THREADS",
+        "USE_OLLAMA"
+      ],
+      "headings": [
+        "Hướng dẫn làm việc với ITLR–RAG",
+        "Tiếp nhận và thực hiện công việc",
+        "Ranh giới kiến trúc cần giữ",
+        "Kiểm chứng trước bàn giao",
+        "Dữ liệu và bảo mật"
+      ]
+    },
+    {
+      "file": "CHANGELOG.md",
+      "status": "Refactored",
+      "content_review": "Only observed regression fixes and fresh test/audit results recorded.",
+      "environment_references": [
+        "DEEPSEEK_API_KEY",
+        "DEEPSEEK_MODEL",
+        "ITLR_ADMIN_TOKEN",
+        "ITLR_ARTIFACTS_DIR"
+      ],
+      "headings": [
+        "ITLR–RAG | Intelligent IT Learning Platform — Changelog",
+        "Chưa phát hành — 2026-10-30: regression-safe audit increment",
+        "2026-10-30 - Verified architecture increment",
+        "2026-10-30 - Deployment preparation and process boundaries",
+        "2026-10-30 - SSE transport hardening",
+        "Chưa phát hành — 2026-10-30: correctness và tài liệu sản phẩm",
+        "2026-10-30 — BM25 và đóng gói Web (checkpoint lịch sử)",
+        "[2.0.0] - 2026-10-29",
+        "[1.0.0] - 2026-10-27",
+        "2026-10-29 — Security/runtime remediation (unreleased)",
+        "Local models install — 2026-10-29 (in progress)",
+        "Local model verification complete — 2026-10-29",
+        "Audit checkpoint — 2026-10-29 (Ponytail ultra)",
+        "V3 implementation checkpoint — 2026-10-30",
+        "Shared V3 retrieval and repository migration — 2026-10-30"
+      ]
+    },
+    {
+      "file": "CONSTRAINTS.md",
+      "status": "Refactored",
+      "content_review": "Compatibility, provenance, single-replica and coverage baseline checked; no thresholds weakened.",
+      "environment_references": [],
+      "headings": [
+        "Sàn chất lượng ITLR–RAG",
+        "Kiểm thử và hồi quy",
+        "Lỗi và fallback phải quan sát được",
+        "Bảo mật và ranh giới tin cậy",
+        "Đường dẫn, artifacts và tái lập",
+        "Tính trung thực của dữ liệu và kết luận",
+        "Ngưỡng đề xuất, chưa được enforce"
+      ]
+    },
+    {
+      "file": "README.md",
+      "status": "Refactored",
+      "content_review": "Current features, endpoints and provider selection checked against API/Web/client; updated stream/usage limitations and fresh validation.",
+      "environment_references": [
+        "ADMIN_PASSCODE",
+        "APP_ORIGIN",
+        "DATABASE_URL",
+        "DEEPSEEK_API_KEY",
+        "DEEPSEEK_BASE_URL",
+        "DEEPSEEK_MODEL",
+        "DISABLE_RERANKER",
+        "HF_HUB_OFFLINE",
+        "ITLR_ADMIN_TOKEN",
+        "ITLR_ARTIFACTS_DIR",
+        "ITLR_INTERACTIONS_CSV",
+        "ITLR_ITEMS_CSV",
+        "JWT_SECRET",
+        "MKL_NUM_THREADS",
+        "OMP_NUM_THREADS",
+        "OPENAI_API_KEY",
+        "OPENBLAS_NUM_THREADS",
+        "RECOMMENDER_URL",
+        "USE_OLLAMA"
+      ],
+      "headings": [
+        "ITLR–RAG | Intelligent IT Learning Platform",
+        "Tổng quan sản phẩm (Product Overview)",
+        "Khả năng (Features)",
+        "Kiến trúc (Architecture)",
+        "Khởi chạy local (Quickstart)",
+        "Cấu hình (Configuration)",
+        "Phát triển (Development)",
+        "Kiểm chứng (Testing)",
+        "Triển khai (Deployment)",
+        "Giới hạn đã biết (Known Limitations)",
+        "Điều hướng tài liệu"
+      ]
+    },
+    {
+      "file": "RESEARCH_ITLR.md",
+      "status": "Retained",
+      "content_review": "Dated evidence/plan reviewed in its historical context; numerical claims are not fresh results or authorization.",
+      "environment_references": [],
+      "headings": [
+        "ITLR–RAG | Intelligent IT Learning Platform — Repository research",
+        "Product scope and architecture",
+        "Historical loading and retrieval paths",
+        "Historical chatbot behavior",
+        "Historical data and provenance",
+        "Evaluation design observed",
+        "Findings and subsequent direction"
+      ]
+    },
+    {
+      "file": "data/README.md",
+      "status": "Retained",
+      "content_review": "Snapshot/provenance/licensing scope checked against checked-in data paths; no new rights granted.",
+      "environment_references": [],
+      "headings": [
+        "Dữ liệu và quyền sử dụng",
+        "Snapshot curated",
+        "Attribution và giấy phép bên thứ ba",
+        "Khôi phục và cập nhật",
+        "Synthetic và dữ liệu đánh giá"
+      ]
+    },
+    {
+      "file": "deploy/DEPLOY.md",
+      "status": "Retained",
+      "content_review": "Paths, env names, endpoints and commands inspected against entrypoints; no migration/index mutation executed.",
+      "environment_references": [
+        "ADMIN_PASSCODE",
+        "APP_ORIGIN",
+        "DATABASE_URL",
+        "DEEPSEEK_API_KEY",
+        "DISABLE_RERANKER",
+        "HF_HOME",
+        "HF_HUB_OFFLINE",
+        "ITLR_ADMIN_TOKEN",
+        "ITLR_ARTIFACTS_DIR",
+        "ITLR_INTERACTIONS_CSV",
+        "ITLR_ITEMS_CSV",
+        "ITLR_RATE_ADMIN_PER_MIN",
+        "ITLR_REAL_ONLY",
+        "ITLR_REQUIRE_ARTIFACT_MANIFEST",
+        "JWT_SECRET",
+        "OLLAMA_MODEL",
+        "OPENAI_API_KEY",
+        "RECOMMENDER_URL",
+        "TRUSTED_PROXIES",
+        "USE_OLLAMA",
+        "WEB_CONCURRENCY"
+      ],
+      "headings": [
+        "Cài đặt và vận hành ITLR–RAG",
+        "Thành phần và điều kiện",
+        "Cấu hình",
+        "Chuẩn bị dữ liệu và index",
+        "Khởi chạy API và Web",
+        "Chuyển version, reload và rollback",
+        "Refresh tự động và container",
+        "Kiểm tra và xử lý sự cố"
+      ]
+    },
+    {
+      "file": "deploy/LOCAL_MODELS.md",
+      "status": "Retained",
+      "content_review": "Cache/artifact prerequisites checked; recorded local-model results historical, not fresh inference.",
+      "environment_references": [
+        "DEEPSEEK_API_KEY",
+        "DISABLE_RERANKER",
+        "HF_HOME",
+        "HF_HUB_OFFLINE",
+        "ITLR_REQUIRE_ARTIFACT_MANIFEST",
+        "MKL_NUM_THREADS",
+        "OLLAMA_CONTEXT_LENGTH",
+        "OLLAMA_HOST",
+        "OLLAMA_MAX_LOADED_MODELS",
+        "OLLAMA_MODEL",
+        "OLLAMA_MODELS",
+        "OLLAMA_NO_CLOUD",
+        "OLLAMA_NUM_PARALLEL",
+        "OLLAMA_TIMEOUT",
+        "OMP_NUM_THREADS",
+        "OPENAI_API_KEY",
+        "USE_OLLAMA"
+      ],
+      "headings": [
+        "Chạy E5 và Qwen local",
+        "Điều kiện và khởi chạy",
+        "Chạy lại smoke có chủ đích"
+      ]
+    },
+    {
+      "file": "deploy/PRODUCTION.md",
+      "status": "Retained",
+      "content_review": "Compose/runbook matched to single-host templates; staging, restore, HTTPS and Docker execution remain blocked.",
+      "environment_references": [
+        "APP_ORIGIN",
+        "DATABASE_URL",
+        "POSTGRES_DB",
+        "POSTGRES_USER",
+        "TRUSTED_PROXIES",
+        "WEB_IMAGE"
+      ],
+      "headings": [
+        "Single-host deployment and release procedure",
+        "Boundaries",
+        "Prepare staging",
+        "Observe and stop",
+        "Backup and recovery drill",
+        "Release and rollback"
+      ]
+    },
+    {
+      "file": "docs/ARCHITECTURE.md",
+      "status": "Refactored",
+      "content_review": "Ownership checked against extracted modules; startup prewarm exception documented; graph remains a static model, not proof of all runtime orders.",
+      "environment_references": [],
+      "headings": [
+        "Kiến trúc và ranh giới module",
+        "Luồng online và offline",
+        "Lifecycle và compatibility",
+        "Bản đồ trách nhiệm"
+      ]
+    },
+    {
+      "file": "docs/PROJECT_MEMORY.md",
+      "status": "Refactored",
+      "content_review": "Current status updated separately from preserved historical journal.",
+      "environment_references": [
+        "DEEPSEEK_API_KEY",
+        "DEEPSEEK_BASE_URL",
+        "DEEPSEEK_MODEL",
+        "DEEPSEEK_RETRIES",
+        "DEEPSEEK_STREAM_TIMEOUT_S",
+        "DEEPSEEK_TIMEOUT_S",
+        "ITLR_ARTIFACTS_DIR",
+        "ITLR_FORCE_LLM"
+      ],
+      "headings": [
+        "ITLR–RAG — Bộ nhớ kỹ thuật hiện hành",
+        "Trạng thái đã kiểm chứng",
+        "Ranh giới và quyết định hiện hành",
+        "Blockers",
+        "Nhật ký lịch sử",
+        "ITLR–RAG | Intelligent IT Learning Platform — Trạng thái dự án",
+        "Trạng thái hiện hành",
+        "Thay đổi phiên audit sản phẩm",
+        "Các quy tắc tiếp nối",
+        "Các checkpoint lịch sử",
+        "1. Kiến trúc & pipeline (trạng thái hoàn thiện 2026-10-27)",
+        "2. Cấu hình LLM & embeddings (không chứa secret nào)",
+        "3. Lỗi đã sửa & quyết định kỹ thuật (audit 2026-10-27)",
+        "4. Lệnh tại checkpoint 2026-10-27 (tham khảo lịch sử)",
+        "5. Datasets & phương pháp đánh giá (trung thực về nguồn nhãn)",
+        "6. Kết quả benchmark thực đo (nguồn: reports/, ngày 2026-10-27)",
+        "7. Hạn chế còn lại & tech debt",
+        "8. Nhật ký phiên (append khi có thay đổi quan trọng)",
+        "Security remediation — 2026-10-29 (current session)",
+        "Local models install — 2026-10-29 (in progress)",
+        "Local model verification complete — 2026-10-29",
+        "Audit checkpoint — 2026-10-29 (Ponytail ultra)",
+        "V3 implementation checkpoint — 2026-10-30",
+        "Shared V3 retrieval and repository migration — 2026-10-30",
+        "Production hardening checkpoint ? 2026-10-30 (Windows)",
+        "Deployment-first steering - 2026-10-30",
+        "Architecture refactoring verification - 2026-10-30",
+        "Final audit increment - 2026-10-30 (Windows)",
+        "Stream hardening continuation - 2026-10-30"
+      ]
+    },
+    {
+      "file": "docs/decisions/ADR-001-deepseek-primary-llm.md",
+      "status": "Retained",
+      "content_review": "Decision content compared to current boundaries; dated measurements retained, external provider/staging claims not recertified.",
+      "environment_references": [
+        "DEEPSEEK_API_KEY",
+        "DEEPSEEK_BASE_URL",
+        "DEEPSEEK_MODEL",
+        "OPENAI_API_KEY",
+        "USE_OLLAMA"
+      ],
+      "headings": [
+        "ADR-001: Tập trung generation trong một LLM client",
+        "Status",
+        "Context",
+        "Decision",
+        "Alternatives",
+        "Consequences"
+      ]
+    },
+    {
+      "file": "docs/decisions/ADR-002-centralized-artifact-paths.md",
+      "status": "Retained",
+      "content_review": "Decision content compared to current boundaries; dated measurements retained, external provider/staging claims not recertified.",
+      "environment_references": [
+        "ITLR_ARTIFACTS_DIR",
+        "ITLR_INTERACTIONS_CSV",
+        "ITLR_ITEMS_CSV"
+      ],
+      "headings": [
+        "ADR-002: Tập trung đường dẫn dữ liệu và artifacts",
+        "Status",
+        "Context",
+        "Decision",
+        "Alternatives",
+        "Consequences"
+      ]
+    },
+    {
+      "file": "docs/decisions/ADR-003-synthetic-interactions-policy.md",
+      "status": "Retained",
+      "content_review": "Decision content compared to current boundaries; dated measurements retained, external provider/staging claims not recertified.",
+      "environment_references": [
+        "ITLR_INTERACTIONS_CSV"
+      ],
+      "headings": [
+        "ADR-003: Provenance của tương tác CF mô phỏng",
+        "Status",
+        "Context",
+        "Decision",
+        "Alternatives",
+        "Consequences"
+      ]
+    },
+    {
+      "file": "docs/decisions/ADR-004-evaluation-design.md",
+      "status": "Retained",
+      "content_review": "Decision content compared to current boundaries; dated measurements retained, external provider/staging claims not recertified.",
+      "environment_references": [],
+      "headings": [
+        "ADR-004: Đánh giá có provenance và giới hạn diễn giải",
+        "Status",
+        "Context",
+        "Decision",
+        "Alternatives",
+        "Consequences"
+      ]
+    },
+    {
+      "file": "docs/decisions/ADR-005-cf-optional-decoupling.md",
+      "status": "Retained",
+      "content_review": "Decision content compared to current boundaries; dated measurements retained, external provider/staging claims not recertified.",
+      "environment_references": [],
+      "headings": [
+        "ADR-005: Collaborative Filtering là tính năng tùy chọn",
+        "Status",
+        "Context",
+        "Decision",
+        "Alternatives",
+        "Consequences"
+      ]
+    },
+    {
+      "file": "docs/decisions/ADR-006-data-sources-licensing.md",
+      "status": "Retained",
+      "content_review": "Decision content compared to current boundaries; dated measurements retained, external provider/staging claims not recertified.",
+      "environment_references": [],
+      "headings": [
+        "ADR-006: Chính sách nguồn, quyền nội dung và provenance",
+        "Status",
+        "Context",
+        "Decision",
+        "Alternatives",
+        "Consequences"
+      ]
+    },
+    {
+      "file": "docs/decisions/ADR-007-artifact-versioning.md",
+      "status": "Retained",
+      "content_review": "Decision content compared to current boundaries; dated measurements retained, external provider/staging claims not recertified.",
+      "environment_references": [
+        "ITLR_ARTIFACTS_DIR"
+      ],
+      "headings": [
+        "ADR-007: Staging, probe, activate và rollback artifacts",
+        "Status",
+        "Context",
+        "Decision",
+        "Alternatives",
+        "Consequences"
+      ]
+    },
+    {
+      "file": "docs/decisions/ADR-008-admin-token.md",
+      "status": "Retained",
+      "content_review": "Decision content compared to current boundaries; dated measurements retained, external provider/staging claims not recertified.",
+      "environment_references": [
+        "ITLR_ADMIN_TOKEN"
+      ],
+      "headings": [
+        "ADR-008: Reload quản trị phải được xác thực",
+        "Status",
+        "Context",
+        "Decision",
+        "Alternatives",
+        "Consequences"
+      ]
+    },
+    {
+      "file": "docs/decisions/ADR-009-security-runtime-boundaries.md",
+      "status": "Refactored",
+      "content_review": "Corrected static-UI versus Web Markdown behavior against markdown.ts and API UI renderer.",
+      "environment_references": [],
+      "headings": [
+        "ADR-009: Explicit runtime trust boundaries",
+        "Status",
+        "Context",
+        "Decision",
+        "Consequences",
+        "Alternatives"
+      ]
+    },
+    {
+      "file": "docs/decisions/ADR-010-shared-retrieval-and-atomic-state.md",
+      "status": "Retained",
+      "content_review": "Decision content compared to current boundaries; dated measurements retained, external provider/staging claims not recertified.",
+      "environment_references": [],
+      "headings": [
+        "ADR-010: Share chunk retrieval and atomically commit lifecycle state",
+        "Status",
+        "Context",
+        "Decision",
+        "Migration mapping",
+        "Consequences",
+        "Alternatives"
+      ]
+    },
+    {
+      "file": "docs/decisions/ADR-011-chatbot-presentation-and-catalog-contract.md",
+      "status": "Retained",
+      "content_review": "Decision content compared to current boundaries; dated measurements retained, external provider/staging claims not recertified.",
+      "environment_references": [],
+      "headings": [
+        "ADR-011: Separate answer presentation and share the Web catalog contract",
+        "Status",
+        "Date",
+        "Context",
+        "Decision",
+        "Consequences",
+        "Verification",
+        "Alternatives"
+      ]
+    },
+    {
+      "file": "docs/review-2026-10-27.md",
+      "status": "Retained",
+      "content_review": "Dated evidence/plan reviewed in its historical context; numerical claims are not fresh results or authorization.",
+      "environment_references": [
+        "DEEPSEEK_API_KEY",
+        "ITLR_ARTIFACTS_DIR",
+        "ITLR_FORCE_LLM",
+        "USE_OLLAMA"
+      ],
+      "headings": [
+        "ITLR–RAG | Intelligent IT Learning Platform",
+        "Code review and regression evidence"
+      ]
+    },
+    {
+      "file": "docs/superpowers/plans/2026-10-29-itrl-v2.md",
+      "status": "Retained",
+      "content_review": "Dated evidence/plan reviewed in its historical context; numerical claims are not fresh results or authorization.",
+      "environment_references": [],
+      "headings": [
+        "ITLR–RAG | Intelligent IT Learning Platform — V2 implementation sequence"
+      ]
+    },
+    {
+      "file": "docs/superpowers/specs/2026-10-29-itrl-v2-design.md",
+      "status": "Retained",
+      "content_review": "Dated evidence/plan reviewed in its historical context; numerical claims are not fresh results or authorization.",
+      "environment_references": [],
+      "headings": [
+        "ITLR–RAG | Intelligent IT Learning Platform — V2 product design",
+        "Requirements",
+        "Implementation boundaries",
+        "Acceptance evidence"
+      ]
+    },
+    {
+      "file": "reports/ARCHITECTURE_REFACTOR_2026-10-30.md",
+      "status": "Retained",
+      "content_review": "Dated evidence/plan reviewed in its historical context; numerical claims are not fresh results or authorization.",
+      "environment_references": [
+        "USE_OLLAMA"
+      ],
+      "headings": [
+        "Architecture audit and refactoring checkpoint",
+        "Scope and evidence",
+        "Architecture before",
+        "Architecture after",
+        "Resolved findings and changed modules",
+        "Verification",
+        "Measured performance",
+        "Remaining findings and blockers"
+      ]
+    },
+    {
+      "file": "reports/AUDIT_2026-10-29.md",
+      "status": "Retained",
+      "content_review": "Dated evidence/plan reviewed in its historical context; numerical claims are not fresh results or authorization.",
+      "environment_references": [
+        "DISABLE_RERANKER",
+        "MKL_NUM_THREADS",
+        "OMP_NUM_THREADS",
+        "OPENBLAS_NUM_THREADS",
+        "USE_OLLAMA"
+      ],
+      "headings": [
+        "ITLR–RAG | Intelligent IT Learning Platform",
+        "Collection and retrieval correctness audit"
+      ]
+    },
+    {
+      "file": "reports/AUDIT_INCREMENT_2026-10-30.md",
+      "status": "Retained",
+      "content_review": "Dated evidence/plan reviewed in its historical context; numerical claims are not fresh results or authorization.",
+      "environment_references": [
+        "ADMIN_PASSCODE",
+        "DATABASE_URL",
+        "DEEPSEEK_API_KEY",
+        "DISABLE_RERANKER",
+        "ITLR_RATE_ADMIN_PER_MIN",
+        "JWT_SECRET",
+        "MKL_NUM_THREADS",
+        "NODE_ENV",
+        "OMP_NUM_THREADS",
+        "OPENAI_API_KEY",
+        "OPENBLAS_NUM_THREADS",
+        "USE_OLLAMA"
+      ],
+      "headings": [
+        "ITLR–RAG — correctness và data-integrity increment",
+        "Final continuation — bằng chứng mới, 2026-10-30",
+        "Phạm vi và trạng thái",
+        "Findings đã xử lý",
+        "Bằng chứng FAIL → PASS",
+        "Kiểm chứng thực chạy ở checkpoint này",
+        "Đo lường và những thay đổi đã loại bỏ",
+        "Review và giới hạn còn lại",
+        "Rollback và vận hành"
+      ]
+    },
+    {
+      "file": "reports/AUDIT_PORTABILITY_2026-10-30.md",
+      "status": "Retained",
+      "content_review": "Dated evidence/plan reviewed in its historical context; numerical claims are not fresh results or authorization.",
+      "environment_references": [
+        "DISABLE_RERANKER",
+        "ITLR_REQUIRE_ARTIFACT_MANIFEST",
+        "USE_OLLAMA"
+      ],
+      "headings": [
+        "Audit và hoàn thiện — 2026-10-30",
+        "1. Inventory và trạng thái audit",
+        "2. Findings và cách xử lý",
+        "3. Thay đổi theo nhóm",
+        "4. Kiểm chứng thực chạy",
+        "5. Bandit triage",
+        "6. Production gates",
+        "7. Còn tồn tại",
+        "8. Rollback",
+        "9. Kết luận: NO-GO"
+      ]
+    },
+    {
+      "file": "reports/BANDIT_TRIAGE_2026-10-30.md",
+      "status": "Retained",
+      "content_review": "Dated evidence/plan reviewed in its historical context; numerical claims are not fresh results or authorization.",
+      "environment_references": [
+        "ITLR_REQUIRE_ARTIFACT_MANIFEST"
+      ],
+      "headings": [
+        "Bandit triage — ITLR–RAG, 2026-10-30",
+        "Inventory đầy đủ",
+        "SSRF hardening và giới hạn",
+        "Cập nhật quét cuối — 2026-10-30 (sau hardening)"
+      ]
+    },
+    {
+      "file": "reports/FINAL_REMEDIATION.md",
+      "status": "Retained",
+      "content_review": "Dated evidence/plan reviewed in its historical context; numerical claims are not fresh results or authorization.",
+      "environment_references": [
+        "DEEPSEEK_API_KEY",
+        "ITLR_REQUIRE_ARTIFACT_MANIFEST"
+      ],
+      "headings": [
+        "ITLR–RAG | Intelligent IT Learning Platform",
+        "Security remediation and release evidence",
+        "Configure .env from .env.example; keep actual secrets outside Git.",
+        "/live = process; /health = engine readiness",
+        "Full evaluation after the target-host build:",
+        "Separate web terminal; configure private web/.env credentials first:",
+        "/health = process; /ready = PostgreSQL"
+      ]
+    },
+    {
+      "file": "reports/HARDENING_STREAM_2026-10-30.md",
+      "status": "Retained",
+      "content_review": "Dated evidence/plan reviewed in its historical context; numerical claims are not fresh results or authorization.",
+      "environment_references": [],
+      "headings": [
+        "Hardening continuation — 2026-10-30",
+        "IMPLEMENTED: P1 generation stream compatibility",
+        "TESTED: Before vs After",
+        "NOT MEASURED: neural and generation quality",
+        "BLOCKED / remaining work"
+      ]
+    },
+    {
+      "file": "reports/LOCAL_MODELS.md",
+      "status": "Retained",
+      "content_review": "Dated evidence/plan reviewed in its historical context; numerical claims are not fresh results or authorization.",
+      "environment_references": [],
+      "headings": [
+        "ITLR–RAG | Intelligent IT Learning Platform",
+        "Local neural model verification"
+      ]
+    },
+    {
+      "file": "reports/PONYTAIL_AUDIT.md",
+      "status": "Retained",
+      "content_review": "Dated evidence/plan reviewed in its historical context; numerical claims are not fresh results or authorization.",
+      "environment_references": [],
+      "headings": [
+        "ITLR–RAG | Intelligent IT Learning Platform",
+        "Security audit before remediation"
+      ]
+    },
+    {
+      "file": "reports/PONYTAIL_REVIEW.md",
+      "status": "Retained",
+      "content_review": "Dated evidence/plan reviewed in its historical context; numerical claims are not fresh results or authorization.",
+      "environment_references": [],
+      "headings": [
+        "ITLR–RAG | Intelligent IT Learning Platform",
+        "Security remediation review"
+      ]
+    },
+    {
+      "file": "reports/PRODUCTION_CHECKPOINT_2026-10-30.md",
+      "status": "Retained",
+      "content_review": "Dated evidence/plan reviewed in its historical context; numerical claims are not fresh results or authorization.",
+      "environment_references": [],
+      "headings": [
+        "Production preparation checkpoint",
+        "Architecture before / after",
+        "Executed checks before the deployment/lifecycle edits",
+        "Current release gates"
+      ]
+    },
+    {
+      "file": "reports/RESTRUCTURING_CONTINUATION_2026-10-30.md",
+      "status": "Retained",
+      "content_review": "Dated evidence/plan reviewed in its historical context; numerical claims are not fresh results or authorization.",
+      "environment_references": [],
+      "headings": [
+        "Tái cấu trúc và chuẩn hóa tài liệu — 2026-10-30",
+        "Phạm vi và baseline",
+        "Before / After",
+        "Module map và dependency direction",
+        "Tài liệu và bằng chứng",
+        "Giới hạn và release decision",
+        "Enterprise continuation - working tree baseline 387/124"
+      ]
+    },
+    {
+      "file": "reports/SKILLS_INVENTORY.md",
+      "status": "Retained",
+      "content_review": "Dated evidence/plan reviewed in its historical context; numerical claims are not fresh results or authorization.",
+      "environment_references": [],
+      "headings": [
+        "ITLR–RAG | Intelligent IT Learning Platform",
+        "Historical workflow inventory"
+      ]
+    },
+    {
+      "file": "reports/V2_PRODUCT.md",
+      "status": "Retained",
+      "content_review": "Dated evidence/plan reviewed in its historical context; numerical claims are not fresh results or authorization.",
+      "environment_references": [
+        "DISABLE_RERANKER",
+        "HF_HOME",
+        "MKL_NUM_THREADS",
+        "OMP_NUM_THREADS"
+      ],
+      "headings": [
+        "ITLR–RAG | Intelligent IT Learning Platform",
+        "V2 platform implementation",
+        "Optional bounded refresh: python scripts/collect_curated.py --refresh",
+        "Configure web/.env with private DB/JWT/admin credentials first."
+      ]
+    },
+    {
+      "file": "reports/V3_PROGRESS_2026-10-30.md",
+      "status": "Retained",
+      "content_review": "Dated evidence/plan reviewed in its historical context; numerical claims are not fresh results or authorization.",
+      "environment_references": [
+        "DISABLE_RERANKER",
+        "USE_OLLAMA"
+      ],
+      "headings": [
+        "ITLR–RAG | Intelligent IT Learning Platform",
+        "V3 chunk retrieval and lifecycle checkpoint"
+      ]
+    },
+    {
+      "file": "reports/V3_RESTRUCTURING_2026-10-30.md",
+      "status": "Retained",
+      "content_review": "Dated evidence/plan reviewed in its historical context; numerical claims are not fresh results or authorization.",
+      "environment_references": [
+        "MKL_NUM_THREADS",
+        "OMP_NUM_THREADS",
+        "OPENBLAS_NUM_THREADS"
+      ],
+      "headings": [
+        "ITLR–RAG | Intelligent IT Learning Platform",
+        "Shared V3 retrieval and durable lifecycle state"
+      ]
+    },
+    {
+      "file": "reports/VALIDATION.md",
+      "status": "Refactored",
+      "content_review": "Current logs/results updated; older runs remain historical.",
+      "environment_references": [
+        "DEEPSEEK_API_KEY",
+        "DISABLE_RERANKER",
+        "MKL_NUM_THREADS",
+        "OMP_NUM_THREADS",
+        "OPENAI_API_KEY",
+        "OPENBLAS_NUM_THREADS",
+        "USE_OLLAMA"
+      ],
+      "headings": [
+        "ITLR–RAG | Intelligent IT Learning Platform — Validation",
+        "Checkpoint hiện hành — refactor trách nhiệm module",
+        "Các checkpoint lịch sử",
+        "Checkpoint tiếp nối trên nhánh refactor",
+        "Kết quả phiên audit sản phẩm",
+        "Integration Web với PostgreSQL local",
+        "Findings và bằng chứng RED → GREEN",
+        "Thử nghiệm neural offline sau sửa",
+        "Phạm vi audit và quyết định giữ tương thích",
+        "Mức sẵn sàng và phần NOT VERIFIED",
+        "Kiểm chứng tài liệu",
+        "Checkpoint 260/59 trước phiên (2026-10-30)",
+        "Bằng chứng 2026-10-29 (lưu lịch sử)",
+        "Stream hardening continuation ? 2026-10-30"
+      ]
+    },
+    {
+      "file": "reports/cf_eval.md",
+      "status": "Retained",
+      "content_review": "Dated evidence/plan reviewed in its historical context; numerical claims are not fresh results or authorization.",
+      "environment_references": [],
+      "headings": [
+        "ITLR–RAG | Intelligent IT Learning Platform",
+        "Collaborative filtering evaluation (B6)"
+      ]
+    },
+    {
+      "file": "reports/generation_eval_template.md",
+      "status": "Retained",
+      "content_review": "Dated evidence/plan reviewed in its historical context; numerical claims are not fresh results or authorization.",
+      "environment_references": [],
+      "headings": [
+        "ITLR–RAG | Intelligent IT Learning Platform",
+        "Offline template response evaluation"
+      ]
+    },
+    {
+      "file": "reports/human_eval.md",
+      "status": "Retained",
+      "content_review": "Dated evidence/plan reviewed in its historical context; numerical claims are not fresh results or authorization.",
+      "environment_references": [],
+      "headings": [
+        "ITLR–RAG | Intelligent IT Learning Platform",
+        "Simulated label agreement (B3)"
+      ]
+    },
+    {
+      "file": "reports/latency.md",
+      "status": "Retained",
+      "content_review": "Dated evidence/plan reviewed in its historical context; numerical claims are not fresh results or authorization.",
+      "environment_references": [],
+      "headings": [
+        "ITLR–RAG | Intelligent IT Learning Platform",
+        "CPU retrieval latency and memory"
+      ]
+    },
+    {
+      "file": "reports/off_policy.md",
+      "status": "Retained",
+      "content_review": "Dated evidence/plan reviewed in its historical context; numerical claims are not fresh results or authorization.",
+      "environment_references": [],
+      "headings": [
+        "ITLR–RAG | Intelligent IT Learning Platform",
+        "Off-policy estimator simulation (D)"
+      ]
+    },
+    {
+      "file": "reports/offtopic_eval.md",
+      "status": "Retained",
+      "content_review": "Dated evidence/plan reviewed in its historical context; numerical claims are not fresh results or authorization.",
+      "environment_references": [],
+      "headings": [
+        "ITLR–RAG | Intelligent IT Learning Platform",
+        "Off-topic relevance gate calibration"
+      ]
+    },
+    {
+      "file": "reports/tables.md",
+      "status": "Retained",
+      "content_review": "Dated evidence/plan reviewed in its historical context; numerical claims are not fresh results or authorization.",
+      "environment_references": [],
+      "headings": [
+        "ITLR–RAG | Intelligent IT Learning Platform",
+        "Retrieval ablation: clean queries"
+      ]
+    },
+    {
+      "file": "reports/tables_kw_noisy.md",
+      "status": "Retained",
+      "content_review": "Dated evidence/plan reviewed in its historical context; numerical claims are not fresh results or authorization.",
+      "environment_references": [],
+      "headings": [
+        "ITLR–RAG | Intelligent IT Learning Platform",
+        "Retrieval ablation: noisy Vietnamese queries"
+      ]
+    },
+    {
+      "file": "tasks/plan.md",
+      "status": "Retained",
+      "content_review": "Dated evidence/plan reviewed in its historical context; numerical claims are not fresh results or authorization.",
+      "environment_references": [],
+      "headings": [
+        "ITLR–RAG | Intelligent IT Learning Platform — Improvement plan",
+        "Objective and working rules",
+        "1. Security and operating boundaries",
+        "2. Evaluation validity and reproducibility",
+        "3. Retrieval and reranking",
+        "4. Generation and streaming",
+        "5. Packaging, observability and deployment evidence",
+        "Delivery order and decision criteria"
+      ]
+    },
+    {
+      "file": "tasks/todo.md",
+      "status": "Retained",
+      "content_review": "Dated evidence/plan reviewed in its historical context; numerical claims are not fresh results or authorization.",
+      "environment_references": [],
+      "headings": [
+        "ITLR–RAG | Intelligent IT Learning Platform — Follow-up checklist",
+        "Evaluation and retrieval",
+        "Generation and learner experience",
+        "Deployment and security",
+        "Completion discipline"
+      ]
+    },
+    {
+      "file": "web/SECURITY_REMEDIATION.md",
+      "status": "Retained",
+      "content_review": "Dated evidence/plan reviewed in its historical context; numerical claims are not fresh results or authorization.",
+      "environment_references": [
+        "APP_ORIGIN",
+        "TRUSTED_PROXIES"
+      ],
+      "headings": [
+        "ITLR–RAG | Intelligent IT Learning Platform — Web security remediation",
+        "Findings and changes at the checkpoint",
+        "Recorded verification",
+        "Review scope and remaining evidence"
+      ]
+    }
+  ],
+  "broken_paths_or_anchors": []
+}

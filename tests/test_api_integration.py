@@ -4,7 +4,6 @@ Chạy sau `python scripts/build_all.py`. Không cần LLM: đặt USE_OLLAMA=0 
 để ép nhánh template — toàn bộ endpoint phải hoạt động deterministically.
 """
 
-import os
 from pathlib import Path
 
 import pytest

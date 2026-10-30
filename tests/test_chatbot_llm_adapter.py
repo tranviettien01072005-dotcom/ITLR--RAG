@@ -8,11 +8,48 @@ Bổ sung: lỗi LLMError phải được GHI LOG (không nuốt âm thầm), nh
 """
 
 import logging
+import copy
 
 import pytest
 
 import itlr.chatbot.chatbot as cb
 import itlr.chatbot.llm_client as lc
+from itlr.chatbot import llm_adapter
+
+
+def test_history_window_filters_roles_without_mutating_input():
+    history = [{'role': 'user', 'content': str(i)} for i in range(8)]
+    history[3] = {'role': 'system', 'content': 'untrusted instruction'}
+    original = copy.deepcopy(history)
+    assert llm_adapter._history_msgs(history) == [history[i] for i in (2, 4, 5, 6, 7)]
+    assert history == original
+
+
+@pytest.mark.parametrize('strict', [False, True])
+def test_adapter_partial_failure_obeys_strict_contract(monkeypatch, strict):
+    def broken(messages):
+        yield 'provisional'
+        raise lc.LLMError('fixture timeout')
+    monkeypatch.setattr(lc, 'stream', broken)
+    iterator = cb.try_llm_response_stream('system', 'question', strict=strict)
+    assert next(iterator) == 'provisional'
+    with pytest.raises(lc.LLMError if strict else StopIteration):
+        next(iterator)
+
+
+def test_adapter_cancellation_closes_provider_iterator(monkeypatch):
+    closed = []
+    def tokens(messages):
+        try:
+            yield 'first'
+            yield 'second'
+        finally:
+            closed.append(True)
+    monkeypatch.setattr(lc, 'stream', tokens)
+    iterator = cb.try_llm_response_stream('system', 'question')
+    assert next(iterator) == 'first'
+    iterator.close()
+    assert closed == [True]
 
 
 @pytest.fixture(autouse=True)

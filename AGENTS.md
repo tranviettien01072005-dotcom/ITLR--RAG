@@ -26,7 +26,7 @@ Cập nhật: 2026-10-30. Tên sản phẩm: **ITLR–RAG | Intelligent IT Learn
 
 Artifacts cũ giữ đường V2. Không xóa hoặc di chuyển shim `itlr/core/bm25.py`: pickle cũ còn tham chiếu module này. `/admin/reload` yêu cầu `X-Admin-Token` khớp `ITLR_ADMIN_TOKEN`; chưa cấu hình phải 403. CF tùy chọn; thiếu model phải trả 503 tại personas/for-you và không làm hỏng retrieval.
 
-Checkpoint mới nhất và blockers: [audit continuation](reports/AUDIT_INCREMENT_2026-10-30.md). Số test lịch sử bên dưới không phải lần chạy mới.
+Checkpoint hiện hành và blockers: [restructuring continuation](reports/RESTRUCTURING_CONTINUATION_2026-10-30.md). Baseline hiện tại 414 Python PASS/0 skip và 132 Web PASS; số lịch sử bên dưới không phải lần chạy mới.
 
 ## Kiểm chứng trước bàn giao
 
@@ -46,7 +46,7 @@ npm test
 
 ## Dữ liệu và bảo mật
 
-- Catalog legacy 5.000 items và interactions CF là synthetic; snapshot thật ở `data/curated_resources.jsonl`. Số runtime phải đọc `/health` cùng provenance version.
+- Catalog legacy 5.000 items và interactions CF là synthetic; snapshot thật ở `data/curated_resources.jsonl`. `/health` chỉ cung cấp readiness/items/CF, chưa có loaded-version fingerprint; đối chiếu provenance riêng, không coi CURRENT.json là bằng chứng engine đã reload.
 - Qrels metadata/rule-based, nhãn mô phỏng và chẩn đoán bằng luật không thay thế đánh giá độc lập của người dùng thật.
 - Citation ID hợp lệ không chứng minh faithfulness. Chỉ tiêu chưa đo ghi `null`, không ghi 0% lỗi.
 - Secret giữ trong môi trường hoặc file local bị gitignore; không in key, mật khẩu hay reset token vào log/report.
@@ -55,3 +55,7 @@ npm test
 - Một worker/replica mỗi service, local Linux filesystem. Không suy diễn khóa local/rate limiter RAM thành hỗ trợ nhiều host.
 
 Tra cứu [README](README.md), [deployment](deploy/DEPLOY.md), [sàn chất lượng](CONSTRAINTS.md), [ADR-010](docs/decisions/ADR-010-shared-retrieval-and-atomic-state.md) và [V3 review](reports/V3_RESTRUCTURING_2026-10-30.md) trước thay đổi kiến trúc.
+
+Windows verification: set `PYTHONUTF8=1` and `PYTHONIOENCODING=utf-8` before Python checks; use `npm.cmd` if PowerShell blocks npm.ps1. Latest scoped continuation: [stream hardening](reports/HARDENING_STREAM_2026-10-30.md).
+
+Current structure/documentation verification: [restructuring continuation](reports/RESTRUCTURING_CONTINUATION_2026-10-30.md). Preserve historical reports; distinguish static import inventory from runtime verification.

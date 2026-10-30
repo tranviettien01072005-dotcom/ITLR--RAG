@@ -1,5 +1,4 @@
 """Local Markdown file links must resolve; historical measurements stay untouched."""
-from pathlib import Path
 import re
 import subprocess
 from urllib.parse import unquote

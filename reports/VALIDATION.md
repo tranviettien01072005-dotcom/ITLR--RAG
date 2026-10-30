@@ -1,6 +1,26 @@
 # ITLR–RAG | Intelligent IT Learning Platform — Validation
 
-Checkpoint mới: Windows dev host **384 Python pass/0 skip** (coverage statements **64,96%**), Web **124 pass/25 files**, lines **45,01%**; typecheck/build PASS, lint **0 warning**, Bandit 0 High (31 Medium/61 Low), npm audit/pip-audit sạch. Đã xóa API key thật khỏi `.env.example` working copy (không có trong git history), sửa normalize URL, passcode admin constant-time/open redirect, `resource`/torch portability, HTTP Range dedup và toàn bộ ESLint warning. Docker/PostgreSQL/HTTPS và human/neural RAG gates chưa xác minh; **NOT READY**. Xem [portability audit](AUDIT_PORTABILITY_2026-10-30.md).
+Latest release/evaluation evidence: [release validation](RELEASE_VALIDATION_2026-10-30.md). Neural V3, generation and staging remain blocked/unmeasured.
+
+## Checkpoint hiện hành — refactor trách nhiệm module
+
+| Gate | Kết quả thực chạy |
+|---|---|
+| Python | 414 PASS / 0 skip, 86,51s, coverage statements 65,73% |
+| Web | 132 PASS / 25 files, line coverage 45,31% |
+| Typecheck / lint / build | PASS |
+| Compileall / pip check | PASS |
+
+Raw logs: release-python.log, release-web.log. Không suy ra tốc độ tốt hơn từ
+thời gian suite. [Inventory và Before/After](RESTRUCTURING_CONTINUATION_2026-10-30.md)
+ghi rõ phạm vi static review và các gate staging chưa chạy.
+
+## Các checkpoint lịch sử
+
+
+Current verification entrypoint: [restructuring continuation](RESTRUCTURING_CONTINUATION_2026-10-30.md). Baseline 386 Python / 124 Web; older checkpoint paragraphs below are historical.
+
+Historical checkpoint (superseded by the verification entrypoint above): Checkpoint mới: Windows dev host **384 Python pass/0 skip** (coverage statements **64,96%**), Web **124 pass/25 files**, lines **45,01%**; typecheck/build PASS, lint **0 warning**, Bandit 0 High (31 Medium/61 Low), npm audit/pip-audit sạch. Đã xóa API key thật khỏi `.env.example` working copy (không có trong git history), sửa normalize URL, passcode admin constant-time/open redirect, `resource`/torch portability, HTTP Range dedup và toàn bộ ESLint warning. Docker/PostgreSQL/HTTPS và human/neural RAG gates chưa xác minh; **NOT READY**. Xem [portability audit](AUDIT_PORTABILITY_2026-10-30.md).
 
 ## Checkpoint tiếp nối trên nhánh refactor
 
@@ -282,3 +302,11 @@ Sources for CI/security tool use:
 [GitHub workflow syntax](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax),
 [pip-audit](https://github.com/pypa/pip-audit),
 [Bandit](https://github.com/PyCQA/bandit).
+
+## Stream hardening continuation ? 2026-10-30
+
+[Fresh evidence](HARDENING_STREAM_2026-10-30.md): terminal usage-only chunk regression 2 FAIL ? PASS; 34 client tests and 124 Web tests PASS. Initial full Python run: 378 PASS/6 encoding failures; do not replace this result with historical counts.
+
+Final fresh full Python verification: 386 PASS / 0 skip, coverage 65% rounded, 188.40s, UTF-8 environment; reports/hardening-utf8.log. Outside-sandbox diagnostic failed on temporary-directory permissions (4 FAIL / 129 setup errors); retained separately. Focused portability 21 PASS; client/link review 35 PASS.
+
+Restructuring verification: 387 Python PASS/0 skip (91.94s), coverage 65% rounded; 124 Web PASS, line coverage 45.01%; typecheck/lint/build/compileall/pip check PASS. One usage snapshot isolation regression added (observed FAIL to PASS). No runtime data/index changes. See restructuring continuation report for scope and remaining gates.

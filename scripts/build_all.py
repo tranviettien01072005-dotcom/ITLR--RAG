@@ -36,7 +36,7 @@ STEPS = [
 
 def _artifacts_dir() -> Path:
     import itlr.config as config
-    return Path(str(config.ARTIFACTS_DIR))
+    return Path(config.ARTIFACTS_DIR)
 
 
 def plan(force: bool) -> list[tuple[str, str]]:

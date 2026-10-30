@@ -200,13 +200,22 @@ def _stream_ollama(messages, *, num_predict: int = 384, temperature: float = 0.5
                 continue
             try:
                 obj = json.loads(raw)
-            except Exception:
-                continue
+            except (ValueError, UnicodeDecodeError) as exc:
+                raise LLMError('Malformed Ollama stream JSON') from exc
+            if not isinstance(obj, dict) or obj.get('error'):
+                raise LLMError('Invalid Ollama stream event')
+            if 'done' in obj and not isinstance(obj['done'], bool):
+                raise LLMError('Invalid Ollama completion flag')
             piece = (obj.get("message") or {}).get("content", "")
+            if not isinstance(piece, str):
+                raise LLMError('Invalid Ollama text delta')
             if piece:
                 yield piece
             if obj.get("done"):
-                break
+                if obj.get('done_reason') not in (None, 'stop'):
+                    raise LLMError('Incomplete Ollama text completion')
+                return
+    raise LLMError('Ollama stream ended without completion')
 
 
 # --------------------------- Provider orchestration --------------------------- #
@@ -263,7 +272,8 @@ def usage_snapshot() -> dict:
             "total_prompt_tokens": _USAGE["total_prompt_tokens"],
             "total_completion_tokens": _USAGE["total_completion_tokens"],
             "total_cost_usd": _USAGE["total_cost_usd"],
-            "by_provider": dict(_USAGE["by_provider"]),
+            "by_provider": {provider: dict(usage)
+                            for provider, usage in _USAGE["by_provider"].items()},
         }
 
 
@@ -317,6 +327,12 @@ def _retries() -> int:
         raise LLMError('DEEPSEEK_RETRIES must be an integer') from exc
 
 
+def _validate_text_completion(choice) -> None:
+    reason = getattr(choice, 'finish_reason', None)
+    if reason not in (None, 'stop'):
+        raise LLMError(f'Incomplete text completion ({reason})')
+
+
 def chat(messages, *, track_usage: "str | None" = None,
          temperature: float = DEFAULT_TEMPERATURE,
          max_tokens: int = DEFAULT_MAX_TOKENS,
@@ -340,6 +356,7 @@ def chat(messages, *, track_usage: "str | None" = None,
                     kwargs = _completions_kwargs(provider, messages, stream=False,
                                                  temperature=temperature, max_tokens=max_tokens)
                     resp = client.chat.completions.create(**kwargs)
+                    _validate_text_completion(resp.choices[0])
                     text = (resp.choices[0].message.content or "").strip()
                     usage = getattr(resp, "usage", None)
                     prompt_tokens = getattr(usage, "prompt_tokens", 0) or 0
@@ -390,16 +407,24 @@ def stream(messages, *, temperature: float = DEFAULT_TEMPERATURE,
         backoff = DEFAULT_BACKOFF_S
         got_any = False
         for attempt in range(1, _retries() + 1):
+            saw_stop = False
             try:
                 with closing(_make_client(provider, api_key(provider) or "", timeout_s)) as client:
                     kwargs = _completions_kwargs(provider, messages, stream=True,
                                                  temperature=temperature, max_tokens=max_tokens)
                     with closing(client.chat.completions.create(**kwargs)) as response:
                         for chunk in response:
+                            # Usage-only terminal chunks have no completion choices.
+                            if not chunk.choices:
+                                continue
+                            _validate_text_completion(chunk.choices[0])
+                            saw_stop = saw_stop or getattr(chunk.choices[0], 'finish_reason', None) == 'stop'
                             delta = chunk.choices[0].delta.content
                             if delta:
                                 got_any = True
                                 yield delta
+                    if not saw_stop:
+                        logger.warning('%s stream accepted without finish metadata: completion unverified (legacy compatibility)', provider)
                     return
             except Exception as exc:  # noqa: BLE001
                 if got_any:
@@ -414,4 +439,9 @@ def stream(messages, *, temperature: float = DEFAULT_TEMPERATURE,
                 backoff *= 2
         raise LLMError(f"{provider} stream không sinh được mảnh nào")
 
-    yield from _stream_ollama(messages, num_predict=max_tokens, temperature=temperature)
+    try:
+        yield from _stream_ollama(messages, num_predict=max_tokens, temperature=temperature)
+    except LLMError:
+        raise
+    except Exception as exc:
+        raise LLMError(f'ollama stream failed ({_safe_err_text(exc)})') from exc

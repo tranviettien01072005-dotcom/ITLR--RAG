@@ -2,8 +2,10 @@
 
 ## Status
 
-Implemented; release verification remains blocked by the Linux-only lifecycle tests
-on the current Windows host. No production-readiness claim.
+Implemented. The later Windows baseline completed 386 Python tests and 124 Web
+tests; the original Linux-only collection blocker is historical. Linux lifecycle,
+Docker/PostgreSQL staging and full production verification remain separate gates.
+See [stream verification](../../reports/HARDENING_STREAM_2026-10-30.md).
 
 ## Date
 
@@ -35,7 +37,7 @@ Use the existing Python logger for LLM fallback failures. Remove redundant conso
 printing and exception suppression; preserve fallback return values and strict
 stream error propagation.
 
-## Consequences and limits
+## Consequences
 
 Five template modes have before/after output fingerprints; the extracted 27
 definitions were compared structurally before any other edit. Legacy import
@@ -51,3 +53,7 @@ These constraints remain documented rather than hidden behind a new abstraction.
 
 See [the audit checkpoint](../../reports/ARCHITECTURE_REFACTOR_2026-10-30.md) for
 RED/GREEN evidence, actual commands, benchmark scope and remaining release gates.
+
+## Alternatives
+
+Keeping presentation in chatbot.py retains mixed responsibilities; rewriting retrieval/provider logic together with presentation would expand compatibility risk. A shared CSV whitelist avoids separate append and COPY column definitions.

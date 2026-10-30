@@ -1,0 +1,90 @@
+{
+  "scope": "lexical TF-IDF + BM25 over real curated snapshot; MMR off; no neural/reranker/LLM",
+  "provenance": "118 checked-in items; 8 engineer-authored single-annotator qrels; not a human panel",
+  "queries": 8,
+  "corpus_items": 118,
+  "measured_requests": 160,
+  "top_k": 5,
+  "recall_at_5": 1.0,
+  "mrr_at_5": 0.9375,
+  "ndcg_at_5": 0.9538662191964322,
+  "latency_ms": {
+    "p50": 75.65884999985428,
+    "p95": 131.48519999995185,
+    "p99": 153.36248999956294
+  },
+  "throughput_rps": 11.986329411499284,
+  "faithfulness": null,
+  "answer_relevance": null,
+  "hallucination": null,
+  "llm_calls": 0,
+  "measured_api_cost_usd": 0,
+  "limitations": "Single-annotator qrels, 118 documents, lexical only; neural/generation unmeasured.",
+  "python": "3.12.10",
+  "cases": [
+    {
+      "query": "How does Docker daemon access affect root privileges?",
+      "expected_id": 5001,
+      "rank": 1,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "ndcg_at_5": 1.0
+    },
+    {
+      "query": "How do services networks and volumes work together in Compose?",
+      "expected_id": 5003,
+      "rank": 1,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "ndcg_at_5": 1.0
+    },
+    {
+      "query": "How do I publish a container port to a host port?",
+      "expected_id": 5011,
+      "rank": 1,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "ndcg_at_5": 1.0
+    },
+    {
+      "query": "How does a browser use a preflight request for cross origin HTTP?",
+      "expected_id": 5024,
+      "rank": 1,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "ndcg_at_5": 1.0
+    },
+    {
+      "query": "How do I select the first DOM element matching a CSS selector?",
+      "expected_id": 5028,
+      "rank": 1,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "ndcg_at_5": 1.0
+    },
+    {
+      "query": "How do I create and activate a Python virtual environment?",
+      "expected_id": 5117,
+      "rank": 2,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 0.5,
+      "ndcg_at_5": 0.6309297535714575
+    },
+    {
+      "query": "How do I handle exceptions with try and except in Python?",
+      "expected_id": 5121,
+      "rank": 1,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "ndcg_at_5": 1.0
+    },
+    {
+      "query": "How do Python lists support indexing and slicing?",
+      "expected_id": 5126,
+      "rank": 1,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "ndcg_at_5": 1.0
+    }
+  ]
+}

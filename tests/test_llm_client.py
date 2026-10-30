@@ -43,6 +43,12 @@ class _FakeChatCompletions:
             chunks = []
             for piece in self._behavior.get("stream_chunks", ["a", "b"]):
                 chunks.append(Chunk(choices=[Chunk(delta=Chunk(content=piece))]))
+            if 'finish_reason' in self._behavior:
+                chunks.append(Chunk(choices=[Chunk(delta=Chunk(content=None),
+                    finish_reason=self._behavior['finish_reason'])]))
+            if self._behavior.get('usage_only'):
+                chunks.append(Chunk(choices=[], usage=Chunk(
+                    prompt_tokens=120, completion_tokens=45, total_tokens=165)))
             class FakeStream:
                 def __iter__(self):
                     return iter(chunks)
@@ -55,7 +61,8 @@ class _FakeChatCompletions:
         usage = types.SimpleNamespace(
             prompt_tokens=120, completion_tokens=45, total_tokens=165)
         choice = types.SimpleNamespace(message=types.SimpleNamespace(
-            content=self._behavior.get("text", "Câu trả lời mô phỏng.")))
+            content=self._behavior.get("text", "Câu trả lời mô phỏng.")),
+            finish_reason=self._behavior.get('finish_reason'))
         return types.SimpleNamespace(choices=[choice], usage=usage)
 
 
@@ -201,6 +208,88 @@ def test_stream_yields_pieces(wire, monkeypatch):
     assert pieces == ["X", "y", "z"]
 
 
+@pytest.mark.parametrize('provider', ['deepseek', 'openai'])
+def test_stream_accepts_usage_only_chunk(wire, monkeypatch, provider):
+    wire.set({'stream_chunks': ['answer'], 'usage_only': True})
+    monkeypatch.setenv(provider.upper() + '_API_KEY', 'fixture-key')
+    assert list(lc.stream([])) == ['answer']
+
+
+@pytest.mark.parametrize('reason', ['length', 'content_filter', 'tool_calls', 'function_call'])
+def test_stream_rejects_incomplete_text_without_retry(wire, recorder, monkeypatch, reason):
+    wire.set({'stream_chunks': ['partial'], 'finish_reason': reason})
+    monkeypatch.setenv('DEEPSEEK_API_KEY', 'fixture-key')
+    iterator = lc.stream([])
+    assert next(iterator) == 'partial'
+    with pytest.raises(lc.LLMError):
+        next(iterator)
+    assert len(recorder) == 1
+
+
+def test_stream_accepts_stop_followed_by_usage(wire, monkeypatch):
+    wire.set({'stream_chunks': ['complete'], 'finish_reason': 'stop', 'usage_only': True})
+    monkeypatch.setenv('DEEPSEEK_API_KEY', 'fixture-key')
+    assert list(lc.stream([])) == ['complete']
+
+
+def test_legacy_stream_without_finish_metadata_is_visible(wire, monkeypatch, caplog):
+    wire.set({'stream_chunks': ['legacy answer']})
+    monkeypatch.setenv('DEEPSEEK_API_KEY', 'fixture-key')
+    with caplog.at_level('WARNING', logger='itlr.llm'):
+        assert list(lc.stream([])) == ['legacy answer']
+    assert 'completion unverified' in caplog.text
+
+
+@pytest.mark.parametrize('reason', ['length', 'content_filter', 'tool_calls', 'function_call'])
+def test_chat_rejects_incomplete_text(wire, monkeypatch, reason):
+    wire.set({'text': 'partial', 'finish_reason': reason})
+    monkeypatch.setenv('DEEPSEEK_API_KEY', 'fixture-key')
+    monkeypatch.setenv('DEEPSEEK_RETRIES', '1')
+    with pytest.raises(lc.LLMError):
+        lc.chat([])
+
+
+@pytest.mark.parametrize('tail', [None, b'not-json', b'[]', b'{"error":"upstream failure"}',
+    b'{"done":true,"done_reason":"length"}', b'{"done":"true"}',
+    b'{"message":{"content":123}}'])
+def test_ollama_rejects_corrupt_or_incomplete_stream(monkeypatch, tail):
+    monkeypatch.setattr(lc, 'provider_status', lambda: 'ollama')
+    monkeypatch.setattr(lc, 'ollama_model', lambda: 'fixture')
+    closed = []
+    class Response:
+        def __enter__(self):
+            return self
+        def __exit__(self, *args):
+            closed.append(True)
+        def __iter__(self):
+            yield b'{"message":{"content":"partial"},"done":false}'
+            if tail is not None:
+                yield tail
+    monkeypatch.setattr(lc.urllib.request, 'urlopen', lambda *a, **kw: Response())
+    iterator = lc.stream([])
+    assert next(iterator) == 'partial'
+    with pytest.raises(lc.LLMError):
+        next(iterator)
+    assert closed == [True]
+
+
+def test_ollama_completion_and_timeout_contract(monkeypatch):
+    monkeypatch.setattr(lc, 'provider_status', lambda: 'ollama')
+    monkeypatch.setattr(lc, 'ollama_model', lambda: 'fixture')
+    class Response:
+        def __enter__(self):
+            return iter([b'{"message":{"content":"answer"}}', b'{"done":true,"done_reason":"stop"}'])
+        def __exit__(self, *args):
+            pass
+    monkeypatch.setattr(lc.urllib.request, 'urlopen', lambda *a, **kw: Response())
+    assert list(lc.stream([])) == ['answer']
+    def timeout(*a, **kw):
+        raise TimeoutError('fixture timeout')
+    monkeypatch.setattr(lc.urllib.request, 'urlopen', timeout)
+    with pytest.raises(lc.LLMError, match='ollama stream failed'):
+        list(lc.stream([]))
+
+
 def test_usage_tracker_records(wire, monkeypatch):
     wire.set({"text": "hi"})
     monkeypatch.setenv("DEEPSEEK_API_KEY", "sk")
@@ -209,6 +298,13 @@ def test_usage_tracker_records(wire, monkeypatch):
     assert snap["total_calls"] >= 1
     assert snap["total_prompt_tokens"] >= 120
     assert snap["total_completion_tokens"] >= 45
+
+
+def test_usage_snapshot_does_not_expose_mutable_provider_state():
+    lc._record_usage('deepseek', 120, 45)
+    snapshot = lc.usage_snapshot()
+    snapshot['by_provider']['deepseek']['calls'] = -1
+    assert lc.usage_snapshot()['by_provider']['deepseek']['calls'] == 1
 
 
 def test_mask_key_admin():

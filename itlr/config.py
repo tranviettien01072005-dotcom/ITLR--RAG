@@ -28,10 +28,6 @@ VERSIONS_DIR = ARTIFACTS_DIR / "versions"
 LAST_RUN_JSON = COLLECT_DIR / "last_run.json"
 
 
-def _pointer_file() -> Path:
-    return ARTIFACTS_DIR / "CURRENT.json"
-
-
 def _resolve_active_dir() -> Path:
     """Thư mục artifacts tự động đang dùng: env override > con trỏ CURRENT.json > mặc định.
 

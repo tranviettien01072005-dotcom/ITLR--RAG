@@ -37,7 +37,7 @@ export type FinalChat = z.infer<typeof finalChatSchema>;
 export async function* readChatEvents(body: ReadableStream<Uint8Array>): AsyncGenerator<ChatEvent> {
   const reader = body.getReader();
   const decoder = new TextDecoder("utf-8", { fatal: true });
-  let buffer = "", finalized = false, totalText = 0;
+  let buffer = "", finalized = false, ended = false, totalText = 0;
   try {
     while (true) {
       const chunk = await reader.read();
@@ -51,6 +51,7 @@ export async function* readChatEvents(body: ReadableStream<Uint8Array>): AsyncGe
         const data = frame.split(/\r?\n/).filter(line => line.startsWith("data:")).map(line => line.slice(5).trimStart()).join("\n");
         if (!data) continue;
         const event = eventSchema.parse(JSON.parse(data));
+        if (ended) throw new Error("Event after stream completion");
         if (event.type === "text") {
           totalText += event.text.length;
           if (finalized || totalText > 1_000_000) throw new Error("Invalid stream sequence");
@@ -60,6 +61,7 @@ export async function* readChatEvents(body: ReadableStream<Uint8Array>): AsyncGe
           finalized = true;
         }
         if (event.type === "done" && !finalized) throw new Error("Missing final response");
+        if (event.type === "done") ended = true;
         yield event;
       }
       if (buffer.length > 1_100_000) throw new Error("Stream event too large");

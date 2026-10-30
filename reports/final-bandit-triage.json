@@ -1,0 +1,601 @@
+{
+  "scope": "Current static scan; accepted risks are not fixed vulnerabilities. No suppressions added.",
+  "counts": {
+    "LOW": 47,
+    "MEDIUM": 27
+  },
+  "findings": [
+    {
+      "file": "itlr\\api\\server.py",
+      "line": 12,
+      "severity": "LOW",
+      "rule": "B110",
+      "classification": "accepted diagnostic fallback",
+      "reason": "Best-effort console encoding/logging or optional runtime warning/progress configuration; primary operations still fail explicitly."
+    },
+    {
+      "file": "itlr\\api\\server.py",
+      "line": 89,
+      "severity": "LOW",
+      "rule": "B110",
+      "classification": "accepted diagnostic fallback",
+      "reason": "Best-effort console encoding/logging or optional runtime warning/progress configuration; primary operations still fail explicitly."
+    },
+    {
+      "file": "itlr\\api\\server.py",
+      "line": 119,
+      "severity": "MEDIUM",
+      "rule": "B310",
+      "classification": "accepted conditional",
+      "reason": "Operator-configured local/provider HTTP URL; scheme validation and network isolation required. Not request-controlled crawler input."
+    },
+    {
+      "file": "itlr\\chatbot\\llm_client.py",
+      "line": 139,
+      "severity": "MEDIUM",
+      "rule": "B310",
+      "classification": "accepted conditional",
+      "reason": "Operator-configured local/provider HTTP URL; scheme validation and network isolation required. Not request-controlled crawler input."
+    },
+    {
+      "file": "itlr\\chatbot\\llm_client.py",
+      "line": 178,
+      "severity": "MEDIUM",
+      "rule": "B310",
+      "classification": "accepted conditional",
+      "reason": "Operator-configured local/provider HTTP URL; scheme validation and network isolation required. Not request-controlled crawler input."
+    },
+    {
+      "file": "itlr\\chatbot\\llm_client.py",
+      "line": 196,
+      "severity": "MEDIUM",
+      "rule": "B310",
+      "classification": "accepted conditional",
+      "reason": "Operator-configured local/provider HTTP URL; scheme validation and network isolation required. Not request-controlled crawler input."
+    },
+    {
+      "file": "itlr\\chatbot\\opencode_client.py",
+      "line": 3,
+      "severity": "LOW",
+      "rule": "B404",
+      "classification": "import only",
+      "reason": "Subprocess import alone does not spawn; calls reviewed separately."
+    },
+    {
+      "file": "itlr\\chatbot\\opencode_client.py",
+      "line": 11,
+      "severity": "LOW",
+      "rule": "B603",
+      "classification": "accepted operator boundary",
+      "reason": "Argument-list process execution without shell; executable/module/environment must remain operator-controlled."
+    },
+    {
+      "file": "itlr\\collect\\extract.py",
+      "line": 75,
+      "severity": "LOW",
+      "rule": "B112",
+      "classification": "accepted extraction tolerance",
+      "reason": "Malformed JSON-LD or disposed DOM candidate skipped; not generation response acceptance."
+    },
+    {
+      "file": "itlr\\collect\\extract.py",
+      "line": 123,
+      "severity": "LOW",
+      "rule": "B112",
+      "classification": "accepted extraction tolerance",
+      "reason": "Malformed JSON-LD or disposed DOM candidate skipped; not generation response acceptance."
+    },
+    {
+      "file": "itlr\\collect\\http.py",
+      "line": 122,
+      "severity": "LOW",
+      "rule": "B311",
+      "classification": "expected non-security RNG",
+      "reason": "Synthetic data and evaluation sampling, not session tokens or secrets."
+    },
+    {
+      "file": "itlr\\collect\\http.py",
+      "line": 240,
+      "severity": "LOW",
+      "rule": "B311",
+      "classification": "expected non-security RNG",
+      "reason": "Synthetic data and evaluation sampling, not session tokens or secrets."
+    },
+    {
+      "file": "itlr\\core\\ann.py",
+      "line": 14,
+      "severity": "LOW",
+      "rule": "B403",
+      "classification": "import only",
+      "reason": "Import itself does not unpickle; actual loads classified separately."
+    },
+    {
+      "file": "itlr\\core\\ann.py",
+      "line": 93,
+      "severity": "MEDIUM",
+      "rule": "B301",
+      "classification": "accepted conditional",
+      "reason": "Executable pickle input: trusted offline builders, manifest/inventory, filesystem ACL; no uploaded/untrusted pickle permitted."
+    },
+    {
+      "file": "itlr\\data\\generate_items.py",
+      "line": 439,
+      "severity": "LOW",
+      "rule": "B311",
+      "classification": "expected non-security RNG",
+      "reason": "Synthetic data and evaluation sampling, not session tokens or secrets."
+    },
+    {
+      "file": "itlr\\data\\generate_items.py",
+      "line": 454,
+      "severity": "LOW",
+      "rule": "B311",
+      "classification": "expected non-security RNG",
+      "reason": "Synthetic data and evaluation sampling, not session tokens or secrets."
+    },
+    {
+      "file": "itlr\\data\\generate_items.py",
+      "line": 455,
+      "severity": "LOW",
+      "rule": "B311",
+      "classification": "expected non-security RNG",
+      "reason": "Synthetic data and evaluation sampling, not session tokens or secrets."
+    },
+    {
+      "file": "itlr\\data\\generate_items.py",
+      "line": 459,
+      "severity": "LOW",
+      "rule": "B311",
+      "classification": "expected non-security RNG",
+      "reason": "Synthetic data and evaluation sampling, not session tokens or secrets."
+    },
+    {
+      "file": "itlr\\data\\generate_items.py",
+      "line": 461,
+      "severity": "LOW",
+      "rule": "B311",
+      "classification": "expected non-security RNG",
+      "reason": "Synthetic data and evaluation sampling, not session tokens or secrets."
+    },
+    {
+      "file": "itlr\\data\\generate_items.py",
+      "line": 468,
+      "severity": "LOW",
+      "rule": "B311",
+      "classification": "expected non-security RNG",
+      "reason": "Synthetic data and evaluation sampling, not session tokens or secrets."
+    },
+    {
+      "file": "itlr\\data\\generate_items.py",
+      "line": 470,
+      "severity": "LOW",
+      "rule": "B311",
+      "classification": "expected non-security RNG",
+      "reason": "Synthetic data and evaluation sampling, not session tokens or secrets."
+    },
+    {
+      "file": "itlr\\data\\generate_items.py",
+      "line": 472,
+      "severity": "LOW",
+      "rule": "B311",
+      "classification": "expected non-security RNG",
+      "reason": "Synthetic data and evaluation sampling, not session tokens or secrets."
+    },
+    {
+      "file": "itlr\\data\\generate_items.py",
+      "line": 474,
+      "severity": "LOW",
+      "rule": "B311",
+      "classification": "expected non-security RNG",
+      "reason": "Synthetic data and evaluation sampling, not session tokens or secrets."
+    },
+    {
+      "file": "itlr\\data\\generate_items.py",
+      "line": 478,
+      "severity": "LOW",
+      "rule": "B311",
+      "classification": "expected non-security RNG",
+      "reason": "Synthetic data and evaluation sampling, not session tokens or secrets."
+    },
+    {
+      "file": "itlr\\data\\generate_items.py",
+      "line": 479,
+      "severity": "LOW",
+      "rule": "B311",
+      "classification": "expected non-security RNG",
+      "reason": "Synthetic data and evaluation sampling, not session tokens or secrets."
+    },
+    {
+      "file": "itlr\\data\\generate_items.py",
+      "line": 494,
+      "severity": "LOW",
+      "rule": "B311",
+      "classification": "expected non-security RNG",
+      "reason": "Synthetic data and evaluation sampling, not session tokens or secrets."
+    },
+    {
+      "file": "itlr\\data\\generate_items.py",
+      "line": 496,
+      "severity": "LOW",
+      "rule": "B311",
+      "classification": "expected non-security RNG",
+      "reason": "Synthetic data and evaluation sampling, not session tokens or secrets."
+    },
+    {
+      "file": "itlr\\data\\generate_items.py",
+      "line": 510,
+      "severity": "LOW",
+      "rule": "B311",
+      "classification": "expected non-security RNG",
+      "reason": "Synthetic data and evaluation sampling, not session tokens or secrets."
+    },
+    {
+      "file": "itlr\\data\\generate_items.py",
+      "line": 511,
+      "severity": "LOW",
+      "rule": "B311",
+      "classification": "expected non-security RNG",
+      "reason": "Synthetic data and evaluation sampling, not session tokens or secrets."
+    },
+    {
+      "file": "itlr\\engine.py",
+      "line": 12,
+      "severity": "LOW",
+      "rule": "B403",
+      "classification": "import only",
+      "reason": "Import itself does not unpickle; actual loads classified separately."
+    },
+    {
+      "file": "itlr\\engine.py",
+      "line": 136,
+      "severity": "MEDIUM",
+      "rule": "B301",
+      "classification": "accepted conditional",
+      "reason": "Executable pickle input: trusted offline builders, manifest/inventory, filesystem ACL; no uploaded/untrusted pickle permitted."
+    },
+    {
+      "file": "itlr\\engine.py",
+      "line": 138,
+      "severity": "MEDIUM",
+      "rule": "B301",
+      "classification": "accepted conditional",
+      "reason": "Executable pickle input: trusted offline builders, manifest/inventory, filesystem ACL; no uploaded/untrusted pickle permitted."
+    },
+    {
+      "file": "itlr\\engine.py",
+      "line": 140,
+      "severity": "MEDIUM",
+      "rule": "B301",
+      "classification": "accepted conditional",
+      "reason": "Executable pickle input: trusted offline builders, manifest/inventory, filesystem ACL; no uploaded/untrusted pickle permitted."
+    },
+    {
+      "file": "itlr\\engine.py",
+      "line": 146,
+      "severity": "MEDIUM",
+      "rule": "B301",
+      "classification": "accepted conditional",
+      "reason": "Executable pickle input: trusted offline builders, manifest/inventory, filesystem ACL; no uploaded/untrusted pickle permitted."
+    },
+    {
+      "file": "itlr\\engine.py",
+      "line": 158,
+      "severity": "MEDIUM",
+      "rule": "B301",
+      "classification": "accepted conditional",
+      "reason": "Executable pickle input: trusted offline builders, manifest/inventory, filesystem ACL; no uploaded/untrusted pickle permitted."
+    },
+    {
+      "file": "itlr\\engine.py",
+      "line": 160,
+      "severity": "MEDIUM",
+      "rule": "B301",
+      "classification": "accepted conditional",
+      "reason": "Executable pickle input: trusted offline builders, manifest/inventory, filesystem ACL; no uploaded/untrusted pickle permitted."
+    },
+    {
+      "file": "itlr\\engine.py",
+      "line": 162,
+      "severity": "MEDIUM",
+      "rule": "B301",
+      "classification": "accepted conditional",
+      "reason": "Executable pickle input: trusted offline builders, manifest/inventory, filesystem ACL; no uploaded/untrusted pickle permitted."
+    },
+    {
+      "file": "itlr\\engine.py",
+      "line": 168,
+      "severity": "MEDIUM",
+      "rule": "B301",
+      "classification": "accepted conditional",
+      "reason": "Executable pickle input: trusted offline builders, manifest/inventory, filesystem ACL; no uploaded/untrusted pickle permitted."
+    },
+    {
+      "file": "itlr\\engine.py",
+      "line": 181,
+      "severity": "MEDIUM",
+      "rule": "B301",
+      "classification": "accepted conditional",
+      "reason": "Executable pickle input: trusted offline builders, manifest/inventory, filesystem ACL; no uploaded/untrusted pickle permitted."
+    },
+    {
+      "file": "itlr\\eval\\cf_eval.py",
+      "line": 127,
+      "severity": "LOW",
+      "rule": "B311",
+      "classification": "expected non-security RNG",
+      "reason": "Synthetic data and evaluation sampling, not session tokens or secrets."
+    },
+    {
+      "file": "itlr\\eval\\cf_eval.py",
+      "line": 209,
+      "severity": "LOW",
+      "rule": "B311",
+      "classification": "expected non-security RNG",
+      "reason": "Synthetic data and evaluation sampling, not session tokens or secrets."
+    },
+    {
+      "file": "itlr\\eval\\loader.py",
+      "line": 9,
+      "severity": "LOW",
+      "rule": "B403",
+      "classification": "import only",
+      "reason": "Import itself does not unpickle; actual loads classified separately."
+    },
+    {
+      "file": "itlr\\eval\\loader.py",
+      "line": 48,
+      "severity": "MEDIUM",
+      "rule": "B301",
+      "classification": "accepted conditional",
+      "reason": "Executable pickle input: trusted offline builders, manifest/inventory, filesystem ACL; no uploaded/untrusted pickle permitted."
+    },
+    {
+      "file": "itlr\\indexv2.py",
+      "line": 15,
+      "severity": "LOW",
+      "rule": "B403",
+      "classification": "import only",
+      "reason": "Import itself does not unpickle; actual loads classified separately."
+    },
+    {
+      "file": "itlr\\indexv2.py",
+      "line": 45,
+      "severity": "MEDIUM",
+      "rule": "B301",
+      "classification": "accepted conditional",
+      "reason": "Executable pickle input: trusted offline builders, manifest/inventory, filesystem ACL; no uploaded/untrusted pickle permitted."
+    },
+    {
+      "file": "itlr\\indexv2.py",
+      "line": 47,
+      "severity": "MEDIUM",
+      "rule": "B301",
+      "classification": "accepted conditional",
+      "reason": "Executable pickle input: trusted offline builders, manifest/inventory, filesystem ACL; no uploaded/untrusted pickle permitted."
+    },
+    {
+      "file": "itlr\\indexv2.py",
+      "line": 49,
+      "severity": "MEDIUM",
+      "rule": "B301",
+      "classification": "accepted conditional",
+      "reason": "Executable pickle input: trusted offline builders, manifest/inventory, filesystem ACL; no uploaded/untrusted pickle permitted."
+    },
+    {
+      "file": "itlr\\indexv2.py",
+      "line": 51,
+      "severity": "MEDIUM",
+      "rule": "B301",
+      "classification": "accepted conditional",
+      "reason": "Executable pickle input: trusted offline builders, manifest/inventory, filesystem ACL; no uploaded/untrusted pickle permitted."
+    },
+    {
+      "file": "itlr\\indexv2.py",
+      "line": 53,
+      "severity": "MEDIUM",
+      "rule": "B301",
+      "classification": "accepted conditional",
+      "reason": "Executable pickle input: trusted offline builders, manifest/inventory, filesystem ACL; no uploaded/untrusted pickle permitted."
+    },
+    {
+      "file": "itlr\\indexv2.py",
+      "line": 80,
+      "severity": "MEDIUM",
+      "rule": "B301",
+      "classification": "accepted conditional",
+      "reason": "Executable pickle input: trusted offline builders, manifest/inventory, filesystem ACL; no uploaded/untrusted pickle permitted."
+    },
+    {
+      "file": "itlr\\indexv2.py",
+      "line": 82,
+      "severity": "MEDIUM",
+      "rule": "B301",
+      "classification": "accepted conditional",
+      "reason": "Executable pickle input: trusted offline builders, manifest/inventory, filesystem ACL; no uploaded/untrusted pickle permitted."
+    },
+    {
+      "file": "itlr\\indexv2.py",
+      "line": 135,
+      "severity": "LOW",
+      "rule": "B404",
+      "classification": "import only",
+      "reason": "Subprocess import alone does not spawn; calls reviewed separately."
+    },
+    {
+      "file": "itlr\\indexv2.py",
+      "line": 147,
+      "severity": "LOW",
+      "rule": "B603",
+      "classification": "accepted operator boundary",
+      "reason": "Argument-list process execution without shell; executable/module/environment must remain operator-controlled."
+    },
+    {
+      "file": "itlr\\pipelines\\build_cf.py",
+      "line": 12,
+      "severity": "LOW",
+      "rule": "B403",
+      "classification": "import only",
+      "reason": "Import itself does not unpickle; actual loads classified separately."
+    },
+    {
+      "file": "itlr\\pipelines\\build_cf.py",
+      "line": 53,
+      "severity": "MEDIUM",
+      "rule": "B301",
+      "classification": "accepted conditional",
+      "reason": "Executable pickle input: trusted offline builders, manifest/inventory, filesystem ACL; no uploaded/untrusted pickle permitted."
+    },
+    {
+      "file": "itlr\\pipelines\\build_embeddings.py",
+      "line": 14,
+      "severity": "LOW",
+      "rule": "B403",
+      "classification": "import only",
+      "reason": "Import itself does not unpickle; actual loads classified separately."
+    },
+    {
+      "file": "itlr\\pipelines\\build_embeddings.py",
+      "line": 57,
+      "severity": "MEDIUM",
+      "rule": "B301",
+      "classification": "accepted conditional",
+      "reason": "Executable pickle input: trusted offline builders, manifest/inventory, filesystem ACL; no uploaded/untrusted pickle permitted."
+    },
+    {
+      "file": "itlr\\pipelines\\build_embeddings_v2.py",
+      "line": 18,
+      "severity": "LOW",
+      "rule": "B403",
+      "classification": "import only",
+      "reason": "Import itself does not unpickle; actual loads classified separately."
+    },
+    {
+      "file": "itlr\\pipelines\\build_embeddings_v2.py",
+      "line": 74,
+      "severity": "MEDIUM",
+      "rule": "B301",
+      "classification": "accepted conditional",
+      "reason": "Executable pickle input: trusted offline builders, manifest/inventory, filesystem ACL; no uploaded/untrusted pickle permitted."
+    },
+    {
+      "file": "itlr\\pipelines\\build_model.py",
+      "line": 9,
+      "severity": "LOW",
+      "rule": "B403",
+      "classification": "import only",
+      "reason": "Import itself does not unpickle; actual loads classified separately."
+    },
+    {
+      "file": "itlr\\utils\\repickle.py",
+      "line": 16,
+      "severity": "LOW",
+      "rule": "B403",
+      "classification": "import only",
+      "reason": "Import itself does not unpickle; actual loads classified separately."
+    },
+    {
+      "file": "itlr\\utils\\repickle.py",
+      "line": 61,
+      "severity": "MEDIUM",
+      "rule": "B301",
+      "classification": "accepted conditional",
+      "reason": "Executable pickle input: trusted offline builders, manifest/inventory, filesystem ACL; no uploaded/untrusted pickle permitted."
+    },
+    {
+      "file": "itlr\\utils\\runtime_patches.py",
+      "line": 22,
+      "severity": "LOW",
+      "rule": "B110",
+      "classification": "accepted diagnostic fallback",
+      "reason": "Best-effort console encoding/logging or optional runtime warning/progress configuration; primary operations still fail explicitly."
+    },
+    {
+      "file": "itlr\\utils\\runtime_patches.py",
+      "line": 32,
+      "severity": "LOW",
+      "rule": "B110",
+      "classification": "accepted diagnostic fallback",
+      "reason": "Best-effort console encoding/logging or optional runtime warning/progress configuration; primary operations still fail explicitly."
+    },
+    {
+      "file": "itlr\\utils\\runtime_patches.py",
+      "line": 54,
+      "severity": "LOW",
+      "rule": "B110",
+      "classification": "accepted diagnostic fallback",
+      "reason": "Best-effort console encoding/logging or optional runtime warning/progress configuration; primary operations still fail explicitly."
+    },
+    {
+      "file": "scripts\\build_all.py",
+      "line": 16,
+      "severity": "LOW",
+      "rule": "B404",
+      "classification": "import only",
+      "reason": "Subprocess import alone does not spawn; calls reviewed separately."
+    },
+    {
+      "file": "scripts\\build_all.py",
+      "line": 87,
+      "severity": "LOW",
+      "rule": "B603",
+      "classification": "accepted operator boundary",
+      "reason": "Argument-list process execution without shell; executable/module/environment must remain operator-controlled."
+    },
+    {
+      "file": "scripts\\build_all_v2.py",
+      "line": 29,
+      "severity": "LOW",
+      "rule": "B404",
+      "classification": "import only",
+      "reason": "Subprocess import alone does not spawn; calls reviewed separately."
+    },
+    {
+      "file": "scripts\\build_all_v2.py",
+      "line": 65,
+      "severity": "LOW",
+      "rule": "B603",
+      "classification": "accepted operator boundary",
+      "reason": "Argument-list process execution without shell; executable/module/environment must remain operator-controlled."
+    },
+    {
+      "file": "scripts\\refresh_pipeline.py",
+      "line": 18,
+      "severity": "LOW",
+      "rule": "B404",
+      "classification": "import only",
+      "reason": "Subprocess import alone does not spawn; calls reviewed separately."
+    },
+    {
+      "file": "scripts\\refresh_pipeline.py",
+      "line": 28,
+      "severity": "LOW",
+      "rule": "B603",
+      "classification": "accepted operator boundary",
+      "reason": "Argument-list process execution without shell; executable/module/environment must remain operator-controlled."
+    },
+    {
+      "file": "scripts\\verify_local_models.py",
+      "line": 5,
+      "severity": "LOW",
+      "rule": "B404",
+      "classification": "import only",
+      "reason": "Subprocess import alone does not spawn; calls reviewed separately."
+    },
+    {
+      "file": "scripts\\verify_local_models.py",
+      "line": 35,
+      "severity": "LOW",
+      "rule": "B603",
+      "classification": "accepted operator boundary",
+      "reason": "Argument-list process execution without shell; executable/module/environment must remain operator-controlled."
+    },
+    {
+      "file": "scripts\\verify_local_models.py",
+      "line": 42,
+      "severity": "MEDIUM",
+      "rule": "B310",
+      "classification": "accepted conditional",
+      "reason": "Operator-configured local/provider HTTP URL; scheme validation and network isolation required. Not request-controlled crawler input."
+    }
+  ]
+}

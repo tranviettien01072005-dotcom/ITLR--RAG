@@ -7,6 +7,12 @@ vi.mock("../services/recommender", () => ({ recommender: { chatStream: mocks.str
 vi.mock("../services/chat-history", () => ({ ownedChatHistory: mocks.history, saveChat: mocks.save }));
 vi.mock("../services/dataset", () => ({ extractText: vi.fn(), appendCatalogRow: vi.fn() }));
 import { apiRouter } from "./api.routes";
+import { requireAuth } from "../middleware/auth";
+it.each(["/chat", "/chat/stream"])("registers authentication first for %s", path => {
+  const route = apiRouter.stack.find(layer => layer.route?.path === path)!.route!;
+  expect(route.stack).toHaveLength(2);
+  expect(route.stack[0].handle).toBe(requireAuth);
+});
 function handler(path: string) { return apiRouter.stack.find(layer => layer.route?.path === path)!.route!.stack.at(-1)!.handle; }
 function response() {
   const events = new EventEmitter();

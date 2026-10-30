@@ -1,5 +1,43 @@
 # ITLR–RAG | Intelligent IT Learning Platform — Changelog
 
+### RAG quality và release validation — 2026-10-30
+
+- Thêm 23 frozen queries/evidence trên 118 snapshot thật và evaluator tái lập K=1/5/10,
+  latency/throughput/whole-process RSS; so sánh lexical với MMR. Nhãn engineer-authored,
+  chưa exhaustive/human-independent; chưa đủ bằng chứng đổi ranking hoặc threshold.
+- Giữ tương thích stream thiếu finish metadata nhưng log `completion unverified`,
+  có regression FAIL → PASS. Sửa mô tả `/health`: chưa có loaded-version fingerprint.
+- Bổ sung staging acceptance/restore drill cô lập, chưa thực thi vì thiếu môi trường.
+- Fresh: **414 Python PASS/0 skip**, coverage **65,73%**; **132 Web PASS**, lines **45,31%**.
+  Typecheck/lint/build/compileall/pip check PASS; online dependency audits 0 advisory;
+  Bandit còn 27 Medium/47 Low, 0 High. [Release verdict: NO-GO](reports/RELEASE_VALIDATION_2026-10-30.md).
+
+### Final architecture hardening — 2026-10-30
+
+- Sửa bốn lỗi có regression FAIL → PASS: finish reason không hoàn tất bị coi là thành
+  công; SSE nhận event sau done; Ollama bỏ qua JSON/error/EOF không hợp lệ; response
+  prewarm không được đóng. Không retry lại phần text đã phát.
+- Bổ sung kiểm thử history, strict fallback, cancellation và authorization order/denial.
+- Fresh: **410 Python PASS/0 skip**, coverage **65,71%**; **132 Web PASS**, lines
+  **45,31%**. Online pip-audit (88 distributions) và npm audit: không advisory;
+  Bandit **0 High / 27 Medium / 47 Low**, chưa phải scanner sạch.
+- Sửa mô tả Markdown trong ADR-009 và cập nhật contracts streaming. Production **NO-GO**;
+  [bằng chứng và triage](reports/RESTRUCTURING_CONTINUATION_2026-10-30.md).
+
+### Enterprise refactor continuation — 2026-10-30
+
+- Tách display formatting sang `itlr/core/display.py`, giữ export cũ từ recommender;
+  tách history/fallback adapter sang `itlr/chatbot/llm_adapter.py`, giữ import và call
+  points cũ của chatbot. Không đổi ranking hoặc provider transport.
+- Tách Web chat HTTP/SSE handlers sang `web/src/routes/chat.handlers.ts`; router giữ
+  URL, authorization và thứ tự middleware. Bỏ bốn unused imports đã xác minh.
+- Viết lại README, tách trạng thái hiện hành khỏi nhật ký memory, chuẩn hóa 11 ADR;
+  rà 51 Markdown tracked và hai báo cáo checkpoint bổ sung. Giữ số liệu lịch sử.
+- Fresh: **387 Python PASS/0 skip**, coverage statements **65,01%**; **124 Web PASS**,
+  line coverage **45,01%**; typecheck/lint/build/compileall/pip check PASS.
+  [Inventory và Before/After](reports/RESTRUCTURING_CONTINUATION_2026-10-30.md).
+  Mermaid render và staging production chưa kiểm chứng; **NO-GO**.
+
 ### Portability, security và dedup — 2026-10-30
 
 - Xóa API key thật khỏi `.env.example` working copy; thêm test chặn secret trong mọi env example.
@@ -281,3 +319,13 @@ Packaging verification: initial namespace discovery stalled at metadata; setting
 then failed asset inspection: zero static assets. Added explicit itlr.api static HTML/JS/CSS package
 data; rebuilt wheel successfully and verified all four UI assets, retrieval modules and legacy
 BM25 shim are present. No dependency downloads (--no-index --no-deps --no-build-isolation).
+
+### Streaming continuation - 2026-10-30
+
+- Accept usage-only terminal chunks without reporting a false interrupted stream; fake DeepSeek/OpenAI regression: 2 FAIL to PASS, client suite 34 PASS.
+- [Evidence and unresolved gates](reports/HARDENING_STREAM_2026-10-30.md); no retrieval configuration change or production readiness claim.
+
+### Restructuring continuation - 2026-10-30
+
+- Isolate mutable provider usage counters in snapshots (regression FAIL to PASS); remove unused private pointer helper and redundant builder path conversion.
+- Update architecture/data-flow documentation and ADR-011 status; preserve historical audit evidence. [Validation](reports/RESTRUCTURING_CONTINUATION_2026-10-30.md).

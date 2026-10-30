@@ -160,6 +160,6 @@ Nếu mở truy cập ngoài máy local, cần TLS, origin/cookie đúng, revers
 | Build báo lỗi sau activate | Đọc `CURRENT.json`/history trước retry; pointer có thể đã commit dù mirror lỗi |
 | TestClient treo trong sandbox | Dùng kiểm chứng ngoài sandbox theo quyền được cấp; không skip tests |
 
-Chạy [bộ kiểm thử](../README.md#kiểm-thử-và-đánh-giá) trước bàn giao. Docker, authenticated browser E2E, SMTP, load toàn corpus và storage power-loss vẫn là các cổng kiểm chứng riêng; readiness/login smoke không thay thế chúng.
+Chạy [bộ kiểm thử](../README.md#kiểm-chứng-testing) trước bàn giao. Docker, authenticated browser E2E, SMTP, load toàn corpus và storage power-loss vẫn là các cổng kiểm chứng riêng; readiness/login smoke không thay thế chúng.
 
 Code ownership and dependency direction: [architecture map](../docs/ARCHITECTURE.md).

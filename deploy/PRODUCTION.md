@@ -5,6 +5,10 @@ This is a Linux single-host design, suitable for preparing a Google Cloud VM sta
 environment. It is not a Cloud Run or multi-host design: artifact locks, SQLite and
 in-memory limiters require one replica per service and a local filesystem.
 
+Current code/documentation evidence: [restructuring checkpoint](../reports/RESTRUCTURING_CONTINUATION_2026-10-30.md).
+Run the staging release gates below even when local tests pass. Operational symptoms
+and safe checks are listed in [troubleshooting](DEPLOY.md#kiểm-tra-và-xử-lý-sự-cố).
+
 ## Boundaries
 
 Internet -> Caddy :443 -> Web :3000 -> API :8000 / PostgreSQL :5432.
@@ -76,8 +80,10 @@ dc stop web
 ```
 
 Web `/health` is process liveness; `/ready` checks PostgreSQL only. It does not
-confirm RAG readiness. API `/health` must be checked separately with artifact
-version/provenance. Monitor disk space, memory/OOM, container restarts, database
+confirm RAG readiness. API `/health` reports readiness/items/CF, but does not expose
+the loaded engine's version/hash. CURRENT.json is on-disk state, not proof of a
+successful reload. Loaded-version evidence remains a release acceptance gap.
+Monitor disk space, memory/OOM, container restarts, database
 availability, API health and HTTP 5xx/latency. External alert delivery is not configured.
 Do not log request bodies, chat content or secrets. Web SIGTERM drains connections
 for up to 20 seconds, closes remaining SSE connections, then drains the database
@@ -122,3 +128,72 @@ and recreate API/Web. Use the existing index rollback CLI for artifacts. A code
 rollback cannot undo schema or data changes; restore a tested backup when required.
 Do not promote until Docker build, restore drill, real PostgreSQL flows, browser/SSE,
 RAG quality and load measurements pass in Linux staging. No deployment has occurred.
+
+Latest offline verification and pending staging gates: [stream hardening](../reports/HARDENING_STREAM_2026-10-30.md). This continuation does not certify Docker, PostgreSQL, HTTPS or backup/restore runtime.
+
+Current code/documentation checkpoint: [restructuring continuation](../reports/RESTRUCTURING_CONTINUATION_2026-10-30.md). Offline test success does not replace staging release gates.
+
+## Isolated staging acceptance drill (NOT EXECUTED)
+
+Use a separate staging checkout/release copy containing the reviewed working-tree
+changes, a separate var directory and fresh credentials. A different Compose project
+alone does not isolate bind-mounted var; do not point this drill at the live checkout.
+Prefer a separate Linux staging host as required above. The template fixes subnet
+172.30.0.0/24 and proxy trust IP; same-host staging additionally needs reviewed,
+non-overlapping network/subnet and matching proxy trust settings.
+Confirm domain, paths, database host and volumes before any write. No automatic
+Docker/WSL installation or cloud provisioning is part of this procedure.
+
+In that staging workspace only, redefine dc to use a dedicated project:
+
+```bash
+dc() { docker compose -p itlr-staging-validation --env-file deploy/compose.env -f compose.production.yml "$@"; }
+dc config --quiet
+dc build api web
+dc up -d postgres
+dc run --rm --no-deps web node dist/db/migrate.js
+dc run --rm --no-deps web node dist/db/sync-courses.js
+dc up -d api web proxy
+dc ps
+```
+
+Prerequisites remain the trusted staged artifacts/model cache and exported Web CSV
+described above. Capture image digests, corpus/artifact manifests and release ID.
+Check /health and /ready through HTTPS; separately check API /live and /health.
+Current API health has no loaded-version fingerprint: independently proving the
+serving version after reload/rollback is still an acceptance gap, not a PASS from
+reading CURRENT.json.
+
+Create a disposable account through the actual registration/login forms. In the
+authenticated chat UI verify early sources/text, final replacement, done, persistence
+after reload, and cancellation when disconnecting. A second staging account must not
+read that conversation or attachment; logout must prevent chat access. Exercise
+admin authentication, rejected upload signatures and upstream failure without
+logging cookies, passwords, reset tokens or response content. These are browser
+acceptance cases, not a CSRF bypass via a simplified curl login.
+
+For backup/restore, stop writers and produce the coordinated dump/var pair above.
+The following commands create a new database in the isolated staging PostgreSQL;
+they intentionally fail if the name already exists and never drop an existing DB:
+
+```bash
+dc exec -T postgres sh -c 'createdb -U "$POSTGRES_USER" itlr_restore_validation'
+dc exec -T postgres sh -c 'pg_restore --exit-on-error --no-owner -U "$POSTGRES_USER" -d itlr_restore_validation' < "deploy/backups/db-$backup_stamp.dump"
+dc exec -T postgres sh -c 'psql -v ON_ERROR_STOP=1 -U "$POSTGRES_USER" -d itlr_restore_validation -c "SELECT count(*) FROM courses; SELECT count(*) FROM users;"'
+```
+
+Compare counts to the stopped staging source, then point staging Web at the restored
+database and verify ownership, progress and saved chats. Validate archive paths/hashes
+before restoring var into another fresh staging directory. Never overwrite active var.
+
+For artifacts, use two trusted probed fixture versions in the isolated root: activate,
+reload, query known distinguishing documents, rollback, reload, and query the old
+documents. Inject a corrupt candidate only in that root; reload must fail while the
+loaded engine remains usable. Restart after an interrupted staging build; the prior
+active version must still serve. Existing pytest lifecycle tests cover temporary
+fixtures, but do not replace this Linux/container/storage drill.
+
+Record per-case expected/observed results, timings, sanitized logs and restore
+evidence. Promote only after all required cases pass and neural/generation quality
+criteria are agreed and measured. API currently runs as root with a writable var
+mount; validate least privilege, artifact ACL and rollback permissions before release.

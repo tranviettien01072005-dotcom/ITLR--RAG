@@ -1,0 +1,23 @@
+{
+  "scope": "Static source assertions only; not docker compose config/build or deployment execution",
+  "checks": {
+    "yaml_parse": true,
+    "expected_services": true,
+    "only_proxy_publishes_ports": true,
+    "web_waits_for_db_health": true,
+    "web_waits_for_api_health": true,
+    "api_single_worker": true,
+    "web_nonroot": true,
+    "api_nonroot_declared": false,
+    "api_var_readonly": false,
+    "caddy_stream_flush": true
+  },
+  "tools": {
+    "docker": false,
+    "podman": false,
+    "psql": false,
+    "mmdc": false
+  },
+  "runtime": "BLOCKED",
+  "fixed_subnet_note": "Separate Linux staging host preferred; same-host validation requires reviewed non-overlapping subnet and proxy trust addresses."
+}

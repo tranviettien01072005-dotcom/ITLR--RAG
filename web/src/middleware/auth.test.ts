@@ -4,10 +4,17 @@ import type { Request, Response } from "express";
 vi.mock("../config/env", () => ({ env: { jwtSecret: "x".repeat(40), adminPasscode: "admin-test-passcode" } }));
 vi.mock("../db/pool", () => ({ query: vi.fn() }));
 
-import { hasAdminAccess, loadUser, passcodeMatches, requireAdminAccess, signToken } from "./auth";
+import { hasAdminAccess, loadUser, passcodeMatches, requireAdminAccess, requireAuth, signToken } from "./auth";
 import { query } from "../db/pool";
 
 const user = { id: 1, email: "learner@example.org", name: "Learner", role: "admin" as const };
+
+it.each(["/api/chat", "/api/chat/stream"])("blocks unauthenticated access to %s", originalUrl => {
+  const redirect = vi.fn(), next = vi.fn();
+  requireAuth({ originalUrl } as Request, { redirect } as unknown as Response, next);
+  expect(redirect).toHaveBeenCalledWith("/login?next=" + encodeURIComponent(originalUrl));
+  expect(next).not.toHaveBeenCalled();
+});
 
 it("uses the current account role after an admin demotion", async () => {
   vi.mocked(query).mockResolvedValueOnce([{ ...user, role: "user" }]);

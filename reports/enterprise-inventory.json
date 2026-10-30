@@ -1,0 +1,2442 @@
+{
+  "scope": "Static source/content review is not a complete line-by-line security audit. Runtime verification is the full local suite; staging remains blocked.",
+  "tracked_markdown_baseline": 51,
+  "python_count": 139,
+  "typescript_count": 59,
+  "modules": [
+    {
+      "file": "Dockerfile",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "compose.production.yml",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "configs/collect.sources.json",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "configs/curated.resources.json",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "deploy/Caddyfile",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "deploy/api.env.example",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "deploy/compose.env.example",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "deploy/postgres.env.example",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "deploy/web.env.example",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "eval/adapt_real_data.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; offline entrypoints kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "eval/bench_chunks_v3.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; offline entrypoints kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "eval/bench_latency.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; offline entrypoints kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "eval/build_ltr.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; offline entrypoints kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "eval/eval_cf.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; offline entrypoints kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "eval/eval_fixture.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; offline entrypoints kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "eval/eval_generation.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; offline entrypoints kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "eval/eval_lexical_real.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; offline entrypoints kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "eval/eval_off_policy.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; offline entrypoints kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "eval/eval_offtopic.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; offline entrypoints kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "eval/eval_v2_real.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; offline entrypoints kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "eval/evaluate_human.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; offline entrypoints kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "eval/make_judgments.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; offline entrypoints kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "eval/prepare_labeling_sheet.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; offline entrypoints kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "eval/run_all.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; offline entrypoints kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "eval/run_evaluation.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; offline entrypoints kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/__init__.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/api/__init__.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/api/__main__.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/api/ratelimit.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/api/server.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/chatbot/__init__.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/chatbot/chatbot.py",
+      "status": "Refactored",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Responsibility extraction or verified unused import cleanup; full regression passed. Legacy helper/module re-exports explicitly preserved."
+    },
+    {
+      "file": "itlr/chatbot/citations.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/chatbot/intent_router.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/chatbot/knowledge_base.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/chatbot/llm_adapter.py",
+      "status": "Refactored",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Responsibility extraction or verified unused import cleanup; full regression passed."
+    },
+    {
+      "file": "itlr/chatbot/llm_client.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/chatbot/opencode_client.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/chatbot/presentation.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/chatbot/query_understanding.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/collect/__init__.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change. Legacy helper/module re-exports explicitly preserved."
+    },
+    {
+      "file": "itlr/collect/adapters.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/collect/chunk.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/collect/extract.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/collect/http.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/collect/normalize.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change. Legacy helper/module re-exports explicitly preserved."
+    },
+    {
+      "file": "itlr/collect/quality.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/collect/runner.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/collect/sources.py",
+      "status": "Refactored",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Responsibility extraction or verified unused import cleanup; full regression passed."
+    },
+    {
+      "file": "itlr/collect/store.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/collect/url_util.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/config.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change. Deferred cycle retained; changing lazy initialization would alter runtime behavior."
+    },
+    {
+      "file": "itlr/core/__init__.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/core/ann.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/core/bm25.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change. Legacy helper/module re-exports explicitly preserved."
+    },
+    {
+      "file": "itlr/core/chunks.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/core/display.py",
+      "status": "Refactored",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Responsibility extraction or verified unused import cleanup; full regression passed."
+    },
+    {
+      "file": "itlr/core/embeddings.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/core/pipeline.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/core/rag.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/core/recommender.py",
+      "status": "Refactored",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Responsibility extraction or verified unused import cleanup; full regression passed."
+    },
+    {
+      "file": "itlr/core/rerank.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/data/__init__.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/data/generate_interactions.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/data/generate_items.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/engine.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/eval/__init__.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/eval/cf_eval.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/eval/diversity.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/eval/loader.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/eval/ltr_features.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/eval/metrics.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/eval/off_policy.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/eval/significance.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/indexv2.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/locking.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change. Deferred cycle retained; changing lazy initialization would alter runtime behavior."
+    },
+    {
+      "file": "itlr/pipelines/__init__.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; offline entrypoints kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/pipelines/build_cf.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; offline entrypoints kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/pipelines/build_embeddings.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; offline entrypoints kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/pipelines/build_embeddings_v2.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; offline entrypoints kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/pipelines/build_model.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; offline entrypoints kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/pipelines/generate_interactions.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; offline entrypoints kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/retrieval/__init__.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/retrieval/bm25.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/retrieval/service.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/utils/__init__.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/utils/repickle.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/utils/runtime_patches.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "itlr/versioning.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change. Deferred cycle retained; changing lazy initialization would alter runtime behavior."
+    },
+    {
+      "file": "scripts/build_all.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; offline entrypoints kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "scripts/build_all_v2.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; offline entrypoints kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "scripts/collect_curated.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; offline entrypoints kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "scripts/collect_data.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; offline entrypoints kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "scripts/export_web_catalog.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; offline entrypoints kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "scripts/import_curated_snapshot.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; offline entrypoints kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "scripts/refresh_pipeline.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; offline entrypoints kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "scripts/verify_local_models.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; offline entrypoints kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/conftest.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_admin_security_cf.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_ann.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_ann_active_version.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_api_hardening.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_api_integration.py",
+      "status": "Refactored",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Responsibility extraction or verified unused import cleanup; full regression passed."
+    },
+    {
+      "file": "tests/test_artifact_integrity.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_audit_regressions.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_bm25_refit.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_build_all_v2_cli.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_build_model_load.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_catalog_export_safety.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_chatbot_llm_adapter.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_chatbot_presentation.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_chatbot_retrieval_fixes.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_chunk_contract.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_chunks_v3.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_collect_crawl.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_collect_reconcile.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_collect_runner.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_collect_store_close.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_collect_utils.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_curated_collection.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_embedding_presets.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_engine_reload.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_env_examples.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_eval_generation.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_eval_integrity.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_eval_loader.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_eval_metrics_diversity.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_eval_scripts_paths.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_generate_interactions.py",
+      "status": "Refactored",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Responsibility extraction or verified unused import cleanup; full regression passed."
+    },
+    {
+      "file": "tests/test_grounded_citations.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_http_layer.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_index_probe.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_lexical_real_eval.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_lifecycle_robustness.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change. Duplicated small vroot fixture retained for independent test setup."
+    },
+    {
+      "file": "tests/test_llm_client.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_locking.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_markdown_links.py",
+      "status": "Refactored",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Responsibility extraction or verified unused import cleanup; full regression passed."
+    },
+    {
+      "file": "tests/test_normalize.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_offtopic_gate.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_pickle_handles.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_pipeline_fixture.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_rag_query_utils.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_real_source_text.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_retrieval_service.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_scripts_and_configs.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_significance.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_static_security.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "tests/test_versioning.py",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change. Duplicated small vroot fixture retained for independent test setup."
+    },
+    {
+      "file": "web/Dockerfile",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/app.test.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/app.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/config/catalog.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/config/env.test.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/config/env.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/db/check.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/db/migrate.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/db/pool.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/db/seed-courses.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/db/sync-courses.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/db/types.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/middleware/auth.test.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/middleware/auth.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/middleware/security.test.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/middleware/security.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/middleware/uploads.test.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/middleware/uploads.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/routes/admin-login.test.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/routes/admin-security.test.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/routes/admin.routes.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/routes/api.routes.ts",
+      "status": "Refactored",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Responsibility extraction or verified unused import cleanup; full regression passed."
+    },
+    {
+      "file": "web/src/routes/auth-security.test.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/routes/auth.routes.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/routes/chat-page.test.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/routes/chat.handlers.ts",
+      "status": "Refactored",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Responsibility extraction or verified unused import cleanup; full regression passed."
+    },
+    {
+      "file": "web/src/routes/chat.routes.test.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/routes/learning.routes.test.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/routes/learning.routes.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/routes/media-range.test.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/routes/pages.routes.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/routes/realtime-lifecycle.test.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/routes/social.routes.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/routes/upload-extraction.test.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/server.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/services/catalog-csv.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/services/chat-client.test.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/services/chat-history.test.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/services/chat-history.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/services/chat-stream.test.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/services/chat-stream.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/services/dataset-extract.test.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/services/dataset-extract.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/services/dataset.test.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/services/dataset.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/services/http-range.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/services/learning.test.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/services/learning.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/services/mailer.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/services/markdown.test.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/services/markdown.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/services/password.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/services/posts.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/services/realtime.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/services/recommender-stream.test.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/services/recommender.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/services/social.test.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/services/social.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; runtime contracts kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/services/static-ui.test.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    },
+    {
+      "file": "web/src/views/views.test.ts",
+      "status": "Retained",
+      "review": "static source/import/syntax review; tests where supported",
+      "reason": "Retained after structural review; test fixtures and assertions kept to avoid unproven behavioral change."
+    }
+  ],
+  "markdown": [
+    {
+      "file": "AGENTS.md",
+      "status": "Refactored",
+      "category": "current guidance",
+      "reason": "Structure, local links and contracts checked; external commands not all executed."
+    },
+    {
+      "file": "CHANGELOG.md",
+      "status": "Refactored",
+      "category": "current guidance",
+      "reason": "Structure, local links and contracts checked; external commands not all executed."
+    },
+    {
+      "file": "CONSTRAINTS.md",
+      "status": "Refactored",
+      "category": "current guidance",
+      "reason": "Structure, local links and contracts checked; external commands not all executed."
+    },
+    {
+      "file": "README.md",
+      "status": "Refactored",
+      "category": "current guidance",
+      "reason": "Structure, local links and contracts checked; external commands not all executed."
+    },
+    {
+      "file": "RESEARCH_ITLR.md",
+      "status": "Retained",
+      "category": "historical evidence/plan",
+      "reason": "Preserve dated evidence; current claims defer to validation."
+    },
+    {
+      "file": "data/README.md",
+      "status": "Reviewed",
+      "category": "current guidance",
+      "reason": "Structure, local links and contracts checked; external commands not all executed."
+    },
+    {
+      "file": "deploy/DEPLOY.md",
+      "status": "Refactored",
+      "category": "current guidance",
+      "reason": "Fix README testing anchor after navigation rewrite; operational commands preserved."
+    },
+    {
+      "file": "deploy/LOCAL_MODELS.md",
+      "status": "Reviewed",
+      "category": "current guidance",
+      "reason": "Structure, local links and contracts checked; external commands not all executed."
+    },
+    {
+      "file": "deploy/PRODUCTION.md",
+      "status": "Refactored",
+      "category": "current guidance",
+      "reason": "Structure, local links and contracts checked; external commands not all executed."
+    },
+    {
+      "file": "docs/ARCHITECTURE.md",
+      "status": "Refactored",
+      "category": "current guidance",
+      "reason": "Structure, local links and contracts checked; external commands not all executed."
+    },
+    {
+      "file": "docs/PROJECT_MEMORY.md",
+      "status": "Refactored",
+      "category": "current guidance",
+      "reason": "Structure, local links and contracts checked; external commands not all executed."
+    },
+    {
+      "file": "docs/decisions/ADR-001-deepseek-primary-llm.md",
+      "status": "Refactored",
+      "category": "ADR",
+      "reason": "Structure, local links and contracts checked; external commands not all executed."
+    },
+    {
+      "file": "docs/decisions/ADR-002-centralized-artifact-paths.md",
+      "status": "Refactored",
+      "category": "ADR",
+      "reason": "Structure, local links and contracts checked; external commands not all executed."
+    },
+    {
+      "file": "docs/decisions/ADR-003-synthetic-interactions-policy.md",
+      "status": "Refactored",
+      "category": "ADR",
+      "reason": "Structure, local links and contracts checked; external commands not all executed."
+    },
+    {
+      "file": "docs/decisions/ADR-004-evaluation-design.md",
+      "status": "Refactored",
+      "category": "ADR",
+      "reason": "Structure, local links and contracts checked; external commands not all executed."
+    },
+    {
+      "file": "docs/decisions/ADR-005-cf-optional-decoupling.md",
+      "status": "Refactored",
+      "category": "ADR",
+      "reason": "Structure, local links and contracts checked; external commands not all executed."
+    },
+    {
+      "file": "docs/decisions/ADR-006-data-sources-licensing.md",
+      "status": "Refactored",
+      "category": "ADR",
+      "reason": "Structure, local links and contracts checked; external commands not all executed."
+    },
+    {
+      "file": "docs/decisions/ADR-007-artifact-versioning.md",
+      "status": "Refactored",
+      "category": "ADR",
+      "reason": "Structure, local links and contracts checked; external commands not all executed."
+    },
+    {
+      "file": "docs/decisions/ADR-008-admin-token.md",
+      "status": "Refactored",
+      "category": "ADR",
+      "reason": "Structure, local links and contracts checked; external commands not all executed."
+    },
+    {
+      "file": "docs/decisions/ADR-009-security-runtime-boundaries.md",
+      "status": "Refactored",
+      "category": "ADR",
+      "reason": "Structure, local links and contracts checked; external commands not all executed."
+    },
+    {
+      "file": "docs/decisions/ADR-010-shared-retrieval-and-atomic-state.md",
+      "status": "Refactored",
+      "category": "ADR",
+      "reason": "Structure, local links and contracts checked; external commands not all executed."
+    },
+    {
+      "file": "docs/decisions/ADR-011-chatbot-presentation-and-catalog-contract.md",
+      "status": "Refactored",
+      "category": "ADR",
+      "reason": "Structure, local links and contracts checked; external commands not all executed."
+    },
+    {
+      "file": "docs/review-2026-10-27.md",
+      "status": "Retained",
+      "category": "historical evidence/plan",
+      "reason": "Preserve dated evidence; current claims defer to validation."
+    },
+    {
+      "file": "docs/superpowers/plans/2026-10-29-itrl-v2.md",
+      "status": "Retained",
+      "category": "historical evidence/plan",
+      "reason": "Preserve dated evidence; current claims defer to validation."
+    },
+    {
+      "file": "docs/superpowers/specs/2026-10-29-itrl-v2-design.md",
+      "status": "Retained",
+      "category": "historical evidence/plan",
+      "reason": "Preserve dated evidence; current claims defer to validation."
+    },
+    {
+      "file": "reports/ARCHITECTURE_REFACTOR_2026-10-30.md",
+      "status": "Retained",
+      "category": "historical evidence/plan",
+      "reason": "Preserve dated evidence; current claims defer to validation."
+    },
+    {
+      "file": "reports/AUDIT_2026-10-29.md",
+      "status": "Retained",
+      "category": "historical evidence/plan",
+      "reason": "Preserve dated evidence; current claims defer to validation."
+    },
+    {
+      "file": "reports/AUDIT_INCREMENT_2026-10-30.md",
+      "status": "Retained",
+      "category": "historical evidence/plan",
+      "reason": "Preserve dated evidence; current claims defer to validation."
+    },
+    {
+      "file": "reports/AUDIT_PORTABILITY_2026-10-30.md",
+      "status": "Retained",
+      "category": "historical evidence/plan",
+      "reason": "Preserve dated evidence; current claims defer to validation."
+    },
+    {
+      "file": "reports/BANDIT_TRIAGE_2026-10-30.md",
+      "status": "Retained",
+      "category": "historical evidence/plan",
+      "reason": "Preserve dated evidence; current claims defer to validation."
+    },
+    {
+      "file": "reports/FINAL_REMEDIATION.md",
+      "status": "Retained",
+      "category": "historical evidence/plan",
+      "reason": "Preserve dated evidence; current claims defer to validation."
+    },
+    {
+      "file": "reports/HARDENING_STREAM_2026-10-30.md",
+      "status": "Retained",
+      "category": "historical evidence/plan",
+      "reason": "Preserve dated evidence; current claims defer to validation."
+    },
+    {
+      "file": "reports/LOCAL_MODELS.md",
+      "status": "Retained",
+      "category": "historical evidence/plan",
+      "reason": "Preserve dated evidence; current claims defer to validation."
+    },
+    {
+      "file": "reports/PONYTAIL_AUDIT.md",
+      "status": "Retained",
+      "category": "historical evidence/plan",
+      "reason": "Preserve dated evidence; current claims defer to validation."
+    },
+    {
+      "file": "reports/PONYTAIL_REVIEW.md",
+      "status": "Retained",
+      "category": "historical evidence/plan",
+      "reason": "Preserve dated evidence; current claims defer to validation."
+    },
+    {
+      "file": "reports/PRODUCTION_CHECKPOINT_2026-10-30.md",
+      "status": "Retained",
+      "category": "historical evidence/plan",
+      "reason": "Preserve dated evidence; current claims defer to validation."
+    },
+    {
+      "file": "reports/RESTRUCTURING_CONTINUATION_2026-10-30.md",
+      "status": "Retained",
+      "category": "historical evidence/plan",
+      "reason": "Preserve dated evidence; current claims defer to validation."
+    },
+    {
+      "file": "reports/SKILLS_INVENTORY.md",
+      "status": "Retained",
+      "category": "historical evidence/plan",
+      "reason": "Preserve dated evidence; current claims defer to validation."
+    },
+    {
+      "file": "reports/V2_PRODUCT.md",
+      "status": "Retained",
+      "category": "historical evidence/plan",
+      "reason": "Preserve dated evidence; current claims defer to validation."
+    },
+    {
+      "file": "reports/V3_PROGRESS_2026-10-30.md",
+      "status": "Retained",
+      "category": "historical evidence/plan",
+      "reason": "Preserve dated evidence; current claims defer to validation."
+    },
+    {
+      "file": "reports/V3_RESTRUCTURING_2026-10-30.md",
+      "status": "Retained",
+      "category": "historical evidence/plan",
+      "reason": "Preserve dated evidence; current claims defer to validation."
+    },
+    {
+      "file": "reports/VALIDATION.md",
+      "status": "Refactored",
+      "category": "historical evidence/plan",
+      "reason": "Preserve dated evidence; current claims defer to validation."
+    },
+    {
+      "file": "reports/cf_eval.md",
+      "status": "Retained",
+      "category": "historical evidence/plan",
+      "reason": "Preserve dated evidence; current claims defer to validation."
+    },
+    {
+      "file": "reports/generation_eval_template.md",
+      "status": "Retained",
+      "category": "historical evidence/plan",
+      "reason": "Preserve dated evidence; current claims defer to validation."
+    },
+    {
+      "file": "reports/human_eval.md",
+      "status": "Retained",
+      "category": "historical evidence/plan",
+      "reason": "Preserve dated evidence; current claims defer to validation."
+    },
+    {
+      "file": "reports/latency.md",
+      "status": "Retained",
+      "category": "historical evidence/plan",
+      "reason": "Preserve dated evidence; current claims defer to validation."
+    },
+    {
+      "file": "reports/off_policy.md",
+      "status": "Retained",
+      "category": "historical evidence/plan",
+      "reason": "Preserve dated evidence; current claims defer to validation."
+    },
+    {
+      "file": "reports/offtopic_eval.md",
+      "status": "Retained",
+      "category": "historical evidence/plan",
+      "reason": "Preserve dated evidence; current claims defer to validation."
+    },
+    {
+      "file": "reports/tables.md",
+      "status": "Retained",
+      "category": "historical evidence/plan",
+      "reason": "Preserve dated evidence; current claims defer to validation."
+    },
+    {
+      "file": "reports/tables_kw_noisy.md",
+      "status": "Retained",
+      "category": "historical evidence/plan",
+      "reason": "Preserve dated evidence; current claims defer to validation."
+    },
+    {
+      "file": "tasks/plan.md",
+      "status": "Retained",
+      "category": "historical evidence/plan",
+      "reason": "Preserve dated evidence; current claims defer to validation."
+    },
+    {
+      "file": "tasks/todo.md",
+      "status": "Retained",
+      "category": "historical evidence/plan",
+      "reason": "Preserve dated evidence; current claims defer to validation."
+    },
+    {
+      "file": "web/SECURITY_REMEDIATION.md",
+      "status": "Retained",
+      "category": "historical evidence/plan",
+      "reason": "Preserve dated evidence; current claims defer to validation."
+    }
+  ],
+  "python_top_level_cycles": [],
+  "python_all_import_cycles": [
+    [
+      "itlr/config.py",
+      "itlr/locking.py",
+      "itlr/versioning.py"
+    ]
+  ],
+  "typescript_cycles": [],
+  "python_imports": {
+    "eval/adapt_real_data.py": [
+      "itlr/__init__.py",
+      "itlr/config.py"
+    ],
+    "eval/bench_chunks_v3.py": [
+      "itlr/collect/chunk.py",
+      "itlr/core/chunks.py",
+      "itlr/core/embeddings.py",
+      "itlr/eval/metrics.py"
+    ],
+    "eval/bench_latency.py": [
+      "itlr/__init__.py",
+      "itlr/config.py",
+      "itlr/core/__init__.py",
+      "itlr/core/pipeline.py",
+      "itlr/eval/loader.py"
+    ],
+    "eval/build_ltr.py": [
+      "itlr/__init__.py",
+      "itlr/config.py",
+      "itlr/core/__init__.py",
+      "itlr/core/pipeline.py",
+      "itlr/core/recommender.py",
+      "itlr/eval/__init__.py",
+      "itlr/eval/loader.py",
+      "itlr/eval/ltr_features.py",
+      "itlr/eval/metrics.py",
+      "itlr/eval/significance.py"
+    ],
+    "eval/eval_cf.py": [
+      "itlr/__init__.py",
+      "itlr/config.py",
+      "itlr/eval/__init__.py",
+      "itlr/eval/cf_eval.py"
+    ],
+    "eval/eval_fixture.py": [
+      "itlr/core/recommender.py",
+      "itlr/retrieval/bm25.py"
+    ],
+    "eval/eval_generation.py": [
+      "itlr/__init__.py",
+      "itlr/chatbot/__init__.py",
+      "itlr/chatbot/llm_client.py",
+      "itlr/config.py",
+      "itlr/engine.py"
+    ],
+    "eval/eval_lexical_real.py": [
+      "itlr/core/recommender.py",
+      "itlr/eval/metrics.py",
+      "itlr/retrieval/bm25.py"
+    ],
+    "eval/eval_off_policy.py": [
+      "itlr/__init__.py",
+      "itlr/config.py",
+      "itlr/eval/__init__.py",
+      "itlr/eval/off_policy.py"
+    ],
+    "eval/eval_offtopic.py": [
+      "itlr/__init__.py",
+      "itlr/chatbot/chatbot.py",
+      "itlr/config.py",
+      "itlr/core/recommender.py",
+      "itlr/engine.py"
+    ],
+    "eval/eval_v2_real.py": [
+      "itlr/__init__.py",
+      "itlr/chatbot/chatbot.py",
+      "itlr/config.py",
+      "itlr/engine.py",
+      "itlr/eval/metrics.py"
+    ],
+    "eval/evaluate_human.py": [
+      "itlr/__init__.py",
+      "itlr/config.py",
+      "itlr/core/__init__.py",
+      "itlr/core/pipeline.py",
+      "itlr/engine.py",
+      "itlr/eval/__init__.py",
+      "itlr/eval/metrics.py",
+      "itlr/eval/significance.py"
+    ],
+    "eval/make_judgments.py": [
+      "itlr/__init__.py",
+      "itlr/config.py",
+      "itlr/core/recommender.py"
+    ],
+    "eval/prepare_labeling_sheet.py": [
+      "itlr/__init__.py",
+      "itlr/config.py"
+    ],
+    "eval/run_all.py": [],
+    "eval/run_evaluation.py": [
+      "itlr/__init__.py",
+      "itlr/config.py",
+      "itlr/core/__init__.py",
+      "itlr/core/pipeline.py",
+      "itlr/core/recommender.py",
+      "itlr/engine.py",
+      "itlr/eval/__init__.py",
+      "itlr/eval/diversity.py",
+      "itlr/eval/metrics.py",
+      "itlr/eval/significance.py"
+    ],
+    "itlr/__init__.py": [],
+    "itlr/api/__init__.py": [],
+    "itlr/api/__main__.py": [],
+    "itlr/api/ratelimit.py": [],
+    "itlr/api/server.py": [
+      "itlr/api/__init__.py",
+      "itlr/api/ratelimit.py",
+      "itlr/chatbot/chatbot.py",
+      "itlr/engine.py",
+      "itlr/utils/runtime_patches.py",
+      "itlr/versioning.py"
+    ],
+    "itlr/chatbot/__init__.py": [],
+    "itlr/chatbot/chatbot.py": [
+      "itlr/chatbot/__init__.py",
+      "itlr/chatbot/citations.py",
+      "itlr/chatbot/intent_router.py",
+      "itlr/chatbot/knowledge_base.py",
+      "itlr/chatbot/llm_adapter.py",
+      "itlr/chatbot/llm_client.py",
+      "itlr/chatbot/presentation.py",
+      "itlr/chatbot/query_understanding.py",
+      "itlr/core/rag.py",
+      "itlr/core/recommender.py"
+    ],
+    "itlr/chatbot/citations.py": [],
+    "itlr/chatbot/intent_router.py": [
+      "itlr/chatbot/knowledge_base.py",
+      "itlr/core/recommender.py"
+    ],
+    "itlr/chatbot/knowledge_base.py": [
+      "itlr/core/recommender.py"
+    ],
+    "itlr/chatbot/llm_adapter.py": [
+      "itlr/chatbot/__init__.py",
+      "itlr/chatbot/llm_client.py"
+    ],
+    "itlr/chatbot/llm_client.py": [],
+    "itlr/chatbot/opencode_client.py": [],
+    "itlr/chatbot/presentation.py": [
+      "itlr/chatbot/__init__.py",
+      "itlr/chatbot/knowledge_base.py",
+      "itlr/core/recommender.py"
+    ],
+    "itlr/chatbot/query_understanding.py": [
+      "itlr/chatbot/knowledge_base.py",
+      "itlr/core/recommender.py"
+    ],
+    "itlr/collect/__init__.py": [
+      "itlr/collect/url_util.py"
+    ],
+    "itlr/collect/adapters.py": [
+      "itlr/collect/extract.py"
+    ],
+    "itlr/collect/chunk.py": [],
+    "itlr/collect/extract.py": [],
+    "itlr/collect/http.py": [],
+    "itlr/collect/normalize.py": [
+      "itlr/__init__.py",
+      "itlr/collect/chunk.py",
+      "itlr/collect/quality.py",
+      "itlr/collect/store.py",
+      "itlr/collect/url_util.py",
+      "itlr/config.py"
+    ],
+    "itlr/collect/quality.py": [],
+    "itlr/collect/runner.py": [
+      "itlr/__init__.py",
+      "itlr/collect/adapters.py",
+      "itlr/collect/extract.py",
+      "itlr/collect/http.py",
+      "itlr/collect/quality.py",
+      "itlr/collect/sources.py",
+      "itlr/collect/store.py",
+      "itlr/collect/url_util.py",
+      "itlr/config.py"
+    ],
+    "itlr/collect/sources.py": [
+      "itlr/__init__.py",
+      "itlr/config.py"
+    ],
+    "itlr/collect/store.py": [
+      "itlr/collect/quality.py"
+    ],
+    "itlr/collect/url_util.py": [],
+    "itlr/config.py": [
+      "itlr/versioning.py"
+    ],
+    "itlr/core/__init__.py": [],
+    "itlr/core/ann.py": [
+      "itlr/__init__.py",
+      "itlr/config.py"
+    ],
+    "itlr/core/bm25.py": [
+      "itlr/retrieval/bm25.py"
+    ],
+    "itlr/core/chunks.py": [
+      "itlr/retrieval/bm25.py"
+    ],
+    "itlr/core/display.py": [],
+    "itlr/core/embeddings.py": [],
+    "itlr/core/pipeline.py": [
+      "itlr/core/__init__.py",
+      "itlr/core/recommender.py",
+      "itlr/core/rerank.py"
+    ],
+    "itlr/core/rag.py": [
+      "itlr/core/recommender.py"
+    ],
+    "itlr/core/recommender.py": [
+      "itlr/core/ann.py",
+      "itlr/core/display.py",
+      "itlr/core/rerank.py"
+    ],
+    "itlr/core/rerank.py": [],
+    "itlr/data/__init__.py": [],
+    "itlr/data/generate_interactions.py": [
+      "itlr/__init__.py",
+      "itlr/config.py",
+      "itlr/core/recommender.py"
+    ],
+    "itlr/data/generate_items.py": [
+      "itlr/__init__.py",
+      "itlr/config.py"
+    ],
+    "itlr/engine.py": [
+      "itlr/__init__.py",
+      "itlr/chatbot/chatbot.py",
+      "itlr/chatbot/knowledge_base.py",
+      "itlr/chatbot/query_understanding.py",
+      "itlr/config.py",
+      "itlr/core/ann.py",
+      "itlr/core/chunks.py",
+      "itlr/core/recommender.py",
+      "itlr/core/rerank.py",
+      "itlr/locking.py",
+      "itlr/retrieval/service.py",
+      "itlr/versioning.py"
+    ],
+    "itlr/eval/__init__.py": [
+      "itlr/eval/metrics.py"
+    ],
+    "itlr/eval/cf_eval.py": [
+      "itlr/core/recommender.py",
+      "itlr/eval/__init__.py",
+      "itlr/eval/metrics.py"
+    ],
+    "itlr/eval/diversity.py": [],
+    "itlr/eval/loader.py": [
+      "itlr/__init__.py",
+      "itlr/config.py",
+      "itlr/core/__init__.py",
+      "itlr/core/pipeline.py",
+      "itlr/engine.py",
+      "itlr/eval/__init__.py",
+      "itlr/eval/ltr_features.py"
+    ],
+    "itlr/eval/ltr_features.py": [
+      "itlr/core/__init__.py",
+      "itlr/core/recommender.py",
+      "itlr/core/rerank.py"
+    ],
+    "itlr/eval/metrics.py": [],
+    "itlr/eval/off_policy.py": [],
+    "itlr/eval/significance.py": [],
+    "itlr/indexv2.py": [
+      "itlr/__init__.py",
+      "itlr/config.py",
+      "itlr/versioning.py"
+    ],
+    "itlr/locking.py": [
+      "itlr/__init__.py",
+      "itlr/config.py"
+    ],
+    "itlr/pipelines/__init__.py": [],
+    "itlr/pipelines/build_cf.py": [
+      "itlr/__init__.py",
+      "itlr/config.py"
+    ],
+    "itlr/pipelines/build_embeddings.py": [
+      "itlr/__init__.py",
+      "itlr/config.py",
+      "itlr/core/ann.py",
+      "itlr/core/embeddings.py",
+      "itlr/core/recommender.py"
+    ],
+    "itlr/pipelines/build_embeddings_v2.py": [
+      "itlr/__init__.py",
+      "itlr/collect/chunk.py",
+      "itlr/config.py",
+      "itlr/core/ann.py",
+      "itlr/core/embeddings.py",
+      "itlr/core/recommender.py"
+    ],
+    "itlr/pipelines/build_model.py": [
+      "itlr/__init__.py",
+      "itlr/config.py",
+      "itlr/core/recommender.py",
+      "itlr/retrieval/bm25.py"
+    ],
+    "itlr/pipelines/generate_interactions.py": [
+      "itlr/__init__.py",
+      "itlr/config.py"
+    ],
+    "itlr/retrieval/__init__.py": [],
+    "itlr/retrieval/bm25.py": [
+      "itlr/core/recommender.py"
+    ],
+    "itlr/retrieval/service.py": [
+      "itlr/core/embeddings.py"
+    ],
+    "itlr/utils/__init__.py": [],
+    "itlr/utils/repickle.py": [
+      "itlr/__init__.py",
+      "itlr/chatbot/__init__.py",
+      "itlr/chatbot/knowledge_base.py",
+      "itlr/chatbot/query_understanding.py",
+      "itlr/config.py",
+      "itlr/core/__init__.py",
+      "itlr/core/ann.py",
+      "itlr/core/bm25.py",
+      "itlr/core/embeddings.py",
+      "itlr/core/rag.py",
+      "itlr/core/recommender.py",
+      "itlr/core/rerank.py"
+    ],
+    "itlr/utils/runtime_patches.py": [],
+    "itlr/versioning.py": [
+      "itlr/__init__.py",
+      "itlr/config.py",
+      "itlr/locking.py"
+    ],
+    "scripts/build_all.py": [
+      "itlr/config.py"
+    ],
+    "scripts/build_all_v2.py": [
+      "itlr/__init__.py",
+      "itlr/collect/normalize.py",
+      "itlr/config.py",
+      "itlr/indexv2.py",
+      "itlr/locking.py",
+      "itlr/versioning.py"
+    ],
+    "scripts/collect_curated.py": [
+      "itlr/__init__.py",
+      "itlr/collect/extract.py",
+      "itlr/collect/http.py",
+      "itlr/collect/sources.py",
+      "itlr/collect/store.py",
+      "itlr/collect/url_util.py",
+      "itlr/config.py"
+    ],
+    "scripts/collect_data.py": [
+      "itlr/__init__.py",
+      "itlr/collect/http.py",
+      "itlr/collect/runner.py",
+      "itlr/collect/sources.py",
+      "itlr/collect/store.py",
+      "itlr/config.py",
+      "itlr/locking.py"
+    ],
+    "scripts/export_web_catalog.py": [
+      "itlr/__init__.py",
+      "itlr/config.py"
+    ],
+    "scripts/import_curated_snapshot.py": [
+      "itlr/__init__.py",
+      "itlr/collect/sources.py",
+      "itlr/collect/store.py",
+      "itlr/collect/url_util.py",
+      "itlr/config.py",
+      "scripts/collect_curated.py"
+    ],
+    "scripts/refresh_pipeline.py": [
+      "itlr/locking.py"
+    ],
+    "scripts/verify_local_models.py": [
+      "itlr/chatbot/llm_client.py"
+    ],
+    "tests/conftest.py": [],
+    "tests/test_admin_security_cf.py": [
+      "itlr/api/__init__.py",
+      "itlr/api/server.py",
+      "itlr/engine.py"
+    ],
+    "tests/test_ann.py": [
+      "itlr/config.py",
+      "itlr/core/ann.py"
+    ],
+    "tests/test_ann_active_version.py": [
+      "itlr/__init__.py",
+      "itlr/config.py",
+      "itlr/core/ann.py",
+      "itlr/versioning.py"
+    ],
+    "tests/test_api_hardening.py": [
+      "itlr/api/__init__.py",
+      "itlr/api/ratelimit.py",
+      "itlr/api/server.py",
+      "itlr/engine.py"
+    ],
+    "tests/test_api_integration.py": [
+      "itlr/__init__.py",
+      "itlr/api/__init__.py",
+      "itlr/api/server.py",
+      "itlr/chatbot/__init__.py",
+      "itlr/chatbot/chatbot.py",
+      "itlr/config.py",
+      "itlr/core/recommender.py",
+      "itlr/indexv2.py",
+      "itlr/retrieval/bm25.py",
+      "itlr/versioning.py"
+    ],
+    "tests/test_artifact_integrity.py": [
+      "itlr/__init__.py",
+      "itlr/config.py",
+      "itlr/engine.py",
+      "itlr/versioning.py"
+    ],
+    "tests/test_audit_regressions.py": [
+      "eval/eval_v2_real.py",
+      "itlr/collect/adapters.py",
+      "itlr/collect/sources.py",
+      "itlr/core/__init__.py",
+      "itlr/core/pipeline.py",
+      "itlr/core/recommender.py"
+    ],
+    "tests/test_bm25_refit.py": [
+      "itlr/retrieval/bm25.py"
+    ],
+    "tests/test_build_all_v2_cli.py": [],
+    "tests/test_build_model_load.py": [
+      "itlr/pipelines/build_model.py"
+    ],
+    "tests/test_catalog_export_safety.py": [
+      "scripts/export_web_catalog.py"
+    ],
+    "tests/test_chatbot_llm_adapter.py": [
+      "itlr/chatbot/chatbot.py",
+      "itlr/chatbot/llm_client.py"
+    ],
+    "tests/test_chatbot_presentation.py": [
+      "itlr/chatbot/__init__.py",
+      "itlr/chatbot/chatbot.py"
+    ],
+    "tests/test_chatbot_retrieval_fixes.py": [
+      "itlr/chatbot/__init__.py",
+      "itlr/chatbot/chatbot.py",
+      "itlr/chatbot/knowledge_base.py",
+      "itlr/core/chunks.py",
+      "itlr/retrieval/service.py"
+    ],
+    "tests/test_chunk_contract.py": [
+      "itlr/collect/chunk.py"
+    ],
+    "tests/test_chunks_v3.py": [
+      "itlr/chatbot/citations.py",
+      "itlr/core/chunks.py"
+    ],
+    "tests/test_collect_crawl.py": [
+      "itlr/collect/adapters.py",
+      "itlr/collect/chunk.py",
+      "itlr/collect/quality.py",
+      "itlr/collect/sources.py",
+      "itlr/collect/store.py",
+      "itlr/collect/url_util.py"
+    ],
+    "tests/test_collect_reconcile.py": [
+      "itlr/collect/http.py",
+      "itlr/collect/quality.py",
+      "itlr/collect/runner.py",
+      "itlr/collect/sources.py",
+      "itlr/collect/store.py",
+      "itlr/collect/url_util.py"
+    ],
+    "tests/test_collect_runner.py": [
+      "itlr/collect/http.py",
+      "itlr/collect/runner.py",
+      "itlr/collect/sources.py",
+      "itlr/collect/store.py"
+    ],
+    "tests/test_collect_store_close.py": [
+      "itlr/collect/store.py"
+    ],
+    "tests/test_collect_utils.py": [
+      "itlr/collect/__init__.py",
+      "itlr/collect/url_util.py"
+    ],
+    "tests/test_curated_collection.py": [
+      "scripts/collect_curated.py",
+      "scripts/import_curated_snapshot.py"
+    ],
+    "tests/test_embedding_presets.py": [
+      "itlr/core/embeddings.py"
+    ],
+    "tests/test_engine_reload.py": [
+      "itlr/__init__.py",
+      "itlr/engine.py"
+    ],
+    "tests/test_env_examples.py": [],
+    "tests/test_eval_generation.py": [],
+    "tests/test_eval_integrity.py": [
+      "itlr/__init__.py",
+      "itlr/config.py"
+    ],
+    "tests/test_eval_loader.py": [
+      "itlr/__init__.py",
+      "itlr/config.py",
+      "itlr/engine.py",
+      "itlr/eval/loader.py"
+    ],
+    "tests/test_eval_metrics_diversity.py": [
+      "itlr/eval/__init__.py",
+      "itlr/eval/diversity.py",
+      "itlr/eval/metrics.py"
+    ],
+    "tests/test_eval_scripts_paths.py": [],
+    "tests/test_generate_interactions.py": [
+      "itlr/pipelines/generate_interactions.py"
+    ],
+    "tests/test_grounded_citations.py": [
+      "itlr/api/__init__.py",
+      "itlr/api/server.py",
+      "itlr/chatbot/__init__.py",
+      "itlr/chatbot/chatbot.py",
+      "itlr/chatbot/llm_client.py"
+    ],
+    "tests/test_http_layer.py": [
+      "itlr/collect/http.py"
+    ],
+    "tests/test_index_probe.py": [
+      "itlr/indexv2.py"
+    ],
+    "tests/test_lexical_real_eval.py": [],
+    "tests/test_lifecycle_robustness.py": [
+      "itlr/__init__.py",
+      "itlr/api/__init__.py",
+      "itlr/api/ratelimit.py",
+      "itlr/api/server.py",
+      "itlr/collect/store.py",
+      "itlr/config.py",
+      "itlr/core/__init__.py",
+      "itlr/core/recommender.py",
+      "itlr/core/rerank.py",
+      "itlr/engine.py",
+      "itlr/pipelines/__init__.py",
+      "itlr/pipelines/build_cf.py",
+      "itlr/retrieval/bm25.py",
+      "itlr/versioning.py",
+      "tests/test_pickle_handles.py"
+    ],
+    "tests/test_llm_client.py": [
+      "itlr/chatbot/llm_client.py"
+    ],
+    "tests/test_locking.py": [
+      "itlr/locking.py"
+    ],
+    "tests/test_markdown_links.py": [],
+    "tests/test_normalize.py": [
+      "itlr/collect/normalize.py",
+      "itlr/collect/quality.py",
+      "itlr/collect/store.py",
+      "itlr/collect/url_util.py"
+    ],
+    "tests/test_offtopic_gate.py": [
+      "itlr/chatbot/chatbot.py"
+    ],
+    "tests/test_pickle_handles.py": [],
+    "tests/test_pipeline_fixture.py": [
+      "itlr/__init__.py",
+      "itlr/collect/chunk.py",
+      "itlr/collect/normalize.py",
+      "itlr/collect/runner.py",
+      "itlr/collect/sources.py",
+      "itlr/collect/store.py",
+      "itlr/config.py",
+      "itlr/core/recommender.py",
+      "itlr/retrieval/bm25.py"
+    ],
+    "tests/test_rag_query_utils.py": [
+      "itlr/core/rag.py"
+    ],
+    "tests/test_real_source_text.py": [
+      "itlr/core/recommender.py",
+      "itlr/pipelines/build_embeddings_v2.py",
+      "itlr/pipelines/build_model.py"
+    ],
+    "tests/test_retrieval_service.py": [
+      "itlr/chatbot/__init__.py",
+      "itlr/chatbot/chatbot.py",
+      "itlr/chatbot/knowledge_base.py",
+      "itlr/chatbot/query_understanding.py",
+      "itlr/core/chunks.py",
+      "itlr/engine.py",
+      "itlr/retrieval/bm25.py",
+      "itlr/retrieval/service.py"
+    ],
+    "tests/test_scripts_and_configs.py": [],
+    "tests/test_significance.py": [
+      "itlr/eval/significance.py"
+    ],
+    "tests/test_static_security.py": [
+      "itlr/api/ratelimit.py",
+      "itlr/api/server.py"
+    ],
+    "tests/test_versioning.py": [
+      "itlr/__init__.py",
+      "itlr/versioning.py"
+    ]
+  },
+  "typescript_imports": {
+    "web/src/middleware/auth.test.ts": [
+      "web/src/db/pool.ts",
+      "web/src/middleware/auth.ts"
+    ],
+    "web/src/routes/admin.routes.ts": [
+      "web/src/config/env.ts",
+      "web/src/db/pool.ts",
+      "web/src/db/types.ts",
+      "web/src/middleware/auth.ts",
+      "web/src/middleware/security.ts",
+      "web/src/middleware/uploads.ts",
+      "web/src/services/dataset.ts",
+      "web/src/services/social.ts"
+    ],
+    "web/src/services/http-range.ts": [],
+    "web/src/services/dataset.ts": [
+      "web/src/config/catalog.ts",
+      "web/src/services/catalog-csv.ts",
+      "web/src/services/dataset-extract.ts"
+    ],
+    "web/src/services/social.ts": [
+      "web/src/db/pool.ts"
+    ],
+    "web/src/services/chat-stream.ts": [
+      "web/src/services/markdown.ts"
+    ],
+    "web/src/middleware/security.test.ts": [
+      "web/src/middleware/security.ts"
+    ],
+    "web/src/middleware/auth.ts": [
+      "web/src/config/env.ts",
+      "web/src/db/pool.ts"
+    ],
+    "web/src/routes/auth.routes.ts": [
+      "web/src/config/env.ts",
+      "web/src/db/pool.ts",
+      "web/src/middleware/auth.ts",
+      "web/src/middleware/security.ts",
+      "web/src/services/mailer.ts",
+      "web/src/services/password.ts"
+    ],
+    "web/src/app.test.ts": [
+      "web/src/app.ts"
+    ],
+    "web/src/services/learning.ts": [],
+    "web/src/middleware/security.ts": [
+      "web/src/config/env.ts"
+    ],
+    "web/src/routes/chat-page.test.ts": [
+      "web/src/db/pool.ts",
+      "web/src/routes/pages.routes.ts"
+    ],
+    "web/src/routes/social.routes.ts": [
+      "web/src/db/pool.ts",
+      "web/src/db/types.ts",
+      "web/src/middleware/auth.ts",
+      "web/src/middleware/uploads.ts",
+      "web/src/services/http-range.ts",
+      "web/src/services/posts.ts",
+      "web/src/services/realtime.ts",
+      "web/src/services/social.ts"
+    ],
+    "web/src/services/recommender.ts": [
+      "web/src/config/env.ts",
+      "web/src/services/chat-stream.ts"
+    ],
+    "web/src/services/chat-history.ts": [
+      "web/src/db/pool.ts"
+    ],
+    "web/src/routes/chat.handlers.ts": [
+      "web/src/services/chat-history.ts",
+      "web/src/services/chat-stream.ts",
+      "web/src/services/recommender.ts"
+    ],
+    "web/src/db/migrate.ts": [
+      "web/src/db/pool.ts"
+    ],
+    "web/src/services/chat-history.test.ts": [
+      "web/src/services/chat-history.ts"
+    ],
+    "web/src/services/dataset-extract.ts": [],
+    "web/src/db/pool.ts": [
+      "web/src/config/env.ts"
+    ],
+    "web/src/services/chat-client.test.ts": [],
+    "web/src/services/recommender-stream.test.ts": [
+      "web/src/services/recommender.ts"
+    ],
+    "web/src/routes/api.routes.ts": [
+      "web/src/db/pool.ts",
+      "web/src/middleware/auth.ts",
+      "web/src/middleware/uploads.ts",
+      "web/src/routes/chat.handlers.ts",
+      "web/src/services/dataset.ts",
+      "web/src/services/http-range.ts",
+      "web/src/services/realtime.ts",
+      "web/src/services/social.ts"
+    ],
+    "web/src/db/check.ts": [
+      "web/src/db/pool.ts"
+    ],
+    "web/src/config/env.test.ts": [],
+    "web/src/db/seed-courses.ts": [
+      "web/src/db/pool.ts",
+      "web/src/db/sync-courses.ts"
+    ],
+    "web/src/routes/realtime-lifecycle.test.ts": [
+      "web/src/routes/api.routes.ts"
+    ],
+    "web/src/services/dataset.test.ts": [],
+    "web/src/routes/admin-security.test.ts": [
+      "web/src/routes/admin.routes.ts"
+    ],
+    "web/src/services/posts.ts": [
+      "web/src/db/pool.ts",
+      "web/src/db/types.ts"
+    ],
+    "web/src/services/markdown.ts": [],
+    "web/src/app.ts": [
+      "web/src/config/env.ts",
+      "web/src/db/pool.ts",
+      "web/src/middleware/auth.ts",
+      "web/src/middleware/security.ts",
+      "web/src/routes/admin.routes.ts",
+      "web/src/routes/api.routes.ts",
+      "web/src/routes/auth.routes.ts",
+      "web/src/routes/learning.routes.ts",
+      "web/src/routes/pages.routes.ts",
+      "web/src/routes/social.routes.ts",
+      "web/src/services/dataset-extract.ts"
+    ],
+    "web/src/server.ts": [
+      "web/src/app.ts",
+      "web/src/config/env.ts",
+      "web/src/db/pool.ts"
+    ],
+    "web/src/services/chat-stream.test.ts": [
+      "web/src/services/chat-stream.ts"
+    ],
+    "web/src/routes/chat.routes.test.ts": [
+      "web/src/routes/api.routes.ts"
+    ],
+    "web/src/routes/learning.routes.test.ts": [
+      "web/src/db/pool.ts",
+      "web/src/routes/learning.routes.ts"
+    ],
+    "web/src/services/static-ui.test.ts": [],
+    "web/src/services/dataset-extract.test.ts": [
+      "web/src/services/dataset-extract.ts"
+    ],
+    "web/src/services/realtime.ts": [],
+    "web/src/services/social.test.ts": [
+      "web/src/services/social.ts"
+    ],
+    "web/src/config/env.ts": [],
+    "web/src/routes/media-range.test.ts": [
+      "web/src/routes/api.routes.ts",
+      "web/src/routes/social.routes.ts"
+    ],
+    "web/src/routes/auth-security.test.ts": [
+      "web/src/db/pool.ts",
+      "web/src/routes/auth.routes.ts"
+    ],
+    "web/src/services/password.ts": [],
+    "web/src/config/catalog.ts": [],
+    "web/src/routes/pages.routes.ts": [
+      "web/src/db/pool.ts",
+      "web/src/db/types.ts",
+      "web/src/middleware/auth.ts",
+      "web/src/services/chat-stream.ts",
+      "web/src/services/posts.ts",
+      "web/src/services/recommender.ts"
+    ],
+    "web/src/services/catalog-csv.ts": [],
+    "web/src/middleware/uploads.ts": [],
+    "web/src/services/mailer.ts": [],
+    "web/src/middleware/uploads.test.ts": [
+      "web/src/middleware/uploads.ts"
+    ],
+    "web/src/db/sync-courses.ts": [
+      "web/src/config/catalog.ts",
+      "web/src/db/pool.ts",
+      "web/src/services/catalog-csv.ts"
+    ],
+    "web/src/services/markdown.test.ts": [
+      "web/src/services/markdown.ts"
+    ],
+    "web/src/routes/learning.routes.ts": [
+      "web/src/db/pool.ts",
+      "web/src/middleware/auth.ts",
+      "web/src/services/learning.ts"
+    ],
+    "web/src/services/learning.test.ts": [
+      "web/src/services/learning.ts"
+    ],
+    "web/src/routes/admin-login.test.ts": [
+      "web/src/routes/admin.routes.ts"
+    ],
+    "web/src/routes/upload-extraction.test.ts": [
+      "web/src/routes/api.routes.ts"
+    ],
+    "web/src/db/types.ts": [],
+    "web/src/views/views.test.ts": []
+  },
+  "broken_paths": [],
+  "unresolved_anchors": [],
+  "unclosed_fences": [],
+  "mermaid_blocks": [
+    {
+      "file": "README.md",
+      "kind": "flowchart LR"
+    },
+    {
+      "file": "docs/ARCHITECTURE.md",
+      "kind": "flowchart LR"
+    },
+    {
+      "file": "reports/ARCHITECTURE_REFACTOR_2026-10-30.md",
+      "kind": "flowchart LR"
+    },
+    {
+      "file": "reports/ARCHITECTURE_REFACTOR_2026-10-30.md",
+      "kind": "flowchart LR"
+    }
+  ],
+  "mermaid_status": "Structural review only; parser/render unavailable",
+  "moved_function_checks": {
+    "_collapse_repeats": "AST unchanged",
+    "clean_display_text": "AST unchanged",
+    "clean_link": "AST unchanged",
+    "try_llm_response": "AST unchanged",
+    "_history_msgs": "AST unchanged",
+    "try_llm_response_stream": "AST unchanged"
+  },
+  "adr_structure": "11/11 required sections present",
+  "config_json": "parsed",
+  "yaml_structure": "safe_load passed for existing Compose/deploy YAML; not docker compose runtime validation",
+  "review_limits": [
+    "Static review covers each inventory source file; not a claim of exhaustive semantic/security review.",
+    "Dynamic imports and runtime circularity cannot be excluded by the static graph.",
+    "Mermaid fences and graph declarations checked; no parser/render installed."
+  ]
+}

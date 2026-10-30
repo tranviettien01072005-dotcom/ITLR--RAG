@@ -1,14 +1,24 @@
 # ADR-009: Explicit runtime trust boundaries
 
+## Status
+
+Accepted. Historical decision; current runtime evidence is maintained in reports/VALIDATION.md.
+
+
 Product: **ITLR–RAG | Intelligent IT Learning Platform**. Accepted for remediation, 2026-10-29.
 Current operations and evidence: [deployment](../../deploy/DEPLOY.md),
 [validation](../../reports/VALIDATION.md), [web remediation](../../web/SECURITY_REMEDIATION.md).
 
-## Context and decision
+## Context
 
 Catalog data, LLM output, upload bytes and forwarded headers cross trust boundaries.
-Static UI renders text with `textContent` and permits HTTP(S) catalog links only. Markdown
-supports escaped emphasis/code/newlines; raw HTML and Markdown links are disabled. JavaScript
+
+## Decision
+
+Static UI renders text with `textContent` and permits HTTP(S) catalog links only. The static
+API UI's restricted formatter disables raw HTML and Markdown links. Web rendering uses
+markdown-it with raw HTML disabled; validated chat item citations become internal course
+links, and normal Markdown links use the library's URL validation. JavaScript
 uses local external files; CSP `script-src self` forbids inline execution.
 [MDN documents the textContent contract](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent).
 
@@ -27,9 +37,13 @@ SHA256 inventories are checked before engine unpickle and activation/rollback; s
 a manifest, and each engine load pins a directory. Hashes detect changes but cannot authenticate
 files against an attacker who can rewrite both file and manifest. API mounts must be read-only.
 
-## Consequences and limits
+## Consequences
 
 These boundaries reduce specific risks without establishing a deployment security certification.
 Keep third-party rights, fail-closed configuration and upload restrictions. Validate current dense
 retrieval, generation, dependency exposure and target-host behavior before release decisions;
 historical timing results do not justify changing retrieval/reranker algorithms.
+
+## Alternatives
+
+Permissive credentials, trusting proxy headers by default, and accepting untrusted artifact sources would weaken the trust boundaries above. They remain outside the supported deployment contract. This section records the comparison, not a new security certification.

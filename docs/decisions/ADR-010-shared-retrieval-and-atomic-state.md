@@ -1,13 +1,22 @@
 # ADR-010: Share chunk retrieval and atomically commit lifecycle state
 
+## Status
+
+Implemented; production validation remains incomplete.
+
+
 Product: **ITLR–RAG | Intelligent IT Learning Platform**. Implemented, 2026-10-30;
 release validation remains incomplete. Evidence: [V3 report](../../reports/V3_RESTRUCTURING_2026-10-30.md)
 and [validation](../../reports/VALIDATION.md).
 
-## Context and decision
+## Context
 
 Search and chatbot had separate ranking paths; off-topic checks used item averages even when
-relevant passages existed. `itlr/retrieval/service.py` now owns query encoding, type filtering,
+relevant passages existed.
+
+## Decision
+
+`itlr/retrieval/service.py` now owns query encoding, type filtering,
 chunk ranking and relevance gating for artifacts with chunk vectors. API and chatbot adapt the
 results to their response schemas; legacy artifacts retain the V2 path.
 
@@ -30,7 +39,7 @@ A mirror-write failure can be reported after commit; inspect `CURRENT.json` befo
 | Duplicated chatbot/API chunk branch | `itlr/retrieval/service.py` | Share encoding, filters, scores and ranking; retain existing HTTP keys and V2 loading |
 | History only in `CURRENT.json.history.json` | Embedded history in `CURRENT.json` | Remove two-file commit gap; still read legacy pointers/mirror and export mirror |
 
-## Consequences and limits
+## Consequences
 
 The tracked BM25 implementation was moved with `git mv`; keep the original module as a shim.
 No database schema, runtime content, artifact filename, CLI or environment path was renamed.
@@ -41,3 +50,7 @@ These are targeted boundary changes, not a claim that every module follows Clean
 Coordination assumes cooperating writers on a local Linux filesystem, one process/replica per
 service. Process-interruption recovery does not establish multi-host coordination or storage
 power-loss guarantees. Independent passage evaluation and deployment checks remain separate gates.
+
+## Alternatives
+
+Retaining separate search/chat ranking paths leaves their behavior divergent. Keeping pointer and history in separate commits leaves a crash window; embedded history preserves the legacy mirror while committing state together.

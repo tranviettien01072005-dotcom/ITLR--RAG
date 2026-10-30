@@ -18,6 +18,13 @@ function body(parts: string[]) {
     controller.close();
   } });
 }
+it.each(["sources", "meta", "error", "done"])("rejects %s after the done event", async type => {
+  const tail = type === "sources" ? { type, sources: [] } : { type };
+  const frames = [{ type: "final", response: "complete" }, { type: "done" }, tail];
+  await expect((async () => {
+    for await (const _event of readChatEvents(body(frames.map(event => `data: ${JSON.stringify(event)}\n\n`)))) { /* consume */ }
+  })()).rejects.toThrow();
+});
 it("forwards early sources before tokens across fragmented CRLF frames", async () => {
   const events = [];
   for await (const event of readChatEvents(body([

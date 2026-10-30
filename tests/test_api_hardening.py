@@ -177,3 +177,27 @@ def test_metrics_open_for_loopback_without_token(client, monkeypatch):
     assert srv._metrics_allowed(_FakeReq()) is True
     _FakeReq.client.host = "203.0.113.9"  # remote
     assert srv._metrics_allowed(_FakeReq()) is False
+@pytest.mark.parametrize('read_fails', [False, True])
+def test_ollama_prewarm_closes_http_response(monkeypatch, read_fails):
+    import threading
+    import types
+    import urllib.request
+    from itlr.api import server
+    monkeypatch.delenv('DEEPSEEK_API_KEY', raising=False)
+    monkeypatch.delenv('OPENAI_API_KEY', raising=False)
+    monkeypatch.setenv('USE_OLLAMA', '1')
+    closed = []
+    class Response:
+        def read(self):
+            if read_fails:
+                raise RuntimeError('fixture read error')
+            return b'{}'
+        def __enter__(self):
+            return self
+        def __exit__(self, *args):
+            closed.append(True)
+    monkeypatch.setattr(urllib.request, 'urlopen', lambda *a, **kw: Response())
+    monkeypatch.setattr(threading, 'Thread', lambda target, **kw: types.SimpleNamespace(start=target))
+    monkeypatch.setattr(server, '_log', lambda message: None)
+    server._prewarm_ollama()
+    assert closed == [True]

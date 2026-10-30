@@ -1,15 +1,20 @@
 # ADR-006: Chính sách nguồn, quyền nội dung và provenance
 
+## Status
+
+Accepted. Historical decision; current runtime evidence is maintained in reports/VALIDATION.md.
+
+
 Sản phẩm: **ITLR–RAG | Intelligent IT Learning Platform**. Accepted, 2026-10-29.
 Nguồn hiện hành: [data guide](../../data/README.md), [source config](../../configs/collect.sources.json).
 
-## Bối cảnh
+## Context
 
 Catalog legacy 5.000 items là synthetic. Collection cần tài nguyên có URL, tác giả, ngày lấy,
 hash và chính sách lưu rõ ràng. Metadata license trong config là hồ sơ vận hành tại checkpoint,
 không phải xác nhận pháp lý cho mọi bài hoặc quyền thương mại của nền tảng.
 
-## Quyết định
+## Decision
 
 | Nguồn tại checkpoint | Cách lấy | Metadata quyền đã ghi | Chính sách cấu hình |
 |---|---|---|---|
@@ -32,14 +37,14 @@ Lọc listing bằng `link_pattern`, lọc `too_short`, content-hash trùng và 
 quyết định lưu `quality_status`. Catalog giữ `origin`, `crawl_license`, `crawl_lang`, `crawl_hash`,
 URL, platform và tác giả.
 
-## Collection và lựa chọn kỹ thuật
+## Alternatives
 
 HTTPX + BeautifulSoup đáp ứng các nguồn hiện có mà không cần browser JS/Scrapy. Request cần
 kiểm HTTP status, robots/rate-limit từng host kể cả redirect, retry/backoff cho 429/5xx/timeout,
 cache robots/Crawl-delay và chuẩn hóa URL bỏ tracking params. Mỗi source có `max_items_per_run`.
 Nguồn mới như GitHub/Coursera cần đánh giá API key và điều khoản riêng; không mặc nhiên được phép.
 
-## Hệ quả
+## Consequences
 
 Checkpoint đầu ghi khoảng 85 docs: DEV 25, freeCodeCamp 10, MDN 25, VnExpress 25; một số bài
 freeCodeCamp bị lọc do text quá ngắn. Đây là số lịch sử, không phải corpus hiện hành hoặc

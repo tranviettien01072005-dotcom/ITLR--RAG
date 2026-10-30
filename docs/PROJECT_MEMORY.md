@@ -1,6 +1,50 @@
+# ITLR–RAG — Bộ nhớ kỹ thuật hiện hành
+
+Cập nhật: 2026-10-30. Thứ tự ưu tiên: yêu cầu phiên hiện tại → AGENTS/CONSTRAINTS →
+code và bằng chứng chạy mới → nhật ký lịch sử. Kế hoạch cũ không cấp quyền commit,
+publish, migration hoặc gọi provider trả phí.
+
+## Trạng thái đã kiểm chứng
+
+- Python: **414 PASS/0 skip**, 86,51s; 5603 statements / 1920 missed, khoảng 65,73%.
+- Web: **132 PASS/25 files**, line coverage 45,31%; typecheck/lint/build PASS.
+- Compileall và pip check PASS. Lệnh, log và inventory:
+  [restructuring continuation](../reports/RESTRUCTURING_CONTINUATION_2026-10-30.md).
+- Đây là kết quả local Windows; không chứng nhận production-ready.
+
+## Ranh giới và quyết định hiện hành
+
+- Web/Express/PostgreSQL là giao diện chính; FastAPI phục vụ engine RAG.
+- Shared retrieval cho chunk artifacts; V2 và BM25 pickle shim được giữ.
+- Display formatting ở core/display.py; provider history/fallback ở chatbot/llm_adapter.py;
+  chat HTTP/SSE ở web/src/routes/chat.handlers.ts. Export/import cũ được giữ tương thích.
+- Builders offline, staging/probe/activate/rollback; không tự rebuild hay migrate khi serve.
+- Một worker/replica, filesystem Linux local. Deferred config/versioning/locking cycle
+  được giữ vì gắn với cấu hình lazy; graph top-level không có cycle được phát hiện.
+- Nguồn thật, interactions synthetic và qrels metadata/hand-authored phải ghi riêng.
+  Citation identity chưa chứng minh faithfulness.
+
+## Blockers
+
+Docker/PostgreSQL/HTTPS staging, backup/restore, Linux lifecycle runtime và đánh giá
+neural/generation độc lập chưa được xác nhận trong checkpoint này. Mermaid chỉ được
+review cấu trúc; chưa có parser/render. Không có thao tác DB/index, paid API, commit/push.
+
+## Nhật ký lịch sử
+
+Phần sau bảo toàn nguyên nội dung checkpoint trước; các từ “mới nhất/hiện hành”
+trong nhật ký chỉ có nghĩa tại thời điểm ghi.
+
+Release validation: 23 frozen engineer-authored queries over 118 real snapshots; lexical versus MMR measured, neural/generation NOT MEASURED. No ranking/threshold change. See [release evidence](../reports/RELEASE_VALIDATION_2026-10-30.md).
+
+<details>
+<summary>Mở nhật ký checkpoint trước</summary>
+
 # ITLR–RAG | Intelligent IT Learning Platform — Trạng thái dự án
 
-Checkpoint mới: Windows dev host **384 Python pass/0 skip**, coverage 64,96%; Web **124 pass/25 files**, lines 45,01%; lint 0 warning, Bandit 0 High, npm audit/pip-audit sạch. Đã xóa API key thật khỏi `.env.example` working copy (không có trong git history), sửa normalize URL default port/credential, passcode admin constant-time/open redirect, portability `resource`/torch test, HTTP Range dedup và toàn bộ ESLint warning. Production vẫn Linux local; Docker/PostgreSQL/HTTPS và human/neural RAG gates chưa xác minh; **NOT READY**. Xem [audit](../reports/AUDIT_PORTABILITY_2026-10-30.md).
+Current verification entrypoint: [restructuring continuation](../reports/RESTRUCTURING_CONTINUATION_2026-10-30.md). Baseline 386 Python / 124 Web; older checkpoint paragraphs below are historical.
+
+Historical checkpoint (superseded by the verification entrypoint above): Checkpoint mới: Windows dev host **384 Python pass/0 skip**, coverage 64,96%; Web **124 pass/25 files**, lines 45,01%; lint 0 warning, Bandit 0 High, npm audit/pip-audit sạch. Đã xóa API key thật khỏi `.env.example` working copy (không có trong git history), sửa normalize URL default port/credential, passcode admin constant-time/open redirect, portability `resource`/torch test, HTTP Range dedup và toàn bộ ESLint warning. Production vẫn Linux local; Docker/PostgreSQL/HTTPS và human/neural RAG gates chưa xác minh; **NOT READY**. Xem [audit](../reports/AUDIT_PORTABILITY_2026-10-30.md).
 
 Cập nhật: 2026-10-30. Đây là bộ nhớ kỹ thuật trong repository; không cần dịch vụ memory ngoài.
 Hướng dẫn hiện hành: [README](../README.md), [AGENTS](../AGENTS.md),
@@ -351,3 +395,13 @@ post-action redirects are same-origin.
 Still BLOCKED/NOT MEASURED: Docker/PostgreSQL/HTTPS/browser E2E, migrations, Linux flock
 runtime, neural/reranker/human evaluation. NOT READY.
 Details: reports/AUDIT_PORTABILITY_2026-10-30.md.
+
+## Stream hardening continuation - 2026-10-30
+
+Shared client ignores terminal chunks with empty choices; 2 reproduced failures to PASS, 34 client tests PASS. Initial main f8ad595 clean. No paid calls, data/index changes, commits or pushes. Fresh Web 124 PASS, lines 45.01%; Python default Windows encoding baseline 378 PASS/6 FAIL. See reports/HARDENING_STREAM_2026-10-30.md for fresh verification and limitations.
+
+Final fresh full Python verification: 386 PASS / 0 skip, coverage 65% rounded, 188.40s, UTF-8 environment; reports/hardening-utf8.log. Outside-sandbox diagnostic failed on temporary-directory permissions (4 FAIL / 129 setup errors); retained separately. Focused portability 21 PASS; client/link review 35 PASS.
+
+Restructuring verification: 387 Python PASS/0 skip (91.94s), coverage 65% rounded; 124 Web PASS, line coverage 45.01%; typecheck/lint/build/compileall/pip check PASS. One usage snapshot isolation regression added (observed FAIL to PASS). No runtime data/index changes. See restructuring continuation report for scope and remaining gates.
+
+</details>

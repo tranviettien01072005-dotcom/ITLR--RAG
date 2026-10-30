@@ -1,0 +1,1109 @@
+{
+  "head": "f8ad595b989defc5034e660921e65e733fa624ad",
+  "python_modules": {
+    "eval/adapt_real_data.py": {
+      "lines": 279,
+      "imports": [
+        "itlr"
+      ],
+      "functions": 11
+    },
+    "eval/bench_chunks_v3.py": {
+      "lines": 85,
+      "imports": [
+        "itlr.collect.chunk",
+        "itlr.core.chunks",
+        "itlr.core.embeddings",
+        "itlr.eval.metrics"
+      ],
+      "functions": 1
+    },
+    "eval/bench_latency.py": {
+      "lines": 208,
+      "imports": [
+        "itlr",
+        "itlr.core",
+        "itlr.eval.loader"
+      ],
+      "functions": 7
+    },
+    "eval/build_ltr.py": {
+      "lines": 278,
+      "imports": [
+        "itlr",
+        "itlr.core",
+        "itlr.core.recommender",
+        "itlr.eval",
+        "itlr.eval.loader"
+      ],
+      "functions": 8
+    },
+    "eval/eval_cf.py": {
+      "lines": 98,
+      "imports": [
+        "itlr",
+        "itlr.eval"
+      ],
+      "functions": 2
+    },
+    "eval/eval_fixture.py": {
+      "lines": 70,
+      "imports": [
+        "itlr.core.recommender",
+        "itlr.retrieval.bm25"
+      ],
+      "functions": 1
+    },
+    "eval/eval_generation.py": {
+      "lines": 319,
+      "imports": [
+        "itlr",
+        "itlr.chatbot",
+        "itlr.engine"
+      ],
+      "functions": 12
+    },
+    "eval/eval_lexical_real.py": {
+      "lines": 127,
+      "imports": [
+        "itlr.core.recommender",
+        "itlr.eval.metrics",
+        "itlr.retrieval.bm25"
+      ],
+      "functions": 3
+    },
+    "eval/eval_off_policy.py": {
+      "lines": 192,
+      "imports": [
+        "itlr",
+        "itlr.eval"
+      ],
+      "functions": 6
+    },
+    "eval/eval_offtopic.py": {
+      "lines": 113,
+      "imports": [
+        "itlr",
+        "itlr.chatbot.chatbot",
+        "itlr.core.recommender",
+        "itlr.engine"
+      ],
+      "functions": 3
+    },
+    "eval/eval_v2_real.py": {
+      "lines": 203,
+      "imports": [
+        "itlr",
+        "itlr.chatbot.chatbot",
+        "itlr.engine",
+        "itlr.eval.metrics"
+      ],
+      "functions": 5
+    },
+    "eval/evaluate_human.py": {
+      "lines": 174,
+      "imports": [
+        "itlr",
+        "itlr.core",
+        "itlr.engine",
+        "itlr.eval"
+      ],
+      "functions": 6
+    },
+    "eval/make_judgments.py": {
+      "lines": 389,
+      "imports": [
+        "itlr",
+        "itlr.core.recommender"
+      ],
+      "functions": 14
+    },
+    "eval/prepare_labeling_sheet.py": {
+      "lines": 87,
+      "imports": [
+        "itlr"
+      ],
+      "functions": 3
+    },
+    "eval/run_all.py": {
+      "lines": 117,
+      "imports": [],
+      "functions": 3
+    },
+    "eval/run_evaluation.py": {
+      "lines": 360,
+      "imports": [
+        "itlr",
+        "itlr.core",
+        "itlr.core.recommender",
+        "itlr.engine",
+        "itlr.eval"
+      ],
+      "functions": 12
+    },
+    "itlr/__init__.py": {
+      "lines": 1,
+      "imports": [],
+      "functions": 0
+    },
+    "itlr/api/__init__.py": {
+      "lines": 1,
+      "imports": [],
+      "functions": 0
+    },
+    "itlr/api/__main__.py": {
+      "lines": 18,
+      "imports": [],
+      "functions": 1
+    },
+    "itlr/api/ratelimit.py": {
+      "lines": 83,
+      "imports": [],
+      "functions": 5
+    },
+    "itlr/api/server.py": {
+      "lines": 430,
+      "imports": [
+        "itlr.api",
+        "itlr.chatbot.chatbot",
+        "itlr.engine",
+        "itlr.utils.runtime_patches",
+        "itlr.versioning"
+      ],
+      "functions": 29
+    },
+    "itlr/chatbot/__init__.py": {
+      "lines": 1,
+      "imports": [],
+      "functions": 0
+    },
+    "itlr/chatbot/chatbot.py": {
+      "lines": 971,
+      "imports": [
+        "itlr.chatbot",
+        "itlr.chatbot.citations",
+        "itlr.chatbot.intent_router",
+        "itlr.chatbot.knowledge_base",
+        "itlr.chatbot.presentation",
+        "itlr.chatbot.query_understanding",
+        "itlr.core.rag",
+        "itlr.core.recommender"
+      ],
+      "functions": 35
+    },
+    "itlr/chatbot/citations.py": {
+      "lines": 47,
+      "imports": [],
+      "functions": 2
+    },
+    "itlr/chatbot/intent_router.py": {
+      "lines": 156,
+      "imports": [
+        "itlr.chatbot.knowledge_base",
+        "itlr.core.recommender"
+      ],
+      "functions": 5
+    },
+    "itlr/chatbot/knowledge_base.py": {
+      "lines": 325,
+      "imports": [
+        "itlr.core.recommender"
+      ],
+      "functions": 23
+    },
+    "itlr/chatbot/llm_client.py": {
+      "lines": 421,
+      "imports": [],
+      "functions": 21
+    },
+    "itlr/chatbot/opencode_client.py": {
+      "lines": 27,
+      "imports": [],
+      "functions": 1
+    },
+    "itlr/chatbot/presentation.py": {
+      "lines": 593,
+      "imports": [
+        "itlr.chatbot",
+        "itlr.core.recommender"
+      ],
+      "functions": 24
+    },
+    "itlr/chatbot/query_understanding.py": {
+      "lines": 228,
+      "imports": [
+        "itlr.chatbot.knowledge_base",
+        "itlr.core.recommender"
+      ],
+      "functions": 6
+    },
+    "itlr/collect/__init__.py": {
+      "lines": 21,
+      "imports": [
+        "itlr.collect.url_util"
+      ],
+      "functions": 0
+    },
+    "itlr/collect/adapters.py": {
+      "lines": 158,
+      "imports": [
+        "itlr.collect.extract"
+      ],
+      "functions": 5
+    },
+    "itlr/collect/chunk.py": {
+      "lines": 86,
+      "imports": [],
+      "functions": 3
+    },
+    "itlr/collect/extract.py": {
+      "lines": 223,
+      "imports": [],
+      "functions": 11
+    },
+    "itlr/collect/http.py": {
+      "lines": 246,
+      "imports": [],
+      "functions": 13
+    },
+    "itlr/collect/normalize.py": {
+      "lines": 242,
+      "imports": [
+        "itlr",
+        "itlr.collect.chunk",
+        "itlr.collect.quality",
+        "itlr.collect.store",
+        "itlr.collect.url_util"
+      ],
+      "functions": 8
+    },
+    "itlr/collect/quality.py": {
+      "lines": 96,
+      "imports": [],
+      "functions": 7
+    },
+    "itlr/collect/runner.py": {
+      "lines": 254,
+      "imports": [
+        "itlr",
+        "itlr.collect.adapters",
+        "itlr.collect.extract",
+        "itlr.collect.http",
+        "itlr.collect.quality",
+        "itlr.collect.sources",
+        "itlr.collect.store",
+        "itlr.collect.url_util"
+      ],
+      "functions": 9
+    },
+    "itlr/collect/sources.py": {
+      "lines": 180,
+      "imports": [
+        "itlr"
+      ],
+      "functions": 8
+    },
+    "itlr/collect/store.py": {
+      "lines": 345,
+      "imports": [
+        "itlr.collect.quality"
+      ],
+      "functions": 21
+    },
+    "itlr/collect/url_util.py": {
+      "lines": 91,
+      "imports": [],
+      "functions": 4
+    },
+    "itlr/config.py": {
+      "lines": 55,
+      "imports": [
+        "itlr.versioning"
+      ],
+      "functions": 4
+    },
+    "itlr/core/__init__.py": {
+      "lines": 1,
+      "imports": [],
+      "functions": 0
+    },
+    "itlr/core/ann.py": {
+      "lines": 148,
+      "imports": [
+        "itlr"
+      ],
+      "functions": 6
+    },
+    "itlr/core/bm25.py": {
+      "lines": 4,
+      "imports": [
+        "itlr.retrieval.bm25"
+      ],
+      "functions": 0
+    },
+    "itlr/core/chunks.py": {
+      "lines": 73,
+      "imports": [
+        "itlr.retrieval.bm25"
+      ],
+      "functions": 3
+    },
+    "itlr/core/embeddings.py": {
+      "lines": 92,
+      "imports": [],
+      "functions": 5
+    },
+    "itlr/core/pipeline.py": {
+      "lines": 231,
+      "imports": [
+        "itlr.core",
+        "itlr.core.rerank"
+      ],
+      "functions": 13
+    },
+    "itlr/core/rag.py": {
+      "lines": 275,
+      "imports": [
+        "itlr.core.recommender"
+      ],
+      "functions": 11
+    },
+    "itlr/core/recommender.py": {
+      "lines": 927,
+      "imports": [
+        "itlr.core.ann",
+        "itlr.core.rerank"
+      ],
+      "functions": 42
+    },
+    "itlr/core/rerank.py": {
+      "lines": 82,
+      "imports": [],
+      "functions": 3
+    },
+    "itlr/data/__init__.py": {
+      "lines": 1,
+      "imports": [],
+      "functions": 0
+    },
+    "itlr/data/generate_interactions.py": {
+      "lines": 104,
+      "imports": [
+        "itlr",
+        "itlr.core.recommender"
+      ],
+      "functions": 2
+    },
+    "itlr/data/generate_items.py": {
+      "lines": 562,
+      "imports": [
+        "itlr"
+      ],
+      "functions": 7
+    },
+    "itlr/engine.py": {
+      "lines": 241,
+      "imports": [
+        "itlr",
+        "itlr.chatbot.chatbot",
+        "itlr.chatbot.knowledge_base",
+        "itlr.chatbot.query_understanding",
+        "itlr.core.ann",
+        "itlr.core.chunks",
+        "itlr.core.recommender",
+        "itlr.core.rerank",
+        "itlr.locking",
+        "itlr.retrieval.service",
+        "itlr.versioning"
+      ],
+      "functions": 12
+    },
+    "itlr/eval/__init__.py": {
+      "lines": 14,
+      "imports": [
+        "itlr.eval"
+      ],
+      "functions": 0
+    },
+    "itlr/eval/cf_eval.py": {
+      "lines": 232,
+      "imports": [
+        "itlr.core.recommender",
+        "itlr.eval"
+      ],
+      "functions": 6
+    },
+    "itlr/eval/diversity.py": {
+      "lines": 116,
+      "imports": [],
+      "functions": 7
+    },
+    "itlr/eval/loader.py": {
+      "lines": 58,
+      "imports": [
+        "itlr",
+        "itlr.core",
+        "itlr.engine",
+        "itlr.eval"
+      ],
+      "functions": 3
+    },
+    "itlr/eval/ltr_features.py": {
+      "lines": 103,
+      "imports": [
+        "itlr.core",
+        "itlr.core.rerank"
+      ],
+      "functions": 3
+    },
+    "itlr/eval/metrics.py": {
+      "lines": 146,
+      "imports": [],
+      "functions": 11
+    },
+    "itlr/eval/off_policy.py": {
+      "lines": 136,
+      "imports": [],
+      "functions": 8
+    },
+    "itlr/eval/significance.py": {
+      "lines": 129,
+      "imports": [],
+      "functions": 5
+    },
+    "itlr/indexv2.py": {
+      "lines": 155,
+      "imports": [
+        "itlr",
+        "itlr.versioning"
+      ],
+      "functions": 5
+    },
+    "itlr/locking.py": {
+      "lines": 47,
+      "imports": [
+        "itlr"
+      ],
+      "functions": 3
+    },
+    "itlr/pipelines/__init__.py": {
+      "lines": 1,
+      "imports": [],
+      "functions": 0
+    },
+    "itlr/pipelines/build_cf.py": {
+      "lines": 110,
+      "imports": [
+        "itlr"
+      ],
+      "functions": 2
+    },
+    "itlr/pipelines/build_embeddings.py": {
+      "lines": 88,
+      "imports": [
+        "itlr",
+        "itlr.core.ann",
+        "itlr.core.embeddings",
+        "itlr.core.recommender"
+      ],
+      "functions": 3
+    },
+    "itlr/pipelines/build_embeddings_v2.py": {
+      "lines": 166,
+      "imports": [
+        "itlr",
+        "itlr.collect.chunk",
+        "itlr.core.ann",
+        "itlr.core.embeddings",
+        "itlr.core.recommender"
+      ],
+      "functions": 3
+    },
+    "itlr/pipelines/build_model.py": {
+      "lines": 166,
+      "imports": [
+        "itlr",
+        "itlr.core.recommender",
+        "itlr.retrieval.bm25"
+      ],
+      "functions": 4
+    },
+    "itlr/pipelines/generate_interactions.py": {
+      "lines": 176,
+      "imports": [
+        "itlr"
+      ],
+      "functions": 5
+    },
+    "itlr/retrieval/__init__.py": {
+      "lines": 1,
+      "imports": [],
+      "functions": 0
+    },
+    "itlr/retrieval/bm25.py": {
+      "lines": 76,
+      "imports": [
+        "itlr.core.recommender"
+      ],
+      "functions": 4
+    },
+    "itlr/retrieval/service.py": {
+      "lines": 32,
+      "imports": [
+        "itlr.core.embeddings"
+      ],
+      "functions": 4
+    },
+    "itlr/utils/__init__.py": {
+      "lines": 1,
+      "imports": [],
+      "functions": 0
+    },
+    "itlr/utils/repickle.py": {
+      "lines": 72,
+      "imports": [
+        "itlr",
+        "itlr.chatbot",
+        "itlr.core"
+      ],
+      "functions": 1
+    },
+    "itlr/utils/runtime_patches.py": {
+      "lines": 55,
+      "imports": [],
+      "functions": 2
+    },
+    "itlr/versioning.py": {
+      "lines": 248,
+      "imports": [
+        "itlr",
+        "itlr.locking",
+        "itlr.versioning"
+      ],
+      "functions": 17
+    },
+    "scripts/build_all.py": {
+      "lines": 103,
+      "imports": [
+        "itlr.config"
+      ],
+      "functions": 3
+    },
+    "scripts/build_all_v2.py": {
+      "lines": 212,
+      "imports": [
+        "itlr",
+        "itlr.collect.normalize",
+        "itlr.indexv2",
+        "itlr.locking"
+      ],
+      "functions": 5
+    },
+    "scripts/collect_curated.py": {
+      "lines": 88,
+      "imports": [
+        "itlr",
+        "itlr.collect.extract",
+        "itlr.collect.http",
+        "itlr.collect.sources",
+        "itlr.collect.store",
+        "itlr.collect.url_util"
+      ],
+      "functions": 3
+    },
+    "scripts/collect_data.py": {
+      "lines": 120,
+      "imports": [
+        "itlr",
+        "itlr.collect.http",
+        "itlr.collect.runner",
+        "itlr.collect.sources",
+        "itlr.collect.store",
+        "itlr.locking"
+      ],
+      "functions": 3
+    },
+    "scripts/export_web_catalog.py": {
+      "lines": 31,
+      "imports": [
+        "itlr"
+      ],
+      "functions": 1
+    },
+    "scripts/import_curated_snapshot.py": {
+      "lines": 48,
+      "imports": [
+        "itlr",
+        "itlr.collect.sources",
+        "itlr.collect.store",
+        "itlr.collect.url_util"
+      ],
+      "functions": 2
+    },
+    "scripts/refresh_pipeline.py": {
+      "lines": 135,
+      "imports": [
+        "itlr.locking"
+      ],
+      "functions": 3
+    },
+    "scripts/verify_local_models.py": {
+      "lines": 78,
+      "imports": [
+        "itlr.chatbot.llm_client"
+      ],
+      "functions": 2
+    },
+    "tests/conftest.py": {
+      "lines": 28,
+      "imports": [],
+      "functions": 1
+    },
+    "tests/test_admin_security_cf.py": {
+      "lines": 94,
+      "imports": [
+        "itlr.api",
+        "itlr.engine"
+      ],
+      "functions": 9
+    },
+    "tests/test_ann.py": {
+      "lines": 151,
+      "imports": [
+        "itlr.config",
+        "itlr.core.ann"
+      ],
+      "functions": 15
+    },
+    "tests/test_ann_active_version.py": {
+      "lines": 97,
+      "imports": [
+        "itlr",
+        "itlr.config",
+        "itlr.core.ann"
+      ],
+      "functions": 10
+    },
+    "tests/test_api_hardening.py": {
+      "lines": 179,
+      "imports": [
+        "itlr.api",
+        "itlr.engine"
+      ],
+      "functions": 17
+    },
+    "tests/test_api_integration.py": {
+      "lines": 211,
+      "imports": [
+        "itlr",
+        "itlr.api",
+        "itlr.api.server",
+        "itlr.chatbot",
+        "itlr.core.recommender",
+        "itlr.indexv2",
+        "itlr.retrieval.bm25"
+      ],
+      "functions": 15
+    },
+    "tests/test_artifact_integrity.py": {
+      "lines": 69,
+      "imports": [
+        "itlr",
+        "itlr.engine"
+      ],
+      "functions": 7
+    },
+    "tests/test_audit_regressions.py": {
+      "lines": 49,
+      "imports": [
+        "itlr.collect.adapters",
+        "itlr.collect.sources",
+        "itlr.core",
+        "itlr.core.recommender"
+      ],
+      "functions": 6
+    },
+    "tests/test_bm25_refit.py": {
+      "lines": 44,
+      "imports": [
+        "itlr.retrieval.bm25"
+      ],
+      "functions": 4
+    },
+    "tests/test_build_all_v2_cli.py": {
+      "lines": 38,
+      "imports": [],
+      "functions": 3
+    },
+    "tests/test_build_model_load.py": {
+      "lines": 60,
+      "imports": [
+        "itlr.pipelines.build_model"
+      ],
+      "functions": 4
+    },
+    "tests/test_catalog_export_safety.py": {
+      "lines": 35,
+      "imports": [],
+      "functions": 2
+    },
+    "tests/test_chatbot_llm_adapter.py": {
+      "lines": 115,
+      "imports": [
+        "itlr.chatbot.chatbot",
+        "itlr.chatbot.llm_client"
+      ],
+      "functions": 13
+    },
+    "tests/test_chatbot_presentation.py": {
+      "lines": 43,
+      "imports": [
+        "itlr.chatbot"
+      ],
+      "functions": 4
+    },
+    "tests/test_chatbot_retrieval_fixes.py": {
+      "lines": 214,
+      "imports": [
+        "itlr.chatbot",
+        "itlr.chatbot.chatbot",
+        "itlr.chatbot.knowledge_base",
+        "itlr.core.chunks",
+        "itlr.retrieval.service"
+      ],
+      "functions": 19
+    },
+    "tests/test_chunk_contract.py": {
+      "lines": 58,
+      "imports": [
+        "itlr.collect.chunk"
+      ],
+      "functions": 7
+    },
+    "tests/test_chunks_v3.py": {
+      "lines": 66,
+      "imports": [
+        "itlr.chatbot.citations",
+        "itlr.core.chunks"
+      ],
+      "functions": 8
+    },
+    "tests/test_collect_crawl.py": {
+      "lines": 279,
+      "imports": [
+        "itlr.collect.adapters",
+        "itlr.collect.chunk",
+        "itlr.collect.quality",
+        "itlr.collect.sources",
+        "itlr.collect.store",
+        "itlr.collect.url_util"
+      ],
+      "functions": 29
+    },
+    "tests/test_collect_reconcile.py": {
+      "lines": 268,
+      "imports": [
+        "itlr.collect.http",
+        "itlr.collect.quality",
+        "itlr.collect.runner",
+        "itlr.collect.sources",
+        "itlr.collect.store",
+        "itlr.collect.url_util"
+      ],
+      "functions": 17
+    },
+    "tests/test_collect_runner.py": {
+      "lines": 188,
+      "imports": [
+        "itlr.collect.http",
+        "itlr.collect.runner",
+        "itlr.collect.sources",
+        "itlr.collect.store"
+      ],
+      "functions": 12
+    },
+    "tests/test_collect_store_close.py": {
+      "lines": 15,
+      "imports": [
+        "itlr.collect.store"
+      ],
+      "functions": 1
+    },
+    "tests/test_collect_utils.py": {
+      "lines": 92,
+      "imports": [
+        "itlr.collect"
+      ],
+      "functions": 15
+    },
+    "tests/test_curated_collection.py": {
+      "lines": 24,
+      "imports": [],
+      "functions": 3
+    },
+    "tests/test_embedding_presets.py": {
+      "lines": 7,
+      "imports": [
+        "itlr.core.embeddings"
+      ],
+      "functions": 1
+    },
+    "tests/test_engine_reload.py": {
+      "lines": 18,
+      "imports": [
+        "itlr"
+      ],
+      "functions": 2
+    },
+    "tests/test_env_examples.py": {
+      "lines": 21,
+      "imports": [],
+      "functions": 1
+    },
+    "tests/test_eval_generation.py": {
+      "lines": 73,
+      "imports": [],
+      "functions": 7
+    },
+    "tests/test_eval_integrity.py": {
+      "lines": 168,
+      "imports": [
+        "itlr"
+      ],
+      "functions": 9
+    },
+    "tests/test_eval_loader.py": {
+      "lines": 22,
+      "imports": [
+        "itlr",
+        "itlr.eval.loader"
+      ],
+      "functions": 2
+    },
+    "tests/test_eval_metrics_diversity.py": {
+      "lines": 65,
+      "imports": [
+        "itlr.eval"
+      ],
+      "functions": 5
+    },
+    "tests/test_eval_scripts_paths.py": {
+      "lines": 99,
+      "imports": [],
+      "functions": 4
+    },
+    "tests/test_generate_interactions.py": {
+      "lines": 103,
+      "imports": [
+        "itlr.pipelines.generate_interactions"
+      ],
+      "functions": 7
+    },
+    "tests/test_grounded_citations.py": {
+      "lines": 114,
+      "imports": [
+        "itlr.api",
+        "itlr.chatbot"
+      ],
+      "functions": 12
+    },
+    "tests/test_http_layer.py": {
+      "lines": 323,
+      "imports": [
+        "itlr.collect.http"
+      ],
+      "functions": 42
+    },
+    "tests/test_index_probe.py": {
+      "lines": 160,
+      "imports": [
+        "itlr.indexv2"
+      ],
+      "functions": 16
+    },
+    "tests/test_lexical_real_eval.py": {
+      "lines": 26,
+      "imports": [],
+      "functions": 1
+    },
+    "tests/test_lifecycle_robustness.py": {
+      "lines": 352,
+      "imports": [
+        "itlr",
+        "itlr.api",
+        "itlr.collect.store",
+        "itlr.core",
+        "itlr.core.recommender",
+        "itlr.engine",
+        "itlr.pipelines",
+        "itlr.retrieval.bm25",
+        "itlr.versioning"
+      ],
+      "functions": 27
+    },
+    "tests/test_llm_client.py": {
+      "lines": 303,
+      "imports": [
+        "itlr.chatbot.llm_client"
+      ],
+      "functions": 34
+    },
+    "tests/test_locking.py": {
+      "lines": 16,
+      "imports": [
+        "itlr.locking"
+      ],
+      "functions": 1
+    },
+    "tests/test_markdown_links.py": {
+      "lines": 19,
+      "imports": [],
+      "functions": 1
+    },
+    "tests/test_normalize.py": {
+      "lines": 101,
+      "imports": [
+        "itlr.collect.normalize",
+        "itlr.collect.quality",
+        "itlr.collect.store",
+        "itlr.collect.url_util"
+      ],
+      "functions": 9
+    },
+    "tests/test_offtopic_gate.py": {
+      "lines": 36,
+      "imports": [
+        "itlr.chatbot.chatbot"
+      ],
+      "functions": 3
+    },
+    "tests/test_pickle_handles.py": {
+      "lines": 42,
+      "imports": [],
+      "functions": 1
+    },
+    "tests/test_pipeline_fixture.py": {
+      "lines": 76,
+      "imports": [
+        "itlr",
+        "itlr.collect.chunk",
+        "itlr.collect.normalize",
+        "itlr.collect.runner",
+        "itlr.collect.sources",
+        "itlr.collect.store",
+        "itlr.core.recommender",
+        "itlr.retrieval.bm25"
+      ],
+      "functions": 2
+    },
+    "tests/test_rag_query_utils.py": {
+      "lines": 39,
+      "imports": [
+        "itlr.core.rag"
+      ],
+      "functions": 4
+    },
+    "tests/test_real_source_text.py": {
+      "lines": 18,
+      "imports": [
+        "itlr.core.recommender",
+        "itlr.pipelines.build_embeddings_v2",
+        "itlr.pipelines.build_model"
+      ],
+      "functions": 3
+    },
+    "tests/test_retrieval_service.py": {
+      "lines": 61,
+      "imports": [
+        "itlr.chatbot",
+        "itlr.chatbot.chatbot",
+        "itlr.core.chunks",
+        "itlr.engine",
+        "itlr.retrieval.bm25",
+        "itlr.retrieval.service"
+      ],
+      "functions": 7
+    },
+    "tests/test_scripts_and_configs.py": {
+      "lines": 88,
+      "imports": [],
+      "functions": 6
+    },
+    "tests/test_significance.py": {
+      "lines": 30,
+      "imports": [
+        "itlr.eval.significance"
+      ],
+      "functions": 4
+    },
+    "tests/test_static_security.py": {
+      "lines": 35,
+      "imports": [
+        "itlr.api.ratelimit",
+        "itlr.api.server"
+      ],
+      "functions": 4
+    },
+    "tests/test_versioning.py": {
+      "lines": 169,
+      "imports": [
+        "itlr"
+      ],
+      "functions": 18
+    }
+  },
+  "markdown_inventory": {
+    "AGENTS.md": "current guidance",
+    "CHANGELOG.md": "current guidance",
+    "CONSTRAINTS.md": "current guidance",
+    "README.md": "current guidance",
+    "RESEARCH_ITLR.md": "current guidance",
+    "data/README.md": "current guidance",
+    "deploy/DEPLOY.md": "current guidance",
+    "deploy/LOCAL_MODELS.md": "current guidance",
+    "deploy/PRODUCTION.md": "current guidance",
+    "docs/ARCHITECTURE.md": "current guidance",
+    "docs/PROJECT_MEMORY.md": "current guidance",
+    "docs/decisions/ADR-001-deepseek-primary-llm.md": "decision record",
+    "docs/decisions/ADR-002-centralized-artifact-paths.md": "decision record",
+    "docs/decisions/ADR-003-synthetic-interactions-policy.md": "decision record",
+    "docs/decisions/ADR-004-evaluation-design.md": "decision record",
+    "docs/decisions/ADR-005-cf-optional-decoupling.md": "decision record",
+    "docs/decisions/ADR-006-data-sources-licensing.md": "decision record",
+    "docs/decisions/ADR-007-artifact-versioning.md": "decision record",
+    "docs/decisions/ADR-008-admin-token.md": "decision record",
+    "docs/decisions/ADR-009-security-runtime-boundaries.md": "decision record",
+    "docs/decisions/ADR-010-shared-retrieval-and-atomic-state.md": "decision record",
+    "docs/decisions/ADR-011-chatbot-presentation-and-catalog-contract.md": "decision record",
+    "docs/review-2026-10-27.md": "current guidance",
+    "docs/superpowers/plans/2026-10-29-itrl-v2.md": "current guidance",
+    "docs/superpowers/specs/2026-10-29-itrl-v2-design.md": "current guidance",
+    "reports/ARCHITECTURE_REFACTOR_2026-10-30.md": "historical evidence",
+    "reports/AUDIT_2026-10-29.md": "historical evidence",
+    "reports/AUDIT_INCREMENT_2026-10-30.md": "historical evidence",
+    "reports/AUDIT_PORTABILITY_2026-10-30.md": "historical evidence",
+    "reports/BANDIT_TRIAGE_2026-10-30.md": "historical evidence",
+    "reports/FINAL_REMEDIATION.md": "historical evidence",
+    "reports/LOCAL_MODELS.md": "historical evidence",
+    "reports/PONYTAIL_AUDIT.md": "historical evidence",
+    "reports/PONYTAIL_REVIEW.md": "historical evidence",
+    "reports/PRODUCTION_CHECKPOINT_2026-10-30.md": "historical evidence",
+    "reports/SKILLS_INVENTORY.md": "historical evidence",
+    "reports/V2_PRODUCT.md": "historical evidence",
+    "reports/V3_PROGRESS_2026-10-30.md": "historical evidence",
+    "reports/V3_RESTRUCTURING_2026-10-30.md": "historical evidence",
+    "reports/VALIDATION.md": "historical evidence",
+    "reports/cf_eval.md": "historical evidence",
+    "reports/generation_eval_template.md": "historical evidence",
+    "reports/human_eval.md": "historical evidence",
+    "reports/latency.md": "historical evidence",
+    "reports/off_policy.md": "historical evidence",
+    "reports/offtopic_eval.md": "historical evidence",
+    "reports/tables.md": "historical evidence",
+    "reports/tables_kw_noisy.md": "historical evidence",
+    "tasks/plan.md": "current guidance",
+    "tasks/todo.md": "current guidance",
+    "web/SECURITY_REMEDIATION.md": "current guidance"
+  },
+  "limitations": "Static Python import inventory includes deferred imports; not a runtime cycle proof. No unused-code deletion inferred from static imports alone."
+}
