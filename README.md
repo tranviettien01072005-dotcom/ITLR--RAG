@@ -1,5 +1,12 @@
 # ITLR–RAG | Intelligent IT Learning Platform
 
+Lượt kiểm chứng tiếp nối: **339 Python PASS/0 skip, 94 Web PASS/0 skip**, timeout LLM finite/positive và HTTP video Range được sửa; release verdict vẫn **NOT READY**. Xem [bằng chứng mới](reports/AUDIT_INCREMENT_2026-10-30.md).
+
+Checkpoint trước (lịch sử): **329 Python tests pass/0 skip**,
+**78 Web tests pass**; typecheck/lint/build và dependency audits đã chạy. Xem
+[báo cáo increment](reports/AUDIT_INCREMENT_2026-10-30.md) cho regression, giới hạn
+benchmark và phần audit còn lại. Không coi đây là hoàn tất production readiness.
+
 Current refactoring evidence and limits: [architecture checkpoint](reports/ARCHITECTURE_REFACTOR_2026-10-30.md).
 Offline answer formatting is owned by `itlr/chatbot/presentation.py`; Web upload
 append and PostgreSQL sync share `web/src/services/catalog-csv.ts` for legacy and
@@ -133,7 +140,7 @@ npm run build
 npm test
 ```
 
-Kết quả phiên audit: **280 Python pass/0 skip**, **64 Web pass**; typecheck/build PASS,
+Checkpoint audit trước: **280 Python pass/0 skip**, **64 Web pass**; typecheck/build PASS,
 lint 0 lỗi/20 cảnh báo, Web line coverage **27,06%**. Bandit 0 High (còn 28 Medium/58 Low);
 npm audit 0 vulnerabilities; pip-audit không có advisory trong các package quét được nhưng
 `torch 2.15.0+cpu` chưa được audit qua PyPI. [Validation](reports/VALIDATION.md) lưu lệnh,

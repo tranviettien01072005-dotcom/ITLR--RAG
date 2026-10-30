@@ -14,9 +14,11 @@ from __future__ import annotations
 
 import json
 import logging
+import math
 import os
 import time
 import urllib.request
+from contextlib import closing
 from dataclasses import dataclass
 from threading import Lock
 from typing import Iterator, Optional
@@ -111,9 +113,14 @@ def base_url(provider: str) -> str:
 
 
 def timeout_for(provider: str, stream: bool) -> float:
-    if stream:
-        return float(os.environ.get("DEEPSEEK_STREAM_TIMEOUT_S", "240"))
-    return float(os.environ.get("DEEPSEEK_TIMEOUT_S", "90"))
+    name = 'DEEPSEEK_STREAM_TIMEOUT_S' if stream else 'DEEPSEEK_TIMEOUT_S'
+    try:
+        value = float(os.environ.get(name, '240' if stream else '90'))
+    except ValueError as exc:
+        raise LLMError(f'{name} must be numeric') from exc
+    if not math.isfinite(value) or value <= 0:
+        raise LLMError(f'{name} must be finite and positive')
+    return value
 
 
 # ------------------------------- Ollama layer ------------------------------- #
@@ -300,7 +307,10 @@ def _completions_kwargs(provider: str, messages, *, stream: bool,
 
 
 def _retries() -> int:
-    return max(1, int(os.environ.get("DEEPSEEK_RETRIES", DEFAULT_RETRIES)))
+    try:
+        return max(1, int(os.environ.get("DEEPSEEK_RETRIES", DEFAULT_RETRIES)))
+    except ValueError as exc:
+        raise LLMError('DEEPSEEK_RETRIES must be an integer') from exc
 
 
 def chat(messages, *, track_usage: "str | None" = None,
@@ -322,24 +332,24 @@ def chat(messages, *, track_usage: "str | None" = None,
         backoff = DEFAULT_BACKOFF_S
         for attempt in range(1, _retries() + 1):
             try:
-                client = _make_client(provider, api_key(provider) or "", timeout_s)
-                kwargs = _completions_kwargs(provider, messages, stream=False,
-                                             temperature=temperature, max_tokens=max_tokens)
-                resp = client.chat.completions.create(**kwargs)
-                text = (resp.choices[0].message.content or "").strip()
-                usage = getattr(resp, "usage", None)
-                prompt_tokens = getattr(usage, "prompt_tokens", 0) or 0
-                completion_tokens = getattr(usage, "completion_tokens", 0) or 0
-                total = getattr(usage, "total_tokens", 0) or (prompt_tokens + completion_tokens)
-                cost = _record_usage(provider, prompt_tokens, completion_tokens)
-                logger.info("llm chat ok provider=%s model=%s attempt=%d tokens=%d cost=%.6f%s",
-                            provider, default_model(provider), attempt, total, cost,
-                            f" tag={track_usage}" if track_usage else "")
-                return LLMResult(text=text, provider=provider,
-                                 model=default_model(provider),
-                                 prompt_tokens=prompt_tokens,
-                                 completion_tokens=completion_tokens,
-                                 total_tokens=total, cost_usd=cost, retries=attempt - 1)
+                with closing(_make_client(provider, api_key(provider) or "", timeout_s)) as client:
+                    kwargs = _completions_kwargs(provider, messages, stream=False,
+                                                 temperature=temperature, max_tokens=max_tokens)
+                    resp = client.chat.completions.create(**kwargs)
+                    text = (resp.choices[0].message.content or "").strip()
+                    usage = getattr(resp, "usage", None)
+                    prompt_tokens = getattr(usage, "prompt_tokens", 0) or 0
+                    completion_tokens = getattr(usage, "completion_tokens", 0) or 0
+                    total = getattr(usage, "total_tokens", 0) or (prompt_tokens + completion_tokens)
+                    cost = _record_usage(provider, prompt_tokens, completion_tokens)
+                    logger.info("llm chat ok provider=%s model=%s attempt=%d tokens=%d cost=%.6f%s",
+                                provider, default_model(provider), attempt, total, cost,
+                                f" tag={track_usage}" if track_usage else "")
+                    return LLMResult(text=text, provider=provider,
+                                     model=default_model(provider),
+                                     prompt_tokens=prompt_tokens,
+                                     completion_tokens=completion_tokens,
+                                     total_tokens=total, cost_usd=cost, retries=attempt - 1)
             except Exception as exc:  # noqa: BLE001
                 if attempt == _retries():
                     raise LLMError(
@@ -377,15 +387,16 @@ def stream(messages, *, temperature: float = DEFAULT_TEMPERATURE,
         got_any = False
         for attempt in range(1, _retries() + 1):
             try:
-                client = _make_client(provider, api_key(provider) or "", timeout_s)
-                kwargs = _completions_kwargs(provider, messages, stream=True,
-                                             temperature=temperature, max_tokens=max_tokens)
-                for chunk in client.chat.completions.create(**kwargs):
-                    delta = chunk.choices[0].delta.content
-                    if delta:
-                        got_any = True
-                        yield delta
-                return
+                with closing(_make_client(provider, api_key(provider) or "", timeout_s)) as client:
+                    kwargs = _completions_kwargs(provider, messages, stream=True,
+                                                 temperature=temperature, max_tokens=max_tokens)
+                    with closing(client.chat.completions.create(**kwargs)) as response:
+                        for chunk in response:
+                            delta = chunk.choices[0].delta.content
+                            if delta:
+                                got_any = True
+                                yield delta
+                    return
             except Exception as exc:  # noqa: BLE001
                 if got_any:
                     raise LLMError(

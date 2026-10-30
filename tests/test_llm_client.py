@@ -43,7 +43,14 @@ class _FakeChatCompletions:
             chunks = []
             for piece in self._behavior.get("stream_chunks", ["a", "b"]):
                 chunks.append(Chunk(choices=[Chunk(delta=Chunk(content=piece))]))
-            return iter(chunks)
+            class FakeStream:
+                def __iter__(self):
+                    return iter(chunks)
+
+                def close(self):
+                    pass
+
+            return FakeStream()
 
         usage = types.SimpleNamespace(
             prompt_tokens=120, completion_tokens=45, total_tokens=165)
@@ -67,6 +74,9 @@ class _FakeClient:
         self.base_url = base_url
         self.chat = _FakeChat(behavior, recorder)
         _FakeClient.instantiations.append(self)
+
+    def close(self):
+        pass
 
 
 @pytest.fixture()
@@ -95,6 +105,22 @@ def test_provider_priority_deepseek_over_openai(monkeypatch):
     monkeypatch.setenv("DEEPSEEK_API_KEY", "sk-x")
     monkeypatch.setenv("OPENAI_API_KEY", "sk-y")
     assert lc.provider_status() == "deepseek"
+
+
+@pytest.mark.parametrize('streaming,name,value', [
+    (False, 'DEEPSEEK_RETRIES', '3.5'),
+    (True, 'DEEPSEEK_RETRIES', '3.5'),
+    (False, 'DEEPSEEK_TIMEOUT_S', 'invalid'),
+    (True, 'DEEPSEEK_STREAM_TIMEOUT_S', 'invalid'),
+])
+def test_invalid_numeric_config_raises_llmerror(wire, monkeypatch, name, value, streaming):
+    monkeypatch.setenv('DEEPSEEK_API_KEY', 'fake-key')
+    monkeypatch.setenv(name, value)
+    with pytest.raises(lc.LLMError, match=name):
+        if streaming:
+            list(lc.stream([{'role': 'user', 'content': 'test'}]))
+        else:
+            lc.chat([{'role': 'user', 'content': 'test'}])
 
 
 def test_provider_priority_openai_when_no_deepseek(monkeypatch):
@@ -191,3 +217,64 @@ def test_trim_messages_keeps_system():
     assert trimmed[0]["role"] == "system"
     total = sum(len(m["content"]) for m in trimmed)
     assert total <= 8000 + 900 + 100  # dung sai: tin nhắn LƯU TRỮ gần nhất giữ nguyên vẹn
+
+
+@pytest.mark.parametrize('value', ['nan', 'inf', '-inf', '0', '-1'])
+@pytest.mark.parametrize('streaming', [False, True])
+def test_timeout_must_be_finite_positive(monkeypatch, value, streaming):
+    name = 'DEEPSEEK_STREAM_TIMEOUT_S' if streaming else 'DEEPSEEK_TIMEOUT_S'
+    monkeypatch.setenv(name, value)
+    with pytest.raises(lc.LLMError, match=name):
+        lc.timeout_for('deepseek', streaming)
+
+
+@pytest.mark.parametrize('mode', ['chat', 'chat-error', 'stream', 'stream-error', 'cancel'])
+def test_sdk_resources_close_on_completion_error_and_cancel(monkeypatch, mode):
+    monkeypatch.setenv('DEEPSEEK_API_KEY', 'fixture-key')
+    monkeypatch.setenv('DEEPSEEK_RETRIES', '1')
+    state = {'client_closed': False, 'stream_closed': False}
+
+    class Response:
+        def __iter__(self):
+            yield types.SimpleNamespace(choices=[types.SimpleNamespace(
+                delta=types.SimpleNamespace(content='piece'))])
+            if mode == 'stream-error':
+                raise RuntimeError('fixture stream failure')
+
+        def close(self):
+            state['stream_closed'] = True
+
+    class Client:
+        def __init__(self):
+            self.chat = types.SimpleNamespace(completions=self)
+
+        def create(self, **kwargs):
+            if mode == 'chat-error':
+                raise RuntimeError('fixture call failure')
+            if kwargs['stream']:
+                return Response()
+            return types.SimpleNamespace(choices=[types.SimpleNamespace(
+                message=types.SimpleNamespace(content='answer'))], usage=None)
+
+        def close(self):
+            state['client_closed'] = True
+
+    monkeypatch.setattr(lc, '_make_client', lambda *a: Client())
+    if mode.startswith('chat'):
+        if mode.endswith('error'):
+            with pytest.raises(lc.LLMError):
+                lc.chat([])
+        else:
+            assert lc.chat([]).text == 'answer'
+    else:
+        iterator = lc.stream([])
+        if mode == 'cancel':
+            assert next(iterator) == 'piece'
+            iterator.close()
+        elif mode.endswith('error'):
+            with pytest.raises(lc.LLMError):
+                list(iterator)
+        else:
+            assert list(iterator) == ['piece']
+        assert state['stream_closed']
+    assert state['client_closed']

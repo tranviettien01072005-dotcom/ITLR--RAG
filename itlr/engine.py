@@ -116,8 +116,8 @@ class RecommenderEngine:
         if self.cf_model is None:
             raise CFUnavailable(
                 "Chưa có cf_model.pkl — Collaborative Filtering là tính năng tùy chọn. "
-                "Build bằng `python -m itlr.pipelines.generate_interactions` + "
-                "`python -m itlr.pipelines.build_cf` (dữ liệu tương tác giả mô phỏng, "
+                "Build phiên bản staging mới bằng `python scripts/build_all_v2.py --with-cf` "
+                "rồi probe/activate (dữ liệu tương tác giả mô phỏng, "
                 "không gắn dữ liệu thật).")
 
 
@@ -162,13 +162,20 @@ def _load_engine():
         search_index["char_matrix"] = pickle.load(f)
 
     chunk_path = active_dir / "chunk_meta.pkl"
-    if chunk_path.is_file():
+    has_chunk_meta = chunk_path.is_file()
+    if has_chunk_meta:
         with chunk_path.open("rb") as handle:
             chunk_meta = pickle.load(handle)
         search_index["chunk_meta"] = (chunk_meta.get("rows", []) if isinstance(chunk_meta, dict)
                                       else chunk_meta.to_dict("records") if hasattr(chunk_meta, "to_dict") else chunk_meta)
 
     if (active_dir / "chunk_embeddings.pkl").is_file():
+        if not has_chunk_meta:
+            # Nửa bộ artifacts (bản chép nửa vời / GC giữa chừng): fail-closed trước
+            # nhập ChunkIndex — bản 503 của API, không hề KeyError 500.
+            raise FileNotFoundError(
+                "chunk_embeddings.pkl có mặt nhưng thiếu cặp chunk_meta.pkl trong "
+                f"{active_dir} — phiên bản incomplete, hãy rebuild (scripts/build_all_v2.py).")
         from itlr.core.chunks import ChunkIndex
         with (active_dir / "chunk_embeddings.pkl").open("rb") as handle:
             search_index["chunks"] = ChunkIndex(search_index["chunk_meta"], pickle.load(handle))

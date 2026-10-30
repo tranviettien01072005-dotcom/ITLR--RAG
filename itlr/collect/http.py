@@ -13,6 +13,8 @@
 from __future__ import annotations
 
 import logging
+import ipaddress
+import socket
 import random
 import time
 import urllib.request
@@ -37,7 +39,13 @@ class RobotsCtx:
     @staticmethod
     def _default_fetch(url, timeout):
         req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-        with urllib.request.urlopen(req, timeout=timeout) as resp:
+        _validate_public_url(url)
+        class PublicRedirect(urllib.request.HTTPRedirectHandler):
+            def redirect_request(self, req, fp, code, msg, headers, newurl):
+                _validate_public_url(newurl)
+                return super().redirect_request(req, fp, code, msg, headers, newurl)
+        opener = urllib.request.build_opener(PublicRedirect())
+        with opener.open(req, timeout=timeout) as resp:
             return resp.read().decode("utf-8", errors="replace")
 
     def _robots_for(self, scheme_netloc: str):
@@ -127,6 +135,29 @@ class _RobotsDenied(HttpError):
     """A denied redirect is a policy decision, not a retryable network failure."""
 
 
+class _UnsafeTarget(HttpError):
+    """Crawler destinations must stay on the public HTTP(S) network."""
+
+
+def _validate_public_url(url: str) -> None:
+    """Reject private destinations before each hop; egress policy must prevent DNS rebinding."""
+    try:
+        parts = urllib.parse.urlsplit(url)
+        if (parts.scheme not in ("http", "https") or not parts.hostname
+                or parts.username is not None or parts.password is not None):
+            raise ValueError("Public HTTP(S) URL without credentials required")
+        port = parts.port or (443 if parts.scheme == "https" else 80)
+        try:
+            addresses = [ipaddress.ip_address(parts.hostname)]
+        except ValueError:
+            addresses = [ipaddress.ip_address(row[4][0]) for row in
+                         socket.getaddrinfo(parts.hostname, port, type=socket.SOCK_STREAM)]
+        if not addresses or any(not address.is_global or address.is_multicast for address in addresses):
+            raise ValueError("Non-public crawler destination")
+    except (ValueError, OSError) as exc:
+        raise _UnsafeTarget("Crawler target rejected: public HTTP(S) destination required") from exc
+
+
 class HttpFetcher:
     """HTTP fetch (httpx, tạo client mới cho từng lần gọi — không dùng chung),
 
@@ -165,6 +196,7 @@ class HttpFetcher:
         """Fetch URL → (status, body_bytes); raise HttpError nếu robots chặn hoặc hết retry."""
         def before_request(request):
             target = str(request.url)
+            _validate_public_url(target)
             crawl_delay = 0.0
             if self.robots is not None and respect_robots:
                 ok, crawl_delay = self.robots.allowed(target)
@@ -188,7 +220,7 @@ class HttpFetcher:
                 # 4xx khác (404/401/...) — không retry
                 LOG.info("fetch %s → HTTP %s (không retry)", url, code)
                 return code, resp.content
-            except _RobotsDenied:
+            except (_RobotsDenied, _UnsafeTarget):
                 raise
             except self._httpx.TimeoutException as exc:
                 last_err = f"timeout: {exc}"

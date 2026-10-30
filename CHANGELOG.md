@@ -1,5 +1,25 @@
 # ITLR–RAG | Intelligent IT Learning Platform — Changelog
 
+### Audit continuation — 2026-10-30
+
+- Reject timeout LLM không hữu hạn/không dương bằng LLMError.
+- Sửa suffix/open/oversized/malformed/unsupported video Range ở post và message; giữ kiểm quyền.
+- Regression FAIL → PASS; 339 Python và 94 Web tests PASS. Release gates deployment và human RAG còn thiếu.
+
+## Chưa phát hành — 2026-10-30: regression-safe audit increment
+
+- Chặn chunk vượt bound từ tail merge/overlap; sửa zero overlap và validate limits.
+- Tái dùng query vector trong một semantic chat request, giữ API legacy và điểm cosine.
+- Giữ filters; sửa tháng đảo chiều, graph hết cạnh, regex top và empty roadmap.
+- Artifacts integrity lỗi trả 503; admin token bytes comparison và rate-limit ADMIN.
+- CF builder từ chối manifest-bearing destination, pin input/output cùng directory;
+  reranker init thread-safe và log fallback; thêm row_id, giữ key row cũ.
+- Export catalog không ghi đè file hiện hữu chứa community uploads.
+- Sửa LLM numeric env parsing trả LLMError; clamp oversized HTTP Range end ở hai route media.
+- Full Python **329 pass/0 skip**, Web **78 pass**; typecheck/build PASS, lint 0 lỗi/20
+  cảnh báo, npm audit/pip-audit không có advisory đã biết, Bandit 0 High (28 Medium/57 Low).
+  [Bằng chứng và công việc còn lại](reports/AUDIT_INCREMENT_2026-10-30.md).
+
 ## 2026-10-30 - Verified architecture increment
 
 - Separate offline answer presentation from chatbot orchestration while preserving existing helper imports and Markdown output.

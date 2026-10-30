@@ -18,7 +18,9 @@ def export(source=None, dest=None):
         rows=[r for r in csv.DictReader(handle) if r.get('origin','').startswith('crawl:')]
     if not rows:
         raise ValueError('No real collected resources; refusing synthetic product export')
-    with dest.open('w',newline='') as handle:
+    # Web appends community resources to this file. Never truncate an existing
+    # catalog, including when an upload races this export (exclusive creation).
+    with dest.open('x',newline='') as handle:
         writer=csv.DictWriter(handle,fieldnames=COLS,extrasaction='ignore');writer.writeheader();writer.writerows(rows)
     snapshot=ROOT/'data/curated_resources.jsonl';snapshot.parent.mkdir(exist_ok=True)
     snapshot_rows = [{**r, 'snapshot_text_sha256': hashlib.sha256(r['full_text'].encode()).hexdigest()} for r in rows]

@@ -164,3 +164,43 @@ def test_quick_resources_uses_chunk_service(client, monkeypatch):
     monkeypatch.setattr(chatbot,'search_by_embedding',legacy)
     resources=load_engine().chatbot._quick_resources('docker',k=2)
     assert resources and all('chunk_id' in item for item in resources)
+
+
+def test_isolated_probe_activate_reload_rollback_and_gc(client, monkeypatch):
+    """Exercise real pointer/integrity/engine lifecycle on the fixture root only.
+
+    Encoder is the client fixture double; this is not a neural model probe.
+    """
+    import shutil
+    import pickle
+    from itlr import config, versioning
+    from itlr.indexv2 import probe
+    from itlr.api import server
+
+    root = config.ARTIFACTS_DIR
+    original = versioning.current_dir(root)
+    for name in ('release-two', 'unactivated'):
+        target = versioning.create_version_dir(root, name)
+        shutil.copytree(original, target, dirs_exist_ok=True)
+        with (target / 'item_list.pkl').open('rb') as handle:
+            items = pickle.load(handle)
+        items['release_marker'] = name
+        with (target / 'item_list.pkl').open('wb') as handle:
+            pickle.dump(items, handle)
+        ok, report = probe(target, with_engine=False)
+        assert ok, report
+    monkeypatch.setenv('ITLR_ADMIN_TOKEN', 'fixture-lifecycle-token')
+    headers = {'X-Admin-Token': 'fixture-lifecycle-token'}
+    versioning.activate(root, 'release-two')
+    assert client.post('/admin/reload', headers=headers).status_code == 200
+    second = server.load_engine()
+    assert set(second.items.release_marker) == {'release-two'}
+    assert client.post('/api/search', json={'query': 'docker', 'min_pct': 0}).status_code == 200
+    assert versioning.rollback(root)
+    assert client.post('/admin/reload', headers=headers).status_code == 200
+    assert 'release_marker' not in server.load_engine().items.columns
+    assert server.load_engine() is not second
+    versioning.garbage_collect(root, keep=0)
+    assert versioning.current_dir(root) == original
+    assert original.is_dir()
+    assert not (root / 'versions' / 'unactivated').exists()

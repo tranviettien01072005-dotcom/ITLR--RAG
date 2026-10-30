@@ -29,18 +29,8 @@ apiRouter.get("/realtime", requireAuth, async (req, res) => {
   const wasOnline = isOnline(uid);
   const remove = addClient(uid, res);
 
-  try {
-    const friends = await acceptedFriendIds(uid);
-    if (!wasOnline) {
-      await query("UPDATE users SET last_seen = now() WHERE id = $1", [uid]);
-      friends.forEach((fid) => sendToUser(fid, "presence", { user: uid, online: true }));
-    }
-    const online = friends.filter((fid) => isOnline(fid));
-    res.write(`event: presence_snapshot\ndata: ${JSON.stringify({ online })}\n\n`);
-  } catch {  }
-
   const ping = setInterval(() => { try { res.write(": ping\n\n"); } catch {  } }, 25000);
-  req.on("close", async () => {
+  res.once("close", async () => {
     clearInterval(ping);
     remove();
     if (!isOnline(uid)) {
@@ -52,6 +42,18 @@ apiRouter.get("/realtime", requireAuth, async (req, res) => {
       } catch {  }
     }
   });
+
+  try {
+    const friends = await acceptedFriendIds(uid);
+    if (res.destroyed) return;
+    if (!wasOnline) {
+      await query("UPDATE users SET last_seen = now() WHERE id = $1", [uid]);
+      if (res.destroyed) return;
+      friends.forEach((fid) => sendToUser(fid, "presence", { user: uid, online: true }));
+    }
+    const online = friends.filter((fid) => isOnline(fid));
+    res.write(`event: presence_snapshot\ndata: ${JSON.stringify({ online })}\n\n`);
+  } catch {  }
 });
 
 const chatSchema = z.object({
@@ -279,6 +281,7 @@ apiRouter.post(
     if (!content && !image && !video && !doc) return res.status(400).json({ error: "Hãy nhập nội dung hoặc đính kèm ảnh/video/tài liệu." });
 
     const docOriginal = doc ? utf8name(doc.originalname) : null;
+    const text = doc ? await extractText(doc.buffer, extOf(doc.originalname)) : "";
     const rows = await query<{ id: number; created_at: string }>(
       `INSERT INTO posts (user_id, content, image_data, image_mime, video_data, video_mime, doc_data, doc_mime, doc_original)
          VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING id, created_at`,
@@ -286,7 +289,6 @@ apiRouter.post(
        video?.buffer || null, video?.mimetype || null, doc?.buffer || null, doc?.mimetype || null, docOriginal]
     );
     if (doc) {
-      const text = await extractText(doc.buffer, extOf(doc.originalname));
       appendCatalogRow({
         title: docOriginal!, description: text || docOriginal!, type: "Tài liệu",
         category: "Tài liệu cộng đồng", instructor: req.user!.name, platform: "Cộng đồng",
@@ -351,14 +353,21 @@ apiRouter.get("/media/post/:id/video", requireAuth, async (req, res) => {
   res.setHeader("Content-Type", p.video_mime || "video/mp4");
   res.setHeader("Accept-Ranges", "bytes");
   const range = req.headers.range;
-  if (range) {
-    const m = /bytes=(\d*)-(\d*)/.exec(range);
-    const start = m && m[1] ? parseInt(m[1], 10) : 0;
-    const end = m && m[2] ? parseInt(m[2], 10) : total - 1;
-    if (start > end || start >= total) {
-      res.status(416).setHeader("Content-Range", `bytes */${total}`);
-      return res.end();
-    }
+  const suffix = /^bytes=-(\d+)$/.exec(range || "");
+  const ranges = range?.startsWith("bytes=") ? req.range(total) : undefined;
+  // range-parser rejects suffixes larger than the representation.
+  if (suffix && Number(suffix[1]) >= total && total > 0) {
+    res.status(206).setHeader("Content-Range", `bytes 0-${total - 1}/${total}`);
+    res.setHeader("Content-Length", total);
+    return res.end(buf);
+  }
+  if (ranges === -1) {
+    res.status(416).setHeader("Content-Range", `bytes */${total}`);
+    return res.end();
+  }
+  // Unsupported/malformed or multipart ranges use the complete representation.
+  if (Array.isArray(ranges) && ranges.type === "bytes" && ranges.length === 1) {
+    const { start, end } = ranges[0];
     res.status(206);
     res.setHeader("Content-Range", `bytes ${start}-${end}/${total}`);
     res.setHeader("Content-Length", end - start + 1);

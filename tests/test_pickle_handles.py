@@ -18,6 +18,7 @@ ROOT = Path(__file__).resolve().parent.parent
 TRACKED = ["itlr/engine.py", "itlr/core/ann.py",
            "itlr/pipelines/build_model.py",
            "itlr/pipelines/build_embeddings.py",
+           "itlr/pipelines/build_embeddings_v2.py",
            "itlr/pipelines/build_cf.py"]
 
 # Ghi chú: `import pickle; pickle.load(open(path, "rb"))` NHƯNG nếu file khớp

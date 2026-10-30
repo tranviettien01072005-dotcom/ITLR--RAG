@@ -23,11 +23,23 @@ def chunk_text(text: str, *, max_chars: int = 900, overlap_chars: int = 120,
     2) ghép câu liên tiếp; mở lại khi vượt max_chars;
     3) nếu đoạn cuối quá ngắn → gộp với đoạn trước (chứa overlap tự nhiên).
     """
+    if max_chars <= 0 or not 0 <= overlap_chars < max_chars or min_chars < 0:
+        raise ValueError('Require max_chars > 0, 0 <= overlap_chars < max_chars, min_chars >= 0')
     if not text or not text.strip():
         return []
     text = text.strip()
     if len(text) <= max_chars:
         return [text]
+
+    if re.search(r"(?m)^\s*(?:```|~~~)", text):
+        # Source code is evidence: preserve indentation/newlines, even across cuts.
+        step = max_chars - overlap_chars
+        parts = []
+        for start in range(0, len(text), step):
+            parts.append(text[start:start + max_chars])
+            if start + max_chars >= len(text):
+                break
+        return parts
 
     parts: list[str] = []
     cur: list[str] = []
@@ -48,17 +60,19 @@ def chunk_text(text: str, *, max_chars: int = 900, overlap_chars: int = 120,
             continue
         if cur_len + len(s) + 1 > max_chars:
             parts.append(" ".join(cur))
-            # overlap: giữ mớ cuối dài tối đa overlap_chars
+            # Overlap chỉ dùng phần còn vừa với câu tiếp theo và dấu cách.
             tail = " ".join(cur)
-            tail = tail[-overlap_chars:] if len(tail) > overlap_chars else tail
-            cur, cur_len = [tail], len(tail)
+            budget = min(overlap_chars, max_chars - len(s) - 1)
+            tail = tail[-budget:] if budget > 0 else ''
+            cur, cur_len = ([tail], len(tail)) if tail else ([], 0)
         cur.append(s)
         cur_len += len(s) + 1
     if cur:
         parts.append(" ".join(cur))
 
-    # gộp đoạn cuối quá ngắn
-    if len(parts) >= 2 and len(parts[-1]) < min_chars:
+    # gộp đoạn cuối quá ngắn — chỉ khi gộp không phá vỡ bound tối đa max_chars
+    if len(parts) >= 2 and len(parts[-1]) < min_chars \
+            and len(parts[-2]) + 1 + len(parts[-1]) <= max_chars:
         parts[-2] += " " + parts.pop()
 
     return [p.strip() for p in parts if p.strip()]

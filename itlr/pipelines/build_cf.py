@@ -11,6 +11,7 @@ Chạy SAU build_model.py (cần item_list.pkl để căn id <-> vị trí) và 
 
 import pickle
 from collections import Counter
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
@@ -39,7 +40,16 @@ def top_k_per_row(sim, k):
 
 
 def main():
-    with open(config.artifact("item_list.pkl"), "rb") as f:
+    target = Path(config.artifact("cf_model.pkl"))
+    if (target.parent / "MANIFEST.json").exists():
+        # Ghi vào phiên bản active đã stamp manifest phá sha256 → engine từ chối nạp
+        # (VersionError). CF mới phải đi qua staging mới + probe + activate.
+        raise RuntimeError(
+            f"MANIFEST: phiên bản artifacts {target.parent} đã đóng băng integrity. "
+            "Ghi cf_model.pkl thẳng vào đây phá sha256 của bản đang chạy. "
+            "Hãy chạy scripts/build_all_v2.py --with-cf (staging mới → probe → activate).")
+    # Resolve once: activation during the build must not redirect its writes.
+    with (target.parent / "item_list.pkl").open("rb") as f:
         item_list = pickle.load(f).reset_index(drop=True)
     pos_to_id = item_list["item_id"].astype(int).to_numpy()
     id_to_pos = {int(iid): pos for pos, iid in enumerate(pos_to_id)}
@@ -88,7 +98,7 @@ def main():
         "histories": {u: histories[u] for u in demo_users},
         "labels": {u: labels[u] for u in demo_users},
     }
-    with open(config.artifact("cf_model.pkl"), "wb") as f:
+    with target.open("wb") as f:
         pickle.dump(cf_model, f)
 
     print(f"CF model: {n_users} users x {n_items} items")

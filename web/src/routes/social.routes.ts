@@ -400,11 +400,21 @@ socialRouter.get("/api/messages/media/:id/:kind", requireAuth, async (req, res) 
   res.setHeader("Content-Type", m.mime || "video/mp4");
     res.setHeader("Accept-Ranges", "bytes");
     const range = req.headers.range;
-    if (range) {
-      const mt = /bytes=(\d*)-(\d*)/.exec(range);
-      const start = mt && mt[1] ? parseInt(mt[1], 10) : 0;
-      const end = mt && mt[2] ? parseInt(mt[2], 10) : total - 1;
-      if (start > end || start >= total) { res.status(416).setHeader("Content-Range", `bytes */${total}`); return res.end(); }
+    const suffix = /^bytes=-(\d+)$/.exec(range || "");
+    const ranges = range?.startsWith("bytes=") ? req.range(total) : undefined;
+    // range-parser rejects suffixes larger than the representation.
+    if (suffix && Number(suffix[1]) >= total && total > 0) {
+      res.status(206).setHeader("Content-Range", `bytes 0-${total - 1}/${total}`);
+      res.setHeader("Content-Length", total);
+      return res.end(buf);
+    }
+    if (ranges === -1) {
+      res.status(416).setHeader("Content-Range", `bytes */${total}`);
+      return res.end();
+    }
+    // Unsupported/malformed or multipart ranges use the complete representation.
+    if (Array.isArray(ranges) && ranges.type === "bytes" && ranges.length === 1) {
+      const { start, end } = ranges[0];
       res.status(206);
       res.setHeader("Content-Range", `bytes ${start}-${end}/${total}`);
       res.setHeader("Content-Length", end - start + 1);

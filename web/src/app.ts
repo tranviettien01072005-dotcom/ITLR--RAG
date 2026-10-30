@@ -1,4 +1,5 @@
 import path from "node:path";
+import { DocumentInputError } from "./services/dataset-extract";
 import "express-async-errors";
 import express, { NextFunction, Request, Response } from "express";
 import cookieParser from "cookie-parser";
@@ -63,6 +64,10 @@ app.use((req: Request, res: Response) => {
 });
 
 app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
+  if (err instanceof DocumentInputError && !res.headersSent) {
+    res.status(400).json({ error: err.message });
+    return;
+  }
   console.error("[error]", err?.message || err);
   if (res.headersSent) return;
   res.status(500).render("error", { title: "Lỗi", message: "Đã có lỗi xảy ra phía máy chủ." });

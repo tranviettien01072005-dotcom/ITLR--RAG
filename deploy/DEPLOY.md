@@ -1,5 +1,7 @@
 # Cài đặt và vận hành ITLR–RAG
 
+Audit tiếp nối: timeout LLM phải hữu hạn và >0. Video hỗ trợ byte range đơn/suffix; multipart/unsupported/malformed trả representation đầy đủ. **NOT READY**: Docker/PostgreSQL/HTTPS/backup-restore chưa được thực chạy ở lượt này. [Bằng chứng](../reports/AUDIT_INCREMENT_2026-10-30.md).
+
 For the complete HTTPS/Web/API/PostgreSQL stack use [the production runbook](PRODUCTION.md) and `compose.production.yml`. The original `docker-compose.yml` remains API/refresh only. Web restarts no longer run migration or catalog sync automatically.
 
 Hướng dẫn cho **ITLR–RAG | Intelligent IT Learning Platform**, cập nhật 2026-10-30. Phạm vi hỗ trợ hiện tại là Linux local, một worker/replica mỗi service và các tiến trình ghi hợp tác qua khóa file. [Validation](../reports/VALIDATION.md) ghi các bước đã thực thi; các cấu hình container chưa được xác nhận bằng một lượt Docker/Compose thực tế.
@@ -109,6 +111,12 @@ npm start
 
 Seed cần `var/data/web_items.csv`, dùng upsert và không reset enrollments. Dùng `npm run sync` khi đồng bộ catalog về sau; kiểm database đích trước mọi lệnh ghi. Development có thể chạy `npm run dev`. Build copy JavaScript, EJS views, public assets và schema SQL vào `dist/`; Dockerfile Web gọi cùng lệnh build.
 
+Exporter hiện từ chối đích đã tồn tại để không truncate tài liệu cộng đồng do Web append.
+Để chuẩn bị refresh, gọi `export(source=..., dest=...)` từ module
+`scripts.export_web_catalog` với **đích mới**, duyệt merge/định danh riêng khi Web dừng
+ghi rồi mới đồng bộ theo kế hoạch được phê duyệt. Chưa có automatic cross-process merge;
+không xóa catalog hiện hữu hoặc đổi path Web để lách guard.
+
 ## Chuyển version, reload và rollback
 
 `build_all_v2.py` không có `--no-activate` sẽ tự activate sau probe và chạy GC. Để duyệt version trước khi chuyển, dùng `--no-activate` rồi gọi API Python với đúng ID đã probe:
@@ -119,6 +127,11 @@ versioning.activate(version="TEN_VERSION_DA_PROBE")
 ```
 
 Sau khi pointer đổi, reload API qua `POST /admin/reload` với header `X-Admin-Token` chứa secret đang cấu hình, hoặc restart process. Không in header/token vào log. Reload nạp engine mới trước khi hoán đổi; bản lỗi bị từ chối và engine đã nạp tiếp tục phục vụ. Request đang chạy có thể dùng state cũ.
+
+Reload có bucket `ITLR_RATE_ADMIN_PER_MIN` mặc định 10/IP/phút, 429 có Retry-After;
+`0` tắt bucket, không tắt yêu cầu token. Thiếu/corrupt integrity artifacts trả 503.
+Không build CF vào version có MANIFEST; dùng staging mới với `--with-cf`, probe rồi
+activate. Direct CF builder pin input/output một directory, không theo pointer mới giữa chừng.
 
 Khi cần quay lại, gọi `versioning.rollback()` rồi reload/restart API. Không chạy rollback như một phần mặc định của khởi động. Giữ bản backup của PostgreSQL và artifacts trước migration hoặc đổi nguồn.
 

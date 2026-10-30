@@ -1,5 +1,17 @@
 # ITLR–RAG | Intelligent IT Learning Platform — Validation
 
+Checkpoint mới nhất: **339 Python PASS/0 skip (46,44s)**, **94 Web PASS/0 skip**, lines **40,02%**; compileall/pip check/packaging/typecheck/build PASS, lint 20 warnings. Chi tiết và release blockers: [audit continuation](AUDIT_INCREMENT_2026-10-30.md).
+
+## Checkpoint tiếp nối trên nhánh refactor
+
+Full suite mới **329 passed/0 skip (50,19s)**, baseline nhánh **288/0 (48,26s)**;
+compileall/pip check PASS. Web **78 pass/18 files**, coverage lines **39,13%**;
+typecheck/build PASS, lint 0 lỗi/20 cảnh báo, npm audit 0 vulnerabilities.
+Bandit 0 High (28 Medium/57 Low); pip-audit trên 105 distributions trong venv không có
+advisory đã biết. Xem [audit increment](AUDIT_INCREMENT_2026-10-30.md)
+cho FAIL → PASS, phần chưa hoàn thành và giới hạn đo lường. Nội dung bên dưới lưu
+checkpoint trước; neural metrics không được chạy lại ở lần này.
+
 Ngày kiểm chứng: 2026-10-30. Tài liệu phân biệt kết quả thực chạy trong phiên audit với
 checkpoint lịch sử. [README](../README.md) là cổng tài liệu; [Deployment](../deploy/DEPLOY.md)
 ghi điều kiện vận hành. Không suy ra production-ready từ kết quả unit tests.

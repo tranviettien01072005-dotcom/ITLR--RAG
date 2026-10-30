@@ -245,3 +245,79 @@ def test_each_retry_and_allowed_redirect_obeys_rate_limit(monkeypatch):
     fetcher = HttpFetcher(rate_limiter=Rate(), max_retries=1, backoff_base=0)
     assert fetcher.fetch("https://allowed.test/start") == (200, b"ok")
     assert throttled == ["allowed.test", "other.test", "allowed.test", "other.test"]
+
+
+@pytest.mark.parametrize('target', [
+    'http://127.0.0.1/private', 'http://[::1]/private',
+    'http://169.254.169.254/latest/meta-data/', 'http://10.0.0.1/private',
+])
+def test_private_redirect_never_reaches_transport(monkeypatch, target):
+    import httpx
+    visited = []
+    def respond(request):
+        visited.append(str(request.url))
+        if len(visited) == 1:
+            return httpx.Response(302, headers={'Location': target})
+        return httpx.Response(200, content=b'private')
+    original = httpx.Client
+    monkeypatch.setattr(httpx, 'Client', lambda **kw: original(
+        **kw, transport=httpx.MockTransport(respond)))
+    with pytest.raises(HttpError):
+        HttpFetcher(max_retries=0).fetch('https://93.184.216.34/start')
+    assert visited == ['https://93.184.216.34/start']
+
+
+def test_robots_private_target_rejected_before_open(monkeypatch):
+    import urllib.request
+    opened = []
+    monkeypatch.setattr(urllib.request, 'urlopen', lambda *a, **k: opened.append(a))
+    with pytest.raises(HttpError):
+        RobotsCtx._default_fetch('http://127.0.0.1/robots.txt', 1)
+    assert opened == []
+
+
+@pytest.fixture(autouse=True)
+def public_test_dns(monkeypatch):
+    # MockTransport hostnames resolve deterministically; the production guard stays active.
+    import socket
+    monkeypatch.setattr(socket, 'getaddrinfo', lambda host, port, **kw: [
+        (socket.AF_INET, socket.SOCK_STREAM, 6, '', ('93.184.216.34', port))])
+
+
+@pytest.mark.parametrize('url', ['file:///etc/passwd', 'ftp://93.184.216.34/x',
+                                'https://user:pass@93.184.216.34/'])
+def test_non_http_or_credential_target_rejected(url):
+    from itlr.collect.http import _validate_public_url
+    with pytest.raises(HttpError):
+        _validate_public_url(url)
+
+
+def test_private_dns_rejected(monkeypatch):
+    import socket
+    from itlr.collect.http import _validate_public_url
+    monkeypatch.setattr(socket, 'getaddrinfo', lambda *a, **k: [
+        (socket.AF_INET, socket.SOCK_STREAM, 6, '', ('10.0.0.1', 443))])
+    with pytest.raises(HttpError):
+        _validate_public_url('https://private.example/')
+
+
+def test_robots_redirect_guard_rejects_private_target(monkeypatch):
+    import urllib.request
+    def build_opener(handler):
+        # Exercise the redirect handler before it can open the redirected request.
+        class Opener:
+            def open(self, request, timeout):
+                handler.redirect_request(request, None, 302, 'redirect', {},
+                                         'https://127.0.0.1/robots.txt')
+                pytest.fail('Private robots redirect was not rejected')
+        return Opener()
+    monkeypatch.setattr(urllib.request, 'build_opener', build_opener)
+    with pytest.raises(HttpError):
+        RobotsCtx._default_fetch('https://93.184.216.34/robots.txt', 1)
+
+
+@pytest.mark.parametrize('url', ['http://224.0.0.1/', 'http://[ff02::1]/'])
+def test_multicast_target_rejected(url):
+    from itlr.collect.http import _validate_public_url
+    with pytest.raises(HttpError):
+        _validate_public_url(url)

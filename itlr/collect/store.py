@@ -90,9 +90,8 @@ class CollectStore:
     def close(self):
         try:
             self._conn.commit()
+        finally:
             self._conn.close()
-        except Exception:  # noqa: BLE001
-            pass
 
     # ---------- sources ----------
     def upsert_source(self, data: dict) -> None:
@@ -179,11 +178,14 @@ class CollectStore:
                  "COALESCE(:status,'active'),1,:fetched_at,:updated_at)")
             self._conn.execute(q, {**doc, "updated_at": doc["fetched_at"]})
             self._conn.commit()
-            new_id = self._conn.execute(
+            row = self._conn.execute(
                 "SELECT doc_id, revision FROM docs WHERE content_key=?",
                 (doc["content_key"],)).fetchone()
             self._remember_title(doc)
-            return {"event": "new", "row": dict(new_id), "revision": 1}
+            # Khóa thống nhất với event còn lại: "row_id" + "revision"; trước đây event
+            # "new" trả "row" (shape lệch) khiến consumer đọc res["row_id"] va KeyError.
+            return {"event": "new", "row_id": row["doc_id"],
+                    "row": dict(row), "revision": int(row["revision"])}
 
         provenance = ("source_id", "external_id", "url", "norm_url", "lang",
                       "license", "full_text_allowed")

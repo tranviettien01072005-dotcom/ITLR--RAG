@@ -10,31 +10,39 @@ caller giữ nguyên thứ tự embeddings (hệ thống vẫn chạy bình thư
 """
 
 import os
+import logging
+import threading
 
 _RERANKER = None
+_INIT_LOCK = threading.Lock()
 
 DEFAULT_RERANKER = "BAAI/bge-reranker-base"
 
 
 def get_reranker():
-    """Nạp (lười, một lần) CrossEncoder. Trả về model hoặc None nếu không khả dụng."""
+    """Nạp (lười, một lần) CrossEncoder. Trả về model hoặc None nếu không khả dụng.
+
+    Khóa init: sync endpoints chạy trong threadpool — không khóa, 2 request đầu tiên
+    đồng thời mỗi bên tải CrossEncoder (RAM spike hàng trăm MB) và nạp thua bị vứt.
+    """
     global _RERANKER
     if _RERANKER is not None:
         return _RERANKER or None
+    with _INIT_LOCK:
+        if _RERANKER is None:
+            if os.environ.get("DISABLE_RERANKER"):
+                _RERANKER = False
+            else:
+                name = os.environ.get("RERANKER_MODEL", DEFAULT_RERANKER)
+                try:
+                    from sentence_transformers import CrossEncoder
 
-    if os.environ.get("DISABLE_RERANKER"):
-        _RERANKER = False
-        return None
-
-    name = os.environ.get("RERANKER_MODEL", DEFAULT_RERANKER)
-    try:
-        from sentence_transformers import CrossEncoder
-
-        _RERANKER = CrossEncoder(name, max_length=512)
-    except Exception:
-        _RERANKER = False
-        return None
-    return _RERANKER
+                    _RERANKER = CrossEncoder(name, max_length=512)
+                except Exception:
+                    logging.getLogger(__name__).warning(
+                        'CrossEncoder unavailable; keeping retrieval order', exc_info=True)
+                    _RERANKER = False
+    return _RERANKER or None
 
 
 def _sigmoid(x):
@@ -63,6 +71,8 @@ def rerank(query, candidates, text_of, top_k=None, reranker=None):
     try:
         raw = model.predict(pairs, convert_to_numpy=True, show_progress_bar=False)
     except Exception:
+        logging.getLogger(__name__).warning(
+            'CrossEncoder prediction failed; keeping retrieval order', exc_info=True)
         return [(c, None) for c in (candidates if top_k is None else candidates[:top_k])]
 
     scores = _sigmoid(raw)

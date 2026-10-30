@@ -1,10 +1,22 @@
 # ITLR–RAG | Intelligent IT Learning Platform — Trạng thái dự án
 
+Checkpoint mới: **339 Python PASS/0 skip**, **94 Web PASS/0 skip**, Web lines 40,02%; timeout finite/positive và video suffix/unsupported Range đã sửa kèm FAIL → PASS. CI HEAD success chưa bao gồm dirty diff. Docker/PostgreSQL/HTTPS và human/neural RAG gates chưa xác minh; **NOT READY**. Xem [audit](../reports/AUDIT_INCREMENT_2026-10-30.md).
+
 Cập nhật: 2026-10-30. Đây là bộ nhớ kỹ thuật trong repository; không cần dịch vụ memory ngoài.
 Hướng dẫn hiện hành: [README](../README.md), [AGENTS](../AGENTS.md),
 [Deployment](../deploy/DEPLOY.md). Bằng chứng theo lần chạy: [Validation](../reports/VALIDATION.md).
 
 ## Trạng thái hiện hành
+
+Checkpoint trước trên nhánh refactor: **329 Python pass/0 skip (50,19s)** so với
+baseline nhánh **288/0**. Sửa chunk bounds/zero overlap, request-local vector reuse,
+handler/filter bugs, integrity 503/admin guard, CF target pinning, reranker init lock,
+store row_id, exporter no-clobber, LLM numeric env contract và oversized media Range.
+Không đổi GC/active artifacts/database. Sau bổ sung toolchain cô lập: **78 Web pass**,
+typecheck/build PASS, lint 0 lỗi/20 cảnh báo, npm audit/pip-audit không có advisory đã
+biết; Bandit 0 High (28 Medium/57 Low). Ponytail Ultra không có trong model
+registry. Chi tiết và backlog: [audit increment](../reports/AUDIT_INCREMENT_2026-10-30.md).
+Các số 280/64 bên dưới là checkpoint trước, không phải lượt chạy mới này.
 
 - **Implemented:** Web Express/TypeScript/EJS (3000), PostgreSQL; API FastAPI (8000).
   SQLite lưu nội dung thu thập; artifacts pickle/FAISS được version hóa trên filesystem Linux local.

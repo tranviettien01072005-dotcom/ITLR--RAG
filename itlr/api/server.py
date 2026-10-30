@@ -36,6 +36,7 @@ from pydantic import BaseModel, Field, field_validator  # noqa: E402
 
 from itlr.api import ratelimit  # noqa: E402
 from itlr.engine import load_engine  # noqa: E402
+from itlr.versioning import VersionError  # noqa: E402
 
 STATIC_DIR = Path(__file__).resolve().parent / "static"
 
@@ -49,16 +50,22 @@ INTERESTED_MAX_ITEMS = 200
 # Rate mặc định (per IP/phút). 0 qua env = tắt bucket đó.
 RATE_SEARCH_DEFAULT = 120
 RATE_CHAT_DEFAULT = 30
+RATE_ADMIN_DEFAULT = 10
+
+
+def _artifact_load_error() -> HTTPException:
+    return HTTPException(
+        status_code=503,
+        detail="Artifacts chưa build hoặc integrity hỏng (chạy scripts/build_all_v2.py: "
+               "staging → probe → activate)")
 
 
 def _engine():
-    """load_engine nhưng thiếu artifacts ⇒ 503 (không để 500 âm thầm)."""
+    """load_engine nhưng thiếu artifacts/integrity hỏng ⇒ 503 (không để 500 âm thầm)."""
     try:
         return load_engine()
-    except FileNotFoundError:
-        raise HTTPException(
-            status_code=503,
-            detail="Artifacts chưa build (chạy scripts/build_all_v2.py)")
+    except (FileNotFoundError, VersionError):
+        raise _artifact_load_error()
 
 
 def _rate_dependency(bucket: str, default_per_min: int):
@@ -68,6 +75,7 @@ def _rate_dependency(bucket: str, default_per_min: int):
 
 _search_rate = _rate_dependency("SEARCH", RATE_SEARCH_DEFAULT)
 _chat_rate = _rate_dependency("CHAT", RATE_CHAT_DEFAULT)
+_admin_rate = _rate_dependency("ADMIN", RATE_ADMIN_DEFAULT)
 
 
 def _log(msg):
@@ -121,11 +129,11 @@ async def lifespan(_app):
         load_engine()
         _log("[OK] Engine sẵn sàng — API tại http://localhost:8000")
         _prewarm_ollama()
-    except FileNotFoundError:
+    except (FileNotFoundError, VersionError) as exc:
         _log(
-            "[!] Chưa có model artifacts. Hãy build trước:\n"
+            f"[!] Artifacts chưa sẵn sàng ({exc.__class__.__name__}). Hãy build trước:\n"
             "    python scripts/build_all_v2.py\n"
-            "(catalog V2 (legacy + crawl) -> build_model -> build_embeddings_v2 -> probe -> activate)\n"
+            "(staging → probe → activate; chi tiết: python -m itlr.indexv2)\n"
             "CF (cf_model.pkl) là tùy chọn: không có thì /api/personas, /api/for-you trả 503."
         )
     yield
@@ -175,9 +183,8 @@ def health():
     """Liveness/readiness: engine đã nạp được artifacts chưa + CF đang bật/tắt."""
     try:
         eng = load_engine()
-    except FileNotFoundError:
-        raise HTTPException(status_code=503,
-                            detail="Artifacts chưa build (chạy scripts/build_all_v2.py)")
+    except (FileNotFoundError, VersionError):
+        raise _artifact_load_error()
     return {"status": "ok", "engine": "ready",
             "cf": bool(getattr(eng, "cf_model", None) is not None),
             "items": int(len(eng.items)) if getattr(eng, "items", None) is not None else 0}
@@ -338,7 +345,9 @@ def _admin_authorized(request: Request) -> bool:
     given = request.headers.get("X-Admin-Token", "")
     if not expected:
         return False
-    return secrets.compare_digest(given, expected)
+    # compare_digest với str chỉ nhận ASCII; header không tin cậy có thể non-ASCII
+    # (UTF-8 thật hoặc ISO-8859-1 của proxy) → so trên bytes để luôn 403, không 500.
+    return secrets.compare_digest(given.encode("utf-8"), expected.encode("utf-8"))
 
 
 _LOOPBACK_HOSTS = frozenset({"127.0.0.1", "::1", "localhost"})
@@ -351,19 +360,22 @@ def _metrics_allowed(request: Request) -> bool:
     return ratelimit.client_ip(request) in _LOOPBACK_HOSTS
 
 
-@app.post("/admin/reload")
+@app.post("/admin/reload", dependencies=[Depends(_admin_rate)])
 def admin_reload(request: Request):
     """Nạp lại artifacts mà không cần tắt/mở lại tiến trình — gọi sau khi
     build_all_v2.py kích hoạt phiên bản mới, để search/chatbot dùng dữ liệu mới ngay.
 
-    Bảo vệ: BẮT BUỘC header `X-Admin-Token` khớp env `ITLR_ADMIN_TOKEN`. Env rỗng
-    (chưa cấu hình) ⇒ 403 + API coi như tắt — tránh ai cũng reload được server.
+    Bảo vệ: BẮT BUỘC header `X-Admin-Token` khớp env `ITLR_ADMIN_TOKEN`; bucket rate
+    "ADMIN" giới hạn dò token (env `ITLR_RATE_ADMIN_PER_MIN`, 0 = tắt). Env rỗng
+    (chưa cấu hình) ⇒ 403 + API coi như tắt — tránh ai cũng reload được server. Mỗi lần
+    auth hụt được GHI LOG (audit) — thay vì bỏ qua im im.
     """
     if not _admin_token_expected():
         raise HTTPException(status_code=403,
                             detail="Admin reload bị tắt: chưa cấu hình ITLR_ADMIN_TOKEN "
                                    "(đặt env rồi khởi động lại server).")
     if not _admin_authorized(request):
+        _log(f"[!] /admin/reload auth fail từ {ratelimit.client_ip(request)}")
         raise HTTPException(status_code=403, detail="Sai hoặc thiếu header X-Admin-Token.")
     try:
         if hasattr(load_engine, "reload"):
@@ -371,10 +383,8 @@ def admin_reload(request: Request):
         else:  # Test/provider adapters retain the historical cache interface.
             load_engine.cache_clear()
             eng = load_engine()
-    except FileNotFoundError:
-        raise HTTPException(status_code=503,
-                            detail="Reload xong pointers nhưng artifacts chưa build được nạp "
-                                   "(chạy scripts/build_all_v2.py).")
+    except (FileNotFoundError, VersionError):
+        raise _artifact_load_error()
     n = len(eng.items) if hasattr(eng, "items") else None
     return {"ok": True, "reloaded": True, "items": n,
             "cf": bool(getattr(eng, "cf_model", None) is not None)}

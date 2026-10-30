@@ -8,3 +8,7 @@ it("rejects corrupt PDFs in the parser worker and frees capacity", async () => {
     await expect(extractText(Buffer.from("%PDF-1.4\ninvalid\n%%EOF"), ".pdf")).rejects.toThrow();
   }
 });
+it("classifies malformed PDFs as invalid user documents", async () => {
+  await expect(extractText(Buffer.from("%PDF-1.4\ninvalid\n%%EOF"), ".pdf"))
+    .rejects.toMatchObject({ name: "DocumentInputError" });
+});
