@@ -67,4 +67,3 @@ app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
   if (res.headersSent) return;
   res.status(500).render("error", { title: "Lỗi", message: "Đã có lỗi xảy ra phía máy chủ." });
 });
-

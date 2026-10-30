@@ -591,5 +591,3 @@ def synthesize_answer(query, sources, recommendations, mode, category=None, item
         out += format_items_detailed(others[:4], query=query)
     out += tips_block
     return out + foot
-
-
