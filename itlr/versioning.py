@@ -151,11 +151,12 @@ def _write_pointer(root: Path, version: str, event="activate") -> None:
         handle.flush()
         os.fsync(handle.fileno())
     os.replace(tmp, root / "CURRENT.json")
-    fd = os.open(root, os.O_RDONLY | os.O_DIRECTORY)
-    try:
-        os.fsync(fd)
-    finally:
-        os.close(fd)
+    if hasattr(os, "O_DIRECTORY"):  # Windows cannot fsync a directory; POSIX can
+        fd = os.open(root, os.O_RDONLY | os.O_DIRECTORY)
+        try:
+            os.fsync(fd)
+        finally:
+            os.close(fd)
 
 
 def _append_history(root: Path, event: str, version: str | None) -> None:

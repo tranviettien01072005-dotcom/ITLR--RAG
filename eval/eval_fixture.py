@@ -45,7 +45,8 @@ def main():
             ids = [int(r['item_id']) for r in results]
             ranks.append(ids.index(expected) + 1 if expected in ids else None)
         rank = ranks[0]
-        assert all(r == rank for r in ranks), 'Non-deterministic ranking'
+        if not all(r == rank for r in ranks):
+            raise RuntimeError('Non-deterministic ranking')
         cases.append(dict(query=query, expected_id=expected, rank=rank))
     report = dict(
         scope='lexical TF-IDF + BM25 smoke only; no embeddings/reranker/LLM',

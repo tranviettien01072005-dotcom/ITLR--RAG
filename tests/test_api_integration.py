@@ -15,14 +15,19 @@ ROOT = Path(__file__).resolve().parent.parent
 @pytest.fixture()
 def client(tmp_path, monkeypatch):
     import pickle
+    import sys
+    import types
     import numpy as np
-    import sentence_transformers
     from test_index_probe import _mini_artifacts
     from itlr import config, versioning
     from itlr.retrieval.bm25 import BM25Index
     from itlr.core.recommender import build_field_corpus, build_retrieval_model, create_vectorizer
     from fastapi.testclient import TestClient
     from itlr.api import server as srv
+
+    # The fixture encoder is a stub; importing the real package would pull torch.
+    sentence_transformers = types.ModuleType("sentence_transformers")
+    monkeypatch.setitem(sys.modules, "sentence_transformers", sentence_transformers)
 
     monkeypatch.setenv("USE_OLLAMA", "0")
     monkeypatch.delenv("DEEPSEEK_API_KEY", raising=False)
@@ -56,7 +61,7 @@ def client(tmp_path, monkeypatch):
         def encode(self,texts,**kwargs):
             v = np.ones((len(texts),8), dtype='float32')
             return v / np.linalg.norm(v,axis=1,keepdims=True)
-    monkeypatch.setattr(sentence_transformers,'SentenceTransformer',FixtureEncoder)
+    sentence_transformers.SentenceTransformer = FixtureEncoder
     monkeypatch.setattr('itlr.core.rerank.get_reranker',lambda:None)
     monkeypatch.setattr(config,'ARTIFACTS_DIR',root)
     monkeypatch.delenv('ITLR_ARTIFACTS_DIR',raising=False)

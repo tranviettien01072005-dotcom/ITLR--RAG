@@ -3,7 +3,7 @@
 <%# Auto-duyệt đóng góp gắn theo TÀI KHOẢN (role='admin'), không theo cookie admin-passcode. %>
 <% var isContentAdmin = !!(user && user.role === 'admin'); %>
 
-<a class="back" href="javascript:history.back()">← Quay lại</a>
+<a class="back" href="<%= user ? '/learning' : '/' %>">← Quay lại</a>
 
 <article class="course-detail">
   <div class="card-badges">

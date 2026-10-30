@@ -38,11 +38,13 @@ def normalize_url(url) -> str | None:
         return None
     if parts.scheme not in ("http", "https"):
         return None
+    if parts.username is not None or parts.password is not None:
+        return None
     scheme = "https" if parts.scheme == "http" else parts.scheme
     host = parts.netloc.lower()
-    # Bỏ cổng mặc định
-    if host.endswith(":443"):
-        host = host[:-4]
+    default_port = ":80" if parts.scheme == "http" else ":443"
+    if host.endswith(default_port):
+        host = host[: -len(default_port)]
     path = parts.path or "/"
     # Decode phần trăm-encoding an toàn (không đổi ký tự phân cách)
     try:

@@ -120,8 +120,8 @@ def main() -> int:
     try:
         lb = json.loads((ROOT / "var" / "data" / "last_build.json").read_text(encoding="utf-8"))
         summary["activated_version"] = lb.get("activated_version") or lb.get("version")
-    except Exception:  # noqa: BLE001 — metadata phụ trợ, đọc không được thì bỏ
-        pass
+    except Exception as exc:  # noqa: BLE001 — metadata phụ trợ, đọc không được thì ghi lại
+        summary["build_meta_error"] = str(exc)
 
     _write_summary(summary)
     print(json.dumps(summary, ensure_ascii=False, indent=2), flush=True)

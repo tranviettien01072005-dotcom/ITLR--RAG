@@ -1,5 +1,22 @@
 # ITLR–RAG | Intelligent IT Learning Platform — Changelog
 
+### Portability, security và dedup — 2026-10-30
+
+- Xóa API key thật khỏi `.env.example` working copy; thêm test chặn secret trong mọi env example.
+- Sửa chuẩn hóa URL crawler: default port theo scheme, từ chối credential (regression FAIL → PASS).
+- Bỏ `javascript:` bị CSP chặn; gom HTTP Range vào một helper; log fallback recommender;
+  validate scheme `course.link` và base URL LLM; passcode admin constant-time và chặn
+  open redirect qua `Referer`.
+- Thêm benchmark lexical trên 118 tài liệu thật + 8 qrels một annotator; thêm test CSRF,
+  admin cookie, passcode và upload-negative.
+- `bench_chunks_v3` không còn phụ thuộc `resource`; test API/lifecycle dùng stub encoder
+  thay vì import torch; `locking`/`versioning` có fallback Windows.
+- Xử lý 20 ESLint warning (`any` → type hẹp), assert trong thư viện → exception.
+- Windows: **384 Python pass/0 skip** (coverage 64,96%), Web **124 pass/25 files**
+  (lines 45,01%), typecheck/build PASS, lint 0 warning; Bandit 0 High (31 Medium/61 Low),
+  npm audit/pip-audit sạch. Docker/PostgreSQL/HTTPS/neural **chưa xác minh**.
+  [Báo cáo](reports/AUDIT_PORTABILITY_2026-10-30.md).
+
 ### Audit continuation — 2026-10-30
 
 - Reject timeout LLM không hữu hạn/không dương bằng LLMError.

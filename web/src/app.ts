@@ -63,12 +63,12 @@ app.use((req: Request, res: Response) => {
   res.status(404).render("error", { title: "404", message: "Không tìm thấy trang: " + req.path });
 });
 
-app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
+app.use((err: unknown, _req: Request, res: Response, _next: NextFunction) => {
   if (err instanceof DocumentInputError && !res.headersSent) {
     res.status(400).json({ error: err.message });
     return;
   }
-  console.error("[error]", err?.message || err);
+  console.error("[error]", err instanceof Error ? err.message : String(err));
   if (res.headersSent) return;
   res.status(500).render("error", { title: "Lỗi", message: "Đã có lỗi xảy ra phía máy chủ." });
 });

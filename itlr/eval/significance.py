@@ -30,7 +30,8 @@ def paired_bootstrap(
     """
     a = np.asarray(scores_a, dtype="float64")
     b = np.asarray(scores_b, dtype="float64")
-    assert a.shape == b.shape, "Hai cấu hình phải đo trên CÙNG tập truy vấn (bắt cặp)."
+    if a.shape != b.shape:
+        raise ValueError("Hai cấu hình phải đo trên CÙNG tập truy vấn (bắt cặp).")
     diff = a - b
     n = diff.size
     if n == 0:
@@ -110,7 +111,8 @@ def cohen_kappa(labels_a: Sequence[int], labels_b: Sequence[int]) -> float:
     """
     a = np.asarray(labels_a)
     b = np.asarray(labels_b)
-    assert a.shape == b.shape and a.size > 0, "Hai bộ nhãn phải cùng độ dài, khác rỗng."
+    if a.shape != b.shape or a.size == 0:
+        raise ValueError("Hai bộ nhãn phải cùng độ dài, khác rỗng.")
     classes = sorted(set(a.tolist()) | set(b.tolist()))
     idx = {c: i for i, c in enumerate(classes)}
     n_cls = len(classes)

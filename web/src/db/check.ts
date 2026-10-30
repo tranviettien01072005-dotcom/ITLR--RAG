@@ -1,12 +1,19 @@
 import { pool, query } from "./pool";
 
-function section(title: string, rows: any[]) {
+type Row = Record<string, unknown>;
+interface Counts {
+  users: number; courses: number; enrollments: number; conversations: number;
+  messages: number; posts: number; post_likes: number; post_comments: number;
+  attachments: number;
+}
+
+function section(title: string, rows: Row[]) {
   console.log(`\n=== ${title} (${rows.length}) ===`);
   console.table(rows.length ? rows : [{ "(trống)": "" }]);
 }
 
 async function check() {
-  const [counts] = await query<any>(`SELECT
+  const [counts] = await query<Counts>(`SELECT
       (SELECT count(*) FROM users)::int          AS users,
       (SELECT count(*) FROM courses)::int        AS courses,
       (SELECT count(*) FROM enrollments)::int    AS enrollments,
@@ -21,25 +28,25 @@ async function check() {
 
   section(
     "NGƯỜI DÙNG",
-    await query<any>("SELECT id, name, email, role, created_at FROM users ORDER BY id"),
+    await query<Row>("SELECT id, name, email, role, created_at FROM users ORDER BY id"),
   );
 
   console.log("\n=== KHÓA HỌC/TÀI LIỆU: phân bố theo lĩnh vực ===");
   console.table(
-    await query<any>(
+    await query<Row>(
       "SELECT category, count(*)::int AS n FROM courses GROUP BY category ORDER BY n DESC",
     ),
   );
   section(
     "KHÓA HỌC (5 mẫu)",
-    await query<any>(
+    await query<Row>(
       "SELECT item_id, title, type, level, category FROM courses ORDER BY item_id LIMIT 5",
     ),
   );
 
   section(
     "ENROLLMENTS (khóa đã lưu)",
-    await query<any>(
+    await query<Row>(
       `SELECT u.email, c.title, e.status, e.progress, e.updated_at
        FROM enrollments e JOIN users u ON u.id = e.user_id JOIN courses c ON c.item_id = e.course_id
       ORDER BY e.updated_at DESC`,
@@ -48,7 +55,7 @@ async function check() {
 
   section(
     "HỘI THOẠI CHATBOT",
-    await query<any>(
+    await query<Row>(
       `SELECT cv.id, u.email AS "user", cv.title,
             (SELECT count(*) FROM messages m WHERE m.conversation_id = cv.id)::int AS messages,
             cv.updated_at
@@ -59,7 +66,7 @@ async function check() {
 
   section(
     "TIN NHẮN (15 gần nhất)",
-    await query<any>(
+    await query<Row>(
       `SELECT id, conversation_id AS conv, role, left(content, 60) AS content, created_at
        FROM messages ORDER BY id DESC LIMIT 15`,
     ),
@@ -67,7 +74,7 @@ async function check() {
 
   section(
     "BÀI VIẾT BLOG",
-    await query<any>(
+    await query<Row>(
       `SELECT p.id, u.name AS author, left(p.content, 40) AS content,
             (p.image_data IS NOT NULL) AS has_img,
             p.doc_original AS doc,
@@ -80,7 +87,7 @@ async function check() {
 
   section(
     "BÌNH LUẬN",
-    await query<any>(
+    await query<Row>(
       `SELECT c.id, c.post_id, u.name AS author, left(c.content, 50) AS content, c.created_at
        FROM post_comments c JOIN users u ON u.id = c.user_id ORDER BY c.id`,
     ),
@@ -88,7 +95,7 @@ async function check() {
 
   section(
     "FILE ĐÍNH KÈM KHÓA HỌC",
-    await query<any>(
+    await query<Row>(
       `SELECT a.id, a.course_id, a.filename, a.mime, octet_length(a.data) AS bytes, u.email AS uploader
        FROM attachments a LEFT JOIN users u ON u.id = a.user_id ORDER BY a.id`,
     ),

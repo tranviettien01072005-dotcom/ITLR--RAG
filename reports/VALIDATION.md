@@ -1,6 +1,6 @@
 # ITLR–RAG | Intelligent IT Learning Platform — Validation
 
-Checkpoint mới nhất: **339 Python PASS/0 skip (46,44s)**, **94 Web PASS/0 skip**, lines **40,02%**; compileall/pip check/packaging/typecheck/build PASS, lint 20 warnings. Chi tiết và release blockers: [audit continuation](AUDIT_INCREMENT_2026-10-30.md).
+Checkpoint mới: Windows dev host **384 Python pass/0 skip** (coverage statements **64,96%**), Web **124 pass/25 files**, lines **45,01%**; typecheck/build PASS, lint **0 warning**, Bandit 0 High (31 Medium/61 Low), npm audit/pip-audit sạch. Đã xóa API key thật khỏi `.env.example` working copy (không có trong git history), sửa normalize URL, passcode admin constant-time/open redirect, `resource`/torch portability, HTTP Range dedup và toàn bộ ESLint warning. Docker/PostgreSQL/HTTPS và human/neural RAG gates chưa xác minh; **NOT READY**. Xem [portability audit](AUDIT_PORTABILITY_2026-10-30.md).
 
 ## Checkpoint tiếp nối trên nhánh refactor
 

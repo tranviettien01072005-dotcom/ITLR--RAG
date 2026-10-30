@@ -165,12 +165,15 @@ def test_chunk_embeddings_without_chunk_meta_fail_closed(tmp_path, monkeypatch):
     """Nửa bộ artifacts (ebdings có, meta mất) → FileNotFoundError (bên 503), không KeyError."""
     import pickle
     import numpy as np
-    import sentence_transformers
     from test_index_probe import _mini_artifacts
     from itlr.retrieval.bm25 import BM25Index
     from itlr.core.recommender import (build_field_corpus, build_retrieval_model,
                                        create_vectorizer)
     from itlr import config, engine
+
+    # The fixture encoder is a stub; importing the real package would pull torch.
+    sentence_transformers = ModuleType("sentence_transformers")
+    monkeypatch.setitem(sys.modules, "sentence_transformers", sentence_transformers)
 
     monkeypatch.setenv("USE_OLLAMA", "0")
     monkeypatch.delenv("ITLR_ARTIFACTS_DIR", raising=False)
@@ -205,7 +208,7 @@ def test_chunk_embeddings_without_chunk_meta_fail_closed(tmp_path, monkeypatch):
             v = np.ones((len(texts), 8), dtype='float32')
             return v / np.linalg.norm(v, axis=1, keepdims=True)
 
-    monkeypatch.setattr(sentence_transformers, 'SentenceTransformer', FixtureEncoder)
+    sentence_transformers.SentenceTransformer = FixtureEncoder
     monkeypatch.setattr('itlr.core.rerank.get_reranker', lambda: None)
     monkeypatch.setattr(config, 'ARTIFACTS_DIR', root)
     versioning.write_manifest(d, {'probe': 'ok'})

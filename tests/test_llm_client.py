@@ -160,6 +160,12 @@ def test_defaults_base_url_and_model(monkeypatch):
     assert lc.default_model("deepseek") == "deepseek-flash"
 
 
+def test_base_url_rejects_non_http_scheme(monkeypatch):
+    monkeypatch.setenv("OLLAMA_BASE_URL", "file:///etc/passwd")
+    with pytest.raises(lc.LLMError):
+        lc.base_url("ollama")
+
+
 def test_default_model_env_overridable(monkeypatch):
     monkeypatch.setenv("DEEPSEEK_API_KEY", "sk")
     monkeypatch.setenv("DEEPSEEK_MODEL", "deepseek-reasoner")

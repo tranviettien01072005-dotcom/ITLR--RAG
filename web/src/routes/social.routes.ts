@@ -1,12 +1,13 @@
 import { validateUploads } from "../middleware/uploads";
 import path from "node:path";
-import { Router } from "express";
+import { Router, Request, Response, NextFunction } from "express";
 import multer from "multer";
 import { query } from "../db/pool";
 import { requireAuth, signToken, setAuthCookie } from "../middleware/auth";
 import { friendStatus, areFriends } from "../services/social";
 import { fetchPosts } from "../services/posts";
 import { sendToUser, isOnline } from "../services/realtime";
+import { sendBufferWithRange } from "../services/http-range";
 import { UserCard, ProfileRow, DmRow, DmMediaRow, DmSharedPost, DmSharedCourse } from "../db/types";
 
 export const socialRouter = Router();
@@ -393,35 +394,8 @@ socialRouter.get("/api/messages/media/:id/:kind", requireAuth, async (req, res) 
   if (m.sender_id !== me && m.recipient_id !== me) return res.status(403).send("Forbidden");
 
   if (kind === "video") {
-    const buf: Buffer = m.data, total = buf.length;
-    res.setHeader("X-Content-Type-Options", "nosniff");
-  res.setHeader("Content-Security-Policy", "sandbox; default-src 'none'");
-  res.setHeader("Cache-Control", "private, no-store");
-  res.setHeader("Content-Type", m.mime || "video/mp4");
-    res.setHeader("Accept-Ranges", "bytes");
-    const range = req.headers.range;
-    const suffix = /^bytes=-(\d+)$/.exec(range || "");
-    const ranges = range?.startsWith("bytes=") ? req.range(total) : undefined;
-    // range-parser rejects suffixes larger than the representation.
-    if (suffix && Number(suffix[1]) >= total && total > 0) {
-      res.status(206).setHeader("Content-Range", `bytes 0-${total - 1}/${total}`);
-      res.setHeader("Content-Length", total);
-      return res.end(buf);
-    }
-    if (ranges === -1) {
-      res.status(416).setHeader("Content-Range", `bytes */${total}`);
-      return res.end();
-    }
-    // Unsupported/malformed or multipart ranges use the complete representation.
-    if (Array.isArray(ranges) && ranges.type === "bytes" && ranges.length === 1) {
-      const { start, end } = ranges[0];
-      res.status(206);
-      res.setHeader("Content-Range", `bytes ${start}-${end}/${total}`);
-      res.setHeader("Content-Length", end - start + 1);
-      return res.end(buf.subarray(start, end + 1));
-    }
-    res.setHeader("Content-Length", total);
-    return res.end(buf);
+    sendBufferWithRange(req, res, m.data, m.mime || "video/mp4");
+    return;
   }
 
   res.setHeader("X-Content-Type-Options", "nosniff");
@@ -458,7 +432,7 @@ socialRouter.post("/api/posts/:id/share", requireAuth, async (req, res) => {
   res.json({ ok: true });
 });
 
-socialRouter.use((err: any, _req: any, res: any, next: any) => {
+socialRouter.use((err: unknown, _req: Request, res: Response, next: NextFunction) => {
   if (err instanceof multer.MulterError) {
     const msg = err.code === "LIMIT_FILE_SIZE"
       ? "File quá lớn (tối đa 60MB cho video, nhỏ hơn cho ảnh/tài liệu)."

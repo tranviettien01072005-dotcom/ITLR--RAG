@@ -39,7 +39,9 @@ pagesRouter.get("/", async (_req, res) => {
   let prompts: string[] = [];
   try {
     prompts = (await recommender.suggested()).prompts;
-  } catch {}
+  } catch (err) {
+    console.warn("[pages] suggested prompts unavailable:", (err as Error).message);
+  }
   res.render("home", { title: "Nền tảng học tập CNTT", categories, prompts });
 });
 
@@ -77,12 +79,17 @@ pagesRouter.get("/courses/:id", async (req, res) => {
       .status(404)
       .render("error", { title: "404", message: "Không tìm thấy khóa học này." });
 
+  // Crawled catalog links are untrusted; drop non-HTTP(S) schemes before they reach href.
+  course.link = safeSourceUrl(course.link);
+
   let related: RecItem[] = [];
   try {
     related = (await recommender.search(course.title, null, 88)).results
       .filter((r) => r.item_id !== id)
       .slice(0, 4);
-  } catch {}
+  } catch (err) {
+    console.warn("[pages] related courses unavailable:", (err as Error).message);
+  }
 
   let enrollment: { status: string; progress: number } | null = null;
   if (req.user) {
@@ -162,7 +169,9 @@ pagesRouter.get("/chat", requireAuth, async (req, res) => {
   let prompts: string[] = [];
   try {
     prompts = (await recommender.suggested()).prompts;
-  } catch {}
+  } catch (err) {
+    console.warn("[pages] chat prompts unavailable:", (err as Error).message);
+  }
 
   const conversations = await query(
     "SELECT id, title, updated_at FROM conversations WHERE user_id = $1 ORDER BY updated_at DESC LIMIT 50",

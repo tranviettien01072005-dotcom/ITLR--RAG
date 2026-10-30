@@ -113,3 +113,22 @@ Bandit B310 robots có thể biến mất vì dùng opener thay urlopen; không 
 Không chạy paid APIs hoặc live model/DB/production crawl. Report này không kiểm history secrets, browser, Docker hay production egress enforcement.
 
 Scanner sau hai sửa crawler/close: **27 Medium / 56 Low / 0 High**. Không suppress rule; B310 robots dùng opener có validator và B110 close không còn catch-pass. Snapshot này cần đối chiếu lần quét cuối trong audit continuation nếu dirty diff thay đổi tiếp.
+
+## Cập nhật quét cuối — 2026-10-30 (sau hardening)
+
+Lần quét mới mở rộng phạm vi sang `eval/` và chạy sau các sửa đổi trong working tree:
+**92 findings = 31 Medium + 61 Low, 0 High** (trước: 85 = 28 Medium + 57 Low, chỉ
+`itlr/ scripts/`). Không thêm `nosec`, không suppress rule.
+
+| Rule | SL | Trạng thái hiện tại |
+|---|---:|---|
+| B301 pickle | 26 | Chấp nhận có điều kiện; thêm 4 vị trí trong `eval/` khi mở rộng phạm vi. Kiểm soát: manifest SHA256, path confinement, probe, symlink rejection, `ITLR_REQUIRE_ARTIFACT_MANIFEST=1`, artifact read-only. SHA256 là integrity, không phải authenticity. |
+| B310 urlopen | 5 | Đã giảm rủi ro: `llm_client.base_url()` và pre-warm chỉ nhận `http(s)`; URL còn lại do operator cấu hình hoặc loopback cố định. DNS/redirect của crawler do `_validate_public_url` kiểm mỗi hop; DNS-rebinding vẫn cần egress policy. |
+| B311 random | 23 | Jitter/backoff, synthetic seed và sampling; không dùng cho secret/session/quyền. |
+| B403/B404/B603/B607 | 30 | Import/call subprocess với argv cố định, `shell=False`, timeout; executable lấy từ PATH tin cậy của operator. |
+| B110/B112 | 8 | Fallback console/import/JSONL/JSON-LD có chủ đích; các fallback nghiệp vụ khác đã được log hoặc trả lỗi rõ. |
+| B101 assert | 0 | Đã chuyển `significance.py` sang `ValueError` và thêm regression test; các assert script còn lại đã chuyển thành `RuntimeError`/kiểm tra tường minh. |
+
+Chi tiết quyết định theo rule hiện tại nằm trong mục Bandit của
+`reports/AUDIT_PORTABILITY_2026-10-30.md`; bảng 85 dòng phía trên vẫn là bằng chứng
+lịch sử của checkpoint trước, số dòng có thể lệch sau refactor.

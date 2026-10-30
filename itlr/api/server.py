@@ -106,6 +106,9 @@ def _prewarm_ollama():
 
     def _warm():
         url = os.environ.get("OLLAMA_BASE_URL", "http://localhost:11434").rstrip("/")
+        if not url.startswith(("http://", "https://")):
+            _log("[!] OLLAMA_BASE_URL phải là http(s) — bỏ qua pre-warm.")
+            return
         model = os.environ.get("OLLAMA_MODEL", "qwen2.5:3b")
         payload = json.dumps({"model": model, "messages": [{"role": "user", "content": "ping"}],
                               "stream": False, "keep_alive": "2h",

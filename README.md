@@ -1,6 +1,6 @@
 # ITLR–RAG | Intelligent IT Learning Platform
 
-Lượt kiểm chứng tiếp nối: **339 Python PASS/0 skip, 94 Web PASS/0 skip**, timeout LLM finite/positive và HTTP video Range được sửa; release verdict vẫn **NOT READY**. Xem [bằng chứng mới](reports/AUDIT_INCREMENT_2026-10-30.md).
+Lượt kiểm chứng mới nhất: **384 Python PASS/0 skip** (coverage 64,96%), **124 Web PASS/0 skip** (lines 45,01%), lint 0 warning, Bandit 0 High; release verdict vẫn **NOT READY** vì Docker/PostgreSQL/HTTPS và neural/human evaluation chưa chạy. Xem [bằng chứng mới](reports/AUDIT_PORTABILITY_2026-10-30.md).
 
 Checkpoint trước (lịch sử): **329 Python tests pass/0 skip**,
 **78 Web tests pass**; typecheck/lint/build và dependency audits đã chạy. Xem

@@ -22,7 +22,8 @@ def main():
         {'role': 'system', 'content': 'Answer only from the supplied source. Cite [item_id:1].'},
         {'role': 'user', 'content': 'Source [item_id:1]: Docker packages applications in containers. What does Docker do?'}
     ], num_predict=80, temperature=0)
-    assert answer.strip(), 'Ollama returned empty text'
+    if not answer.strip():
+        raise RuntimeError('Ollama returned empty text')
     result = {'provider': 'ollama', 'model': 'qwen2.5:3b', 'mock': False,
               'direct_answer': answer, 'direct_citation_present': '[item_id:1]' in answer,
               'direct_seconds': time.perf_counter()-t, 'api_cost_usd': 0,
@@ -51,13 +52,16 @@ def main():
                     time.sleep(1)
             else:
                 raise RuntimeError('API readiness timed out')
-            assert result['health']['engine'] == 'ready'
+            if result['health']['engine'] != 'ready':
+                raise RuntimeError(f"Engine not ready: {result['health']}")
             result['search'] = request('/api/search', {'query':'docker containers','min_pct':70})
-            assert result['search']['results'], 'Search returned no results'
+            if not result['search']['results']:
+                raise RuntimeError('Search returned no results')
             t = time.perf_counter()
             result['chat'] = request('/api/chat', {'message':'Docker là gì? Trích dẫn item_id của tài nguyên nguồn.', 'history':[]})
             result['chat_seconds'] = time.perf_counter()-t
-            assert result['chat']['response'].strip()
+            if not result['chat']['response'].strip():
+                raise RuntimeError('Chat returned empty response')
             (ROOT/'reports/local_models_smoke.json').write_text(json.dumps(result, ensure_ascii=False, indent=2))
             print(json.dumps({'health':result['health'], 'direct_citation':result['direct_citation_present'],
                               'search_results':len(result['search']['results']), 'chat_seconds':result['chat_seconds']},ensure_ascii=False))

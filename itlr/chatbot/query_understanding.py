@@ -8,6 +8,7 @@ luật (mode/category/type) khớp chính xác nên dễ trượt khi gõ sai �
 """
 
 import difflib
+import logging
 import re
 
 from itlr.core.recommender import normalize_text, strip_accents
@@ -119,8 +120,8 @@ def build_query_vocab(retrieval_model=None, item_list=None):
         for entry in CONCEPTS.values():
             for alias in entry.get("aliases", []):
                 _add_phrase(alias)
-    except Exception:
-        pass
+    except Exception as exc:
+        logging.getLogger(__name__).debug("Không nạp được knowledge_base: %s", exc)
 
     return frozenset(v for v in vocab if len(v) >= 3)
 

@@ -1,6 +1,6 @@
 # ITLR–RAG | Intelligent IT Learning Platform — Trạng thái dự án
 
-Checkpoint mới: **339 Python PASS/0 skip**, **94 Web PASS/0 skip**, Web lines 40,02%; timeout finite/positive và video suffix/unsupported Range đã sửa kèm FAIL → PASS. CI HEAD success chưa bao gồm dirty diff. Docker/PostgreSQL/HTTPS và human/neural RAG gates chưa xác minh; **NOT READY**. Xem [audit](../reports/AUDIT_INCREMENT_2026-10-30.md).
+Checkpoint mới: Windows dev host **384 Python pass/0 skip**, coverage 64,96%; Web **124 pass/25 files**, lines 45,01%; lint 0 warning, Bandit 0 High, npm audit/pip-audit sạch. Đã xóa API key thật khỏi `.env.example` working copy (không có trong git history), sửa normalize URL default port/credential, passcode admin constant-time/open redirect, portability `resource`/torch test, HTTP Range dedup và toàn bộ ESLint warning. Production vẫn Linux local; Docker/PostgreSQL/HTTPS và human/neural RAG gates chưa xác minh; **NOT READY**. Xem [audit](../reports/AUDIT_PORTABILITY_2026-10-30.md).
 
 Cập nhật: 2026-10-30. Đây là bộ nhớ kỹ thuật trong repository; không cần dịch vụ memory ngoài.
 Hướng dẫn hiện hành: [README](../README.md), [AGENTS](../AGENTS.md),
@@ -330,3 +330,24 @@ Template benchmark: identical output; p95 before/after 3.654/3.662ms, no speedup
 Static graph: no top-level Python/static Web cycles; deferred config/versioning/locking cycle remains.
 No migrations, real data/index changes, paid calls, cloud deployment, commits or pushes.
 Evidence and remaining release gates: reports/ARCHITECTURE_REFACTOR_2026-10-30.md and ADR-011.
+
+## Final audit increment - 2026-10-30 (Windows)
+
+Removed a real-looking DeepSeek key from the tracked `.env.example` working copy (not in
+git history) and added an env-example secret guard. Fixed URL normalization (default port,
+credentials), `resource` portability in the benchmark, and test-fixture imports that pulled
+torch unnecessarily, unblocking 11 API/lifecycle tests. Extracted shared HTTP Range logic,
+removed the CSP-blocked `javascript:` link, limited LLM base URLs to http(s), replaced
+library asserts with exceptions, and removed all 20 explicit-any lint warnings.
+
+Fresh: Python 384 pass/0 skip, coverage 64.96% statements (metrics 97.3%, diversity
+93.4%); Web 124 pass/25 files, lines 45.01%, typecheck/build PASS, lint 0 warnings.
+Bandit 0 High/31 Medium/61 Low (pickle and operator-configured URLopen remain accepted
+risks; full triage in reports/BANDIT_TRIAGE_2026-10-30.md); npm audit and pip-audit clean.
+Added a real-snapshot lexical benchmark (118 items, 8 single-annotator qrels):
+Recall@5 1.0, MRR@5 0.9375, nDCG@5 0.9539, p50/p95 52.1/62.0 ms, 18.7 qps; neural and
+generation metrics remain null. Admin passcode comparison is constant-time and
+post-action redirects are same-origin.
+Still BLOCKED/NOT MEASURED: Docker/PostgreSQL/HTTPS/browser E2E, migrations, Linux flock
+runtime, neural/reranker/human evaluation. NOT READY.
+Details: reports/AUDIT_PORTABILITY_2026-10-30.md.

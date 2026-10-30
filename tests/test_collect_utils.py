@@ -53,6 +53,12 @@ class TestNormalizeUrl:
         b = url_util.normalize_url("https://x.dev/p?b=2&a=1")
         assert a == b
 
+    def test_drops_default_ports_and_rejects_credentials(self):
+        assert url_util.normalize_url("http://site.com:80/p") == "https://site.com/p"
+        assert url_util.normalize_url("https://site.com:443/p") == "https://site.com/p"
+        assert url_util.normalize_url("https://site.com:8443/p") == "https://site.com:8443/p"
+        assert url_util.normalize_url("https://user:pw@site.com/p") is None
+
 
 class TestContentKey:
     def test_stable_across_insignificant_changes(self):

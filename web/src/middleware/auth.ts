@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from "express";
+import crypto from "node:crypto";
 import jwt from "jsonwebtoken";
 import { env } from "../config/env";
 import { query } from "../db/pool";
@@ -57,6 +58,13 @@ export async function loadUser(req: Request, res: Response, next: NextFunction):
 }
 
 export const ADM_VER = 2;
+
+/** Constant-time compare; hashing equalizes length and avoids leaking it. */
+export function passcodeMatches(supplied: unknown): boolean {
+  const given = crypto.createHash("sha256").update(String(supplied ?? "")).digest();
+  const expected = crypto.createHash("sha256").update(env.adminPasscode).digest();
+  return crypto.timingSafeEqual(given, expected);
+}
 
 export function hasAdminAccess(req: Request): boolean {
   const c = req.cookies?.adm;

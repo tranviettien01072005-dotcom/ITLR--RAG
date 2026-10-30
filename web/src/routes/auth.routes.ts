@@ -64,8 +64,8 @@ authRouter.post("/register", authLimiter, async (req, res) => {
     const user = rows[0];
     setAuthCookie(res, signToken(user));
     res.redirect("/dashboard");
-  } catch (err: any) {
-    const dup = err?.code === "23505";
+  } catch (err: unknown) {
+    const dup = (err as { code?: string } | null)?.code === "23505";
     res.status(dup ? 409 : 500).render("auth/register", {
       title: "Đăng ký",
       errors: [dup ? "Email này đã được đăng ký." : "Lỗi hệ thống, thử lại sau."],

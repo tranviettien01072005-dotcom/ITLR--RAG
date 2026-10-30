@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 import multer from "multer";
 import { query } from "../db/pool";
 import { env } from "../config/env";
-import { requireAdminAccess, ADM_VER } from "../middleware/auth";
+import { requireAdminAccess, ADM_VER, passcodeMatches } from "../middleware/auth";
 import { authLimiter } from "../middleware/security";
 import { parseYouTubeId } from "../services/social";
 import { extractText, appendCatalogRow } from "../services/dataset";
@@ -22,8 +22,21 @@ const adminUpload = multer({
   fileFilter: (_req, file, cb) => cb(null, DOC_EXT.has(extOf(file.originalname))),
 });
 const PAGE_SIZE = 40;
+
+/** Only same-origin referers may drive post-action redirects (CWE-601). */
+export function safeRefererPath(referer: string | undefined, fallback: string): string {
+  if (!referer) return fallback;
+  try {
+    const target = new URL(referer);
+    const origin = new URL(env.appOrigin).origin;
+    return target.origin === origin ? target.pathname + target.search : fallback;
+  } catch {
+    return fallback;
+  }
+}
+
 const backTo = (req: { get(h: string): string | undefined }, fallback: string) =>
-  req.get("referer") || fallback;
+  safeRefererPath(req.get("referer"), fallback);
 
 adminRouter.get("/login", (req, res) => {
   if (res.locals.isAdmin) return res.redirect("/admin");
@@ -31,7 +44,7 @@ adminRouter.get("/login", (req, res) => {
 });
 
 adminRouter.post("/login", authLimiter, (req, res) => {
-  if (String(req.body?.passcode || "") !== env.adminPasscode) {
+  if (!passcodeMatches(req.body?.passcode)) {
     return res.status(401).render("admin-login", { title: "Admin", error: "Sai passcode." });
   }
   const token = jwt.sign({ adm: true, v: ADM_VER }, env.jwtSecret, { expiresIn: "1d" });

@@ -126,8 +126,8 @@ def memory_footprint(ctx):
         import psutil
         rss = psutil.Process().memory_info().rss / 1e6
         rows.append(("Process RSS", rss, ""))
-    except Exception:
-        pass
+    except Exception as exc:
+        print(f"[!] Không đọc được RSS (psutil): {exc}", file=sys.stderr)
     return rows
 
 

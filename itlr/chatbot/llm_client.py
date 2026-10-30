@@ -17,6 +17,7 @@ import logging
 import math
 import os
 import time
+import urllib.parse
 import urllib.request
 from contextlib import closing
 from dataclasses import dataclass
@@ -108,8 +109,11 @@ def default_model(provider: str) -> str:
 def base_url(provider: str) -> str:
     env_map = {"deepseek": "DEEPSEEK_BASE_URL", "openai": "OPENAI_BASE_URL",
                "ollama": "OLLAMA_BASE_URL"}
-    return os.environ.get(env_map[provider]) or DEFAULT_BASE_URLS.get(
+    value = os.environ.get(env_map[provider]) or DEFAULT_BASE_URLS.get(
         provider, "http://localhost:11434")
+    if urllib.parse.urlsplit(value).scheme not in ("http", "https"):
+        raise LLMError(f"{env_map[provider]} must use http:// or https://")
+    return value
 
 
 def timeout_for(provider: str, stream: bool) -> float:

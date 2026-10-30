@@ -11,6 +11,7 @@ import { ownedChatHistory, saveChat } from "../services/chat-history";
 import { extractText, appendCatalogRow } from "../services/dataset";
 import { addClient, broadcast, sendToUser, isOnline } from "../services/realtime";
 import { acceptedFriendIds } from "../services/social";
+import { sendBufferWithRange } from "../services/http-range";
 
 export const apiRouter = Router();
 
@@ -21,7 +22,7 @@ apiRouter.get("/realtime", requireAuth, async (req, res) => {
     Connection: "keep-alive",
     "X-Accel-Buffering": "no",
   });
-  (res as any).flushHeaders?.();
+  res.flushHeaders();
   res.write("retry: 5000\n\n");
   res.write('event: ready\ndata: {"ok":true}\n\n');
 
@@ -346,35 +347,7 @@ apiRouter.get("/media/post/:id/video", requireAuth, async (req, res) => {
   );
   const p = rows[0];
   if (!p || !p.video_data) return res.status(404).send("Not found");
-  const buf = p.video_data, total = buf.length;
-  res.setHeader("X-Content-Type-Options", "nosniff");
-  res.setHeader("Content-Security-Policy", "sandbox; default-src 'none'");
-  res.setHeader("Cache-Control", "private, no-store");
-  res.setHeader("Content-Type", p.video_mime || "video/mp4");
-  res.setHeader("Accept-Ranges", "bytes");
-  const range = req.headers.range;
-  const suffix = /^bytes=-(\d+)$/.exec(range || "");
-  const ranges = range?.startsWith("bytes=") ? req.range(total) : undefined;
-  // range-parser rejects suffixes larger than the representation.
-  if (suffix && Number(suffix[1]) >= total && total > 0) {
-    res.status(206).setHeader("Content-Range", `bytes 0-${total - 1}/${total}`);
-    res.setHeader("Content-Length", total);
-    return res.end(buf);
-  }
-  if (ranges === -1) {
-    res.status(416).setHeader("Content-Range", `bytes */${total}`);
-    return res.end();
-  }
-  // Unsupported/malformed or multipart ranges use the complete representation.
-  if (Array.isArray(ranges) && ranges.type === "bytes" && ranges.length === 1) {
-    const { start, end } = ranges[0];
-    res.status(206);
-    res.setHeader("Content-Range", `bytes ${start}-${end}/${total}`);
-    res.setHeader("Content-Length", end - start + 1);
-    return res.end(buf.subarray(start, end + 1));
-  }
-  res.setHeader("Content-Length", total);
-  res.end(buf);
+  sendBufferWithRange(req, res, p.video_data, p.video_mime || "video/mp4");
 });
 
 apiRouter.post("/posts/:id/like", requireAuth, async (req, res) => {

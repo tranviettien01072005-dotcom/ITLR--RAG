@@ -3,7 +3,12 @@ import json
 import os
 import sys
 import time
-import resource
+
+try:
+    import resource
+except ImportError:  # Windows: getrusage unavailable, report peak RSS as null
+    resource = None
+
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -63,8 +68,10 @@ def main():
     report=dict(provenance='real checked-in source snapshots; eight hand-authored item-level query judgments, not human panel labels',
         scope='8 documents only; no distractors outside selected corpus; no reranker; not release quality evidence',
         n_chunks=len(rows),model=preset['model_name'],faithfulness=None,hallucination=None,citation_accuracy=None,
-        peak_process_rss_mib=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024,
-        memory_scope='Whole process high-water RSS including model load and both configurations, not per-configuration memory',
+        peak_process_rss_mib=(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024
+                               if resource else None),
+        memory_scope=('Whole process high-water RSS including model load and both configurations, not per-configuration memory'
+                      if resource else 'not measured: getrusage is unavailable on this platform'),
         generation='not run; no paid API calls',results={})
     for name,cases in outputs.items():
         report['results'][name]={k:float(np.mean([c[k] for c in cases])) for k in ['recall_at_5','mrr_at_5','ndcg_at_5','cpu_ms']}
