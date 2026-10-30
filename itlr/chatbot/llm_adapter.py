@@ -49,5 +49,3 @@ def try_llm_response_stream(system_prompt, user_message, history=None, *, strict
             raise
         logger.warning("try_llm_response_stream LLMError: %s", exc)
         return
-
-

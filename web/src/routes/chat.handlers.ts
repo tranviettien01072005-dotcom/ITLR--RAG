@@ -66,4 +66,3 @@ export async function handleChatStream(req: Request, res: Response) {
     res.end();
   }
 }
-

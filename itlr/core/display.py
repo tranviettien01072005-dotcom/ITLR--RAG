@@ -56,5 +56,3 @@ def clean_link(link):
     link hỏng (`[Mở tài nguyên](Đang cập nhật)`)."""
     s = str(link).strip()
     return s if s.lower().startswith(("http://", "https://")) else ""
-
-
