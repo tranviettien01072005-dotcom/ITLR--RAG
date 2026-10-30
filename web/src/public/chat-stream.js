@@ -10,7 +10,7 @@
     if (!response.ok || !response.body || !(response.headers.get("content-type") || "").includes("text/event-stream")) {
       throw new Error("Không mở được luồng trả lời. Hãy đăng nhập lại hoặc thử lại.");
     }
-    var reader = response.body.getReader(), decoder = new TextDecoder(), buffer = "", finalized = false;
+    var reader = response.body.getReader(), decoder = new TextDecoder("utf-8", { fatal: true }), buffer = "", finalized = false;
     try {
       while (true) {
         var chunk = await reader.read();
@@ -18,6 +18,7 @@
         buffer += decoder.decode(chunk.value, { stream: true });
         var match;
         while ((match = /\r?\n\r?\n/.exec(buffer))) {
+          if (match.index > 1200000) throw new Error("Stream event too large");
           var frame = buffer.slice(0, match.index);
           buffer = buffer.slice(match.index + match[0].length);
           var data = frame.split(/\r?\n/).filter(function (line) { return line.indexOf("data:") === 0; }).map(function (line) { return line.slice(5).trimStart(); }).join("\n");
@@ -29,6 +30,7 @@
         }
         if (buffer.length > 1200000) throw new Error("Phản hồi quá lớn.");
       }
+      buffer += decoder.decode();
       if (!finalized || buffer.trim()) throw new Error("Luồng trả lời bị gián đoạn. Hãy thử lại.");
     } finally {
       await reader.cancel().catch(function () {});

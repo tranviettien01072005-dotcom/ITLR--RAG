@@ -9,6 +9,8 @@ dist/
 
 # Secrets — KHÔNG commit (.env.example là template rỗng-key duy nhất được theo repo)
 .env
+deploy/*.env
+deploy/backups/
 
 # Artifacts lớn — tái lập bằng `python scripts/build_all.py`
 var/artifacts/

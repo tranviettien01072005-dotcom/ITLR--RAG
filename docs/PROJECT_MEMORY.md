@@ -280,3 +280,41 @@ Packaging verification: initial namespace discovery stalled at metadata; setting
 then failed asset inspection: zero static assets. Added explicit itlr.api static HTML/JS/CSS package
 data; rebuilt wheel successfully and verified all four UI assets, retrieval modules and legacy
 BM25 shim are present. No dependency downloads (--no-index --no-deps --no-build-isolation).
+
+
+## Production hardening checkpoint ? 2026-10-30 (Windows)
+
+Read Ponytail skill directly; applied Ultra per AGENTS. Preserved V3/V2 boundaries and runtime data.
+Fixed incomplete UTF-8 acceptance in server/browser SSE and complete-frame size bypass in browser,
+with observed RED ? GREEN regressions. Current session is Windows/Python3.12/Node26, not the
+historical Linux environment. See reports/PRODUCTION_CHECKPOINT_2026-10-30.md for actual checks
+and unresolved release gates; do not infer production readiness or fresh neural benchmarks.
+
+
+## Deployment-first steering - 2026-10-30
+
+User stopped further installation and requested deployment/code structure work, deferring tests.
+Added compose.production.yml and deploy/PRODUCTION.md: single Linux host, Caddy HTTPS,
+private API/Web/PostgreSQL, explicit migration/catalog sync, backup/restore and rollback procedure.
+Split Web Express composition into app.ts and lifecycle into server.ts; added bounded SIGTERM drain.
+Web entrypoint no longer migrates/seeds automatically. Existing API-only Compose is preserved.
+No paid calls, cloud resources, database migrations or runtime artifact changes performed.
+Latest deployment/lifecycle changes are NOT runtime-verified; user will test later.
+Earlier Python full suite failed collection on Windows fcntl (4 errors); selected 46 tests passed.
+Earlier SSE Web checks passed; they predate the app/lifecycle split and are not fresh verification.
+
+## Architecture refactoring verification - 2026-10-30
+
+Latest request reinstated verification using installed dependencies; no installation performed.
+Extracted 27 unchanged presentation definitions from chatbot.py (1516 -> 951 lines)
+into presentation.py (595 lines), preserving legacy helper imports and 5 Markdown fingerprints.
+Fixed Web 10/16-column append mismatch with a shared catalog header reader/whitelist;
+regressions reproduced 2 FAIL -> PASS. Fixed missing streaming WARNING log with 1 FAIL -> PASS.
+Added Web app HTTP liveness/readiness contracts using a stub database.
+Fresh results: selected Python 90 PASS; full Python FAIL (4 fcntl collection errors on Windows).
+Web 75 PASS, typecheck/build PASS, lint 0 errors/20 existing warnings; line coverage 35.42%.
+Compileall, Bandit high-severity gate and pip check PASS. No quality gates weakened.
+Template benchmark: identical output; p95 before/after 3.654/3.662ms, no speedup claim.
+Static graph: no top-level Python/static Web cycles; deferred config/versioning/locking cycle remains.
+No migrations, real data/index changes, paid calls, cloud deployment, commits or pushes.
+Evidence and remaining release gates: reports/ARCHITECTURE_REFACTOR_2026-10-30.md and ADR-011.

@@ -1,8 +1,17 @@
 # ITLR–RAG | Intelligent IT Learning Platform
 
+Current refactoring evidence and limits: [architecture checkpoint](reports/ARCHITECTURE_REFACTOR_2026-10-30.md).
+Offline answer formatting is owned by `itlr/chatbot/presentation.py`; Web upload
+append and PostgreSQL sync share `web/src/services/catalog-csv.ts` for legacy and
+provenance catalog columns. Existing chatbot helper imports remain compatible.
+
+Deployment configuration for the full single-host stack: [production runbook](deploy/PRODUCTION.md). Web startup now requires explicit migration/catalog sync before serving traffic.
+
 ITLR–RAG là nền tảng hỗ trợ học Công nghệ thông tin bằng tiếng Việt: tìm tài nguyên, hỏi đáp theo tài liệu, xây lộ trình và theo dõi tiến độ. Giao diện chính dùng Express, TypeScript, EJS và PostgreSQL tại cổng 3000; backend FastAPI tại cổng 8000 cung cấp retrieval, chatbot và gợi ý tài nguyên.
 
 Hệ thống kết hợp tìm kiếm từ vựng với ngữ nghĩa và trình bày nguồn trích dẫn để người học kiểm tra. Mã V3 hỗ trợ truy xuất ở mức chunk; artifacts cũ tiếp tục dùng đường V2. Khả năng có trong mã nguồn, kết quả đã chạy và mục tiêu phát triển được phân biệt dưới đây; repository chưa có đủ bằng chứng để tuyên bố production-ready.
+
+Current SSE hardening checks and release limits: [production checkpoint](reports/PRODUCTION_CHECKPOINT_2026-10-30.md).
 
 ## Tìm tài liệu cần dùng
 
@@ -150,3 +159,5 @@ probe và activate để ngừng dùng nội dung đã thu hồi. Không tự g�
 Đã có smoke local PostgreSQL readiness và Chromium trang login; chưa suy ra toàn bộ authenticated E2E. CrossEncoder thật, DeepSeek live được phép, Docker/Compose, tải đồng thời trên toàn corpus và khả năng chịu lỗi storage vật lý vẫn cần kiểm chứng. Runtime hiện giới hạn một worker/replica mỗi service trên Linux local; chưa có bảo đảm distributed deployment.
 
 Lộ trình tập trung vào nhãn passage độc lập, đánh giá faithfulness/refusal, đo CPU/RAM/latency trên corpus đầy đủ và kiểm chứng luồng tài khoản từ đầu đến cuối. [Checklist](tasks/todo.md) ghi rõ phần đã thực hiện và việc còn lại.
+
+Code ownership and dependency direction: [architecture map](docs/ARCHITECTURE.md).

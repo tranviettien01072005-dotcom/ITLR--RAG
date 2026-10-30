@@ -1,0 +1,22 @@
+{
+  "scope": "Offline template rendering only, 3 synthetic items and 5 modes, 100 repetitions per mode, interleaved order. No retrieval/LLM/HTTP; single process, no speedup claim.",
+  "python": "3.12.10",
+  "samples_per_variant": 500,
+  "latency_ms": {
+    "before": {
+      "p50": 0.12880000576842576,
+      "p95": 3.6540500106639224
+    },
+    "after": {
+      "p50": 0.12874999811174348,
+      "p95": 3.6617500001739245
+    }
+  },
+  "identical_markdown_sha256": {
+    "answer": "5adc8ed2fc80d2db6133c302ea0f3b735898b4f8f4ed7cccce71f9702a507840",
+    "recommend": "75cd8aad1b57c6f33ba3456304b54317938887a1b8296f06facc43ae7e53e19f",
+    "search": "1df75fc1fbede78d66b6a97c24f10ff6dc19277888591b0840c25ce7752fe51e",
+    "compare": "553894f3eb5c702b15dfd1061997a8e3e0d217d32dec44e8b979fe3644df6c9d",
+    "learning_path": "d955b4752e137c044a878daff9bff59ee772fc451d5276cbe03067eec3ba29c3"
+  }
+}

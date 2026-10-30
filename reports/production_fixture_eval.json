@@ -1,0 +1,40 @@
+{
+  "scope": "lexical TF-IDF + BM25 smoke only; no embeddings/reranker/LLM",
+  "provenance": "synthetic 3-item fixture; expected IDs hand-authored; not human labels",
+  "queries": 3,
+  "measured_requests": 60,
+  "repeats_per_query": 20,
+  "recall_at_3": 1.0,
+  "mrr_at_3": 1.0,
+  "ndcg_at_3": 1.0,
+  "latency_ms": {
+    "p50": 7.149649994971696,
+    "p95": 9.133540005132089,
+    "p99": 10.231691996887088
+  },
+  "groundedness": null,
+  "citation_accuracy": null,
+  "hallucination": null,
+  "llm_calls": 0,
+  "llm_tokens": 0,
+  "measured_api_cost_usd": 0,
+  "limitations": "No generation: null quality values are unmeasured, not zero error.",
+  "python": "3.12.10",
+  "cases": [
+    {
+      "query": "docker containers deployment",
+      "expected_id": 1,
+      "rank": 1
+    },
+    {
+      "query": "postgresql indexes database",
+      "expected_id": 2,
+      "rank": 1
+    },
+    {
+      "query": "python generators programming",
+      "expected_id": 3,
+      "rank": 1
+    }
+  ]
+}

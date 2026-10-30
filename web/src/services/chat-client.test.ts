@@ -2,6 +2,16 @@ import { readFileSync } from "node:fs";
 import vm from "node:vm";
 import { resolve } from "node:path";
 import { expect, it } from "vitest";
+
+it.each([{ tail: [0xff] }, { tail: [0xe2, 0x82] }])("rejects corrupt UTF-8 in the browser (%j)", async ({ tail }) => {
+  const ui = client();
+  const stream = new ReadableStream<Uint8Array>({ start(controller) {
+    controller.enqueue(new TextEncoder().encode('data: {"type":"final","response":"ok"}\n\n'));
+    controller.enqueue(new Uint8Array(tail));
+    controller.close();
+  } });
+  await expect(ui.consume(new Response(stream, { headers: { "content-type": "text/event-stream" } }), () => {})).rejects.toThrow();
+});
 class Element {
   textContent = ""; children: Element[] = []; href = ""; dataset = {}; className = "";
   appendChild(child: Element) { this.children.push(child); }
@@ -39,4 +49,12 @@ it("reports interrupted streams and server failures instead of retrying generati
   const ui = client();
   await expect(ui.consume(new Response('data: {"type":"text","text":"draft"}\n\n', { headers: { "content-type": "text/event-stream" } }), () => {})).rejects.toThrow("gián đoạn");
   await expect(ui.consume(new Response('data: {"type":"error","error":"service unavailable"}\n\n', { headers: { "content-type": "text/event-stream" } }), () => {})).rejects.toThrow("service unavailable");
+});
+
+it("rejects an oversized complete frame before delivering it", async () => {
+  const ui = client();
+  let delivered = false;
+  const frame = `data: ${JSON.stringify({ type: "final", response: "x".repeat(1_200_000) })}\n\n`;
+  await expect(ui.consume(new Response(frame, { headers: { "content-type": "text/event-stream" } }), () => { delivered = true; })).rejects.toThrow();
+  expect(delivered).toBe(false);
 });

@@ -1,0 +1,74 @@
+name: itlr
+
+services:
+  proxy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports: ["80:80", "443:443", "443:443/udp"]
+    environment:
+      SITE_DOMAIN: ${SITE_DOMAIN:?Set SITE_DOMAIN in the Compose env file}
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      default:
+        ipv4_address: 172.30.0.10
+    depends_on:
+      web:
+        condition: service_healthy
+
+  postgres:
+    image: postgres:16-bookworm
+    restart: unless-stopped
+    env_file: ./deploy/postgres.env
+    volumes: ["postgres_data:/var/lib/postgresql/data"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U \"$$POSTGRES_USER\" -d \"$$POSTGRES_DB\""]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  api:
+    image: ${API_IMAGE:?Set an immutable API_IMAGE release tag}
+    build: .
+    restart: unless-stopped
+    init: true
+    env_file: ./deploy/api.env
+    environment:
+      WEB_CONCURRENCY: "1"
+      ITLR_REQUIRE_ARTIFACT_MANIFEST: "1"
+    volumes: ["./var:/app/var"]
+    stop_grace_period: 45s
+
+  web:
+    image: ${WEB_IMAGE:?Set an immutable WEB_IMAGE release tag}
+    build: ./web
+    restart: unless-stopped
+    init: true
+    env_file: ./deploy/web.env
+    environment:
+      NODE_ENV: production
+      PORT: "3000"
+      WEB_CONCURRENCY: "1"
+      TRUSTED_PROXIES: "172.30.0.10"
+      RECOMMENDER_URL: http://api:8000
+      ITEMS_CSV: /app/var/data/web_items.csv
+    volumes: ["./var/data:/app/var/data"]
+    stop_grace_period: 30s
+    depends_on:
+      postgres:
+        condition: service_healthy
+      api:
+        condition: service_healthy
+
+networks:
+  default:
+    ipam:
+      config:
+        - subnet: 172.30.0.0/24
+
+volumes:
+  postgres_data:
+  caddy_data:
+  caddy_config:

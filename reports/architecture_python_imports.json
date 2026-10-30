@@ -1,0 +1,1550 @@
+{
+  "scope": "Static Python absolute/relative import edges, including function-local imports. Does not execute package initializers or resolve dynamic imports.",
+  "modules": 85,
+  "edges": [
+    {
+      "source": "itlr.config",
+      "target": "itlr.versioning",
+      "lazy": true,
+      "line": 45
+    },
+    {
+      "source": "itlr.engine",
+      "target": "itlr",
+      "lazy": false,
+      "line": 16
+    },
+    {
+      "source": "itlr.engine",
+      "target": "itlr.config",
+      "lazy": false,
+      "line": 16
+    },
+    {
+      "source": "itlr.engine",
+      "target": "itlr.core.recommender",
+      "lazy": false,
+      "line": 17
+    },
+    {
+      "source": "itlr.engine",
+      "target": "itlr.chatbot.knowledge_base",
+      "lazy": true,
+      "line": 43
+    },
+    {
+      "source": "itlr.engine",
+      "target": "itlr.chatbot.query_understanding",
+      "lazy": true,
+      "line": 44
+    },
+    {
+      "source": "itlr.engine",
+      "target": "itlr.core.recommender",
+      "lazy": true,
+      "line": 65
+    },
+    {
+      "source": "itlr.engine",
+      "target": "itlr.versioning",
+      "lazy": true,
+      "line": 129
+    },
+    {
+      "source": "itlr.engine",
+      "target": "itlr.core.chunks",
+      "lazy": true,
+      "line": 172
+    },
+    {
+      "source": "itlr.engine",
+      "target": "itlr.chatbot.chatbot",
+      "lazy": true,
+      "line": 178
+    },
+    {
+      "source": "itlr.engine",
+      "target": "itlr.core.ann",
+      "lazy": true,
+      "line": 179
+    },
+    {
+      "source": "itlr.engine",
+      "target": "itlr.core.rerank",
+      "lazy": true,
+      "line": 180
+    },
+    {
+      "source": "itlr.engine",
+      "target": "itlr.retrieval.service",
+      "lazy": true,
+      "line": 191
+    },
+    {
+      "source": "itlr.engine",
+      "target": "itlr.locking",
+      "lazy": true,
+      "line": 220
+    },
+    {
+      "source": "itlr.indexv2",
+      "target": "itlr",
+      "lazy": false,
+      "line": 20
+    },
+    {
+      "source": "itlr.indexv2",
+      "target": "itlr.config",
+      "lazy": false,
+      "line": 20
+    },
+    {
+      "source": "itlr.indexv2",
+      "target": "itlr.versioning",
+      "lazy": false,
+      "line": 21
+    },
+    {
+      "source": "itlr.locking",
+      "target": "itlr",
+      "lazy": true,
+      "line": 26
+    },
+    {
+      "source": "itlr.locking",
+      "target": "itlr.config",
+      "lazy": true,
+      "line": 26
+    },
+    {
+      "source": "itlr.versioning",
+      "target": "itlr.locking",
+      "lazy": false,
+      "line": 26
+    },
+    {
+      "source": "itlr.versioning",
+      "target": "itlr",
+      "lazy": false,
+      "line": 29
+    },
+    {
+      "source": "itlr.versioning",
+      "target": "itlr.config",
+      "lazy": false,
+      "line": 29
+    },
+    {
+      "source": "itlr.versioning",
+      "target": "itlr.versioning",
+      "lazy": true,
+      "line": 50
+    },
+    {
+      "source": "itlr.api.server",
+      "target": "itlr.utils.runtime_patches",
+      "lazy": false,
+      "line": 19
+    },
+    {
+      "source": "itlr.api.server",
+      "target": "itlr.api",
+      "lazy": false,
+      "line": 37
+    },
+    {
+      "source": "itlr.api.server",
+      "target": "itlr.api.ratelimit",
+      "lazy": false,
+      "line": 37
+    },
+    {
+      "source": "itlr.api.server",
+      "target": "itlr.engine",
+      "lazy": false,
+      "line": 38
+    },
+    {
+      "source": "itlr.api.server",
+      "target": "itlr.engine",
+      "lazy": true,
+      "line": 385
+    },
+    {
+      "source": "itlr.api.server",
+      "target": "itlr.engine",
+      "lazy": true,
+      "line": 395
+    },
+    {
+      "source": "itlr.api.server",
+      "target": "itlr.chatbot.chatbot",
+      "lazy": true,
+      "line": 407
+    },
+    {
+      "source": "itlr.chatbot.chatbot",
+      "target": "itlr.chatbot.knowledge_base",
+      "lazy": false,
+      "line": 7
+    },
+    {
+      "source": "itlr.chatbot.chatbot",
+      "target": "itlr.chatbot.intent_router",
+      "lazy": false,
+      "line": 8
+    },
+    {
+      "source": "itlr.chatbot.chatbot",
+      "target": "itlr.chatbot.query_understanding",
+      "lazy": false,
+      "line": 9
+    },
+    {
+      "source": "itlr.chatbot.chatbot",
+      "target": "itlr.core.rag",
+      "lazy": false,
+      "line": 10
+    },
+    {
+      "source": "itlr.chatbot.chatbot",
+      "target": "itlr.core.recommender",
+      "lazy": false,
+      "line": 11
+    },
+    {
+      "source": "itlr.chatbot.chatbot",
+      "target": "itlr.chatbot.presentation",
+      "lazy": false,
+      "line": 24
+    },
+    {
+      "source": "itlr.chatbot.chatbot",
+      "target": "itlr.chatbot",
+      "lazy": true,
+      "line": 208
+    },
+    {
+      "source": "itlr.chatbot.chatbot",
+      "target": "itlr.chatbot.llm_client",
+      "lazy": true,
+      "line": 208
+    },
+    {
+      "source": "itlr.chatbot.chatbot",
+      "target": "itlr.chatbot",
+      "lazy": true,
+      "line": 234
+    },
+    {
+      "source": "itlr.chatbot.chatbot",
+      "target": "itlr.chatbot.llm_client",
+      "lazy": true,
+      "line": 234
+    },
+    {
+      "source": "itlr.chatbot.chatbot",
+      "target": "itlr.chatbot",
+      "lazy": true,
+      "line": 279
+    },
+    {
+      "source": "itlr.chatbot.chatbot",
+      "target": "itlr.chatbot.llm_client",
+      "lazy": true,
+      "line": 279
+    },
+    {
+      "source": "itlr.chatbot.chatbot",
+      "target": "itlr.chatbot.citations",
+      "lazy": true,
+      "line": 396
+    },
+    {
+      "source": "itlr.chatbot.chatbot",
+      "target": "itlr.chatbot.citations",
+      "lazy": true,
+      "line": 410
+    },
+    {
+      "source": "itlr.chatbot.chatbot",
+      "target": "itlr.chatbot.citations",
+      "lazy": true,
+      "line": 603
+    },
+    {
+      "source": "itlr.chatbot.chatbot",
+      "target": "itlr.chatbot.citations",
+      "lazy": true,
+      "line": 627
+    },
+    {
+      "source": "itlr.chatbot.chatbot",
+      "target": "itlr.core.recommender",
+      "lazy": true,
+      "line": 649
+    },
+    {
+      "source": "itlr.chatbot.chatbot",
+      "target": "itlr.core.recommender",
+      "lazy": true,
+      "line": 663
+    },
+    {
+      "source": "itlr.chatbot.chatbot",
+      "target": "itlr.core.recommender",
+      "lazy": true,
+      "line": 912
+    },
+    {
+      "source": "itlr.chatbot.intent_router",
+      "target": "itlr.chatbot.knowledge_base",
+      "lazy": false,
+      "line": 12
+    },
+    {
+      "source": "itlr.chatbot.intent_router",
+      "target": "itlr.core.recommender",
+      "lazy": false,
+      "line": 20
+    },
+    {
+      "source": "itlr.chatbot.knowledge_base",
+      "target": "itlr.core.recommender",
+      "lazy": false,
+      "line": 12
+    },
+    {
+      "source": "itlr.chatbot.presentation",
+      "target": "itlr.chatbot",
+      "lazy": false,
+      "line": 3
+    },
+    {
+      "source": "itlr.chatbot.presentation",
+      "target": "itlr.chatbot.knowledge_base",
+      "lazy": false,
+      "line": 3
+    },
+    {
+      "source": "itlr.chatbot.presentation",
+      "target": "itlr.core.recommender",
+      "lazy": false,
+      "line": 4
+    },
+    {
+      "source": "itlr.chatbot.query_understanding",
+      "target": "itlr.core.recommender",
+      "lazy": false,
+      "line": 13
+    },
+    {
+      "source": "itlr.chatbot.query_understanding",
+      "target": "itlr.chatbot.knowledge_base",
+      "lazy": true,
+      "line": 118
+    },
+    {
+      "source": "itlr.collect.adapters",
+      "target": "itlr.collect.extract",
+      "lazy": true,
+      "line": 141
+    },
+    {
+      "source": "itlr.collect.normalize",
+      "target": "itlr",
+      "lazy": false,
+      "line": 22
+    },
+    {
+      "source": "itlr.collect.normalize",
+      "target": "itlr.config",
+      "lazy": false,
+      "line": 22
+    },
+    {
+      "source": "itlr.collect.normalize",
+      "target": "itlr.collect.chunk",
+      "lazy": false,
+      "line": 23
+    },
+    {
+      "source": "itlr.collect.normalize",
+      "target": "itlr.collect.quality",
+      "lazy": false,
+      "line": 24
+    },
+    {
+      "source": "itlr.collect.normalize",
+      "target": "itlr.collect.store",
+      "lazy": false,
+      "line": 25
+    },
+    {
+      "source": "itlr.collect.normalize",
+      "target": "itlr.collect.url_util",
+      "lazy": false,
+      "line": 26
+    },
+    {
+      "source": "itlr.collect.runner",
+      "target": "itlr.collect.adapters",
+      "lazy": false,
+      "line": 19
+    },
+    {
+      "source": "itlr.collect.runner",
+      "target": "itlr.collect.extract",
+      "lazy": false,
+      "line": 20
+    },
+    {
+      "source": "itlr.collect.runner",
+      "target": "itlr.collect.http",
+      "lazy": false,
+      "line": 21
+    },
+    {
+      "source": "itlr.collect.runner",
+      "target": "itlr.collect.quality",
+      "lazy": false,
+      "line": 22
+    },
+    {
+      "source": "itlr.collect.runner",
+      "target": "itlr.collect.store",
+      "lazy": false,
+      "line": 23
+    },
+    {
+      "source": "itlr.collect.runner",
+      "target": "itlr.collect.url_util",
+      "lazy": false,
+      "line": 24
+    },
+    {
+      "source": "itlr.collect.runner",
+      "target": "itlr.collect.sources",
+      "lazy": false,
+      "line": 25
+    },
+    {
+      "source": "itlr.collect.runner",
+      "target": "itlr",
+      "lazy": true,
+      "line": 35
+    },
+    {
+      "source": "itlr.collect.runner",
+      "target": "itlr.config",
+      "lazy": true,
+      "line": 35
+    },
+    {
+      "source": "itlr.collect.sources",
+      "target": "itlr",
+      "lazy": false,
+      "line": 14
+    },
+    {
+      "source": "itlr.collect.sources",
+      "target": "itlr.config",
+      "lazy": false,
+      "line": 14
+    },
+    {
+      "source": "itlr.collect.store",
+      "target": "itlr.collect.quality",
+      "lazy": true,
+      "line": 150
+    },
+    {
+      "source": "itlr.collect.store",
+      "target": "itlr.collect.quality",
+      "lazy": true,
+      "line": 217
+    },
+    {
+      "source": "itlr.collect",
+      "target": "itlr.collect.url_util",
+      "lazy": false,
+      "line": 21
+    },
+    {
+      "source": "itlr.core.ann",
+      "target": "itlr",
+      "lazy": false,
+      "line": 18
+    },
+    {
+      "source": "itlr.core.ann",
+      "target": "itlr.config",
+      "lazy": false,
+      "line": 18
+    },
+    {
+      "source": "itlr.core.bm25",
+      "target": "itlr.retrieval.bm25",
+      "lazy": false,
+      "line": 2
+    },
+    {
+      "source": "itlr.core.chunks",
+      "target": "itlr.retrieval.bm25",
+      "lazy": false,
+      "line": 4
+    },
+    {
+      "source": "itlr.core.pipeline",
+      "target": "itlr.core",
+      "lazy": false,
+      "line": 24
+    },
+    {
+      "source": "itlr.core.pipeline",
+      "target": "itlr.core.recommender",
+      "lazy": false,
+      "line": 24
+    },
+    {
+      "source": "itlr.core.pipeline",
+      "target": "itlr.core.rerank",
+      "lazy": true,
+      "line": 172
+    },
+    {
+      "source": "itlr.core.rag",
+      "target": "itlr.core.recommender",
+      "lazy": false,
+      "line": 5
+    },
+    {
+      "source": "itlr.core.rag",
+      "target": "itlr.core.recommender",
+      "lazy": true,
+      "line": 224
+    },
+    {
+      "source": "itlr.core.recommender",
+      "target": "itlr.core.ann",
+      "lazy": true,
+      "line": 687
+    },
+    {
+      "source": "itlr.core.recommender",
+      "target": "itlr.core.rerank",
+      "lazy": true,
+      "line": 727
+    },
+    {
+      "source": "itlr.data.generate_interactions",
+      "target": "itlr",
+      "lazy": false,
+      "line": 28
+    },
+    {
+      "source": "itlr.data.generate_interactions",
+      "target": "itlr.config",
+      "lazy": false,
+      "line": 28
+    },
+    {
+      "source": "itlr.data.generate_interactions",
+      "target": "itlr.core.recommender",
+      "lazy": false,
+      "line": 29
+    },
+    {
+      "source": "itlr.data.generate_items",
+      "target": "itlr",
+      "lazy": true,
+      "line": 537
+    },
+    {
+      "source": "itlr.data.generate_items",
+      "target": "itlr.config",
+      "lazy": true,
+      "line": 537
+    },
+    {
+      "source": "itlr.eval.cf_eval",
+      "target": "itlr.core.recommender",
+      "lazy": false,
+      "line": 20
+    },
+    {
+      "source": "itlr.eval.cf_eval",
+      "target": "itlr.eval",
+      "lazy": false,
+      "line": 21
+    },
+    {
+      "source": "itlr.eval.cf_eval",
+      "target": "itlr.eval.metrics",
+      "lazy": false,
+      "line": 21
+    },
+    {
+      "source": "itlr.eval.loader",
+      "target": "itlr",
+      "lazy": false,
+      "line": 11
+    },
+    {
+      "source": "itlr.eval.loader",
+      "target": "itlr.config",
+      "lazy": false,
+      "line": 11
+    },
+    {
+      "source": "itlr.eval.loader",
+      "target": "itlr.core",
+      "lazy": false,
+      "line": 12
+    },
+    {
+      "source": "itlr.eval.loader",
+      "target": "itlr.core.pipeline",
+      "lazy": false,
+      "line": 12
+    },
+    {
+      "source": "itlr.eval.loader",
+      "target": "itlr.engine",
+      "lazy": true,
+      "line": 16
+    },
+    {
+      "source": "itlr.eval.loader",
+      "target": "itlr.eval",
+      "lazy": true,
+      "line": 45
+    },
+    {
+      "source": "itlr.eval.loader",
+      "target": "itlr.eval.ltr_features",
+      "lazy": true,
+      "line": 45
+    },
+    {
+      "source": "itlr.eval.ltr_features",
+      "target": "itlr.core",
+      "lazy": false,
+      "line": 17
+    },
+    {
+      "source": "itlr.eval.ltr_features",
+      "target": "itlr.core.recommender",
+      "lazy": false,
+      "line": 17
+    },
+    {
+      "source": "itlr.eval.ltr_features",
+      "target": "itlr.core.rerank",
+      "lazy": true,
+      "line": 55
+    },
+    {
+      "source": "itlr.eval",
+      "target": "itlr.eval",
+      "lazy": false,
+      "line": 14
+    },
+    {
+      "source": "itlr.eval",
+      "target": "itlr.eval.metrics",
+      "lazy": false,
+      "line": 14
+    },
+    {
+      "source": "itlr.pipelines.build_cf",
+      "target": "itlr",
+      "lazy": false,
+      "line": 19
+    },
+    {
+      "source": "itlr.pipelines.build_cf",
+      "target": "itlr.config",
+      "lazy": false,
+      "line": 19
+    },
+    {
+      "source": "itlr.pipelines.build_embeddings",
+      "target": "itlr",
+      "lazy": false,
+      "line": 22
+    },
+    {
+      "source": "itlr.pipelines.build_embeddings",
+      "target": "itlr.config",
+      "lazy": false,
+      "line": 22
+    },
+    {
+      "source": "itlr.pipelines.build_embeddings",
+      "target": "itlr.core.embeddings",
+      "lazy": false,
+      "line": 23
+    },
+    {
+      "source": "itlr.pipelines.build_embeddings",
+      "target": "itlr.core.recommender",
+      "lazy": false,
+      "line": 24
+    },
+    {
+      "source": "itlr.pipelines.build_embeddings",
+      "target": "itlr.core.ann",
+      "lazy": true,
+      "line": 74
+    },
+    {
+      "source": "itlr.pipelines.build_embeddings_v2",
+      "target": "itlr",
+      "lazy": false,
+      "line": 34
+    },
+    {
+      "source": "itlr.pipelines.build_embeddings_v2",
+      "target": "itlr.config",
+      "lazy": false,
+      "line": 34
+    },
+    {
+      "source": "itlr.pipelines.build_embeddings_v2",
+      "target": "itlr.collect.chunk",
+      "lazy": false,
+      "line": 35
+    },
+    {
+      "source": "itlr.pipelines.build_embeddings_v2",
+      "target": "itlr.core.embeddings",
+      "lazy": false,
+      "line": 36
+    },
+    {
+      "source": "itlr.pipelines.build_embeddings_v2",
+      "target": "itlr.core.recommender",
+      "lazy": false,
+      "line": 37
+    },
+    {
+      "source": "itlr.pipelines.build_embeddings_v2",
+      "target": "itlr.core.ann",
+      "lazy": true,
+      "line": 125
+    },
+    {
+      "source": "itlr.pipelines.build_model",
+      "target": "itlr",
+      "lazy": false,
+      "line": 17
+    },
+    {
+      "source": "itlr.pipelines.build_model",
+      "target": "itlr.config",
+      "lazy": false,
+      "line": 17
+    },
+    {
+      "source": "itlr.pipelines.build_model",
+      "target": "itlr.retrieval.bm25",
+      "lazy": false,
+      "line": 18
+    },
+    {
+      "source": "itlr.pipelines.build_model",
+      "target": "itlr.core.recommender",
+      "lazy": false,
+      "line": 19
+    },
+    {
+      "source": "itlr.pipelines.generate_interactions",
+      "target": "itlr",
+      "lazy": false,
+      "line": 31
+    },
+    {
+      "source": "itlr.pipelines.generate_interactions",
+      "target": "itlr.config",
+      "lazy": false,
+      "line": 31
+    },
+    {
+      "source": "itlr.retrieval.bm25",
+      "target": "itlr.core.recommender",
+      "lazy": false,
+      "line": 6
+    },
+    {
+      "source": "itlr.retrieval.service",
+      "target": "itlr.core.embeddings",
+      "lazy": false,
+      "line": 2
+    },
+    {
+      "source": "itlr.utils.repickle",
+      "target": "itlr",
+      "lazy": false,
+      "line": 20
+    },
+    {
+      "source": "itlr.utils.repickle",
+      "target": "itlr.config",
+      "lazy": false,
+      "line": 20
+    },
+    {
+      "source": "itlr.utils.repickle",
+      "target": "itlr.core",
+      "lazy": false,
+      "line": 21
+    },
+    {
+      "source": "itlr.utils.repickle",
+      "target": "itlr.core.ann",
+      "lazy": false,
+      "line": 21
+    },
+    {
+      "source": "itlr.utils.repickle",
+      "target": "itlr.core",
+      "lazy": false,
+      "line": 22
+    },
+    {
+      "source": "itlr.utils.repickle",
+      "target": "itlr.core.bm25",
+      "lazy": false,
+      "line": 22
+    },
+    {
+      "source": "itlr.utils.repickle",
+      "target": "itlr.core",
+      "lazy": false,
+      "line": 23
+    },
+    {
+      "source": "itlr.utils.repickle",
+      "target": "itlr.core.embeddings",
+      "lazy": false,
+      "line": 23
+    },
+    {
+      "source": "itlr.utils.repickle",
+      "target": "itlr.core",
+      "lazy": false,
+      "line": 24
+    },
+    {
+      "source": "itlr.utils.repickle",
+      "target": "itlr.core.rag",
+      "lazy": false,
+      "line": 24
+    },
+    {
+      "source": "itlr.utils.repickle",
+      "target": "itlr.core",
+      "lazy": false,
+      "line": 25
+    },
+    {
+      "source": "itlr.utils.repickle",
+      "target": "itlr.core.recommender",
+      "lazy": false,
+      "line": 25
+    },
+    {
+      "source": "itlr.utils.repickle",
+      "target": "itlr.core",
+      "lazy": false,
+      "line": 26
+    },
+    {
+      "source": "itlr.utils.repickle",
+      "target": "itlr.core.rerank",
+      "lazy": false,
+      "line": 26
+    },
+    {
+      "source": "itlr.utils.repickle",
+      "target": "itlr.chatbot",
+      "lazy": false,
+      "line": 27
+    },
+    {
+      "source": "itlr.utils.repickle",
+      "target": "itlr.chatbot.knowledge_base",
+      "lazy": false,
+      "line": 27
+    },
+    {
+      "source": "itlr.utils.repickle",
+      "target": "itlr.chatbot",
+      "lazy": false,
+      "line": 28
+    },
+    {
+      "source": "itlr.utils.repickle",
+      "target": "itlr.chatbot.query_understanding",
+      "lazy": false,
+      "line": 28
+    },
+    {
+      "source": "scripts.build_all",
+      "target": "itlr.config",
+      "lazy": true,
+      "line": 38
+    },
+    {
+      "source": "scripts.build_all_v2",
+      "target": "itlr.collect.normalize",
+      "lazy": true,
+      "line": 49
+    },
+    {
+      "source": "scripts.build_all_v2",
+      "target": "itlr",
+      "lazy": true,
+      "line": 50
+    },
+    {
+      "source": "scripts.build_all_v2",
+      "target": "itlr.config",
+      "lazy": true,
+      "line": 50
+    },
+    {
+      "source": "scripts.build_all_v2",
+      "target": "itlr",
+      "lazy": true,
+      "line": 94
+    },
+    {
+      "source": "scripts.build_all_v2",
+      "target": "itlr.config",
+      "lazy": true,
+      "line": 94
+    },
+    {
+      "source": "scripts.build_all_v2",
+      "target": "itlr",
+      "lazy": true,
+      "line": 95
+    },
+    {
+      "source": "scripts.build_all_v2",
+      "target": "itlr.versioning",
+      "lazy": true,
+      "line": 95
+    },
+    {
+      "source": "scripts.build_all_v2",
+      "target": "itlr.indexv2",
+      "lazy": true,
+      "line": 172
+    },
+    {
+      "source": "scripts.build_all_v2",
+      "target": "itlr",
+      "lazy": false,
+      "line": 209
+    },
+    {
+      "source": "scripts.build_all_v2",
+      "target": "itlr.config",
+      "lazy": false,
+      "line": 209
+    },
+    {
+      "source": "scripts.build_all_v2",
+      "target": "itlr.locking",
+      "lazy": false,
+      "line": 210
+    },
+    {
+      "source": "scripts.collect_curated",
+      "target": "itlr",
+      "lazy": false,
+      "line": 12
+    },
+    {
+      "source": "scripts.collect_curated",
+      "target": "itlr.config",
+      "lazy": false,
+      "line": 12
+    },
+    {
+      "source": "scripts.collect_curated",
+      "target": "itlr.collect.extract",
+      "lazy": false,
+      "line": 13
+    },
+    {
+      "source": "scripts.collect_curated",
+      "target": "itlr.collect.http",
+      "lazy": false,
+      "line": 14
+    },
+    {
+      "source": "scripts.collect_curated",
+      "target": "itlr.collect.sources",
+      "lazy": false,
+      "line": 15
+    },
+    {
+      "source": "scripts.collect_curated",
+      "target": "itlr.collect.store",
+      "lazy": false,
+      "line": 16
+    },
+    {
+      "source": "scripts.collect_curated",
+      "target": "itlr.collect.url_util",
+      "lazy": false,
+      "line": 17
+    },
+    {
+      "source": "scripts.collect_data",
+      "target": "itlr",
+      "lazy": false,
+      "line": 26
+    },
+    {
+      "source": "scripts.collect_data",
+      "target": "itlr.config",
+      "lazy": false,
+      "line": 26
+    },
+    {
+      "source": "scripts.collect_data",
+      "target": "itlr.collect.http",
+      "lazy": false,
+      "line": 27
+    },
+    {
+      "source": "scripts.collect_data",
+      "target": "itlr.collect.runner",
+      "lazy": false,
+      "line": 28
+    },
+    {
+      "source": "scripts.collect_data",
+      "target": "itlr.collect.sources",
+      "lazy": false,
+      "line": 29
+    },
+    {
+      "source": "scripts.collect_data",
+      "target": "itlr.collect.store",
+      "lazy": false,
+      "line": 30
+    },
+    {
+      "source": "scripts.collect_data",
+      "target": "itlr",
+      "lazy": false,
+      "line": 117
+    },
+    {
+      "source": "scripts.collect_data",
+      "target": "itlr.config",
+      "lazy": false,
+      "line": 117
+    },
+    {
+      "source": "scripts.collect_data",
+      "target": "itlr.locking",
+      "lazy": false,
+      "line": 118
+    },
+    {
+      "source": "scripts.export_web_catalog",
+      "target": "itlr",
+      "lazy": false,
+      "line": 9
+    },
+    {
+      "source": "scripts.export_web_catalog",
+      "target": "itlr.config",
+      "lazy": false,
+      "line": 9
+    },
+    {
+      "source": "scripts.import_curated_snapshot",
+      "target": "itlr",
+      "lazy": false,
+      "line": 9
+    },
+    {
+      "source": "scripts.import_curated_snapshot",
+      "target": "itlr.config",
+      "lazy": false,
+      "line": 9
+    },
+    {
+      "source": "scripts.import_curated_snapshot",
+      "target": "itlr.collect.store",
+      "lazy": false,
+      "line": 10
+    },
+    {
+      "source": "scripts.import_curated_snapshot",
+      "target": "itlr.collect.sources",
+      "lazy": false,
+      "line": 11
+    },
+    {
+      "source": "scripts.import_curated_snapshot",
+      "target": "itlr.collect.url_util",
+      "lazy": false,
+      "line": 12
+    },
+    {
+      "source": "scripts.import_curated_snapshot",
+      "target": "scripts.collect_curated",
+      "lazy": false,
+      "line": 13
+    },
+    {
+      "source": "scripts.refresh_pipeline",
+      "target": "itlr.locking",
+      "lazy": false,
+      "line": 133
+    },
+    {
+      "source": "scripts.verify_local_models",
+      "target": "itlr.chatbot.llm_client",
+      "lazy": true,
+      "line": 19
+    },
+    {
+      "source": "eval.adapt_real_data",
+      "target": "itlr",
+      "lazy": false,
+      "line": 37
+    },
+    {
+      "source": "eval.adapt_real_data",
+      "target": "itlr.config",
+      "lazy": false,
+      "line": 37
+    },
+    {
+      "source": "eval.bench_chunks_v3",
+      "target": "itlr.collect.chunk",
+      "lazy": false,
+      "line": 15
+    },
+    {
+      "source": "eval.bench_chunks_v3",
+      "target": "itlr.core.chunks",
+      "lazy": false,
+      "line": 16
+    },
+    {
+      "source": "eval.bench_chunks_v3",
+      "target": "itlr.core.embeddings",
+      "lazy": false,
+      "line": 17
+    },
+    {
+      "source": "eval.bench_chunks_v3",
+      "target": "itlr.eval.metrics",
+      "lazy": false,
+      "line": 18
+    },
+    {
+      "source": "eval.bench_latency",
+      "target": "itlr",
+      "lazy": false,
+      "line": 22
+    },
+    {
+      "source": "eval.bench_latency",
+      "target": "itlr.config",
+      "lazy": false,
+      "line": 22
+    },
+    {
+      "source": "eval.bench_latency",
+      "target": "itlr.core",
+      "lazy": false,
+      "line": 23
+    },
+    {
+      "source": "eval.bench_latency",
+      "target": "itlr.core.pipeline",
+      "lazy": false,
+      "line": 23
+    },
+    {
+      "source": "eval.bench_latency",
+      "target": "itlr.eval.loader",
+      "lazy": false,
+      "line": 24
+    },
+    {
+      "source": "eval.bench_latency",
+      "target": "itlr.eval.loader",
+      "lazy": true,
+      "line": 79
+    },
+    {
+      "source": "eval.build_ltr",
+      "target": "itlr",
+      "lazy": false,
+      "line": 30
+    },
+    {
+      "source": "eval.build_ltr",
+      "target": "itlr.config",
+      "lazy": false,
+      "line": 30
+    },
+    {
+      "source": "eval.build_ltr",
+      "target": "itlr.core",
+      "lazy": false,
+      "line": 31
+    },
+    {
+      "source": "eval.build_ltr",
+      "target": "itlr.core.pipeline",
+      "lazy": false,
+      "line": 31
+    },
+    {
+      "source": "eval.build_ltr",
+      "target": "itlr.core.recommender",
+      "lazy": false,
+      "line": 32
+    },
+    {
+      "source": "eval.build_ltr",
+      "target": "itlr.eval",
+      "lazy": false,
+      "line": 33
+    },
+    {
+      "source": "eval.build_ltr",
+      "target": "itlr.eval.ltr_features",
+      "lazy": false,
+      "line": 33
+    },
+    {
+      "source": "eval.build_ltr",
+      "target": "itlr.eval.metrics",
+      "lazy": false,
+      "line": 33
+    },
+    {
+      "source": "eval.build_ltr",
+      "target": "itlr.eval.significance",
+      "lazy": false,
+      "line": 33
+    },
+    {
+      "source": "eval.build_ltr",
+      "target": "itlr.eval.loader",
+      "lazy": false,
+      "line": 34
+    },
+    {
+      "source": "eval.evaluate_human",
+      "target": "itlr",
+      "lazy": false,
+      "line": 29
+    },
+    {
+      "source": "eval.evaluate_human",
+      "target": "itlr.config",
+      "lazy": false,
+      "line": 29
+    },
+    {
+      "source": "eval.evaluate_human",
+      "target": "itlr.eval",
+      "lazy": false,
+      "line": 30
+    },
+    {
+      "source": "eval.evaluate_human",
+      "target": "itlr.eval.metrics",
+      "lazy": false,
+      "line": 30
+    },
+    {
+      "source": "eval.evaluate_human",
+      "target": "itlr.eval.significance",
+      "lazy": false,
+      "line": 30
+    },
+    {
+      "source": "eval.evaluate_human",
+      "target": "itlr.core",
+      "lazy": true,
+      "line": 55
+    },
+    {
+      "source": "eval.evaluate_human",
+      "target": "itlr.core.pipeline",
+      "lazy": true,
+      "line": 55
+    },
+    {
+      "source": "eval.evaluate_human",
+      "target": "itlr.engine",
+      "lazy": true,
+      "line": 56
+    },
+    {
+      "source": "eval.eval_cf",
+      "target": "itlr",
+      "lazy": false,
+      "line": 26
+    },
+    {
+      "source": "eval.eval_cf",
+      "target": "itlr.config",
+      "lazy": false,
+      "line": 26
+    },
+    {
+      "source": "eval.eval_cf",
+      "target": "itlr.eval",
+      "lazy": false,
+      "line": 27
+    },
+    {
+      "source": "eval.eval_cf",
+      "target": "itlr.eval.cf_eval",
+      "lazy": false,
+      "line": 27
+    },
+    {
+      "source": "eval.eval_fixture",
+      "target": "itlr.retrieval.bm25",
+      "lazy": false,
+      "line": 15
+    },
+    {
+      "source": "eval.eval_fixture",
+      "target": "itlr.core.recommender",
+      "lazy": false,
+      "line": 16
+    },
+    {
+      "source": "eval.eval_generation",
+      "target": "itlr",
+      "lazy": false,
+      "line": 35
+    },
+    {
+      "source": "eval.eval_generation",
+      "target": "itlr.config",
+      "lazy": false,
+      "line": 35
+    },
+    {
+      "source": "eval.eval_generation",
+      "target": "itlr.engine",
+      "lazy": true,
+      "line": 234
+    },
+    {
+      "source": "eval.eval_generation",
+      "target": "itlr.chatbot",
+      "lazy": true,
+      "line": 241
+    },
+    {
+      "source": "eval.eval_generation",
+      "target": "itlr.chatbot.llm_client",
+      "lazy": true,
+      "line": 241
+    },
+    {
+      "source": "eval.eval_offtopic",
+      "target": "itlr",
+      "lazy": false,
+      "line": 24
+    },
+    {
+      "source": "eval.eval_offtopic",
+      "target": "itlr.config",
+      "lazy": false,
+      "line": 24
+    },
+    {
+      "source": "eval.eval_offtopic",
+      "target": "itlr.core.recommender",
+      "lazy": false,
+      "line": 25
+    },
+    {
+      "source": "eval.eval_offtopic",
+      "target": "itlr.engine",
+      "lazy": true,
+      "line": 61
+    },
+    {
+      "source": "eval.eval_offtopic",
+      "target": "itlr.chatbot.chatbot",
+      "lazy": true,
+      "line": 79
+    },
+    {
+      "source": "eval.eval_off_policy",
+      "target": "itlr",
+      "lazy": false,
+      "line": 31
+    },
+    {
+      "source": "eval.eval_off_policy",
+      "target": "itlr.config",
+      "lazy": false,
+      "line": 31
+    },
+    {
+      "source": "eval.eval_off_policy",
+      "target": "itlr.eval",
+      "lazy": false,
+      "line": 32
+    },
+    {
+      "source": "eval.eval_off_policy",
+      "target": "itlr.eval.off_policy",
+      "lazy": false,
+      "line": 32
+    },
+    {
+      "source": "eval.eval_v2_real",
+      "target": "itlr",
+      "lazy": false,
+      "line": 33
+    },
+    {
+      "source": "eval.eval_v2_real",
+      "target": "itlr.config",
+      "lazy": false,
+      "line": 33
+    },
+    {
+      "source": "eval.eval_v2_real",
+      "target": "itlr.eval.metrics",
+      "lazy": true,
+      "line": 39
+    },
+    {
+      "source": "eval.eval_v2_real",
+      "target": "itlr.engine",
+      "lazy": true,
+      "line": 61
+    },
+    {
+      "source": "eval.eval_v2_real",
+      "target": "itlr.chatbot.chatbot",
+      "lazy": true,
+      "line": 153
+    },
+    {
+      "source": "eval.make_judgments",
+      "target": "itlr",
+      "lazy": false,
+      "line": 44
+    },
+    {
+      "source": "eval.make_judgments",
+      "target": "itlr.config",
+      "lazy": false,
+      "line": 44
+    },
+    {
+      "source": "eval.make_judgments",
+      "target": "itlr.core.recommender",
+      "lazy": false,
+      "line": 45
+    },
+    {
+      "source": "eval.prepare_labeling_sheet",
+      "target": "itlr",
+      "lazy": false,
+      "line": 29
+    },
+    {
+      "source": "eval.prepare_labeling_sheet",
+      "target": "itlr.config",
+      "lazy": false,
+      "line": 29
+    },
+    {
+      "source": "eval.run_evaluation",
+      "target": "itlr",
+      "lazy": false,
+      "line": 37
+    },
+    {
+      "source": "eval.run_evaluation",
+      "target": "itlr.config",
+      "lazy": false,
+      "line": 37
+    },
+    {
+      "source": "eval.run_evaluation",
+      "target": "itlr.core",
+      "lazy": false,
+      "line": 38
+    },
+    {
+      "source": "eval.run_evaluation",
+      "target": "itlr.core.pipeline",
+      "lazy": false,
+      "line": 38
+    },
+    {
+      "source": "eval.run_evaluation",
+      "target": "itlr.core.recommender",
+      "lazy": false,
+      "line": 39
+    },
+    {
+      "source": "eval.run_evaluation",
+      "target": "itlr.eval",
+      "lazy": false,
+      "line": 40
+    },
+    {
+      "source": "eval.run_evaluation",
+      "target": "itlr.eval.diversity",
+      "lazy": false,
+      "line": 40
+    },
+    {
+      "source": "eval.run_evaluation",
+      "target": "itlr.eval.metrics",
+      "lazy": false,
+      "line": 40
+    },
+    {
+      "source": "eval.run_evaluation",
+      "target": "itlr.eval.significance",
+      "lazy": false,
+      "line": 40
+    },
+    {
+      "source": "eval.run_evaluation",
+      "target": "itlr.engine",
+      "lazy": true,
+      "line": 77
+    }
+  ],
+  "top_level_cycles": [],
+  "all_import_cycles": [
+    [
+      "itlr.config",
+      "itlr.locking",
+      "itlr.versioning"
+    ]
+  ]
+}

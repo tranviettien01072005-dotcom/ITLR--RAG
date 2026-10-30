@@ -1,14 +1,4 @@
 #!/bin/sh
-# Khởi động web container: tạo bảng + nạp catalog (idempotent) rồi chạy server.
-# Postgres đã được docker-compose chờ "healthy" qua depends_on nên có thể migrate ngay.
-# Chạy JS đã biên dịch trong dist/ (image runtime không có tsx/src).
-set -e
-
-echo "[entrypoint] migrate (tạo bảng nếu chưa có)..."
-node dist/db/migrate.js
-
-echo "[entrypoint] seed catalog (bỏ qua nếu đã có / thiếu CSV)..."
-node dist/db/seed-courses.js
-
-echo "[entrypoint] khởi động web server..."
+# Schema and catalog changes are explicit release jobs; restarting serves traffic only.
+set -eu
 exec node dist/server.js

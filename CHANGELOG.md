@@ -1,5 +1,27 @@
 # ITLR–RAG | Intelligent IT Learning Platform — Changelog
 
+## 2026-10-30 - Verified architecture increment
+
+- Separate offline answer presentation from chatbot orchestration while preserving existing helper imports and Markdown output.
+- Fix upload append for provenance catalogs: use the same 10/16-column contract as PostgreSQL sync; reject unsupported headers before writes.
+- Log streaming generation failures consistently and remove redundant console fallback branches.
+- Add template characterization, catalog regression and Web HTTP health/readiness tests.
+- Actual results and release blockers: [architecture checkpoint](reports/ARCHITECTURE_REFACTOR_2026-10-30.md).
+
+## 2026-10-30 - Deployment preparation and process boundaries
+
+- Add an opt-in production Compose stack with HTTPS proxy, private Web/API/PostgreSQL and persistent volumes.
+- Keep credentials outside Git; document release jobs, backup/recovery and coordinated index/catalog rollback.
+- Separate Express composition (`app.ts`) from process lifecycle (`server.ts`); add bounded SIGTERM draining.
+- Container startup now serves traffic only: migration/catalog sync must run explicitly before launch.
+- Runtime verification deferred at user request; no cloud deployment or new dependency installation.
+
+## 2026-10-30 - SSE transport hardening
+
+- Server and browser reject malformed UTF-8 and incomplete code points at EOF.
+- Browser checks complete frame size before JSON parsing and event delivery.
+- Regressions reproduced RED -> GREEN; see [checkpoint](reports/PRODUCTION_CHECKPOINT_2026-10-30.md).
+
 ## Chưa phát hành — 2026-10-30: correctness và tài liệu sản phẩm
 
 - V3: Top-K không bị cắt ngầm ở 32; tìm tài nguyên loại trùng item trước giới hạn ứng viên;

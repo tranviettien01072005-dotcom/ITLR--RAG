@@ -1,5 +1,7 @@
 # Cài đặt và vận hành ITLR–RAG
 
+For the complete HTTPS/Web/API/PostgreSQL stack use [the production runbook](PRODUCTION.md) and `compose.production.yml`. The original `docker-compose.yml` remains API/refresh only. Web restarts no longer run migration or catalog sync automatically.
+
 Hướng dẫn cho **ITLR–RAG | Intelligent IT Learning Platform**, cập nhật 2026-10-30. Phạm vi hỗ trợ hiện tại là Linux local, một worker/replica mỗi service và các tiến trình ghi hợp tác qua khóa file. [Validation](../reports/VALIDATION.md) ghi các bước đã thực thi; các cấu hình container chưa được xác nhận bằng một lượt Docker/Compose thực tế.
 
 ## Thành phần và điều kiện
@@ -146,3 +148,5 @@ Nếu mở truy cập ngoài máy local, cần TLS, origin/cookie đúng, revers
 | TestClient treo trong sandbox | Dùng kiểm chứng ngoài sandbox theo quyền được cấp; không skip tests |
 
 Chạy [bộ kiểm thử](../README.md#kiểm-thử-và-đánh-giá) trước bàn giao. Docker, authenticated browser E2E, SMTP, load toàn corpus và storage power-loss vẫn là các cổng kiểm chứng riêng; readiness/login smoke không thay thế chúng.
+
+Code ownership and dependency direction: [architecture map](../docs/ARCHITECTURE.md).

@@ -1,10 +1,4 @@
-# ─────────────────────────────────────────────────────────────────────────────
-# Web app (Express + TypeScript + EJS) — đóng gói production ĐA TẦNG (multi-stage):
-#   • builder : cài full deps, biên dịch TS -> dist/, copy view/asset/schema vào dist.
-#   • runtime : CHỈ deps production + dist/ đã biên dịch -> image gọn, chạy bằng `node`
-#               (không còn tsx/typescript/@types trong image cuối).
-# Entrypoint tự migrate + seed (idempotent) rồi chạy server.
-# ─────────────────────────────────────────────────────────────────────────────
+# Web build and runtime images. Run migration/catalog sync as explicit release jobs.
 FROM node:22-bookworm-slim AS builder
 WORKDIR /app
 # Cài full deps trước (cache theo package*.json).
@@ -29,9 +23,9 @@ RUN sed -i 's/\r$//' docker-entrypoint.sh && chmod +x docker-entrypoint.sh
 
 EXPOSE 3000
 
-# Healthcheck: trang public /login trả 200 khi server sẵn sàng (Node 20 có fetch sẵn).
+# Readiness checks PostgreSQL; RAG health is monitored separately.
 HEALTHCHECK --interval=15s --timeout=5s --start-period=40s --retries=5 \
-  CMD node -e "fetch('http://localhost:3000/ready').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+  CMD node -e "fetch('http://127.0.0.1:3000/ready', {signal: AbortSignal.timeout(4000)}).then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
 
 USER node
 

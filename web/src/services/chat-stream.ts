@@ -36,7 +36,7 @@ export type FinalChat = z.infer<typeof finalChatSchema>;
 // Parse SSE incrementally: network chunks need not align with UTF-8 or event boundaries.
 export async function* readChatEvents(body: ReadableStream<Uint8Array>): AsyncGenerator<ChatEvent> {
   const reader = body.getReader();
-  const decoder = new TextDecoder();
+  const decoder = new TextDecoder("utf-8", { fatal: true });
   let buffer = "", finalized = false, totalText = 0;
   try {
     while (true) {
@@ -64,6 +64,7 @@ export async function* readChatEvents(body: ReadableStream<Uint8Array>): AsyncGe
       }
       if (buffer.length > 1_100_000) throw new Error("Stream event too large");
     }
+    buffer += decoder.decode();
     if (buffer.trim() || !finalized) throw new Error("Incomplete chat stream");
   } finally {
     await reader.cancel().catch(() => {});

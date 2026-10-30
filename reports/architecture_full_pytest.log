@@ -1,0 +1,77 @@
+
+=================================== ERRORS ====================================
+______________ ERROR collecting tests/test_ann_active_version.py ______________
+ImportError while importing test module 'C:\ITLR--RAG\tests\test_ann_active_version.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Users\Server\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\test_ann_active_version.py:18: in <module>
+    from itlr import versioning
+itlr\versioning.py:26: in <module>
+    from itlr.locking import artifact_locked
+itlr\locking.py:5: in <module>
+    import fcntl
+E   ModuleNotFoundError: No module named 'fcntl'
+______________ ERROR collecting tests/test_artifact_integrity.py ______________
+ImportError while importing test module 'C:\ITLR--RAG\tests\test_artifact_integrity.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Users\Server\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\test_artifact_integrity.py:5: in <module>
+    from itlr import versioning
+itlr\versioning.py:26: in <module>
+    from itlr.locking import artifact_locked
+itlr\locking.py:5: in <module>
+    import fcntl
+E   ModuleNotFoundError: No module named 'fcntl'
+_________________ ERROR collecting tests/test_index_probe.py __________________
+ImportError while importing test module 'C:\ITLR--RAG\tests\test_index_probe.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Users\Server\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\test_index_probe.py:10: in <module>
+    from itlr.indexv2 import probe, self_retrieval_sanity, validate_artifacts
+itlr\indexv2.py:21: in <module>
+    from itlr.versioning import write_manifest
+itlr\versioning.py:26: in <module>
+    from itlr.locking import artifact_locked
+itlr\locking.py:5: in <module>
+    import fcntl
+E   ModuleNotFoundError: No module named 'fcntl'
+__________________ ERROR collecting tests/test_versioning.py __________________
+ImportError while importing test module 'C:\ITLR--RAG\tests\test_versioning.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Users\Server\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\test_versioning.py:11: in <module>
+    from itlr import versioning
+itlr\versioning.py:26: in <module>
+    from itlr.locking import artifact_locked
+itlr\locking.py:5: in <module>
+    import fcntl
+E   ModuleNotFoundError: No module named 'fcntl'
+============================== warnings summary ===============================
+.venv\Lib\site-packages\_pytest\cacheprovider.py:487
+  C:\ITLR--RAG\.venv\Lib\site-packages\_pytest\cacheprovider.py:487: PytestCacheWarning: could not create cache path C:\ITLR--RAG\.pytest_cache\v\cache\nodeids: [WinError 5] Access is denied: 'C:\\ITLR--RAG\\.pytest_cache\\v\\cache'
+    config.cache.set("cache/nodeids", sorted(str(n) for n in self.cached_nodeids))
+
+.venv\Lib\site-packages\_pytest\cacheprovider.py:439
+  C:\ITLR--RAG\.venv\Lib\site-packages\_pytest\cacheprovider.py:439: PytestCacheWarning: could not create cache path C:\ITLR--RAG\.pytest_cache\v\cache\lastfailed: [WinError 5] Access is denied: 'C:\\ITLR--RAG\\.pytest_cache\\v\\cache'
+    config.cache.set("cache/lastfailed", current_lastfailed)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+ERROR tests/test_ann_active_version.py
+ERROR tests/test_artifact_integrity.py
+ERROR tests/test_index_probe.py
+ERROR tests/test_versioning.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 4 errors during collection !!!!!!!!!!!!!!!!!!!
+2 warnings, 4 errors in 7.78s

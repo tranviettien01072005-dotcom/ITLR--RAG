@@ -1,0 +1,367 @@
+{
+  "scope": "Static TypeScript import/export declarations only; includes tests and type imports, excludes dynamic require/import and dependency package internals.",
+  "modules": 48,
+  "edges": [
+    {
+      "source": "app.ts",
+      "target": "config\\env.ts"
+    },
+    {
+      "source": "app.ts",
+      "target": "db\\pool.ts"
+    },
+    {
+      "source": "app.ts",
+      "target": "middleware\\auth.ts"
+    },
+    {
+      "source": "app.ts",
+      "target": "middleware\\security.ts"
+    },
+    {
+      "source": "app.ts",
+      "target": "routes\\auth.routes.ts"
+    },
+    {
+      "source": "app.ts",
+      "target": "routes\\pages.routes.ts"
+    },
+    {
+      "source": "app.ts",
+      "target": "routes\\api.routes.ts"
+    },
+    {
+      "source": "app.ts",
+      "target": "routes\\admin.routes.ts"
+    },
+    {
+      "source": "app.ts",
+      "target": "routes\\social.routes.ts"
+    },
+    {
+      "source": "app.ts",
+      "target": "routes\\learning.routes.ts"
+    },
+    {
+      "source": "db\\check.ts",
+      "target": "db\\pool.ts"
+    },
+    {
+      "source": "db\\migrate.ts",
+      "target": "db\\pool.ts"
+    },
+    {
+      "source": "db\\pool.ts",
+      "target": "config\\env.ts"
+    },
+    {
+      "source": "db\\seed-courses.ts",
+      "target": "db\\pool.ts"
+    },
+    {
+      "source": "db\\seed-courses.ts",
+      "target": "db\\sync-courses.ts"
+    },
+    {
+      "source": "db\\sync-courses.ts",
+      "target": "db\\pool.ts"
+    },
+    {
+      "source": "db\\sync-courses.ts",
+      "target": "config\\catalog.ts"
+    },
+    {
+      "source": "db\\sync-courses.ts",
+      "target": "services\\catalog-csv.ts"
+    },
+    {
+      "source": "middleware\\auth.test.ts",
+      "target": "middleware\\auth.ts"
+    },
+    {
+      "source": "middleware\\auth.test.ts",
+      "target": "db\\pool.ts"
+    },
+    {
+      "source": "middleware\\auth.ts",
+      "target": "config\\env.ts"
+    },
+    {
+      "source": "middleware\\auth.ts",
+      "target": "db\\pool.ts"
+    },
+    {
+      "source": "middleware\\security.ts",
+      "target": "config\\env.ts"
+    },
+    {
+      "source": "middleware\\uploads.test.ts",
+      "target": "middleware\\uploads.ts"
+    },
+    {
+      "source": "routes\\admin.routes.ts",
+      "target": "middleware\\uploads.ts"
+    },
+    {
+      "source": "routes\\admin.routes.ts",
+      "target": "db\\pool.ts"
+    },
+    {
+      "source": "routes\\admin.routes.ts",
+      "target": "config\\env.ts"
+    },
+    {
+      "source": "routes\\admin.routes.ts",
+      "target": "middleware\\auth.ts"
+    },
+    {
+      "source": "routes\\admin.routes.ts",
+      "target": "middleware\\security.ts"
+    },
+    {
+      "source": "routes\\admin.routes.ts",
+      "target": "services\\social.ts"
+    },
+    {
+      "source": "routes\\admin.routes.ts",
+      "target": "services\\dataset.ts"
+    },
+    {
+      "source": "routes\\admin.routes.ts",
+      "target": "db\\types.ts"
+    },
+    {
+      "source": "routes\\api.routes.ts",
+      "target": "middleware\\uploads.ts"
+    },
+    {
+      "source": "routes\\api.routes.ts",
+      "target": "db\\pool.ts"
+    },
+    {
+      "source": "routes\\api.routes.ts",
+      "target": "middleware\\auth.ts"
+    },
+    {
+      "source": "routes\\api.routes.ts",
+      "target": "services\\recommender.ts"
+    },
+    {
+      "source": "routes\\api.routes.ts",
+      "target": "services\\chat-stream.ts"
+    },
+    {
+      "source": "routes\\api.routes.ts",
+      "target": "services\\chat-history.ts"
+    },
+    {
+      "source": "routes\\api.routes.ts",
+      "target": "services\\dataset.ts"
+    },
+    {
+      "source": "routes\\api.routes.ts",
+      "target": "services\\realtime.ts"
+    },
+    {
+      "source": "routes\\api.routes.ts",
+      "target": "services\\social.ts"
+    },
+    {
+      "source": "routes\\auth-security.test.ts",
+      "target": "routes\\auth.routes.ts"
+    },
+    {
+      "source": "routes\\auth-security.test.ts",
+      "target": "db\\pool.ts"
+    },
+    {
+      "source": "routes\\auth.routes.ts",
+      "target": "db\\pool.ts"
+    },
+    {
+      "source": "routes\\auth.routes.ts",
+      "target": "middleware\\auth.ts"
+    },
+    {
+      "source": "routes\\auth.routes.ts",
+      "target": "services\\password.ts"
+    },
+    {
+      "source": "routes\\auth.routes.ts",
+      "target": "services\\mailer.ts"
+    },
+    {
+      "source": "routes\\auth.routes.ts",
+      "target": "config\\env.ts"
+    },
+    {
+      "source": "routes\\auth.routes.ts",
+      "target": "middleware\\security.ts"
+    },
+    {
+      "source": "routes\\chat-page.test.ts",
+      "target": "db\\pool.ts"
+    },
+    {
+      "source": "routes\\chat-page.test.ts",
+      "target": "routes\\pages.routes.ts"
+    },
+    {
+      "source": "routes\\chat.routes.test.ts",
+      "target": "routes\\api.routes.ts"
+    },
+    {
+      "source": "routes\\learning.routes.test.ts",
+      "target": "db\\pool.ts"
+    },
+    {
+      "source": "routes\\learning.routes.test.ts",
+      "target": "routes\\learning.routes.ts"
+    },
+    {
+      "source": "routes\\learning.routes.ts",
+      "target": "db\\pool.ts"
+    },
+    {
+      "source": "routes\\learning.routes.ts",
+      "target": "middleware\\auth.ts"
+    },
+    {
+      "source": "routes\\learning.routes.ts",
+      "target": "services\\learning.ts"
+    },
+    {
+      "source": "routes\\pages.routes.ts",
+      "target": "db\\pool.ts"
+    },
+    {
+      "source": "routes\\pages.routes.ts",
+      "target": "middleware\\auth.ts"
+    },
+    {
+      "source": "routes\\pages.routes.ts",
+      "target": "services\\recommender.ts"
+    },
+    {
+      "source": "routes\\pages.routes.ts",
+      "target": "services\\chat-stream.ts"
+    },
+    {
+      "source": "routes\\pages.routes.ts",
+      "target": "services\\posts.ts"
+    },
+    {
+      "source": "routes\\pages.routes.ts",
+      "target": "db\\types.ts"
+    },
+    {
+      "source": "routes\\social.routes.ts",
+      "target": "middleware\\uploads.ts"
+    },
+    {
+      "source": "routes\\social.routes.ts",
+      "target": "db\\pool.ts"
+    },
+    {
+      "source": "routes\\social.routes.ts",
+      "target": "middleware\\auth.ts"
+    },
+    {
+      "source": "routes\\social.routes.ts",
+      "target": "services\\social.ts"
+    },
+    {
+      "source": "routes\\social.routes.ts",
+      "target": "services\\posts.ts"
+    },
+    {
+      "source": "routes\\social.routes.ts",
+      "target": "services\\realtime.ts"
+    },
+    {
+      "source": "routes\\social.routes.ts",
+      "target": "db\\types.ts"
+    },
+    {
+      "source": "server.ts",
+      "target": "app.ts"
+    },
+    {
+      "source": "server.ts",
+      "target": "config\\env.ts"
+    },
+    {
+      "source": "server.ts",
+      "target": "db\\pool.ts"
+    },
+    {
+      "source": "services\\chat-history.test.ts",
+      "target": "services\\chat-history.ts"
+    },
+    {
+      "source": "services\\chat-history.ts",
+      "target": "db\\pool.ts"
+    },
+    {
+      "source": "services\\chat-stream.test.ts",
+      "target": "services\\chat-stream.ts"
+    },
+    {
+      "source": "services\\chat-stream.test.ts",
+      "target": "services\\chat-stream.ts"
+    },
+    {
+      "source": "services\\chat-stream.ts",
+      "target": "services\\markdown.ts"
+    },
+    {
+      "source": "services\\dataset-extract.test.ts",
+      "target": "services\\dataset-extract.ts"
+    },
+    {
+      "source": "services\\dataset.ts",
+      "target": "config\\catalog.ts"
+    },
+    {
+      "source": "services\\dataset.ts",
+      "target": "services\\catalog-csv.ts"
+    },
+    {
+      "source": "services\\dataset.ts",
+      "target": "services\\dataset-extract.ts"
+    },
+    {
+      "source": "services\\learning.test.ts",
+      "target": "services\\learning.ts"
+    },
+    {
+      "source": "services\\markdown.test.ts",
+      "target": "services\\markdown.ts"
+    },
+    {
+      "source": "services\\posts.ts",
+      "target": "db\\pool.ts"
+    },
+    {
+      "source": "services\\posts.ts",
+      "target": "db\\types.ts"
+    },
+    {
+      "source": "services\\recommender-stream.test.ts",
+      "target": "services\\recommender.ts"
+    },
+    {
+      "source": "services\\recommender.ts",
+      "target": "config\\env.ts"
+    },
+    {
+      "source": "services\\recommender.ts",
+      "target": "services\\chat-stream.ts"
+    },
+    {
+      "source": "services\\social.ts",
+      "target": "db\\pool.ts"
+    }
+  ],
+  "cycles": []
+}

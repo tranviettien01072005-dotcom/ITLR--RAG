@@ -1,0 +1,169 @@
+{
+  "scope": "Static absolute Python import edges only; relative/dynamic imports and Web dependencies not resolved",
+  "modules": 61,
+  "parse_failures": [],
+  "edges": [
+    {
+      "from": "api",
+      "to": "api",
+      "imports": 1
+    },
+    {
+      "from": "api",
+      "to": "chatbot",
+      "imports": 1
+    },
+    {
+      "from": "api",
+      "to": "engine",
+      "imports": 3
+    },
+    {
+      "from": "api",
+      "to": "utils",
+      "imports": 1
+    },
+    {
+      "from": "chatbot",
+      "to": "chatbot",
+      "imports": 12
+    },
+    {
+      "from": "chatbot",
+      "to": "core",
+      "imports": 8
+    },
+    {
+      "from": "collect",
+      "to": "collect",
+      "imports": 15
+    },
+    {
+      "from": "core",
+      "to": "core",
+      "imports": 6
+    },
+    {
+      "from": "core",
+      "to": "retrieval",
+      "imports": 2
+    },
+    {
+      "from": "data",
+      "to": "core",
+      "imports": 1
+    },
+    {
+      "from": "eval",
+      "to": "core",
+      "imports": 4
+    },
+    {
+      "from": "eval",
+      "to": "engine",
+      "imports": 1
+    },
+    {
+      "from": "eval",
+      "to": "eval",
+      "imports": 3
+    },
+    {
+      "from": "pipelines",
+      "to": "collect",
+      "imports": 1
+    },
+    {
+      "from": "pipelines",
+      "to": "core",
+      "imports": 7
+    },
+    {
+      "from": "pipelines",
+      "to": "retrieval",
+      "imports": 1
+    },
+    {
+      "from": "retrieval",
+      "to": "core",
+      "imports": 2
+    },
+    {
+      "from": "root",
+      "to": "chatbot",
+      "imports": 3
+    },
+    {
+      "from": "root",
+      "to": "core",
+      "imports": 5
+    },
+    {
+      "from": "root",
+      "to": "locking",
+      "imports": 2
+    },
+    {
+      "from": "root",
+      "to": "retrieval",
+      "imports": 1
+    },
+    {
+      "from": "root",
+      "to": "versioning",
+      "imports": 4
+    },
+    {
+      "from": "utils",
+      "to": "chatbot",
+      "imports": 2
+    },
+    {
+      "from": "utils",
+      "to": "core",
+      "imports": 6
+    }
+  ],
+  "largest_modules": [
+    {
+      "path": "itlr\\chatbot\\chatbot.py",
+      "lines": 1516
+    },
+    {
+      "path": "itlr\\core\\recommender.py",
+      "lines": 927
+    },
+    {
+      "path": "itlr\\data\\generate_items.py",
+      "lines": 562
+    },
+    {
+      "path": "itlr\\api\\server.py",
+      "lines": 417
+    },
+    {
+      "path": "itlr\\chatbot\\llm_client.py",
+      "lines": 402
+    },
+    {
+      "path": "itlr\\collect\\store.py",
+      "lines": 343
+    },
+    {
+      "path": "itlr\\chatbot\\knowledge_base.py",
+      "lines": 325
+    },
+    {
+      "path": "itlr\\core\\rag.py",
+      "lines": 275
+    },
+    {
+      "path": "itlr\\collect\\runner.py",
+      "lines": 254
+    },
+    {
+      "path": "itlr\\versioning.py",
+      "lines": 247
+    }
+  ]
+}
