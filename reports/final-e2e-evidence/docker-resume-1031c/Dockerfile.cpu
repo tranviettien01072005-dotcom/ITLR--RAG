@@ -1,0 +1,18 @@
+FROM python:3.12-slim AS deps
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PIP_NO_CACHE_DIR=1 HF_HOME=/app/var/hf TOKENIZERS_PARALLELISM=false
+WORKDIR /app
+COPY requirements.txt ./
+RUN pip install --dry-run --report /tmp/default-resolution.json -r requirements.txt && python -c "import json; r=json.load(open('/tmp/default-resolution.json')); print('DEFAULT_DEPENDENCY_RESOLUTION',json.dumps([{'name':i['metadata']['name'],'version':i['metadata']['version']} for i in r['install']]))"
+RUN pip install --report /tmp/torch-cpu-resolution.json --index-url https://download.pytorch.org/whl/cpu 'torch==2.15.0+cpu' && pip install --report /tmp/cpu-resolution.json -r requirements.txt && pip check
+
+FROM deps AS runtime
+COPY itlr ./itlr
+COPY eval ./eval
+COPY configs ./configs
+COPY scripts ./scripts
+COPY pytest.ini ./
+RUN python -c "import itlr.api.server; import itlr.collect.runner; import itlr.indexv2; import itlr.versioning; import torch,sklearn,joblib; print('RUNTIME_VERSIONS',torch.__version__,sklearn.__version__,joblib.__version__)"
+RUN mkdir -p /app/var/artifacts /app/var/data/collect /app/var/hf
+EXPOSE 8000
+HEALTHCHECK --interval=15s --timeout=10s --start-period=180s --retries=5 CMD python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health',timeout=8)"
+CMD ["uvicorn", "itlr.api.server:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "1", "--no-proxy-headers"]

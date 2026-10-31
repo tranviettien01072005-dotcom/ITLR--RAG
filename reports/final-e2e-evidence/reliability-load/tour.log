@@ -1,0 +1,132 @@
+=== cold start ===
+health_ready_s=42
+Traceback (most recent call last):
+  File "/tmp/opencode/itlr-reliability/load.py", line 157, in <module>
+    main()
+    ~~~~^^
+  File "/tmp/opencode/itlr-reliability/load.py", line 151, in main
+    path.write_text(json.dumps(report, ensure_ascii=False, indent=2))
+                    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/json/__init__.py", line 242, in dumps
+    **kw).encode(obj)
+          ~~~~~~^^^^^
+  File "/usr/lib/python3.14/json/encoder.py", line 202, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/usr/lib/python3.14/json/encoder.py", line 263, in iterencode
+    return _iterencode(o, 0)
+  File "/usr/lib/python3.14/json/encoder.py", line 182, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+                    f'is not JSON serializable')
+TypeError: Object of type bytes is not JSON serializable
+when serializing dict item 'body'
+when serializing list item 0
+when serializing dict item 'results'
+when serializing dict item 'search'
+
+=== concurrency ===
+Traceback (most recent call last):
+  File "/tmp/opencode/itlr-reliability/load.py", line 157, in <module>
+    main()
+    ~~~~^^
+  File "/tmp/opencode/itlr-reliability/load.py", line 151, in main
+    path.write_text(json.dumps(report, ensure_ascii=False, indent=2))
+                    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/json/__init__.py", line 242, in dumps
+    **kw).encode(obj)
+          ~~~~~~^^^^^
+  File "/usr/lib/python3.14/json/encoder.py", line 202, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/usr/lib/python3.14/json/encoder.py", line 263, in iterencode
+    return _iterencode(o, 0)
+  File "/usr/lib/python3.14/json/encoder.py", line 182, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+                    f'is not JSON serializable')
+TypeError: Object of type bytes is not JSON serializable
+when serializing dict item 'body'
+when serializing list item 0
+when serializing dict item 'results'
+when serializing dict item 'search'
+conc 1 failed
+Traceback (most recent call last):
+  File "/tmp/opencode/itlr-reliability/load.py", line 157, in <module>
+    main()
+    ~~~~^^
+  File "/tmp/opencode/itlr-reliability/load.py", line 151, in main
+    path.write_text(json.dumps(report, ensure_ascii=False, indent=2))
+                    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/json/__init__.py", line 242, in dumps
+    **kw).encode(obj)
+          ~~~~~~^^^^^
+  File "/usr/lib/python3.14/json/encoder.py", line 202, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/usr/lib/python3.14/json/encoder.py", line 263, in iterencode
+    return _iterencode(o, 0)
+  File "/usr/lib/python3.14/json/encoder.py", line 182, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+                    f'is not JSON serializable')
+TypeError: Object of type bytes is not JSON serializable
+when serializing dict item 'body'
+when serializing list item 0
+when serializing dict item 'results'
+when serializing dict item 'search'
+conc 2 failed
+Traceback (most recent call last):
+  File "/tmp/opencode/itlr-reliability/load.py", line 157, in <module>
+    main()
+    ~~~~^^
+  File "/tmp/opencode/itlr-reliability/load.py", line 151, in main
+    path.write_text(json.dumps(report, ensure_ascii=False, indent=2))
+                    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/json/__init__.py", line 242, in dumps
+    **kw).encode(obj)
+          ~~~~~~^^^^^
+  File "/usr/lib/python3.14/json/encoder.py", line 202, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/usr/lib/python3.14/json/encoder.py", line 263, in iterencode
+    return _iterencode(o, 0)
+  File "/usr/lib/python3.14/json/encoder.py", line 182, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+                    f'is not JSON serializable')
+TypeError: Object of type bytes is not JSON serializable
+when serializing dict item 'body'
+when serializing list item 0
+when serializing dict item 'results'
+when serializing dict item 'search'
+conc 4 failed
+=== concurrency 8 (retrieval/web path only) ===
+200 1.685789
+200 1.687348
+200 1.725228
+200 1.752701
+200 1.766639
+200 1.811064
+200 1.803799
+200 1.837639
+=== soak ===
+{"mode": "soak", "started": "2026-10-31T12:57:10", "n": 1, "requests": [{"seq": 0, "search": 0.276, "chat": {"ok": true, "ttft": 0.209, "wall": 2.312, "types": ["sources", "meta", "text", "final", "done"], "terminal": "done", "cancelled_early": false}}, {"seq": 1, "search": 0.108}, {"seq": 2, "search": 0.085, "chat": {"ok": true, "ttft": 0.112, "wall": 2.05, "types": ["sources", "meta", "text", "final", "done"], "terminal": "done", "cancelled_early": false}}, {"seq": 3, "search": 0.105}, {"seq": 4, "search": 0.095, "chat": {"ok": true, "ttft": 0.112, "wall": 2.295, "types": ["sources", "meta", "text", "final", "done"], "terminal": "done", "cancelled_early": false}}, {"seq": 5, "search": 0.206}, {"seq": 6, "search": 0.202, "chat": {"ok": true, "ttft": 0.231, "wall": 2.924, "types": ["sources", "meta", "text", "final", "done"], "terminal": "done", "cancelled_early": false}}, {"seq": 7, "search": 0.362}, {"seq": 8, "search": 0.189, "chat": {"ok": true, "ttft": 0.211, "wall": 2.648, "types": ["sources", "meta", "text", "final", "done"], "terminal": "done", "cancelled_early": false}}, {"seq": 9, "search": 0.172}, {"seq": 10, "search": 0.173, "chat": {"ok": true, "ttft": 0.298, "wall": 3.228, "types": ["sources", "meta", "text", "final", "done"], "terminal": "done", "cancelled_early": false}}, {"seq": 11, "search": 0.205}, {"seq": 12, "search": 0.181, "chat": {"ok": true, "ttft": 0.17, "wall": 2.564, "types": ["sources", "meta", "text", "final", "done"], "terminal": "done", "cancelled_early": false}}, {"seq": 13, "search": 0.163}, {"seq": 14, "search": 0.128, "chat": {"ok": true, "ttft": 0.261, "wall": 3.033, "types": ["sources", "meta", "text", "final", "done"], "terminal": "done", "cancelled_early": false}}, {"seq": 15, "search": 0.145}, {"seq": 16, "search": 0.166, "chat": {"ok": true, "ttft": 0.203, "wall": 2.634, "types": ["sources", "meta", "text", "final", "done"], "terminal": "done", "cancelled_early": false}}, {"seq": 17, "search": 0.122}, {"seq": 18, "search": 0
+saved /tmp/opencode/itlr-reliability/soak-n1.json
+=== rss after soak ===
+{"mode": "rss", "started": "2026-10-31T12:59:12", "n": 1, "stats": ["itlr-resume-1031c-caddy-1\t0.00%\t20.81MiB / 128MiB", "itlr-resume-1031c-observer-1\t0.00%\t15.42MiB / 128MiB", "itlr-resume-1031c-web-1\t0.01%\t51.71MiB / 384MiB", "itlr-resume-1031c-api-1\t46.86%\t581.5MiB / 4GiB", "itlr-resume-1031c-ollama-1\t0.00%\t2.122GiB / 3.418GiB", "itlr-resume-1031c-postgres-1\t10.24%\t32.56MiB / 384MiB"], "finished": "2026-10-31T12:59:14"}
+saved /tmp/opencode/itlr-reliability/rss-n1.json
+=== cancel ===
+{"mode": "cancel", "started": "2026-10-31T12:59:15", "n": 1, "chat": {"ok": true, "ttft": 0.311, "wall": 35.915, "types": ["sources", "meta", "final"], "terminal": "final", "cancelled_early": true}, "health_after": [0.006, {"status": "ok", "engine": "ready", "cf": false, "items": 118, "artifacts": {"version": "docker-a", "manifest_sha256": "29098b37e898ad060118b96b4f66eb658ba3b93dfa5e55baa9562027458c867a"}}], "finished": "2026-10-31T12:59:52"}
+saved /tmp/opencode/itlr-reliability/cancel-n1.json
+=== db before crash ===
+{"users":1,"messages":8,"conversations":4,"courses":3}
+=== crash recovery ===
+recovery_s=1
+{"mode": "health", "started": "2026-10-31T12:59:57", "n": 1, "health": [0.029, {"status": "ok", "engine": "ready", "cf": false, "items": 118, "artifacts": {"version": "docker-a", "manifest_sha256": "29098b37e898ad060118b96b4f66eb658ba3b93dfa5e55baa9562027458c867a"}}], "finished": "2026-10-31T12:59:57"}
+saved /tmp/opencode/itlr-reliability/health-n1.json
+=== db after recovery ===
+{"users":1,"messages":8,"conversations":4,"courses":3}
+=== final rss ===
+{"mode": "rss", "started": "2026-10-31T12:59:58", "n": 1, "stats": ["itlr-resume-1031c-caddy-1\t0.00%\t20.81MiB / 128MiB", "itlr-resume-1031c-observer-1\t0.00%\t16.06MiB / 128MiB", "itlr-resume-1031c-web-1\t0.00%\t55.98MiB / 384MiB", "itlr-resume-1031c-api-1\t41.49%\t602.3MiB / 4GiB", "itlr-resume-1031c-ollama-1\t0.01%\t2.16GiB / 3.418GiB", "itlr-resume-1031c-postgres-1\t0.00%\t33.96MiB / 384MiB"], "finished": "2026-10-31T13:00:00"}
+saved /tmp/opencode/itlr-reliability/rss-n1.json
+=== stop (volumes retained) ===
+api Exited (143) Less than a second ago
+caddy Exited (0) 1 second ago
+observer Exited (0) 1 second ago
+ollama Exited (0) Less than a second ago
+postgres Exited (0) Less than a second ago
+web Exited (0) 1 second ago
+ports_closed

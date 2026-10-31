@@ -1,6 +1,35 @@
 # ITLR–RAG | Intelligent IT Learning Platform — Validation
 
-Latest blocker remediation: **489 Python PASS/0 skip**,~50s, statements **67,37%**;
+## Checkpoint 2026-10-31 (resume validation) — mới nhất
+
+Working tree sạch tại `f14c428…`; không commit/push, không đổi active artifacts.
+
+| Gate | Kết quả thực chạy |
+|---|---|
+| Python pytest | **494 PASS / 0 skip**, 50,65s |
+| Python statements coverage | **3946/5835 = 67,63%** |
+| Web Vitest | **146 PASS / 26 files** |
+| Web line coverage | **648/1377 = 47,05%** (statements 44,24%, branches 36,15%) |
+| Typecheck / lint / build | PASS |
+| compileall / pip check | PASS |
+| pip-audit | **0 advisory** |
+| npm audit | **0 vulnerabilities** (minimatch 11.0.3 deduped) |
+| Bandit | **0 High** / 27 Medium / 46 Low |
+| Docker info | PASS qua `sg docker` (server 29.9.2) |
+| Docker staging fresh (`itlr-resume-1031c`) | **PASS scoped**: PG16 + Caddy TLS nội bộ + E5 thật + Qwen thật SSE + Chrome 11/11 + cancel socket provider 55ms + backup/restore 15 bảng + tamper reject + reload/rollback + restart |
+| A/B `ITLR_EVIDENCE_EXCERPT_CHAR_BUDGET` None vs 800 | 11/12 vs 11/12 positive, 7/8 vs 7/8 negative, prompt −7,1%; `positive-12` regress → **revert về None** |
+| Uncached 45s budget | **FAIL** (timeout thật 45,124s ở frozen eval; không nới) |
+| Latency benchmark cold/warm/config sweep | **PASS** (prefill cold 40–51s; flash attention +10,6%; prompt 500/800 regress chất lượng) |
+| Reliability/capacity staging | **PASS scoped**: cold start 42s, cold chat 40,25s, conc 2/4 max 4,13/9,16s, search conc 8 ~1,7s, soak 120s 45/45 `done`, cancel không final, crash recovery 1s, DB counts không đổi |
+| Human faithfulness/entailment | **NOT VERIFIED** (`null`; packet + `HUMAN_REVIEW_PROTOCOL.md` sẵn sàng) |
+
+Chi tiết, Before/After và evidence: [FINAL_E2E_CERTIFICATION §11](FINAL_E2E_CERTIFICATION.md),
+[§12 latency/reliability](FINAL_E2E_CERTIFICATION.md),
+raw trong `final-e2e-evidence/` (`generation-eval-ab-*.json`, `ab-analysis.json`,
+gate logs + coverage, `bench-latency/`, `reliability-load/`, `docker-resume-1031c/`,
+`SHA256SUMS.txt`).
+
+Latest blocker remediation (trước checkpoint này): **489 Python PASS/0 skip**,~50s, statements **67,37%**;
 **146 Web PASS**, lines **47,05%**. Typecheck/lint/build/compileall/pip check PASS,
 pip-audit 0 advisory, Bandit 0 High (26 Medium dev-rủi ro đã triage), npm audit chỉ
 còn 14 advisory moderate chuỗi dev (eslint/ejs-minimatch), không advisory runtime.

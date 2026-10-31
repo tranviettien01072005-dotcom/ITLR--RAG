@@ -1,0 +1,12 @@
+{
+    auto_https disable_redirects
+    default_sni 127.0.0.1
+}
+https://127.0.0.1 {
+    tls internal
+    encode zstd gzip
+    reverse_proxy web:3000 {
+        header_up X-Forwarded-For {remote_host}
+        flush_interval -1
+    }
+}

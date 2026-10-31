@@ -1,0 +1,197 @@
+Thiếu /tmp/opencode/itlr-e2e/artifacts/cf_model.pkl — Collaborative Filtering bị tắt (tùy chọn V2); /api/personas và /api/for-you sẽ trả 503 cho tới khi build CF.
+Could not reach the Hub (Cannot reach https://huggingface.co/api/models/intfloat/multilingual-e5-base: offline mode is enabled. To disable it, please unset the `HF_HUB_OFFLINE` environment variable.). Using cached commit hash for 'intfloat/multilingual-e5-base'.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 6081.45it/s]
+none warmup 27.34 5081 ['None'] llm_extractive valid None
+none blind-positive-01 22.717 4878 ['None'] llm_extractive valid None
+none blind-positive-02 23.123 4880 ['None'] llm_extractive valid None
+none blind-positive-03 23.675 4863 ['None'] llm_extractive valid None
+none blind-positive-04 37.404 5033 ['None'] llm_extractive valid None
+none blind-positive-05 29.681 4877 ['None'] llm_extractive valid None
+chat_stream generation failed
+Traceback (most recent call last):
+  File "/home/o/ITLR--RAG/itlr/chatbot/llm_client.py", line 506, in astream
+    async for raw in _ollama_lines(response):
+    ...<10 lines>...
+            return
+  File "/home/o/ITLR--RAG/itlr/chatbot/llm_client.py", line 477, in _ollama_lines
+    async for chunk in response.aiter_bytes():
+    ...<3 lines>...
+            yield line
+  File "/home/o/ITLR--RAG/.venv/lib/python3.14/site-packages/httpx/_models.py", line 997, in aiter_bytes
+    async for raw_bytes in self.aiter_raw():
+    ...<2 lines>...
+            yield chunk
+  File "/home/o/ITLR--RAG/.venv/lib/python3.14/site-packages/httpx/_models.py", line 1055, in aiter_raw
+    async for raw_stream_bytes in self.stream:
+    ...<2 lines>...
+            yield chunk
+  File "/home/o/ITLR--RAG/.venv/lib/python3.14/site-packages/httpx/_client.py", line 176, in __aiter__
+    async for chunk in self._stream:
+        yield chunk
+  File "/home/o/ITLR--RAG/.venv/lib/python3.14/site-packages/httpx/_transports/default.py", line 271, in __aiter__
+    async for part in self._httpcore_stream:
+        yield part
+  File "/home/o/ITLR--RAG/.venv/lib/python3.14/site-packages/httpcore/_async/connection_pool.py", line 407, in __aiter__
+    raise exc from None
+  File "/home/o/ITLR--RAG/.venv/lib/python3.14/site-packages/httpcore/_async/connection_pool.py", line 403, in __aiter__
+    async for part in self._stream:
+        yield part
+  File "/home/o/ITLR--RAG/.venv/lib/python3.14/site-packages/httpcore/_async/http11.py", line 342, in __aiter__
+    raise exc
+  File "/home/o/ITLR--RAG/.venv/lib/python3.14/site-packages/httpcore/_async/http11.py", line 334, in __aiter__
+    async for chunk in self._connection._receive_response_body(**kwargs):
+        yield chunk
+  File "/home/o/ITLR--RAG/.venv/lib/python3.14/site-packages/httpcore/_async/http11.py", line 203, in _receive_response_body
+    event = await self._receive_event(timeout=timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/o/ITLR--RAG/.venv/lib/python3.14/site-packages/httpcore/_async/http11.py", line 217, in _receive_event
+    data = await self._network_stream.read(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.READ_NUM_BYTES, timeout=timeout
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/o/ITLR--RAG/.venv/lib/python3.14/site-packages/httpcore/_backends/anyio.py", line 35, in read
+    return await self._stream.receive(max_bytes=max_bytes)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/o/ITLR--RAG/.venv/lib/python3.14/site-packages/anyio/_backends/_asyncio.py", line 1407, in receive
+    await self._protocol.read_event.wait()
+  File "/usr/lib/python3.14/asyncio/locks.py", line 213, in wait
+    await fut
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/o/ITLR--RAG/itlr/chatbot/llm_client.py", line 501, in astream
+    async with asyncio.timeout(timeout_s):
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/usr/lib/python3.14/asyncio/timeouts.py", line 114, in __aexit__
+    raise TimeoutError from exc_val
+TimeoutError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/o/ITLR--RAG/itlr/chatbot/chatbot.py", line 497, in achat_stream
+    async for chunk in response:
+    ...<3 lines>...
+                yield "text", chunk
+  File "/home/o/ITLR--RAG/itlr/chatbot/llm_adapter.py", line 60, in try_llm_response_astream
+    async for chunk in response:
+        yield chunk
+  File "/home/o/ITLR--RAG/itlr/chatbot/llm_client.py", line 522, in astream
+    raise LLMError(f'ollama stream failed ({_safe_err_text(exc)})') from exc
+itlr.chatbot.llm_client.LLMError: ollama stream failed (TimeoutError: )
+none blind-positive-06 45.124 4893 ['None'] insufficient_evidence missing generation_failed
+none blind-positive-07 39.61 4854 ['None'] llm_extractive valid None
+none blind-positive-08 35.339 4958 ['None'] llm_extractive valid None
+none blind-positive-09 38.381 4926 ['None'] llm_extractive valid None
+none blind-positive-10 30.103 4777 ['None'] llm_extractive valid None
+none blind-positive-11 34.886 4974 ['None'] llm_extractive valid None
+none blind-positive-12 40.153 4909 ['None'] llm_extractive valid None
+none blind-negative-01 0.132 0 [] template not_applicable None
+none blind-negative-02 0.149 0 [] template not_applicable None
+none blind-negative-03 0.094 0 [] extractive valid None
+none blind-negative-04 31.643 5193 ['None'] insufficient_evidence missing no_selected_evidence
+none blind-negative-05 37.881 5340 ['None'] insufficient_evidence missing no_selected_evidence
+none blind-negative-06 42.695 5055 ['None'] insufficient_evidence missing no_selected_evidence
+none blind-negative-07 35.648 5271 ['None'] insufficient_evidence missing no_selected_evidence
+chat_stream generation failed
+Traceback (most recent call last):
+  File "/home/o/ITLR--RAG/itlr/chatbot/llm_client.py", line 503, in astream
+    async with client.stream("POST", req.full_url, content=req.data,
+               ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                             headers={"Content-Type": "application/json"}) as response:
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/contextlib.py", line 214, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/o/ITLR--RAG/.venv/lib/python3.14/site-packages/httpx/_client.py", line 1583, in stream
+    response = await self.send(
+               ^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+    )
+    ^
+  File "/home/o/ITLR--RAG/.venv/lib/python3.14/site-packages/httpx/_client.py", line 1629, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+    )
+    ^
+  File "/home/o/ITLR--RAG/.venv/lib/python3.14/site-packages/httpx/_client.py", line 1657, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/home/o/ITLR--RAG/.venv/lib/python3.14/site-packages/httpx/_client.py", line 1694, in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/o/ITLR--RAG/.venv/lib/python3.14/site-packages/httpx/_client.py", line 1730, in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/o/ITLR--RAG/.venv/lib/python3.14/site-packages/httpx/_transports/default.py", line 394, in handle_async_request
+    resp = await self._pool.handle_async_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/o/ITLR--RAG/.venv/lib/python3.14/site-packages/httpcore/_async/connection_pool.py", line 256, in handle_async_request
+    raise exc from None
+  File "/home/o/ITLR--RAG/.venv/lib/python3.14/site-packages/httpcore/_async/connection_pool.py", line 236, in handle_async_request
+    response = await connection.handle_async_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        pool_request.request
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/o/ITLR--RAG/.venv/lib/python3.14/site-packages/httpcore/_async/connection.py", line 103, in handle_async_request
+    return await self._connection.handle_async_request(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/o/ITLR--RAG/.venv/lib/python3.14/site-packages/httpcore/_async/http11.py", line 136, in handle_async_request
+    raise exc
+  File "/home/o/ITLR--RAG/.venv/lib/python3.14/site-packages/httpcore/_async/http11.py", line 106, in handle_async_request
+    ) = await self._receive_response_headers(**kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/o/ITLR--RAG/.venv/lib/python3.14/site-packages/httpcore/_async/http11.py", line 177, in _receive_response_headers
+    event = await self._receive_event(timeout=timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/o/ITLR--RAG/.venv/lib/python3.14/site-packages/httpcore/_async/http11.py", line 217, in _receive_event
+    data = await self._network_stream.read(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.READ_NUM_BYTES, timeout=timeout
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/o/ITLR--RAG/.venv/lib/python3.14/site-packages/httpcore/_backends/anyio.py", line 35, in read
+    return await self._stream.receive(max_bytes=max_bytes)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/o/ITLR--RAG/.venv/lib/python3.14/site-packages/anyio/_backends/_asyncio.py", line 1407, in receive
+    await self._protocol.read_event.wait()
+  File "/usr/lib/python3.14/asyncio/locks.py", line 213, in wait
+    await fut
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/o/ITLR--RAG/itlr/chatbot/llm_client.py", line 501, in astream
+    async with asyncio.timeout(timeout_s):
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/usr/lib/python3.14/asyncio/timeouts.py", line 114, in __aexit__
+    raise TimeoutError from exc_val
+TimeoutError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/o/ITLR--RAG/itlr/chatbot/chatbot.py", line 497, in achat_stream
+    async for chunk in response:
+    ...<3 lines>...
+                yield "text", chunk
+  File "/home/o/ITLR--RAG/itlr/chatbot/llm_adapter.py", line 60, in try_llm_response_astream
+    async for chunk in response:
+        yield chunk
+  File "/home/o/ITLR--RAG/itlr/chatbot/llm_client.py", line 522, in astream
+    raise LLMError(f'ollama stream failed ({_safe_err_text(exc)})') from exc
+itlr.chatbot.llm_client.LLMError: ollama stream failed (TimeoutError: )
+none blind-negative-08 45.186 5325 ['None'] insufficient_evidence missing generation_failed
+ARM DONE none

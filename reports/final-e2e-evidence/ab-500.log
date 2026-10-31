@@ -1,0 +1,25 @@
+Thiếu /tmp/opencode/itlr-e2e/artifacts/cf_model.pkl — Collaborative Filtering bị tắt (tùy chọn V2); /api/personas và /api/for-you sẽ trả 503 cho tới khi build CF.
+Could not reach the Hub (Cannot reach https://huggingface.co/api/models/intfloat/multilingual-e5-base: offline mode is enabled. To disable it, please unset the `HF_HUB_OFFLINE` environment variable.). Using cached commit hash for 'intfloat/multilingual-e5-base'.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 3486.67it/s]
+500 warmup 22.865 3175 ['500'] llm_extractive valid None
+500 blind-positive-01 20.342 2968 ['500'] llm_extractive valid None
+500 blind-positive-02 20.514 3086 ['500'] llm_extractive valid None
+500 blind-positive-03 22.835 3262 ['500'] llm_extractive valid None
+500 blind-positive-04 26.367 3144 ['500'] llm_extractive valid None
+500 blind-positive-05 22.984 3274 ['500'] llm_extractive valid None
+500 blind-positive-06 29.047 2989 ['500'] llm_extractive valid None
+500 blind-positive-07 22.63 2996 ['500'] insufficient_evidence missing no_selected_evidence
+500 blind-positive-08 24.005 2994 ['500'] llm_extractive valid None
+500 blind-positive-09 23.973 3004 ['500'] llm_extractive valid None
+500 blind-positive-10 33.382 2987 ['500'] llm_extractive valid None
+500 blind-positive-11 34.514 3022 ['500'] insufficient_evidence missing no_selected_evidence
+500 blind-positive-12 32.36 2976 ['500'] llm_extractive valid None
+500 blind-negative-01 0.09 0 [] template not_applicable None
+500 blind-negative-02 0.103 0 [] template not_applicable None
+500 blind-negative-03 0.169 0 [] extractive valid None
+500 blind-negative-04 27.409 3445 ['500'] insufficient_evidence missing no_selected_evidence
+500 blind-negative-05 23.217 3393 ['500'] insufficient_evidence missing no_selected_evidence
+500 blind-negative-06 28.273 3337 ['500'] insufficient_evidence missing no_selected_evidence
+500 blind-negative-07 24.468 3306 ['500'] insufficient_evidence missing no_selected_evidence
+500 blind-negative-08 29.616 3404 ['500'] insufficient_evidence missing no_selected_evidence
+ARM DONE 500

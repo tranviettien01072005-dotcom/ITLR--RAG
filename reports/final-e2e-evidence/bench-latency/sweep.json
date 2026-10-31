@@ -1,0 +1,199 @@
+[
+  {
+    "config": "baseline",
+    "env": {},
+    "options": {},
+    "requests": [
+      {
+        "attempt": 1,
+        "wall_s": 47.474,
+        "load_s": 0.001,
+        "prompt_tokens": 1387,
+        "prefill_s": 44.5,
+        "prefill_tok_s": 31.2,
+        "eval_tokens": 20,
+        "decode_s": 2.939,
+        "decode_tok_s": 6.8,
+        "done_reason": "length"
+      },
+      {
+        "attempt": 2,
+        "wall_s": 0.344,
+        "load_s": 0.012,
+        "prompt_tokens": 1387,
+        "prefill_s": 0.147,
+        "prefill_tok_s": 9429.5,
+        "eval_tokens": 2,
+        "decode_s": 0.153,
+        "decode_tok_s": 13.1,
+        "done_reason": "stop"
+      }
+    ]
+  },
+  {
+    "config": "flash",
+    "env": {
+      "OLLAMA_FLASH_ATTENTION": "1"
+    },
+    "options": {},
+    "requests": [
+      {
+        "attempt": 1,
+        "wall_s": 42.998,
+        "load_s": 0.001,
+        "prompt_tokens": 1387,
+        "prefill_s": 40.221,
+        "prefill_tok_s": 34.5,
+        "eval_tokens": 20,
+        "decode_s": 2.742,
+        "decode_tok_s": 7.3,
+        "done_reason": "length"
+      },
+      {
+        "attempt": 2,
+        "wall_s": 0.324,
+        "load_s": 0.003,
+        "prompt_tokens": 1387,
+        "prefill_s": 0.144,
+        "prefill_tok_s": 9599.9,
+        "eval_tokens": 2,
+        "decode_s": 0.144,
+        "decode_tok_s": 13.9,
+        "done_reason": "stop"
+      }
+    ]
+  },
+  {
+    "config": "kv_q8",
+    "env": {
+      "OLLAMA_KV_CACHE_TYPE": "q8_0"
+    },
+    "options": {},
+    "requests": [
+      {
+        "attempt": 1,
+        "wall_s": 54.331,
+        "load_s": 0.001,
+        "prompt_tokens": 1387,
+        "prefill_s": 51.492,
+        "prefill_tok_s": 26.9,
+        "eval_tokens": 20,
+        "decode_s": 2.803,
+        "decode_tok_s": 7.1,
+        "done_reason": "length"
+      },
+      {
+        "attempt": 2,
+        "wall_s": 2.969,
+        "load_s": 0.002,
+        "prompt_tokens": 1387,
+        "prefill_s": 0.145,
+        "prefill_tok_s": 9584.2,
+        "eval_tokens": 20,
+        "decode_s": 2.79,
+        "decode_tok_s": 7.2,
+        "done_reason": "length"
+      }
+    ]
+  },
+  {
+    "config": "flash_kv_q8",
+    "env": {
+      "OLLAMA_FLASH_ATTENTION": "1",
+      "OLLAMA_KV_CACHE_TYPE": "q8_0"
+    },
+    "options": {},
+    "requests": [
+      {
+        "attempt": 1,
+        "wall_s": 54.384,
+        "load_s": 0.001,
+        "prompt_tokens": 1387,
+        "prefill_s": 51.531,
+        "prefill_tok_s": 26.9,
+        "eval_tokens": 20,
+        "decode_s": 2.816,
+        "decode_tok_s": 7.1,
+        "done_reason": "length"
+      },
+      {
+        "attempt": 2,
+        "wall_s": 3.001,
+        "load_s": 0.001,
+        "prompt_tokens": 1387,
+        "prefill_s": 0.145,
+        "prefill_tok_s": 9569.0,
+        "eval_tokens": 20,
+        "decode_s": 2.822,
+        "decode_tok_s": 7.1,
+        "done_reason": "length"
+      }
+    ]
+  },
+  {
+    "config": "batch256",
+    "env": {},
+    "options": {
+      "num_batch": 256
+    },
+    "requests": [
+      {
+        "attempt": 1,
+        "wall_s": 46.802,
+        "load_s": 5.851,
+        "prompt_tokens": 1387,
+        "prefill_s": 40.776,
+        "prefill_tok_s": 34.0,
+        "eval_tokens": 2,
+        "decode_s": 0.144,
+        "decode_tok_s": 13.9,
+        "done_reason": "stop"
+      },
+      {
+        "attempt": 2,
+        "wall_s": 0.321,
+        "load_s": 0.001,
+        "prompt_tokens": 1387,
+        "prefill_s": 0.143,
+        "prefill_tok_s": 9694.6,
+        "eval_tokens": 2,
+        "decode_s": 0.145,
+        "decode_tok_s": 13.8,
+        "done_reason": "stop"
+      }
+    ]
+  },
+  {
+    "config": "thread6",
+    "env": {},
+    "options": {
+      "num_thread": 6
+    },
+    "requests": [
+      {
+        "attempt": 1,
+        "wall_s": 49.761,
+        "load_s": 5.594,
+        "prompt_tokens": 1387,
+        "prefill_s": 44.003,
+        "prefill_tok_s": 31.5,
+        "eval_tokens": 2,
+        "decode_s": 0.13,
+        "decode_tok_s": 15.4,
+        "done_reason": "stop"
+      },
+      {
+        "attempt": 2,
+        "wall_s": 0.298,
+        "load_s": 0.001,
+        "prompt_tokens": 1387,
+        "prefill_s": 0.128,
+        "prefill_tok_s": 10830.9,
+        "eval_tokens": 2,
+        "decode_s": 0.131,
+        "decode_tok_s": 15.2,
+        "done_reason": "stop"
+      }
+    ]
+  }
+]

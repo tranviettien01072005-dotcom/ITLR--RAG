@@ -1,0 +1,74 @@
+[
+  {
+    "gate": "python-tests",
+    "exit_code": 0,
+    "duration_s": 52,
+    "status": "PASS"
+  },
+  {
+    "gate": "compileall",
+    "exit_code": 0,
+    "duration_s": 0,
+    "status": "PASS"
+  },
+  {
+    "gate": "pip-check",
+    "exit_code": 0,
+    "duration_s": 1,
+    "status": "PASS"
+  },
+  {
+    "gate": "pip-audit",
+    "exit_code": 0,
+    "duration_s": 15,
+    "status": "PASS"
+  },
+  {
+    "gate": "bandit",
+    "exit_code": 0,
+    "duration_s": 1,
+    "status": "PASS"
+  },
+  {
+    "gate": "web-typecheck",
+    "exit_code": 0,
+    "duration_s": 5,
+    "status": "PASS"
+  },
+  {
+    "gate": "web-lint",
+    "exit_code": 0,
+    "duration_s": 2,
+    "status": "PASS"
+  },
+  {
+    "gate": "web-build",
+    "exit_code": 0,
+    "duration_s": 5,
+    "status": "PASS"
+  },
+  {
+    "gate": "web-tests",
+    "exit_code": 0,
+    "duration_s": 8,
+    "status": "PASS"
+  },
+  {
+    "gate": "npm-audit",
+    "exit_code": 0,
+    "duration_s": 1,
+    "status": "PASS"
+  },
+  {
+    "gate": "npm-lock",
+    "exit_code": 0,
+    "duration_s": 1,
+    "status": "PASS"
+  },
+  {
+    "gate": "docker-info",
+    "exit_code": 0,
+    "duration_s": 0,
+    "status": "PASS"
+  }
+]

@@ -1,0 +1,116 @@
+........................................................................ [ 14%]
+........................................................................ [ 29%]
+........................................................................ [ 43%]
+........................................................................ [ 58%]
+........................................................................ [ 72%]
+........................................................................ [ 87%]
+............................................................../usr/lib/python3.14/collections/__init__.py:453: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x773f053ab1f0>
+  @classmethod
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+           [100%]
+=============================== warnings summary ===============================
+tests/test_collect_runner.py::TestRunner::test_404_article_rejected
+  /home/o/ITLR--RAG/.venv/lib/python3.14/site-packages/feedparser/parsers/strict.py:101: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x773f053a98a0>
+    attrsD[str(qname).lower()] = attrs.getValueByQName(qname)
+  Enable tracemalloc to get traceback where the object was allocated.
+  See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+
+tests/test_collect_runner.py::TestRunner::test_404_article_rejected
+  /home/o/ITLR--RAG/.venv/lib/python3.14/site-packages/feedparser/parsers/strict.py:101: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x773f053aa020>
+    attrsD[str(qname).lower()] = attrs.getValueByQName(qname)
+  Enable tracemalloc to get traceback where the object was allocated.
+  See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+
+tests/test_collect_runner.py::TestRunner::test_404_article_rejected
+  /home/o/ITLR--RAG/.venv/lib/python3.14/site-packages/feedparser/parsers/strict.py:101: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x773f053aa3e0>
+    attrsD[str(qname).lower()] = attrs.getValueByQName(qname)
+  Enable tracemalloc to get traceback where the object was allocated.
+  See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+
+tests/test_collect_runner.py::TestRunner::test_404_article_rejected
+  /home/o/ITLR--RAG/.venv/lib/python3.14/site-packages/feedparser/parsers/strict.py:101: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x773f053aac50>
+    attrsD[str(qname).lower()] = attrs.getValueByQName(qname)
+  Enable tracemalloc to get traceback where the object was allocated.
+  See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+
+tests/test_engineering_eval.py::test_engineering_queries_have_evidence_and_no_source_leakage
+  /usr/lib/python3.14/json/decoder.py:361: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x773f053ab6a0>
+    obj, end = self.scan_once(s, idx)
+  Enable tracemalloc to get traceback where the object was allocated.
+  See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.14.4-final-0 ________________
+
+Name                                      Stmts   Miss  Cover
+-------------------------------------------------------------
+itlr/__init__.py                              0      0   100%
+itlr/api/__init__.py                          0      0   100%
+itlr/api/__main__.py                          6      6     0%
+itlr/api/ratelimit.py                        50      9    82%
+itlr/api/server.py                          267     27    90%
+itlr/api/streaming.py                         9      0   100%
+itlr/chatbot/__init__.py                      0      0   100%
+itlr/chatbot/chatbot.py                     584    223    62%
+itlr/chatbot/citations.py                    68      2    97%
+itlr/chatbot/intent_router.py                79     36    54%
+itlr/chatbot/knowledge_base.py              177     64    64%
+itlr/chatbot/llm_adapter.py                  35      0   100%
+itlr/chatbot/llm_client.py                  356     29    92%
+itlr/chatbot/opencode_client.py              11     11     0%
+itlr/chatbot/presentation.py                342     76    78%
+itlr/chatbot/query_understanding.py          83     22    73%
+itlr/collect/__init__.py                      1      0   100%
+itlr/collect/adapters.py                    103     13    87%
+itlr/collect/chunk.py                        51      2    96%
+itlr/collect/extract.py                     145     52    64%
+itlr/collect/http.py                        167     10    94%
+itlr/collect/normalize.py                   131     70    47%
+itlr/collect/quality.py                      56      7    88%
+itlr/collect/runner.py                      158     25    84%
+itlr/collect/sources.py                     102     15    85%
+itlr/collect/store.py                       147      7    95%
+itlr/collect/url_util.py                     56     16    71%
+itlr/config.py                               25      0   100%
+itlr/core/__init__.py                         0      0   100%
+itlr/core/ann.py                             97     43    56%
+itlr/core/bm25.py                             2      0   100%
+itlr/core/chunks.py                          54      4    93%
+itlr/core/display.py                         38      0   100%
+itlr/core/embeddings.py                      26      9    65%
+itlr/core/pipeline.py                       141     69    51%
+itlr/core/rag.py                            140     97    31%
+itlr/core/recommender.py                    404    188    53%
+itlr/core/rerank.py                          41     23    44%
+itlr/data/__init__.py                         0      0   100%
+itlr/data/generate_interactions.py           65     65     0%
+itlr/data/generate_items.py                 104    104     0%
+itlr/engine.py                              147      5    97%
+itlr/eval/__init__.py                         1      0   100%
+itlr/eval/cf_eval.py                        147    147     0%
+itlr/eval/diversity.py                       61      4    93%
+itlr/eval/loader.py                          29     16    45%
+itlr/eval/ltr_features.py                    51     51     0%
+itlr/eval/metrics.py                         73      2    97%
+itlr/eval/off_policy.py                      58     58     0%
+itlr/eval/significance.py                    67     11    84%
+itlr/indexv2.py                              98      8    92%
+itlr/locking.py                              32      6    81%
+itlr/pipelines/__init__.py                    0      0   100%
+itlr/pipelines/build_cf.py                   66      4    94%
+itlr/pipelines/build_embeddings.py           47     47     0%
+itlr/pipelines/build_embeddings_v2.py        99     73    26%
+itlr/pipelines/build_model.py                96     67    30%
+itlr/pipelines/generate_interactions.py     107     32    70%
+itlr/retrieval/__init__.py                    0      0   100%
+itlr/retrieval/bm25.py                       58      2    97%
+itlr/retrieval/service.py                    22      1    95%
+itlr/utils/__init__.py                        0      0   100%
+itlr/utils/repickle.py                       50      3    94%
+itlr/utils/runtime_patches.py                25     16    36%
+itlr/versioning.py                          180     12    93%
+-------------------------------------------------------------
+TOTAL                                      5835   1889    68%
+Coverage JSON written to file /tmp/opencode/itlr-resume-validation/gates/python-coverage.json
+494 passed, 5 warnings in 50.65s

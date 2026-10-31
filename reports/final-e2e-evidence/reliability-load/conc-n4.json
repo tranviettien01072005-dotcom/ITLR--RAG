@@ -1,0 +1,108 @@
+{
+  "mode": "conc",
+  "started": "2026-10-31T13:03:18",
+  "n": 4,
+  "chat": {
+    "wall": 9.163,
+    "results": [
+      {
+        "ok": true,
+        "ttft": 1.181,
+        "wall": 3.373,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      },
+      {
+        "ok": true,
+        "ttft": 1.452,
+        "wall": 9.159,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      },
+      {
+        "ok": true,
+        "ttft": 1.306,
+        "wall": 5.282,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      },
+      {
+        "ok": true,
+        "ttft": 1.305,
+        "wall": 7.201,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    ]
+  },
+  "search": {
+    "wall": 0.389,
+    "results": [
+      {
+        "ok": true,
+        "status": 200,
+        "wall": 0.348,
+        "body": "{\"results\":[{\"item_id\":5003,\"title\":\"How Compose works\",\"type\":\"Tài liệu\",\"category\":\"DevOps\",\"description\":\"Manuals Get started Guides Reference How Compose works Table of contents With Docker Compose you use a YAML configuration file, known as the Compose file, to configure your application’s services, and then you create and start all the services from your configuration with the Compose CLI. The Compose file, or compose.yaml file, follows the rules provided by the Compose Specification in how to define multi-container applications. This is the Docker Compose implementation of the formal Compose Specification. Computing components of an application are defined as services. A service is an abst\",\"topics\":\"docker,container,devops,deploy\",\"instructor\":\"Docker documentation contributors\",\"platform\":\"Docker documentation contributors\",\"link\":\"https://docs.docker.com/compose/intro/compose-application-model\",\"origin\":\"crawl:docker-official\",\"crawl_license\":\"Apache-2.0; https://github.com/docker/docs/blob/main/LICENSE\",\"crawl_lang\":\"en\",\"crawl_hash\":\"407a1e0715a4a23362851266727aa8df9c664209895f035f48263053d70aec6a\",\"source_updated_at\":\"2026-05-28 14:39:44 +0100 +0100\",\"source_fetched_at\":\"2026-10-29T14:28:59Z\",\"level\":\"Trung cấp\",\"score\":85.5,\"chunk_id\":\"5003:8\",\"excerpt\":\"to the frontend One persistent volume, attached to the backend Two networks services : frontend : image : example/webapp ports : - \\\"443:8043\\\" networks : - front-tier - back-tier configs : - httpd-config secrets : - server-certificate backend : image : example/database volumes : - db-data:/etc/data networks : - back-tier volumes : db-data : driver : flocker driver_opts : size : \\\"10GiB\\\" configs : httpd-config : external : true secrets : server-certificate : external : true networks : # The presence of these objects is sufficient to define them front-tier : {} back-tier : {} The docker compose up command starts the frontend and backend services, creates the necessary networks and volumes, and injects "
+      },
+      {
+        "ok": true,
+        "status": 200,
+        "wall": 0.373,
+        "body": "{\"results\":[{\"item_id\":5003,\"title\":\"How Compose works\",\"type\":\"Tài liệu\",\"category\":\"DevOps\",\"description\":\"Manuals Get started Guides Reference How Compose works Table of contents With Docker Compose you use a YAML configuration file, known as the Compose file, to configure your application’s services, and then you create and start all the services from your configuration with the Compose CLI. The Compose file, or compose.yaml file, follows the rules provided by the Compose Specification in how to define multi-container applications. This is the Docker Compose implementation of the formal Compose Specification. Computing components of an application are defined as services. A service is an abst\",\"topics\":\"docker,container,devops,deploy\",\"instructor\":\"Docker documentation contributors\",\"platform\":\"Docker documentation contributors\",\"link\":\"https://docs.docker.com/compose/intro/compose-application-model\",\"origin\":\"crawl:docker-official\",\"crawl_license\":\"Apache-2.0; https://github.com/docker/docs/blob/main/LICENSE\",\"crawl_lang\":\"en\",\"crawl_hash\":\"407a1e0715a4a23362851266727aa8df9c664209895f035f48263053d70aec6a\",\"source_updated_at\":\"2026-05-28 14:39:44 +0100 +0100\",\"source_fetched_at\":\"2026-10-29T14:28:59Z\",\"level\":\"Trung cấp\",\"score\":85.5,\"chunk_id\":\"5003:8\",\"excerpt\":\"to the frontend One persistent volume, attached to the backend Two networks services : frontend : image : example/webapp ports : - \\\"443:8043\\\" networks : - front-tier - back-tier configs : - httpd-config secrets : - server-certificate backend : image : example/database volumes : - db-data:/etc/data networks : - back-tier volumes : db-data : driver : flocker driver_opts : size : \\\"10GiB\\\" configs : httpd-config : external : true secrets : server-certificate : external : true networks : # The presence of these objects is sufficient to define them front-tier : {} back-tier : {} The docker compose up command starts the frontend and backend services, creates the necessary networks and volumes, and injects "
+      },
+      {
+        "ok": true,
+        "status": 200,
+        "wall": 0.385,
+        "body": "{\"results\":[{\"item_id\":5003,\"title\":\"How Compose works\",\"type\":\"Tài liệu\",\"category\":\"DevOps\",\"description\":\"Manuals Get started Guides Reference How Compose works Table of contents With Docker Compose you use a YAML configuration file, known as the Compose file, to configure your application’s services, and then you create and start all the services from your configuration with the Compose CLI. The Compose file, or compose.yaml file, follows the rules provided by the Compose Specification in how to define multi-container applications. This is the Docker Compose implementation of the formal Compose Specification. Computing components of an application are defined as services. A service is an abst\",\"topics\":\"docker,container,devops,deploy\",\"instructor\":\"Docker documentation contributors\",\"platform\":\"Docker documentation contributors\",\"link\":\"https://docs.docker.com/compose/intro/compose-application-model\",\"origin\":\"crawl:docker-official\",\"crawl_license\":\"Apache-2.0; https://github.com/docker/docs/blob/main/LICENSE\",\"crawl_lang\":\"en\",\"crawl_hash\":\"407a1e0715a4a23362851266727aa8df9c664209895f035f48263053d70aec6a\",\"source_updated_at\":\"2026-05-28 14:39:44 +0100 +0100\",\"source_fetched_at\":\"2026-10-29T14:28:59Z\",\"level\":\"Trung cấp\",\"score\":85.5,\"chunk_id\":\"5003:8\",\"excerpt\":\"to the frontend One persistent volume, attached to the backend Two networks services : frontend : image : example/webapp ports : - \\\"443:8043\\\" networks : - front-tier - back-tier configs : - httpd-config secrets : - server-certificate backend : image : example/database volumes : - db-data:/etc/data networks : - back-tier volumes : db-data : driver : flocker driver_opts : size : \\\"10GiB\\\" configs : httpd-config : external : true secrets : server-certificate : external : true networks : # The presence of these objects is sufficient to define them front-tier : {} back-tier : {} The docker compose up command starts the frontend and backend services, creates the necessary networks and volumes, and injects "
+      },
+      {
+        "ok": true,
+        "status": 200,
+        "wall": 0.331,
+        "body": "{\"results\":[{\"item_id\":5003,\"title\":\"How Compose works\",\"type\":\"Tài liệu\",\"category\":\"DevOps\",\"description\":\"Manuals Get started Guides Reference How Compose works Table of contents With Docker Compose you use a YAML configuration file, known as the Compose file, to configure your application’s services, and then you create and start all the services from your configuration with the Compose CLI. The Compose file, or compose.yaml file, follows the rules provided by the Compose Specification in how to define multi-container applications. This is the Docker Compose implementation of the formal Compose Specification. Computing components of an application are defined as services. A service is an abst\",\"topics\":\"docker,container,devops,deploy\",\"instructor\":\"Docker documentation contributors\",\"platform\":\"Docker documentation contributors\",\"link\":\"https://docs.docker.com/compose/intro/compose-application-model\",\"origin\":\"crawl:docker-official\",\"crawl_license\":\"Apache-2.0; https://github.com/docker/docs/blob/main/LICENSE\",\"crawl_lang\":\"en\",\"crawl_hash\":\"407a1e0715a4a23362851266727aa8df9c664209895f035f48263053d70aec6a\",\"source_updated_at\":\"2026-05-28 14:39:44 +0100 +0100\",\"source_fetched_at\":\"2026-10-29T14:28:59Z\",\"level\":\"Trung cấp\",\"score\":85.5,\"chunk_id\":\"5003:8\",\"excerpt\":\"to the frontend One persistent volume, attached to the backend Two networks services : frontend : image : example/webapp ports : - \\\"443:8043\\\" networks : - front-tier - back-tier configs : - httpd-config secrets : - server-certificate backend : image : example/database volumes : - db-data:/etc/data networks : - back-tier volumes : db-data : driver : flocker driver_opts : size : \\\"10GiB\\\" configs : httpd-config : external : true secrets : server-certificate : external : true networks : # The presence of these objects is sufficient to define them front-tier : {} back-tier : {} The docker compose up command starts the frontend and backend services, creates the necessary networks and volumes, and injects "
+      }
+    ]
+  },
+  "chat_summary": {
+    "completed": 4,
+    "p50_wall": 6.24,
+    "max_wall": 9.159,
+    "timeouts": 0,
+    "terminal_types": [
+      "done",
+      "done",
+      "done",
+      "done"
+    ]
+  },
+  "finished": "2026-10-31T13:03:27"
+}

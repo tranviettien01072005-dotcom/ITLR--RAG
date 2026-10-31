@@ -1,0 +1,28 @@
+{
+  "scope": "Docker staging itlr-resume-1031c, images built --no-cache from working tree at f14c428 (clean tree)",
+  "captured": "2026-10-31 after Chrome E2E, before compose stop",
+  "probes": [
+    {
+      "name": "provider-accepts-next-request-after-cancel",
+      "command": "docker compose exec -T api python -c '<ollama /api/chat num_predict=16>'",
+      "result": {
+        "elapsed": 1.742,
+        "done": true,
+        "done_reason": "stop",
+        "eval_count": 14
+      },
+      "note": "Original driver probe used num_predict=8 and asserted done_reason==stop; it returned done_reason=length, so the assertion was wrong for its own parameters. Provider accepted and completed the next request."
+    },
+    {
+      "name": "budget-45s-container-slow-case",
+      "command": "docker compose exec -T -e Q='<blind-positive-06 query>' api python -c '<engine.achat_stream>'",
+      "result": {
+        "elapsed": 38.496,
+        "mode": "llm_extractive",
+        "error": null,
+        "citation": "valid"
+      },
+      "note": "Warm in-container run finished inside the unchanged 45s budget; this does not clear the documented uncached >45s host measurement."
+    }
+  ]
+}

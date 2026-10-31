@@ -1,0 +1,785 @@
+api-1  | 2026-10-31T05:19:34.480233297Z INFO:     Started server process [7]
+api-1  | 2026-10-31T05:19:34.480279481Z INFO:     Waiting for application startup.
+api-1  | 2026-10-31T05:19:34.544786708Z Thiếu /app/var/artifacts/versions/docker-a/cf_model.pkl — Collaborative Filtering bị tắt (tùy chọn V2); /api/personas và /api/for-you sẽ trả 503 cho tới khi build CF.
+api-1  | 2026-10-31T05:19:42.882000887Z Could not reach the Hub (Cannot reach https://huggingface.co/api/models/intfloat/multilingual-e5-base: offline mode is enabled. To disable it, please unset the `HF_HUB_OFFLINE` environment variable.). Using cached commit hash for 'intfloat/multilingual-e5-base'.
+api-1  | 2026-10-31T05:19:45.469259524Z [OK] Engine sẵn sàng — API tại http://localhost:8000
+api-1  | 2026-10-31T05:19:45.470346939Z INFO:     Application startup complete.
+api-1  | 2026-10-31T05:19:45.480176728Z INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+api-1  | 2026-10-31T05:19:50.702555025Z INFO:     127.0.0.1:38480 - "GET /health HTTP/1.1" 200 OK
+api-1  | 2026-10-31T05:19:50.839248830Z [OK] Đã pre-warm Ollama (qwen2.5:3b) — chatbot sẵn sàng trả lời nhanh.
+api-1  | 2026-10-31T05:20:06.078662746Z INFO:     127.0.0.1:43098 - "GET /health HTTP/1.1" 200 OK
+api-1  | 2026-10-31T05:20:07.836714312Z INFO:     172.29.234.1:38816 - "GET /health HTTP/1.1" 200 OK
+api-1     | 2026-10-31T05:20:07.839467054Z [!] /admin/reload auth fail từ 172.29.234.1
+api-1     | 2026-10-31T05:20:07.839860295Z INFO:     172.29.234.1:38818 - "POST /admin/reload HTTP/1.1" 403 Forbidden
+api-1     | 2026-10-31T05:20:08.196114762Z INFO:     172.29.234.1:38828 - "POST /api/search HTTP/1.1" 200 OK
+api-1     | 2026-10-31T05:20:08.237407870Z INFO:     172.29.234.6:57384 - "POST /api/chat/stream HTTP/1.1" 200 OK
+api-1     | 2026-10-31T05:20:21.723780716Z INFO:     127.0.0.1:51426 - "GET /health HTTP/1.1" 200 OK
+api-1     | 2026-10-31T05:20:37.464774189Z INFO:     127.0.0.1:60996 - "GET /health HTTP/1.1" 200 OK
+api-1     | 2026-10-31T05:20:40.326461717Z INFO:     172.29.234.6:57384 - "GET /api/suggested HTTP/1.1" 200 OK
+api-1     | 2026-10-31T05:20:40.877577045Z Thiếu /app/var/artifacts/versions/docker-a/cf_model.pkl — Collaborative Filtering bị tắt (tùy chọn V2); /api/personas và /api/for-you sẽ trả 503 cho tới khi build CF.
+api-1     | 2026-10-31T05:20:44.769351544Z Could not reach the Hub (Cannot reach https://huggingface.co/api/models/intfloat/multilingual-e5-base: offline mode is enabled. To disable it, please unset the `HF_HUB_OFFLINE` environment variable.). Using cached commit hash for 'intfloat/multilingual-e5-base'.
+api-1     | 2026-10-31T05:20:47.515377511Z INFO:     172.29.234.1:45436 - "POST /admin/reload HTTP/1.1" 200 OK
+api-1     | 2026-10-31T05:20:47.880417532Z Thiếu /app/var/artifacts/versions/docker-b/cf_model.pkl — Collaborative Filtering bị tắt (tùy chọn V2); /api/personas và /api/for-you sẽ trả 503 cho tới khi build CF.
+api-1     | 2026-10-31T05:20:51.418042192Z Could not reach the Hub (Cannot reach https://huggingface.co/api/models/intfloat/multilingual-e5-base: offline mode is enabled. To disable it, please unset the `HF_HUB_OFFLINE` environment variable.). Using cached commit hash for 'intfloat/multilingual-e5-base'.
+api-1     | 2026-10-31T05:20:53.397133673Z INFO:     127.0.0.1:40512 - "GET /health HTTP/1.1" 200 OK
+api-1     | 2026-10-31T05:20:54.450932924Z INFO:     172.29.234.1:42470 - "POST /admin/reload HTTP/1.1" 200 OK
+api-1     | 2026-10-31T05:20:54.800490762Z Thiếu /app/var/artifacts/versions/docker-a/cf_model.pkl — Collaborative Filtering bị tắt (tùy chọn V2); /api/personas và /api/for-you sẽ trả 503 cho tới khi build CF.
+api-1     | 2026-10-31T05:20:58.397083398Z Could not reach the Hub (Cannot reach https://huggingface.co/api/models/intfloat/multilingual-e5-base: offline mode is enabled. To disable it, please unset the `HF_HUB_OFFLINE` environment variable.). Using cached commit hash for 'intfloat/multilingual-e5-base'.
+api-1     | 2026-10-31T05:21:01.299953554Z INFO:     172.29.234.1:50756 - "POST /admin/reload HTTP/1.1" 200 OK
+api-1     | 2026-10-31T05:21:01.342164052Z INFO:     172.29.234.1:55494 - "POST /admin/reload HTTP/1.1" 503 Service Unavailable
+api-1     | 2026-10-31T05:21:01.399033577Z Thiếu /app/var/artifacts/versions/docker-a/cf_model.pkl — Collaborative Filtering bị tắt (tùy chọn V2); /api/personas và /api/for-you sẽ trả 503 cho tới khi build CF.
+api-1     | 2026-10-31T05:21:04.940616393Z Could not reach the Hub (Cannot reach https://huggingface.co/api/models/intfloat/multilingual-e5-base: offline mode is enabled. To disable it, please unset the `HF_HUB_OFFLINE` environment variable.). Using cached commit hash for 'intfloat/multilingual-e5-base'.
+web-1     | 2026-10-31T05:19:51.849518187Z [web] listening on port 3000
+caddy-1   | 2026-10-31T05:19:57.116713004Z {"level":"info","ts":1793423997.1165156,"msg":"maxprocs: Updating GOMAXPROCS=1: determined from CPU quota"}
+web-1     | 2026-10-31T05:21:15.845838270Z [web] shutdown SIGTERM
+caddy-1   | 2026-10-31T05:19:57.116754462Z {"level":"info","ts":1793423997.1166196,"msg":"GOMEMLIMIT is updated","GOMEMLIMIT":120795955,"previous":9223372036854775807}
+api-1     | 2026-10-31T05:21:07.713971096Z INFO:     172.29.234.1:55498 - "POST /admin/reload HTTP/1.1" 200 OK
+api-1     | 2026-10-31T05:21:08.845820259Z INFO:     127.0.0.1:57940 - "GET /health HTTP/1.1" 200 OK
+web-1     | 2026-10-31T05:21:16.842739058Z [web] listening on port 3000
+ollama-1  | 2026-10-31T05:19:29.262131960Z Couldn't find '/root/.ollama/id_ed25519'. Generating new private key.
+ollama-1  | 2026-10-31T05:19:29.264260495Z Your new public key is: 
+ollama-1  | 2026-10-31T05:19:29.264277372Z 
+ollama-1  | 2026-10-31T05:19:29.264280969Z ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOML8E59QEemwG9y8VgPUjRs+c8BG9Y+morpkbKICgMb
+ollama-1  | 2026-10-31T05:19:29.264283913Z 
+caddy-1   | 2026-10-31T05:19:57.116760995Z {"level":"info","ts":1793423997.1166236,"msg":"using config from file","file":"/etc/caddy/Caddyfile"}
+ollama-1  | 2026-10-31T05:19:29.264698761Z time=2026-10-31T05:19:29.264Z level=INFO source=routes.go:2474 msg="server config" env="map[CUDA_VISIBLE_DEVICES: GGML_VK_VISIBLE_DEVICES: GPU_DEVICE_ORDINAL: HIP_VISIBLE_DEVICES: HSA_OVERRIDE_GFX_VERSION: HTTPS_PROXY: HTTP_PROXY: LLAMA_ARG_FIT: LLAMA_ARG_FIT_TARGET: NO_PROXY: OLLAMA_CONTEXT_LENGTH:4096 OLLAMA_CREATE_REMOTE:false OLLAMA_DEBUG:INFO OLLAMA_DEBUG_LOG_REQUESTS:false OLLAMA_EDITOR: OLLAMA_FLASH_ATTENTION:false OLLAMA_GO_TEMPLATE:true OLLAMA_GPU_OVERHEAD:0 OLLAMA_HOST:http://0.0.0.0:11434 OLLAMA_IGPU_ENABLE: OLLAMA_KEEP_ALIVE:5m0s OLLAMA_KV_CACHE_TYPE: OLLAMA_LLM_LIBRARY: OLLAMA_LOAD_TIMEOUT:5m0s OLLAMA_MAX_LOADED_MODELS:1 OLLAMA_MAX_QUEUE:512 OLLAMA_MAX_TRANSFER_STREAMS:4 OLLAMA_MODELS:/root/.ollama/models OLLAMA_NOHISTORY:false OLLAMA_NOPRUNE:false OLLAMA_NO_CLOUD:true OLLAMA_NUM_PARALLEL:1 OLLAMA_ORIGINS:[http://localhost https://localhost http://localhost:* https://localhost:* http://127.0.0.1 https://127.0.0.1 http://127.0.0.1:* https://127.0.0.1:* http://0.0.0.0 https://0.0.0.0 http://0.0.0.0:* https://0.0.0.0:* app://* file://* tauri://* vscode-webview://* vscode-file://*] OLLAMA_REMOTES:[ollama.com] OLLAMA_SCHED_SPREAD:false OLLAMA_VULKAN:true ROCR_VISIBLE_DEVICES: http_proxy: https_proxy: no_proxy:]"
+caddy-1     | 2026-10-31T05:19:57.116765463Z {"level":"warn","ts":1793423997.116627,"msg":"Unnecessary header_up X-Forwarded-For: the reverse proxy's default behavior is to pass headers to the upstream"}
+caddy-1     | 2026-10-31T05:19:57.116769787Z {"level":"info","ts":1793423997.116629,"msg":"adapted config to JSON","adapter":"caddyfile"}
+caddy-1     | 2026-10-31T05:19:57.116774003Z {"level":"warn","ts":1793423997.1166308,"msg":"Caddyfile input is not formatted; run 'caddy fmt --overwrite' to fix inconsistencies","adapter":"caddyfile","file":"/etc/caddy/Caddyfile","line":2}
+ollama-1    | 2026-10-31T05:19:29.264716953Z time=2026-10-31T05:19:29.264Z level=INFO source=routes.go:2476 msg="Ollama cloud disabled: true"
+ollama-1    | 2026-10-31T05:19:29.265198043Z time=2026-10-31T05:19:29.265Z level=INFO source=images.go:1033 msg="total blobs: 6"
+ollama-1    | 2026-10-31T05:19:29.265610371Z time=2026-10-31T05:19:29.265Z level=INFO source=images.go:1042 msg="total unused blobs removed: 0"
+ollama-1    | 2026-10-31T05:19:29.266029258Z time=2026-10-31T05:19:29.265Z level=INFO source=routes.go:2536 msg="Listening on [::]:11434 (version 0.40.13)"
+ollama-1    | 2026-10-31T05:19:29.266408753Z time=2026-10-31T05:19:29.266Z level=INFO source=model_recommendations.go:177 msg="model recommendations cache sleep scheduled" wait=3h20m52.406982711s consecutive_failures=0
+ollama-1    | 2026-10-31T05:19:29.269412957Z time=2026-10-31T05:19:29.268Z level=INFO source=runner.go:60 msg="discovering available GPUs..."
+ollama-1    | 2026-10-31T05:19:29.553794004Z time=2026-10-31T05:19:29.553Z level=INFO source=types.go:50 msg="inference compute" id=cpu library=cpu compute="" name=cpu description=cpu libdirs=ollama driver="" pci_id="" type="" total="3.4 GiB" available="3.4 GiB"
+ollama-1    | 2026-10-31T05:19:29.553821799Z time=2026-10-31T05:19:29.553Z level=INFO source=routes.go:2586 msg="vram-based default context" total_vram="0 B" default_num_ctx=4096
+ollama-1    | 2026-10-31T05:19:45.551176787Z time=2026-10-31T05:19:45.550Z level=INFO source=sched.go:1183 msg="disabling mmap for llama-server load by default" model=/root/.ollama/models/blobs/sha256-5ee4f07cdb9beadbbb293e85803c569b01bd37ed059d2715faa7bb405f31caa6 reason=cpu
+ollama-1    | 2026-10-31T05:19:45.551204633Z time=2026-10-31T05:19:45.551Z level=INFO source=server.go:107 msg="using llama-server for model" model=/root/.ollama/models/blobs/sha256-5ee4f07cdb9beadbbb293e85803c569b01bd37ed059d2715faa7bb405f31caa6
+ollama-1    | 2026-10-31T05:19:45.551790716Z time=2026-10-31T05:19:45.551Z level=INFO source=llama_server.go:467 msg="starting llama-server" cmd="/usr/lib/ollama/llama-server --model /root/.ollama/models/blobs/sha256-5ee4f07cdb9beadbbb293e85803c569b01bd37ed059d2715faa7bb405f31caa6 --port 39731 --host 127.0.0.1 --no-webui --offline -c 4096 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --load-mode none --flash-attn auto -b 512 -ub 512 --context-shift --keep 4"
+ollama-1    | 2026-10-31T05:19:45.552013462Z time=2026-10-31T05:19:45.551Z level=INFO source=sched.go:658 msg="system memory" total="3.4 GiB" free="3.4 GiB" free_swap="2.6 MiB"
+ollama-1    | 2026-10-31T05:19:45.552020306Z time=2026-10-31T05:19:45.551Z level=INFO source=llama_server.go:1098 msg="loading model via llama-server" model=/root/.ollama/models/blobs/sha256-5ee4f07cdb9beadbbb293e85803c569b01bd37ed059d2715faa7bb405f31caa6
+ollama-1    | 2026-10-31T05:19:45.552023121Z time=2026-10-31T05:19:45.551Z level=INFO source=llama_server.go:1351 msg="waiting for llama-server to start responding"
+ollama-1    | 2026-10-31T05:19:45.552267624Z time=2026-10-31T05:19:45.552Z level=INFO source=llama_server.go:1406 msg="waiting for llama-server to become available" status="llm server not responding"
+ollama-1    | 2026-10-31T05:19:45.557880519Z srv  llama_server: initializing ...
+ollama-1    | 2026-10-31T05:19:45.566250965Z load_backend: loaded CPU backend from /usr/lib/ollama/libggml-cpu-haswell.so
+caddy-1     | 2026-10-31T05:19:57.119112587Z {"level":"info","ts":1793423997.1188877,"logger":"admin","msg":"admin endpoint started","address":"localhost:2019","enforce_origin":false,"origins":["//localhost:2019","//[::1]:2019","//127.0.0.1:2019"]}
+caddy-1     | 2026-10-31T05:19:57.126851868Z {"level":"info","ts":1793423997.126767,"logger":"tls.cache.maintenance","msg":"started background certificate maintenance","cache":"0x18aacb7cbd80"}
+caddy-1     | 2026-10-31T05:19:57.137320814Z {"level":"info","ts":1793423997.1372507,"logger":"http.auto_https","msg":"automatic HTTP->HTTPS redirects are disabled","server_name":"srv0"}
+caddy-1     | 2026-10-31T05:19:57.180616982Z {"level":"warn","ts":1793423997.1804824,"logger":"pki.ca.local","msg":"installing root certificate (you might be prompted for password)","path":"storage:pki/authorities/local/root.crt"}
+caddy-1     | 2026-10-31T05:19:57.180932775Z {"level":"info","ts":1793423997.1808455,"msg":"warning: \"certutil\" is not available, install \"certutil\" with \"apt install libnss3-tools\" or \"yum install nss-tools\" and try again"}
+caddy-1     | 2026-10-31T05:19:57.180942102Z {"level":"info","ts":1793423997.180854,"msg":"define JAVA_HOME environment variable to use the Java trust"}
+caddy-1     | 2026-10-31T05:19:57.229146878Z {"level":"info","ts":1793423997.22906,"msg":"certificate installed properly in linux trusts"}
+caddy-1     | 2026-10-31T05:19:57.230155013Z {"level":"info","ts":1793423997.2301033,"logger":"http","msg":"enabling HTTP/3 listener","addr":":443"}
+caddy-1     | 2026-10-31T05:19:57.231952940Z {"level":"info","ts":1793423997.231841,"logger":"http.log","msg":"server running","name":"srv0","protocols":["h1","h2","h3"]}
+caddy-1     | 2026-10-31T05:19:57.231964274Z {"level":"info","ts":1793423997.2318587,"logger":"http","msg":"enabling automatic TLS certificate management","domains":["127.0.0.1"]}
+caddy-1     | 2026-10-31T05:19:57.232061974Z {"level":"info","ts":1793423997.2319899,"msg":"autosaved config (load with --resume flag)","file":"/config/caddy/autosave.json"}
+caddy-1     | 2026-10-31T05:19:57.232067482Z {"level":"info","ts":1793423997.2319973,"msg":"serving initial configuration"}
+caddy-1     | 2026-10-31T05:19:57.237371722Z {"level":"info","ts":1793423997.2372522,"logger":"tls","msg":"cleaning storage unit","storage":"FileStorage:/data/caddy"}
+caddy-1     | 2026-10-31T05:19:57.240706764Z {"level":"info","ts":1793423997.240538,"logger":"tls.obtain","msg":"acquiring lock","identifier":"127.0.0.1"}
+caddy-1     | 2026-10-31T05:19:57.243940801Z {"level":"info","ts":1793423997.2438443,"logger":"tls","msg":"finished cleaning storage units"}
+caddy-1     | 2026-10-31T05:19:57.246598477Z {"level":"info","ts":1793423997.2464936,"logger":"tls.obtain","msg":"lock acquired","identifier":"127.0.0.1"}
+postgres-1  | 2026-10-31T05:19:19.753486651Z The files belonging to this database system will be owned by user "postgres".
+caddy-1     | 2026-10-31T05:19:57.246727249Z {"level":"info","ts":1793423997.246594,"logger":"tls.obtain","msg":"obtaining certificate","identifier":"127.0.0.1"}
+caddy-1     | 2026-10-31T05:19:57.260580572Z {"level":"info","ts":1793423997.2604778,"logger":"tls.obtain","msg":"certificate obtained successfully","identifier":"127.0.0.1","issuer":"local"}
+ollama-1    | 2026-10-31T05:19:45.566292135Z cmn  common_param: common_params_print_info: build 1 (39febd2ad) with GNU 13.3.1 for Linux x86_64
+caddy-1     | 2026-10-31T05:19:57.260644940Z {"level":"info","ts":1793423997.2605753,"logger":"tls.obtain","msg":"releasing lock","identifier":"127.0.0.1"}
+ollama-1    | 2026-10-31T05:19:45.566295186Z cmn  common_param: common_params_print_info: verbosity = 4 (adjust with the `-lv N` CLI arg)
+ollama-1    | 2026-10-31T05:19:45.566297469Z cmn  common_param: device_info:
+caddy-1     | 2026-10-31T05:21:45.582440763Z {"level":"warn","ts":1793424105.5819285,"logger":"http.handlers.reverse_proxy","msg":"aborting with incomplete response","upstream":"web:3000","duration":0.0059998,"request":{"remote_ip":"172.29.234.1","remote_port":"51428","client_ip":"172.29.234.1","proto":"HTTP/2.0","method":"GET","host":"127.0.0.1:19444","uri":"/api/realtime","headers":{"Sec-Fetch-Mode":["cors"],"X-Forwarded-Proto":["https"],"Accept-Language":["en-US,en;q=0.9"],"X-Forwarded-For":["172.29.234.1"],"Via":["2.0 Caddy"],"Sec-Ch-Ua-Platform":["\"Linux\""],"Pragma":["no-cache"],"Referer":["https://127.0.0.1:19444/dashboard"],"Sec-Ch-Ua":["\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\""],"Sec-Ch-Ua-Mobile":["?0"],"Sec-Fetch-Dest":["empty"],"Accept-Encoding":["gzip, deflate, br, zstd"],"Cache-Control":["no-cache"],"Cookie":["REDACTED"],"Sec-Fetch-Site":["same-origin"],"User-Agent":["Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"],"Priority":["u=1, i"],"X-Forwarded-Host":["127.0.0.1:19444"],"Accept":["text/event-stream"]},"tls":{"resumed":true,"version":772,"cipher_suite":4865,"proto":"h2","server_name":"","ech":false}},"error":"reading: context canceled"}
+ollama-1    | 2026-10-31T05:19:45.566299548Z cmn  common_param:   - CPU     : Intel(R) Core(TM) i7-8650U CPU @ 1.90GHz (15221 MiB, 15221 MiB free)
+caddy-1     | 2026-10-31T05:21:45.751802448Z {"level":"warn","ts":1793424105.7515614,"logger":"http.handlers.reverse_proxy","msg":"aborting with incomplete response","upstream":"web:3000","duration":0.002944313,"request":{"remote_ip":"172.29.234.1","remote_port":"51428","client_ip":"172.29.234.1","proto":"HTTP/2.0","method":"GET","host":"127.0.0.1:19444","uri":"/api/realtime","headers":{"Accept-Encoding":["gzip, deflate, br, zstd"],"Pragma":["no-cache"],"Sec-Fetch-Site":["same-origin"],"X-Forwarded-For":["172.29.234.1"],"Referer":["https://127.0.0.1:19444/learning"],"User-Agent":["Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"],"Sec-Ch-Ua-Platform":["\"Linux\""],"Sec-Ch-Ua-Mobile":["?0"],"X-Forwarded-Proto":["https"],"Accept-Language":["en-US,en;q=0.9"],"Accept":["text/event-stream"],"Via":["2.0 Caddy"],"X-Forwarded-Host":["127.0.0.1:19444"],"Sec-Fetch-Dest":["empty"],"Cookie":["REDACTED"],"Priority":["u=1, i"],"Sec-Fetch-Mode":["cors"],"Sec-Ch-Ua":["\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\""],"Cache-Control":["no-cache"]},"tls":{"resumed":true,"version":772,"cipher_suite":4865,"proto":"h2","server_name":"","ech":false}},"error":"reading: context canceled"}
+caddy-1     | 2026-10-31T05:22:30.456347391Z {"level":"warn","ts":1793424150.4560401,"logger":"http.handlers.reverse_proxy","msg":"aborting with incomplete response","upstream":"web:3000","duration":0.003650772,"request":{"remote_ip":"172.29.234.1","remote_port":"51428","client_ip":"172.29.234.1","proto":"HTTP/2.0","method":"GET","host":"127.0.0.1:19444","uri":"/api/realtime","headers":{"Priority":["u=1, i"],"Sec-Fetch-Mode":["cors"],"Accept":["text/event-stream"],"Via":["2.0 Caddy"],"X-Forwarded-Proto":["https"],"Sec-Fetch-Dest":["empty"],"Sec-Fetch-Site":["same-origin"],"X-Forwarded-For":["172.29.234.1"],"Pragma":["no-cache"],"Cache-Control":["no-cache"],"Accept-Language":["en-US,en;q=0.9"],"Sec-Ch-Ua-Mobile":["?0"],"Accept-Encoding":["gzip, deflate, br, zstd"],"Sec-Ch-Ua-Platform":["\"Linux\""],"User-Agent":["Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"],"Sec-Ch-Ua":["\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\""],"Referer":["https://127.0.0.1:19444/chat"],"Cookie":["REDACTED"],"X-Forwarded-Host":["127.0.0.1:19444"]},"tls":{"resumed":true,"version":772,"cipher_suite":4865,"proto":"h2","server_name":"","ech":false}},"error":"reading: context canceled"}
+postgres-1  | 2026-10-31T05:19:19.753524566Z This user must also own the server process.
+caddy-1     | 2026-10-31T05:22:30.538503192Z {"level":"warn","ts":1793424150.5378075,"logger":"http.handlers.reverse_proxy","msg":"aborting with incomplete response","upstream":"web:3000","duration":0.003362272,"request":{"remote_ip":"172.29.234.1","remote_port":"32860","client_ip":"172.29.234.1","proto":"HTTP/2.0","method":"GET","host":"127.0.0.1:19444","uri":"/api/realtime","headers":{"Sec-Fetch-Mode":["cors"],"Cookie":["REDACTED"],"Cache-Control":["no-cache"],"X-Forwarded-Host":["127.0.0.1:19444"],"Sec-Ch-Ua-Mobile":["?0"],"X-Forwarded-Proto":["https"],"Sec-Fetch-Dest":["empty"],"Priority":["u=1, i"],"Sec-Ch-Ua":["\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\""],"X-Forwarded-For":["172.29.234.1"],"Sec-Fetch-Site":["same-origin"],"Accept":["text/event-stream"],"Referer":["https://127.0.0.1:19444/chat?c=2"],"Accept-Encoding":["gzip, deflate, br, zstd"],"Pragma":["no-cache"],"User-Agent":["Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"],"Accept-Language":["en-US,en;q=0.9"],"Sec-Ch-Ua-Platform":["\"Linux\""],"Via":["2.0 Caddy"]},"tls":{"resumed":true,"version":772,"cipher_suite":4865,"proto":"h2","server_name":"","ech":false}},"error":"reading: context canceled"}
+postgres-1  | 2026-10-31T05:19:19.753530853Z 
+caddy-1     | 2026-10-31T05:22:30.941536469Z {"level":"warn","ts":1793424150.9372954,"logger":"http.handlers.reverse_proxy","msg":"aborting with incomplete response","upstream":"web:3000","duration":0.004185263,"request":{"remote_ip":"172.29.234.1","remote_port":"32860","client_ip":"172.29.234.1","proto":"HTTP/2.0","method":"POST","host":"127.0.0.1:19444","uri":"/api/chat/stream","headers":{"Cookie":["REDACTED"],"Accept-Encoding":["gzip, deflate, br, zstd"],"Origin":["https://127.0.0.1:19444"],"Sec-Fetch-Dest":["empty"],"Priority":["u=1, i"],"Sec-Fetch-Site":["same-origin"],"Sec-Fetch-Mode":["cors"],"Sec-Ch-Ua-Mobile":["?0"],"Content-Type":["application/json"],"Referer":["https://127.0.0.1:19444/chat"],"Content-Length":["107"],"X-Forwarded-For":["172.29.234.1"],"Accept":["text/event-stream"],"Sec-Ch-Ua-Platform":["\"Linux\""],"Accept-Language":["en-US,en;q=0.9"],"Via":["2.0 Caddy"],"X-Forwarded-Proto":["https"],"X-Forwarded-Host":["127.0.0.1:19444"],"X-Csrf-Token":["f17628460d73423df6118f8d442abd9fc77fbeea8a8fb6ebba4d523cfaca2165"],"Sec-Ch-Ua":["\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\""],"User-Agent":["Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"]},"tls":{"resumed":true,"version":772,"cipher_suite":4865,"proto":"h2","server_name":"","ech":false}},"error":"reading: context canceled"}
+postgres-1  | 2026-10-31T05:19:19.753535425Z The database cluster will be initialized with locale "en_US.utf8".
+postgres-1  | 2026-10-31T05:19:19.753540199Z The default database encoding has accordingly been set to "UTF8".
+postgres-1  | 2026-10-31T05:19:19.753544597Z The default text search configuration will be set to "english".
+postgres-1  | 2026-10-31T05:19:19.753548687Z 
+postgres-1  | 2026-10-31T05:19:19.753552596Z Data page checksums are disabled.
+postgres-1  | 2026-10-31T05:19:19.753568099Z 
+postgres-1  | 2026-10-31T05:19:19.753571641Z fixing permissions on existing directory /var/lib/postgresql/data ... ok
+postgres-1  | 2026-10-31T05:19:19.754281441Z creating subdirectories ... ok
+postgres-1  | 2026-10-31T05:19:19.754388946Z selecting dynamic shared memory implementation ... posix
+postgres-1  | 2026-10-31T05:19:19.778999958Z selecting default max_connections ... 100
+api-1       | 2026-10-31T05:21:15.935904576Z INFO:     Shutting down
+postgres-1  | 2026-10-31T05:19:19.809084216Z selecting default shared_buffers ... 128MB
+postgres-1  | 2026-10-31T05:19:19.837840430Z selecting default time zone ... Etc/UTC
+postgres-1  | 2026-10-31T05:19:19.839044442Z creating configuration files ... ok
+postgres-1  | 2026-10-31T05:19:19.981797792Z running bootstrap script ... ok
+postgres-1  | 2026-10-31T05:19:20.414724448Z performing post-bootstrap initialization ... ok
+postgres-1  | 2026-10-31T05:19:20.503651850Z syncing data to disk ... ok
+postgres-1  | 2026-10-31T05:19:20.503677105Z 
+postgres-1  | 2026-10-31T05:19:20.503680811Z 
+postgres-1  | 2026-10-31T05:19:20.503683445Z Success. You can now start the database server using:
+postgres-1  | 2026-10-31T05:19:20.503686011Z 
+postgres-1  | 2026-10-31T05:19:20.503688404Z     pg_ctl -D /var/lib/postgresql/data -l logfile start
+api-1       | 2026-10-31T05:21:16.036724514Z INFO:     Waiting for application shutdown.
+caddy-1     | 2026-10-31T05:22:31.789461865Z {"level":"warn","ts":1793424151.785959,"logger":"http.handlers.reverse_proxy","msg":"aborting with incomplete response","upstream":"web:3000","duration":0.003516229,"request":{"remote_ip":"172.29.234.1","remote_port":"32860","client_ip":"172.29.234.1","proto":"HTTP/2.0","method":"GET","host":"127.0.0.1:19444","uri":"/api/realtime","headers":{"Accept-Language":["en-US,en;q=0.9"],"Sec-Ch-Ua-Platform":["\"Linux\""],"X-Forwarded-For":["172.29.234.1"],"Sec-Fetch-Dest":["empty"],"Referer":["https://127.0.0.1:19444/chat"],"User-Agent":["Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"],"Cookie":["REDACTED"],"X-Forwarded-Host":["127.0.0.1:19444"],"Via":["2.0 Caddy"],"X-Forwarded-Proto":["https"],"Sec-Fetch-Mode":["cors"],"Priority":["u=1, i"],"Sec-Fetch-Site":["same-origin"],"Accept-Encoding":["gzip, deflate, br, zstd"],"Pragma":["no-cache"],"Cache-Control":["no-cache"],"Accept":["text/event-stream"],"Sec-Ch-Ua":["\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\""],"Sec-Ch-Ua-Mobile":["?0"]},"tls":{"resumed":true,"version":772,"cipher_suite":4865,"proto":"h2","server_name":"","ech":false}},"error":"reading: context canceled"}
+api-1       | 2026-10-31T05:21:16.036751380Z INFO:     Application shutdown complete.
+ollama-1    | 2026-10-31T05:19:45.566301659Z cmn  common_param: system_info: n_threads = 4 (n_threads_batch = 4) / 8 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | LLAMAFILE = 1 | REPACK = 1 | 
+api-1       | 2026-10-31T05:21:16.037328653Z INFO:     Finished server process [7]
+api-1       | 2026-10-31T05:21:22.156179666Z INFO:     Started server process [7]
+api-1       | 2026-10-31T05:21:22.156217752Z INFO:     Waiting for application startup.
+api-1       | 2026-10-31T05:21:22.217840451Z Thiếu /app/var/artifacts/versions/docker-a/cf_model.pkl — Collaborative Filtering bị tắt (tùy chọn V2); /api/personas và /api/for-you sẽ trả 503 cho tới khi build CF.
+api-1       | 2026-10-31T05:21:30.554558987Z Could not reach the Hub (Cannot reach https://huggingface.co/api/models/intfloat/multilingual-e5-base: offline mode is enabled. To disable it, please unset the `HF_HUB_OFFLINE` environment variable.). Using cached commit hash for 'intfloat/multilingual-e5-base'.
+api-1       | 2026-10-31T05:21:33.200540473Z [OK] Engine sẵn sàng — API tại http://localhost:8000
+api-1       | 2026-10-31T05:21:33.202243171Z INFO:     Application startup complete.
+api-1       | 2026-10-31T05:21:33.212621130Z INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+api-1       | 2026-10-31T05:21:38.484872501Z INFO:     127.0.0.1:42688 - "GET /health HTTP/1.1" 200 OK
+api-1       | 2026-10-31T05:21:39.104627039Z [OK] Đã pre-warm Ollama (qwen2.5:3b) — chatbot sẵn sàng trả lời nhanh.
+api-1       | 2026-10-31T05:21:43.693491486Z INFO:     172.29.234.1:60476 - "GET /health HTTP/1.1" 200 OK
+api-1       | 2026-10-31T05:21:45.433766005Z INFO:     172.29.234.6:41218 - "GET /api/personas HTTP/1.1" 503 Service Unavailable
+api-1       | 2026-10-31T05:21:45.708154124Z INFO:     172.29.234.6:41218 - "GET /api/suggested HTTP/1.1" 200 OK
+api-1       | 2026-10-31T05:21:45.843487858Z INFO:     172.29.234.6:41218 - "POST /api/chat/stream HTTP/1.1" 200 OK
+api-1       | 2026-10-31T05:21:54.326718626Z INFO:     127.0.0.1:53780 - "GET /health HTTP/1.1" 200 OK
+api-1       | 2026-10-31T05:22:10.097203281Z INFO:     127.0.0.1:37054 - "GET /health HTTP/1.1" 200 OK
+api-1       | 2026-10-31T05:22:25.873164408Z INFO:     127.0.0.1:52362 - "GET /health HTTP/1.1" 200 OK
+api-1       | 2026-10-31T05:22:30.436392301Z INFO:     172.29.234.6:41218 - "GET /api/suggested HTTP/1.1" 200 OK
+api-1       | 2026-10-31T05:22:30.506971185Z INFO:     172.29.234.6:41218 - "GET /api/suggested HTTP/1.1" 200 OK
+api-1       | 2026-10-31T05:22:30.595154498Z INFO:     172.29.234.6:41218 - "POST /api/chat/stream HTTP/1.1" 200 OK
+api-1       | 2026-10-31T05:22:41.620425253Z INFO:     127.0.0.1:34028 - "GET /health HTTP/1.1" 200 OK
+ollama-1    | 2026-10-31T05:19:45.566466911Z srv  init_listene: The UI is disabled
+ollama-1    | 2026-10-31T05:19:45.566475439Z srv  init_listene: Use --ui/--no-ui (or deprecated --webui/--no-webui) to enable/disable
+ollama-1    | 2026-10-31T05:19:45.566478158Z srv          init: using 7 threads for HTTP server
+ollama-1    | 2026-10-31T05:19:45.566530123Z srv  server_setup: security: no API key is set and CORS allows all origins (see https://github.com/ggml-org/llama.cpp/pull/25655)
+ollama-1    | 2026-10-31T05:19:45.568265424Z srv    load_model: loading model '/root/.ollama/models/blobs/sha256-5ee4f07cdb9beadbbb293e85803c569b01bd37ed059d2715faa7bb405f31caa6'
+ollama-1    | 2026-10-31T05:19:45.568288230Z srv    load_model: local path '/root/.ollama/models/blobs/sha256-5ee4f07cdb9beadbbb293e85803c569b01bd37ed059d2715faa7bb405f31caa6'
+ollama-1    | 2026-10-31T05:19:45.568308905Z cmn  common_fit_a: fitting params to device memory ...
+ollama-1    | 2026-10-31T05:19:45.568312387Z cmn  common_fit_a: (for bugs during this step try to reproduce them with -fit off, or provide --verbose logs if the bug only occurs with -fit on)
+ollama-1    | 2026-10-31T05:19:45.568315823Z common_params_fit_impl: getting device memory data for initial parameters:
+ollama-1    | 2026-10-31T05:19:45.799336238Z common_memory_breakdown_print: | memory breakdown [MiB] | total   free    self   model   context   compute    unaccounted |
+ollama-1    | 2026-10-31T05:19:45.799382491Z common_memory_breakdown_print: |   - Host               |                  801 =   569 +     144 +      88                |
+ollama-1    | 2026-10-31T05:19:45.799387194Z common_memory_breakdown_print: |   - CPU_REPACK         |                 1265 =  1265 +       0 +       0                |
+ollama-1    | 2026-10-31T05:19:45.803284209Z time=2026-10-31T05:19:45.803Z level=INFO source=llama_server.go:1406 msg="waiting for llama-server to become available" status="llm server loading model"
+ollama-1    | 2026-10-31T05:19:45.834468877Z common_params_fit_impl: projected to use 801 MiB of host memory vs. 15221 MiB of total host memory
+ollama-1    | 2026-10-31T05:19:45.834497709Z common_params_fit_impl: will leave 14419 >= 1024 MiB of system memory, no changes needed
+ollama-1    | 2026-10-31T05:19:45.834501554Z common_fit_params: successfully fit params to free device memory
+ollama-1    | 2026-10-31T05:19:45.834504353Z common_fit_params: fitting params to free memory took 0.27 seconds
+ollama-1    | 2026-10-31T05:19:45.877306620Z llama_model_loader: loaded meta data with 35 key-value pairs and 434 tensors from /root/.ollama/models/blobs/sha256-5ee4f07cdb9beadbbb293e85803c569b01bd37ed059d2715faa7bb405f31caa6 (version GGUF V3 (latest))
+ollama-1    | 2026-10-31T05:19:45.877330710Z llama_model_loader: Dumping metadata keys/values. Note: KV overrides do not apply in this output.
+ollama-1    | 2026-10-31T05:19:45.877335378Z llama_model_loader: - kv   0:                       general.architecture str              = qwen2
+ollama-1    | 2026-10-31T05:19:45.877338916Z llama_model_loader: - kv   1:                               general.type str              = model
+ollama-1    | 2026-10-31T05:19:45.877342254Z llama_model_loader: - kv   2:                               general.name str              = Qwen2.5 3B Instruct
+ollama-1    | 2026-10-31T05:19:45.877345630Z llama_model_loader: - kv   3:                           general.finetune str              = Instruct
+ollama-1    | 2026-10-31T05:19:45.877348906Z llama_model_loader: - kv   4:                           general.basename str              = Qwen2.5
+ollama-1    | 2026-10-31T05:19:45.877352281Z llama_model_loader: - kv   5:                         general.size_label str              = 3B
+ollama-1    | 2026-10-31T05:19:45.877355587Z llama_model_loader: - kv   6:                            general.license str              = other
+ollama-1    | 2026-10-31T05:19:45.877358872Z llama_model_loader: - kv   7:                       general.license.name str              = qwen-research
+ollama-1    | 2026-10-31T05:19:45.877362269Z llama_model_loader: - kv   8:                       general.license.link str              = https://huggingface.co/Qwen/Qwen2.5-3...
+ollama-1    | 2026-10-31T05:19:45.877365699Z llama_model_loader: - kv   9:                   general.base_model.count u32              = 1
+ollama-1    | 2026-10-31T05:19:45.877369002Z llama_model_loader: - kv  10:                  general.base_model.0.name str              = Qwen2.5 3B
+ollama-1    | 2026-10-31T05:19:45.877372256Z llama_model_loader: - kv  11:          general.base_model.0.organization str              = Qwen
+ollama-1    | 2026-10-31T05:19:45.877375620Z llama_model_loader: - kv  12:              general.base_model.0.repo_url str              = https://huggingface.co/Qwen/Qwen2.5-3B
+postgres-1  | 2026-10-31T05:19:20.503690923Z 
+postgres-1  | 2026-10-31T05:19:20.503661209Z initdb: warning: enabling "trust" authentication for local connections
+postgres-1  | 2026-10-31T05:19:20.503697585Z initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+postgres-1  | 2026-10-31T05:19:20.565549259Z waiting for server to start....2026-10-31 05:19:20.565 UTC [48] LOG:  starting PostgreSQL 16.15 (Debian 16.15-1.pgdg12+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14+deb12u1) 12.2.0, 64-bit
+postgres-1  | 2026-10-31T05:19:20.569415471Z 2026-10-31 05:19:20.569 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres-1  | 2026-10-31T05:19:20.586392405Z 2026-10-31 05:19:20.586 UTC [51] LOG:  database system was shut down at 2026-10-31 05:19:20 UTC
+postgres-1  | 2026-10-31T05:19:20.603001502Z 2026-10-31 05:19:20.602 UTC [48] LOG:  database system is ready to accept connections
+postgres-1  | 2026-10-31T05:19:20.635184347Z  done
+postgres-1  | 2026-10-31T05:19:20.635212762Z server started
+postgres-1  | 2026-10-31T05:19:20.794866934Z CREATE DATABASE
+postgres-1  | 2026-10-31T05:19:20.795691413Z 
+postgres-1  | 2026-10-31T05:19:20.795763605Z 
+postgres-1  | 2026-10-31T05:19:20.795803654Z /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+postgres-1  | 2026-10-31T05:19:20.795811629Z 
+postgres-1  | 2026-10-31T05:19:20.797052428Z waiting for server to shut down...2026-10-31 05:19:20.796 UTC [48] LOG:  received fast shutdown request
+postgres-1  | 2026-10-31T05:19:20.800945651Z .2026-10-31 05:19:20.800 UTC [48] LOG:  aborting any active transactions
+postgres-1  | 2026-10-31T05:19:20.802927385Z 2026-10-31 05:19:20.802 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+postgres-1  | 2026-10-31T05:19:20.803387606Z 2026-10-31 05:19:20.803 UTC [49] LOG:  shutting down
+postgres-1  | 2026-10-31T05:19:20.806901411Z 2026-10-31 05:19:20.806 UTC [49] LOG:  checkpoint starting: shutdown immediate
+postgres-1  | 2026-10-31T05:19:20.875327065Z 2026-10-31 05:19:20.875 UTC [49] LOG:  checkpoint complete: wrote 922 buffers (5.6%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.018 s, sync=0.039 s, total=0.072 s; sync files=301, longest=0.004 s, average=0.001 s; distance=4255 kB, estimate=4255 kB; lsn=0/1912118, redo lsn=0/1912118
+postgres-1  | 2026-10-31T05:19:20.897890797Z 2026-10-31 05:19:20.897 UTC [48] LOG:  database system is shut down
+postgres-1  | 2026-10-31T05:19:20.997824326Z  done
+postgres-1  | 2026-10-31T05:19:20.997887602Z server stopped
+postgres-1  | 2026-10-31T05:19:21.003835326Z 
+postgres-1  | 2026-10-31T05:19:21.003899500Z PostgreSQL init process complete; ready for start up.
+postgres-1  | 2026-10-31T05:19:21.003919550Z 
+postgres-1  | 2026-10-31T05:19:21.053599048Z 2026-10-31 05:19:21.053 UTC [1] LOG:  starting PostgreSQL 16.15 (Debian 16.15-1.pgdg12+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14+deb12u1) 12.2.0, 64-bit
+postgres-1  | 2026-10-31T05:19:21.053871369Z 2026-10-31 05:19:21.053 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres-1  | 2026-10-31T05:19:21.053880117Z 2026-10-31 05:19:21.053 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgres-1  | 2026-10-31T05:19:21.060836608Z 2026-10-31 05:19:21.060 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres-1  | 2026-10-31T05:19:21.069649168Z 2026-10-31 05:19:21.069 UTC [64] LOG:  database system was shut down at 2026-10-31 05:19:20 UTC
+postgres-1  | 2026-10-31T05:19:21.076958169Z 2026-10-31 05:19:21.076 UTC [1] LOG:  database system is ready to accept connections
+postgres-1  | 2026-10-31T05:21:15.852999140Z 2026-10-31 05:21:15.852 UTC [1] LOG:  received fast shutdown request
+postgres-1  | 2026-10-31T05:21:15.857241434Z 2026-10-31 05:21:15.857 UTC [1] LOG:  aborting any active transactions
+postgres-1  | 2026-10-31T05:21:15.859329300Z 2026-10-31 05:21:15.859 UTC [1] LOG:  background worker "logical replication launcher" (PID 67) exited with exit code 1
+postgres-1  | 2026-10-31T05:21:15.859941582Z 2026-10-31 05:21:15.859 UTC [62] LOG:  shutting down
+postgres-1  | 2026-10-31T05:21:15.864162542Z 2026-10-31 05:21:15.862 UTC [62] LOG:  checkpoint starting: shutdown immediate
+postgres-1  | 2026-10-31T05:21:16.000866604Z 2026-10-31 05:21:16.000 UTC [62] LOG:  checkpoint complete: wrote 1315 buffers (8.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.034 s, sync=0.088 s, total=0.141 s; sync files=581, longest=0.004 s, average=0.001 s; distance=6549 kB, estimate=6549 kB; lsn=0/1F776E8, redo lsn=0/1F776E8
+postgres-1  | 2026-10-31T05:21:16.010350959Z 2026-10-31 05:21:16.010 UTC [1] LOG:  database system is shut down
+postgres-1  | 2026-10-31T05:21:16.402219924Z 
+postgres-1  | 2026-10-31T05:21:16.402247995Z PostgreSQL Database directory appears to contain a database; Skipping initialization
+postgres-1  | 2026-10-31T05:21:16.402254007Z 
+postgres-1  | 2026-10-31T05:21:16.454356026Z 2026-10-31 05:21:16.454 UTC [1] LOG:  starting PostgreSQL 16.15 (Debian 16.15-1.pgdg12+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14+deb12u1) 12.2.0, 64-bit
+postgres-1  | 2026-10-31T05:21:16.454861214Z 2026-10-31 05:21:16.454 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres-1  | 2026-10-31T05:21:16.454880250Z 2026-10-31 05:21:16.454 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgres-1  | 2026-10-31T05:21:16.464680651Z 2026-10-31 05:21:16.464 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres-1  | 2026-10-31T05:21:16.477128723Z 2026-10-31 05:21:16.477 UTC [29] LOG:  database system was shut down at 2026-10-31 05:21:15 UTC
+postgres-1  | 2026-10-31T05:21:16.504769270Z 2026-10-31 05:21:16.504 UTC [1] LOG:  database system is ready to accept connections
+ollama-1    | 2026-10-31T05:19:45.877379033Z llama_model_loader: - kv  13:                               general.tags arr[str,2]       = ["chat", "text-generation"]
+ollama-1    | 2026-10-31T05:19:45.877393588Z llama_model_loader: - kv  14:                          general.languages arr[str,1]       = ["en"]
+ollama-1    | 2026-10-31T05:19:45.877397417Z llama_model_loader: - kv  15:                          qwen2.block_count u32              = 36
+ollama-1    | 2026-10-31T05:19:45.877401829Z llama_model_loader: - kv  16:                       qwen2.context_length u32              = 32768
+ollama-1    | 2026-10-31T05:19:45.877405136Z llama_model_loader: - kv  17:                     qwen2.embedding_length u32              = 2048
+ollama-1    | 2026-10-31T05:19:45.877408431Z llama_model_loader: - kv  18:                  qwen2.feed_forward_length u32              = 11008
+ollama-1    | 2026-10-31T05:19:45.877411738Z llama_model_loader: - kv  19:                 qwen2.attention.head_count u32              = 16
+ollama-1    | 2026-10-31T05:19:45.877414966Z llama_model_loader: - kv  20:              qwen2.attention.head_count_kv u32              = 2
+ollama-1    | 2026-10-31T05:19:45.877418195Z llama_model_loader: - kv  21:                       qwen2.rope.freq_base f32              = 1000000.000000
+ollama-1    | 2026-10-31T05:19:45.877421460Z llama_model_loader: - kv  22:     qwen2.attention.layer_norm_rms_epsilon f32              = 0.000001
+ollama-1    | 2026-10-31T05:19:45.877424800Z llama_model_loader: - kv  23:                          general.file_type u32              = 15
+ollama-1    | 2026-10-31T05:19:45.877428196Z llama_model_loader: - kv  24:                       tokenizer.ggml.model str              = gpt2
+ollama-1    | 2026-10-31T05:19:45.877431453Z llama_model_loader: - kv  25:                         tokenizer.ggml.pre str              = qwen2
+ollama-1    | 2026-10-31T05:19:45.877434707Z llama_model_loader: - kv  26:                      tokenizer.ggml.tokens arr[str,151936]  = ["!", "\"", "#", "$", "%", "&", "'", ...
+ollama-1    | 2026-10-31T05:19:45.877438910Z llama_model_loader: - kv  27:                  tokenizer.ggml.token_type arr[i32,151936]  = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
+ollama-1    | 2026-10-31T05:19:45.877442410Z llama_model_loader: - kv  28:                      tokenizer.ggml.merges arr[str,151387]  = ["Ġ Ġ", "ĠĠ ĠĠ", "i n", "Ġ t",...
+ollama-1    | 2026-10-31T05:19:45.877446865Z llama_model_loader: - kv  29:                tokenizer.ggml.eos_token_id u32              = 151645
+ollama-1    | 2026-10-31T05:19:45.877450188Z llama_model_loader: - kv  30:            tokenizer.ggml.padding_token_id u32              = 151643
+ollama-1    | 2026-10-31T05:19:45.877453387Z llama_model_loader: - kv  31:                tokenizer.ggml.bos_token_id u32              = 151643
+ollama-1    | 2026-10-31T05:19:45.877456962Z llama_model_loader: - kv  32:               tokenizer.ggml.add_bos_token bool             = false
+ollama-1    | 2026-10-31T05:19:45.877460419Z llama_model_loader: - kv  33:                    tokenizer.chat_template str              = {%- if tools %}\n    {{- '<|im_start|>...
+ollama-1    | 2026-10-31T05:19:45.877464063Z llama_model_loader: - kv  34:               general.quantization_version u32              = 2
+ollama-1    | 2026-10-31T05:19:45.877467393Z llama_model_loader: - type  f32:  181 tensors
+ollama-1    | 2026-10-31T05:19:45.877470644Z llama_model_loader: - type q4_K:  216 tensors
+ollama-1    | 2026-10-31T05:19:45.877474290Z llama_model_loader: - type q6_K:   37 tensors
+ollama-1    | 2026-10-31T05:19:45.877481569Z print_info: file format = GGUF V3 (latest)
+ollama-1    | 2026-10-31T05:19:45.877484863Z print_info: file type   = Q4_K - Medium
+ollama-1    | 2026-10-31T05:19:45.877488020Z print_info: file size   = 1.79 GiB (4.99 BPW) 
+ollama-1    | 2026-10-31T05:19:45.974332134Z load: 0 unused tokens
+ollama-1    | 2026-10-31T05:19:45.976440038Z load: control-looking token: 128247 '</s>' was not control-type; this is probably a bug in the model. its type will be overridden
+ollama-1    | 2026-10-31T05:19:46.012634211Z load: printing all EOG tokens:
+ollama-1    | 2026-10-31T05:19:46.012659900Z load:   - 128247 ('</s>')
+ollama-1    | 2026-10-31T05:19:46.012663942Z load:   - 151643 ('<|endoftext|>')
+ollama-1    | 2026-10-31T05:19:46.012666849Z load:   - 151645 ('<|im_end|>')
+ollama-1    | 2026-10-31T05:19:46.012669610Z load:   - 151662 ('<|fim_pad|>')
+ollama-1    | 2026-10-31T05:19:46.012672316Z load:   - 151663 ('<|repo_name|>')
+ollama-1    | 2026-10-31T05:19:46.012674982Z load:   - 151664 ('<|file_sep|>')
+ollama-1    | 2026-10-31T05:19:46.012936942Z load: special tokens cache size = 23
+ollama-1    | 2026-10-31T05:19:46.048014463Z load: token to piece cache size = 0.9310 MB
+ollama-1    | 2026-10-31T05:19:46.048039783Z print_info: arch                  = qwen2
+ollama-1    | 2026-10-31T05:19:46.048044310Z print_info: vocab_only            = 0
+ollama-1    | 2026-10-31T05:19:46.048047924Z print_info: no_alloc              = 0
+ollama-1    | 2026-10-31T05:19:46.048051260Z print_info: n_ctx_train           = 32768
+ollama-1    | 2026-10-31T05:19:46.048054749Z print_info: n_embd_inp            = 2048
+ollama-1    | 2026-10-31T05:19:46.048058063Z print_info: n_embd                = 2048
+ollama-1    | 2026-10-31T05:19:46.048061454Z print_info: n_embd_out            = 2048
+ollama-1    | 2026-10-31T05:19:46.048064789Z print_info: n_layer               = 36
+ollama-1    | 2026-10-31T05:19:46.048068048Z print_info: n_layer_all           = 36
+ollama-1    | 2026-10-31T05:19:46.048071369Z print_info: n_head                = 16
+ollama-1    | 2026-10-31T05:19:46.048074655Z print_info: n_head_kv             = 2
+ollama-1    | 2026-10-31T05:19:46.048077942Z print_info: n_rot                 = 128
+ollama-1    | 2026-10-31T05:19:46.048081340Z print_info: n_swa                 = 0
+ollama-1    | 2026-10-31T05:19:46.048084651Z print_info: is_swa_any            = 0
+ollama-1    | 2026-10-31T05:19:46.048088205Z print_info: non_causal_type       = 0
+ollama-1    | 2026-10-31T05:19:46.048091969Z print_info: n_embd_head_k         = 128
+ollama-1    | 2026-10-31T05:19:46.048095266Z print_info: n_embd_head_v         = 128
+ollama-1    | 2026-10-31T05:19:46.048098653Z print_info: n_gqa                 = 8
+ollama-1    | 2026-10-31T05:19:46.048101915Z print_info: n_embd_k_gqa          = 256
+ollama-1    | 2026-10-31T05:19:46.048105235Z print_info: n_embd_v_gqa          = 256
+ollama-1    | 2026-10-31T05:19:46.048108503Z print_info: f_norm_eps            = 0.0e+00
+ollama-1    | 2026-10-31T05:19:46.048111816Z print_info: f_norm_rms_eps        = 1.0e-06
+ollama-1    | 2026-10-31T05:19:46.048128245Z print_info: f_clamp_kqv           = 0.0e+00
+ollama-1    | 2026-10-31T05:19:46.048132360Z print_info: f_max_alibi_bias      = 0.0e+00
+ollama-1    | 2026-10-31T05:19:46.048135706Z print_info: f_logit_scale         = 0.0e+00
+ollama-1    | 2026-10-31T05:19:46.048139008Z print_info: f_attn_scale          = 0.0e+00
+ollama-1    | 2026-10-31T05:19:46.048142300Z print_info: f_attn_value_scale    = 0.0000
+ollama-1    | 2026-10-31T05:19:46.048145613Z print_info: n_ff                  = 11008
+ollama-1    | 2026-10-31T05:19:46.048148904Z print_info: n_expert              = 0
+ollama-1    | 2026-10-31T05:19:46.048152083Z print_info: n_expert_used         = 0
+ollama-1    | 2026-10-31T05:19:46.048155351Z print_info: n_expert_groups       = 0
+ollama-1    | 2026-10-31T05:19:46.048158703Z print_info: n_group_used          = 0
+ollama-1    | 2026-10-31T05:19:46.048162053Z print_info: causal attn           = 1
+ollama-1    | 2026-10-31T05:19:46.048165318Z print_info: pooling type          = -1
+ollama-1    | 2026-10-31T05:19:46.048168548Z print_info: rope type             = 2
+ollama-1    | 2026-10-31T05:19:46.048171844Z print_info: rope scaling          = linear
+ollama-1    | 2026-10-31T05:19:46.048175188Z print_info: freq_base_train       = 1000000.0
+ollama-1    | 2026-10-31T05:19:46.048178425Z print_info: freq_scale_train      = 1
+ollama-1    | 2026-10-31T05:19:46.048181771Z print_info: n_ctx_orig_yarn       = 32768
+ollama-1    | 2026-10-31T05:19:46.048185094Z print_info: rope_yarn_log_mul     = 0.0000
+ollama-1    | 2026-10-31T05:19:46.048188344Z print_info: rope_finetuned        = unknown
+ollama-1    | 2026-10-31T05:19:46.048191617Z print_info: model type            = 3B
+ollama-1    | 2026-10-31T05:19:46.048194806Z print_info: model params          = 3.09 B
+ollama-1    | 2026-10-31T05:19:46.048197969Z print_info: general.name          = Qwen2.5 3B Instruct
+ollama-1    | 2026-10-31T05:19:46.048201408Z print_info: vocab type            = BPE
+ollama-1    | 2026-10-31T05:19:46.048204701Z print_info: n_vocab               = 151936
+ollama-1    | 2026-10-31T05:19:46.048208023Z print_info: n_merges              = 151387
+ollama-1    | 2026-10-31T05:19:46.048211342Z print_info: BOS token             = 151643 '<|endoftext|>'
+ollama-1    | 2026-10-31T05:19:46.048216147Z print_info: EOS token             = 151645 '<|im_end|>'
+ollama-1    | 2026-10-31T05:19:46.048219886Z print_info: EOT token             = 151645 '<|im_end|>'
+ollama-1    | 2026-10-31T05:19:46.048223361Z print_info: PAD token             = 151643 '<|endoftext|>'
+ollama-1    | 2026-10-31T05:19:46.048226798Z print_info: LF token              = 198 'Ċ'
+ollama-1    | 2026-10-31T05:19:46.048230603Z print_info: FIM PRE token         = 151659 '<|fim_prefix|>'
+ollama-1    | 2026-10-31T05:19:46.048234093Z print_info: FIM SUF token         = 151661 '<|fim_suffix|>'
+ollama-1    | 2026-10-31T05:19:46.048237613Z print_info: FIM MID token         = 151660 '<|fim_middle|>'
+ollama-1    | 2026-10-31T05:19:46.048241019Z print_info: FIM PAD token         = 151662 '<|fim_pad|>'
+ollama-1    | 2026-10-31T05:19:46.048244496Z print_info: FIM REP token         = 151663 '<|repo_name|>'
+ollama-1    | 2026-10-31T05:19:46.048252280Z print_info: FIM SEP token         = 151664 '<|file_sep|>'
+ollama-1    | 2026-10-31T05:19:46.048256105Z print_info: EOG token             = 128247 '</s>'
+ollama-1    | 2026-10-31T05:19:46.048259417Z print_info: EOG token             = 151643 '<|endoftext|>'
+ollama-1    | 2026-10-31T05:19:46.048262860Z print_info: EOG token             = 151645 '<|im_end|>'
+ollama-1    | 2026-10-31T05:19:46.048266347Z print_info: EOG token             = 151662 '<|fim_pad|>'
+ollama-1    | 2026-10-31T05:19:46.048269761Z print_info: EOG token             = 151663 '<|repo_name|>'
+ollama-1    | 2026-10-31T05:19:46.048273273Z print_info: EOG token             = 151664 '<|file_sep|>'
+ollama-1    | 2026-10-31T05:19:46.048276815Z print_info: max token length      = 256
+ollama-1    | 2026-10-31T05:19:46.048280246Z load_tensors: loading model tensors, this can take a while... (load_mode = none)
+ollama-1    | 2026-10-31T05:19:46.051126655Z load_tensors:          CPU model buffer size =   569.19 MiB
+ollama-1    | 2026-10-31T05:19:46.051152755Z load_tensors:   CPU_REPACK model buffer size =  1265.62 MiB
+ollama-1    | 2026-10-31T05:19:49.412402008Z cmn  common_init_: added </s> logit bias = -inf
+ollama-1    | 2026-10-31T05:19:49.412701437Z cmn  common_init_: added <|endoftext|> logit bias = -inf
+ollama-1    | 2026-10-31T05:19:49.412712706Z cmn  common_init_: added <|im_end|> logit bias = -inf
+ollama-1    | 2026-10-31T05:19:49.412716722Z cmn  common_init_: added <|fim_pad|> logit bias = -inf
+ollama-1    | 2026-10-31T05:19:49.412719972Z cmn  common_init_: added <|repo_name|> logit bias = -inf
+ollama-1    | 2026-10-31T05:19:49.412723136Z cmn  common_init_: added <|file_sep|> logit bias = -inf
+ollama-1    | 2026-10-31T05:19:49.413402178Z llama_context: constructing llama_context
+ollama-1    | 2026-10-31T05:19:49.413410955Z llama_context: n_seq_max             = 1
+ollama-1    | 2026-10-31T05:19:49.413414498Z llama_context: n_ctx                 = 4096
+ollama-1    | 2026-10-31T05:19:49.413417450Z llama_context: n_ctx_seq             = 4096
+ollama-1    | 2026-10-31T05:19:49.413420380Z llama_context: n_batch               = 512
+ollama-1    | 2026-10-31T05:19:49.413423211Z llama_context: n_ubatch              = 512
+ollama-1    | 2026-10-31T05:19:49.413426033Z llama_context: causal_attn           = 1
+ollama-1    | 2026-10-31T05:19:49.413428847Z llama_context: flash_attn            = auto
+ollama-1    | 2026-10-31T05:19:49.413431680Z llama_context: kv_unified            = false
+ollama-1    | 2026-10-31T05:19:49.413434525Z llama_context: freq_base             = 1000000.0
+ollama-1    | 2026-10-31T05:19:49.413510294Z llama_context: freq_scale            = 1
+ollama-1    | 2026-10-31T05:19:49.413518766Z llama_context: n_rs_seq              = 0
+ollama-1    | 2026-10-31T05:19:49.413522267Z llama_context: n_outputs_max         = 1
+ollama-1    | 2026-10-31T05:19:49.413525206Z llama_context: n_outputs_max_per_seq = 1
+ollama-1    | 2026-10-31T05:19:49.413528088Z llama_context: n_ctx_seq (4096) < n_ctx_train (32768) -- the full capacity of the model will not be utilized
+ollama-1    | 2026-10-31T05:19:49.413545450Z llama_context:        CPU  output buffer size =     0.58 MiB
+ollama-1    | 2026-10-31T05:19:49.495531829Z llama_kv_cache:        CPU KV buffer size =   144.00 MiB
+ollama-1    | 2026-10-31T05:19:49.495556850Z llama_kv_cache: size =  144.00 MiB (  4096 cells,  36 layers,  1/1 seqs), K (f16):   72.00 MiB, V (f16):   72.00 MiB
+ollama-1    | 2026-10-31T05:19:49.495560400Z llama_kv_cache: n_rot_k = 0, n_embd_head_k_all = 128
+ollama-1    | 2026-10-31T05:19:49.495563127Z llama_kv_cache: n_rot_v = 0, n_embd_head_k_all = 128
+ollama-1    | 2026-10-31T05:19:49.495565783Z sched_reserve: reserving ...
+ollama-1    | 2026-10-31T05:19:49.496493532Z resolve_fused_ops: Flash Attention enabled
+ollama-1    | 2026-10-31T05:19:49.496505341Z resolve_fused_ops: resolving fused DeepSeek V4 HC support:
+ollama-1    | 2026-10-31T05:19:49.497204834Z resolve_fused_ops: fused DeepSeek V4 HC pre enabled
+ollama-1    | 2026-10-31T05:19:49.497908928Z resolve_fused_ops: fused DeepSeek V4 HC comb enabled
+ollama-1    | 2026-10-31T05:19:49.498562434Z resolve_fused_ops: fused DeepSeek V4 HC post enabled
+ollama-1    | 2026-10-31T05:19:49.501610056Z sched_reserve:        CPU compute buffer size =    88.52 MiB
+ollama-1    | 2026-10-31T05:19:49.501619439Z sched_reserve: graph: nodes = 1233, splits = 1, input objects = 4, input tensors = 9
+ollama-1    | 2026-10-31T05:19:49.501622771Z sched_reserve: reserve took 6.23 ms, sched copies = 1
+ollama-1    | 2026-10-31T05:19:49.501625374Z cmn          init: llama threadpool init, n_threads = 4
+ollama-1    | 2026-10-31T05:19:49.501792720Z cmn  common_init_: warming up the model with an empty run - please wait ... (--no-warmup to disable)
+ollama-1    | 2026-10-31T05:19:49.798093210Z srv    load_model: initializing, n_slots = 1, n_ctx_slot = 4096, kv_unified = 'false'
+ollama-1    | 2026-10-31T05:19:49.798121493Z spec common_specu: no implementations specified for speculative decoding
+ollama-1    | 2026-10-31T05:19:49.798126184Z slot   load_model: id  0 | task -1 | new slot, n_ctx = 4096
+ollama-1    | 2026-10-31T05:19:49.798129645Z srv    load_model: prompt cache is enabled, size limit: 8192 MiB
+ollama-1    | 2026-10-31T05:19:49.798132903Z srv    load_model: use `--cache-ram 0` to disable the prompt cache
+ollama-1    | 2026-10-31T05:19:49.798136097Z srv    load_model: for more info see https://github.com/ggml-org/llama.cpp/pull/16391
+ollama-1    | 2026-10-31T05:19:49.798139300Z srv    load_model: context checkpoints enabled, max = 32, min spacing = 8192
+ollama-1    | 2026-10-31T05:19:49.798142584Z srv          init: idle slots will be saved to prompt cache upon starting a new task
+ollama-1    | 2026-10-31T05:19:49.815327016Z srv          init: init: chat template, example_format: '<|im_start|>system
+ollama-1    | 2026-10-31T05:19:49.815350099Z You are a helpful assistant<|im_end|>
+ollama-1    | 2026-10-31T05:19:49.815353740Z <|im_start|>user
+ollama-1    | 2026-10-31T05:19:49.815356624Z Hello<|im_end|>
+ollama-1    | 2026-10-31T05:19:49.815359389Z <|im_start|>assistant
+ollama-1    | 2026-10-31T05:19:49.815362111Z Hi there<|im_end|>
+ollama-1    | 2026-10-31T05:19:49.815364824Z <|im_start|>user
+ollama-1    | 2026-10-31T05:19:49.815367509Z How are you?<|im_end|>
+ollama-1    | 2026-10-31T05:19:49.815380462Z <|im_start|>assistant
+ollama-1    | 2026-10-31T05:19:49.815383522Z '
+ollama-1    | 2026-10-31T05:19:49.815386233Z srv          init: init: chat template, thinking = 0
+ollama-1    | 2026-10-31T05:19:49.815389083Z srv          init: preserve_reasoning kwarg: not supported by template
+ollama-1    | 2026-10-31T05:19:49.815391889Z srv  server_run_i: model loaded
+ollama-1    | 2026-10-31T05:19:49.815394558Z srv  server_on_li: listening on http://127.0.0.1:39731
+ollama-1    | 2026-10-31T05:19:49.815399719Z srv  update_slots: all slots are idle
+ollama-1    | 2026-10-31T05:19:49.821115854Z time=2026-10-31T05:19:49.821Z level=INFO source=llama_server.go:1418 msg="llama-server started in 4.27 seconds"
+ollama-1    | 2026-10-31T05:19:49.821208079Z time=2026-10-31T05:19:49.821Z level=INFO source=images.go:431 msg="template selection" model=registry.ollama.ai/library/qwen2.5:3b selected=go_template renderer="" parser="" go_template="[completion tools]" chat_template="[tools completion]" harmony=null renderer_parser=null
+ollama-1    | 2026-10-31T05:19:49.821221788Z time=2026-10-31T05:19:49.821Z level=INFO source=sched.go:782 msg="loaded runners" count=1
+ollama-1    | 2026-10-31T05:19:49.821263262Z time=2026-10-31T05:19:49.821Z level=INFO source=llama_server.go:1351 msg="waiting for llama-server to start responding"
+ollama-1    | 2026-10-31T05:19:49.821592664Z time=2026-10-31T05:19:49.821Z level=INFO source=llama_server.go:1418 msg="llama-server started in 4.27 seconds"
+ollama-1    | 2026-10-31T05:19:49.823814829Z srv  server_strea: conv_id= (empty=1)
+ollama-1    | 2026-10-31T05:19:49.824153778Z slot get_availabl: id  0 | task -1 |  - skipping, slot is empty
+ollama-1    | 2026-10-31T05:19:49.824161609Z slot get_availabl: id  0 | task -1 | selected slot by LRU, n_tokens = 0, t_last = -1
+ollama-1    | 2026-10-31T05:19:49.824165051Z srv  get_availabl: updating prompt cache
+ollama-1    | 2026-10-31T05:19:49.824581341Z srv          load:  - looking for better prompt, base f_keep = -1.000, f_sim = 0.000
+ollama-1    | 2026-10-31T05:19:49.824604117Z srv        update:  - cache state: 0 prompts, 0.000 MiB (limits: 8192.000 MiB, 4096 tokens, 8589934592 est)
+ollama-1    | 2026-10-31T05:19:49.824608952Z srv  get_availabl: prompt cache update took 0.22 ms
+ollama-1    | 2026-10-31T05:19:49.824612472Z slot launch_slot_: id  0 | task -1 | sampler chain: logits -> ?penalties -> ?dry -> ?top-n-sigma -> top-k -> ?typical -> top-p -> ?min-p -> ?xtc -> temp-ext -> dist 
+ollama-1    | 2026-10-31T05:19:49.824616849Z slot launch_slot_: id  0 | task -1 | sampler params: 
+ollama-1    | 2026-10-31T05:19:49.824620227Z 	repeat_last_n = 64, repeat_penalty = 1.000, frequency_penalty = 0.000, presence_penalty = 0.000
+ollama-1    | 2026-10-31T05:19:49.824623709Z 	dry_multiplier = 0.000, dry_base = 1.750, dry_allowed_length = 2, dry_penalty_last_n = 64
+ollama-1    | 2026-10-31T05:19:49.824627288Z 	top_k = 40, top_p = 0.900, min_p = 0.000, xtc_probability = 0.000, xtc_threshold = 0.100, typical_p = 1.000, top_n_sigma = -1.000, temp = 0.800
+ollama-1    | 2026-10-31T05:19:49.824630447Z 	mirostat = 0, mirostat_lr = 0.100, mirostat_ent = 5.000, adaptive_target = -1.000, adaptive_decay = 0.900
+ollama-1    | 2026-10-31T05:19:49.824633980Z slot launch_slot_: id  0 | task 0 | processing task, is_child = 0
+ollama-1    | 2026-10-31T05:19:49.824649297Z slot   operator(): id  0 | task 0 | new prompt, n_ctx_slot = 4096, n_keep = 4, task.n_tokens = 30
+ollama-1    | 2026-10-31T05:19:49.824653304Z slot   operator(): id  0 | task 0 | cached n_tokens = 0, memory_seq_rm [0, end)
+ollama-1    | 2026-10-31T05:19:49.824656850Z slot init_sampler: id  0 | task 0 | init sampler, took 0.01 ms, tokens: text = 30, total = 30
+ollama-1    | 2026-10-31T05:19:50.837782224Z slot print_timing: id  0 | task 0 | prompt eval time =    1013.16 ms /    30 tokens (   33.77 ms per token,    29.61 tokens per second)
+ollama-1    | 2026-10-31T05:19:50.837812487Z slot print_timing: id  0 | task 0 |        eval time =       0.00 ms /     1 tokens (    0.00 ms per token,     0.00 tokens per second)
+ollama-1    | 2026-10-31T05:19:50.837816887Z slot print_timing: id  0 | task 0 |       total time =    1013.16 ms /    31 tokens
+ollama-1    | 2026-10-31T05:19:50.837820208Z slot print_timing: id  0 | task 0 |    graphs reused =          1
+ollama-1    | 2026-10-31T05:19:50.837823372Z slot print_timing: id  0 | task 0 |   graph reallocs =          0    /     0        (same size) / (changed size)
+ollama-1    | 2026-10-31T05:19:50.837826502Z slot      release: id  0 | task 0 | stop processing: n_tokens = 30, truncated = 0
+ollama-1    | 2026-10-31T05:19:50.837829554Z srv  update_slots: all slots are idle
+ollama-1    | 2026-10-31T05:19:50.838259311Z [GIN] 2026/10/31 - 05:19:50 | 200 |    5.33s |    172.29.234.5 | POST     "/api/chat"
+ollama-1    | 2026-10-31T05:19:57.266009807Z [GIN] 2026/10/31 - 05:19:57 | 200 | 23.789µs |       127.0.0.1 | HEAD     "/"
+ollama-1    | 2026-10-31T05:19:57.268089347Z [GIN] 2026/10/31 - 05:19:57 | 200 |   1.82ms |       127.0.0.1 | GET      "/api/tags"
+ollama-1    | 2026-10-31T05:20:08.308253164Z [GIN] 2026/10/31 - 05:20:08 | 200 |   1.37ms |    172.29.234.5 | GET      "/api/tags"
+ollama-1    | 2026-10-31T05:20:08.401088274Z srv  server_strea: conv_id= (empty=1)
+ollama-1    | 2026-10-31T05:20:08.408468491Z slot get_availabl: id  0 | task -1 |  - checking sim = 0.003 (3/1027) > 0.100
+ollama-1    | 2026-10-31T05:20:08.408499210Z slot get_availabl: id  0 | task -1 | selected slot by LRU, n_tokens = 30, t_last = 34872627993
+ollama-1    | 2026-10-31T05:20:08.408505701Z srv  get_availabl: updating prompt cache
+ollama-1    | 2026-10-31T05:20:08.408512676Z srv   prompt_save:  - saving prompt with length 30, total state size = 1.056 MiB (draft: 0.000 MiB)
+ollama-1    | 2026-10-31T05:20:08.408814442Z srv          load:  - looking for better prompt, base f_keep = 0.100, f_sim = 0.003
+ollama-1    | 2026-10-31T05:20:08.408826081Z srv          load:    - prompt with length      30, lcp =       3, f_keep = 0.100, f_sim = 0.003
+ollama-1    | 2026-10-31T05:20:08.408831452Z srv        update:  - cache state: 1 prompts, 1.056 MiB (limits: 8192.000 MiB, 4096 tokens, 232752 est)
+ollama-1    | 2026-10-31T05:20:08.408836479Z srv        update:    - prompt 0x29ba0ca0:      30 tokens, checkpoints:  0,     1.056 MiB
+ollama-1    | 2026-10-31T05:20:08.408841286Z srv  get_availabl: prompt cache update took 0.43 ms
+ollama-1    | 2026-10-31T05:20:08.409987679Z slot launch_slot_: id  0 | task -1 | sampler chain: logits -> ?penalties -> ?dry -> ?top-n-sigma -> top-k -> ?typical -> top-p -> ?min-p -> ?xtc -> temp-ext -> dist 
+ollama-1    | 2026-10-31T05:20:08.410014315Z slot launch_slot_: id  0 | task -1 | sampler params: 
+ollama-1    | 2026-10-31T05:20:08.410034584Z 	repeat_last_n = 64, repeat_penalty = 1.000, frequency_penalty = 0.000, presence_penalty = 0.000
+ollama-1    | 2026-10-31T05:20:08.410039365Z 	dry_multiplier = 0.000, dry_base = 1.750, dry_allowed_length = 2, dry_penalty_last_n = 64
+ollama-1    | 2026-10-31T05:20:08.410043042Z 	top_k = 40, top_p = 0.900, min_p = 0.000, xtc_probability = 0.000, xtc_threshold = 0.100, typical_p = 1.000, top_n_sigma = -1.000, temp = 0.300
+ollama-1    | 2026-10-31T05:20:08.410046839Z 	mirostat = 0, mirostat_lr = 0.100, mirostat_ent = 5.000, adaptive_target = -1.000, adaptive_decay = 0.900
+ollama-1    | 2026-10-31T05:20:08.410050513Z slot launch_slot_: id  0 | task 2 | processing task, is_child = 0
+ollama-1    | 2026-10-31T05:20:08.410054028Z slot   operator(): id  0 | task 2 | new prompt, n_ctx_slot = 4096, n_keep = 4, task.n_tokens = 1027
+ollama-1    | 2026-10-31T05:20:08.410057614Z slot   operator(): id  0 | task 2 | cached n_tokens = 3, memory_seq_rm [3, end)
+ollama-1    | 2026-10-31T05:20:22.299287460Z slot print_timing: id  0 | task 2 | prompt processing, n_tokens =    512, progress = 0.50, t =  13.89 s / 36.86 tokens per second
+ollama-1    | 2026-10-31T05:20:22.299318024Z slot   operator(): id  0 | task 2 | cached n_tokens = 515, memory_seq_rm [515, end)
+ollama-1    | 2026-10-31T05:20:22.299397941Z slot init_sampler: id  0 | task 2 | init sampler, took 0.18 ms, tokens: text = 1027, total = 1027
+ollama-1    | 2026-10-31T05:20:40.017506740Z slot print_timing: id  0 | task 2 | prompt eval time =   30340.12 ms /  1024 tokens (   29.63 ms per token,    33.75 tokens per second)
+ollama-1    | 2026-10-31T05:20:40.017537081Z slot print_timing: id  0 | task 2 |        eval time =    1266.88 ms /    11 tokens (  126.69 ms per token,     7.89 tokens per second)
+ollama-1    | 2026-10-31T05:20:40.017542212Z slot print_timing: id  0 | task 2 |       total time =   31607.01 ms /  1035 tokens
+ollama-1    | 2026-10-31T05:20:40.017546051Z slot print_timing: id  0 | task 2 |    graphs reused =         10
+ollama-1    | 2026-10-31T05:20:40.017549770Z slot print_timing: id  0 | task 2 |   graph reallocs =          0    /     0        (same size) / (changed size)
+ollama-1    | 2026-10-31T05:20:40.017553463Z slot      release: id  0 | task 2 | stop processing: n_tokens = 1037, truncated = 0
+ollama-1    | 2026-10-31T05:20:40.017557056Z srv  update_slots: all slots are idle
+ollama-1    | 2026-10-31T05:20:40.017708324Z [GIN] 2026/10/31 - 05:20:40 | 200 |   31.63s |    172.29.234.5 | POST     "/api/chat"
+ollama-1    | 2026-10-31T05:20:40.796808941Z [GIN] 2026/10/31 - 05:20:40 | 200 | 543.85µs |    172.29.234.3 | POST     "/api/generate"
+ollama-1    | 2026-10-31T05:21:33.270060907Z time=2026-10-31T05:21:33.269Z level=INFO source=sched.go:1183 msg="disabling mmap for llama-server load by default" model=/root/.ollama/models/blobs/sha256-5ee4f07cdb9beadbbb293e85803c569b01bd37ed059d2715faa7bb405f31caa6 reason=cpu
+ollama-1    | 2026-10-31T05:21:33.270143190Z time=2026-10-31T05:21:33.270Z level=INFO source=server.go:107 msg="using llama-server for model" model=/root/.ollama/models/blobs/sha256-5ee4f07cdb9beadbbb293e85803c569b01bd37ed059d2715faa7bb405f31caa6
+ollama-1    | 2026-10-31T05:21:33.273203565Z time=2026-10-31T05:21:33.273Z level=INFO source=llama_server.go:467 msg="starting llama-server" cmd="/usr/lib/ollama/llama-server --model /root/.ollama/models/blobs/sha256-5ee4f07cdb9beadbbb293e85803c569b01bd37ed059d2715faa7bb405f31caa6 --port 37791 --host 127.0.0.1 --no-webui --offline -c 4096 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --load-mode none --flash-attn auto -b 512 -ub 512 --context-shift --keep 4"
+ollama-1    | 2026-10-31T05:21:33.273725179Z time=2026-10-31T05:21:33.273Z level=INFO source=sched.go:658 msg="system memory" total="3.4 GiB" free="3.4 GiB" free_swap="9.8 MiB"
+ollama-1    | 2026-10-31T05:21:33.273737775Z time=2026-10-31T05:21:33.273Z level=INFO source=llama_server.go:1098 msg="loading model via llama-server" model=/root/.ollama/models/blobs/sha256-5ee4f07cdb9beadbbb293e85803c569b01bd37ed059d2715faa7bb405f31caa6
+ollama-1    | 2026-10-31T05:21:33.273741406Z time=2026-10-31T05:21:33.273Z level=INFO source=llama_server.go:1351 msg="waiting for llama-server to start responding"
+ollama-1    | 2026-10-31T05:21:33.274979780Z time=2026-10-31T05:21:33.274Z level=INFO source=llama_server.go:1406 msg="waiting for llama-server to become available" status="llm server not responding"
+ollama-1    | 2026-10-31T05:21:33.305506468Z srv  llama_server: initializing ...
+ollama-1    | 2026-10-31T05:21:33.329474680Z load_backend: loaded CPU backend from /usr/lib/ollama/libggml-cpu-haswell.so
+ollama-1    | 2026-10-31T05:21:33.329508599Z cmn  common_param: common_params_print_info: build 1 (39febd2ad) with GNU 13.3.1 for Linux x86_64
+ollama-1    | 2026-10-31T05:21:33.329512921Z cmn  common_param: common_params_print_info: verbosity = 4 (adjust with the `-lv N` CLI arg)
+ollama-1    | 2026-10-31T05:21:33.329517030Z cmn  common_param: device_info:
+ollama-1    | 2026-10-31T05:21:33.329520727Z cmn  common_param:   - CPU     : Intel(R) Core(TM) i7-8650U CPU @ 1.90GHz (15221 MiB, 15221 MiB free)
+ollama-1    | 2026-10-31T05:21:33.329550422Z cmn  common_param: system_info: n_threads = 4 (n_threads_batch = 4) / 8 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | LLAMAFILE = 1 | REPACK = 1 | 
+ollama-1    | 2026-10-31T05:21:33.330184201Z srv  init_listene: The UI is disabled
+ollama-1    | 2026-10-31T05:21:33.330194107Z srv  init_listene: Use --ui/--no-ui (or deprecated --webui/--no-webui) to enable/disable
+ollama-1    | 2026-10-31T05:21:33.330410464Z srv          init: using 7 threads for HTTP server
+ollama-1    | 2026-10-31T05:21:33.330824127Z srv  server_setup: security: no API key is set and CORS allows all origins (see https://github.com/ggml-org/llama.cpp/pull/25655)
+ollama-1    | 2026-10-31T05:21:33.332399244Z srv    load_model: loading model '/root/.ollama/models/blobs/sha256-5ee4f07cdb9beadbbb293e85803c569b01bd37ed059d2715faa7bb405f31caa6'
+ollama-1    | 2026-10-31T05:21:33.332409283Z srv    load_model: local path '/root/.ollama/models/blobs/sha256-5ee4f07cdb9beadbbb293e85803c569b01bd37ed059d2715faa7bb405f31caa6'
+ollama-1    | 2026-10-31T05:21:33.332412803Z cmn  common_fit_a: fitting params to device memory ...
+ollama-1    | 2026-10-31T05:21:33.332415593Z cmn  common_fit_a: (for bugs during this step try to reproduce them with -fit off, or provide --verbose logs if the bug only occurs with -fit on)
+ollama-1    | 2026-10-31T05:21:33.332865868Z common_params_fit_impl: getting device memory data for initial parameters:
+ollama-1    | 2026-10-31T05:21:33.525930677Z time=2026-10-31T05:21:33.525Z level=INFO source=llama_server.go:1406 msg="waiting for llama-server to become available" status="llm server loading model"
+ollama-1    | 2026-10-31T05:21:33.564270156Z common_memory_breakdown_print: | memory breakdown [MiB] | total   free    self   model   context   compute    unaccounted |
+ollama-1    | 2026-10-31T05:21:33.564300661Z common_memory_breakdown_print: |   - Host               |                  801 =   569 +     144 +      88                |
+ollama-1    | 2026-10-31T05:21:33.564304195Z common_memory_breakdown_print: |   - CPU_REPACK         |                 1265 =  1265 +       0 +       0                |
+ollama-1    | 2026-10-31T05:21:33.603066302Z common_params_fit_impl: projected to use 801 MiB of host memory vs. 15221 MiB of total host memory
+ollama-1    | 2026-10-31T05:21:33.603099061Z common_params_fit_impl: will leave 14419 >= 1024 MiB of system memory, no changes needed
+ollama-1    | 2026-10-31T05:21:33.603103547Z common_fit_params: successfully fit params to free device memory
+ollama-1    | 2026-10-31T05:21:33.603106715Z common_fit_params: fitting params to free memory took 0.27 seconds
+ollama-1    | 2026-10-31T05:21:33.649479539Z llama_model_loader: loaded meta data with 35 key-value pairs and 434 tensors from /root/.ollama/models/blobs/sha256-5ee4f07cdb9beadbbb293e85803c569b01bd37ed059d2715faa7bb405f31caa6 (version GGUF V3 (latest))
+ollama-1    | 2026-10-31T05:21:33.649504942Z llama_model_loader: Dumping metadata keys/values. Note: KV overrides do not apply in this output.
+ollama-1    | 2026-10-31T05:21:33.649510043Z llama_model_loader: - kv   0:                       general.architecture str              = qwen2
+ollama-1    | 2026-10-31T05:21:33.649514555Z llama_model_loader: - kv   1:                               general.type str              = model
+ollama-1    | 2026-10-31T05:21:33.649517684Z llama_model_loader: - kv   2:                               general.name str              = Qwen2.5 3B Instruct
+ollama-1    | 2026-10-31T05:21:33.649520372Z llama_model_loader: - kv   3:                           general.finetune str              = Instruct
+ollama-1    | 2026-10-31T05:21:33.649523033Z llama_model_loader: - kv   4:                           general.basename str              = Qwen2.5
+ollama-1    | 2026-10-31T05:21:33.649525725Z llama_model_loader: - kv   5:                         general.size_label str              = 3B
+ollama-1    | 2026-10-31T05:21:33.649528386Z llama_model_loader: - kv   6:                            general.license str              = other
+ollama-1    | 2026-10-31T05:21:33.649531068Z llama_model_loader: - kv   7:                       general.license.name str              = qwen-research
+ollama-1    | 2026-10-31T05:21:33.649533787Z llama_model_loader: - kv   8:                       general.license.link str              = https://huggingface.co/Qwen/Qwen2.5-3...
+ollama-1    | 2026-10-31T05:21:33.649536557Z llama_model_loader: - kv   9:                   general.base_model.count u32              = 1
+ollama-1    | 2026-10-31T05:21:33.649539250Z llama_model_loader: - kv  10:                  general.base_model.0.name str              = Qwen2.5 3B
+ollama-1    | 2026-10-31T05:21:33.649541947Z llama_model_loader: - kv  11:          general.base_model.0.organization str              = Qwen
+ollama-1    | 2026-10-31T05:21:33.649544929Z llama_model_loader: - kv  12:              general.base_model.0.repo_url str              = https://huggingface.co/Qwen/Qwen2.5-3B
+ollama-1    | 2026-10-31T05:21:33.649547684Z llama_model_loader: - kv  13:                               general.tags arr[str,2]       = ["chat", "text-generation"]
+ollama-1    | 2026-10-31T05:21:33.649550676Z llama_model_loader: - kv  14:                          general.languages arr[str,1]       = ["en"]
+ollama-1    | 2026-10-31T05:21:33.649565038Z llama_model_loader: - kv  15:                          qwen2.block_count u32              = 36
+ollama-1    | 2026-10-31T05:21:33.649569234Z llama_model_loader: - kv  16:                       qwen2.context_length u32              = 32768
+ollama-1    | 2026-10-31T05:21:33.649571957Z llama_model_loader: - kv  17:                     qwen2.embedding_length u32              = 2048
+ollama-1    | 2026-10-31T05:21:33.649574616Z llama_model_loader: - kv  18:                  qwen2.feed_forward_length u32              = 11008
+ollama-1    | 2026-10-31T05:21:33.649577286Z llama_model_loader: - kv  19:                 qwen2.attention.head_count u32              = 16
+ollama-1    | 2026-10-31T05:21:33.649579949Z llama_model_loader: - kv  20:              qwen2.attention.head_count_kv u32              = 2
+ollama-1    | 2026-10-31T05:21:33.649582605Z llama_model_loader: - kv  21:                       qwen2.rope.freq_base f32              = 1000000.000000
+ollama-1    | 2026-10-31T05:21:33.649591813Z llama_model_loader: - kv  22:     qwen2.attention.layer_norm_rms_epsilon f32              = 0.000001
+ollama-1    | 2026-10-31T05:21:33.649598094Z llama_model_loader: - kv  23:                          general.file_type u32              = 15
+ollama-1    | 2026-10-31T05:21:33.649601801Z llama_model_loader: - kv  24:                       tokenizer.ggml.model str              = gpt2
+ollama-1    | 2026-10-31T05:21:33.649604328Z llama_model_loader: - kv  25:                         tokenizer.ggml.pre str              = qwen2
+ollama-1    | 2026-10-31T05:21:33.649606568Z llama_model_loader: - kv  26:                      tokenizer.ggml.tokens arr[str,151936]  = ["!", "\"", "#", "$", "%", "&", "'", ...
+ollama-1    | 2026-10-31T05:21:33.649609467Z llama_model_loader: - kv  27:                  tokenizer.ggml.token_type arr[i32,151936]  = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
+ollama-1    | 2026-10-31T05:21:33.649611770Z llama_model_loader: - kv  28:                      tokenizer.ggml.merges arr[str,151387]  = ["Ġ Ġ", "ĠĠ ĠĠ", "i n", "Ġ t",...
+ollama-1    | 2026-10-31T05:21:33.649614992Z llama_model_loader: - kv  29:                tokenizer.ggml.eos_token_id u32              = 151645
+ollama-1    | 2026-10-31T05:21:33.649617192Z llama_model_loader: - kv  30:            tokenizer.ggml.padding_token_id u32              = 151643
+ollama-1    | 2026-10-31T05:21:33.649619392Z llama_model_loader: - kv  31:                tokenizer.ggml.bos_token_id u32              = 151643
+ollama-1    | 2026-10-31T05:21:33.649621585Z llama_model_loader: - kv  32:               tokenizer.ggml.add_bos_token bool             = false
+ollama-1    | 2026-10-31T05:21:33.649623816Z llama_model_loader: - kv  33:                    tokenizer.chat_template str              = {%- if tools %}\n    {{- '<|im_start|>...
+ollama-1    | 2026-10-31T05:21:33.649626301Z llama_model_loader: - kv  34:               general.quantization_version u32              = 2
+ollama-1    | 2026-10-31T05:21:33.649628531Z llama_model_loader: - type  f32:  181 tensors
+ollama-1    | 2026-10-31T05:21:33.649630692Z llama_model_loader: - type q4_K:  216 tensors
+ollama-1    | 2026-10-31T05:21:33.649633360Z llama_model_loader: - type q6_K:   37 tensors
+ollama-1    | 2026-10-31T05:21:33.649635546Z print_info: file format = GGUF V3 (latest)
+ollama-1    | 2026-10-31T05:21:33.649641039Z print_info: file type   = Q4_K - Medium
+ollama-1    | 2026-10-31T05:21:33.649643361Z print_info: file size   = 1.79 GiB (4.99 BPW) 
+ollama-1    | 2026-10-31T05:21:33.753130399Z load: 0 unused tokens
+ollama-1    | 2026-10-31T05:21:33.756088759Z load: control-looking token: 128247 '</s>' was not control-type; this is probably a bug in the model. its type will be overridden
+ollama-1    | 2026-10-31T05:21:33.790980645Z load: printing all EOG tokens:
+ollama-1    | 2026-10-31T05:21:33.791006027Z load:   - 128247 ('</s>')
+ollama-1    | 2026-10-31T05:21:33.791010032Z load:   - 151643 ('<|endoftext|>')
+ollama-1    | 2026-10-31T05:21:33.791013033Z load:   - 151645 ('<|im_end|>')
+ollama-1    | 2026-10-31T05:21:33.791015938Z load:   - 151662 ('<|fim_pad|>')
+ollama-1    | 2026-10-31T05:21:33.791018755Z load:   - 151663 ('<|repo_name|>')
+ollama-1    | 2026-10-31T05:21:33.791021597Z load:   - 151664 ('<|file_sep|>')
+ollama-1    | 2026-10-31T05:21:33.791285004Z load: special tokens cache size = 23
+ollama-1    | 2026-10-31T05:21:33.822685078Z load: token to piece cache size = 0.9310 MB
+ollama-1    | 2026-10-31T05:21:33.822719394Z print_info: arch                  = qwen2
+ollama-1    | 2026-10-31T05:21:33.822724729Z print_info: vocab_only            = 0
+ollama-1    | 2026-10-31T05:21:33.822728969Z print_info: no_alloc              = 0
+ollama-1    | 2026-10-31T05:21:33.822732106Z print_info: n_ctx_train           = 32768
+ollama-1    | 2026-10-31T05:21:33.822735179Z print_info: n_embd_inp            = 2048
+ollama-1    | 2026-10-31T05:21:33.822738570Z print_info: n_embd                = 2048
+ollama-1    | 2026-10-31T05:21:33.822742525Z print_info: n_embd_out            = 2048
+ollama-1    | 2026-10-31T05:21:33.822746327Z print_info: n_layer               = 36
+ollama-1    | 2026-10-31T05:21:33.822749781Z print_info: n_layer_all           = 36
+ollama-1    | 2026-10-31T05:21:33.822752764Z print_info: n_head                = 16
+ollama-1    | 2026-10-31T05:21:33.822756273Z print_info: n_head_kv             = 2
+ollama-1    | 2026-10-31T05:21:33.822759764Z print_info: n_rot                 = 128
+ollama-1    | 2026-10-31T05:21:33.822763410Z print_info: n_swa                 = 0
+ollama-1    | 2026-10-31T05:21:33.822767645Z print_info: is_swa_any            = 0
+ollama-1    | 2026-10-31T05:21:33.822771587Z print_info: non_causal_type       = 0
+ollama-1    | 2026-10-31T05:21:33.822777980Z print_info: n_embd_head_k         = 128
+ollama-1    | 2026-10-31T05:21:33.822783030Z print_info: n_embd_head_v         = 128
+ollama-1    | 2026-10-31T05:21:33.822786677Z print_info: n_gqa                 = 8
+ollama-1    | 2026-10-31T05:21:33.823120367Z print_info: n_embd_k_gqa          = 256
+ollama-1    | 2026-10-31T05:21:33.823128732Z print_info: n_embd_v_gqa          = 256
+ollama-1    | 2026-10-31T05:21:33.823132003Z print_info: f_norm_eps            = 0.0e+00
+ollama-1    | 2026-10-31T05:21:33.823134832Z print_info: f_norm_rms_eps        = 1.0e-06
+ollama-1    | 2026-10-31T05:21:33.823137457Z print_info: f_clamp_kqv           = 0.0e+00
+ollama-1    | 2026-10-31T05:21:33.823140248Z print_info: f_max_alibi_bias      = 0.0e+00
+ollama-1    | 2026-10-31T05:21:33.823155866Z print_info: f_logit_scale         = 0.0e+00
+ollama-1    | 2026-10-31T05:21:33.823158762Z print_info: f_attn_scale          = 0.0e+00
+ollama-1    | 2026-10-31T05:21:33.823161551Z print_info: f_attn_value_scale    = 0.0000
+ollama-1    | 2026-10-31T05:21:33.823165168Z print_info: n_ff                  = 11008
+ollama-1    | 2026-10-31T05:21:33.823168957Z print_info: n_expert              = 0
+ollama-1    | 2026-10-31T05:21:33.823173040Z print_info: n_expert_used         = 0
+ollama-1    | 2026-10-31T05:21:33.823176800Z print_info: n_expert_groups       = 0
+ollama-1    | 2026-10-31T05:21:33.823181160Z print_info: n_group_used          = 0
+ollama-1    | 2026-10-31T05:21:33.823183620Z print_info: causal attn           = 1
+ollama-1    | 2026-10-31T05:21:33.823185790Z print_info: pooling type          = -1
+ollama-1    | 2026-10-31T05:21:33.823187980Z print_info: rope type             = 2
+ollama-1    | 2026-10-31T05:21:33.823190078Z print_info: rope scaling          = linear
+ollama-1    | 2026-10-31T05:21:33.823192235Z print_info: freq_base_train       = 1000000.0
+ollama-1    | 2026-10-31T05:21:33.823194399Z print_info: freq_scale_train      = 1
+ollama-1    | 2026-10-31T05:21:33.823196556Z print_info: n_ctx_orig_yarn       = 32768
+ollama-1    | 2026-10-31T05:21:33.823198689Z print_info: rope_yarn_log_mul     = 0.0000
+ollama-1    | 2026-10-31T05:21:33.823200834Z print_info: rope_finetuned        = unknown
+ollama-1    | 2026-10-31T05:21:33.823202978Z print_info: model type            = 3B
+ollama-1    | 2026-10-31T05:21:33.823205133Z print_info: model params          = 3.09 B
+ollama-1    | 2026-10-31T05:21:33.823207285Z print_info: general.name          = Qwen2.5 3B Instruct
+ollama-1    | 2026-10-31T05:21:33.823209484Z print_info: vocab type            = BPE
+ollama-1    | 2026-10-31T05:21:33.823211613Z print_info: n_vocab               = 151936
+ollama-1    | 2026-10-31T05:21:33.823213731Z print_info: n_merges              = 151387
+ollama-1    | 2026-10-31T05:21:33.823215864Z print_info: BOS token             = 151643 '<|endoftext|>'
+ollama-1    | 2026-10-31T05:21:33.823218560Z print_info: EOS token             = 151645 '<|im_end|>'
+ollama-1    | 2026-10-31T05:21:33.823220876Z print_info: EOT token             = 151645 '<|im_end|>'
+ollama-1    | 2026-10-31T05:21:33.823223140Z print_info: PAD token             = 151643 '<|endoftext|>'
+ollama-1    | 2026-10-31T05:21:33.823225364Z print_info: LF token              = 198 'Ċ'
+ollama-1    | 2026-10-31T05:21:33.823228001Z print_info: FIM PRE token         = 151659 '<|fim_prefix|>'
+ollama-1    | 2026-10-31T05:21:33.823230232Z print_info: FIM SUF token         = 151661 '<|fim_suffix|>'
+ollama-1    | 2026-10-31T05:21:33.823232450Z print_info: FIM MID token         = 151660 '<|fim_middle|>'
+ollama-1    | 2026-10-31T05:21:33.823234660Z print_info: FIM PAD token         = 151662 '<|fim_pad|>'
+ollama-1    | 2026-10-31T05:21:33.823236886Z print_info: FIM REP token         = 151663 '<|repo_name|>'
+ollama-1    | 2026-10-31T05:21:33.823239109Z print_info: FIM SEP token         = 151664 '<|file_sep|>'
+ollama-1    | 2026-10-31T05:21:33.823244447Z print_info: EOG token             = 128247 '</s>'
+ollama-1    | 2026-10-31T05:21:33.823246906Z print_info: EOG token             = 151643 '<|endoftext|>'
+ollama-1    | 2026-10-31T05:21:33.823249118Z print_info: EOG token             = 151645 '<|im_end|>'
+ollama-1    | 2026-10-31T05:21:33.823251946Z print_info: EOG token             = 151662 '<|fim_pad|>'
+ollama-1    | 2026-10-31T05:21:33.823254204Z print_info: EOG token             = 151663 '<|repo_name|>'
+ollama-1    | 2026-10-31T05:21:33.823256411Z print_info: EOG token             = 151664 '<|file_sep|>'
+ollama-1    | 2026-10-31T05:21:33.823258618Z print_info: max token length      = 256
+ollama-1    | 2026-10-31T05:21:33.823265434Z load_tensors: loading model tensors, this can take a while... (load_mode = none)
+ollama-1    | 2026-10-31T05:21:33.827101051Z load_tensors:          CPU model buffer size =   569.19 MiB
+ollama-1    | 2026-10-31T05:21:33.827118933Z load_tensors:   CPU_REPACK model buffer size =  1265.62 MiB
+ollama-1    | 2026-10-31T05:21:37.203306374Z cmn  common_init_: added </s> logit bias = -inf
+ollama-1    | 2026-10-31T05:21:37.203559135Z cmn  common_init_: added <|endoftext|> logit bias = -inf
+ollama-1    | 2026-10-31T05:21:37.203569801Z cmn  common_init_: added <|im_end|> logit bias = -inf
+ollama-1    | 2026-10-31T05:21:37.203575680Z cmn  common_init_: added <|fim_pad|> logit bias = -inf
+ollama-1    | 2026-10-31T05:21:37.203580622Z cmn  common_init_: added <|repo_name|> logit bias = -inf
+ollama-1    | 2026-10-31T05:21:37.203590930Z cmn  common_init_: added <|file_sep|> logit bias = -inf
+ollama-1    | 2026-10-31T05:21:37.203599294Z llama_context: constructing llama_context
+ollama-1    | 2026-10-31T05:21:37.203777791Z llama_context: n_seq_max             = 1
+ollama-1    | 2026-10-31T05:21:37.203784924Z llama_context: n_ctx                 = 4096
+ollama-1    | 2026-10-31T05:21:37.203788004Z llama_context: n_ctx_seq             = 4096
+ollama-1    | 2026-10-31T05:21:37.203790780Z llama_context: n_batch               = 512
+ollama-1    | 2026-10-31T05:21:37.203793528Z llama_context: n_ubatch              = 512
+ollama-1    | 2026-10-31T05:21:37.203797243Z llama_context: causal_attn           = 1
+ollama-1    | 2026-10-31T05:21:37.203801275Z llama_context: flash_attn            = auto
+ollama-1    | 2026-10-31T05:21:37.203805205Z llama_context: kv_unified            = false
+ollama-1    | 2026-10-31T05:21:37.203809252Z llama_context: freq_base             = 1000000.0
+ollama-1    | 2026-10-31T05:21:37.203813502Z llama_context: freq_scale            = 1
+ollama-1    | 2026-10-31T05:21:37.203817678Z llama_context: n_rs_seq              = 0
+ollama-1    | 2026-10-31T05:21:37.203821067Z llama_context: n_outputs_max         = 1
+ollama-1    | 2026-10-31T05:21:37.203823820Z llama_context: n_outputs_max_per_seq = 1
+ollama-1    | 2026-10-31T05:21:37.203828310Z llama_context: n_ctx_seq (4096) < n_ctx_train (32768) -- the full capacity of the model will not be utilized
+ollama-1    | 2026-10-31T05:21:37.203831432Z llama_context:        CPU  output buffer size =     0.58 MiB
+ollama-1    | 2026-10-31T05:21:37.281181437Z llama_kv_cache:        CPU KV buffer size =   144.00 MiB
+ollama-1    | 2026-10-31T05:21:37.281214839Z llama_kv_cache: size =  144.00 MiB (  4096 cells,  36 layers,  1/1 seqs), K (f16):   72.00 MiB, V (f16):   72.00 MiB
+ollama-1    | 2026-10-31T05:21:37.281218314Z llama_kv_cache: n_rot_k = 0, n_embd_head_k_all = 128
+ollama-1    | 2026-10-31T05:21:37.281220744Z llama_kv_cache: n_rot_v = 0, n_embd_head_k_all = 128
+ollama-1    | 2026-10-31T05:21:37.281223062Z sched_reserve: reserving ...
+ollama-1    | 2026-10-31T05:21:37.282037182Z resolve_fused_ops: Flash Attention enabled
+ollama-1    | 2026-10-31T05:21:37.282047884Z resolve_fused_ops: resolving fused DeepSeek V4 HC support:
+ollama-1    | 2026-10-31T05:21:37.282787023Z resolve_fused_ops: fused DeepSeek V4 HC pre enabled
+ollama-1    | 2026-10-31T05:21:37.283453663Z resolve_fused_ops: fused DeepSeek V4 HC comb enabled
+ollama-1    | 2026-10-31T05:21:37.284158415Z resolve_fused_ops: fused DeepSeek V4 HC post enabled
+ollama-1    | 2026-10-31T05:21:37.287004301Z sched_reserve:        CPU compute buffer size =    88.52 MiB
+ollama-1    | 2026-10-31T05:21:37.287014213Z sched_reserve: graph: nodes = 1233, splits = 1, input objects = 4, input tensors = 9
+ollama-1    | 2026-10-31T05:21:37.287017547Z sched_reserve: reserve took 5.97 ms, sched copies = 1
+ollama-1    | 2026-10-31T05:21:37.287021227Z cmn          init: llama threadpool init, n_threads = 4
+ollama-1    | 2026-10-31T05:21:37.287155006Z cmn  common_init_: warming up the model with an empty run - please wait ... (--no-warmup to disable)
+ollama-1    | 2026-10-31T05:21:37.590048324Z srv    load_model: initializing, n_slots = 1, n_ctx_slot = 4096, kv_unified = 'false'
+ollama-1    | 2026-10-31T05:21:37.590080997Z spec common_specu: no implementations specified for speculative decoding
+ollama-1    | 2026-10-31T05:21:37.590087386Z slot   load_model: id  0 | task -1 | new slot, n_ctx = 4096
+ollama-1    | 2026-10-31T05:21:37.590356041Z srv    load_model: prompt cache is enabled, size limit: 8192 MiB
+ollama-1    | 2026-10-31T05:21:37.590368220Z srv    load_model: use `--cache-ram 0` to disable the prompt cache
+ollama-1    | 2026-10-31T05:21:37.590372794Z srv    load_model: for more info see https://github.com/ggml-org/llama.cpp/pull/16391
+ollama-1    | 2026-10-31T05:21:37.590376473Z srv    load_model: context checkpoints enabled, max = 32, min spacing = 8192
+ollama-1    | 2026-10-31T05:21:37.590380021Z srv          init: idle slots will be saved to prompt cache upon starting a new task
+ollama-1    | 2026-10-31T05:21:37.597207245Z srv          init: init: chat template, example_format: '<|im_start|>system
+ollama-1    | 2026-10-31T05:21:37.597233859Z You are a helpful assistant<|im_end|>
+ollama-1    | 2026-10-31T05:21:37.597240718Z <|im_start|>user
+ollama-1    | 2026-10-31T05:21:37.597245821Z Hello<|im_end|>
+ollama-1    | 2026-10-31T05:21:37.597249589Z <|im_start|>assistant
+ollama-1    | 2026-10-31T05:21:37.597253011Z Hi there<|im_end|>
+ollama-1    | 2026-10-31T05:21:37.597257602Z <|im_start|>user
+ollama-1    | 2026-10-31T05:21:37.597262426Z How are you?<|im_end|>
+ollama-1    | 2026-10-31T05:21:37.597266970Z <|im_start|>assistant
+ollama-1    | 2026-10-31T05:21:37.597286514Z '
+ollama-1    | 2026-10-31T05:21:37.597292045Z srv          init: init: chat template, thinking = 0
+ollama-1    | 2026-10-31T05:21:37.597296960Z srv          init: preserve_reasoning kwarg: not supported by template
+ollama-1    | 2026-10-31T05:21:37.597301477Z srv  server_run_i: model loaded
+ollama-1    | 2026-10-31T05:21:37.597305877Z srv  server_on_li: listening on http://127.0.0.1:37791
+ollama-1    | 2026-10-31T05:21:37.597312380Z srv  update_slots: all slots are idle
+ollama-1    | 2026-10-31T05:21:37.794436382Z time=2026-10-31T05:21:37.794Z level=INFO source=llama_server.go:1418 msg="llama-server started in 4.52 seconds"
+ollama-1    | 2026-10-31T05:21:37.794472393Z time=2026-10-31T05:21:37.794Z level=INFO source=images.go:431 msg="template selection" model=registry.ollama.ai/library/qwen2.5:3b selected=go_template renderer="" parser="" go_template="[completion tools]" chat_template="[tools completion]" harmony=null renderer_parser=null
+ollama-1    | 2026-10-31T05:21:37.794655853Z time=2026-10-31T05:21:37.794Z level=INFO source=sched.go:782 msg="loaded runners" count=1
+ollama-1    | 2026-10-31T05:21:37.794667061Z time=2026-10-31T05:21:37.794Z level=INFO source=llama_server.go:1351 msg="waiting for llama-server to start responding"
+ollama-1    | 2026-10-31T05:21:37.794899886Z time=2026-10-31T05:21:37.794Z level=INFO source=llama_server.go:1418 msg="llama-server started in 4.52 seconds"
+ollama-1    | 2026-10-31T05:21:37.796268921Z srv  server_strea: conv_id= (empty=1)
+ollama-1    | 2026-10-31T05:21:37.796670665Z slot get_availabl: id  0 | task -1 |  - skipping, slot is empty
+ollama-1    | 2026-10-31T05:21:37.796684078Z slot get_availabl: id  0 | task -1 | selected slot by LRU, n_tokens = 0, t_last = -1
+ollama-1    | 2026-10-31T05:21:37.796687703Z srv  get_availabl: updating prompt cache
+ollama-1    | 2026-10-31T05:21:37.796719372Z srv          load:  - looking for better prompt, base f_keep = -1.000, f_sim = 0.000
+ollama-1    | 2026-10-31T05:21:37.796723952Z srv        update:  - cache state: 0 prompts, 0.000 MiB (limits: 8192.000 MiB, 4096 tokens, 8589934592 est)
+ollama-1    | 2026-10-31T05:21:37.796726847Z srv  get_availabl: prompt cache update took 0.03 ms
+ollama-1    | 2026-10-31T05:21:37.799975145Z slot launch_slot_: id  0 | task -1 | sampler chain: logits -> ?penalties -> ?dry -> ?top-n-sigma -> top-k -> ?typical -> top-p -> ?min-p -> ?xtc -> temp-ext -> dist 
+ollama-1    | 2026-10-31T05:21:37.800016207Z slot launch_slot_: id  0 | task -1 | sampler params: 
+ollama-1    | 2026-10-31T05:21:37.800021173Z 	repeat_last_n = 64, repeat_penalty = 1.000, frequency_penalty = 0.000, presence_penalty = 0.000
+ollama-1    | 2026-10-31T05:21:37.800025273Z 	dry_multiplier = 0.000, dry_base = 1.750, dry_allowed_length = 2, dry_penalty_last_n = 64
+ollama-1    | 2026-10-31T05:21:37.800029187Z 	top_k = 40, top_p = 0.900, min_p = 0.000, xtc_probability = 0.000, xtc_threshold = 0.100, typical_p = 1.000, top_n_sigma = -1.000, temp = 0.800
+ollama-1    | 2026-10-31T05:21:37.800033250Z 	mirostat = 0, mirostat_lr = 0.100, mirostat_ent = 5.000, adaptive_target = -1.000, adaptive_decay = 0.900
+ollama-1    | 2026-10-31T05:21:37.800037161Z slot launch_slot_: id  0 | task 0 | processing task, is_child = 0
+ollama-1    | 2026-10-31T05:21:37.800040947Z slot   operator(): id  0 | task 0 | new prompt, n_ctx_slot = 4096, n_keep = 4, task.n_tokens = 30
+ollama-1    | 2026-10-31T05:21:37.800056189Z slot   operator(): id  0 | task 0 | cached n_tokens = 0, memory_seq_rm [0, end)
+ollama-1    | 2026-10-31T05:21:37.800060320Z slot init_sampler: id  0 | task 0 | init sampler, took 0.02 ms, tokens: text = 30, total = 30
+ollama-1    | 2026-10-31T05:21:39.103669367Z slot print_timing: id  0 | task 0 | prompt eval time =    1306.64 ms /    30 tokens (   43.55 ms per token,    22.96 tokens per second)
+ollama-1    | 2026-10-31T05:21:39.103698463Z slot print_timing: id  0 | task 0 |        eval time =       0.00 ms /     1 tokens (    0.00 ms per token,     0.00 tokens per second)
+ollama-1    | 2026-10-31T05:21:39.103703558Z slot print_timing: id  0 | task 0 |       total time =    1306.64 ms /    31 tokens
+ollama-1    | 2026-10-31T05:21:39.103707488Z slot print_timing: id  0 | task 0 |    graphs reused =          1
+ollama-1    | 2026-10-31T05:21:39.103710924Z slot print_timing: id  0 | task 0 |   graph reallocs =          0    /     0        (same size) / (changed size)
+ollama-1    | 2026-10-31T05:21:39.103714428Z slot      release: id  0 | task 0 | stop processing: n_tokens = 30, truncated = 0
+ollama-1    | 2026-10-31T05:21:39.103717856Z srv  update_slots: all slots are idle
+ollama-1    | 2026-10-31T05:21:39.104058863Z [GIN] 2026/10/31 - 05:21:39 | 200 |    5.88s |    172.29.234.5 | POST     "/api/chat"
+ollama-1    | 2026-10-31T05:21:46.335514537Z [GIN] 2026/10/31 - 05:21:46 | 200 |  18.44ms |    172.29.234.5 | GET      "/api/tags"
+ollama-1    | 2026-10-31T05:21:46.499145965Z srv  server_strea: conv_id= (empty=1)
+ollama-1    | 2026-10-31T05:21:46.510963666Z slot get_availabl: id  0 | task -1 |  - checking sim = 0.003 (3/1027) > 0.100
+ollama-1    | 2026-10-31T05:21:46.510990800Z slot get_availabl: id  0 | task -1 | selected slot by LRU, n_tokens = 30, t_last = 34980893817
+ollama-1    | 2026-10-31T05:21:46.510996836Z srv  get_availabl: updating prompt cache
+ollama-1    | 2026-10-31T05:21:46.512476045Z srv   prompt_save:  - saving prompt with length 30, total state size = 1.056 MiB (draft: 0.000 MiB)
+ollama-1    | 2026-10-31T05:21:46.513894157Z srv          load:  - looking for better prompt, base f_keep = 0.100, f_sim = 0.003
+ollama-1    | 2026-10-31T05:21:46.513904997Z srv          load:    - prompt with length      30, lcp =       3, f_keep = 0.100, f_sim = 0.003
+ollama-1    | 2026-10-31T05:21:46.513908264Z srv        update:  - cache state: 1 prompts, 1.056 MiB (limits: 8192.000 MiB, 4096 tokens, 232752 est)
+ollama-1    | 2026-10-31T05:21:46.513910862Z srv        update:    - prompt 0x2759ca0:      30 tokens, checkpoints:  0,     1.056 MiB
+ollama-1    | 2026-10-31T05:21:46.513913334Z srv  get_availabl: prompt cache update took 2.85 ms
+ollama-1    | 2026-10-31T05:21:46.516252897Z slot launch_slot_: id  0 | task -1 | sampler chain: logits -> ?penalties -> ?dry -> ?top-n-sigma -> top-k -> ?typical -> top-p -> ?min-p -> ?xtc -> temp-ext -> dist 
+ollama-1    | 2026-10-31T05:21:46.516266460Z slot launch_slot_: id  0 | task -1 | sampler params: 
+ollama-1    | 2026-10-31T05:21:46.516270418Z 	repeat_last_n = 64, repeat_penalty = 1.000, frequency_penalty = 0.000, presence_penalty = 0.000
+ollama-1    | 2026-10-31T05:21:46.516273711Z 	dry_multiplier = 0.000, dry_base = 1.750, dry_allowed_length = 2, dry_penalty_last_n = 64
+ollama-1    | 2026-10-31T05:21:46.516276812Z 	top_k = 40, top_p = 0.900, min_p = 0.000, xtc_probability = 0.000, xtc_threshold = 0.100, typical_p = 1.000, top_n_sigma = -1.000, temp = 0.300
+ollama-1    | 2026-10-31T05:21:46.516289324Z 	mirostat = 0, mirostat_lr = 0.100, mirostat_ent = 5.000, adaptive_target = -1.000, adaptive_decay = 0.900
+ollama-1    | 2026-10-31T05:21:46.516292636Z slot launch_slot_: id  0 | task 2 | processing task, is_child = 0
+ollama-1    | 2026-10-31T05:21:46.516570240Z slot   operator(): id  0 | task 2 | new prompt, n_ctx_slot = 4096, n_keep = 4, task.n_tokens = 1027
+ollama-1    | 2026-10-31T05:21:46.516581166Z slot   operator(): id  0 | task 2 | cached n_tokens = 3, memory_seq_rm [3, end)
+ollama-1    | 2026-10-31T05:22:07.430202921Z slot print_timing: id  0 | task 2 | prompt processing, n_tokens =    512, progress = 0.50, t =  20.91 s / 24.48 tokens per second
+ollama-1    | 2026-10-31T05:22:07.430237985Z slot   operator(): id  0 | task 2 | cached n_tokens = 515, memory_seq_rm [515, end)
+ollama-1    | 2026-10-31T05:22:07.430763237Z slot init_sampler: id  0 | task 2 | init sampler, took 0.38 ms, tokens: text = 1027, total = 1027
+ollama-1    | 2026-10-31T05:22:30.289002060Z slot print_timing: id  0 | task 2 | prompt eval time =   42351.93 ms /  1024 tokens (   41.36 ms per token,    24.18 tokens per second)
+ollama-1    | 2026-10-31T05:22:30.289041339Z slot print_timing: id  0 | task 2 |        eval time =    1419.67 ms /    11 tokens (  141.97 ms per token,     7.04 tokens per second)
+ollama-1    | 2026-10-31T05:22:30.289048340Z slot print_timing: id  0 | task 2 |       total time =   43771.60 ms /  1035 tokens
+ollama-1    | 2026-10-31T05:22:30.289053509Z slot print_timing: id  0 | task 2 |    graphs reused =         10
+ollama-1    | 2026-10-31T05:22:30.289058240Z slot print_timing: id  0 | task 2 |   graph reallocs =          0    /     0        (same size) / (changed size)
+ollama-1    | 2026-10-31T05:22:30.289063123Z slot      release: id  0 | task 2 | stop processing: n_tokens = 1037, truncated = 0
+ollama-1    | 2026-10-31T05:22:30.289067911Z srv  update_slots: all slots are idle
+ollama-1    | 2026-10-31T05:22:30.289476519Z [GIN] 2026/10/31 - 05:22:30 | 200 |   43.83s |    172.29.234.5 | POST     "/api/chat"
+ollama-1    | 2026-10-31T05:22:30.782119315Z [GIN] 2026/10/31 - 05:22:30 | 200 |    1.4ms |    172.29.234.5 | GET      "/api/tags"
+ollama-1    | 2026-10-31T05:22:30.821030350Z srv  server_strea: conv_id= (empty=1)
+ollama-1    | 2026-10-31T05:22:30.826683543Z slot get_availabl: id  0 | task -1 |  - checking sim = 0.063 (64/1015) > 0.100
+ollama-1    | 2026-10-31T05:22:30.826702343Z slot get_availabl: id  0 | task -1 | selected slot by LRU, n_tokens = 1037, t_last = 35032078964
+ollama-1    | 2026-10-31T05:22:30.826706999Z srv  get_availabl: updating prompt cache
+ollama-1    | 2026-10-31T05:22:30.826710723Z srv   prompt_save:  - saving prompt with length 1037, total state size = 36.470 MiB (draft: 0.000 MiB)
+ollama-1    | 2026-10-31T05:22:30.854408083Z srv          load:  - looking for better prompt, base f_keep = 0.062, f_sim = 0.063
+ollama-1    | 2026-10-31T05:22:30.854438718Z srv          load:    - prompt with length      30, lcp =       3, f_keep = 0.100, f_sim = 0.003
+ollama-1    | 2026-10-31T05:22:30.854445900Z srv          load:    - prompt with length    1037, lcp =      64, f_keep = 0.062, f_sim = 0.063
+ollama-1    | 2026-10-31T05:22:30.854451928Z srv        update:  - cache state: 2 prompts, 37.526 MiB (limits: 8192.000 MiB, 4096 tokens, 232930 est)
+ollama-1    | 2026-10-31T05:22:30.854472441Z srv        update:    - prompt 0x2759ca0:      30 tokens, checkpoints:  0,     1.056 MiB
+ollama-1    | 2026-10-31T05:22:30.854477555Z srv        update:    - prompt 0x2754bf0:    1037 tokens, checkpoints:  0,    36.470 MiB
+ollama-1    | 2026-10-31T05:22:30.854481942Z srv  get_availabl: prompt cache update took 27.68 ms
+ollama-1    | 2026-10-31T05:22:30.854919272Z slot launch_slot_: id  0 | task -1 | sampler chain: logits -> ?penalties -> ?dry -> ?top-n-sigma -> top-k -> ?typical -> top-p -> ?min-p -> ?xtc -> temp-ext -> dist 
+ollama-1    | 2026-10-31T05:22:30.854932043Z slot launch_slot_: id  0 | task -1 | sampler params: 
+ollama-1    | 2026-10-31T05:22:30.854940107Z 	repeat_last_n = 64, repeat_penalty = 1.000, frequency_penalty = 0.000, presence_penalty = 0.000
+ollama-1    | 2026-10-31T05:22:30.854945180Z 	dry_multiplier = 0.000, dry_base = 1.750, dry_allowed_length = 2, dry_penalty_last_n = 64
+ollama-1    | 2026-10-31T05:22:30.854948873Z 	top_k = 40, top_p = 0.900, min_p = 0.000, xtc_probability = 0.000, xtc_threshold = 0.100, typical_p = 1.000, top_n_sigma = -1.000, temp = 0.300
+ollama-1    | 2026-10-31T05:22:30.854952121Z 	mirostat = 0, mirostat_lr = 0.100, mirostat_ent = 5.000, adaptive_target = -1.000, adaptive_decay = 0.900
+ollama-1    | 2026-10-31T05:22:30.854955217Z slot launch_slot_: id  0 | task 15 | processing task, is_child = 0
+ollama-1    | 2026-10-31T05:22:30.854958213Z slot   operator(): id  0 | task 15 | new prompt, n_ctx_slot = 4096, n_keep = 4, task.n_tokens = 1015
+ollama-1    | 2026-10-31T05:22:30.854961279Z slot   operator(): id  0 | task 15 | cached n_tokens = 64, memory_seq_rm [64, end)
+ollama-1    | 2026-10-31T05:22:30.945122233Z [GIN] 2026/10/31 - 05:22:30 | 500 | 140.86ms |    172.29.234.5 | POST     "/api/chat"
+ollama-1    | 2026-10-31T05:22:31.855056317Z srv          stop: cancel task, id_task = 15
+ollama-1    | 2026-10-31T05:22:32.914285523Z srv  server_strea: conv_id= (empty=1)
+ollama-1    | 2026-10-31T05:22:47.271482639Z slot      release: id  0 | task 15 | stop processing: n_tokens = 576, truncated = 0
+ollama-1    | 2026-10-31T05:22:47.271520770Z slot get_availabl: id  0 | task -1 |  - checking sim = 0.094 (3/32) > 0.100
+ollama-1    | 2026-10-31T05:22:47.271526463Z slot get_availabl: id  0 | task -1 | selected slot by LRU, n_tokens = 576, t_last = 35049061624
+ollama-1    | 2026-10-31T05:22:47.271530578Z srv  get_availabl: updating prompt cache
+ollama-1    | 2026-10-31T05:22:47.271534416Z srv   prompt_save:  - saving prompt with length 576, total state size = 20.257 MiB (draft: 0.000 MiB)
+ollama-1    | 2026-10-31T05:22:47.290064959Z srv          load:  - looking for better prompt, base f_keep = 0.005, f_sim = 0.094
+ollama-1    | 2026-10-31T05:22:47.290091451Z srv          load:    - prompt with length      30, lcp =      24, f_keep = 0.800, f_sim = 0.750
+ollama-1    | 2026-10-31T05:22:47.290095785Z srv          load:    - prompt with length    1037, lcp =       3, f_keep = 0.003, f_sim = 0.094
+ollama-1    | 2026-10-31T05:22:47.290099253Z srv          load:    - prompt with length     576, lcp =       3, f_keep = 0.005, f_sim = 0.094
+ollama-1    | 2026-10-31T05:22:47.290102707Z srv          load:  - found better prompt with f_keep = 0.800, f_sim = 0.750
+ollama-1    | 2026-10-31T05:22:47.290482818Z srv        update:  - cache state: 2 prompts, 56.727 MiB (limits: 8192.000 MiB, 4096 tokens, 232934 est)
+ollama-1    | 2026-10-31T05:22:47.290513809Z srv        update:    - prompt 0x2754bf0:    1037 tokens, checkpoints:  0,    36.470 MiB
+ollama-1    | 2026-10-31T05:22:47.290520066Z srv        update:    - prompt 0x2754200:     576 tokens, checkpoints:  0,    20.257 MiB
+ollama-1    | 2026-10-31T05:22:47.290524536Z srv  get_availabl: prompt cache update took 19.10 ms
+ollama-1    | 2026-10-31T05:22:47.290641570Z slot launch_slot_: id  0 | task -1 | sampler chain: logits -> ?penalties -> ?dry -> ?top-n-sigma -> top-k -> ?typical -> top-p -> ?min-p -> ?xtc -> temp-ext -> greedy 
+ollama-1    | 2026-10-31T05:22:47.290660179Z slot launch_slot_: id  0 | task -1 | sampler params: 
+ollama-1    | 2026-10-31T05:22:47.290664856Z 	repeat_last_n = 64, repeat_penalty = 1.000, frequency_penalty = 0.000, presence_penalty = 0.000
+ollama-1    | 2026-10-31T05:22:47.290675070Z 	dry_multiplier = 0.000, dry_base = 1.750, dry_allowed_length = 2, dry_penalty_last_n = 64
+ollama-1    | 2026-10-31T05:22:47.290678742Z 	top_k = 40, top_p = 0.900, min_p = 0.000, xtc_probability = 0.000, xtc_threshold = 0.100, typical_p = 1.000, top_n_sigma = -1.000, temp = 0.000
+ollama-1    | 2026-10-31T05:22:47.290682377Z 	mirostat = 0, mirostat_lr = 0.100, mirostat_ent = 5.000, adaptive_target = -1.000, adaptive_decay = 0.900
+ollama-1    | 2026-10-31T05:22:47.290685847Z slot launch_slot_: id  0 | task 18 | processing task, is_child = 0
+ollama-1    | 2026-10-31T05:22:47.290689172Z slot   operator(): id  0 | task 18 | new prompt, n_ctx_slot = 4096, n_keep = 4, task.n_tokens = 32
+ollama-1    | 2026-10-31T05:22:47.290692669Z slot   operator(): id  0 | task 18 | cached n_tokens = 24, memory_seq_rm [24, end)
+ollama-1    | 2026-10-31T05:22:47.290696074Z slot init_sampler: id  0 | task 18 | init sampler, took 0.01 ms, tokens: text = 32, total = 32
+ollama-1    | 2026-10-31T05:22:48.374007587Z slot print_timing: id  0 | task 18 | prompt eval time =     395.39 ms /     8 tokens (   49.42 ms per token,    20.23 tokens per second)
+ollama-1    | 2026-10-31T05:22:48.374037115Z slot print_timing: id  0 | task 18 |        eval time =     687.93 ms /     8 tokens (   98.28 ms per token,    10.18 tokens per second)
+ollama-1    | 2026-10-31T05:22:48.374042949Z slot print_timing: id  0 | task 18 |       total time =    1083.32 ms /    16 tokens
+ollama-1    | 2026-10-31T05:22:48.374048466Z slot print_timing: id  0 | task 18 |    graphs reused =         16
+ollama-1    | 2026-10-31T05:22:48.374053693Z slot print_timing: id  0 | task 18 |   graph reallocs =          0    /     0        (same size) / (changed size)
+ollama-1    | 2026-10-31T05:22:48.374059090Z slot      release: id  0 | task 18 | stop processing: n_tokens = 39, truncated = 0
+ollama-1    | 2026-10-31T05:22:48.374064690Z srv  update_slots: all slots are idle
+ollama-1    | 2026-10-31T05:22:48.374402910Z [GIN] 2026/10/31 - 05:22:48 | 200 |   15.46s |    172.29.234.3 | POST     "/api/chat"

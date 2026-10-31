@@ -1,6 +1,8 @@
 # ITLR–RAG | Intelligent IT Learning Platform — Improvement plan
 
-Updated **2026-10-30**. This plan carries forward the earlier security, evaluation, retrieval,
+Updated **2026-10-30**. Trạng thái thực thi 2026-10-31: các gate đã chạy và evidence mới
+nằm ở [certification](../reports/FINAL_E2E_CERTIFICATION.md) §11–§12; checklist còn mở ở
+[todo](todo.md). Tài liệu hiện hành: [README](../README.md), [ARCHITECTURE](../docs/ARCHITECTURE.md). This plan carries forward the earlier security, evaluation, retrieval,
 generation and packaging roadmap. It describes acceptance criteria; completion requires dated
 execution evidence in [Validation](../reports/VALIDATION.md). For implemented behavior and
 compatibility boundaries, read [README](../README.md), [project memory](../docs/PROJECT_MEMORY.md)

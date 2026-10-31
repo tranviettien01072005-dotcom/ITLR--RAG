@@ -1,0 +1,25 @@
+Thiếu /tmp/opencode/itlr-e2e/artifacts/cf_model.pkl — Collaborative Filtering bị tắt (tùy chọn V2); /api/personas và /api/for-you sẽ trả 503 cho tới khi build CF.
+Could not reach the Hub (Cannot reach https://huggingface.co/api/models/intfloat/multilingual-e5-base: offline mode is enabled. To disable it, please unset the `HF_HUB_OFFLINE` environment variable.). Using cached commit hash for 'intfloat/multilingual-e5-base'.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 6690.12it/s]
+800 warmup 27.053 4675 ['800'] llm_extractive valid None
+800 blind-positive-01 29.652 4468 ['800'] llm_extractive valid None
+800 blind-positive-02 30.102 4578 ['800'] llm_extractive valid None
+800 blind-positive-03 35.404 4652 ['800'] llm_extractive valid None
+800 blind-positive-04 1.536 4644 ['800'] llm_extractive valid None
+800 blind-positive-05 29.26 4595 ['800'] llm_extractive valid None
+800 blind-positive-06 3.049 4489 ['800'] llm_extractive valid None
+800 blind-positive-07 1.949 4496 ['800'] llm_extractive valid None
+800 blind-positive-08 43.296 4494 ['800'] llm_extractive valid None
+800 blind-positive-09 3.08 4504 ['800'] llm_extractive valid None
+800 blind-positive-10 35.726 4487 ['800'] llm_extractive valid None
+800 blind-positive-11 1.561 4522 ['800'] llm_extractive valid None
+800 blind-positive-12 1.322 4476 ['800'] insufficient_evidence missing no_selected_evidence
+800 blind-negative-01 0.082 0 [] template not_applicable None
+800 blind-negative-02 0.096 0 [] template not_applicable None
+800 blind-negative-03 0.093 0 [] extractive valid None
+800 blind-negative-04 28.867 4885 ['800'] insufficient_evidence missing no_selected_evidence
+800 blind-negative-05 0.462 4893 ['800'] insufficient_evidence missing no_selected_evidence
+800 blind-negative-06 0.442 4811 ['800'] insufficient_evidence missing no_selected_evidence
+800 blind-negative-07 36.316 4806 ['800'] insufficient_evidence missing no_selected_evidence
+800 blind-negative-08 0.485 4904 ['800'] insufficient_evidence missing no_selected_evidence
+ARM DONE 800

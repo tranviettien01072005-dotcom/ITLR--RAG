@@ -1,83 +1,70 @@
 # ITLR–RAG | Intelligent IT Learning Platform
 
-## Tổng quan sản phẩm (Product Overview)
+Nền tảng học CNTT tiếng Việt: tìm tài nguyên (khóa học, tài liệu), hỏi đáp RAG có trích dẫn
+nguyên văn từ nguồn, theo dõi lộ trình và tiến độ, và các tính năng cộng đồng. Hệ thống gồm
+giao diện Express/TypeScript/EJS (cổng 3000), backend FastAPI (cổng 8000) và PostgreSQL.
 
-ITLR–RAG hỗ trợ học Công nghệ thông tin bằng tiếng Việt: tìm tài nguyên, hỏi đáp theo tài liệu, xây lộ trình và theo dõi tiến độ. Web Express + TypeScript + EJS tại cổng 3000 quản lý trải nghiệm người dùng; FastAPI tại cổng 8000 cung cấp retrieval, chatbot và gợi ý tài nguyên.
+**Trạng thái phát hành: NO-GO cho production.** Staging single-host đã chạy thật (Docker,
+PostgreSQL 16, Caddy TLS nội bộ, E5, Qwen2.5:3b, Chrome). Hai blocker còn mở: CPU-only
+không đạt SLO 45 giây cho prompt uncached, và human faithfulness chưa có người chấm
+(`null`). Chi tiết: [certification](reports/FINAL_E2E_CERTIFICATION.md) ·
+[validation](reports/VALIDATION.md).
 
-Repository đang được phát triển; kết quả từng checkpoint và phạm vi kiểm chứng xem [validation](reports/VALIDATION.md). Chưa đủ bằng chứng để xác nhận production-ready.
+## Năng lực
 
-Blocker remediation Linux: **457 Python PASS/0 skip, 145 Web PASS**; coverage
-Python statements **67,24%**, Web lines **46,55%**. Stop từ Chrome tới Ollama thật
-đóng socket trong khoảng 64–77ms, không lưu partial output. Prompt uncached vẫn có
-thể timeout45s và citation identity chưa bảo đảm passage support. **NO-GO**.
-[Báo cáo mới và bằng chứng](reports/PRODUCTION_BLOCKERS_RESOLUTION.md).
-[Release validation trước](reports/RELEASE_READINESS_FINAL.md) giữ scoped PG18/backup/Chrome/TLS evidence.
-[Full-system audit trước](reports/FULL_SYSTEM_AUDIT_2026-10-30.md) được giữ nguyên.
+- **Tìm kiếm lai**: FAISS inner-product trên embedding E5-base (768d), BM25, hợp nhất RRF,
+  reranker CrossEncoder (bật mặc định, tắt bằng `DISABLE_RERANKER=1`); ngưỡng mặc định `min_pct=84`.
+- **Chat có bằng chứng**: model chỉ chọn chunk ID (JSON), engine bind câu trả lời nguyên văn
+  từ excerpt đã lưu (`llm_extractive`); citation được kiểm id và byte-verbatim; thiếu bằng
+  chứng thì từ chối thay vì sinh claim tự do.
+- **Nguồn và provenance**: crawler có robots/rate limit, kiểm giấy phép từng nguồn, lưu
+  license/attribution; snapshot curated 118 trang thật trong repo.
+- **Vòng đời index**: build staging → probe → activate nguyên tử → `/admin/reload` → rollback;
+  fingerprint artifacts đã nạp hiển thị ở `/health`.
+- **Ứng dụng Web**: tài khoản, hội thoại SSE, tiến độ khóa học, tài liệu đính kèm có kiểm
+  chữ ký, diễn đàn, khu quản trị, CSRF, rate limit RAM, một worker/replica mỗi service.
 
-Search mặc định `min_pct=84` (cosine 0,84); truyền `min_pct=90` để giữ floor cũ.
-Raw retrieval Recall@5 trên 23 frozen queries tăng 4,76% → 92,86%; holdout end-to-end
-83,33%, tập xác nhận 62,50%, nhãn engineer-authored chưa độc lập. Các tập đo giữ
-negative rejection, chưa chứng minh precision/faithfulness production. Qwen vẫn có
-thể sai nội dung hoặc không hoàn tất; bộ mới source-disjoint đạt Recall@5 83,33%
-(12 positives/8 negatives, fresh AI author, chưa phải human panel). Suite xanh không
-thay kiểm chứng generation, cancellation upstream và deployment production.
-
-## Khả năng (Features)
-
-- Tìm khóa học/tài liệu bằng lexical và semantic retrieval; V3 truy xuất chunk, artifacts cũ giữ đường V2.
-- Chatbot có intent/template và generation qua DeepSeek, OpenAI hoặc Ollama. Nguồn trích dẫn giúp kiểm tra evidence; citation identity chưa chứng minh faithfulness.
-- Tài khoản, hội thoại, tiến độ, luồng học tập và tương tác cộng đồng lưu trong PostgreSQL.
-- Crawler có policy quyền sử dụng, robots/rate-limit, chuẩn hóa URL, deduplication và provenance; ingestion offline dùng SQLite.
-- Artifact staging, probe, activation, reload và rollback theo version.
-- Collaborative Filtering tùy chọn; interactions hiện có là synthetic, chưa chứng minh hiệu quả cá nhân hóa trên người dùng thật.
-
-## Kiến trúc (Architecture)
+## Kiến trúc
 
 ```mermaid
 flowchart LR
     Browser[Trình duyệt] --> Web[Express 3000]
     Web --> PG[(PostgreSQL)]
     Web --> API[FastAPI 8000]
-    API --> Engine[Engine]
-    Engine --> Retrieval[Shared V3 hoặc legacy V2]
+    API --> Engine[Engine/RAG]
+    Engine --> Retrieval[FAISS + BM25 + RRF]
     Engine --> Chat[Chatbot]
-    Chat --> Retrieval
-    Chat --> LLM[LLM client]
-    Sources[Nguồn được phép] --> Crawl[Crawler và SQLite]
-    Crawl --> Build[Catalog và builders]
-    Build --> Versions[Staging và probe]
+    Chat --> Provider[DeepSeek / OpenAI / Ollama]
+    Sources[Nguồn được phép] --> Crawl[Crawler + SQLite]
+    Crawl --> Build[Build + probe]
+    Build --> Versions[Artifacts staging]
     Versions --> Engine
 ```
 
-[Bản đồ module](docs/ARCHITECTURE.md) mô tả trách nhiệm, dependency direction và lifecycle. Retrieval độc lập với SDK generation và phiên Web. Không đổi tên shim `itlr/core/bm25.py`: pickle cũ còn tham chiếu đường dẫn này.
+Chi tiết thành phần, ranh giới module và trade-off: [ARCHITECTURE](docs/ARCHITECTURE.md).
+Luồng RAG, citation và fallback: [RAG](docs/RAG.md).
 
-## Khởi chạy local (Quickstart)
+## Bắt đầu nhanh (local)
 
-Cần Python ≥3.11, Node.js 22 và PostgreSQL. Các lệnh Bash dưới đây chạy từ repo root; trên Windows dùng `.venv/Scripts/python.exe`, `npm.cmd` nếu PowerShell chặn npm.ps1, đồng thời đặt `PYTHONUTF8=1` và `PYTHONIOENCODING=utf-8`.
+Yêu cầu: Python ≥3.11 (đã kiểm chứng với 3.14.4), Node.js 22, PostgreSQL, artifacts và
+model cache đã chuẩn bị. Một checkout mới không tự có `var/`, model hay database.
 
 ```bash
 python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements.txt
-cd web
-npm ci
-cp .env.example .env
+cd web && npm ci && cp .env.example .env
 ```
 
-Điền credentials riêng trong `web/.env`: `DATABASE_URL`, `JWT_SECRET` ≥32 ký tự, `ADMIN_PASSCODE` ≥16 ký tự; đặt `APP_ORIGIN=http://localhost:3000`, `RECOMMENDER_URL=http://127.0.0.1:8000`.
-
-Backend cần model cache và artifacts đã build/probe. Máy mới làm theo [chuẩn bị dữ liệu/index](deploy/DEPLOY.md#chuẩn-bị-dữ-liệu-và-index); máy có cache đọc [model local](deploy/LOCAL_MODELS.md). Không rebuild artifacts đang phục vụ để thử giao diện.
-
-Khi database local cô lập và catalog Web đã chuẩn bị, chạy trong `web/`:
+Điền `web/.env` (database, `JWT_SECRET` ≥32 ký tự, `ADMIN_PASSCODE` ≥16 ký tự,
+`APP_ORIGIN`, `RECOMMENDER_URL`). Sau đó, từ `web/`:
 
 ```bash
 npm run migrate
-npm run seed
+npm run seed      # cần var/data/web_items.csv
 npm run dev
 ```
 
-Migration và seed **ghi database**, chỉ chạy với database đích đã kiểm tra. Seed cần `var/data/web_items.csv`; exporter từ chối ghi đè file đã tồn tại. Quy trình export/sync xem [deployment](deploy/DEPLOY.md). Mở **http://localhost:3000** khi API chạy song song.
-
-Từ repo root, với artifacts/model cache có sẵn, chạy API không gọi provider trả phí:
+API chạy song song, không gọi provider trả phí nếu thiếu key:
 
 ```bash
 env -u DEEPSEEK_API_KEY -u OPENAI_API_KEY \
@@ -86,29 +73,32 @@ env -u DEEPSEEK_API_KEY -u OPENAI_API_KEY \
   --host 127.0.0.1 --port 8000 --workers 1 --no-proxy-headers
 ```
 
-Root `.env.example` là tài liệu cấu hình; lệnh Python không tự nạp mọi file `.env`. Thiếu artifacts/model làm API chưa ready; không dùng dữ liệu synthetic làm fallback mà gắn nhãn dữ liệu thật.
+Migration/seed **ghi database**; chỉ chạy với database đích đã kiểm tra. Chuẩn bị dữ liệu,
+build index và chạy với model local: [DEPLOY](deploy/DEPLOY.md),
+[LOCAL_MODELS](deploy/LOCAL_MODELS.md). HTTPS/Compose một host: [PRODUCTION](deploy/PRODUCTION.md).
 
-## Cấu hình (Configuration)
+## Cấu hình
 
-| Phạm vi | Cấu hình |
-|---|---|
-| Python paths | `itlr/config.py`; `ITLR_ARTIFACTS_DIR`, `ITLR_ITEMS_CSV`, `ITLR_INTERACTIONS_CSV` |
-| Generation | `DEEPSEEK_API_KEY`, `DEEPSEEK_MODEL`, `DEEPSEEK_BASE_URL`; dự phòng `OPENAI_API_KEY`, `USE_OLLAMA`, `OLLAMA_*` |
-| API admin | `ITLR_ADMIN_TOKEN`; thiếu/rỗng trả 403 tại reload |
-| Web | `web/src/config/env.ts`; database, secrets, origin và URL backend |
-| Deployment | `deploy/*.env.example`, một worker/replica mỗi service |
+Cấu hình Python đi qua `itlr/config.py` (paths) và biến môi trường của process; Web đọc
+`web/.env` qua `web/src/config/env.ts`. Bảng biến đầy đủ và giá trị mặc định nằm ở
+[DEPLOY §Cấu hình](deploy/DEPLOY.md#cấu-hình); không lặp lại trong README để tránh lệch.
 
-Danh mục chi tiết và giá trị mặc định: [cấu hình vận hành](deploy/DEPLOY.md#cấu-hình). Secrets giữ ngoài Git; không đưa key hoặc reset token vào log/report. Giá/model của provider trong code là cấu hình/ước tính, cần kiểm tra riêng khi được phép gọi thật.
+Nguyên tắc: secrets chỉ trong môi trường hoặc file local bị gitignore; `.env.example`
+chứa giá trị rỗng; không đưa key/reset token vào log hay báo cáo.
 
-## Phát triển (Development)
+## Luồng công việc chính
 
-- Web composition ở `app.ts`; socket và shutdown ở `server.ts`. Chat HTTP handlers ở `routes/chat.handlers.ts`.
-- `itlr/chatbot/llm_adapter.py` sở hữu history/fallback adaptation; transport generation ở `llm_client.py`.
-- `itlr/core/display.py` định dạng catalog khi hiển thị; không tham gia ranking. Export cũ từ recommender và chatbot vẫn được giữ.
-- Giữ API, schema, pickle paths, V2/V3 và SSE contracts. Đọc [AGENTS](AGENTS.md) và [CONSTRAINTS](CONSTRAINTS.md) trước khi sửa.
-- Bug cần regression FAIL → fix → PASS. Không tự commit/push, chạy migration production hoặc thay dữ liệu runtime.
+1. **Nạp dữ liệu** — import snapshot curated hoặc crawl có kiểm soát → SQLite + metadata.
+2. **Build/probe** — `scripts/build_all_v2.py --real-only --no-activate` tạo version mới trong
+   staging, probe cấu trúc/dimension/NaN/self-retrieval, ghi `MANIFEST.json`.
+3. **Activate/reload** — activate version đã probe, `POST /admin/reload` với `X-Admin-Token`;
+   `/health` trả fingerprint `version` + `manifest_sha256` của engine đang phục vụ.
+4. **Đồng bộ catalog Web** — export CSV từ index active → `npm run sync` (upsert, không xóa
+   enrollment). Không có transaction xuyên Python/PostgreSQL.
+5. **Rollback** — `versioning.rollback()` + reload; backup/restore PostgreSQL theo
+   [PRODUCTION](deploy/PRODUCTION.md).
 
-## Kiểm chứng (Testing)
+## Kiểm chứng
 
 ```bash
 env -u DEEPSEEK_API_KEY -u OPENAI_API_KEY \
@@ -116,60 +106,54 @@ env -u DEEPSEEK_API_KEY -u OPENAI_API_KEY \
   .venv/bin/python -m pytest tests/ -o addopts='' -q -ra
 .venv/bin/python -m compileall -q itlr scripts eval
 .venv/bin/python -m pip check
-cd web
-npm run typecheck
-npm run lint
-npm run build
-npm test
+cd web && npm run typecheck && npm run lint && npm run build && npm test
 ```
 
-Các test dùng fixture/model giả không chứng minh chất lượng neural hoặc provider live. Đánh giá offline: `eval/run_all.py --quick` ghi outputs vào reports; chỉ chạy có chủ đích. `eval/eval_generation.py --llm` yêu cầu provider và quyền gọi API trả phí nếu có. Chỉ tiêu chưa đo phải giữ `null`; nhãn metadata/synthetic không được trình bày như human labels.
+Kết quả mới nhất (máy Linux, commit `f14c428`, không thay đổi code runtime): **494 Python PASS/0 skip**, coverage
+statements **67,63%**; **146 Web PASS**, line coverage **47,05%**; typecheck/lint/build,
+compileall, pip check PASS; pip-audit **0**, npm audit **0**, Bandit **0 High**. Docker staging
+fresh `--no-cache` + Chrome **11/11** PASS trong phạm vi single-host. Phương pháp, coverage và
+giới hạn: [TESTING](docs/TESTING.md) · [EVALUATION](docs/EVALUATION.md).
 
-Release diagnostics trên 118 snapshot thật và 23 truy vấn, có tiếng Việt/nhiễu/nhiều bước:
-`.venv/bin/python eval/eval_release_retrieval.py --repeats 5 --out reports/release-retrieval.json`.
-Qrels có evidence nhưng là engineer-authored, chưa phải independent human evaluation.
-Đây là so sánh lexical/MMR; chưa đo neural V3, CrossEncoder hoặc generation.
+## Triển khai
 
-## Triển khai (Deployment)
+| Môi trường | Tài liệu |
+|---|---|
+| Local (dev) | [DEPLOY](deploy/DEPLOY.md) |
+| Model E5/Qwen local | [LOCAL_MODELS](deploy/LOCAL_MODELS.md) |
+| Single-host HTTPS (Caddy + Compose) | [PRODUCTION](deploy/PRODUCTION.md) |
 
-[DEPLOY](deploy/DEPLOY.md) mô tả cài đặt, cấu hình và index lifecycle.
-[Production runbook](deploy/PRODUCTION.md) mô tả Compose/Caddy, staging, migration, monitoring, backup/restore và rollback.
-Một host Linux, local filesystem, một worker/replica mỗi service là giới hạn hiện hành. Docker/Web restart không tự migrate hoặc seed.
+Giới hạn hạ tầng hiện hành: một host Linux, local filesystem, một worker/replica mỗi
+service; limiter/presence trong RAM và khóa file chưa hỗ trợ nhiều host. Restart container
+không tự migrate/seed.
 
-API: `GET /live` là liveness; `GET /health` trả readiness, số items, trạng thái CF và
-fingerprint artifacts đã nạp (`version` + `manifest_sha256`); fingerprint chỉ đổi sau
-`/admin/reload` thành công, không chứng minh pointer CURRENT.json. Web: `GET /health`
-là liveness, `GET /ready` kiểm PostgreSQL. OpenAPI ở `/docs`.
+## Giới hạn đã biết
 
-API chính: `POST /api/search`, `POST /api/chat`, `POST /api/chat/stream`, `GET /api/personas`, `POST /api/for-you`. CF thiếu model trả 503. `POST /admin/reload` yêu cầu `X-Admin-Token` khớp cấu hình.
-
-SSE text là provisional; `final` mới là kết quả thay thế đã qua xử lý. `done` chỉ kết thúc stream, không chứng minh thành công.
-
-Web từ chối event sau `done`. Client generation từ chối kết thúc bị cắt/filtered/tool-call;
-Ollama cần terminal `done` hợp lệ. Lỗi partial không được dùng làm final thành công.
-Provider được chọn theo cấu hình lúc bắt đầu; lỗi provider không tự chuyển sang cloud
-provider khác. Adapter dùng template/error final theo contract.
-Legacy OpenAI-compatible stream thiếu finish metadata vẫn được chấp nhận nhưng log
-WARNING `completion unverified`; không coi đó là bằng chứng completion toàn vẹn.
-
-## Giới hạn đã biết (Known Limitations)
-
-- Chưa xác nhận Docker/PostgreSQL/HTTPS staging, authenticated E2E, backup/restore hoặc recovery trên storage production.
-- Chưa có đánh giá độc lập đủ rộng về neural retrieval, CrossEncoder, faithfulness, hallucination và refusal.
-- Usage/cost tracker hiện ghi cho non-stream completions; streaming usage/cost chưa được đo đầy đủ.
-- Catalog legacy 5.000 items và interactions CF là synthetic; snapshot curated chứa 118 trang thật. `/health` cung cấp số items runtime cùng fingerprint artifacts đã load; provenance cần đối chiếu riêng với release/artifact manifest tin cậy.
-- CSV catalog, PostgreSQL và artifact activation chưa có transaction xuyên hệ thống; release cần maintenance window.
-- Pickle chỉ từ builder tin cậy. SHA256 inventory không xác nhận tác giả nếu attacker sửa được cả file và manifest.
-- Chẩn đoán học tập bằng luật chưa được xác nhận là phép đo năng lực; local locks/rate limiter RAM chưa hỗ trợ nhiều host.
-- Không tự gán giấy phép chung cho repository. Giữ license/attribution từng nguồn theo [data README](data/README.md).
+- **SLO 45s**: Qwen2.5:3b trên CPU này prefill 40–51s cho prompt 1387 token; nén prompt
+  500/800 chars làm giảm chất lượng theo case nên default giữ `None`. Cần prefill
+  ≥65–70 tok/s (CPU mới hoặc GPU) và phải chạy lại frozen + cold/warm.
+- **Human faithfulness/entailment** chưa đo (`null`); packet và protocol chấm đã sẵn sàng.
+- Capacity/soak dài, cold concurrency >1, multi-host/HA, migration production **chưa
+  kiểm chứng**.
+- Catalog legacy 5.000 items và interactions CF là **synthetic**; snapshot thật là 118 trang.
+  Qrels hiện có là metadata/rule-based hoặc engineer-authored, không phải human panel.
+- Citation hợp lệ/verbatim không chứng minh entailment; chỉ tiêu chưa đo phải `null`.
+- Pickle chỉ nạp từ builder tin cậy; SHA256 không chống được attacker sửa cả file và manifest.
+- Không gán giấy phép cho repository; giữ license/attribution từng nguồn theo
+  [data README](data/README.md).
 
 ## Điều hướng tài liệu
 
 | Nhu cầu | Tài liệu |
 |---|---|
-| Kiến trúc và quyết định | [Architecture](docs/ARCHITECTURE.md), [ADR-010](docs/decisions/ADR-010-shared-retrieval-and-atomic-state.md) |
-| Trạng thái và bằng chứng mới | [Memory](docs/PROJECT_MEMORY.md), [Validation](reports/VALIDATION.md) |
-| Kiểm kê code/tài liệu và Before/After | [Restructuring report](reports/RESTRUCTURING_CONTINUATION_2026-10-30.md) |
-| Lịch sử thay đổi | [Changelog](CHANGELOG.md) |
-| Dữ liệu và phương pháp đánh giá | [Data](data/README.md), [ADR-004](docs/decisions/ADR-004-evaluation-design.md), [nghiên cứu nền](RESEARCH_ITLR.md) |
-| Công việc chưa hoàn tất | [Checklist](tasks/todo.md), [kế hoạch lịch sử](tasks/plan.md) |
+| Kiến trúc, ranh giới, trade-off | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) |
+| Truy hồi, generation, citation, fallback | [docs/RAG.md](docs/RAG.md) |
+| HTTP API và route Web | [docs/API.md](docs/API.md) |
+| Test, coverage, chiến lược kiểm chứng | [docs/TESTING.md](docs/TESTING.md) |
+| Metric, dataset, nguồn nhãn, giới hạn | [docs/EVALUATION.md](docs/EVALUATION.md) |
+| Bảo mật, trust boundary, scan | [docs/SECURITY.md](docs/SECURITY.md) |
+| Quyết định kiến trúc | [ADR](docs/decisions/ADR-001-deepseek-primary-llm.md) (001–013) |
+| Trạng thái & evidence mới nhất | [PROJECT_MEMORY](docs/PROJECT_MEMORY.md), [VALIDATION](reports/VALIDATION.md), [certification](reports/FINAL_E2E_CERTIFICATION.md) |
+| Quy ước cho coding agent | [AGENTS](AGENTS.md), [CONSTRAINTS](CONSTRAINTS.md) |
+| Lịch sử thay đổi | [CHANGELOG](CHANGELOG.md) |
+| Lưu trữ (không phải trạng thái hiện hành) | [reports/](reports/), [review 2026-10-27](docs/review-2026-10-27.md), [nghiên cứu nền 2026-10-27](RESEARCH_ITLR.md), [kế hoạch](tasks/plan.md) |

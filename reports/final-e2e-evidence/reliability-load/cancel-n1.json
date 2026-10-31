@@ -1,0 +1,30 @@
+{
+  "mode": "cancel",
+  "started": "2026-10-31T13:03:28",
+  "n": 1,
+  "chat": {
+    "ok": true,
+    "ttft": 0.278,
+    "wall": 35.277,
+    "types": [
+      "sources",
+      "meta"
+    ],
+    "terminal": "meta",
+    "cancelled_early": true
+  },
+  "health_after": [
+    0.005,
+    {
+      "status": "ok",
+      "engine": "ready",
+      "cf": false,
+      "items": 118,
+      "artifacts": {
+        "version": "docker-a",
+        "manifest_sha256": "29098b37e898ad060118b96b4f66eb658ba3b93dfa5e55baa9562027458c867a"
+      }
+    }
+  ],
+  "finished": "2026-10-31T13:04:04"
+}

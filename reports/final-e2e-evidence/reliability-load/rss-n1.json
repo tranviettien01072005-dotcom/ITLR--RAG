@@ -1,0 +1,14 @@
+{
+  "mode": "rss",
+  "started": "2026-10-31T13:04:04",
+  "n": 1,
+  "stats": [
+    "itlr-resume-1031c-caddy-1\t0.00%\t26.5MiB / 128MiB",
+    "itlr-resume-1031c-observer-1\t0.00%\t22.07MiB / 128MiB",
+    "itlr-resume-1031c-web-1\t0.00%\t27.89MiB / 384MiB",
+    "itlr-resume-1031c-api-1\t0.19%\t1.125GiB / 4GiB",
+    "itlr-resume-1031c-ollama-1\t0.01%\t2.164GiB / 3.418GiB",
+    "itlr-resume-1031c-postgres-1\t11.42%\t24.2MiB / 384MiB"
+  ],
+  "finished": "2026-10-31T13:04:06"
+}

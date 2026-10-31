@@ -1,57 +1,41 @@
-# Single-host deployment and release procedure
+# Single-host deployment runbook
 
-Status: configuration prepared, Docker/HTTPS/cloud execution NOT VERIFIED.
-This is a Linux single-host design, suitable for preparing a Google Cloud VM staging
-environment. It is not a Cloud Run or multi-host design: artifact locks, SQLite and
-in-memory limiters require one replica per service and a local filesystem.
+Thiết kế cho **một host Linux** với Caddy → Web → API/PostgreSQL, local filesystem, một
+worker/replica mỗi service. Không phải thiết kế Cloud Run/multi-host: khóa artifacts, SQLite
+và limiter trong RAM đều giả định một tiến trình.
 
-Current code/documentation evidence: [restructuring checkpoint](../reports/RESTRUCTURING_CONTINUATION_2026-10-30.md).
-Run the staging release gates below even when local tests pass. Operational symptoms
-and safe checks are listed in [troubleshooting](DEPLOY.md#kiểm-tra-và-xử-lý-sự-cố).
+## 1. Trạng thái kiểm chứng
 
-## Boundaries
+| Hạng mục | Trạng thái |
+|---|---|
+| Compose single-host cô lập (Caddy TLS nội bộ, PG16, E5, Qwen, Chrome 11/11, backup/restore, tamper, reload/rollback, restart) | **PASS scoped** — [certification §11](../reports/FINAL_E2E_CERTIFICATION.md) |
+| Public DNS + ACME thật, cloud provisioning | **NOT VERIFIED** |
+| Multi-host/HA, soak dài, capacity | **NOT VERIFIED** |
+| SLO 45s với Qwen trên CPU | **FAIL** (prefill 40–51s; §12) |
+| Production data migration | **BLOCKED** — chưa thực hiện, không nằm trong phạm vi |
 
-Internet -> Caddy :443 -> Web :3000 -> API :8000 / PostgreSQL :5432.
-Only Caddy publishes host ports. Its fixed internal IP is the only trusted Web proxy.
-The private subnet 172.30.0.0/24 must not overlap the host/VPC/VPN network; if changed,
-update both proxy IP and TRUSTED_PROXIES in compose.production.yml together.
-Do not attach untrusted containers to this Compose network.
+Staging PASS không phải production-ready. **Verdict hiện hành: NO-GO production** — không
+promote khi các gate dưới còn mở.
 
-`web/src/app.ts` configures Express and routes without opening a listening socket.
-`web/src/server.ts` owns listening, signal handling and database pool shutdown.
-`web/docker-entrypoint.sh` starts the process only. All deployment methods now require
-explicit migration/catalog jobs; restarting Web no longer mutates schema or catalog.
-Python module boundaries and the legacy BM25 pickle shim remain intact.
+## 2. Điều kiện
 
-## Prepare staging
+- Host Linux riêng, Docker Engine + Compose v2, DNS trỏ về host, TCP 80/443 (và UDP 443 nếu
+  muốn HTTP/3). Giới hạn SSH cho quản trị.
+- Không expose 3000/8000/5432. Không dùng chung database với môi trường khác.
+- Artifacts đã build/probe và model cache offline (`var/hf`), không rebuild/activate dữ liệu
+  thật chỉ để thử template.
 
-Use a dedicated Linux host, Docker Engine with Compose v2, a DNS name pointing at
-the host, and inbound TCP 80/443 (plus UDP 443 if HTTP/3 is wanted). Restrict SSH
-to administrators. Do not expose 3000/8000/5432 or reuse a production database.
-No cloud resources are created by this change.
+## 3. Cấu hình
 
-From the repository root, copy each `deploy/*.env.example` to the same name without
-`.example`: compose.env, postgres.env, web.env, api.env. Actual `.env` files are ignored.
-Set file permissions to 600. Supply independent random JWT/admin/database credentials;
-the database password in DATABASE_URL must match postgres.env and be URL encoded.
-POSTGRES_* values initialize an empty volume only; changing them does not rotate an
-existing database password. Never commit credentials or include them in reports.
-Set SITE_DOMAIN and APP_ORIGIN consistently. Use unique immutable release image tags.
-Pin reviewed image digests for a controlled release; floating base/service tags in
-this template do not establish a reproducible supply chain.
-
-Provide trusted, probed artifacts and the required offline embedding model cache in
-`var/`. Do not activate, rebuild or migrate real data just to validate the template.
-The Web image runs as UID 1000; grant that UID the required access to `var/data`
-and the exported web_items.csv on the host, without changing artifact ownership.
-API currently runs as the base image user; least-privilege API volume permissions
-and a non-root runtime remain a release hardening gate.
-
-For subsequent commands use this Bash function in the repository root:
+Sao chép từng `deploy/*.env.example` thành `deploy/{compose,postgres,web,api}.env`, quyền
+`600`, giá trị ngẫu nhiên riêng. Mật khẩu trong `DATABASE_URL` phải khớp `postgres.env` và
+được URL-encode. `POSTGRES_*` chỉ khởi tạo volume rỗng — đổi không có nghĩa là rotate mật
+khẩu DB đang chạy. Đặt `SITE_DOMAIN` và `APP_ORIGIN` nhất quán (HTTPS). Dùng image tag bất
+biến; ghim digest cho release có kiểm soát.
 
 ```bash
 dc() { docker compose --env-file deploy/compose.env -f compose.production.yml "$@"; }
-dc config --quiet
+dc config --quiet          # luôn dùng --quiet để không in credential
 dc build api web
 dc up -d postgres
 dc run --rm --no-deps web node dist/db/migrate.js
@@ -60,140 +44,90 @@ dc up -d api web proxy
 dc ps
 ```
 
-Prepare the CSV with the existing export_web_catalog.py workflow before syncing.
-Sync is an upsert preserving enrollments; it does not delete absent courses.
-Migrations must run after backup and review; the schema script is not a general
-reversible migration framework. `config --quiet` avoids printing resolved credentials.
-Caddy needs working public DNS/ports to obtain and renew certificates. Its certificate
-state is persistent. Confirm HTTPS, secure cookies, CSRF, forwarded client IP and SSE
-through the public endpoint before promoting staging.
+Migration/sync là **job release tường minh**; restart Web không tự chạy. Chuẩn bị CSV bằng
+`scripts/export_web_catalog.py` trước khi sync (upsert, không xóa enrollment).
 
-## Observe and stop
+Ghi chú quyền: Web chạy UID 1000, cần đọc `var/data` và CSV; API image hiện chạy bằng user
+mặc định của base image (root) và mount `./var` read-write — hạ quyền API/volume là
+hardening gate chưa hoàn tất.
+
+## 4. Kiểm tra sau khi dựng
 
 ```bash
 dc ps
 dc logs --since 15m --tail 200 api web proxy
-curl --fail https://learning.example.com/health
-curl --fail https://learning.example.com/ready
+curl --fail https://$SITE_DOMAIN/health
+curl --fail https://$SITE_DOMAIN/ready
 dc exec -T api python -c "import urllib.request; print(urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=8).status)"
-dc stop web
 ```
 
-Web `/health` is process liveness; `/ready` checks PostgreSQL only. It does not
-confirm RAG readiness. API `/health` reports readiness/items/CF, but does not expose
-the loaded engine's version/hash. CURRENT.json is on-disk state, not proof of a
-successful reload. Loaded-version evidence remains a release acceptance gap.
-Monitor disk space, memory/OOM, container restarts, database
-availability, API health and HTTP 5xx/latency. External alert delivery is not configured.
-Do not log request bodies, chat content or secrets. Web SIGTERM drains connections
-for up to 20 seconds, closes remaining SSE connections, then drains the database
-pool; the process has a 25-second hard deadline and Compose allows 30 seconds.
+- Web `/health` = liveness; `/ready` = PostgreSQL. Không chứng minh RAG readiness.
+- API `/health` trả `engine`, `items`, `cf`, `artifacts{version,manifest_sha256}`; fingerprint
+  chỉ đổi sau reload thành công. So với release manifest đã duyệt, không đọc `CURRENT.json`
+  thay thế.
+- Kiểm HTTPS, cookie `Secure`, CSRF, client IP sau proxy và SSE qua endpoint công khai trước
+  khi promote.
 
-## Backup and recovery drill
+## 5. Quan sát
 
-Run backups from Bash with restrictive permissions; export them encrypted to a
-separate host/storage account and monitor freshness. Backups on this VM alone are
-not disaster recovery. Before a coordinated backup, stop Web and any refresh/crawler
-jobs so database/catalog/artifact state is not changing across the backup window.
-Confirm no other writers exist; API can keep reading the active artifacts.
+Theo dõi: dung lượng đĩa, RAM/OOM, restart container, DB availability, API health, tỉ lệ 5xx
+và latency. `/metrics` (API) trả đếm request + latency TB/max theo route (đòi
+`X-Admin-Token` nếu đã cấu hình). Không có alert external được cấu hình.
+
+Không log body chat, nội dung tệp hay secret. Web SIGTERM drain kết nối tối đa ~20s, đóng SSE
+còn lại rồi drain pool DB; hard deadline 25s, Compose cho 30s.
+
+## 6. Backup và phục hồi
+
+Dừng Web và mọi job ghi (crawler/refresh) trong cửa sổ backup; API có thể tiếp tục đọc
+artifacts active.
 
 ```bash
 umask 077
 mkdir -p deploy/backups
-backup_stamp=$(date -u +%Y%m%dT%H%M%SZ)
-dc exec -T postgres sh -c 'pg_dump -U "$POSTGRES_USER" -d "$POSTGRES_DB" -Fc' > "deploy/backups/db-$backup_stamp.dump"
-tar -czf "deploy/backups/var-$backup_stamp.tgz" var
-sha256sum "deploy/backups/db-$backup_stamp.dump" "deploy/backups/var-$backup_stamp.tgz" > "deploy/backups/$backup_stamp.sha256"
+stamp=$(date -u +%Y%m%dT%H%M%SZ)
+dc exec -T postgres sh -c 'pg_dump -U "$POSTGRES_USER" -d "$POSTGRES_DB" -Fc' > deploy/backups/db-$stamp.dump
+tar -czf deploy/backups/var-$stamp.tgz var
+sha256sum deploy/backups/db-$stamp.dump deploy/backups/var-$stamp.tgz > deploy/backups/$stamp.sha256
 ```
 
-Check every command exit status before marking a backup successful. Record release
-image tags and CURRENT.json version alongside the pair. Restore first on a separate
-staging instance: verify hashes, inspect archive paths, restore var into that staging
-checkout, and use pg_restore into a newly created empty database. Point staging Web
-at that restored database and validate accounts/enrollments/catalog and API provenance.
-Never run `down -v`, `pg_restore --clean` or overwrite the live var directory as a
-routine deployment step. Backup and restore execution is NOT VERIFIED here.
+Kiểm exit code từng lệnh; ghi image tag + version artifacts. Restore **trên instance staging
+riêng** trước: xác minh hash/path, `pg_restore` vào database mới, trỏ Web staging vào đó rồi
+kiểm account/progress/catalog. Không chạy `pg_restore --clean`, không ghi đè `var` đang chạy,
+không `docker compose down -v`. Backup/restore 15 bảng đã drill trong staging (§11.3); restore
+trên VM thật chưa thực hiện.
 
-## Release and rollback
+## 7. Release và rollback
 
-Preserve previous image tags, database/var backup pairs and previous artifact versions.
-For index/catalog changes use a maintenance window: stop Web, run the existing
-staging -> probe -> activate workflow, reload/restart API, export the matching Web
-catalog and sync PostgreSQL, then start Web and verify matching provenance. These
-systems do not share a cross-service atomic transaction. If a step fails, keep Web
-stopped and restore/rollback the matching pair before accepting traffic.
+Giữ image tag cũ, cặp backup DB/var và version artifacts trước đó. Đổi index/catalog cần
+maintenance window: stop Web → build/probe/activate → reload/restart API → export + sync CSV
+→ start Web → kiểm provenance. Không có transaction xuyên dịch vụ; bước lỗi thì giữ Web dừng
+và phục hồi cặp khớp trước khi nhận traffic.
 
-For a code-only rollback, restore previous API_IMAGE/WEB_IMAGE tags in compose.env
-and recreate API/Web. Use the existing index rollback CLI for artifacts. A code
-rollback cannot undo schema or data changes; restore a tested backup when required.
-Do not promote until Docker build, restore drill, real PostgreSQL flows, browser/SSE,
-RAG quality and load measurements pass in Linux staging. No deployment has occurred.
+- Rollback code: đổi `API_IMAGE`/`WEB_IMAGE` về tag cũ rồi recreate. Rollback artifacts:
+  `versioning.rollback()` + reload. Rollback code **không** hoàn tác schema/dữ liệu — phải
+  restore backup đã test.
+- Trước khi promote: Docker build, restore drill, luồng PostgreSQL thật, browser/SSE, chất
+  lượng RAG và đo tải phải PASS trên staging Linux.
 
-Latest offline verification and pending staging gates: [stream hardening](../reports/HARDENING_STREAM_2026-10-30.md). This continuation does not certify Docker, PostgreSQL, HTTPS or backup/restore runtime.
+## 8. Xử lý sự cố
 
-Current code/documentation checkpoint: [restructuring continuation](../reports/RESTRUCTURING_CONTINUATION_2026-10-30.md). Offline test success does not replace staging release gates.
+| Hiện tượng | Hành động |
+|---|---|
+| Caddy không cấp cert | DNS/port 80/443, log Caddy; staging nội bộ dùng CA nội bộ + trust tường minh |
+| Web 502/503 | `dc ps`, log web; `/ready` DB; API health |
+| API 503 | thiếu artifacts/model; xem log, không thêm dữ liệu giả |
+| SSE cắt giữa stream | kiểm provider/timeout; final không có `done` không được lưu |
+| Reload 403 | token/header; không tắt auth |
+| Reload 503 | artifacts/manifest lỗi; engine cũ vẫn phục vụ |
+| Restart mất dữ liệu | kiểm volume `postgres_data`; không `down -v` |
+| 429 hàng loạt | limiter/IP sau proxy; khai `TRUSTED_PROXIES` đúng, không tắt limiter production |
+| Container bị OOM | giới hạn mem Compose, kích thước model/context, hardware |
 
-## Isolated staging acceptance drill (NOT EXECUTED)
+## 9. Gate mở trước production
 
-Use a separate staging checkout/release copy containing the reviewed working-tree
-changes, a separate var directory and fresh credentials. A different Compose project
-alone does not isolate bind-mounted var; do not point this drill at the live checkout.
-Prefer a separate Linux staging host as required above. The template fixes subnet
-172.30.0.0/24 and proxy trust IP; same-host staging additionally needs reviewed,
-non-overlapping network/subnet and matching proxy trust settings.
-Confirm domain, paths, database host and volumes before any write. No automatic
-Docker/WSL installation or cloud provisioning is part of this procedure.
-
-In that staging workspace only, redefine dc to use a dedicated project:
-
-```bash
-dc() { docker compose -p itlr-staging-validation --env-file deploy/compose.env -f compose.production.yml "$@"; }
-dc config --quiet
-dc build api web
-dc up -d postgres
-dc run --rm --no-deps web node dist/db/migrate.js
-dc run --rm --no-deps web node dist/db/sync-courses.js
-dc up -d api web proxy
-dc ps
-```
-
-Prerequisites remain the trusted staged artifacts/model cache and exported Web CSV
-described above. Capture image digests, corpus/artifact manifests and release ID.
-Check /health and /ready through HTTPS; separately check API /live and /health.
-Current API health has no loaded-version fingerprint: independently proving the
-serving version after reload/rollback is still an acceptance gap, not a PASS from
-reading CURRENT.json.
-
-Create a disposable account through the actual registration/login forms. In the
-authenticated chat UI verify early sources/text, final replacement, done, persistence
-after reload, and cancellation when disconnecting. A second staging account must not
-read that conversation or attachment; logout must prevent chat access. Exercise
-admin authentication, rejected upload signatures and upstream failure without
-logging cookies, passwords, reset tokens or response content. These are browser
-acceptance cases, not a CSRF bypass via a simplified curl login.
-
-For backup/restore, stop writers and produce the coordinated dump/var pair above.
-The following commands create a new database in the isolated staging PostgreSQL;
-they intentionally fail if the name already exists and never drop an existing DB:
-
-```bash
-dc exec -T postgres sh -c 'createdb -U "$POSTGRES_USER" itlr_restore_validation'
-dc exec -T postgres sh -c 'pg_restore --exit-on-error --no-owner -U "$POSTGRES_USER" -d itlr_restore_validation' < "deploy/backups/db-$backup_stamp.dump"
-dc exec -T postgres sh -c 'psql -v ON_ERROR_STOP=1 -U "$POSTGRES_USER" -d itlr_restore_validation -c "SELECT count(*) FROM courses; SELECT count(*) FROM users;"'
-```
-
-Compare counts to the stopped staging source, then point staging Web at the restored
-database and verify ownership, progress and saved chats. Validate archive paths/hashes
-before restoring var into another fresh staging directory. Never overwrite active var.
-
-For artifacts, use two trusted probed fixture versions in the isolated root: activate,
-reload, query known distinguishing documents, rollback, reload, and query the old
-documents. Inject a corrupt candidate only in that root; reload must fail while the
-loaded engine remains usable. Restart after an interrupted staging build; the prior
-active version must still serve. Existing pytest lifecycle tests cover temporary
-fixtures, but do not replace this Linux/container/storage drill.
-
-Record per-case expected/observed results, timings, sanitized logs and restore
-evidence. Promote only after all required cases pass and neural/generation quality
-criteria are agreed and measured. API currently runs as root with a writable var
-mount; validate least privilege, artifact ACL and rollback permissions before release.
+1. SLO 45s: phần cứng đạt prefill ≥65–70 tok/s + chạy lại frozen/cold-warm.
+2. Human faithfulness/entailment (`null`) và đánh giá refusal.
+3. Soak dài, cold concurrency >1, queue depth, multi-host/HA.
+4. Hardening API non-root, quyền volume tối thiểu, secret rotation.
+5. Public DNS/ACME + restore drill trên VM thật.

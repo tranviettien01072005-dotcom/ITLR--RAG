@@ -1,0 +1,12 @@
+python-tests:0:52
+compileall:0:0
+pip-check:0:1
+pip-audit:0:15
+bandit:0:1
+web-typecheck:0:5
+web-lint:0:2
+web-build:0:5
+web-tests:0:8
+npm-audit:0:1
+npm-lock:0:1
+docker-info:0:0

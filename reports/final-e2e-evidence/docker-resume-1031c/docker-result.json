@@ -1,0 +1,1024 @@
+{
+  "scope": "Isolated Docker Compose: real PG16/Caddy/Express/E5-base768/Ollama qwen2.5:3b; CPU-only dependency variant; no response fixtures",
+  "project": "itlr-resume-1031c",
+  "checks": [
+    {
+      "name": "container-cpu-torch-and-artifact-sklearn-parity",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "verified-internal-caddy-tls-register",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "production-hsts-and-csp",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "real-pg16-register",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "production-auth-cookie-secure-httponly-lax",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "real-pg16-csrf-rejected",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "real-pg16-diagnostic-persisted",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "real-pg16-progress40-persisted",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "real-artifact-health118",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "reload-without-token403",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "real-e5-search",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "real-chat-sse-strict-final-done",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "real-chat-model-accepted-grounded-answer",
+      "pass": true,
+      "detail": {
+        "generationMode": "llm_extractive"
+      }
+    },
+    {
+      "name": "real-chat-db-history",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "real-chat-persisted-page",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "authenticated-reload118",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "private-version-b-reload",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "private-version-rollback-reload",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "tampered-artifact-reload-rejected",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "restored-artifact-reload",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "all-private-artifact-bytes-preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "pg16-backup-restore15-table-row-hashes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "restart-preserves-all-db-tables",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "production-login-after-container-restart",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "api-ready-after-restart",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "real-browser-driver-completed",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "cancelled-request-not-persisted",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "real-provider-accepts-next-request-after-cancel",
+      "pass": false,
+      "detail": null
+    }
+  ],
+  "errors": [],
+  "sourceHashes": {
+    ".dockerignore": "26108d28dacb368c09755e9a78e0ac782e1b033e391dbb7a45ee068e2e0e9952",
+    "Dockerfile": "dec7e21b024fa04fc72d04536604515453f43bb40a39bc544cfa4e48ea364565",
+    "itlr/__init__.py": "0955c5618ce143c74556fe4fc28c1a790c9d84ce6f06613147ae0d11a6955d57",
+    "itlr/api/__init__.py": "1a4d443dacb8b7a45f3a3029eb46d015435bb4745f4c65dde4604dbe08d63c22",
+    "itlr/api/__main__.py": "76c462031704405bddb8f7e02685713dfe5d6faa70a28dd0f3fa0c51a033dcdc",
+    "itlr/api/ratelimit.py": "1b56b52e90c8f69172993794764d5db1b91ea62abec1b0bcf367a52108bd84e5",
+    "itlr/api/server.py": "d1078028add1ae2cffdee95f0f90f48c284a6347f148c560e0da09f4fecc33d0",
+    "itlr/api/streaming.py": "cb42121000cd4e2b693952a0ce8e6edd885721b71d78e0b62c8cb54bcf3ff44a",
+    "itlr/chatbot/__init__.py": "b6ef82a51361ee8a32c7c4dc5b33121275db0f91c6aa4be13fd0345cbee3068e",
+    "itlr/chatbot/chatbot.py": "722e255052e85d78087ddd4282682bb8ce668831981e12ea8d8d0906625431f9",
+    "itlr/chatbot/citations.py": "2b468f1fddb2088a2dd201194686e74dc6aeb43aa4e368fec31c6d7a1c436c15",
+    "itlr/chatbot/intent_router.py": "69070ac061db713240e05af4662a23baef3cdcd023bcfd42d4c70d8204628a47",
+    "itlr/chatbot/knowledge_base.py": "4a9fa97aece3b4fbad232350972fb3aefb820da5e8ed84b5749ed8b351523231",
+    "itlr/chatbot/llm_adapter.py": "1831015c058e9f07c1b7766dbb191a42b5b5618a0071daf3285368415ba0ed89",
+    "itlr/chatbot/llm_client.py": "e84a8a0fe3717d0244f1feb6108dbefbc6bbae85ede4891c2b48e16b287fc529",
+    "itlr/chatbot/opencode_client.py": "40f30e102ff771063964ca64c097de8e10fe5bdd88787ea102aacc40177bd8f2",
+    "itlr/chatbot/presentation.py": "4110a9a994e7dc40c34cfb3aba882196ce7cc6d0be3b6a671a02eb06aa7e90b1",
+    "itlr/chatbot/query_understanding.py": "bd38e16bf4630eaa75e7f49ee605d9930cce2a732ddf89640152557323d201a9",
+    "itlr/collect/__init__.py": "8304856e5eecdd1390dd3441167ad034e1ae79e342a0f948c14f658798dfb91c",
+    "itlr/collect/adapters.py": "8a746c1e35f961a61f3d1ae84a40d6223d12c00dcbb140f08aef0d22745e2c42",
+    "itlr/collect/chunk.py": "19020ecae1e626b44216c02388d69576cc39b02e36d947c0e89fd9d6734b8fa7",
+    "itlr/collect/extract.py": "aa303e24825ef02a3f15f3f4db60ccd42bc30e901deaafc889769b0a640df51b",
+    "itlr/collect/http.py": "c7eeec031f74cde0653a271cd1fee8a416c02c116b1f4ed9cc656fe230843e63",
+    "itlr/collect/normalize.py": "5f8b72ad59d5d4cc75070d4946469ba6f173b67b4a3403598c48dc434043fc0f",
+    "itlr/collect/quality.py": "c67b9a05340165d5aa967ff816f0f820105b194a084d87dcd635bcb1e9f31575",
+    "itlr/collect/runner.py": "65290d2e738de56e13f7ce3704ea1702f73ca71784482343842b5ffff49d6cf7",
+    "itlr/collect/sources.py": "02da448eae88553593f876c579e298d00a181eb04c7ea0d9f3bd13c5259200cb",
+    "itlr/collect/store.py": "e17f611cb64a92a3aa835f69241829ca35d6c839fb499ba13e07d23ffab53c24",
+    "itlr/collect/url_util.py": "90be0a5dbfa2c0cc9de73b13e889212f308cdd48584bf9975915834f374d9b95",
+    "itlr/config.py": "3faf0f235e582f774cd0449b628d2d884c23948ebcf55943345bb433b3bf8546",
+    "itlr/core/__init__.py": "99b6045facd11786a4d93077f2db7392a928f85079e1835685323123a041aea1",
+    "itlr/core/ann.py": "dc41c935d24fc520e440b50555234ab25aebc06d83c58e605488f5c091af102f",
+    "itlr/core/bm25.py": "15e60ce4597b30e443d9aef1c6da9bf29c05edc03d4f90a692a7806904e727be",
+    "itlr/core/chunks.py": "75444726e1e08e8a44c1a4aad64bd670ea8bf5e435dbe3fa139177380a1f014e",
+    "itlr/core/display.py": "4e588dcebf9aa787f0e581378c6c6724c83173e109578c40913a1e40b6c68014",
+    "itlr/core/embeddings.py": "3cc960a18ac44e5e235e215a52cc9ffc271d3a1273e2e4763f52bc239a29dac1",
+    "itlr/core/pipeline.py": "39cc2cce0c146171c45b088876f206202f0711d64f1f172cc7b688beec057229",
+    "itlr/core/rag.py": "d692f24677d7276986ea4c5a316fe503675db678bfe5c9e28b6c40d94cface82",
+    "itlr/core/recommender.py": "9a4e855a089ebfefc998d57388c5ec14b133eec7c67c44afb09ad91768d6a0d6",
+    "itlr/core/rerank.py": "de16d93512054c7521d0336ea752578d6ce5da5c2168bc99d4c1ee9bf9531102",
+    "itlr/data/__init__.py": "5639b53e968f97a6fbf4e915df3be009014720c09b945ad5fcd7d3bb0c0cef7e",
+    "itlr/data/generate_interactions.py": "a6b20b2f1a09e1c30c1a1ea26228044fb93fe614761f2d07ba5c90bbc8e9fa0a",
+    "itlr/data/generate_items.py": "6dc26d95166f9544e11226824ba5ca67f10ea455d0597212487c8db8eca58664",
+    "itlr/engine.py": "4bfe228a6fb557721a35d1a5d5f1542a40c85d5bcc511b06970c07bb7cce51b8",
+    "itlr/eval/__init__.py": "748266e901de031fbea3dc93f5ab9c723f7d45b6505f0b96ca1759cea1030658",
+    "itlr/eval/cf_eval.py": "999bcf1d1216e9bb0ce84532250fbb33d70afd1541cdc7ab69e3977d8080c463",
+    "itlr/eval/diversity.py": "d4a6aafe238daf8a233aa708af5b07dd3a27ef3d4ceeeeff7e1a6403b1c70278",
+    "itlr/eval/loader.py": "426a0ee00b1f05d2161d1c28378369cb2a4333a414bb08de614ad9d5d3e34581",
+    "itlr/eval/ltr_features.py": "7eedcf6d7d9342d145adbaa460ad44b95d9c4fc45b66b783d6a4521971fe3e5d",
+    "itlr/eval/metrics.py": "6cf52e9f21d030ce1a5393ea7912108f068fb9570350a3790a8295ff46843f9f",
+    "itlr/eval/off_policy.py": "dec75ef8637635ec0b2828b64ab1e866042a8bd8aff24ada44a59a70afb36dac",
+    "itlr/eval/significance.py": "9403c8b8dab7fa357c7aaa030cb397aa3c516b39270eb963adcbf49d19968908",
+    "itlr/indexv2.py": "90184e95595d9021fa03c6056b389c408642fbf3142445abfe48fed5fbad5cf8",
+    "itlr/locking.py": "87fa2f6a53d7d530e55de269eaa940eb0aa0d945f614db4ab55176405d34093b",
+    "itlr/pipelines/__init__.py": "46067a78a5f01a99ba1fff7d0dee71ec99403907ae585082a18957d1031a85b2",
+    "itlr/pipelines/build_cf.py": "2f5169e1629357fc63c7aea30d77972b851214fbc3b8d258be0e76ffd538cbdd",
+    "itlr/pipelines/build_embeddings.py": "c916c89e228c7a294d1b1948d9e9ab3853a811687776695b70e6e576de98bcbf",
+    "itlr/pipelines/build_embeddings_v2.py": "4cdede65a4ea667dfc650b59063fde66ec0c90f9b185729c2c5605e1b40b7580",
+    "itlr/pipelines/build_model.py": "c70eb0c8b4cec643abe9189b78df2d46ebc1b1cfa7c4dbef6ccf085aaab1787c",
+    "itlr/pipelines/generate_interactions.py": "677298f22806fd850123555960d4cf5df2a553cc0634ce0ed4d27a99c7968364",
+    "itlr/retrieval/__init__.py": "6d1efdd7123b026dee7963f9ea87a1cdf166914fa5f7715fdfdbe65a23bdfa10",
+    "itlr/retrieval/bm25.py": "19c4961177f74adff09579f079a60ea5f681b30be0f189e687eb1b18d2ba7fab",
+    "itlr/retrieval/service.py": "9e247d5f2eea5bd9b7baa27172537ec7c6542a2d85abe96dd4d73da705bb0007",
+    "itlr/utils/__init__.py": "27bda32e1dcfc532b41e99db155331bf838a9a1114ad2500841a2508bb798bf9",
+    "itlr/utils/repickle.py": "c098cc972d7c75c252e7887b1a332f518ea03dd2d6a3b5b6157f4229e1bb9f57",
+    "itlr/utils/runtime_patches.py": "25a201ace191171cbefdb58ce38a882db3742c806af566678b110cf3502c2627",
+    "itlr/versioning.py": "5160e9673590d34fbbc89ebf4150b7b4de0cfb04457cdb4893cf662a0b645812",
+    "requirements.txt": "da3d8013dcce7f699be3afbe6da04bc2ad5f778a2d96167f5521d5388b4bfb93",
+    "web/.dockerignore": "0dd046893f0dffa28b8def7ae6131335f111c46007c299c8e299bac0e0948e95",
+    "web/Dockerfile": "050d3d70768d8799530792a44a339c08eb671ae36a7e359e7a22a6a3013af66a",
+    "web/docker-entrypoint.sh": "cdb66369765d28366b6bb6dc6482947c429df893d5c26835c2029762dccc8a68",
+    "web/package-lock.json": "33257811164a17ed54d5beb86192ec7f0e697af5e0488882c8dd1eb9ba2c7a1d",
+    "web/package.json": "927324d5dcddecd180b288e9a0a160cc87a765c7df74c4544687c52ccc20c27d",
+    "web/src/app.test.ts": "ec6d7a3a9ee9ea137c49e1cb868324e4750ee5d419fc7d5ad272fb70f6abfe4c",
+    "web/src/app.ts": "27d63e20670628875414d40a63a756284974954a26abe25f0a36b37adb6adba6",
+    "web/src/config/catalog.ts": "80241136099c4e2dad96a36463046fc3fb8cf47e582a92eda040dfacf5a66846",
+    "web/src/config/env.test.ts": "03a4770d08bef279cf0a1ff6797adb20fc1b749e372614231e4f63d660d7df40",
+    "web/src/config/env.ts": "81bb61584a2c579fe2bb0b1d5b686b07c2972b1f77c7a8a644ae68e441922cd9",
+    "web/src/db/check.ts": "8a5db127e5d5b576c48f63f28deb9cdba7bdf256fd4008c5455aa7b8cc025f27",
+    "web/src/db/migrate.ts": "784c704f379abd0f1169e2f093fd2855288a8103779910b4bb50c700fa7a1da8",
+    "web/src/db/pool.ts": "44d39c23dc6858b9450400cdfc0804d542718244a7002f1c65f7560db8930eea",
+    "web/src/db/schema.sql": "c40fe0de496836835dd61b7047c68ecaf514650b5fff49d17f2801798b3ef595",
+    "web/src/db/seed-courses.ts": "3761e32d21f5bc64d2ca3b2acea1c886fa846f172988b025176dcb41b02fce06",
+    "web/src/db/sync-courses.ts": "257cd3201c47af9746e3a97d615252054a3fb28297b5c6bb2c73cc48c7027946",
+    "web/src/db/types.ts": "1932dec3f0eb926a51b9dd8e6008e4df91a9c528632c65efa0e805aaa60c21d6",
+    "web/src/middleware/auth.test.ts": "c202c972c4b5298758e1a2a4d97e5768c8cbf44a0ba2804aa7cfc3d850aa5292",
+    "web/src/middleware/auth.ts": "8254469e8230073c383a644d4b2adc9a3e1aea808f8a0fb68b0a2e77284be4e3",
+    "web/src/middleware/security.test.ts": "af40bbc7f8d8405b66f8c223c9e9519691ab096b6ed5bd6fe37752ecd744227b",
+    "web/src/middleware/security.ts": "14e087da2e153389aa6ecae90d5aa5497ddbdcba371aa9f2affba5bd55f4520f",
+    "web/src/middleware/uploads.test.ts": "f78705602abca1d8da3084538d48c32e1d3e30d2923e7349a29c3f940d9d7e05",
+    "web/src/middleware/uploads.ts": "c39609590cbe751f4caa53851ca1fc5761ff4a7ac605b5f8f31960d830eeac75",
+    "web/src/public/app.js": "267aea7784ee502da96d7ad47e347d84022ffed9505566ecd554395a425d2257",
+    "web/src/public/chat-stream.js": "e533b8e6087ac660a895aaa41f88942d5deabe2b6089a9c8c222650e1ca84e53",
+    "web/src/public/fonts/inter-latin-ext.woff2": "34b9c504cab7a73e37b746343a449132e56cf7b5481af2cb81dc74dcff25c956",
+    "web/src/public/fonts/inter-latin.woff2": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+    "web/src/public/fonts/inter-vietnamese.woff2": "5c66f9e07e90c6d4ac4922cc68d60de26c17b1858e677fb5e603fce3952b3ff2",
+    "web/src/public/init.js": "07e9e867f8ac3af35001da64b63f4b405e3281b52e8cb3956de56d59a6f329b7",
+    "web/src/public/learning.css": "87e5b5743e32fa45464352c309ba3ed787d03a7305b0291919c7fe139cc29d08",
+    "web/src/public/learning.js": "0476635086eb5dc3fa61f78e9edd93abc044058d41b194d4a9be33e421fcb57e",
+    "web/src/public/styles.css": "7169770b5cbf774d36293acd31b663931ef8230650c617790e060669b46e57df",
+    "web/src/routes/admin-login.test.ts": "c3026ec2096a8c4e836f545ef7e7349407709280d4f4112bc4fff1b3c18dfaa0",
+    "web/src/routes/admin-security.test.ts": "b02a41be05735732cd4d66fdd714ab3a4395c49566bb1844d69345227e5de033",
+    "web/src/routes/admin.routes.ts": "0d5bcf548c82f971445183470b4562eb5e6e7b6df60586ee4eab8aa46d2a1a8d",
+    "web/src/routes/api.routes.ts": "ff0360fa42fd440df05e4a396ca2cb1d9aa2fe4ff8623c0706ae17f8a6e0b3e9",
+    "web/src/routes/auth-security.test.ts": "8c4c6a63c352a145360e9896b01f7d5cb3c97ec172ed9505407b7e1d8bc57ba0",
+    "web/src/routes/auth.routes.ts": "411bcf650dc3b8a97747dbdc3fa5f90cadb59b5685b5f5d31c203a5c60137bff",
+    "web/src/routes/chat-page.test.ts": "822cc14047f3ac80f864b59c1d3c0bbda2756ef61d2d502d102ee2da7eeb50ed",
+    "web/src/routes/chat.handlers.ts": "44d7d1a9be1a1ea0e8c0fd1d5360fe4f4c83411fcf15f29cddd753bf6178378c",
+    "web/src/routes/chat.routes.test.ts": "d6d1815fce8f31f0083f16a8d6ac47b56f9d00c061a12bb3f6bc08c296f4ae7e",
+    "web/src/routes/learning.routes.test.ts": "7d99cf68870f5d6c51973dc2ce3c7cf9238885ec919d076923995e254c27fba6",
+    "web/src/routes/learning.routes.ts": "5dbb5b411cff6083291f22e270254ca2f0849d2c1c03e57b6c3eeb45fd149376",
+    "web/src/routes/media-range.test.ts": "8e8f20df6ab5d746827acab1e3f9a566b9b5cc81dfda3041fb69a8ce2520c2eb",
+    "web/src/routes/pages.routes.ts": "101a616765997b5474a24dbddda68dccec05e913ccad7ee2d14bc394e919a0f2",
+    "web/src/routes/realtime-lifecycle.test.ts": "8cf306576cf0a976592ae7e085a110dfb80c7e3cdb13579d1c75fa9ed0628132",
+    "web/src/routes/social.routes.ts": "a7bf7acf0baa4051356159d7a0d47e2a4c20611b0937e5990e47d819f4724bc0",
+    "web/src/routes/upload-extraction.test.ts": "d24eea31d18c0f2c35b4270c742a65c2416114c3a7574252a88c733f30f5cad0",
+    "web/src/server.ts": "a3ebc171fc23f04a6d7e0b1b2a089009dbcf0a9858104766fa0123499e57f430",
+    "web/src/services/catalog-csv.ts": "f4dc8d412d60ffd85961174ee14e93674d24371eebe2aea9e8311d4ecd5ea783",
+    "web/src/services/chat-client.test.ts": "fbc2405c3650f73c93baf1e3a47dc64a121dc82355bef2cb72880cb4bc028d42",
+    "web/src/services/chat-history.test.ts": "9e0d17f0b25e8897af8bc520ce4a794098106f7552e6e91cc3625d02ecaece76",
+    "web/src/services/chat-history.ts": "479006e22b4a0591e8531c89e3a38825944e80981dad6fe240673659b0c14eaa",
+    "web/src/services/chat-stream.test.ts": "f581f0f88438877e438fcc7b8abab28c6614929923fc518355407b5941c47c8c",
+    "web/src/services/chat-stream.ts": "b61d6ed1735961844a8ec14705802e965470216dea1972391f723c8c3038c84b",
+    "web/src/services/chat-ui.test.ts": "6835aba2de088337a779b9aedbe1ef5cc8763d1810f7239930fc67fc19372f4f",
+    "web/src/services/dataset-extract.test.ts": "ee70c6d7f1b4b4178727ba4e05ad2b89219804c028503c689d11bc6e5ad1b8ce",
+    "web/src/services/dataset-extract.ts": "848bd5195e6ccc27aa5cf95d653627cbb7ba451224e3ea3d7d5e1a4bece76530",
+    "web/src/services/dataset.test.ts": "0f9ee36342267ef57de522d51e7c923623c58455b35cd20b6291b6f29f4a4e1b",
+    "web/src/services/dataset.ts": "6ec7b4c0938a89cb15ffe46a8137c5b4ba31af833e693daf9a0d37fbe632176e",
+    "web/src/services/http-range.ts": "d864966ac11985413e32414505afbbc48c36e65bb8a7f3e0305a66828f965457",
+    "web/src/services/learning.test.ts": "6bb525821df423c718d8b446c742f2f2f648583ce90017dd449831102368e920",
+    "web/src/services/learning.ts": "3e1309108d3c287592026e090347a15030451944a88c30a3097a2e0b1edd4657",
+    "web/src/services/mailer.ts": "24ab06af5da79b1d541e760b8a7941e28ac6c0483cc41198507d258c7b08f75c",
+    "web/src/services/markdown.test.ts": "769814d3779f7f134538b92c16bbffa86ec7f101d33adad253c324bb2b82df8c",
+    "web/src/services/markdown.ts": "1948831d500985edef281c89681cc54272ec6d2933180fea85e48014c78aa52f",
+    "web/src/services/password.ts": "ff2baa1368c05446114e38a479d6f7c2eb8633a308c9cdeeaa2b7fe6f727ab27",
+    "web/src/services/posts.ts": "5ff3b7f9a0b714b6f4da33359bac2258e0f0f087d6b2ebce01ad4f62a3d3965d",
+    "web/src/services/realtime.ts": "9d8b7267d0a5cb9709cdacf57dce9ed0ebbe38f0a0b5857f29624b518f77aaac",
+    "web/src/services/recommender-stream.test.ts": "79b0c8838edb0d00115abf7a6c6b5dcad9d203bcc3debff1a079896c323e8b8f",
+    "web/src/services/recommender.ts": "454dd16b1b4ad0d29c9dd0773c1c02bc83466424e2e0871ec1a778b1fd0fbb08",
+    "web/src/services/social.test.ts": "874b3678ce4fe32fa2dc2ea62aa8c7e229ed20410b77b5487c4a375ed29f5868",
+    "web/src/services/social.ts": "e19bea92d113f7f98da6603038e247412b4c0785a068673eb0ca5731064e2dbe",
+    "web/src/services/static-ui.test.ts": "09038616384f342e8cd1b4d56aac9e1897868fb4812682139e842341e1a91d43",
+    "web/src/views/account.ejs": "26aed595e4cab345c2c3e8a0f1389e1da4cde953ab97bbece6114e856649cf9b",
+    "web/src/views/admin-catalog.ejs": "ffcf574042ebbb83698bcbce0cf11d8a6db999029d99b0e8fc2834df7cf0c169",
+    "web/src/views/admin-login.ejs": "86cb071d13a390369047117d2453d75b74c1c2fb3afaac3ebd7c2a5b4ab650a8",
+    "web/src/views/admin-manage.ejs": "19826eab3472b7197edcd070d1fa4d4abacd8c2bc1a71d3e2064416e1dd78389",
+    "web/src/views/admin-pending.ejs": "9369b3a2c06dd740abd720410bd705b1b595ecf824ab50d46603c84aab826475",
+    "web/src/views/admin.ejs": "9ce3fde15fd7b597ca360ebd9f3c630f56410fdfe81bf6eade2075d1e751023e",
+    "web/src/views/auth/forgot.ejs": "d753b7f53f53d10312c8d3d4912d8efa1a5662a10d4c97baec92f7d62f1b61a3",
+    "web/src/views/auth/login.ejs": "2976bcb89d4e7f52b89ffb4950607abb8d28cacd145771942c69963a92562e27",
+    "web/src/views/auth/register.ejs": "a707756c08a990a97a1f36a601f792a312c7e1efd127ea3de46174ea6927fc46",
+    "web/src/views/auth/reset.ejs": "a92db18cdc8fd23e5dc505e626092c70b13d490fc1bd8dd10f7f1d5264689c9b",
+    "web/src/views/blog.ejs": "e4961ca3d811efaf649cf3ba2f76affa5f02b8e12321ddc226c74b2303dbe4e1",
+    "web/src/views/chat.ejs": "8b4ccaa5dda52b567d0046156f0724f70c26b375cb5b568095bb1e08c003a52b",
+    "web/src/views/course.ejs": "b12e65a874e9d1706106c8f050d3ef195cde9fc5e78867bf40d70a2e837e60d6",
+    "web/src/views/dashboard.ejs": "6b96018f96a5977a3cc63120f6694e29e0921532c7a3e2014725c3195b1803dc",
+    "web/src/views/error.ejs": "d8bd38b4cbbab5ade6ee461d6a4017d478bb229cfda296c3362293107196ce67",
+    "web/src/views/friends.ejs": "76f5828acc674289ae6fdf3deb92cdb42de50a42abc952004d45e93f6916235d",
+    "web/src/views/home.ejs": "217c28289ee90f20da8e7cd8577ee7b5c1cddc7423429b8d1031a4ca78c46f9b",
+    "web/src/views/learning.ejs": "8ea973875fe5446b96cc88ad46c9c03ddf70d5b0e52b9b85d81d9b3d02d58466",
+    "web/src/views/messages.ejs": "fa44cda6892baeb288caea89a3b8f7ce078d07fa883ee3ac6da47fa737faaa2b",
+    "web/src/views/partials/admin-footer.ejs": "0e797181f39f748cb2ae949daffb28fe4b27dc3da18be5462ac7e5bb073954ba",
+    "web/src/views/partials/admin-header.ejs": "9ab427ee459ba53e462f76d0553fd1013e749b35eb92028cffcf56f4d7a21070",
+    "web/src/views/partials/auth-aside.ejs": "d610059a7c83927d2b22cd5abf1a10828d02b127344e3abed336f9cf5c8ce748",
+    "web/src/views/partials/avatar.ejs": "6f2e4d477d84f75bfd2f20ac7e2602567ff5d8105cc6412b9414ce7cf0bad865",
+    "web/src/views/partials/course-card.ejs": "43f3a66d7e81a7aef6d45df9956ba7931606bfb5687489812239f53070ae72d2",
+    "web/src/views/partials/csrf.ejs": "efbd2b1b81b714734aa548f7a1387c44a8ff1e7778cf7aaf1d4826b616f86748",
+    "web/src/views/partials/footer.ejs": "18b2cc02e496f94f204c3abfe90c98b99d5005201725a52d734ed38280bcc203",
+    "web/src/views/partials/header.ejs": "7eeea3b7bbb93acb2037c5083127d13cb9b50779e433166bf6d29f0e8b9b930f",
+    "web/src/views/partials/post.ejs": "703802c4bbda001db55ecd5449039c010391c7c22a69fba286adf7c17b5c5963",
+    "web/src/views/profile.ejs": "83986452acff97c164cfdc746f5fdda47d87a3285a3f1ebf31fe5da68f91cf55",
+    "web/src/views/search.ejs": "5aa0d693789d09cae60752a8e6bf28f99ee142776fc6273653f491c061d2c04e",
+    "web/src/views/views.test.ts": "33e2c6db66d37f08922b62c84e916bdb1680fd7ab09cb5b08e4c8d2287db59de"
+  },
+  "images": [
+    {
+      "id": "sha256:3dac16199c26c419362055c17032cca29d6a697c07738274fbc132f36de66a25",
+      "tags": [
+        "itlr-resume-1031b-api:stage"
+      ],
+      "repoDigests": [
+        "itlr-resume-1031b-api@sha256:3dac16199c26c419362055c17032cca29d6a697c07738274fbc132f36de66a25"
+      ]
+    },
+    {
+      "id": "sha256:23e1a8abedd7a18cf19bd73344795183e6808cac93eeeed3c0e617daebcb12c1",
+      "tags": [
+        "itlr-resume-1031b-web:stage"
+      ],
+      "repoDigests": [
+        "itlr-resume-1031b-web@sha256:23e1a8abedd7a18cf19bd73344795183e6808cac93eeeed3c0e617daebcb12c1"
+      ]
+    },
+    {
+      "id": "sha256:e8a07d2c7579b038938cdba6c539e580e5001caf9ea203d397b5cc83e76bd938",
+      "tags": [
+        "postgres:16-bookworm"
+      ],
+      "repoDigests": [
+        "postgres@sha256:e8a07d2c7579b038938cdba6c539e580e5001caf9ea203d397b5cc83e76bd938"
+      ]
+    },
+    {
+      "id": "sha256:e70b164da81ef698b3ad19af799ea6086ce6d9e48ed4079eb9fe26f6fbf14ee5",
+      "tags": [
+        "caddy:2-alpine"
+      ],
+      "repoDigests": [
+        "caddy@sha256:e70b164da81ef698b3ad19af799ea6086ce6d9e48ed4079eb9fe26f6fbf14ee5"
+      ]
+    },
+    {
+      "id": "sha256:b2f0122c476bc9fe7ce679d8bb4bd555351e25e2554eefb156f61cb0a89cf429",
+      "tags": [
+        "ollama/ollama:0.40.13"
+      ],
+      "repoDigests": [
+        "ollama/ollama@sha256:b2f0122c476bc9fe7ce679d8bb4bd555351e25e2554eefb156f61cb0a89cf429"
+      ]
+    }
+  ],
+  "beforeRuntimeMemoryKiB": {
+    "MemTotal": 15586808,
+    "MemAvailable": 5480244
+  },
+  "containerVersions": {
+    "torch": "2.15.0+cpu",
+    "sklearn": "1.9.1",
+    "joblib": "1.6.0",
+    "sentence_transformers": "6.2.0",
+    "cuda_available": false
+  },
+  "apiHealth": {
+    "status": "ok",
+    "engine": "ready",
+    "cf": false,
+    "items": 118,
+    "artifacts": {
+      "version": "docker-a",
+      "manifest_sha256": "29098b37e898ad060118b96b4f66eb658ba3b93dfa5e55baa9562027458c867a"
+    }
+  },
+  "realChat": {
+    "elapsedSeconds": 31.866671069001313,
+    "eventTypes": [
+      "sources",
+      "meta",
+      "text",
+      "final",
+      "done"
+    ],
+    "final": {
+      "type": "final",
+      "response": "Trích dẫn nguyên văn từ nguồn (không phải diễn giải):\n\n> ```text\n> 01 Unauthorized Although the HTTP standard specifies \"unauthorized\", semantically this response means \"unauthenticated\". That is, the client must authenticate itself to get the requested response. 402 Payment Required The initial purpose of this code was for digital payment systems, however this status code is rarely used and no standard convention exists. 403 Forbidden The client does not have access rights to the content; that is, it is unauthorized, so the server is refusing to give the requested resource. Unlike 401 Unauthorized , the client's identity is known to the server. 404 Not Found The server cannot find the requested resource. In the browser, this means the URL is not recognized. In an API, this can also mean that the endpoint is valid but the resource itself does not exist. Servers may also send this response instead of 403 Forbidden\n> ```\n\n[item_id:5025] [chunk_id:5025:8]",
+      "sources": [
+        {
+          "item_id": 5025,
+          "title": "HTTP response status codes - HTTP | MDN",
+          "excerpt": "01 Unauthorized Although the HTTP standard specifies \"unauthorized\", semantically this response means \"unauthenticated\". That is, the client must authenticate itself to get the requested response. 402 Payment Required The initial purpose of this code was for digital payment systems, however this status code is rarely used and no standard convention exists. 403 Forbidden The client does not have access rights to the content; that is, it is unauthorized, so the server is refusing to give the requested resource. Unlike 401 Unauthorized , the client's identity is known to the server. 404 Not Found The server cannot find the requested resource. In the browser, this means the URL is not recognized. In an API, this can also mean that the endpoint is valid but the resource itself does not exist. Servers may also send this response instead of 403 Forbidden",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status",
+          "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status",
+          "type": "Tài liệu",
+          "level": "Trung cấp",
+          "description": "HTTP response status codes\nHTTP response status codes indicate whether a specific\nHTTP\nrequest has been successfully completed.\nResponses are grouped in five classes:\nInformational responses\n(\n100\n–\n199\n)\nSuccessful responses\n(\n200\n–\n299\n)\nRedirection messages\n(\n300\n–\n399\n)\nClient error responses\n(\n400\n–\n499\n)\nServer error responses\n(\n500\n–\n599\n)\nThe status codes listed below are defined by\nRFC 9110\n.\nNote:\nIf you receive a response that is not listed here, it is a non-standard response, possibly custom to the server's software.\nInformational responses\n100 Continue\nThis interim response indica",
+          "category": "Lập trình",
+          "topics": "web,html,css,javascript,http",
+          "instructor": "Mozilla Contributors",
+          "platform": "Mozilla Contributors",
+          "origin": "crawl:mdn-official",
+          "crawl_license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license",
+          "crawl_lang": "en",
+          "crawl_hash": "844f306cdc39b944436d8f3d04d595849183b0b08376be2efadec0804946e897",
+          "source_updated_at": null,
+          "source_fetched_at": "2026-10-29T14:28:35Z",
+          "citation_id": "item_id:5025",
+          "chunk_id": "5025:8",
+          "provenance": "crawl:mdn-official",
+          "evidence_kind": "source_text"
+        },
+        {
+          "item_id": 5025,
+          "title": "HTTP response status codes - HTTP | MDN",
+          "excerpt": "not change the HTTP method used: if a POST was used in the first request, a POST must be used in the redirected request. 308 Permanent Redirect This means that the resource is now permanently located at another URI, specified by the Location response header. This has the same semantics as the 301 Moved Permanently HTTP response code, with the exception that the user agent must not change the HTTP method used: if a POST was used in the first request, a POST must be used in the second request. Client error responses 400 Bad Request The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing). 401 Unauthorized Although the HTTP standard specifies \"unauthorized\", semantically this response means \"unauthenticated\".",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status",
+          "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status",
+          "type": "Tài liệu",
+          "level": "Trung cấp",
+          "description": "HTTP response status codes\nHTTP response status codes indicate whether a specific\nHTTP\nrequest has been successfully completed.\nResponses are grouped in five classes:\nInformational responses\n(\n100\n–\n199\n)\nSuccessful responses\n(\n200\n–\n299\n)\nRedirection messages\n(\n300\n–\n399\n)\nClient error responses\n(\n400\n–\n499\n)\nServer error responses\n(\n500\n–\n599\n)\nThe status codes listed below are defined by\nRFC 9110\n.\nNote:\nIf you receive a response that is not listed here, it is a non-standard response, possibly custom to the server's software.\nInformational responses\n100 Continue\nThis interim response indica",
+          "category": "Lập trình",
+          "topics": "web,html,css,javascript,http",
+          "instructor": "Mozilla Contributors",
+          "platform": "Mozilla Contributors",
+          "origin": "crawl:mdn-official",
+          "crawl_license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license",
+          "crawl_lang": "en",
+          "crawl_hash": "844f306cdc39b944436d8f3d04d595849183b0b08376be2efadec0804946e897",
+          "source_updated_at": null,
+          "source_fetched_at": "2026-10-29T14:28:35Z",
+          "citation_id": "item_id:5025",
+          "chunk_id": "5025:7",
+          "provenance": "crawl:mdn-official",
+          "evidence_kind": "source_text"
+        },
+        {
+          "item_id": 5055,
+          "title": "HTTP: Hypertext Transfer Protocol | MDN",
+          "excerpt": "t It's very rarely a good idea to use user agent sniffing to detect a browser, but there are edge cases that require it. This document will guide you in doing this as correctly as possible when this is necessary, with an emphasis on considerations to make before embarking on this route. Security and privacy Permissions Policy Permissions Policy provides mechanisms for web developers to explicitly declare what functionality can and cannot be used on a website. You define a set of \"policies\" that restrict what APIs the site's code can access or modify the browser's default behavior for certain features. Cross-Origin Resource Sharing (CORS) Cross-site HTTP requests are requests for resources from a different domain than that of the resource making the request. Web pages today very commonly load cross-site resources, for example, a page 'Domain A' ( http://domaina.example/",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP",
+          "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP",
+          "type": "Tài liệu",
+          "level": "Trung cấp",
+          "description": "HTTP: Hypertext Transfer Protocol\nHTTP\nis an\napplication-layer\nprotocol for transmitting hypermedia documents, such as HTML.\nIt was designed for communication between web browsers and web servers, but it can also be used for other purposes, such as machine-to-machine communication, programmatic access to APIs, and more.\nHTTP follows a classical\nclient-server model\n, with a client opening a connection to make a request, then waiting until it receives a response from the server.\nHTTP is a\nstateless protocol\n, meaning that the server does not keep any session data between two requests, although t",
+          "category": "Lập trình",
+          "topics": "web,html,css,javascript,http",
+          "instructor": "Mozilla Contributors",
+          "platform": "Mozilla Contributors",
+          "origin": "crawl:mdn-official",
+          "crawl_license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license",
+          "crawl_lang": "en",
+          "crawl_hash": "c92ef480f2f244cf8bcd627c1697563882f767fb53fdebaa6529de85d503b421",
+          "source_updated_at": null,
+          "source_fetched_at": "2026-10-29T14:28:02Z",
+          "citation_id": "item_id:5055",
+          "chunk_id": "5055:8",
+          "provenance": "crawl:mdn-official",
+          "evidence_kind": "source_text"
+        },
+        {
+          "item_id": 5055,
+          "title": "HTTP: Hypertext Transfer Protocol | MDN",
+          "excerpt": "bout headers, request methods, status responses, and lists relevant specifications and standards documents. HTTP headers Message headers are used to send metadata about a resource or an HTTP message, and to describe the behavior of the client or the server. HTTP request methods Request methods indicate the purpose of the request and what is expected if the request is successful. The most common methods are GET and POST for retrieving and sending data to servers, respectively, but there are other methods which serve different purposes. HTTP response status codes Response status codes indicate the outcome of a specific HTTP request. Responses are grouped in five classes: informational, successful, redirections, client errors, and server errors. HTTP resources and specifications This page lists relevant resources about HTTP since it was first specified in the early 1990s.",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP",
+          "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP",
+          "type": "Tài liệu",
+          "level": "Trung cấp",
+          "description": "HTTP: Hypertext Transfer Protocol\nHTTP\nis an\napplication-layer\nprotocol for transmitting hypermedia documents, such as HTML.\nIt was designed for communication between web browsers and web servers, but it can also be used for other purposes, such as machine-to-machine communication, programmatic access to APIs, and more.\nHTTP follows a classical\nclient-server model\n, with a client opening a connection to make a request, then waiting until it receives a response from the server.\nHTTP is a\nstateless protocol\n, meaning that the server does not keep any session data between two requests, although t",
+          "category": "Lập trình",
+          "topics": "web,html,css,javascript,http",
+          "instructor": "Mozilla Contributors",
+          "platform": "Mozilla Contributors",
+          "origin": "crawl:mdn-official",
+          "crawl_license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license",
+          "crawl_lang": "en",
+          "crawl_hash": "c92ef480f2f244cf8bcd627c1697563882f767fb53fdebaa6529de85d503b421",
+          "source_updated_at": null,
+          "source_fetched_at": "2026-10-29T14:28:02Z",
+          "citation_id": "item_id:5055",
+          "chunk_id": "5055:12",
+          "provenance": "crawl:mdn-official",
+          "evidence_kind": "source_text"
+        },
+        {
+          "item_id": 5055,
+          "title": "HTTP: Hypertext Transfer Protocol | MDN",
+          "excerpt": "HTTP: Hypertext Transfer Protocol HTTP is an application-layer protocol for transmitting hypermedia documents, such as HTML. It was designed for communication between web browsers and web servers, but it can also be used for other purposes, such as machine-to-machine communication, programmatic access to APIs, and more. HTTP follows a classical client-server model , with a client opening a connection to make a request, then waiting until it receives a response from the server. HTTP is a stateless protocol , meaning that the server does not keep any session data between two requests, although the later addition of cookies adds state to some client-server interactions. Guides HTTP is an extensible protocol that relies on concepts like resources and Uniform Resource Identifiers (URIs), a basic message structure, and client-server communication model.",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP",
+          "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP",
+          "type": "Tài liệu",
+          "level": "Trung cấp",
+          "description": "HTTP: Hypertext Transfer Protocol\nHTTP\nis an\napplication-layer\nprotocol for transmitting hypermedia documents, such as HTML.\nIt was designed for communication between web browsers and web servers, but it can also be used for other purposes, such as machine-to-machine communication, programmatic access to APIs, and more.\nHTTP follows a classical\nclient-server model\n, with a client opening a connection to make a request, then waiting until it receives a response from the server.\nHTTP is a\nstateless protocol\n, meaning that the server does not keep any session data between two requests, although t",
+          "category": "Lập trình",
+          "topics": "web,html,css,javascript,http",
+          "instructor": "Mozilla Contributors",
+          "platform": "Mozilla Contributors",
+          "origin": "crawl:mdn-official",
+          "crawl_license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license",
+          "crawl_lang": "en",
+          "crawl_hash": "c92ef480f2f244cf8bcd627c1697563882f767fb53fdebaa6529de85d503b421",
+          "source_updated_at": null,
+          "source_fetched_at": "2026-10-29T14:28:02Z",
+          "citation_id": "item_id:5055",
+          "chunk_id": "5055:0",
+          "provenance": "crawl:mdn-official",
+          "evidence_kind": "source_text"
+        }
+      ],
+      "recommendations": [
+        {
+          "item_id": 5025,
+          "title": "HTTP response status codes - HTTP | MDN",
+          "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status",
+          "type": "Tài liệu",
+          "level": "Trung cấp",
+          "description": "HTTP response status codes\nHTTP response status codes indicate whether a specific\nHTTP\nrequest has been successfully completed.\nResponses are grouped in five classes:\nInformational responses\n(\n100\n–\n199\n)\nSuccessful responses\n(\n200\n–\n299\n)\nRedirection messages\n(\n300\n–\n399\n)\nClient error responses\n(\n400\n–\n499\n)\nServer error responses\n(\n500\n–\n599\n)\nThe status codes listed below are defined by\nRFC 9110\n.\nNote:\nIf you receive a response that is not listed here, it is a non-standard response, possibly custom to the server's software.\nInformational responses\n100 Continue\nThis interim response indica",
+          "category": "Lập trình",
+          "topics": "web,html,css,javascript,http",
+          "instructor": "Mozilla Contributors",
+          "platform": "Mozilla Contributors",
+          "origin": "crawl:mdn-official",
+          "crawl_license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license",
+          "crawl_lang": "en",
+          "crawl_hash": "844f306cdc39b944436d8f3d04d595849183b0b08376be2efadec0804946e897",
+          "source_updated_at": null,
+          "source_fetched_at": "2026-10-29T14:28:35Z"
+        },
+        {
+          "item_id": 5055,
+          "title": "HTTP: Hypertext Transfer Protocol | MDN",
+          "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP",
+          "type": "Tài liệu",
+          "level": "Trung cấp",
+          "description": "HTTP: Hypertext Transfer Protocol\nHTTP\nis an\napplication-layer\nprotocol for transmitting hypermedia documents, such as HTML.\nIt was designed for communication between web browsers and web servers, but it can also be used for other purposes, such as machine-to-machine communication, programmatic access to APIs, and more.\nHTTP follows a classical\nclient-server model\n, with a client opening a connection to make a request, then waiting until it receives a response from the server.\nHTTP is a\nstateless protocol\n, meaning that the server does not keep any session data between two requests, although t",
+          "category": "Lập trình",
+          "topics": "web,html,css,javascript,http",
+          "instructor": "Mozilla Contributors",
+          "platform": "Mozilla Contributors",
+          "origin": "crawl:mdn-official",
+          "crawl_license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license",
+          "crawl_lang": "en",
+          "crawl_hash": "c92ef480f2f244cf8bcd627c1697563882f767fb53fdebaa6529de85d503b421",
+          "source_updated_at": null,
+          "source_fetched_at": "2026-10-29T14:28:02Z"
+        },
+        {
+          "item_id": 5125,
+          "title": "4. More Control Flow Tools",
+          "link": "https://docs.python.org/3/tutorial/controlflow.html",
+          "type": "Tài liệu",
+          "level": "Trung cấp",
+          "description": "4.\nMore Control Flow Tools\n¶\nAs well as the\nwhile\nstatement just introduced, Python uses a few more\nthat we will encounter in this chapter.\n4.1.\nif\nStatements\n¶\nPerhaps the most well-known statement type is the\nif\nstatement.  For\nexample:\n>>>\nx\n=\nint\n(\ninput\n(\n\"Please enter an integer: \"\n))\nPlease enter an integer: 42\n>>>\nif\nx\n<\n0\n:\n...\nx\n=\n0\n...\nprint\n(\n'Negative changed to zero'\n)\n...\nelif\nx\n==\n0\n:\n...\nprint\n(\n'Zero'\n)\n...\nelif\nx\n==\n1\n:\n...\nprint\n(\n'Single'\n)\n...\nelse\n:\n...\nprint\n(\n'More'\n)\n...\nMore\nThere can be zero or more\nelif\nparts, and the\nelse\npart is\noptional.  The keyword ‘\nelif\n’ is",
+          "category": "Lập trình",
+          "topics": "python,programming",
+          "instructor": "Python Software Foundation",
+          "platform": "Python Software Foundation",
+          "origin": "crawl:python-official",
+          "crawl_license": "PSF-2.0; https://docs.python.org/3/license.html",
+          "crawl_lang": "en",
+          "crawl_hash": "d8071a253daaa3a399962c670c2a0722bc8cb97966f14cbc2c8673091c8fff7a",
+          "source_updated_at": null,
+          "source_fetched_at": "2026-10-29T14:26:36Z"
+        },
+        {
+          "item_id": 5024,
+          "title": "Cross-Origin Resource Sharing (CORS) - HTTP | MDN",
+          "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS",
+          "type": "Tài liệu",
+          "level": "Trung cấp",
+          "description": "Cross-Origin Resource Sharing (CORS)\nBaseline\nWidely available\nThis feature is well established and works across many devices and browser versions. It’s been available across browsers since July 2015.\nSee full compatibility\nLearn more\nCross-Origin Resource Sharing\n(\nCORS\n) is an\nHTTP\n-header based mechanism that allows a server to indicate any\norigins\n(domain, scheme, or port) other than its own from which a browser should permit loading resources. CORS also relies on a mechanism by which browsers make a \"preflight\" request to the server hosting the cross-origin resource, in order to check tha",
+          "category": "Lập trình",
+          "topics": "web,html,css,javascript,http",
+          "instructor": "Mozilla Contributors",
+          "platform": "Mozilla Contributors",
+          "origin": "crawl:mdn-official",
+          "crawl_license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license",
+          "crawl_lang": "en",
+          "crawl_hash": "dfd465a3fc22cbe605e7741f4f1595d9a0e61b38dadde9548d0370332d01f470",
+          "source_updated_at": null,
+          "source_fetched_at": "2026-10-29T14:28:37Z"
+        }
+      ],
+      "intent": "answer",
+      "provisional": false,
+      "generation_mode": "llm_extractive",
+      "generation_error": null,
+      "citation_validation": {
+        "status": "valid",
+        "cited_ids": [
+          5025
+        ],
+        "invalid_ids": [],
+        "malformed": false,
+        "invalid_chunk_ids": [],
+        "missing_chunk_item_ids": [],
+        "semantic_grounding": "not_verified",
+        "evidence_binding": "verbatim"
+      },
+      "response_html": "<p>Trích dẫn nguyên văn từ nguồn (không phải diễn giải):</p>\n<blockquote>\n<pre><code class=\"language-text\">01 Unauthorized Although the HTTP standard specifies &quot;unauthorized&quot;, semantically this response means &quot;unauthenticated&quot;. That is, the client must authenticate itself to get the requested response. 402 Payment Required The initial purpose of this code was for digital payment systems, however this status code is rarely used and no standard convention exists. 403 Forbidden The client does not have access rights to the content; that is, it is unauthorized, so the server is refusing to give the requested resource. Unlike 401 Unauthorized , the client's identity is known to the server. 404 Not Found The server cannot find the requested resource. In the browser, this means the URL is not recognized. In an API, this can also mean that the endpoint is valid but the resource itself does not exist. Servers may also send this response instead of 403 Forbidden\n</code></pre>\n</blockquote>\n<p><a href=\"/courses/5025\">item_id:5025</a> [chunk_id:5025:8]</p>\n",
+      "conversation_id": 1,
+      "timings": {
+        "sources_ms": 111.53206000000137,
+        "first_token_ms": 31816.086376,
+        "total_ms": 31857.400726
+      }
+    }
+  },
+  "databaseFingerprints": {
+    "attachments": {
+      "n": 0,
+      "row_md5": "d751713988987e9331980363e24189ce"
+    },
+    "conversations": {
+      "n": 1,
+      "row_md5": "3e2734e4b5d28c9ab1b7abe515dac7ab"
+    },
+    "courses": {
+      "n": 3,
+      "row_md5": "304d9bb620d70d7da445aea0f09cdede"
+    },
+    "direct_messages": {
+      "n": 0,
+      "row_md5": "d751713988987e9331980363e24189ce"
+    },
+    "enrollments": {
+      "n": 1,
+      "row_md5": "8d97b5df03eb953745fe419e2f4d5de1"
+    },
+    "friendships": {
+      "n": 0,
+      "row_md5": "d751713988987e9331980363e24189ce"
+    },
+    "learning_profiles": {
+      "n": 1,
+      "row_md5": "32ff6accc8ffa31189d7a684f2f87d7d"
+    },
+    "lesson_progress": {
+      "n": 0,
+      "row_md5": "d751713988987e9331980363e24189ce"
+    },
+    "lessons": {
+      "n": 0,
+      "row_md5": "d751713988987e9331980363e24189ce"
+    },
+    "messages": {
+      "n": 2,
+      "row_md5": "36c792f7473ade1995eb16a5eb7758ff"
+    },
+    "password_resets": {
+      "n": 0,
+      "row_md5": "d751713988987e9331980363e24189ce"
+    },
+    "post_comments": {
+      "n": 0,
+      "row_md5": "d751713988987e9331980363e24189ce"
+    },
+    "post_likes": {
+      "n": 0,
+      "row_md5": "d751713988987e9331980363e24189ce"
+    },
+    "posts": {
+      "n": 0,
+      "row_md5": "d751713988987e9331980363e24189ce"
+    },
+    "users": {
+      "n": 1,
+      "row_md5": "ad5655c7f1608af58a8feed8fb592ea1"
+    }
+  },
+  "browser": {
+    "scope": "Real Chrome and real Docker model/API; private Caddy root explicitly installed into isolated HOME NSS DB; no TLS-ignore flags, no response mocks",
+    "checks": [
+      {
+        "name": "chrome-explicit-ca-verified-https",
+        "pass": true,
+        "detail": {
+          "observedSecurityStates": [
+            "neutral",
+            "secure",
+            "secure",
+            "secure",
+            "secure",
+            "secure",
+            "secure",
+            "secure"
+          ]
+        }
+      },
+      {
+        "name": "chrome-real-pg16-login",
+        "pass": true,
+        "detail": null
+      },
+      {
+        "name": "chrome-progress40-survives-container-restart",
+        "pass": true,
+        "detail": null
+      },
+      {
+        "name": "chrome-real-sse-completes",
+        "pass": true,
+        "detail": {
+          "elapsedSeconds": 44.591924275002384
+        }
+      },
+      {
+        "name": "chrome-real-sse-conversation-assigned",
+        "pass": true,
+        "detail": null
+      },
+      {
+        "name": "chrome-real-model-accepted-answer",
+        "pass": true,
+        "detail": {
+          "generationMode": "llm_extractive"
+        }
+      },
+      {
+        "name": "chrome-real-chat-reload-has-assistant",
+        "pass": true,
+        "detail": null
+      },
+      {
+        "name": "chrome-cancel-targeted-active-real-provider",
+        "pass": true,
+        "detail": null
+      },
+      {
+        "name": "chrome-stop-ui-ready-and-url-unchanged",
+        "pass": true,
+        "detail": null
+      },
+      {
+        "name": "chrome-stop-closes-provider-socket-under1second",
+        "pass": true,
+        "detail": {
+          "seconds": 0.08958247800183017
+        }
+      },
+      {
+        "name": "chrome-no-uncaught-runtime-errors",
+        "pass": true,
+        "detail": []
+      }
+    ],
+    "actualSse": {
+      "eventTypes": [
+        "sources",
+        "meta",
+        "text",
+        "final",
+        "done"
+      ],
+      "final": {
+        "type": "final",
+        "response": "Trích dẫn nguyên văn từ nguồn (không phải diễn giải):\n\n> ```text\n> 01 Unauthorized Although the HTTP standard specifies \"unauthorized\", semantically this response means \"unauthenticated\". That is, the client must authenticate itself to get the requested response. 402 Payment Required The initial purpose of this code was for digital payment systems, however this status code is rarely used and no standard convention exists. 403 Forbidden The client does not have access rights to the content; that is, it is unauthorized, so the server is refusing to give the requested resource. Unlike 401 Unauthorized , the client's identity is known to the server. 404 Not Found The server cannot find the requested resource. In the browser, this means the URL is not recognized. In an API, this can also mean that the endpoint is valid but the resource itself does not exist. Servers may also send this response instead of 403 Forbidden\n> ```\n\n[item_id:5025] [chunk_id:5025:8]",
+        "sources": [
+          {
+            "item_id": 5025,
+            "title": "HTTP response status codes - HTTP | MDN",
+            "excerpt": "01 Unauthorized Although the HTTP standard specifies \"unauthorized\", semantically this response means \"unauthenticated\". That is, the client must authenticate itself to get the requested response. 402 Payment Required The initial purpose of this code was for digital payment systems, however this status code is rarely used and no standard convention exists. 403 Forbidden The client does not have access rights to the content; that is, it is unauthorized, so the server is refusing to give the requested resource. Unlike 401 Unauthorized , the client's identity is known to the server. 404 Not Found The server cannot find the requested resource. In the browser, this means the URL is not recognized. In an API, this can also mean that the endpoint is valid but the resource itself does not exist. Servers may also send this response instead of 403 Forbidden",
+            "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status",
+            "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status",
+            "type": "Tài liệu",
+            "level": "Trung cấp",
+            "description": "HTTP response status codes\nHTTP response status codes indicate whether a specific\nHTTP\nrequest has been successfully completed.\nResponses are grouped in five classes:\nInformational responses\n(\n100\n–\n199\n)\nSuccessful responses\n(\n200\n–\n299\n)\nRedirection messages\n(\n300\n–\n399\n)\nClient error responses\n(\n400\n–\n499\n)\nServer error responses\n(\n500\n–\n599\n)\nThe status codes listed below are defined by\nRFC 9110\n.\nNote:\nIf you receive a response that is not listed here, it is a non-standard response, possibly custom to the server's software.\nInformational responses\n100 Continue\nThis interim response indica",
+            "category": "Lập trình",
+            "topics": "web,html,css,javascript,http",
+            "instructor": "Mozilla Contributors",
+            "platform": "Mozilla Contributors",
+            "origin": "crawl:mdn-official",
+            "crawl_license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license",
+            "crawl_lang": "en",
+            "crawl_hash": "844f306cdc39b944436d8f3d04d595849183b0b08376be2efadec0804946e897",
+            "source_updated_at": null,
+            "source_fetched_at": "2026-10-29T14:28:35Z",
+            "citation_id": "item_id:5025",
+            "chunk_id": "5025:8",
+            "provenance": "crawl:mdn-official",
+            "evidence_kind": "source_text"
+          },
+          {
+            "item_id": 5025,
+            "title": "HTTP response status codes - HTTP | MDN",
+            "excerpt": "not change the HTTP method used: if a POST was used in the first request, a POST must be used in the redirected request. 308 Permanent Redirect This means that the resource is now permanently located at another URI, specified by the Location response header. This has the same semantics as the 301 Moved Permanently HTTP response code, with the exception that the user agent must not change the HTTP method used: if a POST was used in the first request, a POST must be used in the second request. Client error responses 400 Bad Request The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing). 401 Unauthorized Although the HTTP standard specifies \"unauthorized\", semantically this response means \"unauthenticated\".",
+            "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status",
+            "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status",
+            "type": "Tài liệu",
+            "level": "Trung cấp",
+            "description": "HTTP response status codes\nHTTP response status codes indicate whether a specific\nHTTP\nrequest has been successfully completed.\nResponses are grouped in five classes:\nInformational responses\n(\n100\n–\n199\n)\nSuccessful responses\n(\n200\n–\n299\n)\nRedirection messages\n(\n300\n–\n399\n)\nClient error responses\n(\n400\n–\n499\n)\nServer error responses\n(\n500\n–\n599\n)\nThe status codes listed below are defined by\nRFC 9110\n.\nNote:\nIf you receive a response that is not listed here, it is a non-standard response, possibly custom to the server's software.\nInformational responses\n100 Continue\nThis interim response indica",
+            "category": "Lập trình",
+            "topics": "web,html,css,javascript,http",
+            "instructor": "Mozilla Contributors",
+            "platform": "Mozilla Contributors",
+            "origin": "crawl:mdn-official",
+            "crawl_license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license",
+            "crawl_lang": "en",
+            "crawl_hash": "844f306cdc39b944436d8f3d04d595849183b0b08376be2efadec0804946e897",
+            "source_updated_at": null,
+            "source_fetched_at": "2026-10-29T14:28:35Z",
+            "citation_id": "item_id:5025",
+            "chunk_id": "5025:7",
+            "provenance": "crawl:mdn-official",
+            "evidence_kind": "source_text"
+          },
+          {
+            "item_id": 5055,
+            "title": "HTTP: Hypertext Transfer Protocol | MDN",
+            "excerpt": "t It's very rarely a good idea to use user agent sniffing to detect a browser, but there are edge cases that require it. This document will guide you in doing this as correctly as possible when this is necessary, with an emphasis on considerations to make before embarking on this route. Security and privacy Permissions Policy Permissions Policy provides mechanisms for web developers to explicitly declare what functionality can and cannot be used on a website. You define a set of \"policies\" that restrict what APIs the site's code can access or modify the browser's default behavior for certain features. Cross-Origin Resource Sharing (CORS) Cross-site HTTP requests are requests for resources from a different domain than that of the resource making the request. Web pages today very commonly load cross-site resources, for example, a page 'Domain A' ( http://domaina.example/",
+            "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP",
+            "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP",
+            "type": "Tài liệu",
+            "level": "Trung cấp",
+            "description": "HTTP: Hypertext Transfer Protocol\nHTTP\nis an\napplication-layer\nprotocol for transmitting hypermedia documents, such as HTML.\nIt was designed for communication between web browsers and web servers, but it can also be used for other purposes, such as machine-to-machine communication, programmatic access to APIs, and more.\nHTTP follows a classical\nclient-server model\n, with a client opening a connection to make a request, then waiting until it receives a response from the server.\nHTTP is a\nstateless protocol\n, meaning that the server does not keep any session data between two requests, although t",
+            "category": "Lập trình",
+            "topics": "web,html,css,javascript,http",
+            "instructor": "Mozilla Contributors",
+            "platform": "Mozilla Contributors",
+            "origin": "crawl:mdn-official",
+            "crawl_license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license",
+            "crawl_lang": "en",
+            "crawl_hash": "c92ef480f2f244cf8bcd627c1697563882f767fb53fdebaa6529de85d503b421",
+            "source_updated_at": null,
+            "source_fetched_at": "2026-10-29T14:28:02Z",
+            "citation_id": "item_id:5055",
+            "chunk_id": "5055:8",
+            "provenance": "crawl:mdn-official",
+            "evidence_kind": "source_text"
+          },
+          {
+            "item_id": 5055,
+            "title": "HTTP: Hypertext Transfer Protocol | MDN",
+            "excerpt": "bout headers, request methods, status responses, and lists relevant specifications and standards documents. HTTP headers Message headers are used to send metadata about a resource or an HTTP message, and to describe the behavior of the client or the server. HTTP request methods Request methods indicate the purpose of the request and what is expected if the request is successful. The most common methods are GET and POST for retrieving and sending data to servers, respectively, but there are other methods which serve different purposes. HTTP response status codes Response status codes indicate the outcome of a specific HTTP request. Responses are grouped in five classes: informational, successful, redirections, client errors, and server errors. HTTP resources and specifications This page lists relevant resources about HTTP since it was first specified in the early 1990s.",
+            "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP",
+            "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP",
+            "type": "Tài liệu",
+            "level": "Trung cấp",
+            "description": "HTTP: Hypertext Transfer Protocol\nHTTP\nis an\napplication-layer\nprotocol for transmitting hypermedia documents, such as HTML.\nIt was designed for communication between web browsers and web servers, but it can also be used for other purposes, such as machine-to-machine communication, programmatic access to APIs, and more.\nHTTP follows a classical\nclient-server model\n, with a client opening a connection to make a request, then waiting until it receives a response from the server.\nHTTP is a\nstateless protocol\n, meaning that the server does not keep any session data between two requests, although t",
+            "category": "Lập trình",
+            "topics": "web,html,css,javascript,http",
+            "instructor": "Mozilla Contributors",
+            "platform": "Mozilla Contributors",
+            "origin": "crawl:mdn-official",
+            "crawl_license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license",
+            "crawl_lang": "en",
+            "crawl_hash": "c92ef480f2f244cf8bcd627c1697563882f767fb53fdebaa6529de85d503b421",
+            "source_updated_at": null,
+            "source_fetched_at": "2026-10-29T14:28:02Z",
+            "citation_id": "item_id:5055",
+            "chunk_id": "5055:12",
+            "provenance": "crawl:mdn-official",
+            "evidence_kind": "source_text"
+          },
+          {
+            "item_id": 5055,
+            "title": "HTTP: Hypertext Transfer Protocol | MDN",
+            "excerpt": "HTTP: Hypertext Transfer Protocol HTTP is an application-layer protocol for transmitting hypermedia documents, such as HTML. It was designed for communication between web browsers and web servers, but it can also be used for other purposes, such as machine-to-machine communication, programmatic access to APIs, and more. HTTP follows a classical client-server model , with a client opening a connection to make a request, then waiting until it receives a response from the server. HTTP is a stateless protocol , meaning that the server does not keep any session data between two requests, although the later addition of cookies adds state to some client-server interactions. Guides HTTP is an extensible protocol that relies on concepts like resources and Uniform Resource Identifiers (URIs), a basic message structure, and client-server communication model.",
+            "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP",
+            "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP",
+            "type": "Tài liệu",
+            "level": "Trung cấp",
+            "description": "HTTP: Hypertext Transfer Protocol\nHTTP\nis an\napplication-layer\nprotocol for transmitting hypermedia documents, such as HTML.\nIt was designed for communication between web browsers and web servers, but it can also be used for other purposes, such as machine-to-machine communication, programmatic access to APIs, and more.\nHTTP follows a classical\nclient-server model\n, with a client opening a connection to make a request, then waiting until it receives a response from the server.\nHTTP is a\nstateless protocol\n, meaning that the server does not keep any session data between two requests, although t",
+            "category": "Lập trình",
+            "topics": "web,html,css,javascript,http",
+            "instructor": "Mozilla Contributors",
+            "platform": "Mozilla Contributors",
+            "origin": "crawl:mdn-official",
+            "crawl_license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license",
+            "crawl_lang": "en",
+            "crawl_hash": "c92ef480f2f244cf8bcd627c1697563882f767fb53fdebaa6529de85d503b421",
+            "source_updated_at": null,
+            "source_fetched_at": "2026-10-29T14:28:02Z",
+            "citation_id": "item_id:5055",
+            "chunk_id": "5055:0",
+            "provenance": "crawl:mdn-official",
+            "evidence_kind": "source_text"
+          }
+        ],
+        "recommendations": [
+          {
+            "item_id": 5025,
+            "title": "HTTP response status codes - HTTP | MDN",
+            "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status",
+            "type": "Tài liệu",
+            "level": "Trung cấp",
+            "description": "HTTP response status codes\nHTTP response status codes indicate whether a specific\nHTTP\nrequest has been successfully completed.\nResponses are grouped in five classes:\nInformational responses\n(\n100\n–\n199\n)\nSuccessful responses\n(\n200\n–\n299\n)\nRedirection messages\n(\n300\n–\n399\n)\nClient error responses\n(\n400\n–\n499\n)\nServer error responses\n(\n500\n–\n599\n)\nThe status codes listed below are defined by\nRFC 9110\n.\nNote:\nIf you receive a response that is not listed here, it is a non-standard response, possibly custom to the server's software.\nInformational responses\n100 Continue\nThis interim response indica",
+            "category": "Lập trình",
+            "topics": "web,html,css,javascript,http",
+            "instructor": "Mozilla Contributors",
+            "platform": "Mozilla Contributors",
+            "origin": "crawl:mdn-official",
+            "crawl_license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license",
+            "crawl_lang": "en",
+            "crawl_hash": "844f306cdc39b944436d8f3d04d595849183b0b08376be2efadec0804946e897",
+            "source_updated_at": null,
+            "source_fetched_at": "2026-10-29T14:28:35Z"
+          },
+          {
+            "item_id": 5055,
+            "title": "HTTP: Hypertext Transfer Protocol | MDN",
+            "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP",
+            "type": "Tài liệu",
+            "level": "Trung cấp",
+            "description": "HTTP: Hypertext Transfer Protocol\nHTTP\nis an\napplication-layer\nprotocol for transmitting hypermedia documents, such as HTML.\nIt was designed for communication between web browsers and web servers, but it can also be used for other purposes, such as machine-to-machine communication, programmatic access to APIs, and more.\nHTTP follows a classical\nclient-server model\n, with a client opening a connection to make a request, then waiting until it receives a response from the server.\nHTTP is a\nstateless protocol\n, meaning that the server does not keep any session data between two requests, although t",
+            "category": "Lập trình",
+            "topics": "web,html,css,javascript,http",
+            "instructor": "Mozilla Contributors",
+            "platform": "Mozilla Contributors",
+            "origin": "crawl:mdn-official",
+            "crawl_license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license",
+            "crawl_lang": "en",
+            "crawl_hash": "c92ef480f2f244cf8bcd627c1697563882f767fb53fdebaa6529de85d503b421",
+            "source_updated_at": null,
+            "source_fetched_at": "2026-10-29T14:28:02Z"
+          },
+          {
+            "item_id": 5125,
+            "title": "4. More Control Flow Tools",
+            "link": "https://docs.python.org/3/tutorial/controlflow.html",
+            "type": "Tài liệu",
+            "level": "Trung cấp",
+            "description": "4.\nMore Control Flow Tools\n¶\nAs well as the\nwhile\nstatement just introduced, Python uses a few more\nthat we will encounter in this chapter.\n4.1.\nif\nStatements\n¶\nPerhaps the most well-known statement type is the\nif\nstatement.  For\nexample:\n>>>\nx\n=\nint\n(\ninput\n(\n\"Please enter an integer: \"\n))\nPlease enter an integer: 42\n>>>\nif\nx\n<\n0\n:\n...\nx\n=\n0\n...\nprint\n(\n'Negative changed to zero'\n)\n...\nelif\nx\n==\n0\n:\n...\nprint\n(\n'Zero'\n)\n...\nelif\nx\n==\n1\n:\n...\nprint\n(\n'Single'\n)\n...\nelse\n:\n...\nprint\n(\n'More'\n)\n...\nMore\nThere can be zero or more\nelif\nparts, and the\nelse\npart is\noptional.  The keyword ‘\nelif\n’ is",
+            "category": "Lập trình",
+            "topics": "python,programming",
+            "instructor": "Python Software Foundation",
+            "platform": "Python Software Foundation",
+            "origin": "crawl:python-official",
+            "crawl_license": "PSF-2.0; https://docs.python.org/3/license.html",
+            "crawl_lang": "en",
+            "crawl_hash": "d8071a253daaa3a399962c670c2a0722bc8cb97966f14cbc2c8673091c8fff7a",
+            "source_updated_at": null,
+            "source_fetched_at": "2026-10-29T14:26:36Z"
+          },
+          {
+            "item_id": 5024,
+            "title": "Cross-Origin Resource Sharing (CORS) - HTTP | MDN",
+            "link": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS",
+            "type": "Tài liệu",
+            "level": "Trung cấp",
+            "description": "Cross-Origin Resource Sharing (CORS)\nBaseline\nWidely available\nThis feature is well established and works across many devices and browser versions. It’s been available across browsers since July 2015.\nSee full compatibility\nLearn more\nCross-Origin Resource Sharing\n(\nCORS\n) is an\nHTTP\n-header based mechanism that allows a server to indicate any\norigins\n(domain, scheme, or port) other than its own from which a browser should permit loading resources. CORS also relies on a mechanism by which browsers make a \"preflight\" request to the server hosting the cross-origin resource, in order to check tha",
+            "category": "Lập trình",
+            "topics": "web,html,css,javascript,http",
+            "instructor": "Mozilla Contributors",
+            "platform": "Mozilla Contributors",
+            "origin": "crawl:mdn-official",
+            "crawl_license": "CC-BY-SA-2.5-or-later; https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Attrib_copyright_license",
+            "crawl_lang": "en",
+            "crawl_hash": "dfd465a3fc22cbe605e7741f4f1595d9a0e61b38dadde9548d0370332d01f470",
+            "source_updated_at": null,
+            "source_fetched_at": "2026-10-29T14:28:37Z"
+          }
+        ],
+        "intent": "answer",
+        "provisional": false,
+        "generation_mode": "llm_extractive",
+        "generation_error": null,
+        "citation_validation": {
+          "status": "valid",
+          "cited_ids": [
+            5025
+          ],
+          "invalid_ids": [],
+          "malformed": false,
+          "invalid_chunk_ids": [],
+          "missing_chunk_item_ids": [],
+          "semantic_grounding": "not_verified",
+          "evidence_binding": "verbatim"
+        },
+        "response_html": "<p>Trích dẫn nguyên văn từ nguồn (không phải diễn giải):</p>\n<blockquote>\n<pre><code class=\"language-text\">01 Unauthorized Although the HTTP standard specifies &quot;unauthorized&quot;, semantically this response means &quot;unauthenticated&quot;. That is, the client must authenticate itself to get the requested response. 402 Payment Required The initial purpose of this code was for digital payment systems, however this status code is rarely used and no standard convention exists. 403 Forbidden The client does not have access rights to the content; that is, it is unauthorized, so the server is refusing to give the requested resource. Unlike 401 Unauthorized , the client's identity is known to the server. 404 Not Found The server cannot find the requested resource. In the browser, this means the URL is not recognized. In an API, this can also mean that the endpoint is valid but the resource itself does not exist. Servers may also send this response instead of 403 Forbidden\n</code></pre>\n</blockquote>\n<p><a href=\"/courses/5025\">item_id:5025</a> [chunk_id:5025:8]</p>\n",
+        "conversation_id": 2,
+        "timings": {
+          "sources_ms": 515.6197040000006,
+          "first_token_ms": 44458.931272999995,
+          "total_ms": 44491.787658
+        }
+      }
+    },
+    "cancellation": {
+      "query": "Why must Dockerfile parser directives appear before comments? This request will be cancelled.",
+      "providerRecordId": 8,
+      "stopMonotonic": 35032.644733657,
+      "uiReadySeconds": 0.03657029999885708,
+      "providerSocketCloseSeconds": 0.08958247800183017,
+      "providerCompleteBeforeStop": false
+    }
+  },
+  "providerAfterCancel": {
+    "elapsed": 15.504124867999053,
+    "done": true,
+    "done_reason": "length",
+    "eval_count": 8
+  },
+  "finishedWithoutDriverException": true,
+  "cleanup": {
+    "stopIssuedOnlyForProject": "itlr-resume-1031c",
+    "volumesDeleted": false,
+    "dataPreserved": true,
+    "ports": {
+      "19081": {
+        "listening": false
+      },
+      "19444": {
+        "listening": false
+      }
+    }
+  }
+}

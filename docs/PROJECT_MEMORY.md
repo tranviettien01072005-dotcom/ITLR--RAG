@@ -6,7 +6,22 @@ publish, migration hoặc gọi provider trả phí.
 
 ## Trạng thái đã kiểm chứng
 
-- Final E2E certification (2026-10-31, máy này): **489 Python / 146 Web PASS**,
+- Resume validation (2026-10-31, phiên nối tiếp, working tree sạch `f14c428…`):
+  **494 Python / 146 Web PASS**, coverage **67,63% / 47,05%**; typecheck/lint/build,
+  compileall, pip check, pip-audit **0**, npm audit **0**, Bandit 0 High PASS.
+  Docker staging fresh `--no-cache` **PASS scoped** qua `sg docker` (user thuộc group
+  docker; không cần sudo): project `itlr-resume-1031c`, ports 19081/19444, PG16 +
+  Caddy TLS nội bộ + E5 + Qwen thật SSE + Chrome **11/11** + cancel đóng socket
+  provider **55ms** + backup/restore 15 bảng + tamper reject + reload/rollback +
+  restart; volumes giữ, ports đóng sau stop. A/B `ITLR_EVIDENCE_EXCERPT_CHAR_BUDGET`
+  `None` vs `800`: 11/12 và 11/12 positive, 7/8 và 7/8 negative, prompt −7,1% nhưng
+  `positive-12` regress → **giữ default `None`**. Benchmark cold sau đó: prefill prompt
+  đầy đủ 40–51s (27–34,5 tok/s), flash attention +10,6%, budget 500 chỉ còn 10/12 →
+  **SLO 45s FAIL, hardware-bound** (cần prefill ≥65–70 tok/s). Human faithfulness `null`
+  nhưng packet + protocol chấm đã sẵn sàng. Reliability: cold start 42s, soak 120s
+  45/45 `done`, crash recovery 1s, DB counts không đổi.
+  **NO-GO** production. [Certification §11](../reports/FINAL_E2E_CERTIFICATION.md).
+- Final E2E certification (2026-10-31, checkpoint trước): **489 Python / 146 Web PASS**,
   coverage **67,37% / 47,05%**; điển hình gates thật: HTTP/DB 36/36, Chrome 9/9,
   backup/restore 15 bảng fingerprint bằng, TLSv1.3 verified-cert smoke, artifact
   lifecycle 9/9, CF-absent 503 đúng, health fingerprint lock/reload PASS.
@@ -84,11 +99,14 @@ publish, migration hoặc gọi provider trả phí.
 
 ## Blockers
 
-Docker/PG16/Caddy production lifecycle, independent human generation quality và
-model-internal cancellation ACK/capacity chưa được xác nhận; transport cancellation
-đã được đo thật trong blocker remediation. PostgreSQL18 native/backup/restore,
-Chrome và artifact lifecycle đã chạy trên fixtures riêng; không thay deployment production.
-Không production DB/index changes, paid API, commit/push. Xem release report cho phạm vi mới.
+Docker/PG16/Caddy lifecycle trong staging đã chạy thật (2026-10-31 resume: PASS scoped,
+single-host CPU-only, artifacts dùng một lần), nhưng chưa phải deployment production
+nhiều host. Còn mở: uncached full prompt >45s (prefill CPU ~30s/case, timeout thật
+45,124s), independent human faithfulness/entailment (`null`), model-internal
+cancellation ACK/capacity/soak/cold start. Transport cancellation đã đo thật
+(socket provider đóng 55ms trong staging). Không production DB/index changes,
+paid API, commit/push. Xem [certification §11](../reports/FINAL_E2E_CERTIFICATION.md)
+và evidence trong `reports/final-e2e-evidence/`.
 
 ## Nhật ký lịch sử
 
@@ -109,6 +127,8 @@ Historical checkpoint (superseded by the verification entrypoint above): Checkpo
 Cập nhật: 2026-10-30. Đây là bộ nhớ kỹ thuật trong repository; không cần dịch vụ memory ngoài.
 Hướng dẫn hiện hành: [README](../README.md), [AGENTS](../AGENTS.md),
 [Deployment](../deploy/DEPLOY.md). Bằng chứng theo lần chạy: [Validation](../reports/VALIDATION.md).
+Tài liệu chuẩn theo chủ đề: [RAG](RAG.md), [API](API.md), [Testing](TESTING.md),
+[Evaluation](EVALUATION.md), [Security](SECURITY.md), [ADR-013](decisions/ADR-013-evidence-excerpt-budget.md).
 
 ## Trạng thái hiện hành
 
@@ -465,3 +485,61 @@ Final fresh full Python verification: 386 PASS / 0 skip, coverage 65% rounded, 1
 Restructuring verification: 387 Python PASS/0 skip (91.94s), coverage 65% rounded; 124 Web PASS, line coverage 45.01%; typecheck/lint/build/compileall/pip check PASS. One usage snapshot isolation regression added (observed FAIL to PASS). No runtime data/index changes. See restructuring continuation report for scope and remaining gates.
 
 </details>
+
+## Resume validation — 2026-10-31 (A/B char budget + Docker staging thật)
+
+Nối tiếp handoff 2026-10-31 trên checkout `main` sạch `f14c428…`, không audit lại,
+không commit/push, không đổi active artifacts hay dữ liệu thật. WIP `budget=800`
+được đánh giá rồi revert có bằng chứng.
+
+- Ứng viên `generation-eval-budget800` cũ **không dùng được làm bằng chứng**: code sửa
+  lúc 11:22:45 sau khi run 20 case kết thúc 11:20, runner không set env, không launch
+  record. Đã chạy A/B có kiểm soát (`frozen_eval_ab.py`, arm ghim trong process,
+  `prompt_chars` từng case): `None` 11/12 positive + 7/8 negative; `800` 11/12 + 7/8;
+  prompt p50 4926 → 4578 (−7,1%). `positive-06` timeout 45,124s được cứu nhưng
+  `positive-12` regress thành `no_selected_evidence`; latency p50 không dùng được vì
+  prompt-prefix cache. **Quyết định: default giữ `None`**, revert code+test RED→GREEN
+  (ImportError → 28 passed); bản promote lưu `/tmp/opencode/itlr-e2e/reverted-800/`.
+- Fresh gates (`run_quality_gates.sh` qua `sg docker`): 494 Python / 146 Web PASS,
+  coverage 67,63% / 47,05%; typecheck/lint/build/compileall/pip check PASS; pip-audit 0;
+  npm audit 0 (minimatch 11.0.3 deduped); Bandit 0 High / 27 Medium / 46 Low.
+- Docker staging lần đầu chạy được trên máy này: user **thuộc group docker (972)** nhưng
+  shell thiếu supplementary group → `sg docker` là đường hợp lệ, không cần sudo/pkexec.
+  Project `itlr-resume-1031c`, subnet 172.29.234.0/24, ports 19081/19444, image
+  `--no-cache` (`api sha256:3dac1619…`, `web sha256:23e1a8ab…`), artifacts staging
+  docker-a/docker-b, HF/model read-only, volumes riêng, không `down -v`. Kết quả:
+  27/28 driver check PASS (check thứ 28 sai tham số probe `num_predict=8`, chạy lại
+  đúng → PASS); Chrome 11/11, cancel socket provider 55ms, backup/restore 15 bảng,
+  tamper reject, reload/rollback `docker-a↔docker-b`, restart giữ dữ liệu, ports đóng.
+- Blocker còn lại: uncached 45s (FAIL, không nới), human faithfulness/entailment
+  (`null`), capacity/soak/cold start, multi-host. Verdict **NO-GO** production.
+- Evidence + SHA256: `reports/final-e2e-evidence/SHA256SUMS.txt`,
+  `docker-resume-1031c/`; chi tiết trong [certification §11](../reports/FINAL_E2E_CERTIFICATION.md).
+
+## Final production remediation — 2026-10-31 (latency SLO, human packet, reliability)
+
+Không sửa code runtime, không đổi model/SLO/hardware, không commit/push. Mục tiêu là đo
+và kết luận trung thực thay vì hợp thức hóa PASS.
+
+- **SLO 45s**: prompt thật 4893 chars / 1387 token. Sweep container Ollama cô lập:
+  prefill cold 40–51s (27–34,5 tok/s), baseline 31,2; flash attention **34,5 (+10,6%)**;
+  `num_batch=256` 34,0; `num_thread=6` 31,5; KV q8_0 26,9 (chậm hơn). Cache hit 0,14s.
+  Compression `800` 11/12 (mất `positive-12`), `500` 10/12 (mất `positive-07`,`positive-11`)
+  → giữ `None`. Kết luận: **SLO không đạt trên CPU này**; cần prefill ≥65–70 tok/s
+  (CPU P-core mới hoặc GPU) và phải chạy lại frozen + cold/warm. Không nới SLO.
+- **Human eval**: `human_eval_supplement.jsonl` (20 case: 8 positive, 6 hard-negative,
+  3 multi-hop, 3 injection; VI 11/EN 9; SHA `818e3b35…`, frozen SHA không đổi) +
+  `HUMAN_REVIEW_PROTOCOL.md` (SHA `f8a72a21…`, thang 0–3, quy ước human/AI/heuristic/judge,
+  công thức unsupported-claim rate, citation precision, refusal accuracy).
+  Chưa có reviewer → `human_* = null`, **NOT VERIFIED**.
+- **Reliability/capacity** (staging single-host, volumes giữ): cold start 42s; chat cold
+  đầu 40,25s; conc 2/4 max 4,13/9,16s (warm cache, 1 LLM worker); search conc 8
+  1,69–1,84s so với 0,28s; soak 120s 89 vòng/45 chat, tất cả terminal `done`,
+  p50 2,22s; cancel dừng ở `meta`, không `final/done`, health sau 5ms; kill -9 api →
+  healthy 1s, DB counts users 1/messages 8/conversations 4/courses 3 không đổi;
+  RSS api 921 MiB → 1,125 GiB, ollama 2,135 → 2,164 GiB. Soak dài, cold concurrency >1,
+  multi-host **NOT VERIFIED**.
+- Gates không đổi (không sửa code): 494 Python / 146 Web PASS, coverage 67,63%/47,05%,
+  pip-audit 0, npm audit 0, Bandit 0 High. Verdict **NO-GO** với blocker ưu tiên
+  hardware SLO, human labels, soak/HA. Evidence: `reports/final-e2e-evidence/bench-latency/`,
+  `reliability-load/`, `SHA256SUMS.txt`; chi tiết §12 trong certification.

@@ -1,147 +1,129 @@
 # Kiến trúc và ranh giới module
 
-Tài liệu này mô tả code hiện hành. Kết quả kiểm chứng nằm trong
-[validation](../reports/VALIDATION.md); khả năng production phải được đánh giá
-riêng trên môi trường staging.
+Tài liệu này là nguồn chuẩn cho kiến trúc hiện hành. Kết quả kiểm chứng nằm ở
+[validation](../reports/VALIDATION.md) và [certification](../reports/FINAL_E2E_CERTIFICATION.md);
+khả năng production phải được đánh giá riêng trên staging.
 
-## Luồng online và offline
+## 1. Thành phần và luồng dữ liệu
+
+```mermaid
+flowchart TB
+    subgraph Online
+        B[Browser] --> W[Express Web :3000]
+        W --> PG[(PostgreSQL)]
+        W -->|HTTP| A[FastAPI :8000]
+        A --> E[RecommenderEngine]
+        E --> R[Retrieval: FAISS + BM25 + RRF + rerank]
+        E --> C[Chatbot]
+        C --> R
+        C --> L[LLM client]
+        L --> P[DeepSeek / OpenAI / Ollama]
+    end
+    subgraph Offline
+        S[Nguồn được phép] --> K[Crawler + policy + SQLite]
+        K --> D[Catalog/data]
+        D --> BU[Chunking + embeddings + builders]
+        BU --> V[Staging version]
+        V --> PR[Probe]
+        PR --> ACT[Activate pointer]
+        ACT --> R
+    end
+```
+
+- **Web** sở hữu phiên người dùng, tài khoản, hội thoại, tiến độ, tệp đính kèm và trang quản
+  trị. Web không truy cập artifacts hay model; mọi truy hồi/sinh văn bản đi qua API Python.
+- **API** không phụ thuộc phiên Web hay SDK Web. Nó giữ engine RAG, rate limit theo IP và
+  admin reload. API có thể chạy độc lập với Web cho mục đích đánh giá.
+- **Offline pipeline** tạo artifacts; không chạy ngầm khi phục vụ request hay restart container.
+
+## 2. Ranh giới module
+
+| Khu vực | Sở hữu | Sửa khi |
+|---|---|---|
+| `web/src/app.ts` | middleware, view/static, ghép route | thay đổi wiring |
+| `web/src/server.ts` | listening socket, signal, shutdown | thay đổi lifecycle process |
+| `web/src/routes/` | auth, validation, orchestration HTTP, SSE | thay đổi endpoint/contract |
+| `web/src/services/` | adapter chat, render, learning, social | thay đổi hành vi ứng dụng |
+| `web/src/db/` | PostgreSQL, schema jobs, catalog upsert | thay đổi storage |
+| `web/src/config/env.ts` | biến môi trường Web, kiểm secret bắt buộc | thay đổi cấu hình |
+| `itlr/api/` | HTTP API, rate limit, fingerprint | thay đổi contract HTTP |
+| `itlr/retrieval/` | retrieval service dùng chung, BM25, ngưỡng | thay đổi ranking/ngưỡng |
+| `itlr/core/chunks.py` | FAISS chunk, RRF, CrossEncoder | thay đổi candidate/fusion/rerank |
+| `itlr/core/` | item retrieval legacy (V2), primitive | duy trì tương thích V2 |
+| `itlr/chatbot/` | intent, evidence, generation, citation | thay đổi orchestration trả lời |
+| `itlr/chatbot/presentation.py` | template Markdown, tóm tắt catalog | thay đổi output template |
+| `itlr/chatbot/llm_client.py` | transport provider, retry, usage | thay đổi tích hợp LLM |
+| `itlr/chatbot/llm_adapter.py` | history, fallback/logging | thay đổi adaptation |
+| `itlr/collect/`, `itlr/pipelines/` | ingestion, builder offline | thay đổi nguồn/build |
+| `itlr/versioning.py`, `itlr/locking.py` | activate/history/rollback, khóa file | thay đổi lifecycle index |
+| `itlr/config.py` | đường dẫn runtime | thay đổi path |
+| `scripts/`, `eval/` | entrypoint vận hành/đánh giá | thêm lệnh/đo lường |
+| `deploy/` | cấu hình và quy trình phát hành | thay đổi deployment |
+
+Hướng phụ thuộc: Web → HTTP → API → engine → retrieval/chatbot. Retrieval không phụ thuộc
+Web, PostgreSQL hay SDK provider. Transport provider chỉ nằm trong `llm_client.py`.
+
+## 3. Trạng thái và tính nguyên tử
+
+- **Artifacts**: staging version → probe → `CURRENT.json` pointer (atomic) + history mirror.
+  Reload nạp engine mới trước khi hoán đổi; lỗi giữ engine cũ. Fingerprint `/health`
+  (`version`, `manifest_sha256`) chỉ đổi sau reload thành công — đây là bằng chứng engine
+  đang phục vụ, không phải nội dung `CURRENT.json`.
+- **PostgreSQL**: schema là bản áp dụng một chiều (`schema.sql`), không phải framework
+  migration có thể rollback. Backup trước thay đổi; rollback code không rollback dữ liệu.
+- **Catalog Web** (`var/data/web_items.csv`) là file do Web append/sync; exporter từ chối ghi đè
+  để không mất tài liệu cộng đồng. Không có transaction xuyên artifacts ↔ PostgreSQL ↔ CSV.
+- **Khóa và rate limit** dùng file lock Linux và bộ đếm trong RAM: đúng cho một
+  worker/replica mỗi service trên local filesystem, không phải cơ chế phân tán.
+
+## 4. Online: retrieval → generation → citation
+
+Luồng đầy đủ, ngưỡng và quy tắc citation: [RAG](RAG.md). Tóm tắt contract:
+
+- Off-topic gate và intent xử lý trước khi gọi model; template trả lời không gọi provider.
+- Chế độ mặc định `llm_extractive`: model trả JSON danh sách chunk ID; engine dựng câu trả
+  lời từ excerpt đã lưu, gắn `evidence_binding="verbatim"`. Citation sai/không tồn tại bị loại.
+- SSE phát `sources`, `meta`, `text` (provisional), `final`, `done`. Text provisional không phải
+  kết quả đã kiểm; client/Web chỉ hoàn tất khi `final` + `done` và EOF sạch.
+- Lỗi provider/thiếu bằng chứng trả `insufficient_evidence` hoặc error final, không tự chuyển
+  sang cloud provider khác.
+
+## 5. Offline: ingest → build → probe → activate
 
 ```mermaid
 flowchart LR
-    Browser[Trình duyệt] --> Web[Express Web 3000]
-    Web --> PG[(PostgreSQL)]
-    Web --> API[FastAPI 8000]
-    API --> Engine[RecommenderEngine]
-    Engine --> Retrieval[Shared retrieval V3 hoặc legacy V2]
-    Engine --> Chat[Chatbot orchestration]
-    Chat --> Retrieval
-    Chat --> LLM[LLM client]
-    Chat --> Citations[Citation identity validation]
-    Sources[Nguồn được phép] --> Collect[Crawler và policy]
-    Collect --> SQLite[(SQLite ingestion)]
-    SQLite --> Catalog[Catalog offline]
-    Catalog --> Build[Chunking và artifact builders]
-    Build --> Stage[Staging và probe]
-    Stage --> Pointer[Atomic pointer và history]
-    Pointer --> Engine
+    A[import snapshot / crawl] --> B[(SQLite + metadata)]
+    B --> C[chunk + E5 embeddings + BM25]
+    C --> D[version staging]
+    D --> E[probe: shape/NaN/norm/self-retrieval]
+    E --> F[MANIFEST.json + SHA256]
+    F --> G[activate pointer]
+    G --> H[/admin/reload/]
 ```
 
-Web quản lý tài khoản, hội thoại và tiến độ bằng PostgreSQL. SQLite phục vụ
-ingestion offline. Retrieval không phụ thuộc phiên người dùng Web hoặc SDK LLM.
-Provider chỉ sinh câu trả lời từ evidence; ID citation hợp lệ chưa chứng minh
-semantic faithfulness. SSE gửi text provisional, sau đó final thay thế kết quả.
+- `scripts/build_all_v2.py --real-only --no-activate` giữ version mới ngoài pointer.
+- Probe kiểm kỹ thuật; không thay thế đánh giá chất lượng.
+- `--with-cf` sinh interactions synthetic + CF; CF là tùy chọn, thiếu model trả 503 ở
+  personas/for-you nhưng không ảnh hưởng search/chat.
+- GC giữ version current/previous và staging chưa probe; không xóa thủ công khi job đang chạy.
 
-## Lifecycle và compatibility
+## 6. Tương thích
 
-Build mới phải vào staging riêng, qua probe trước activation. Pointer/history
-được cập nhật nguyên tử; reload nạp engine trước khi swap, lỗi giữ engine cũ.
-Rollback quản lý version artifacts, không rollback schema hoặc dữ liệu PostgreSQL.
-GC phải giữ staging đang chạy và các version cần cho rollback.
+- Giữ shim `itlr/core/bm25.py`: pickle cũ tham chiếu module này.
+- Giữ contract V2/V3, schema PostgreSQL, đường dẫn pickle và SSE. Không đổi tên
+  module/class được pickle tham chiếu nếu không có kế hoạch migration riêng.
+- API sync (`/api/chat`, `client.chat/stream`) và async (`achat_stream`) cùng tồn tại;
+  async là đường phục vụ SSE hiện hành.
 
-V2 và V3 tiếp tục dùng chung engine contract. Giữ shim `itlr/core/bm25.py` vì
-pickle cũ tham chiếu module này. CF thiếu model trả 503 ở tính năng tương ứng;
-retrieval vẫn độc lập. Mỗi service một worker/replica, filesystem Linux local;
-khóa local và rate limiter RAM chưa cung cấp điều phối nhiều host.
+## 7. Trade-off đã chọn
 
-## Bản đồ trách nhiệm
-
-This map describes the current repository, including the deployment preparation
-changes. It is a navigation guide, not evidence that all runtime paths have passed
-production tests. See [ADR-010](decisions/ADR-010-shared-retrieval-and-atomic-state.md)
-for the shared retrieval and artifact compatibility decisions.
-
-| Area | Owns | Change here when |
+| Quyết định | Lợi | Giá phải trả |
 |---|---|---|
-| `web/src/app.ts` | Express middleware, view/static setup, route composition | Wiring middleware or routes |
-| `web/src/server.ts` | Listening socket, OS signals, process shutdown | Changing process lifecycle |
-| `web/src/routes/` | HTTP authorization, validation, response orchestration | Changing Web endpoints |
-| `web/src/routes/chat.handlers.ts` | Chat validation, owned history, persistence and SSE lifecycle | Changing chat HTTP behavior; auth registration stays in API router |
-| `web/src/services/` | Chat adapter, rendering, learning and social operations | Changing application behavior |
-| `web/src/db/` | PostgreSQL access, schema jobs, catalog upsert | Changing storage operations |
-| `web/src/config/` | Web environment and catalog paths | Changing Web configuration |
-| `web/src/services/catalog-csv.ts` | Shared 10/16-column CSV whitelist and header reader | Changing append/sync catalog contracts |
-| `itlr/api/` | Python HTTP API and rate limiting | Changing retrieval/chat HTTP contracts |
-| `itlr/retrieval/` | Shared retrieval service and BM25 | Changing retrieval shared by search/chat |
-| `itlr/core/chunks.py` | Chunk vectors, fusion, passage reranking | Changing chunk candidate/ranking behavior |
-| `itlr/core/` | Legacy item retrieval and common engine primitives | Maintaining V2 compatibility |
-| `itlr/core/display.py` | Catalog display text and safe link formatting | Changing display output without ranking changes |
-| `itlr/chatbot/` | Intent, evidence, generation, citation checking | Changing answer orchestration |
-| `itlr/chatbot/presentation.py` | Offline Markdown answers, catalog summaries and learning-path presentation | Changing template output without retrieval/provider changes |
-| `itlr/chatbot/llm_client.py` | Provider calls, retries and generation usage | Changing LLM integration |
-| `itlr/chatbot/llm_adapter.py` | Conversation history and provider fallback/logging adapters | Changing chatbot adaptation without transport changes |
-| `itlr/collect/` | Collection policy, HTTP, parsing, SQLite ingestion | Changing source ingestion |
-| `itlr/pipelines/` | Offline model/artifact builders | Changing reproducible build outputs |
-| `itlr/config.py` | Python runtime paths | Changing artifact/data locations |
-| `itlr/versioning.py`, `itlr/locking.py` | Activation, history, rollback and local locks | Changing index lifecycle |
-| `scripts/`, `eval/` | Operational entrypoints and evaluation | Adding a command or measurement |
-| `deploy/` | Operator configuration and release procedures | Changing runtime deployment |
+| Extractive binding thay vì freeform | câu trả lời byte-verbatim, không bịa passage | câu trả lời dài/nguyên khối, phụ thuộc chất lượng chunk |
+| Một worker/replica + khóa local | đơn giản, ít thành phần | không scale ngang, không HA |
+| Không transaction xuyên hệ thống | ít phức tạp vận hành | release cần maintenance window |
+| Prompt budget mặc định `None` | giữ chất lượng theo case | prompt lớn, prefill chậm trên CPU |
+| Reranker bật mặc định (`BAAI/bge-reranker-base`), tắt bằng `DISABLE_RERANKER=1` | ranking tốt hơn khi có model | thêm latency/RAM; cấu hình CPU thường tắt |
 
-Web routes call services/database operations; the recommender adapter crosses the
-HTTP boundary to Python. Python retrieval must not depend on Web, PostgreSQL user
-sessions or generation provider SDK calls. Generation consumes retrieved evidence;
-provider transport stays in llm_client.py. Offline builders must not run implicitly
-when serving a Web request or restarting a Web container.
-
-The engine still supports legacy item artifacts alongside chunk artifacts. Keep
-`itlr/core/bm25.py`: trusted historical pickles refer to that module path. Do not
-rename persisted Python class/module paths without a separate migration plan.
-Keep CF optional and generation replaceable without disabling retrieval.
-
-The Web application factory is intentionally not introduced: one configured exported
-Express app is sufficient. Importing app.ts does not open a listening socket, but
-it still loads existing configuration/routes; this is not full dependency injection.
-No repository/service/factory layers are added around existing single implementations.
-
-The chatbot now delegates template presentation to a separate module while keeping
-legacy helper imports available. See [ADR-011](decisions/ADR-011-chatbot-presentation-and-catalog-contract.md).
-Large orchestration/engine files remain existing debt. Extract a responsibility only when
-its callers and behavior can be isolated and verified; file length alone is not a
-reason to move code. Subsequent work should preserve API/schema/artifact contracts
-and proceed in small reviewable groups with regression evidence.
-
-For the single-host stack, release jobs and known limits, use
-[the production runbook](../deploy/PRODUCTION.md). New deployment/lifecycle behavior
-is awaiting user verification.
-
-Generation stream contract: the shared LLM client tolerates usage-only terminal chunks without completion choices; the public iterator still yields text only. [Verification](../reports/HARDENING_STREAM_2026-10-30.md).
-
-Current hardening: non-stop provider finish reasons fail the text-generation contract;
-Ollama malformed/error events and missing terminal completion raise LLMError. Web rejects
-events after done. Partial tokens remain provisional; chatbot error final replaces them.
-Provider selection happens before the call; template fallback does not imply automatic
-cloud-provider failover. API startup may prewarm local Ollama as a lifecycle task; its
-HTTP response is scoped by a context manager. Importing these modules does not start
-that prewarm task (it runs from lifespan).
-
-Search now defaults to `min_pct=84`, selected on frozen development judgments;
-explicit 90 still means raw cosine 0.90. V3 applies the floor before dense/BM25
-candidate truncation and RRF; it is not a probability. Preserve the raw E5 query
-unless a real correction/abbreviation is needed. Glossary augmentation applies to
-bare aliases, not specific questions merely mentioning a topic. Ranking weights
-and the independent chatbot off-topic gate remain unchanged.
-
-Web parses final/done and validates stream completion before saving the final
-answer. The browser also delays success/conversation state until consume() resolves
-after final/done and clean EOF; post-final parser errors clear the provisional draft.
-Early sources/tokens stay provisional. Only the context copy of owned
-history is shortened to FastAPI's per-message bound; stored PostgreSQL text remains
-intact. `citations.public_item` shares JSON-safe metadata handling for sources and
-recommendations; non-finite metadata becomes null and full snapshot bodies stay
-inside retrieval artifacts. The shared Ollama request builder owns transport
-payloads for sync/async modes. Public sync streaming keeps event-boundary budgeting.
-The API calls async engine/chatbot/adapter transport with a total Ollama generation
-deadline, strict incremental UTF-8 and nested iterator cleanup. ClosingStreamingResponse
-also closes a suspended iterator on ASGI send failure; cancellation propagates without
-producing a successful final. Retrieval preparation runs in a worker thread and cannot
-be forcibly stopped mid-CPU work. Existing sync APIs and pickle paths remain available.
-See [blocker evidence](../reports/PRODUCTION_BLOCKERS_RESOLUTION.md) for real cancellation
-measurements and remaining model/quality/production limits.
-
-Unused preparation category/prefix work was removed with output parity checks.
-Existing orchestration modules and public compatibility aliases remain; no new
-service hierarchy, renamed pickle path or PostgreSQL schema was introduced.
-API health now also exposes the loaded-artifact fingerprint ({version,
-manifest_sha256}); readiness identifies the verified loaded snapshot and only
-changes after a successful admin reload, not on pointer/activation state alone.
-See [ADR-012](decisions/ADR-012-calibrated-search-and-stream-completion.md) and
-[engineering evidence](../reports/FINAL_ENGINEERING_REVIEW.md).
+Các quyết định có bối cảnh/alternative: [ADR](decisions/ADR-001-deepseek-primary-llm.md)
+(001–013). Giới hạn vận hành và gate phát hành: [PRODUCTION](../deploy/PRODUCTION.md).

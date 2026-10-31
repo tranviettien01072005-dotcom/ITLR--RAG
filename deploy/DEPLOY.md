@@ -1,28 +1,25 @@
-# Cài đặt và vận hành ITLR–RAG
+# Cài đặt local và vòng đời dữ liệu
 
-Review mới: search default 84 có calibration/holdout; LLM timeout phải hữu hạn và >0,
-API SSE dùng async generation deadline và đóng upstream khi disconnect; sync client
-giữ event-boundary budget. **NOT READY**: Docker/PG16/Caddy
-production deployment và local generation reliability chưa được xác nhận. PostgreSQL18
-native cô lập đã kiểm migration, auth, backup/restore và Chrome với upstream fixture.
-[Blocker evidence và giới hạn](../reports/PRODUCTION_BLOCKERS_RESOLUTION.md).
+Hướng dẫn cho **ITLR–RAG | Intelligent IT Learning Platform** trên Linux local: cài đặt,
+cấu hình, nạp dữ liệu, build/probe/activate index, chạy API + Web, xử lý sự cố. HTTPS/Compose
+một host: [PRODUCTION](PRODUCTION.md). Kiến trúc: [ARCHITECTURE](../docs/ARCHITECTURE.md).
 
-For the complete HTTPS/Web/API/PostgreSQL stack use [the production runbook](PRODUCTION.md) and `compose.production.yml`. The original `docker-compose.yml` remains API/refresh only. Web restarts no longer run migration or catalog sync automatically.
+Giới hạn hiện hành: một worker/replica mỗi service, local filesystem, khóa file Linux.
+Restart container **không** tự migrate/seed/activate.
 
-Hướng dẫn cho **ITLR–RAG | Intelligent IT Learning Platform**, cập nhật 2026-10-30. Phạm vi hỗ trợ hiện tại là Linux local, một worker/replica mỗi service và các tiến trình ghi hợp tác qua khóa file. [Validation](../reports/VALIDATION.md) ghi các bước đã thực thi; các cấu hình container chưa được xác nhận bằng một lượt Docker/Compose thực tế.
-
-## Thành phần và điều kiện
+## Thành phần
 
 | Thành phần | Địa chỉ local | Yêu cầu |
 |---|---|---|
-| Giao diện chính Express/TypeScript/EJS | `http://localhost:3000` | Node.js 22, PostgreSQL |
-| API Python/FastAPI | `http://127.0.0.1:8000` | Python ≥3.11, artifacts và model cache |
-| PostgreSQL | Theo `DATABASE_URL` | Database và credentials riêng |
-| Ollama tùy chọn | `http://127.0.0.1:11434` | Model generation local |
+| Web Express/TypeScript/EJS | `http://localhost:3000` | Node.js 22, PostgreSQL |
+| API FastAPI | `http://127.0.0.1:8000` | Python ≥3.11 (đã kiểm với 3.14.4), artifacts + model cache |
+| PostgreSQL | theo `DATABASE_URL` | database + credentials riêng |
+| Ollama (tùy chọn) | `http://127.0.0.1:11434` | model generation local |
 
-Một checkout mới chưa chắc có `var/`, model hoặc database. Không suy ra readiness từ việc trang login render được. Chuẩn bị dung lượng cho model và các version artifacts; chưa có mức RAM tối thiểu đã được xác nhận cho toàn corpus. Python 3.14.3 từng được dùng trong kiểm chứng; wheel neural có thể khác theo phiên bản và nền tảng.
+Checkout mới không tự có `var/`, model hay database. Login render được không chứng minh
+RAG hay DB đã sẵn sàng.
 
-Từ repo root:
+## Cài đặt
 
 ```bash
 python3 -m venv .venv
@@ -32,139 +29,154 @@ npm ci
 cp .env.example .env
 ```
 
-## Cấu hình
-
-Backend đọc biến môi trường của process qua `itlr/config.py` và tầng LLM. Có thể sao chép root `.env.example` thành `.env` rồi nạp có chủ đích trước lệnh backend:
+Root `.env.example` là tài liệu cấu hình; lệnh Python không tự nạp `.env`. Nếu muốn dùng
+file local, source có chủ đích:
 
 ```bash
-cp .env.example .env
-set -a
-. ./.env
-set +a
+cp .env.example .env    # điền giá trị
+set -a; . ./.env; set +a
 ```
 
-Đây là thao tác source một file shell local tin cậy. Không source file lấy từ nguồn không tin cậy. Web tự đọc `web/.env` khi chạy từ thư mục `web/`; hai file cấu hình không tự thay thế nhau.
+Không source file `.env` từ nguồn không tin cậy.
 
-| Biến | Cách dùng |
+## Cấu hình
+
+### Python / API
+
+| Biến | Mặc định / ý nghĩa |
 |---|---|
-| `DATABASE_URL` (Web) | PostgreSQL URL có mật khẩu riêng; code từ chối các mật khẩu mặc định phổ biến |
-| `JWT_SECRET`, `ADMIN_PASSCODE` (Web) | Ngẫu nhiên, lần lượt ≥32 và ≥16 ký tự; bắt buộc cả ở development |
-| `PORT`, `RECOMMENDER_URL` (Web) | `3000`, `http://127.0.0.1:8000` |
-| `APP_ORIGIN` (Web) | `http://localhost:3000` khi local; production mode bắt buộc HTTPS origin tường minh |
-| `WEB_CONCURRENCY`, `TRUSTED_PROXIES` | Một worker; proxy trust rỗng khi kết nối trực tiếp, chỉ khai IP/CIDR proxy thật |
-| `ITLR_ADMIN_TOKEN` | Bảo vệ `/admin/reload`; trống nghĩa là tắt endpoint (403) |
-| `ITLR_REQUIRE_ARTIFACT_MANIFEST` | Đặt `1` để kiểm SHA256 inventory trước khi nạp pickle |
-| `ITLR_ARTIFACTS_DIR`, `ITLR_ITEMS_CSV`, `ITLR_INTERACTIONS_CSV` | Override qua config cho môi trường riêng; không sửa path trong mã nguồn |
-| `HF_HOME`, `HF_HUB_OFFLINE`, `TRANSFORMERS_OFFLINE` | Cache và chế độ offline của E5/reranker |
-| `USE_OLLAMA`, `OLLAMA_MODEL`, `DISABLE_RERANKER` | Chọn generation local và bật/tắt reranker có chủ đích |
-| `DEEPSEEK_API_KEY`, `OPENAI_API_KEY` | Chỉ đặt khi được phép gọi provider; bỏ khỏi môi trường khi thử local |
+| `ITLR_ARTIFACTS_DIR` | override thư mục artifacts (mặc định `var/artifacts`, có thể theo `CURRENT.json`) |
+| `ITLR_ITEMS_CSV`, `ITLR_INTERACTIONS_CSV` | override CSV catalog/interactions |
+| `ITLR_REQUIRE_ARTIFACT_MANIFEST=1` | kiểm SHA256 inventory trước khi nạp pickle |
+| `ITLR_ADMIN_TOKEN` | bảo vệ `/admin/reload` và `/metrics`; rỗng ⇒ tắt (403) |
+| `DEEPSEEK_API_KEY`, `DEEPSEEK_MODEL`, `DEEPSEEK_BASE_URL` | provider chính (mặc định `deepseek-flash`) |
+| `OPENAI_API_KEY`, `OPENAI_MODEL`, `OPENAI_BASE_URL` | provider OpenAI-compatible |
+| `USE_OLLAMA=1`, `OLLAMA_MODEL`, `OLLAMA_BASE_URL`, `OLLAMA_TIMEOUT` | provider local; timeout phải hữu hạn dương |
+| `EMBEDDING_MODEL`, `RERANKER_MODEL`, `DISABLE_RERANKER` | preset E5/BGE và reranker |
+| `ITLR_EVIDENCE_EXCERPT_CHAR_BUDGET` | giới hạn prompt view mỗi chunk; mặc định `None` ([ADR-013](../docs/decisions/ADR-013-evidence-excerpt-budget.md)) |
+| `ITLR_RATE_SEARCH_PER_MIN`, `ITLR_RATE_CHAT_PER_MIN`, `ITLR_RATE_ADMIN_PER_MIN` | rate limit theo IP; `0` = tắt bucket |
+| `HF_HOME`, `HF_HUB_OFFLINE=1`, `TRANSFORMERS_OFFLINE=1` | cache và chế độ offline của model |
+| `ITLR_REAL_ONLY=1` | refresh pipeline chỉ dùng nguồn thật |
 
-Có thể sinh secret local bằng `python3 -c 'import secrets; print(secrets.token_urlsafe(48))'`; không đưa kết quả vào commit hoặc báo cáo. Giữ `.env` ngoài Git và hạn chế quyền đọc. SMTP là tùy chọn; khi thiếu cấu hình, hệ thống không gửi email reset và không được log reset token. Model name/base URL và giá LLM trong code không phải xác nhận dịch vụ/giá hiện hành của provider.
+### Web
 
-## Chuẩn bị dữ liệu và index
+| Biến | Yêu cầu |
+|---|---|
+| `DATABASE_URL` | PostgreSQL URL, mật khẩu riêng, không dùng mặc định phổ biến |
+| `JWT_SECRET` | ≥32 ký tự, ngẫu nhiên |
+| `ADMIN_PASSCODE` | ≥16 ký tự, ngẫu nhiên |
+| `APP_ORIGIN` | origin tuyệt đối; production bắt buộc HTTPS |
+| `RECOMMENDER_URL` | `http://127.0.0.1:8000` (local) / `http://api:8000` (Compose) |
+| `PORT`, `WEB_CONCURRENCY=1`, `TRUSTED_PROXIES` | một worker; chỉ khai IP/CIDR proxy thật |
+| `ITEMS_CSV` | đường dẫn CSV catalog (Compose: `/app/var/data/web_items.csv`) |
+| `SMTP_*`, `RESET_TOKEN_TTL_MINUTES` | tùy chọn; thiếu cấu hình thì không gửi email |
 
-Chọn một trong hai nguồn dữ liệu đầu vào: import [snapshot curated](../data/README.md) để bootstrap offline hoặc thu thập giới hạn từ cấu hình đã kiểm quyền sử dụng. Hai cách đều ghi SQLite và metadata local.
+Sinh secret: `python3 -c 'import secrets; print(secrets.token_urlsafe(48))'` — không đưa
+kết quả vào commit/log/report. Giữ `.env` 0600 và ngoài Git.
+
+## Nạp dữ liệu
+
+Chọn một nguồn: import snapshot curated (118 trang thật) hoặc crawl có kiểm soát.
 
 ```bash
 .venv/bin/python scripts/import_curated_snapshot.py
-```
-
-Hoặc kiểm danh sách rồi chạy crawler:
-
-```bash
+# hoặc
 .venv/bin/python scripts/collect_data.py --sources help
 .venv/bin/python scripts/collect_data.py
 ```
 
-Crawler ghi `var/data/collect/crawl.db`, `last_run.json`; robots/rate-limit không thay thế việc kiểm tra giấy phép. `full_text_allowed` và `listing_is_complete` phải là JSON boolean. Rolling feed mặc định không phải danh mục đầy đủ, vì vậy không tự đánh dấu bài missing chỉ do vắng mặt.
+Crawler ghi `var/data/collect/crawl.db` + `last_run.json`; robots/rate limit không thay thế
+việc kiểm giấy phép. Rolling feed không phải danh mục đầy đủ — không suy ra bài bị xóa chỉ
+vì vắng mặt.
 
-Build/probe một version mới và giữ quyền chuyển index cho bước riêng:
+## Build, probe, activate
 
 ```bash
 env -u DEEPSEEK_API_KEY -u OPENAI_API_KEY \
-  HF_HOME="$PWD/var/hf" USE_OLLAMA=0 DISABLE_RERANKER=1 \
+  HF_HOME="$PWD/var/hf" HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \
+  USE_OLLAMA=0 DISABLE_RERANKER=1 \
   .venv/bin/python scripts/build_all_v2.py --real-only --no-activate
 ```
 
-Nếu chưa cache model, thêm `--online` khi đã có mạng và chủ động cho phép tải. Tên CLI V2 giữ vì tương thích; builder hiện lưu chunk vectors cho đường V3. `--real-only` chỉ lấy nguồn thật; nếu bỏ cờ, catalog có thể ghép legacy synthetic. `--with-cf` sinh interactions synthetic và build CF, chỉ dùng khi cần tính năng này. Không copy file vào version active hoặc bỏ probe để làm readiness pass.
+- `--real-only` chỉ lấy nguồn thật; bỏ cờ có thể ghép legacy synthetic.
+- `--with-cf` sinh interactions synthetic và CF (tùy chọn; thiếu CF thì personas/for-you 503).
+- `--online` chỉ khi chủ động cho phép tải model.
+- Tên CLI V2 giữ vì tương thích; builder lưu chunk vectors cho đường V3.
 
-Probe kiểm cấu trúc artifacts, hàng/dimension/NaN/norm/ID, TF-IDF self-retrieval và nạp engine trong subprocess. Kết quả trong `MANIFEST.json` là kiểm tra kỹ thuật, chưa thay thế evaluation chất lượng độc lập. SHA256 kiểm toàn vẹn của artifacts từ builder tin cậy; pickle vẫn có thể thực thi mã và không được nhận từ nguồn tùy ý.
+Probe kiểm cấu trúc, hàng/cột, NaN, norm, ID, self-retrieval và nạp engine trong subprocess;
+kết quả trong `MANIFEST.json` là kiểm tra kỹ thuật, không phải đánh giá chất lượng.
 
-## Khởi chạy API và Web
-
-Với model đã cache và version đã chọn, xem [lệnh Ollama/E5 local](LOCAL_MODELS.md). Có thể đặt `USE_OLLAMA=0` để thử template/extractive; không báo cáo kết quả đó như generation LLM. API lắng nghe loopback, một worker, `--no-proxy-headers` khi không có proxy tin cậy.
-
-Tạo PostgreSQL database riêng trước khi áp schema. Từ `web/`:
-
-```bash
-npm run migrate
-```
-
-Từ repo root export catalog của index active:
-
-```bash
-.venv/bin/python scripts/export_web_catalog.py
-```
-
-Quay lại `web/`:
-
-```bash
-npm run seed
-npm run build
-npm start
-```
-
-Seed cần `var/data/web_items.csv`, dùng upsert và không reset enrollments. Dùng `npm run sync` khi đồng bộ catalog về sau; kiểm database đích trước mọi lệnh ghi. Development có thể chạy `npm run dev`. Build copy JavaScript, EJS views, public assets và schema SQL vào `dist/`; Dockerfile Web gọi cùng lệnh build.
-
-Exporter hiện từ chối đích đã tồn tại để không truncate tài liệu cộng đồng do Web append.
-Để chuẩn bị refresh, gọi `export(source=..., dest=...)` từ module
-`scripts.export_web_catalog` với **đích mới**, duyệt merge/định danh riêng khi Web dừng
-ghi rồi mới đồng bộ theo kế hoạch được phê duyệt. Chưa có automatic cross-process merge;
-không xóa catalog hiện hữu hoặc đổi path Web để lách guard.
-
-## Chuyển version, reload và rollback
-
-`build_all_v2.py` không có `--no-activate` sẽ tự activate sau probe và chạy GC. Để duyệt version trước khi chuyển, dùng `--no-activate` rồi gọi API Python với đúng ID đã probe:
+Activate version đã probe (không có `--no-activate` thì builder tự activate sau probe):
 
 ```python
 from itlr import versioning
 versioning.activate(version="TEN_VERSION_DA_PROBE")
 ```
 
-Sau khi pointer đổi, reload API qua `POST /admin/reload` với header `X-Admin-Token` chứa secret đang cấu hình, hoặc restart process. Không in header/token vào log. Reload nạp engine mới trước khi hoán đổi; bản lỗi bị từ chối và engine đã nạp tiếp tục phục vụ. Request đang chạy có thể dùng state cũ.
+Sau đó reload API:
 
-Reload có bucket `ITLR_RATE_ADMIN_PER_MIN` mặc định 10/IP/phút, 429 có Retry-After;
-`0` tắt bucket, không tắt yêu cầu token. Thiếu/corrupt integrity artifacts trả 503.
-Không build CF vào version có MANIFEST; dùng staging mới với `--with-cf`, probe rồi
-activate. Direct CF builder pin input/output một directory, không theo pointer mới giữa chừng.
+```bash
+curl -fsS -X POST http://127.0.0.1:8000/admin/reload -H "X-Admin-Token: $ITLR_ADMIN_TOKEN"
+```
 
-Khi cần quay lại, gọi `versioning.rollback()` rồi reload/restart API. Không chạy rollback như một phần mặc định của khởi động. Giữ bản backup của PostgreSQL và artifacts trước migration hoặc đổi nguồn.
+`/health` trả `artifacts.version` + `manifest_sha256` của engine đang phục vụ; reload lỗi giữ
+engine cũ. Rollback: `versioning.rollback()` + reload. Không đọc `CURRENT.json` thay cho
+fingerprint engine.
 
-`CURRENT.json` atomically chứa pointer và transition history; file `CURRENT.json.history.json` là mirror tương thích. Nếu báo lỗi sau pointer commit, đọc pointer trước khi retry để tránh tạo chuyển trạng thái ngoài ý muốn. Test process-exit/restart chứng minh phạm vi hồi phục trong process; chưa chứng minh mất điện, controller hoặc network filesystem. GC giữ current/previous và staging chưa probe; không xóa thư mục thủ công khi job đang chạy.
+## Chạy API và Web
 
-## Refresh tự động và container
+Model local: [LOCAL_MODELS](LOCAL_MODELS.md). API một worker, loopback, không proxy header
+khi không có proxy tin cậy:
 
-`scripts/refresh_pipeline.py` chạy crawl, build khi có tài liệu mới/cập nhật và activate sau probe; `--no-build` chỉ crawl, vẫn ghi dữ liệu ingestion. CLI không có cờ `--real-only`: đặt `ITLR_REAL_ONLY=1` trong môi trường job nếu cần index chỉ nguồn thật. Không để job mặc định vô tình đưa legacy synthetic trở lại catalog đã chọn real-only.
+```bash
+env -u DEEPSEEK_API_KEY -u OPENAI_API_KEY \
+  HF_HOME="$PWD/var/hf" HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \
+  USE_OLLAMA=0 DISABLE_RERANKER=1 ITLR_REQUIRE_ARTIFACT_MANIFEST=1 \
+  .venv/bin/python -m uvicorn itlr.api.server:app \
+  --host 127.0.0.1 --port 8000 --workers 1 --no-proxy-headers
+```
 
-CLI crawl/build dùng pipeline lock; refresh parent dùng refresh lock. Bảo đảm chỉ áp dụng cho writers dùng cùng cơ chế khóa trên Linux local. Timer/service mẫu trong thư mục này cần kiểm lại đường dẫn và môi trường trên máy đích; bật timer là hành động vận hành riêng.
+Database Web (chỉ với DB đích đã kiểm tra):
 
-Root `docker-compose.yml` chỉ mô tả API và refresh, **chưa bao gồm Web + PostgreSQL**. Web có Dockerfile riêng. Compose API hiện mount `./var` read-write; nếu triển khai thực tế cần tách mount theo trách nhiệm, đặc biệt cho API đọc artifacts, thay vì suy diễn cấu hình mẫu đã cô lập quyền ghi. Không dùng `docker compose down -v` hoặc xóa volume để xử lý lỗi.
+```bash
+cd web
+npm run migrate
+cd ..
+.venv/bin/python scripts/export_web_catalog.py
+cd web
+npm run seed      # upsert, không reset enrollment
+npm run build
+npm start         # hoặc npm run dev
+```
 
-Nếu mở truy cập ngoài máy local, cần TLS, origin/cookie đúng, reverse proxy ghi đè forwarded headers, backup và giới hạn CPU/RAM/đĩa. Limiter/presence trong RAM yêu cầu một process/replica; chưa có hỗ trợ nhiều host. [ADR-009](../docs/decisions/ADR-009-security-runtime-boundaries.md) và [security remediation](../web/SECURITY_REMEDIATION.md) ghi các ranh giới hiện tại.
+`npm run sync` để đồng bộ catalog về sau. Exporter từ chối đích đã tồn tại để không truncate
+tài liệu cộng đồng; chuẩn bị đích mới rồi merge theo quy trình duyệt.
 
-## Kiểm tra và xử lý sự cố
+## Refresh định kỳ
 
-| Hiện tượng | Kiểm tra và hành động |
+`scripts/refresh_pipeline.py` chạy crawl → build khi có thay đổi → activate sau probe;
+`--no-build` chỉ crawl. Không có cờ `--real-only`, dùng `ITLR_REAL_ONLY=1`. CLI dùng pipeline
+lock, refresh parent dùng refresh lock — chỉ đúng cho writer dùng cùng cơ chế khóa trên Linux
+local. Bật timer/cron là hành động vận hành riêng.
+
+## Xử lý sự cố
+
+| Hiện tượng | Kiểm tra / hành động |
 |---|---|
-| `/login` 200 nhưng thao tác tài khoản lỗi | Web `/ready` và PostgreSQL credentials/schema; login public không chứng minh DB readiness |
-| API `/health` 503 | Đọc lỗi artifacts/model và pointer thực tế; build/probe staging tin cậy, không thêm dữ liệu giả để qua check |
-| `/api/personas` hoặc `/api/for-you` 503 | Kiểm `cf` trong health; thiếu CF là trạng thái tính năng tùy chọn |
-| Admin reload 403 | Kiểm token đã cấu hình và header trên kênh nội bộ; không bỏ auth để sửa lỗi |
-| Offline model không nạp được | Kiểm `HF_HOME`, cache, quyền đọc và model metadata; chỉ tải online có chủ đích |
-| Stream dừng hoặc citation không hợp lệ | Đọc `error`/`final`, không giữ provisional như đáp án hoàn chỉnh; kiểm evidence và chunk IDs |
-| Build báo lỗi sau activate | Đọc `CURRENT.json`/history trước retry; pointer có thể đã commit dù mirror lỗi |
-| TestClient treo trong sandbox | Dùng kiểm chứng ngoài sandbox theo quyền được cấp; không skip tests |
+| `/login` 200 nhưng thao tác lỗi | `GET /ready`, credentials/schema PostgreSQL |
+| API `/health` 503 | log lỗi artifacts/model; build/probe staging tin cậy, không thêm dữ liệu giả |
+| `/api/personas`, `/api/for-you` 503 | `cf` trong `/health`; CF là tùy chọn |
+| Admin reload 403 | `ITLR_ADMIN_TOKEN` đã đặt và header đúng; không bỏ auth |
+| `/metrics` 403 | chưa đặt token thì chỉ loopback; đặt token thì phải gửi header |
+| Model offline không nạp | `HF_HOME`, cache, quyền đọc; chỉ tải online có chủ đích |
+| Stream dừng/citation lỗi | đọc `error`/`final`; provisional không phải đáp án; kiểm chunk id |
+| Activate lỗi sau khi đổi pointer | đọc `CURRENT.json` + history trước khi retry |
+| Upload 415 | chỉ PNG/JPEG/GIF/WebP/PDF, ≤20 MB, magic bytes đúng |
+| TestClient treo trong sandbox | chạy ngoài sandbox theo quyền được cấp; không skip test |
 
-Chạy [bộ kiểm thử](../README.md#kiểm-chứng-testing) trước bàn giao. Docker, authenticated browser E2E, SMTP, load toàn corpus và storage power-loss vẫn là các cổng kiểm chứng riêng; readiness/login smoke không thay thế chúng.
+## Giới hạn
 
-Code ownership and dependency direction: [architecture map](../docs/ARCHITECTURE.md).
+- Không hỗ trợ nhiều host: limiter/presence trong RAM, khóa file local.
+- Không có transaction xuyên artifacts ↔ PostgreSQL ↔ CSV; đổi index cần maintenance window.
+- Docker/HTTPS/backup/Chrome là gate riêng: xem [PRODUCTION](PRODUCTION.md) và
+  [certification](../reports/FINAL_E2E_CERTIFICATION.md).

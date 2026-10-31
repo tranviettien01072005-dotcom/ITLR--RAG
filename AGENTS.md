@@ -1,41 +1,57 @@
 # Hướng dẫn làm việc với ITLR–RAG
 
-Cập nhật: 2026-10-31. Tên sản phẩm: **ITLR–RAG | Intelligent IT Learning Platform**. Phạm vi là nền tảng hỗ trợ học CNTT, gợi ý tài nguyên và chatbot RAG. Mô tả dựa trên khả năng có trong repository; không suy diễn trạng thái thương mại, giấy phép open-source hoặc production-ready. Không tự gán MIT; bảo toàn bản quyền và license bên thứ ba.
+Cập nhật: 2026-10-31. Sản phẩm: **ITLR–RAG | Intelligent IT Learning Platform** — nền tảng
+học CNTT tiếng Việt: tìm tài nguyên, hỏi đáp RAG có trích dẫn, lộ trình và tiến độ. Mô tả
+dựa trên khả năng có trong repo; không suy diễn trạng thái thương mại, license hay
+production-ready. Không tự gán MIT; giữ license/attribution bên thứ ba.
 
-## Tiếp nhận và thực hiện công việc
+## Tiếp nhận công việc
 
-1. Đọc file này, [memory](docs/PROJECT_MEMORY.md), báo cáo mới nhất và Git diff trước khi sửa. Phân biệt lịch sử với trạng thái hiện hành.
-2. Kế thừa kết quả đã có; ghi trạng thái trong repo. Không yêu cầu hoặc tích hợp Claude-Mem.
-3. Dùng Ponytail Ultra và skill phù hợp: thay đổi nhỏ nhất giải quyết đầy đủ yêu cầu. Bug phải có bằng chứng FAIL → fix → PASS; review diff sau mỗi nhóm.
-4. Giữ thay đổi người dùng, runtime và database; không xóa dữ liệu, che lỗi, bỏ assertions hoặc hạ chất lượng tests để đạt PASS.
-5. Không gọi API trả phí nếu chưa được phép. Khi thử local, unset `DEEPSEEK_API_KEY` và `OPENAI_API_KEY`.
-6. Khi hành vi thay đổi, cập nhật README, memory, changelog và tài liệu liên quan; ghi riêng kết quả đã chạy, thử nghiệm và phần chưa kiểm chứng.
-7. Không commit/push nếu yêu cầu hiện tại không bao gồm việc đó. Kế hoạch lịch sử ghi quyền publish không cấp lại quyền cho phiên mới.
+1. Đọc file này, [CONSTRAINTS](CONSTRAINTS.md), [memory](docs/PROJECT_MEMORY.md), báo cáo mới
+   nhất và `git status`/diff trước khi sửa. Phân biệt lịch sử với trạng thái hiện hành.
+2. Kế thừa kết quả đã có; ghi trạng thái trong repo. Không yêu cầu/tích hợp Claude-Mem.
+3. Thay đổi nhỏ nhất giải quyết đầy đủ yêu cầu. Bug phải có bằng chứng **FAIL → fix → PASS**;
+   review diff sau mỗi nhóm thay đổi.
+4. Giữ thay đổi người dùng, runtime và database; không xóa dữ liệu, che lỗi, bỏ assertion
+   hoặc hạ chất lượng test để đạt PASS.
+5. Không gọi API trả phí nếu chưa được phép. Khi thử local: unset `DEEPSEEK_API_KEY` và
+   `OPENAI_API_KEY`.
+6. Khi hành vi thay đổi, cập nhật README/tài liệu liên quan, CHANGELOG và memory; ghi rõ phần
+   đã chạy, đã thử và chưa kiểm chứng.
+7. Không commit/push nếu yêu cầu hiện tại không bao gồm việc đó. Quyền publish của phiên cũ
+   không cấp lại quyền cho phiên mới.
 
-## Ranh giới kiến trúc cần giữ
+## Ranh giới kiến trúc
 
-| Khu vực | Trách nhiệm và ràng buộc |
+| Khu vực | Trách nhiệm / ràng buộc |
 |---|---|
 | `web/` | Giao diện chính Express + TypeScript + EJS + PostgreSQL, cổng 3000 |
-| `itlr.api.server:app` | Backend cổng 8000; UI tĩnh chỉ là giao diện phụ |
-| `itlr/retrieval/` | Shared service và BM25 cho artifacts có chunk vectors |
-| `itlr/core/chunks.py` | FAISS chunk, RRF và passage reranking |
+| `itlr.api.server:app` | Backend FastAPI cổng 8000; UI tĩnh chỉ là giao diện phụ |
+| `itlr/retrieval/` | Retrieval service dùng chung, BM25, ngưỡng `min_pct` |
+| `itlr/core/chunks.py` | FAISS chunk, RRF, passage reranking |
 | `itlr/collect/`, `itlr/pipelines/` | Ingestion có robots/rate-limit/SQLite; build artifacts |
-| `itlr/chatbot/llm_client.py` | Tầng generation LLM duy nhất: DeepSeek/OpenAI hoặc Ollama |
-| `itlr/versioning.py`, `itlr/locking.py` | Staging, probe, atomic pointer/history, rollback, GC và khóa Linux local |
+| `itlr/chatbot/llm_client.py` | Tầng generation LLM duy nhất: DeepSeek/OpenAI/Ollama |
+| `itlr/versioning.py`, `itlr/locking.py` | Staging, probe, pointer/history atomic, rollback, GC, khóa Linux local |
 
-Artifacts cũ giữ đường V2. Không xóa hoặc di chuyển shim `itlr/core/bm25.py`: pickle cũ còn tham chiếu module này. `/admin/reload` yêu cầu `X-Admin-Token` khớp `ITLR_ADMIN_TOKEN`; chưa cấu hình phải 403. CF tùy chọn; thiếu model phải trả 503 tại personas/for-you và không làm hỏng retrieval.
+- Artifacts cũ giữ đường V2. Không xóa/đổi tên shim `itlr/core/bm25.py`: pickle cũ tham chiếu
+  module này.
+- `/admin/reload` yêu cầu `X-Admin-Token` khớp `ITLR_ADMIN_TOKEN`; chưa cấu hình phải 403.
+- CF tùy chọn: thiếu model trả 503 ở personas/for-you, không làm hỏng retrieval.
+- Một worker/replica mỗi service trên local filesystem; không suy diễn khóa local/limiter RAM
+  thành hỗ trợ nhiều host.
 
-Checkpoint hiện hành và blockers: [blocker remediation](reports/PRODUCTION_BLOCKERS_RESOLUTION.md).
-Checkpoint mới nhất (2026-10-31, Linux): **489 Python PASS/0 skip**, coverage statements
-**67,37%**; **146 Web PASS**, line coverage **47,05%**; typecheck/lint/build,
-compileall, pip check, pip-audit 0 advisory PASS. Checkpoint 457/145 (blocker
-remediation) và 414/132 ở [restructuring continuation](reports/RESTRUCTURING_CONTINUATION_2026-10-30.md)
-là lịch sử; không trình bày như lần chạy mới. Frozen blind eval 20 case Qwen thật:
-11/12 positive nhận `llm_extractive` valid citation byte-verbatim; Docker staging
-BLOCKED (docker.sock root:root, không sudo noninteractive); uncached prompt FAIL 60s.
-Chi tiết: [blocker remediation](reports/PRODUCTION_BLOCKERS_RESOLUTION.md) và
-[E2E certification](reports/FINAL_E2E_CERTIFICATION.md).
+## Checkpoint hiện hành
+
+**494 Python PASS/0 skip** (coverage statements **67,63%**), **146 Web PASS** (lines
+**47,05%**); typecheck/lint/build, compileall, pip check, pip-audit 0, npm audit 0, Bandit
+0 High PASS. Docker staging single-host + Chrome **11/11** PASS trong phạm vi đã kiểm
+([certification](reports/FINAL_E2E_CERTIFICATION.md)). A/B char budget 800/500 suy giảm theo
+case nên default giữ `None` ([ADR-013](docs/decisions/ADR-013-evidence-excerpt-budget.md)).
+Qwen CPU-only **không đạt SLO 45s** cho prompt uncached; human faithfulness **NOT VERIFIED**.
+**Verdict: NO-GO production.**
+
+Số 489/146, 457/145, 414/132... là lịch sử; không trình bày như lần chạy mới. Chi tiết và
+evidence SHA256: [VALIDATION](reports/VALIDATION.md), `reports/final-e2e-evidence/`.
 
 ## Kiểm chứng trước bàn giao
 
@@ -45,26 +61,39 @@ env -u DEEPSEEK_API_KEY -u OPENAI_API_KEY \
   .venv/bin/python -m pytest tests/ -o addopts='' -q -ra
 .venv/bin/python -m compileall -q itlr scripts eval
 cd web
-npm run typecheck
-npm run lint
-npm run build
-npm test
+npm run typecheck && npm run lint && npm run build && npm test
 ```
 
-[Validation](reports/VALIDATION.md) ghi baseline 256 Python pass/0 skip, kết quả cuối checkpoint 260 Python pass/0 skip và 59 Web pass. Không trình bày số cũ như lần chạy mới. Nếu TestClient treo trong sandbox, kiểm tra ngoài sandbox theo quyền được cấp; không skip để làm xanh suite. Chỉ sửa tài liệu thì kiểm tra diff, nội dung, đường dẫn và links phù hợp; không chạy migration/build index để chứng minh một thay đổi văn bản.
+Thêm `pip check`, `pip-audit`, Bandit, `npm audit` khi bàn giao release. Chỉ sửa tài liệu thì
+kiểm tra diff, nội dung, đường dẫn và link; không chạy migration/build index để "chứng minh"
+thay đổi văn bản. Test treo trong sandbox: chạy ngoài sandbox theo quyền được cấp, không skip.
+Chi tiết suite và coverage: [TESTING](docs/TESTING.md).
 
 ## Dữ liệu và bảo mật
 
-- Catalog legacy 5.000 items và interactions CF là synthetic; snapshot thật ở `data/curated_resources.jsonl`. `/health` gồm readiness/items/CF và fingerprint artifacts đã load (`version` + `manifest_sha256`); fingerprint chỉ đổi sau `/admin/reload` thành công; không coi CURRENT.json làm bằng chứng engine đã reload.
-- Qrels metadata/rule-based, nhãn mô phỏng và chẩn đoán bằng luật không thay thế đánh giá độc lập của người dùng thật.
-- Citation ID hợp lệ không chứng minh faithfulness. Chỉ tiêu chưa đo ghi `null`, không ghi 0% lỗi.
-- Secret giữ trong môi trường hoặc file local bị gitignore; không in key, mật khẩu hay reset token vào log/report.
-- Paths qua `itlr/config.py`; artifacts pickle chỉ từ builder tin cậy. Giữ SHA256 inventory; hash không xác nhận tác giả nếu attacker sửa được cả file và manifest.
-- Rolling feed mặc định không được suy ra bài đã xóa vì vắng khỏi feed. `listing_is_complete` và `full_text_allowed` phải là JSON boolean.
-- Một worker/replica mỗi service, local Linux filesystem. Không suy diễn khóa local/rate limiter RAM thành hỗ trợ nhiều host.
+- Catalog legacy 5.000 item và interactions CF là **synthetic**; snapshot thật ở
+  `data/curated_resources.jsonl` (118 trang). `/health` gồm readiness/items/CF và fingerprint
+  artifacts đã nạp (`version` + `manifest_sha256`); fingerprint chỉ đổi sau reload thành công;
+  không dùng `CURRENT.json` làm bằng chứng engine đã reload.
+- Qrels metadata/rule-based, nhãn mô phỏng và chẩn đoán bằng luật không thay thế đánh giá
+  độc lập của người thật. Citation id hợp lệ không chứng minh faithfulness; chỉ tiêu chưa đo
+  ghi `null`, không ghi 0% lỗi.
+- Secret chỉ ở env/file local bị gitignore; không in key, mật khẩu hay reset token vào
+  log/report.
+- Paths qua `itlr/config.py`; pickle chỉ từ builder tin cậy. Giữ SHA256 inventory; hash không
+  xác nhận tác giả nếu attacker sửa được cả file và manifest.
+- Rolling feed không suy ra bài đã xóa chỉ vì vắng mặt; `listing_is_complete` và
+  `full_text_allowed` phải là JSON boolean.
 
-Tra cứu [README](README.md), [deployment](deploy/DEPLOY.md), [sàn chất lượng](CONSTRAINTS.md), [ADR-010](docs/decisions/ADR-010-shared-retrieval-and-atomic-state.md) và [V3 review](reports/V3_RESTRUCTURING_2026-10-30.md) trước thay đổi kiến trúc.
+## Tài liệu
 
-Windows verification: set `PYTHONUTF8=1` and `PYTHONIOENCODING=utf-8` before Python checks; use `npm.cmd` if PowerShell blocks npm.ps1. Latest scoped continuation: [stream hardening](reports/HARDENING_STREAM_2026-10-30.md).
+[README](README.md) · [ARCHITECTURE](docs/ARCHITECTURE.md) · [RAG](docs/RAG.md) ·
+[API](docs/API.md) · [TESTING](docs/TESTING.md) · [EVALUATION](docs/EVALUATION.md) ·
+[SECURITY](docs/SECURITY.md) · [DEPLOY](deploy/DEPLOY.md) · [PRODUCTION](deploy/PRODUCTION.md) ·
+[CONSTRAINTS](CONSTRAINTS.md) · [ADR](docs/decisions/ADR-001-deepseek-primary-llm.md).
+Đọc [ADR-010](docs/decisions/ADR-010-shared-retrieval-and-atomic-state.md) và
+[V3 review](reports/V3_RESTRUCTURING_2026-10-30.md) trước thay đổi kiến trúc.
 
-Current structure/documentation verification: [restructuring continuation](reports/RESTRUCTURING_CONTINUATION_2026-10-30.md). Preserve historical reports; distinguish static import inventory from runtime verification.
+Windows: đặt `PYTHONUTF8=1` và `PYTHONIOENCODING=utf-8` trước lệnh Python; dùng `npm.cmd`
+nếu PowerShell chặn `npm.ps1`. Giữ báo cáo lịch sử nguyên trạng; phân biệt static inventory
+với runtime verification.

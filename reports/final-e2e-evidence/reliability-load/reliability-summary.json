@@ -1,0 +1,104 @@
+{
+  "cold_start_s": 42,
+  "first_cold_chat_s": 40.252,
+  "concurrency": {
+    "1": {
+      "chat_wall_max": 40.252,
+      "chat_ttft_max": 0.66,
+      "search_wall_max": 0.103,
+      "errors": 0
+    },
+    "2": {
+      "chat_wall_max": 4.132,
+      "chat_ttft_max": 0.281,
+      "search_wall_max": 0.255,
+      "errors": 0
+    },
+    "4": {
+      "chat_wall_max": 9.159,
+      "chat_ttft_max": 1.452,
+      "search_wall_max": 0.385,
+      "errors": 0
+    }
+  },
+  "soak": {
+    "iterations": 89,
+    "chats": 45,
+    "chat_ok": 45,
+    "chat_p50": 2.22,
+    "chat_max": 3.562,
+    "terminal_types": [
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done"
+    ]
+  },
+  "cancel": {
+    "ok": true,
+    "ttft": 0.278,
+    "wall": 35.277,
+    "types": [
+      "sources",
+      "meta"
+    ],
+    "terminal": "meta",
+    "cancelled_early": true
+  },
+  "health_after_cancel_s": 0.005,
+  "crash_recovery_s": 1,
+  "db_before_crash": {
+    "users": 1,
+    "messages": 8,
+    "conversations": 4,
+    "courses": 3
+  },
+  "db_after_recovery": {
+    "users": 1,
+    "messages": 8,
+    "conversations": 4,
+    "courses": 3
+  },
+  "note": "TTFT trong file là thời điểm SSE event đầu tiên (sources), không phải token text; trong llm_extractive không có provisional token nên text xuất hiện ở final, xấp xỉ tổng thời gian. Chat sau request cold đầu tiên bị chi phối bởi Ollama prompt-prefix cache (cùng query lặp lại). Search concurrency 8: 1,69-1,84s/request so với 0,28s đơn lẻ (tour.log). LLM worker=1 (OLLAMA_NUM_PARALLEL=1)."
+}

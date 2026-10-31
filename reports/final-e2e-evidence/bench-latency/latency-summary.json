@@ -1,0 +1,107 @@
+{
+  "host": "i7-8650U 4C/8T, 14 GiB, CPU-only; Ollama 0.40.13; qwen2.5:3b Q4_K_M",
+  "prompt": "reports/final-e2e-evidence/bench-latency/itlr-bench-prompt.txt (4893 chars, 5 chunks)",
+  "sweep_cold": [
+    {
+      "config": "baseline",
+      "env": {},
+      "options": {},
+      "prompt_tokens": 1387,
+      "prefill_s": 44.5,
+      "prefill_tok_s": 31.2,
+      "decode_tok_s": 6.8,
+      "warm_wall_s": 0.344
+    },
+    {
+      "config": "flash",
+      "env": {
+        "OLLAMA_FLASH_ATTENTION": "1"
+      },
+      "options": {},
+      "prompt_tokens": 1387,
+      "prefill_s": 40.221,
+      "prefill_tok_s": 34.5,
+      "decode_tok_s": 7.3,
+      "warm_wall_s": 0.324
+    },
+    {
+      "config": "kv_q8",
+      "env": {
+        "OLLAMA_KV_CACHE_TYPE": "q8_0"
+      },
+      "options": {},
+      "prompt_tokens": 1387,
+      "prefill_s": 51.492,
+      "prefill_tok_s": 26.9,
+      "decode_tok_s": 7.1,
+      "warm_wall_s": 2.969
+    },
+    {
+      "config": "flash_kv_q8",
+      "env": {
+        "OLLAMA_FLASH_ATTENTION": "1",
+        "OLLAMA_KV_CACHE_TYPE": "q8_0"
+      },
+      "options": {},
+      "prompt_tokens": 1387,
+      "prefill_s": 51.531,
+      "prefill_tok_s": 26.9,
+      "decode_tok_s": 7.1,
+      "warm_wall_s": 3.001
+    },
+    {
+      "config": "batch256",
+      "env": {},
+      "options": {
+        "num_batch": 256
+      },
+      "prompt_tokens": 1387,
+      "prefill_s": 40.776,
+      "prefill_tok_s": 34.0,
+      "decode_tok_s": 13.9,
+      "warm_wall_s": 0.321
+    },
+    {
+      "config": "thread6",
+      "env": {},
+      "options": {
+        "num_thread": 6
+      },
+      "prompt_tokens": 1387,
+      "prefill_s": 44.003,
+      "prefill_tok_s": 31.5,
+      "decode_tok_s": 15.4,
+      "warm_wall_s": 0.298
+    }
+  ],
+  "conclusion": "cold prefill of the current 1387-token prompt alone is 40-51s on this CPU (27-34.5 tok/s); prompt compression 500 chars -> 3086 chars, 10/12 accepted (positive-07/11 regress) => rejected. 45s SLO not reachable for full-evidence prompt on this hardware; flash attention is the only free +10% config.",
+  "arms": {
+    "none": {
+      "accepted": 11,
+      "positive": 12,
+      "negative_nonclaim": 7,
+      "negative": 8,
+      "prompt_chars_median": 4926,
+      "p50_s": 34.89,
+      "max_s": 40.153
+    },
+    "800": {
+      "accepted": 11,
+      "positive": 12,
+      "negative_nonclaim": 7,
+      "negative": 8,
+      "prompt_chars_median": 4578,
+      "p50_s": 29.26,
+      "max_s": 43.296
+    },
+    "500": {
+      "accepted": 10,
+      "positive": 12,
+      "negative_nonclaim": 7,
+      "negative": 8,
+      "prompt_chars_median": 3086,
+      "p50_s": 23.99,
+      "max_s": 33.382
+    }
+  }
+}
