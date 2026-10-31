@@ -110,7 +110,7 @@ cd web && npm run typecheck && npm run lint && npm run build && npm test
 ```
 
 Kết quả mới nhất (máy Linux, commit `f14c428`, không thay đổi code runtime): **494 Python PASS/0 skip**, coverage
-statements **67,63%**; **146 Web PASS**, line coverage **47,05%**; typecheck/lint/build,
+statements **67,63%**; **162 Web PASS**, line coverage **51,42%**; typecheck/lint/build,
 compileall, pip check PASS; pip-audit **0**, npm audit **0**, Bandit **0 High**. Docker staging
 fresh `--no-cache` + Chrome **11/11** PASS trong phạm vi single-host. Phương pháp, coverage và
 giới hạn: [TESTING](docs/TESTING.md) · [EVALUATION](docs/EVALUATION.md).
@@ -153,7 +153,7 @@ không tự migrate/seed.
 | Metric, dataset, nguồn nhãn, giới hạn | [docs/EVALUATION.md](docs/EVALUATION.md) |
 | Bảo mật, trust boundary, scan | [docs/SECURITY.md](docs/SECURITY.md) |
 | Quyết định kiến trúc | [ADR](docs/decisions/ADR-001-deepseek-primary-llm.md) (001–013) |
-| Trạng thái & evidence mới nhất | [PROJECT_MEMORY](docs/PROJECT_MEMORY.md), [VALIDATION](reports/VALIDATION.md), [certification](reports/FINAL_E2E_CERTIFICATION.md) |
+| Trạng thái & evidence mới nhất | [PROJECT_MEMORY](docs/PROJECT_MEMORY.md), [VALIDATION](reports/VALIDATION.md), [certification](reports/FINAL_E2E_CERTIFICATION.md), [code freeze](reports/FINAL_CODEBASE_FREEZE.md), [maintainability](reports/FINAL_MAINTAINABILITY_REVIEW.md) |
 | Quy ước cho coding agent | [AGENTS](AGENTS.md), [CONSTRAINTS](CONSTRAINTS.md) |
 | Lịch sử thay đổi | [CHANGELOG](CHANGELOG.md) |
 | Lưu trữ (không phải trạng thái hiện hành) | [reports/](reports/), [review 2026-10-27](docs/review-2026-10-27.md), [nghiên cứu nền 2026-10-27](RESEARCH_ITLR.md), [kế hoạch](tasks/plan.md) |

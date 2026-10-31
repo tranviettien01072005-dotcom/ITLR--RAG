@@ -516,6 +516,47 @@ không commit/push, không đổi active artifacts hay dữ liệu thật. WIP `
 - Evidence + SHA256: `reports/final-e2e-evidence/SHA256SUMS.txt`,
   `docker-resume-1031c/`; chi tiết trong [certification §11](../reports/FINAL_E2E_CERTIFICATION.md).
 
+## Final maintainability review — 2026-10-31
+
+Refactor bảo toàn hành vi: prewarm Ollama dùng `llm_client.base_url/default_model`, thêm
+`_history_payload`; Web gom rule SMTP về `isMailConfigured()`; thêm 2 test mailer; ARCHITECTURE
+có mục trace request. 494 Python / **162 Web** PASS, coverage 67,63% / 51,42%, security 0.
+Không đổi API/schema/model/ranking, không xóa file. [Review](../reports/FINAL_MAINTAINABILITY_REVIEW.md).
+
+## Final codebase freeze — 2026-10-31
+
+Cleanup cuối: bỏ import `content_hash` không dùng, đổi 2 tham số `req` không dùng thành `_req`;
+`tsc --noUnusedLocals --noUnusedParameters` sạch; 39 cảnh báo pyflakes còn lại là re-export/noqa
+có chủ ý (compat pickle/legacy). Không xóa file, không đổi dependency/API/schema/model. Gates:
+494 Python / 160 Web PASS, coverage 67,63% / 51,42%, pip-audit 0, npm audit 0, Bandit 0 High,
+secret scan 0. Verdict: **CODE FREEZE READY**, **PRODUCTION NO-GO** (cold SLO 49,80s, human
+`null`). [FINAL_CODEBASE_FREEZE](../reports/FINAL_CODEBASE_FREEZE.md).
+
+## Final release hardening — 2026-10-31 (business rules, cold/warm benchmark)
+
+Đóng nốt các quyết định business: xóa lesson đã duyệt chỉ admin; `/account/logout-all` thu hồi
+mọi JWT; `/forgot` dọn token cũ >1 ngày. Xác minh AUD-01→06 trên PostgreSQL 16 (rollback giữ
+`old-hash/tv=0`; migration fresh/re-apply/legacy; recompute idempotent 50%→50%). Benchmark
+cold/warm: cold 49,80s (prefill 43,42s @31,9 tok/s, load 6,21s), warm 0,33s; retrieval p50
+145ms; stream warm p50 3,69s. **SLO 45s vẫn FAIL** trên CPU này. Gates: 494 Python / 160 Web,
+coverage 67,63% / 51,42%, pip-audit 0, npm audit 0, Bandit 0 High; Docker staging 25/25 check
+trước khi server restart cắt, Chrome 11/11, cancel 78ms, load conc1/2/4 + soak 120s. Human
+scoring sheet 40 case sẵn sàng nhưng **NOT VERIFIED**. Verdict **NO-GO**.
+Chi tiết: [FINAL_RELEASE_READINESS](../reports/FINAL_RELEASE_READINESS.md).
+
+## Final production audit — 2026-10-31 (web correctness/security fixes)
+
+Audit 824 file Git-tracked (manifest: `reports/audit-file-manifest-2026-10-31.tsv`), sửa 6 lỗi
+có test RED→GREEN: (1) lesson chưa duyệt vẫn complete được và bị tính vào progress;
+(2) approve/delete lesson không đồng bộ enrollment của người học khác; (3) reset password
+không transaction nên có thể đốt token mà không đổi mật khẩu; (4) JWT cũ vẫn dùng được sau
+khi đổi/reset mật khẩu; (5) spam email reset theo tài khoản; (6) race giữa hai lần đọc khi
+tính progress. Thêm `users.token_version` (ALTER idempotent) + `withTransaction` và SQL
+progress một câu. Không đổi API/schema cũ khác, không đổi RAG model/threshold/prompt.
+Kết quả: 494 Python / 157 Web PASS, coverage 67,63% / 50,67%; npm audit 0; Bandit 0 High;
+pip-audit BLOCKED (PyPI timeout) trong lượt này. SLO 45s vẫn FAIL, human `null`. NO-GO.
+Chi tiết: [FINAL_PRODUCTION_AUDIT](../reports/FINAL_PRODUCTION_AUDIT.md).
+
 ## Final production remediation — 2026-10-31 (latency SLO, human packet, reliability)
 
 Không sửa code runtime, không đổi model/SLO/hardware, không commit/push. Mục tiêu là đo

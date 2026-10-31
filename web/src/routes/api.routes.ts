@@ -5,6 +5,7 @@ import { Router, Request, Response, NextFunction } from "express";
 import multer from "multer";
 import { z } from "zod";
 import { query } from "../db/pool";
+import { recomputeLessonProgress, syncCourseEnrollments } from "../services/lesson-progress";
 import { requireAuth } from "../middleware/auth";
 import { extractText, appendCatalogRow } from "../services/dataset";
 import { addClient, broadcast, sendToUser, isOnline } from "../services/realtime";
@@ -330,23 +331,6 @@ apiRouter.delete("/posts/:id", requireAuth, async (req, res) => {
   res.json({ ok: true });
 });
 
-async function recomputeProgress(userId: number, courseId: number): Promise<{ progress: number; status: string }> {
-  const [{ total }] = await query<{ total: number }>("SELECT count(*)::int AS total FROM lessons WHERE course_id = $1 AND approved", [courseId]);
-  const [{ done }] = await query<{ done: number }>(
-    `SELECT count(*)::int AS done FROM lesson_progress lp JOIN lessons l ON l.id = lp.lesson_id
-      WHERE l.course_id = $1 AND lp.user_id = $2`, [courseId, userId]
-  );
-  const progress = total > 0 ? Math.round((done / total) * 100) : 0;
-  const status = progress >= 100 && total > 0 ? "completed" : progress > 0 ? "in_progress" : "saved";
-  await query(
-    `INSERT INTO enrollments (user_id, course_id, status, progress, updated_at)
-       VALUES ($1,$2,$3,$4,now())
-     ON CONFLICT (user_id, course_id) DO UPDATE SET status = EXCLUDED.status, progress = EXCLUDED.progress, updated_at = now()`,
-    [userId, courseId, status, progress]
-  );
-  return { progress, status };
-}
-
 apiRouter.post("/courses/:id/lessons", requireAuth, async (req, res) => {
   const courseId = parseInt(req.params.id, 10);
   const { parseYouTubeId } = await import("../services/social");
@@ -367,28 +351,38 @@ apiRouter.post("/courses/:id/lessons", requireAuth, async (req, res) => {
 apiRouter.post("/lessons/:id/complete", requireAuth, async (req, res) => {
   const id = parseInt(req.params.id, 10);
   if (Number.isNaN(id)) return res.status(400).json({ error: "ID không hợp lệ." });
-  const rows = await query<{ course_id: number }>("SELECT course_id FROM lessons WHERE id = $1", [id]);
-  if (!rows.length) return res.status(404).json({ error: "Bài học không tồn tại." });
+  const rows = await query<{ course_id: number; approved: boolean }>(
+    "SELECT course_id, approved FROM lessons WHERE id = $1", [id],
+  );
+  if (!rows.length || !rows[0].approved) return res.status(404).json({ error: "Bài học không tồn tại." });
   const undo = req.body?.undo === true || req.body?.undo === "true";
   if (undo) await query("DELETE FROM lesson_progress WHERE user_id = $1 AND lesson_id = $2", [req.user!.id, id]);
   else await query("INSERT INTO lesson_progress (user_id, lesson_id) VALUES ($1,$2) ON CONFLICT DO NOTHING", [req.user!.id, id]);
-  const p = await recomputeProgress(req.user!.id, rows[0].course_id);
+  const p = await recomputeLessonProgress(req.user!.id, rows[0].course_id);
   res.json({ ok: true, done: !undo, ...p });
 });
 
 apiRouter.delete("/lessons/:id", requireAuth, async (req, res) => {
   const id = parseInt(req.params.id, 10);
   if (Number.isNaN(id)) return res.status(400).json({ error: "ID không hợp lệ." });
-  const rows = await query<{ course_id: number; added_by: number | null }>(
-    "SELECT course_id, added_by FROM lessons WHERE id = $1", [id]
+  const rows = await query<{ course_id: number; added_by: number | null; approved: boolean }>(
+    "SELECT course_id, added_by, approved FROM lessons WHERE id = $1", [id]
   );
   const l = rows[0];
   if (!l) return res.status(404).json({ error: "Không tìm thấy." });
   if (l.added_by !== req.user!.id && req.user!.role !== "admin")
     return res.status(403).json({ error: "Không có quyền xóa bài học này." });
+  // Nội dung đã duyệt là tài sản của khóa học: người đóng góp không thể rút nó khỏi người học.
+  if (l.approved && req.user!.role !== "admin")
+    return res.status(403).json({ error: "Bài học đã được duyệt; cần admin để xóa." });
   await query("DELETE FROM lessons WHERE id = $1", [id]);
-  const p = await recomputeProgress(req.user!.id, l.course_id);
-  res.json({ ok: true, ...p });
+  // Removing an approved lesson changes every learner's denominator, not only the deleter's.
+  await syncCourseEnrollments(l.course_id);
+  const [me] = await query<{ status: string; progress: number }>(
+    "SELECT status, progress FROM enrollments WHERE user_id = $1 AND course_id = $2",
+    [req.user!.id, l.course_id],
+  );
+  res.json({ ok: true, ...(me || {}) });
 });
 
 apiRouter.use((err: unknown, _req: Request, res: Response, next: NextFunction) => {

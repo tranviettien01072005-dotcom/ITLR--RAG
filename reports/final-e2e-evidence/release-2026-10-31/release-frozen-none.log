@@ -1,0 +1,25 @@
+Thiếu /tmp/opencode/itlr-e2e/artifacts/cf_model.pkl — Collaborative Filtering bị tắt (tùy chọn V2); /api/personas và /api/for-you sẽ trả 503 cho tới khi build CF.
+Could not reach the Hub (Cannot reach https://huggingface.co/api/models/intfloat/multilingual-e5-base: offline mode is enabled. To disable it, please unset the `HF_HUB_OFFLINE` environment variable.). Using cached commit hash for 'intfloat/multilingual-e5-base'.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 3015.00it/s]
+none warmup 6.029 5081 ['None'] llm_extractive valid None
+none blind-positive-01 3.312 4878 ['None'] llm_extractive valid None
+none blind-positive-02 1.815 4880 ['None'] llm_extractive valid None
+none blind-positive-03 2.138 4863 ['None'] llm_extractive valid None
+none blind-positive-04 3.29 5033 ['None'] llm_extractive valid None
+none blind-positive-05 28.013 4877 ['None'] llm_extractive valid None
+none blind-positive-06 3.049 4893 ['None'] llm_extractive valid None
+none blind-positive-07 2.008 4854 ['None'] llm_extractive valid None
+none blind-positive-08 3.37 4958 ['None'] llm_extractive valid None
+none blind-positive-09 3.769 4926 ['None'] llm_extractive valid None
+none blind-positive-10 1.775 4777 ['None'] llm_extractive valid None
+none blind-positive-11 2.597 4974 ['None'] llm_extractive valid None
+none blind-positive-12 1.571 4909 ['None'] llm_extractive valid None
+none blind-negative-01 0.096 0 [] template not_applicable None
+none blind-negative-02 0.102 0 [] template not_applicable None
+none blind-negative-03 0.107 0 [] extractive valid None
+none blind-negative-04 29.668 5193 ['None'] insufficient_evidence missing no_selected_evidence
+none blind-negative-05 0.571 5340 ['None'] insufficient_evidence missing no_selected_evidence
+none blind-negative-06 0.548 5055 ['None'] insufficient_evidence missing no_selected_evidence
+none blind-negative-07 0.6 5271 ['None'] insufficient_evidence missing no_selected_evidence
+none blind-negative-08 0.579 5325 ['None'] insufficient_evidence missing no_selected_evidence
+ARM DONE none

@@ -1,0 +1,6 @@
+itlr-resume-1031d-caddy-1	0.00%	32.24MiB / 128MiB
+itlr-resume-1031d-web-1	0.00%	87.78MiB / 384MiB
+itlr-resume-1031d-observer-1	0.01%	19.05MiB / 128MiB
+itlr-resume-1031d-api-1	0.23%	1.237GiB / 4GiB
+itlr-resume-1031d-ollama-1	0.01%	2.157GiB / 3.418GiB
+itlr-resume-1031d-postgres-1	0.01%	49.36MiB / 384MiB

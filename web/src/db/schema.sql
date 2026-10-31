@@ -11,6 +11,9 @@ CREATE TABLE IF NOT EXISTS users (
   created_at    TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
+-- Đổi/đặt lại mật khẩu tăng token_version để JWT cũ mất hiệu lực (idempotent cho DB cũ).
+ALTER TABLE users ADD COLUMN IF NOT EXISTS token_version INTEGER NOT NULL DEFAULT 0;
+
 -- Catalog đồng bộ từ data/it_learning_items.csv (nguồn chính trong Postgres).
 CREATE TABLE IF NOT EXISTS courses (
   item_id     INTEGER PRIMARY KEY,

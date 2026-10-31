@@ -102,7 +102,7 @@ Base URL local: `http://localhost:3000`.
 
 | Nhóm | Ví dụ |
 |---|---|
-| Auth | `GET/POST /login`, `/register`, `/forgot`, `/reset/:token`, `/account`, `POST /logout` |
+| Auth | `GET/POST /login`, `/register`, `/forgot`, `/reset/:token`, `/account`, `POST /logout`, `POST /account/logout-all` |
 | Trang | `/`, `/search`, `/courses/:id`, `/dashboard`, `/blog`, `/chat`, `/learning` |
 | Học tập | `POST /api/learning/diagnostic`, `POST /api/learning/progress` |
 | Chat | `POST /api/chat`, `POST /api/chat/stream` (SSE), `GET /api/conversations`, `DELETE /api/conversations/:id` |

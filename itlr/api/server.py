@@ -106,11 +106,14 @@ def _prewarm_ollama():
     import urllib.request
 
     def _warm():
-        url = os.environ.get("OLLAMA_BASE_URL", "http://localhost:11434").rstrip("/")
-        if not url.startswith(("http://", "https://")):
-            _log("[!] OLLAMA_BASE_URL phải là http(s) — bỏ qua pre-warm.")
+        # Single source for provider defaults/validation lives in llm_client.
+        from itlr.chatbot.llm_client import LLMError, base_url, default_model
+        try:
+            url = base_url("ollama").rstrip("/")
+            model = default_model("ollama")
+        except LLMError as exc:
+            _log(f"[!] Cấu hình Ollama không hợp lệ — bỏ qua pre-warm: {exc}")
             return
-        model = os.environ.get("OLLAMA_MODEL", "qwen2.5:3b")
         payload = json.dumps({"model": model, "messages": [{"role": "user", "content": "ping"}],
                               "stream": False, "keep_alive": "2h",
                               "options": {"num_predict": 1}}).encode()
@@ -265,6 +268,11 @@ class ForYouReq(BaseModel):
         return v
 
 
+def _history_payload(req: ChatReq) -> List[dict]:
+    """Provider history shape (role/content only) shared by chat and stream."""
+    return [{"role": m.role, "content": m.content} for m in req.history]
+
+
 def _cf_unavailable_detail() -> str:
     return ("Collaborative Filtering chưa khả dụng (cf_model.pkl không có — tính năng tùy "
             "chọn V2). Search, chatbot và evaluation không bị ảnh hưởng.")
@@ -285,7 +293,7 @@ _CHAT_ERROR_MSG = (
 @app.post("/api/chat", dependencies=[Depends(_chat_rate)])
 def api_chat(req: ChatReq):
     eng = _engine()
-    history = [{"role": m.role, "content": m.content} for m in req.history]
+    history = _history_payload(req)
     try:
         result = eng.chat(req.message, history=history)
     except Exception as e:  # noqa: BLE001
@@ -308,7 +316,7 @@ async def api_chat_stream(req: ChatReq):
     Lỗi giữa stream dùng frame json vì headers đã được gửi.
     """
     eng = _engine()
-    history = [{"role": m.role, "content": m.content} for m in req.history]
+    history = _history_payload(req)
 
     def _frame(obj):
         return "data: " + json.dumps(obj, ensure_ascii=False) + "\n\n"

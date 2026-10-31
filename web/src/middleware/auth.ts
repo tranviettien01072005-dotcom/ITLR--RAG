@@ -9,6 +9,8 @@ export interface AuthUser {
   email: string;
   name: string;
   role: "user" | "admin";
+  /** Bumped on password change/reset; older JWTs stop authenticating. */
+  token_version?: number;
 }
 
 declare global {
@@ -23,7 +25,8 @@ declare global {
 const COOKIE = "token";
 
 export function signToken(user: AuthUser): string {
-  return jwt.sign(user, env.jwtSecret, { expiresIn: "7d" });
+  const { token_version, ...claims } = user;
+  return jwt.sign({ ...claims, tv: token_version ?? 0 }, env.jwtSecret, { expiresIn: "7d" });
 }
 
 export function setAuthCookie(res: Response, token: string): void {
@@ -42,14 +45,23 @@ export function clearAuthCookie(res: Response): void {
 export async function loadUser(req: Request, res: Response, next: NextFunction): Promise<void> {
   const token = req.cookies?.[COOKIE];
   let userId: number | undefined;
+  let tokenVersion = 0;
   if (token) {
     try {
-      const payload = jwt.verify(token, env.jwtSecret) as AuthUser & { iat?: number; exp?: number };
-      if (Number.isSafeInteger(payload.id) && payload.id > 0) userId = payload.id;
+      const payload = jwt.verify(token, env.jwtSecret) as AuthUser & { iat?: number; exp?: number; tv?: number };
+      if (Number.isSafeInteger(payload.id) && payload.id > 0) {
+        userId = payload.id;
+        tokenVersion = Number.isSafeInteger(payload.tv) ? payload.tv! : 0;
+      }
     } catch {}
   }
   if (userId !== undefined) {
-    [req.user] = await query<AuthUser>("SELECT id, email, name, role FROM users WHERE id = $1", [userId]);
+    const [row] = await query<AuthUser>(
+      "SELECT id, email, name, role, token_version FROM users WHERE id = $1",
+      [userId],
+    );
+    // A password change/reset bumps token_version, so previously issued JWTs stop working.
+    if (row && (row.token_version ?? 0) === tokenVersion) req.user = row;
   }
   res.locals.user = req.user || null;
   res.locals.path = req.path;

@@ -69,7 +69,7 @@ Không source file `.env` từ nguồn không tin cậy.
 | `RECOMMENDER_URL` | `http://127.0.0.1:8000` (local) / `http://api:8000` (Compose) |
 | `PORT`, `WEB_CONCURRENCY=1`, `TRUSTED_PROXIES` | một worker; chỉ khai IP/CIDR proxy thật |
 | `ITEMS_CSV` | đường dẫn CSV catalog (Compose: `/app/var/data/web_items.csv`) |
-| `SMTP_*`, `RESET_TOKEN_TTL_MINUTES` | tùy chọn; thiếu cấu hình thì không gửi email |
+| `SMTP_*`, `RESET_TOKEN_TTL_MINUTES`, `RESET_EMAIL_COOLDOWN_SECONDS` | tùy chọn; thiếu SMTP thì không gửi email; cooldown chống spam reset (mặc định 60s) |
 
 Sinh secret: `python3 -c 'import secrets; print(secrets.token_urlsafe(48))'` — không đưa
 kết quả vào commit/log/report. Giữ `.env` 0600 và ngoài Git.

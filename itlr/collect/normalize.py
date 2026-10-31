@@ -21,7 +21,7 @@ import pandas as pd
 
 from itlr import config
 from itlr.collect.chunk import chunk_text
-from itlr.collect.quality import content_hash, title_similarity
+from itlr.collect.quality import title_similarity
 from itlr.collect.store import CollectStore
 from itlr.collect.url_util import content_key, normalize_url
 

@@ -1,0 +1,28 @@
+{
+  "prompt_chars": 4893,
+  "container": "ollama/ollama:0.40.13, --cpus 8, NUM_PARALLEL=1, ctx 4096",
+  "rows": [
+    {
+      "state": "cold",
+      "wall_s": 49.802,
+      "load_s": 6.206,
+      "prompt_tokens": 1387,
+      "prefill_s": 43.417,
+      "prefill_tok_s": 31.9,
+      "decode_s": 0.147,
+      "decode_tok_s": 13.6,
+      "done_reason": "stop"
+    },
+    {
+      "state": "warm",
+      "wall_s": 0.331,
+      "load_s": 0.001,
+      "prompt_tokens": 1387,
+      "prefill_s": 0.148,
+      "prefill_tok_s": 9346.8,
+      "decode_s": 0.151,
+      "decode_tok_s": 13.3,
+      "done_reason": "stop"
+    }
+  ]
+}

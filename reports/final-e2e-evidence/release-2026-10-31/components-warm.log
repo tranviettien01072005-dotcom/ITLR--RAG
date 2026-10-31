@@ -1,0 +1,77 @@
+Thiếu /tmp/opencode/itlr-e2e/artifacts/cf_model.pkl — Collaborative Filtering bị tắt (tùy chọn V2); /api/personas và /api/for-you sẽ trả 503 cho tới khi build CF.
+Could not reach the Hub (Cannot reach https://huggingface.co/api/models/intfloat/multilingual-e5-base: offline mode is enabled. To disable it, please unset the `HF_HUB_OFFLINE` environment variable.). Using cached commit hash for 'intfloat/multilingual-e5-base'.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2843.79it/s]
+{
+  "host": "i7-8650U 4C/8T CPU-only; Ollama 0.40.13 qwen2.5:3b; reranker disabled",
+  "mode": "warm (daemon and prompt-prefix cache warm); cold covered by isolated-container run",
+  "queries": [
+    {
+      "query": "I need a Python UUID but want to avoid embedding my computer",
+      "search": {
+        "ms": 410.1,
+        "hits": 2
+      },
+      "first_event_ms": 158.4,
+      "total_ms": 3689.5,
+      "prompt_chars": 4893,
+      "mode": "llm_extractive",
+      "citation": "valid",
+      "events": [
+        "sources",
+        "meta",
+        "text",
+        "final"
+      ],
+      "warm": true
+    },
+    {
+      "query": "What does HTTP 404 mean?",
+      "search": {
+        "ms": 82.01,
+        "hits": 1
+      },
+      "first_event_ms": 76.7,
+      "total_ms": 32607.6,
+      "prompt_chars": 4949,
+      "mode": "llm_extractive",
+      "citation": "valid",
+      "events": [
+        "sources",
+        "meta",
+        "text",
+        "final"
+      ],
+      "warm": true
+    },
+    {
+      "query": "Tôi giữ một min-heap kích thước cố định. Nếu không muốn giá ",
+      "search": {
+        "ms": 145.36,
+        "hits": 1
+      },
+      "first_event_ms": 161.2,
+      "total_ms": 1653.4,
+      "prompt_chars": 4909,
+      "mode": "llm_extractive",
+      "citation": "valid",
+      "events": [
+        "sources",
+        "meta",
+        "text",
+        "final"
+      ],
+      "warm": true
+    }
+  ],
+  "search_ms": {
+    "p50": 145.36,
+    "max": 410.1
+  },
+  "stream_total_ms": {
+    "p50": 3689.5,
+    "max": 32607.6
+  },
+  "python_peak_rss_mib": 1734.7,
+  "ollama_runner_rss_mib": 3823.4,
+  "note": "first_event is the sources event; in llm_extractive no provisional tokens are emitted before final"
+}

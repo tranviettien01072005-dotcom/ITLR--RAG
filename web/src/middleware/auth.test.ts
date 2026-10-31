@@ -55,3 +55,21 @@ it("only accepts current-version admin cookies signed with the app secret", asyn
   requireAdminAccess({ cookies: {} } as never, { redirect } as never, vi.fn());
   expect(redirect).toHaveBeenCalledWith("/admin/login");
 });
+
+it("rejects a token issued before the account's sessions were revoked", async () => {
+  vi.mocked(query).mockResolvedValueOnce([{ ...user, token_version: 1 }]);
+  const stale = signToken({ ...user, token_version: 0 });
+  const req = { cookies: { token: stale }, path: "/api/chat" } as unknown as Request;
+  const res = { locals: {} } as Response;
+  await loadUser(req, res, vi.fn());
+  expect(req.user).toBeUndefined();
+});
+
+it("accepts a token whose version matches the stored account version", async () => {
+  vi.mocked(query).mockResolvedValueOnce([{ ...user, token_version: 2 }]);
+  const current = signToken({ ...user, token_version: 2 });
+  const req = { cookies: { token: current }, path: "/api/chat" } as unknown as Request;
+  const res = { locals: {} } as Response;
+  await loadUser(req, res, vi.fn());
+  expect(req.user?.id).toBe(1);
+});

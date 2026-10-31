@@ -5,7 +5,12 @@ const pass = process.env.SMTP_PASS;
 const host = process.env.SMTP_HOST;
 const port = parseInt(process.env.SMTP_PORT || "587", 10);
 
-export const mailConfigured = !!(user && pass);
+/** Read at call time so operator env changes are observable without a restart. */
+export function isMailConfigured(): boolean {
+  return !!(process.env.SMTP_USER && process.env.SMTP_PASS);
+}
+
+export const mailConfigured = isMailConfigured();
 
 const transporter = mailConfigured
   ? nodemailer.createTransport(

@@ -8,6 +8,7 @@ import { env } from "../config/env";
 import { requireAdminAccess, ADM_VER, passcodeMatches } from "../middleware/auth";
 import { authLimiter } from "../middleware/security";
 import { parseYouTubeId } from "../services/social";
+import { syncCourseEnrollments } from "../services/lesson-progress";
 import { extractText, appendCatalogRow } from "../services/dataset";
 import { AdminStats, AdminFileRow, AdminUserRow, AdminPostRow, BlobRow } from "../db/types";
 
@@ -38,7 +39,7 @@ export function safeRefererPath(referer: string | undefined, fallback: string): 
 const backTo = (req: { get(h: string): string | undefined }, fallback: string) =>
   safeRefererPath(req.get("referer"), fallback);
 
-adminRouter.get("/login", (req, res) => {
+adminRouter.get("/login", (_req, res) => {
   if (res.locals.isAdmin) return res.redirect("/admin");
   res.render("admin-login", { title: "Admin", error: "" });
 });
@@ -321,12 +322,23 @@ adminRouter.get("/pending", requireAdminAccess, async (_req, res) => {
 
 adminRouter.post("/lessons/:id/approve", requireAdminAccess, async (req, res) => {
   const id = parseInt(req.params.id, 10);
-  if (!Number.isNaN(id)) await query("UPDATE lessons SET approved = true WHERE id = $1", [id]);
+  if (!Number.isNaN(id)) {
+    const r = await query<{ course_id: number }>(
+      "UPDATE lessons SET approved = true WHERE id = $1 RETURNING course_id", [id],
+    );
+    // Approving adds a denominator to every learner's progress in this course.
+    if (r[0]) await syncCourseEnrollments(r[0].course_id);
+  }
   res.redirect(backTo(req, "/admin/pending"));
 });
 adminRouter.post("/lessons/:id/delete", requireAdminAccess, async (req, res) => {
   const id = parseInt(req.params.id, 10);
-  if (!Number.isNaN(id)) await query("DELETE FROM lessons WHERE id = $1", [id]);
+  if (!Number.isNaN(id)) {
+    const r = await query<{ course_id: number }>(
+      "DELETE FROM lessons WHERE id = $1 RETURNING course_id", [id],
+    );
+    if (r[0]) await syncCourseEnrollments(r[0].course_id);
+  }
   res.redirect(backTo(req, "/admin/pending"));
 });
 adminRouter.post("/attachments/:id/approve", requireAdminAccess, async (req, res) => {

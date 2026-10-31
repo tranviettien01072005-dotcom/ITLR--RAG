@@ -1,7 +1,7 @@
 import { Router } from "express";
 import bcrypt from "bcryptjs";
 import { z } from "zod";
-import { query } from "../db/pool";
+import { query, withTransaction } from "../db/pool";
 import {
   AuthUser,
   signToken,
@@ -16,9 +16,11 @@ import {
   generateResetToken,
   hashResetToken,
   isValidResetTokenFormat,
-} from "../services/password";import { sendResetLink } from "../services/mailer";
+} from "../services/password";import { isMailConfigured, sendResetLink } from "../services/mailer";
 import { env } from "../config/env";
 import { authLimiter } from "../middleware/security";
+
+const RESET_EMAIL_COOLDOWN_SECONDS = Math.max(0, parseInt(process.env.RESET_EMAIL_COOLDOWN_SECONDS || "60", 10) || 0);
 
 export const authRouter = Router();
 
@@ -58,7 +60,7 @@ authRouter.post("/register", authLimiter, async (req, res) => {
   try {
     const hash = await bcrypt.hash(password, 10);
     const rows = await query<AuthUser>(
-      "INSERT INTO users (name, email, password_hash) VALUES ($1, $2, $3) RETURNING id, email, name, role",
+      "INSERT INTO users (name, email, password_hash) VALUES ($1, $2, $3) RETURNING id, email, name, role, token_version",
       [name, email, hash],
     );
     const user = rows[0];
@@ -102,7 +104,8 @@ authRouter.post("/login", authLimiter, async (req, res) => {
     name: string;
     role: "user" | "admin";
     password_hash: string;
-  }>("SELECT id, email, name, role, password_hash FROM users WHERE email = $1", [email]);
+    token_version: number;
+  }>("SELECT id, email, name, role, password_hash, token_version FROM users WHERE email = $1", [email]);
   const u = rows[0];
   if (!u || !(await bcrypt.compare(password, u.password_hash))) {
     return res.status(401).render("auth/login", {
@@ -112,13 +115,20 @@ authRouter.post("/login", authLimiter, async (req, res) => {
       next: req.body?.next || "",
     });
   }
-  setAuthCookie(res, signToken({ id: u.id, email: u.email, name: u.name, role: u.role }));
+  setAuthCookie(res, signToken({ id: u.id, email: u.email, name: u.name, role: u.role, token_version: u.token_version }));
   res.redirect(nextUrl);
 });
 
-authRouter.post("/logout", (req, res) => {
+authRouter.post("/logout", (_req, res) => {
   clearAuthCookie(res);
   res.redirect("/");
+});
+
+// Thu hồi mọi JWT của tài khoản (mọi thiết bị) bằng cách tăng token_version.
+authRouter.post("/account/logout-all", requireAuth, async (req, res) => {
+  await query("UPDATE users SET token_version = token_version + 1 WHERE id = $1", [req.user!.id]);
+  clearAuthCookie(res);
+  res.redirect("/login");
 });
 
 // ---------------------------------------------------------------------------
@@ -161,30 +171,39 @@ authRouter.post("/forgot", authLimiter, async (req, res) => {
   const rows = await query<{ id: number }>("SELECT id FROM users WHERE email = $1", [email]);
 
   if (rows.length) {
-    const token = generateResetToken();
-    const expires = new Date(Date.now() + RESET_TTL_MINUTES * 60 * 1000);
-    // Vô hiệu các token cũ còn treo của user này, rồi lưu SHA-256(token) mới.
+    // Dọn token hết hạn/đã dùng cũ để bảng không phình theo thời gian.
     await query(
-      "UPDATE password_resets SET used_at = now() WHERE user_id = $1 AND used_at IS NULL",
+      "DELETE FROM password_resets WHERE user_id = $1 AND (expires_at < now() - interval '1 day' OR (used_at IS NOT NULL AND used_at < now() - interval '1 day'))",
       [rows[0].id],
     );
-    await query(
-      "INSERT INTO password_resets (user_id, token_hash, expires_at) VALUES ($1, $2, $3)",
-      [rows[0].id, hashResetToken(token), expires],
+    const token = generateResetToken();
+    const expires = new Date(Date.now() + RESET_TTL_MINUTES * 60 * 1000);
+    // Chống spam email: mỗi tài khoản chỉ sinh tối đa một token trong cooldown.
+    const inserted = await query<{ id: number }>(
+      `INSERT INTO password_resets (user_id, token_hash, expires_at)
+       SELECT $1, $2, $3
+        WHERE NOT EXISTS (
+          SELECT 1 FROM password_resets
+           WHERE user_id = $1 AND created_at > now() - ($4 * interval '1 second'))
+       RETURNING id`,
+      [rows[0].id, hashResetToken(token), expires, RESET_EMAIL_COOLDOWN_SECONDS],
     );
-    const link = resetUrl(req, token);
-    const sent = await sendResetLink(email, link, RESET_TTL_MINUTES).catch(() => false);
-    if (!sent || !mailConfigured()) {
-      console.warn("[auth] Reset email delivery unavailable; no token logged.");
+    if (inserted.length) {
+      // Chỉ token mới nhất còn hiệu lực; token cũ của tài khoản bị vô hiệu.
+      await query(
+        "UPDATE password_resets SET used_at = now() WHERE user_id = $1 AND used_at IS NULL AND id <> $2",
+        [rows[0].id, inserted[0].id],
+      );
+      const link = resetUrl(req, token);
+      const sent = await sendResetLink(email, link, RESET_TTL_MINUTES).catch(() => false);
+      if (!sent || !isMailConfigured()) {
+        console.warn("[auth] Reset email delivery unavailable; no token logged.");
+      }
     }
   }
 
   view({ done: true });
 });
-
-function mailConfigured(): boolean {
-  return !!(process.env.SMTP_USER && process.env.SMTP_PASS);
-}
 
 // GET form đặt lại: token hợp lệ -> form; hết hạn/đã dùng/sai -> thông báo chung chung.
 authRouter.get("/reset/:token", async (req, res) => {
@@ -250,20 +269,29 @@ authRouter.post("/reset/:token", authLimiter, async (req, res) => {
   }
 
   const hash = await bcrypt.hash(parsed.data.password, 10);
-  const ok = await query<{ id: number }>(
-    "UPDATE password_resets SET used_at = now() " +
-      "WHERE token_hash = $1 AND used_at IS NULL AND expires_at > now() " +
-      "AND user_id = $2 RETURNING id",
-    [hashResetToken(req.params.token), userId],
-  );
+  // Claim token, change the password and revoke every session atomically: a failure
+  // must not burn the token while leaving the old password active.
+  const changed = await withTransaction(async (q) => {
+    const claimed = await q<{ id: number }>(
+      "UPDATE password_resets SET used_at = now() " +
+        "WHERE token_hash = $1 AND used_at IS NULL AND expires_at > now() " +
+        "AND user_id = $2 RETURNING id",
+      [hashResetToken(req.params.token), userId],
+    );
+    if (!claimed.length) return false;
+    await q(
+      "UPDATE users SET password_hash = $1, token_version = token_version + 1 WHERE id = $2",
+      [hash, userId],
+    );
+    await q(
+      "UPDATE password_resets SET used_at = now() WHERE user_id = $1 AND used_at IS NULL",
+      [userId],
+    );
+    return true;
+  });
   // Token đã bị người khác dùng trong lúc ta validate (race) -> chặn.
-  if (!ok.length) return badLink();
-  await query("UPDATE users SET password_hash = $1 WHERE id = $2", [hash, userId]);
-  // Hủy các token reset còn lại của user này.
-  await query(
-    "UPDATE password_resets SET used_at = now() WHERE user_id = $1 AND used_at IS NULL",
-    [userId],
-  );
+  if (!changed) return badLink();
+  clearAuthCookie(res);
   res.redirect("/login");
 });
 
@@ -311,6 +339,11 @@ authRouter.post("/account/password", requireAuth, async (req, res) => {
     return view({ error: "Mật khẩu hiện tại không đúng." });
   }
   const hash = await bcrypt.hash(parsed.data.password, 10);
-  await query("UPDATE users SET password_hash = $1 WHERE id = $2", [hash, req.user!.id]);
+  const [updated] = await query<{ token_version: number }>(
+    "UPDATE users SET password_hash = $1, token_version = token_version + 1 WHERE id = $2 RETURNING token_version",
+    [hash, req.user!.id],
+  );
+  // Keep this browser signed in while every other session's JWT becomes stale.
+  setAuthCookie(res, signToken({ ...req.user!, token_version: updated?.token_version ?? 0 }));
   view({ ok: true });
 });

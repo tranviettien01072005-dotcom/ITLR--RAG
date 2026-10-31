@@ -1,0 +1,11 @@
+PASS chrome-explicit-ca-verified-https
+PASS chrome-real-pg16-login
+PASS chrome-progress40-survives-container-restart
+PASS chrome-real-sse-completes
+PASS chrome-real-sse-conversation-assigned
+PASS chrome-real-model-accepted-answer
+PASS chrome-real-chat-reload-has-assistant
+PASS chrome-cancel-targeted-active-real-provider
+PASS chrome-stop-ui-ready-and-url-unchanged
+PASS chrome-stop-closes-provider-socket-under1second
+PASS chrome-no-uncaught-runtime-errors

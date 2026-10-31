@@ -1,5 +1,39 @@
 # ITLR–RAG | Intelligent IT Learning Platform — Changelog
 
+## Final codebase freeze: dead-code cleanup, gates, freeze verdict — 2026-10-31
+
+- Bỏ 1 import không dùng (`itlr/collect/normalize.py`), đổi 2 tham số không dùng thành `_req`;
+  tsc strict unused sạch. Không xóa file, không đổi dependency/API/schema/model/ranking.
+- Gates: 494 Python / **160 Web** PASS, coverage 67,63% / 51,42%; typecheck/lint/build,
+  pip-audit 0, npm audit 0, Bandit 0 High, secret scan 0.
+- [FINAL_CODEBASE_FREEZE](reports/FINAL_CODEBASE_FREEZE.md): **CODE FREEZE READY**,
+  **PRODUCTION NO-GO** (cold SLO 49,80s, human faithfulness `null`).
+
+## Final release hardening: business rules, cold/warm benchmark, human packet — 2026-10-31
+
+- Xóa lesson **đã duyệt** chỉ admin (contributor không thể rút nội dung khỏi người học).
+- `POST /account/logout-all` tăng `token_version` để thu hồi JWT trên mọi thiết bị; `/logout`
+  vẫn chỉ xóa cookie thiết bị hiện tại.
+- `/forgot` dọn reset token hết hạn/đã dùng >1 ngày (giữ bảng không phình).
+- Benchmark cold/warm tách thành phần: cold 49,80s (load 6,21 + prefill 43,42s @31,9 tok/s),
+  warm 0,33s; retrieval p50 145ms; stream warm p50 3,69s / max 32,61s. **SLO 45s vẫn FAIL.**
+- Human packet: thêm `human_review_scoring_sheet.csv` (40 case, cột người chấm để trống).
+- Gates: 494 Python / **160 Web** PASS, coverage 67,63% / 51,42%; pip-audit **0** (chạy lại);
+  npm audit 0; Bandit 0 High; PG16 fresh/re-apply/legacy/rollback PASS; Chrome 11/11; cancel 78ms.
+- [FINAL_RELEASE_READINESS](reports/FINAL_RELEASE_READINESS.md). Verdict **NO-GO** (SLO, human).
+
+## Security/correctness audit: lesson progress, reset transaction, JWT revocation — 2026-10-31
+
+- Lesson chưa duyệt không còn complete được và không bị tính vào progress; progress chỉ đếm
+  lesson `approved`, tính bằng một câu SQL nguyên tử (hết race read-modify-write).
+- Approve/delete lesson đồng bộ lại enrollment cho **mọi** người học bị ảnh hưởng.
+- Reset mật khẩu chạy trong transaction (claim token + đổi mật khẩu + thu hồi session).
+- JWT bị thu hồi sau đổi/reset mật khẩu bằng `users.token_version` (ALTER idempotent).
+- Reset email có cooldown theo tài khoản (mặc định 60s) và chỉ giữ token mới nhất.
+- Không đổi API/RAG model/threshold/prompt. **494 Python / 157 Web PASS**, coverage
+  67,63% / 50,67%; npm audit 0, Bandit 0 High; pip-audit BLOCKED (PyPI timeout) lượt này.
+- [FINAL_PRODUCTION_AUDIT](reports/FINAL_PRODUCTION_AUDIT.md). Verdict **NO-GO** (SLO 45s, human).
+
 ## Documentation rewrite: bộ tài liệu kỹ thuật hiện hành — 2026-10-31
 
 - Viết lại `README`, `docs/ARCHITECTURE.md`, `AGENTS.md`, `CONSTRAINTS.md`, `deploy/DEPLOY.md`,

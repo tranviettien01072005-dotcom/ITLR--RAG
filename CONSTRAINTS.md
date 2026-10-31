@@ -7,7 +7,7 @@ Metric và giới hạn: [EVALUATION](docs/EVALUATION.md). Bảo mật: [SECURIT
 ## 1. Kiểm thử và hồi quy
 
 Mốc hiện hành (local, Linux, commit `f14c428`, không thay đổi code runtime): **494 Python PASS/0 skip**, coverage
-statements **67,63%**; **146 Web PASS**, lines **47,05%**. Đây là số đo, không phải threshold
+statements **67,63%**; **162 Web PASS**, lines **51,42%**. Đây là số đo, không phải threshold
 CI enforce; so sánh cùng phạm vi đo sau thay đổi.
 
 | Ràng buộc | Cách kiểm |
@@ -82,7 +82,7 @@ faithfulness `null`; xem [certification](reports/FINAL_E2E_CERTIFICATION.md).
 | Chat template p95 | cùng nguồn | ≤2,0s |
 | Chat LLM p95 | **SLO 45s; FAIL trên CPU hiện tại** | đạt trên hardware mới + cold/warm |
 | Python coverage | 67,63% statements trên `itlr/` (gồm pipelines) | ≥60% trên `itlr/` không tính pipelines |
-| Web line coverage | 47,05% | chưa chốt floor |
+| Web line coverage | 51,42% | chưa chốt floor |
 | Kích thước file | chatbot 991 dòng, recommender 884 dòng | file mới ~≤800 dòng |
 
 Đây là đề xuất, không phải ngưỡng đã đạt. Thay đổi sàn phải sửa tài liệu này, ghi lý do và

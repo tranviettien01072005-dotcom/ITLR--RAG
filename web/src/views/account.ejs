@@ -45,6 +45,15 @@
         <button class="btn-primary" type="submit">Cập nhật mật khẩu</button>
       </form>
     </div>
+
+    <div class="card">
+      <h3>Thu hồi phiên đăng nhập</h3>
+      <p class="muted small">Đăng xuất khỏi mọi thiết bị. Mọi JWT đã phát trước đó mất hiệu lực ngay.</p>
+      <form action="/account/logout-all" method="post">
+        <%- include('partials/csrf') %>
+        <button class="btn-ghost" type="submit">Đăng xuất mọi thiết bị</button>
+      </form>
+    </div>
   </div>
 </div>
 

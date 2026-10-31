@@ -18,11 +18,16 @@ Tài liệu chuẩn cho bảo mật hiện hành. Quyết định liên quan:
 ## 2. Xác thực và phân quyền
 
 - **Web**: đăng nhập phát JWT trong cookie `token` (`HttpOnly`, `SameSite=Lax`,
-  `Secure` khi production, hết hạn theo cấu hình). Route riêng cần `requireAuth`; quản trị
+  `Secure` khi production, hết hạn sau 7 ngày). Payload mang `tv` (token_version) và mỗi
+  request so với cột `users.token_version`; đổi/đặt lại mật khẩu tăng version nên mọi JWT
+  cũ mất hiệu lực ngay, không cần chờ hết hạn. Route riêng cần `requireAuth`; quản trị
   cần `requireAdminAccess`. Kiểm tra quyền sở hữu (hội thoại, file, bài viết) thực hiện
   theo `user_id`, không dựa vào tham số client.
 - **CSRF**: cookie `csrf` + header `x-csrf-token` hoặc field `_csrf`; mọi method không an
   toàn bị kiểm, thiếu/sai trả 403.
+- **Thu hồi phiên**: đổi/đặt lại mật khẩu và `POST /account/logout-all` tăng
+  `users.token_version`, nên JWT cũ bị từ chối ở request kế tiếp; `POST /logout` chỉ xóa
+  cookie của thiết bị hiện tại.
 - **Admin API**: `POST /admin/reload` yêu cầu `X-Admin-Token` khớp `ITLR_ADMIN_TOKEN` bằng
   `secrets.compare_digest` trên bytes; env rỗng ⇒ endpoint tắt (403), không có mặc định.
   Mỗi lần auth fail được log để audit (không log token).
@@ -39,6 +44,8 @@ Tài liệu chuẩn cho bảo mật hiện hành. Quyết định liên quan:
   chuẩn hóa scheme (chỉ http/https) ở `itlr/core/display.py`.
 - Giới hạn tần suất: API 120 search/phút, 30 chat/phút, 10 admin/phút (env override, `0` = tắt);
   Web 300 request/phút toàn cục, 20 lần/15 phút cho auth. 429 kèm `Retry-After`.
+  Reset email có thêm cooldown theo **tài khoản** (`RESET_EMAIL_COOLDOWN_SECONDS`, mặc định 60s)
+  và chỉ token mới nhất còn hiệu lực, nên không thể spam hộp thư qua nhiều IP.
 
 ## 4. Header và cookie
 

@@ -1,0 +1,5 @@
+{"id":"sha256:3dac16199c26c419362055c17032cca29d6a697c07738274fbc132f36de66a25","tags":["itlr-resume-1031b-api:stage"],"repoDigests":["itlr-resume-1031b-api@sha256:3dac16199c26c419362055c17032cca29d6a697c07738274fbc132f36de66a25"]}
+{"id":"sha256:9af9a2f98a09c0e21c47426d649527b805d2e726a55cb592a4f6c848e54ba9c3","tags":["itlr-resume-1031b-web:stage"],"repoDigests":["itlr-resume-1031b-web@sha256:9af9a2f98a09c0e21c47426d649527b805d2e726a55cb592a4f6c848e54ba9c3"]}
+{"id":"sha256:e8a07d2c7579b038938cdba6c539e580e5001caf9ea203d397b5cc83e76bd938","tags":["postgres:16-bookworm"],"repoDigests":["postgres@sha256:e8a07d2c7579b038938cdba6c539e580e5001caf9ea203d397b5cc83e76bd938"]}
+{"id":"sha256:e70b164da81ef698b3ad19af799ea6086ce6d9e48ed4079eb9fe26f6fbf14ee5","tags":["caddy:2-alpine"],"repoDigests":["caddy@sha256:e70b164da81ef698b3ad19af799ea6086ce6d9e48ed4079eb9fe26f6fbf14ee5"]}
+{"id":"sha256:b2f0122c476bc9fe7ce679d8bb4bd555351e25e2554eefb156f61cb0a89cf429","tags":["ollama/ollama:0.40.13"],"repoDigests":["ollama/ollama@sha256:b2f0122c476bc9fe7ce679d8bb4bd555351e25e2554eefb156f61cb0a89cf429"]}

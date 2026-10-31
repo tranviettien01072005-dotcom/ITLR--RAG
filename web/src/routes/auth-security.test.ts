@@ -2,7 +2,7 @@ import { expect, it, vi } from "vitest";
 vi.mock("bcryptjs", () => ({ default: { compare: async () => true } }));
 vi.mock("../config/env", () => ({ env: { appOrigin: "https://app.test", jwtSecret: "x".repeat(40) } }));
 vi.mock("../db/pool", () => ({ query: vi.fn(async (sql: string) => sql.startsWith("SELECT id FROM users") ? [{ id: 1 }] : []) }));
-vi.mock("../services/mailer", () => ({ mailConfigured: () => false, sendResetLink: async () => false }));
+vi.mock("../services/mailer", () => ({ isMailConfigured: () => false, mailConfigured: () => false, sendResetLink: async () => false }));
 vi.mock("../middleware/security", () => ({ authLimiter: (_req: unknown, _res: unknown, next: () => void) => next() }));
 import { authRouter } from "./auth.routes";
 import { query } from "../db/pool";

@@ -1,0 +1,71 @@
+
+> it-learning-platform@1.0.0 test
+> vitest run --coverage
+
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (vitest.config.ts:1:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.12 /home/o/ITLR--RAG/web
+      Coverage enabled with v8
+
+Warning: Indexing all PDF objects
+Warning: Indexing all PDF objects
+Warning: Indexing all PDF objects
+Warning: Indexing all PDF objects
+Warning: Indexing all PDF objects
+
+ Test Files  29 passed (29)
+      Tests  157 passed (157)
+   Start at  13:44:40
+   Duration  7.07s (transform 1.88s, setup 0ms, import 13.04s, tests 5.96s, environment 15ms)
+
+ % Coverage report from v8
+-------------------|---------|----------|---------|---------|-------------------
+File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-------------------|---------|----------|---------|---------|-------------------
+All files          |   47.58 |     38.7 |   41.39 |   50.67 |                   
+ src               |   68.88 |       10 |      40 |   68.29 |                   
+  app.ts           |   68.88 |       10 |      40 |   68.29 | 46-52,63,67-73    
+ src/config        |   92.85 |    85.36 |     100 |   92.59 |                   
+  env.ts           |    92.3 |    84.61 |     100 |      92 | 17,21             
+ src/db            |    18.3 |        0 |   11.76 |   19.67 |                   
+  check.ts         |       0 |        0 |       0 |       0 | 11-110            
+  migrate.ts       |       0 |      100 |       0 |       0 | 6-14              
+  pool.ts          |   81.25 |      100 |      40 |      80 | 7-12              
+  seed-courses.ts  |       0 |      100 |       0 |       0 | 4                 
+  sync-courses.ts  |       0 |        0 |       0 |       0 | 9-29              
+ src/middleware    |   82.35 |    64.91 |   93.75 |   88.37 |                   
+  auth.ts          |      80 |    70.58 |   88.88 |   81.39 | 102-116           
+  security.ts      |     100 |    86.95 |     100 |     100 | 26-29,53          
+  uploads.ts       |   75.67 |    52.63 |     100 |   91.66 | 16-17             
+ src/routes        |   33.81 |    19.17 |   23.48 |   36.79 |                   
+  admin.routes.ts  |   33.53 |       15 |   15.62 |   35.33 | ...45-361,364-366 
+  api.routes.ts    |   31.56 |    18.39 |      25 |   36.17 | ...48,374,386-393 
+  auth.routes.ts   |    48.8 |       32 |   29.62 |   51.75 | ...99,313,319-340 
+  chat.handlers.ts |   79.03 |    71.87 |      80 |   82.22 | 16-24             
+  ...ing.routes.ts |   93.75 |     62.5 |     100 |     100 | 19-22,40-44       
+  pages.routes.ts  |   27.45 |    15.21 |      20 |   29.16 | ...52,156-164,173 
+  social.routes.ts |   14.17 |     5.31 |    3.12 |   17.27 | ...25-432,436-443 
+ src/services      |   75.93 |    72.46 |   67.85 |      81 |                   
+  chat-history.ts  |   96.15 |    91.66 |     100 |     100 | 4                 
+  chat-stream.ts   |   85.96 |    80.95 |   85.71 |    97.5 | 16                
+  ...et-extract.ts |   83.33 |       75 |   71.42 |     100 | 10,36             
+  dataset.ts       |   96.15 |    76.66 |     100 |     100 | 9-20,27-49,52     
+  http-range.ts    |     100 |    93.75 |     100 |     100 | 22                
+  learning.ts      |   90.62 |    68.42 |    92.3 |      92 | 83-84             
+  ...n-progress.ts |     100 |       50 |     100 |     100 | 31                
+  mailer.ts        |      60 |    33.33 |       0 |   66.66 | 19-33             
+  markdown.ts      |   92.59 |     90.9 |     100 |     100 | 12-13             
+  password.ts      |   45.45 |    71.42 |      50 |      50 | 8,17-29           
+  posts.ts         |       0 |        0 |       0 |       0 | 9-64              
+  realtime.ts      |    5.26 |        0 |       0 |    8.33 | 11-37             
+  recommender.ts   |   79.41 |    81.81 |      50 |   83.87 | 55,72,96-102      
+-------------------|---------|----------|---------|---------|-------------------
+
+=============================== Coverage summary ===============================
+Statements   : 47.58% ( 789/1658 )
+Branches     : 38.7% ( 411/1062 )
+Functions    : 41.39% ( 113/273 )
+Lines        : 50.67% ( 710/1401 )
+================================================================================

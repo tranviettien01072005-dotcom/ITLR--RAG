@@ -1,0 +1,1502 @@
+{
+  "mode": "soak",
+  "started": "2026-10-31T14:04:45",
+  "n": 1,
+  "requests": [
+    {
+      "seq": 0,
+      "search": 0.099,
+      "chat": {
+        "ok": true,
+        "ttft": 0.15,
+        "wall": 1.928,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 1,
+      "search": 0.117
+    },
+    {
+      "seq": 2,
+      "search": 0.113,
+      "chat": {
+        "ok": true,
+        "ttft": 0.087,
+        "wall": 1.795,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 3,
+      "search": 0.079
+    },
+    {
+      "seq": 4,
+      "search": 0.073,
+      "chat": {
+        "ok": true,
+        "ttft": 0.084,
+        "wall": 1.75,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 5,
+      "search": 0.077
+    },
+    {
+      "seq": 6,
+      "search": 0.073,
+      "chat": {
+        "ok": true,
+        "ttft": 0.089,
+        "wall": 1.812,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 7,
+      "search": 0.106
+    },
+    {
+      "seq": 8,
+      "search": 0.076,
+      "chat": {
+        "ok": true,
+        "ttft": 0.088,
+        "wall": 1.835,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 9,
+      "search": 0.081
+    },
+    {
+      "seq": 10,
+      "search": 0.077,
+      "chat": {
+        "ok": true,
+        "ttft": 0.131,
+        "wall": 1.843,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 11,
+      "search": 0.083
+    },
+    {
+      "seq": 12,
+      "search": 0.076,
+      "chat": {
+        "ok": true,
+        "ttft": 0.086,
+        "wall": 1.809,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 13,
+      "search": 0.074
+    },
+    {
+      "seq": 14,
+      "search": 0.072,
+      "chat": {
+        "ok": true,
+        "ttft": 0.127,
+        "wall": 1.772,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 15,
+      "search": 0.073
+    },
+    {
+      "seq": 16,
+      "search": 0.076,
+      "chat": {
+        "ok": true,
+        "ttft": 0.095,
+        "wall": 1.793,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 17,
+      "search": 0.073
+    },
+    {
+      "seq": 18,
+      "search": 0.073,
+      "chat": {
+        "ok": true,
+        "ttft": 0.086,
+        "wall": 1.727,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 19,
+      "search": 0.076
+    },
+    {
+      "seq": 20,
+      "search": 0.075,
+      "chat": {
+        "ok": true,
+        "ttft": 0.081,
+        "wall": 1.756,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 21,
+      "search": 0.073
+    },
+    {
+      "seq": 22,
+      "search": 0.07,
+      "chat": {
+        "ok": true,
+        "ttft": 0.087,
+        "wall": 1.784,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 23,
+      "search": 0.067
+    },
+    {
+      "seq": 24,
+      "search": 0.076,
+      "chat": {
+        "ok": true,
+        "ttft": 0.138,
+        "wall": 1.828,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 25,
+      "search": 0.077
+    },
+    {
+      "seq": 26,
+      "search": 0.07,
+      "chat": {
+        "ok": true,
+        "ttft": 0.084,
+        "wall": 1.799,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 27,
+      "search": 0.077
+    },
+    {
+      "seq": 28,
+      "search": 0.072,
+      "chat": {
+        "ok": true,
+        "ttft": 0.088,
+        "wall": 1.794,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 29,
+      "search": 0.081
+    },
+    {
+      "seq": 30,
+      "search": 0.078,
+      "chat": {
+        "ok": true,
+        "ttft": 0.084,
+        "wall": 1.75,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 31,
+      "search": 0.076
+    },
+    {
+      "seq": 32,
+      "search": 0.07,
+      "chat": {
+        "ok": true,
+        "ttft": 0.086,
+        "wall": 1.767,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 33,
+      "search": 0.076
+    },
+    {
+      "seq": 34,
+      "search": 0.075,
+      "chat": {
+        "ok": true,
+        "ttft": 0.082,
+        "wall": 1.753,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 35,
+      "search": 0.076
+    },
+    {
+      "seq": 36,
+      "search": 0.073,
+      "chat": {
+        "ok": true,
+        "ttft": 0.086,
+        "wall": 1.722,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 37,
+      "search": 0.076
+    },
+    {
+      "seq": 38,
+      "search": 0.071,
+      "chat": {
+        "ok": true,
+        "ttft": 0.127,
+        "wall": 1.808,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 39,
+      "search": 0.077
+    },
+    {
+      "seq": 40,
+      "search": 0.074,
+      "chat": {
+        "ok": true,
+        "ttft": 0.084,
+        "wall": 1.81,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 41,
+      "search": 0.085
+    },
+    {
+      "seq": 42,
+      "search": 0.086,
+      "chat": {
+        "ok": true,
+        "ttft": 0.094,
+        "wall": 1.815,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 43,
+      "search": 0.125
+    },
+    {
+      "seq": 44,
+      "search": 0.124,
+      "chat": {
+        "ok": true,
+        "ttft": 0.084,
+        "wall": 1.78,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 45,
+      "search": 0.146
+    },
+    {
+      "seq": 46,
+      "search": 0.112,
+      "chat": {
+        "ok": true,
+        "ttft": 0.122,
+        "wall": 1.757,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 47,
+      "search": 0.08
+    },
+    {
+      "seq": 48,
+      "search": 0.074,
+      "chat": {
+        "ok": false,
+        "error": "<HTTPError 429: 'Too Many Requests'>",
+        "types": [],
+        "wall": 0.002
+      }
+    },
+    {
+      "seq": 49,
+      "search": 0.074
+    },
+    {
+      "seq": 50,
+      "search": 0.074,
+      "chat": {
+        "ok": false,
+        "error": "<HTTPError 429: 'Too Many Requests'>",
+        "types": [],
+        "wall": 0.003
+      }
+    },
+    {
+      "seq": 51,
+      "search": 0.073
+    },
+    {
+      "seq": 52,
+      "search": 0.073,
+      "chat": {
+        "ok": true,
+        "ttft": 0.091,
+        "wall": 1.775,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 53,
+      "search": 0.078
+    },
+    {
+      "seq": 54,
+      "search": 0.074,
+      "chat": {
+        "ok": true,
+        "ttft": 0.084,
+        "wall": 1.762,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 55,
+      "search": 0.1
+    },
+    {
+      "seq": 56,
+      "search": 0.098,
+      "chat": {
+        "ok": false,
+        "error": "<HTTPError 429: 'Too Many Requests'>",
+        "types": [],
+        "wall": 0.003
+      }
+    },
+    {
+      "seq": 57,
+      "search": 0.153
+    },
+    {
+      "seq": 58,
+      "search": 0.119,
+      "chat": {
+        "ok": false,
+        "error": "<HTTPError 429: 'Too Many Requests'>",
+        "types": [],
+        "wall": 0.003
+      }
+    },
+    {
+      "seq": 59,
+      "search": 0.105
+    },
+    {
+      "seq": 60,
+      "search": 0.065,
+      "chat": {
+        "ok": true,
+        "ttft": 0.073,
+        "wall": 1.778,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 61,
+      "search": 0.08
+    },
+    {
+      "seq": 62,
+      "search": 0.076,
+      "chat": {
+        "ok": true,
+        "ttft": 0.085,
+        "wall": 1.796,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 63,
+      "search": 0.077
+    },
+    {
+      "seq": 64,
+      "search": 0.071,
+      "chat": {
+        "ok": true,
+        "ttft": 0.084,
+        "wall": 1.866,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 65,
+      "search": 0.141
+    },
+    {
+      "seq": 66,
+      "search": 0.139,
+      "chat": {
+        "ok": true,
+        "ttft": 0.106,
+        "wall": 1.813,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 67,
+      "search": 0.119
+    },
+    {
+      "seq": 68,
+      "search": 0.075,
+      "chat": {
+        "ok": false,
+        "error": "<HTTPError 429: 'Too Many Requests'>",
+        "types": [],
+        "wall": 0.002
+      }
+    },
+    {
+      "seq": 69,
+      "search": 0.078
+    },
+    {
+      "seq": 70,
+      "search": 0.088,
+      "chat": {
+        "ok": false,
+        "error": "<HTTPError 429: 'Too Many Requests'>",
+        "types": [],
+        "wall": 0.003
+      }
+    },
+    {
+      "seq": 71,
+      "search": 0.08
+    },
+    {
+      "seq": 72,
+      "search": 0.068,
+      "chat": {
+        "ok": false,
+        "error": "<HTTPError 429: 'Too Many Requests'>",
+        "types": [],
+        "wall": 0.003
+      }
+    },
+    {
+      "seq": 73,
+      "search": 0.067
+    },
+    {
+      "seq": 74,
+      "search": 0.068,
+      "chat": {
+        "ok": true,
+        "ttft": 0.161,
+        "wall": 1.975,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 75,
+      "search": 0.126
+    },
+    {
+      "seq": 76,
+      "search": 0.074,
+      "chat": {
+        "ok": true,
+        "ttft": 0.081,
+        "wall": 1.758,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 77,
+      "search": 0.121
+    },
+    {
+      "seq": 78,
+      "search": 0.12,
+      "chat": {
+        "ok": true,
+        "ttft": 0.094,
+        "wall": 1.761,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 79,
+      "search": 0.128
+    },
+    {
+      "seq": 80,
+      "search": 0.12,
+      "chat": {
+        "ok": true,
+        "ttft": 0.082,
+        "wall": 1.746,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 81,
+      "search": 0.122
+    },
+    {
+      "seq": 82,
+      "search": 0.12,
+      "chat": {
+        "ok": true,
+        "ttft": 0.088,
+        "wall": 1.744,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 83,
+      "search": 0.122
+    },
+    {
+      "seq": 84,
+      "search": 0.077,
+      "chat": {
+        "ok": true,
+        "ttft": 0.083,
+        "wall": 1.769,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 85,
+      "search": 0.076
+    },
+    {
+      "seq": 86,
+      "search": 0.075,
+      "chat": {
+        "ok": true,
+        "ttft": 0.091,
+        "wall": 1.863,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 87,
+      "search": 0.074
+    },
+    {
+      "seq": 88,
+      "search": 0.078,
+      "chat": {
+        "ok": true,
+        "ttft": 0.129,
+        "wall": 1.793,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 89,
+      "search": 0.074
+    },
+    {
+      "seq": 90,
+      "search": 0.07,
+      "chat": {
+        "ok": true,
+        "ttft": 0.093,
+        "wall": 1.845,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 91,
+      "search": 0.074
+    },
+    {
+      "seq": 92,
+      "search": 0.069,
+      "chat": {
+        "ok": true,
+        "ttft": 0.094,
+        "wall": 1.771,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 93,
+      "search": 0.082
+    },
+    {
+      "seq": 94,
+      "search": 0.076,
+      "chat": {
+        "ok": true,
+        "ttft": 0.087,
+        "wall": 1.801,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 95,
+      "search": 0.112
+    },
+    {
+      "seq": 96,
+      "search": 0.176,
+      "chat": {
+        "ok": true,
+        "ttft": 0.198,
+        "wall": 2.013,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 97,
+      "search": 0.085
+    },
+    {
+      "seq": 98,
+      "search": 0.083,
+      "chat": {
+        "ok": true,
+        "ttft": 0.087,
+        "wall": 1.753,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 99,
+      "search": 0.074
+    },
+    {
+      "seq": 100,
+      "search": 0.071,
+      "chat": {
+        "ok": true,
+        "ttft": 0.127,
+        "wall": 1.827,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 101,
+      "search": 0.085
+    },
+    {
+      "seq": 102,
+      "search": 0.078,
+      "chat": {
+        "ok": true,
+        "ttft": 0.128,
+        "wall": 1.844,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 103,
+      "search": 0.084
+    },
+    {
+      "seq": 104,
+      "search": 0.074,
+      "chat": {
+        "ok": true,
+        "ttft": 0.086,
+        "wall": 1.901,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 105,
+      "search": 0.081
+    },
+    {
+      "seq": 106,
+      "search": 0.113,
+      "chat": {
+        "ok": true,
+        "ttft": 0.163,
+        "wall": 1.883,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 107,
+      "search": 0.075
+    },
+    {
+      "seq": 108,
+      "search": 0.07,
+      "chat": {
+        "ok": true,
+        "ttft": 0.085,
+        "wall": 1.779,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 109,
+      "search": 0.074
+    },
+    {
+      "seq": 110,
+      "search": 0.072,
+      "chat": {
+        "ok": true,
+        "ttft": 0.131,
+        "wall": 1.811,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 111,
+      "search": 0.121
+    },
+    {
+      "seq": 112,
+      "search": 0.121,
+      "chat": {
+        "ok": true,
+        "ttft": 0.082,
+        "wall": 1.903,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 113,
+      "search": 0.121
+    },
+    {
+      "seq": 114,
+      "search": 0.12,
+      "chat": {
+        "ok": true,
+        "ttft": 0.132,
+        "wall": 1.806,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 115,
+      "search": 0.079
+    },
+    {
+      "seq": 116,
+      "search": 0.075,
+      "chat": {
+        "ok": true,
+        "ttft": 0.087,
+        "wall": 1.814,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 117,
+      "search": 0.079
+    },
+    {
+      "seq": 118,
+      "search": 0.074,
+      "chat": {
+        "ok": true,
+        "ttft": 0.088,
+        "wall": 1.786,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 119,
+      "search": 0.086
+    },
+    {
+      "seq": 120,
+      "search": 0.078,
+      "chat": {
+        "ok": true,
+        "ttft": 0.087,
+        "wall": 1.836,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 121,
+      "search": 0.095
+    },
+    {
+      "seq": 122,
+      "search": 0.125,
+      "chat": {
+        "ok": true,
+        "ttft": 0.175,
+        "wall": 1.869,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 123,
+      "search": 0.08
+    },
+    {
+      "seq": 124,
+      "search": 0.075,
+      "chat": {
+        "ok": true,
+        "ttft": 0.083,
+        "wall": 1.835,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 125,
+      "search": 0.078
+    },
+    {
+      "seq": 126,
+      "search": 0.075,
+      "chat": {
+        "ok": true,
+        "ttft": 0.086,
+        "wall": 1.761,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 127,
+      "search": 0.075
+    },
+    {
+      "seq": 128,
+      "search": 0.072,
+      "chat": {
+        "ok": true,
+        "ttft": 0.084,
+        "wall": 1.778,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 129,
+      "search": 0.077
+    },
+    {
+      "seq": 130,
+      "search": 0.077,
+      "chat": {
+        "ok": true,
+        "ttft": 0.084,
+        "wall": 1.743,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 131,
+      "search": 0.075
+    },
+    {
+      "seq": 132,
+      "search": 0.071,
+      "chat": {
+        "ok": true,
+        "ttft": 0.082,
+        "wall": 1.787,
+        "types": [
+          "sources",
+          "meta",
+          "text",
+          "final",
+          "done"
+        ],
+        "terminal": "done",
+        "cancelled_early": false
+      }
+    },
+    {
+      "seq": 133,
+      "search": 0.074
+    }
+  ],
+  "summary": {
+    "iterations": 134,
+    "chats": 67,
+    "chat_ok": 60,
+    "chat_p50": 1.79,
+    "chat_max": 2.013,
+    "terminal_types": [
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      null,
+      null,
+      "done",
+      "done",
+      null,
+      null,
+      "done",
+      "done",
+      "done",
+      "done",
+      null,
+      null,
+      null,
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done",
+      "done"
+    ]
+  },
+  "finished": "2026-10-31T14:06:45"
+}

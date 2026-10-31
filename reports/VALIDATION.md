@@ -1,6 +1,23 @@
 # ITLR–RAG | Intelligent IT Learning Platform — Validation
 
-## Checkpoint 2026-10-31 (resume validation) — mới nhất
+## Release hardening (2026-10-31) — xem [FINAL_RELEASE_READINESS](FINAL_RELEASE_READINESS.md)
+
+Đóng business rules: xóa lesson đã duyệt chỉ admin, `/account/logout-all`, dọn reset token cũ.
+Xác minh AUD-01→06 trên PostgreSQL 16 (rollback, migration fresh/re-apply/legacy, recompute
+idempotent). Benchmark cold 49,80s > 45s (prefill 43,42s @31,9 tok/s), warm 0,33s. Gates:
+494 Python / **160 Web** PASS, coverage 67,63% / **51,42%**, pip-audit 0, npm audit 0,
+Bandit 0 High; Docker staging 25/25 check + Chrome 11/11 + cancel 78ms. Frozen 20 case warm:
+12/12 positive, 7/8 negative. Human **NOT VERIFIED**. Verdict **NO-GO** (SLO + human).
+
+## Audit sản phẩm cuối (2026-10-31) — xem [FINAL_PRODUCTION_AUDIT](FINAL_PRODUCTION_AUDIT.md)
+
+Sửa 6 lỗi P1/P2 ở Web (lesson chưa duyệt, đồng bộ enrollment, transaction reset, thu hồi JWT,
+cooldown email reset, race tính progress) bằng RED→GREEN; schema thêm `users.token_version`
+(idempotent). Kết quả: 494 Python / **157 Web** PASS, coverage 67,63% / **50,67%**;
+typecheck/lint/build/compileall/pip check PASS, npm audit 0, Bandit 0 High. `pip-audit`
+**BLOCKED** trong lượt này (PyPI read timeout), lần chạy trước 0 advisory.
+
+## Checkpoint 2026-10-31 (resume validation) — trước audit
 
 Working tree sạch tại `f14c428…`; không commit/push, không đổi active artifacts.
 
@@ -8,8 +25,8 @@ Working tree sạch tại `f14c428…`; không commit/push, không đổi active
 |---|---|
 | Python pytest | **494 PASS / 0 skip**, 50,65s |
 | Python statements coverage | **3946/5835 = 67,63%** |
-| Web Vitest | **146 PASS / 26 files** |
-| Web line coverage | **648/1377 = 47,05%** (statements 44,24%, branches 36,15%) |
+| Web Vitest | **162 PASS / 30 files** |
+| Web line coverage | **724/1408 = 51,42%** (statements 48,22%, branches 39,49%) |
 | Typecheck / lint / build | PASS |
 | compileall / pip check | PASS |
 | pip-audit | **0 advisory** |

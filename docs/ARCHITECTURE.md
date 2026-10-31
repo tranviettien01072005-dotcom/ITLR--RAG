@@ -115,7 +115,23 @@ flowchart LR
 - API sync (`/api/chat`, `client.chat/stream`) và async (`achat_stream`) cùng tồn tại;
   async là đường phục vụ SSE hiện hành.
 
-## 7. Trade-off đã chọn
+## 7. Trace một request (handover)
+
+Ví dụ người dùng gửi câu hỏi trong `/chat`:
+
+1. `web/src/views/chat.ejs` + `public/chat*.js` gửi `POST /api/chat/stream` (cookie `token`, header CSRF).
+2. `web/src/routes/api.routes.ts` → `requireAuth` → `chat.handlers.ts` `handleChatStream`.
+3. Handler lấy history thuộc user (`services/chat-history.ts`), mở stream tới API qua
+   `services/recommender.ts` (timeout/cancel) và parse frame bằng `services/chat-stream.ts`.
+4. `itlr/api/server.py` `/api/chat/stream` → `engine.achat_stream`; retrieval ở
+   `itlr/retrieval/service.py` + `itlr/core/chunks.py`; generation/citation ở `itlr/chatbot/`.
+5. Chỉ khi `final` + `done` + EOF sạch, handler lưu hội thoại vào PostgreSQL và trả
+   `response_html` đã render (`services/markdown.ts`).
+
+Cho các luồng khác: `web/src/routes/*.routes.ts` → `services/*` → `db/pool.ts`; offline:
+`scripts/collect_data.py` → `collect/` → `pipelines/` → `versioning.activate` → `/admin/reload`.
+
+## 8. Trade-off đã chọn
 
 | Quyết định | Lợi | Giá phải trả |
 |---|---|---|
