@@ -29,6 +29,14 @@ f93f49aa2c7413ae03aecbb68dd752ce43cca9c3abb2f3eb93fea68a8fae6730  ./bench-latenc
 84a8d3febea2970be33c9b817999de530ef6a018a5d9d3e56063546fea0c4ab5  ./budget800-comparison.json
 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  ./compileall.log
 26d57e590608a992481ab73b09f976f5cd2c60052bbb9e9ca7a187dba4f80ff4  ./dataset-and-protocol-sha256.txt
+a9efe423b8dcff542d5b7b27c1a3c8e11d4114ce4a36eb50713f6c8cbb6aaf7e  ./docker-local-2026-10-31/api-health.json
+d6a705f312c8d3cd28645f6dcf33b578190deb31ccc3f4056f116965eed6c8bd  ./docker-local-2026-10-31/build.log
+1ac992b288c5f08663b4094e8978051f612df63f59764176059c1a377dd8aa24  ./docker-local-2026-10-31/chat-events.sse
+dfbef8d5127ab0de840b468ceda98544e7fe2fea3c853a349ab7afbc0b2c758a  ./docker-local-2026-10-31/compose-config.txt
+e627d3031b8b405478025ea22dcdf1f14a0ebec09202607d1cabf01172625a6e  ./docker-local-2026-10-31/compose-ps.txt
+0d99234d0c6c824ca51d731f097e66423ecd2ea595e2f47aae33205006a0a0a5  ./docker-local-2026-10-31/images.txt
+15eadac6b2e28e724d4fd57cdae1090e1273b9917901ba31cff71c64a940498e  ./docker-local-2026-10-31/ollama-host-models-override.yml
+31bf75f4c0a97cc1f7b60df824fa390b3be9ba014f29b63c87c698ba63d9a9fd  ./docker-local-2026-10-31/web-ready.json
 ab3da115a395e95416d2aaf336ef7e8012677b7e25e10c27276ba12fe1b31e2f  ./docker-preflight.txt
 3899ab1b65e7efe043b9bdfdbbe4d0300149e58c98502685be8828c93594aa79  ./docker-resume-1031c/api-health.log
 ef9ffc597078814cb514fe5b8cbb52ee4e8a68b6728a53584b0e6e4e99decb04  ./docker-resume-1031c/application-build.log
@@ -118,8 +126,10 @@ ce5c75aecb1b44ea4474aad9c688ca5df63f28141118b1fb52bbef664c67e5d5  ./reliability-
 db219c697884944442115da96cc5d72850b0618ddb5b74fe981aeb23b0dc686c  ./web-lint.log
 5f57a3a8e2c3c5cfc00ac157a6008dd2bfbd0060625f65b179aed38c05dd8aa2  ./web-tests.log
 cd6dba0a98340e39ef63daf2ebc5a494af2497decf6d197f7df398b586b7db7c  ./web-typecheck.log
+1e30024bdde4f5ee9d061c6fa781045e49c10fdaf02cdda4ccbf83948049501f  ../DOCKER_DEPLOYMENT_2026-10-31.md
+6d1084668673e8f91d00f4281bf1e3682fad3f4108e5b4976b89102b4647ba4f  ../PIPELINE_AUDIT_2026-10-31.md
 a9fc92b716042f40a7fad7e1c27195e65627d36de0305f207d61721325d5f750  ../FINAL_CODEBASE_FREEZE.md
 e65340b79b6267197e6414a500df89d8fa2a1c599e805a3722cab35c34a03a0c  ../FINAL_MAINTAINABILITY_REVIEW.md
 8f31bc8cc23c92b68f1ba34e7abc5020377725104a471213bf08437f1c6b82c0  ../FINAL_RELEASE_READINESS.md
 39eb03f7397551fe7ce2f9b496318ca3f665f8af8b173541c09da5da894ab5d3  ../FINAL_PRODUCTION_AUDIT.md
-4fee7a77632c01837a9026625dc835b0ba2765691b8b9ab3bf46a9353d0cabb9  ../audit-file-manifest-2026-10-31.tsv
+d02cf30305339924de242df0df14f8bb020d71234e9866c90279dd1892daaea8  ../audit-file-manifest-2026-10-31.tsv

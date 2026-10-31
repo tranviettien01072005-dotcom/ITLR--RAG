@@ -44,3 +44,11 @@ it("serializes concurrent appends so IDs remain unique and ordered", async () =>
   expect(ids.sort((a, b) => a - b)).toEqual([1, 2, 3]);
   expect(readFileSync(state.csv, "utf8").trimEnd().split("\n")).toHaveLength(4);
 });
+
+it("allocates the next id from the maximum row, not the last line", async () => {
+  writeFileSync(state.csv, `${base}\n10,Old,doc,,,cat,,,,https://e.test/10\n3,Mid,doc,,,cat,,,,https://e.test/3\n7,Last,doc,,,cat,,,,https://e.test/7\n`);
+  const { appendCatalogRow } = await import("./dataset");
+  await expect(appendCatalogRow({ title: "New", description: "D" })).resolves.toBe(11);
+  const lines = readFileSync(state.csv, "utf8").trimEnd().split("\n");
+  expect(lines.at(-1)?.split(",")[0]).toBe("11");
+});

@@ -1,0 +1,12 @@
+# Override: dùng Ollama chạy trên HOST thay vì container (tiết kiệm RAM/CPU, dùng lại model đã pull).
+#   docker compose --env-file .env.docker -f compose.local.yml -f compose.host-ollama.yml up -d
+# Trên Linux cần host-gateway; macOS/Windows Docker Desktop có sẵn host.docker.internal.
+# QUAN TRỌNG: Ollama trên host phải lắng nghe cả interface container nhìn thấy được, ví dụ
+#   OLLAMA_HOST=0.0.0.0:11434 ollama serve
+# (mặc định 127.0.0.1 chỉ dùng được từ chính host, container sẽ bị "connection refused").
+services:
+  api:
+    environment:
+      OLLAMA_BASE_URL: http://host.docker.internal:11434
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

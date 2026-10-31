@@ -42,8 +42,8 @@ production-ready. Không tự gán MIT; giữ license/attribution bên thứ ba.
 
 ## Checkpoint hiện hành
 
-**494 Python PASS/0 skip** (coverage statements **67,63%**), **162 Web PASS** (lines
-**51,42%**); typecheck/lint/build, compileall, pip check, pip-audit 0, npm audit 0, Bandit
+**503 Python PASS/0 skip** (coverage statements **67,63%**), **163 Web PASS** (lines
+**51,45%**); typecheck/lint/build, compileall, pip check, pip-audit 0, npm audit 0, Bandit
 0 High PASS. Docker staging single-host + Chrome **11/11** PASS trong phạm vi đã kiểm
 ([certification](reports/FINAL_E2E_CERTIFICATION.md)). A/B char budget 800/500 suy giảm theo
 case nên default giữ `None` ([ADR-013](docs/decisions/ADR-013-evidence-excerpt-budget.md)).

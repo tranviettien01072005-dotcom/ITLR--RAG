@@ -14,6 +14,7 @@ Kết quả: var/data/collect/last_refresh.json (phục vụ giám sát / cảnh
 from __future__ import annotations
 
 import argparse
+import os
 import json
 import subprocess
 import sys
@@ -48,6 +49,9 @@ def main() -> int:
                     help="Chuyển --online sang build_all_v2 (lần đầu, model chưa có cache)")
     ap.add_argument("--with-cf", action="store_true", help="Chuyển --with-cf sang build_all_v2")
     ap.add_argument("--keep", type=int, default=3, help="Số phiên bản artifacts giữ lại")
+    ap.add_argument("--sync-web", action="store_true",
+                    help="Sau export, chạy `npm run sync` để nạp catalog vào PostgreSQL "
+                         "(cần DATABASE_URL; mặc định chỉ export + verify)")
     args = ap.parse_args()
 
     py = sys.executable
@@ -123,9 +127,38 @@ def main() -> int:
     except Exception as exc:  # noqa: BLE001 — metadata phụ trợ, đọc không được thì ghi lại
         summary["build_meta_error"] = str(exc)
 
+    rc = b.returncode
+    if b.returncode == 0:
+        # The RAG index changed: refresh the Web catalog and verify it covers every item,
+        # otherwise clicking a new course in search/chat returns 404 (DB has no row).
+        for step, cmd in (("export", [py, "scripts/export_web_catalog.py", "--refresh"]),
+                          ("verify", [py, "scripts/verify_web_catalog.py"])):
+            try:
+                r = _run(cmd, timeout=900)
+                summary[f"{step}_rc"] = r.returncode
+                if r.returncode != 0:
+                    print(f"[!] {step} rc≠0 — Web catalog chưa đồng bộ; người dùng có thể gặp 404.",
+                          flush=True)
+                    rc = 1
+            except subprocess.TimeoutExpired:
+                summary[f"{step}_rc"] = "timeout"
+                rc = 1
+        if args.sync_web:
+            if not os.environ.get("DATABASE_URL"):
+                print("[!] --sync-web cần DATABASE_URL — bỏ qua bước PostgreSQL.", flush=True)
+                rc = 1
+            else:
+                npm = "npm.cmd" if os.name == "nt" else "npm"
+                r = subprocess.run([npm, "run", "sync"], cwd=str(ROOT / "web"),
+                                   timeout=900)
+                summary["sync_web_rc"] = r.returncode
+                if r.returncode != 0:
+                    print("[!] npm run sync rc≠0 — PostgreSQL chưa có catalog mới.", flush=True)
+                    rc = 1
+
     _write_summary(summary)
     print(json.dumps(summary, ensure_ascii=False, indent=2), flush=True)
-    return 0 if b.returncode == 0 else 1
+    return 0 if rc == 0 else 1
 
 
 if __name__ == "__main__":

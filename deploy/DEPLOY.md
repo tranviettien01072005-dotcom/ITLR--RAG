@@ -7,6 +7,11 @@ một host: [PRODUCTION](PRODUCTION.md). Kiến trúc: [ARCHITECTURE](../docs/AR
 Giới hạn hiện hành: một worker/replica mỗi service, local filesystem, khóa file Linux.
 Restart container **không** tự migrate/seed/activate.
 
+**Docker full stack local** (Web + API + PostgreSQL + Ollama/Qwen): dùng
+[`compose.local.yml`](../compose.local.yml) và hướng dẫn trong
+[README §Docker Compose](../README.md#docker-compose-full-stack). Production TLS: [PRODUCTION](PRODUCTION.md).
+Root `docker-compose.yml` chỉ còn API + refresh job (legacy), không phải full stack.
+
 ## Thành phần
 
 | Thành phần | Địa chỉ local | Yêu cầu |
@@ -106,6 +111,24 @@ env -u DEEPSEEK_API_KEY -u OPENAI_API_KEY \
 Probe kiểm cấu trúc, hàng/cột, NaN, norm, ID, self-retrieval và nạp engine trong subprocess;
 kết quả trong `MANIFEST.json` là kiểm tra kỹ thuật, không phải đánh giá chất lượng.
 
+Sau khi build/activate, **đồng bộ catalog Web** — bỏ bước này thì item mới có trong search/chat
+nhưng PostgreSQL chưa có row, người dùng bấm khóa học sẽ nhận 404:
+
+```bash
+.venv/bin/python scripts/export_web_catalog.py --refresh   # merge, giữ row cộng đồng
+.venv/bin/python scripts/verify_web_catalog.py             # fail nếu thiếu id/link sai
+cd web && npm run sync                                    # upsert PostgreSQL, không xóa enrollment
+```
+
+`--refresh` cập nhật row crawl, thêm item mới, giữ row cộng đồng do Web append và bỏ row crawl
+cũ khỏi CSV (PostgreSQL không xóa row). `scripts/refresh_pipeline.py` tự chạy export + verify sau
+build; thêm `--sync-web` (cần `DATABASE_URL`) để chạy luôn `npm run sync`. Audit link nguồn
+(HTTP status/redirect/robots/404) chạy riêng vì cần mạng:
+
+```bash
+.venv/bin/python scripts/audit_source_links.py --csv var/data/web_items.csv --limit 50 --json /tmp/link-audit.json
+```
+
 Activate version đã probe (không có `--no-activate` thì builder tự activate sau probe):
 
 ```python
@@ -170,6 +193,7 @@ local. Bật timer/cron là hành động vận hành riêng.
 | `/metrics` 403 | chưa đặt token thì chỉ loopback; đặt token thì phải gửi header |
 | Model offline không nạp | `HF_HOME`, cache, quyền đọc; chỉ tải online có chủ đích |
 | Stream dừng/citation lỗi | đọc `error`/`final`; provisional không phải đáp án; kiểm chunk id |
+| Bấm khóa học bị 404 dù search thấy item | catalog Web chưa sync sau build: chạy `export_web_catalog.py --refresh`, `verify_web_catalog.py`, `npm run sync`; DB cũ không tự xóa enrollment |
 | Activate lỗi sau khi đổi pointer | đọc `CURRENT.json` + history trước khi retry |
 | Upload 415 | chỉ PNG/JPEG/GIF/WebP/PDF, ≤20 MB, magic bytes đúng |
 | TestClient treo trong sandbox | chạy ngoài sandbox theo quyền được cấp; không skip test |

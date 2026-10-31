@@ -1,5 +1,17 @@
 # ITLR–RAG | Intelligent IT Learning Platform — Changelog
 
+## Pipeline audit: catalog export/verify, source-link audit, 404 root cause — 2026-10-31
+
+- Root cause 404 khi bấm khóa học: PostgreSQL Web chưa refresh sau khi build index (CSV
+  no-clobber + pipeline không export/sync). Kiểm chứng thật: trước sync `/courses/5129` → 404,
+  sau `npm run sync` → 200, id không tồn tại → 404.
+- `export_web_catalog.py --refresh` (merge giữ row cộng đồng, ghi atomic), thêm
+  `scripts/verify_web_catalog.py` và `scripts/audit_source_links.py`; `refresh_pipeline.py`
+  tự export + verify sau build, `--sync-web` chạy `npm run sync`.
+- `appendCatalogRow` cấp id theo max, tránh ghi đè khóa học thật.
+- 9 test Python + 1 test Web mới. Gates: **503 Python / 163 Web PASS**, coverage
+  67,63% / 51,45%; pip-audit 0, npm audit 0, Bandit 0 High. Production vẫn NO-GO.
+
 ## Final codebase freeze: dead-code cleanup, gates, freeze verdict — 2026-10-31
 
 - Bỏ 1 import không dùng (`itlr/collect/normalize.py`), đổi 2 tham số không dùng thành `_req`;

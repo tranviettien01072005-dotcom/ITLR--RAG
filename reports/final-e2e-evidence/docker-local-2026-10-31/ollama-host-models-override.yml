@@ -1,0 +1,6 @@
+services:
+  ollama:
+    volumes:
+      - /usr/share/ollama/.ollama/models:/root/.ollama/models:ro
+    ports: !override
+      - "127.0.0.1:11534:11434"

@@ -14,12 +14,15 @@ let catalogWrite = Promise.resolve();
 
 function readLastId(): number {
   if (!existsSync(CSV)) return 0;
+  // Use the maximum id, not the last line: merged catalogs are not guaranteed sorted,
+  // and reusing an existing id would overwrite a real course row on upsert.
   const lines = readFileSync(CSV, "utf8").trimEnd().split(/\r?\n/);
-  for (let i = lines.length - 1; i >= 1; i--) {
+  let max = 0;
+  for (let i = 1; i < lines.length; i++) {
     const n = parseInt(lines[i].split(",")[0], 10);
-    if (!Number.isNaN(n)) return n;
+    if (!Number.isNaN(n) && n > max) max = n;
   }
-  return 0;
+  return max;
 }
 
 function csvField(v: unknown): string {

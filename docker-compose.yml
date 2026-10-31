@@ -1,4 +1,5 @@
-# ITLR-RAG V2 — docker compose cho API + refresh job.
+# ITLR-RAG V2 — docker compose API + refresh job (LEGACY, không có Web/PG/Ollama).
+# Full stack local: `compose.local.yml` (xem README §Docker Compose).
 #
 #  - `docker compose up -d`            : chạy API (mount var/ từ host)
 #  - `docker compose run --rm refresh` : tạo lại dữ liệu thủ công (lần đầu: thêm --online)

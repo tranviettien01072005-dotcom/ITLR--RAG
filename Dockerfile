@@ -18,9 +18,12 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 WORKDIR /app
 
-# Chỉ copy file khai báo deps trước — tận dụng cache layer khi đổi code
+# Chỉ copy file khai báo deps trước — tận dụng cache layer khi đổi code.
+# CPU-only host: cài torch bản CPU trước để requirements không kéo wheel CUDA (image nhỏ hơn
+# nhiều). Nếu triển khai GPU, bỏ dòng torch CPU và cài torch phù hợp CUDA.
 COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir --index-url https://download.pytorch.org/whl/cpu "torch==2.15.0+cpu" \
+    && pip install --no-cache-dir -r requirements.txt
 
 # Code + cấu hình + eval (eval cần để eval mọi thứ cũng chạy được trong image)
 COPY itlr ./itlr

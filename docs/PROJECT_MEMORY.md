@@ -516,6 +516,16 @@ không commit/push, không đổi active artifacts hay dữ liệu thật. WIP `
 - Evidence + SHA256: `reports/final-e2e-evidence/SHA256SUMS.txt`,
   `docker-resume-1031c/`; chi tiết trong [certification §11](../reports/FINAL_E2E_CERTIFICATION.md).
 
+## Pipeline audit — 2026-10-31 (catalog sync, link audit, 404 root cause)
+
+Root cause 404: index 178 item thật đã build/activate nhưng PostgreSQL Web chưa sync; CSV
+`web_items.csv` bị no-clobber nên không refresh được. Sửa: export `--refresh` (merge giữ row
+cộng đồng, atomic), `verify_web_catalog.py`, `audit_source_links.py`, tích hợp export+verify
+vào `refresh_pipeline.py` (`--sync-web` tùy chọn), `appendCatalogRow` lấy id max. Kiểm chứng
+thật: 178 row; trước sync `/courses/5129`=404 → sau sync 200, id lạ 404; audit mẫu 6 link MDN
+200/robots OK. Tests 503 Python / 163 Web PASS, coverage 67,63%/51,45%, security 0.
+[Pipeline audit](../reports/PIPELINE_AUDIT_2026-10-31.md). Production **NO-GO**.
+
 ## Final maintainability review — 2026-10-31
 
 Refactor bảo toàn hành vi: prewarm Ollama dùng `llm_client.base_url/default_model`, thêm

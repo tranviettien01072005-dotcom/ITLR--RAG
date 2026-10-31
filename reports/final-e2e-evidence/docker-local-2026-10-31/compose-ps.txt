@@ -1,0 +1,4 @@
+api Up About a minute (healthy)
+ollama Up About a minute (healthy)
+postgres Up 2 minutes (healthy)
+web Up About a minute (healthy)

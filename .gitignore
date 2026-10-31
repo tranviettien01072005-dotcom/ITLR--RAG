@@ -7,8 +7,9 @@ __pycache__/
 build/
 dist/
 
-# Secrets — KHÔNG commit (.env.example là template rỗng-key duy nhất được theo repo)
+# Secrets — KHÔNG commit (.env.example / .env.docker.example là template được theo repo)
 .env
+.env.docker
 deploy/*.env
 deploy/backups/
 

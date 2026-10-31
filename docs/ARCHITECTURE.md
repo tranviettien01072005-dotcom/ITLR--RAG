@@ -105,6 +105,10 @@ flowchart LR
 - Probe kiểm kỹ thuật; không thay thế đánh giá chất lượng.
 - `--with-cf` sinh interactions synthetic + CF; CF là tùy chọn, thiếu model trả 503 ở
   personas/for-you nhưng không ảnh hưởng search/chat.
+- Sau activate: `scripts/export_web_catalog.py --refresh` (merge, giữ row cộng đồng) →
+  `scripts/verify_web_catalog.py` (mọi item RAG có row Web) → `web: npm run sync`
+  (upsert PostgreSQL, không xóa enrollment). Thiếu bước này → search/chat thấy item nhưng
+  trang `/courses/:id` trả 404. `refresh_pipeline.py` tự chạy export + verify.
 - GC giữ version current/previous và staging chưa probe; không xóa thủ công khi job đang chạy.
 
 ## 6. Tương thích

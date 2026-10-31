@@ -1,873 +1,890 @@
 path	kind	status	note
-.dockerignore	config	structure	inventory/consistency check; runtime drill recorded separately
-.env.example	config	structure	inventory/consistency check; runtime drill recorded separately
-.github/dependabot.yml	config	structure	inventory/consistency check; runtime drill recorded separately
-.github/workflows/ci.yml	source	read	read during this audit (or re-verified after change)
-.gitignore	other	structure	inventory only
-AGENTS.md	source	read	read during this audit (or re-verified after change)
-CHANGELOG.md	source	read	read during this audit (or re-verified after change)
-CONSTRAINTS.md	source	read	read during this audit (or re-verified after change)
-Dockerfile	config	structure	inventory/consistency check; runtime drill recorded separately
-Makefile	other	structure	inventory only
-README.md	source	read	read during this audit (or re-verified after change)
-RESEARCH_ITLR.md	docs	current-doc	project documentation
-bin/refresh_env.sh	config	structure	inventory/consistency check; runtime drill recorded separately
-compose.production.yml	source	read	read during this audit (or re-verified after change)
-configs/collect.sources.json	data	structure	data/config asset; hash/inventory only
-configs/curated.resources.json	data	structure	data/config asset; hash/inventory only
-data/README.md	docs	current-doc	project documentation
-data/curated_resources.jsonl	data	structure	data/config asset; hash/inventory only
-data/licenses/Docker-Apache-2.0.txt	data	structure	data/config asset; hash/inventory only
-data/licenses/MDN-CC-BY-SA-2.5.html	asset	structure	rendered asset; covered by web build/tests
-data/licenses/Python-license.html	asset	structure	rendered asset; covered by web build/tests
-deploy/Caddyfile	config	structure	inventory/consistency check; runtime drill recorded separately
-deploy/DEPLOY.md	source	read	read during this audit (or re-verified after change)
-deploy/LOCAL_MODELS.md	source	read	read during this audit (or re-verified after change)
-deploy/PRODUCTION.md	source	read	read during this audit (or re-verified after change)
-deploy/api.env.example	config	structure	inventory/consistency check; runtime drill recorded separately
-deploy/compose.env.example	config	structure	inventory/consistency check; runtime drill recorded separately
-deploy/postgres.env.example	config	structure	inventory/consistency check; runtime drill recorded separately
-deploy/web.env.example	config	structure	inventory/consistency check; runtime drill recorded separately
-docker-compose.yml	source	read	read during this audit (or re-verified after change)
-docs/API.md	source	read	read during this audit (or re-verified after change)
-docs/ARCHITECTURE.md	source	read	read during this audit (or re-verified after change)
-docs/EVALUATION.md	source	read	read during this audit (or re-verified after change)
-docs/PROJECT_MEMORY.md	source	read	read during this audit (or re-verified after change)
-docs/RAG.md	source	read	read during this audit (or re-verified after change)
-docs/SECURITY.md	source	read	read during this audit (or re-verified after change)
-docs/TESTING.md	source	read	read during this audit (or re-verified after change)
-docs/decisions/ADR-001-deepseek-primary-llm.md	docs	adr	decision record
-docs/decisions/ADR-002-centralized-artifact-paths.md	docs	adr	decision record
-docs/decisions/ADR-003-synthetic-interactions-policy.md	docs	adr	decision record
-docs/decisions/ADR-004-evaluation-design.md	docs	adr	decision record
-docs/decisions/ADR-005-cf-optional-decoupling.md	docs	adr	decision record
-docs/decisions/ADR-006-data-sources-licensing.md	docs	adr	decision record
-docs/decisions/ADR-007-artifact-versioning.md	docs	adr	decision record
-docs/decisions/ADR-008-admin-token.md	docs	adr	decision record
-docs/decisions/ADR-009-security-runtime-boundaries.md	docs	adr	decision record
-docs/decisions/ADR-010-shared-retrieval-and-atomic-state.md	docs	adr	decision record
-docs/decisions/ADR-011-chatbot-presentation-and-catalog-contract.md	docs	adr	decision record
-docs/decisions/ADR-012-calibrated-search-and-stream-completion.md	docs	adr	decision record
-docs/decisions/ADR-013-evidence-excerpt-budget.md	source	read	read during this audit (or re-verified after change)
-docs/review-2026-10-27.md	docs	current-doc	project documentation
-docs/superpowers/plans/2026-10-29-itrl-v2.md	docs	historical	saved plan/spec
-docs/superpowers/specs/2026-10-29-itrl-v2-design.md	docs	historical	saved plan/spec
-eval/adapt_real_data.py	tooling	suite	compileall + import surface; not executed except where noted
-eval/bench_chunks_v3.py	tooling	suite	compileall + import surface; not executed except where noted
-eval/bench_latency.py	tooling	suite	compileall + import surface; not executed except where noted
-eval/build_ltr.py	tooling	suite	compileall + import surface; not executed except where noted
-eval/engineering_confirmation_queries.jsonl	data	structure	data/config asset; hash/inventory only
-eval/engineering_queries.jsonl	data	structure	data/config asset; hash/inventory only
-eval/eval_cf.py	tooling	suite	compileall + import surface; not executed except where noted
-eval/eval_fixture.py	tooling	suite	compileall + import surface; not executed except where noted
-eval/eval_generation.py	source	read	read during this audit (or re-verified after change)
-eval/eval_lexical_real.py	tooling	suite	compileall + import surface; not executed except where noted
-eval/eval_off_policy.py	tooling	suite	compileall + import surface; not executed except where noted
-eval/eval_offtopic.py	tooling	suite	compileall + import surface; not executed except where noted
-eval/eval_release_retrieval.py	source	read	read during this audit (or re-verified after change)
-eval/eval_v2_real.py	tooling	suite	compileall + import surface; not executed except where noted
-eval/evaluate_human.py	source	read	read during this audit (or re-verified after change)
-eval/make_judgments.py	tooling	suite	compileall + import surface; not executed except where noted
-eval/prepare_labeling_sheet.py	tooling	suite	compileall + import surface; not executed except where noted
-eval/release_queries.jsonl	data	structure	data/config asset; hash/inventory only
-eval/run_all.py	source	read	read during this audit (or re-verified after change)
-eval/run_evaluation.py	tooling	suite	compileall + import surface; not executed except where noted
-itlr/__init__.py	source	suite	imported and exercised by pytest/compileall
-itlr/api/__init__.py	source	suite	imported and exercised by pytest/compileall
-itlr/api/__main__.py	source	suite	imported and exercised by pytest/compileall
-itlr/api/ratelimit.py	source	read	read during this audit (or re-verified after change)
-itlr/api/server.py	source	read	read during this audit (or re-verified after change)
-itlr/api/static/index.html	asset	structure	rendered asset; covered by web build/tests
-itlr/api/static/orbital-timeline.css	asset	structure	rendered asset; covered by web build/tests
-itlr/api/static/orbital-timeline.js	asset	structure	rendered asset; covered by web build/tests
-itlr/api/static/ui.js	asset	structure	rendered asset; covered by web build/tests
-itlr/api/streaming.py	source	suite	imported and exercised by pytest/compileall
-itlr/chatbot/__init__.py	source	suite	imported and exercised by pytest/compileall
-itlr/chatbot/chatbot.py	source	read	read during this audit (or re-verified after change)
-itlr/chatbot/citations.py	source	read	read during this audit (or re-verified after change)
-itlr/chatbot/data/it_glossary.json	data	structure	data/config asset; hash/inventory only
-itlr/chatbot/data/it_roles.json	data	structure	data/config asset; hash/inventory only
-itlr/chatbot/intent_router.py	source	suite	imported and exercised by pytest/compileall
-itlr/chatbot/knowledge_base.py	source	suite	imported and exercised by pytest/compileall
-itlr/chatbot/llm_adapter.py	source	suite	imported and exercised by pytest/compileall
-itlr/chatbot/llm_client.py	source	suite	imported and exercised by pytest/compileall
-itlr/chatbot/opencode_client.py	source	suite	imported and exercised by pytest/compileall
-itlr/chatbot/presentation.py	source	suite	imported and exercised by pytest/compileall
-itlr/chatbot/query_understanding.py	source	suite	imported and exercised by pytest/compileall
-itlr/collect/__init__.py	source	suite	imported and exercised by pytest/compileall
-itlr/collect/adapters.py	source	suite	imported and exercised by pytest/compileall
-itlr/collect/chunk.py	source	suite	imported and exercised by pytest/compileall
-itlr/collect/extract.py	source	suite	imported and exercised by pytest/compileall
-itlr/collect/http.py	source	suite	imported and exercised by pytest/compileall
-itlr/collect/normalize.py	source	suite	imported and exercised by pytest/compileall
-itlr/collect/quality.py	source	suite	imported and exercised by pytest/compileall
-itlr/collect/runner.py	source	suite	imported and exercised by pytest/compileall
-itlr/collect/sources.py	source	suite	imported and exercised by pytest/compileall
-itlr/collect/store.py	source	suite	imported and exercised by pytest/compileall
-itlr/collect/url_util.py	source	suite	imported and exercised by pytest/compileall
-itlr/config.py	source	read	read during this audit (or re-verified after change)
-itlr/core/__init__.py	source	suite	imported and exercised by pytest/compileall
-itlr/core/ann.py	source	suite	imported and exercised by pytest/compileall
-itlr/core/bm25.py	source	suite	imported and exercised by pytest/compileall
-itlr/core/chunks.py	source	read	read during this audit (or re-verified after change)
-itlr/core/display.py	source	suite	imported and exercised by pytest/compileall
-itlr/core/embeddings.py	source	read	read during this audit (or re-verified after change)
-itlr/core/pipeline.py	source	suite	imported and exercised by pytest/compileall
-itlr/core/rag.py	source	suite	imported and exercised by pytest/compileall
-itlr/core/recommender.py	source	suite	imported and exercised by pytest/compileall
-itlr/core/rerank.py	source	read	read during this audit (or re-verified after change)
-itlr/data/__init__.py	source	suite	imported and exercised by pytest/compileall
-itlr/data/generate_interactions.py	source	suite	imported and exercised by pytest/compileall
-itlr/data/generate_items.py	source	suite	imported and exercised by pytest/compileall
-itlr/engine.py	source	suite	imported and exercised by pytest/compileall
-itlr/eval/__init__.py	source	suite	imported and exercised by pytest/compileall
-itlr/eval/cf_eval.py	source	suite	imported and exercised by pytest/compileall
-itlr/eval/diversity.py	source	suite	imported and exercised by pytest/compileall
-itlr/eval/loader.py	source	suite	imported and exercised by pytest/compileall
-itlr/eval/ltr_features.py	source	suite	imported and exercised by pytest/compileall
-itlr/eval/metrics.py	source	suite	imported and exercised by pytest/compileall
-itlr/eval/off_policy.py	source	suite	imported and exercised by pytest/compileall
-itlr/eval/significance.py	source	suite	imported and exercised by pytest/compileall
-itlr/indexv2.py	source	suite	imported and exercised by pytest/compileall
-itlr/locking.py	source	suite	imported and exercised by pytest/compileall
-itlr/pipelines/__init__.py	source	suite	imported and exercised by pytest/compileall
-itlr/pipelines/build_cf.py	source	suite	imported and exercised by pytest/compileall
-itlr/pipelines/build_embeddings.py	source	suite	imported and exercised by pytest/compileall
-itlr/pipelines/build_embeddings_v2.py	source	suite	imported and exercised by pytest/compileall
-itlr/pipelines/build_model.py	source	suite	imported and exercised by pytest/compileall
-itlr/pipelines/generate_interactions.py	source	suite	imported and exercised by pytest/compileall
-itlr/retrieval/__init__.py	source	suite	imported and exercised by pytest/compileall
-itlr/retrieval/bm25.py	source	read	read during this audit (or re-verified after change)
-itlr/retrieval/service.py	source	read	read during this audit (or re-verified after change)
-itlr/utils/__init__.py	source	suite	imported and exercised by pytest/compileall
-itlr/utils/repickle.py	source	suite	imported and exercised by pytest/compileall
-itlr/utils/runtime_patches.py	source	suite	imported and exercised by pytest/compileall
-itlr/versioning.py	source	suite	imported and exercised by pytest/compileall
-pyproject.toml	other	structure	inventory only
-pytest.ini	source	read	read during this audit (or re-verified after change)
-reports/ARCHITECTURE_REFACTOR_2026-10-30.md	docs	historical	report/evidence prose kept as history
-reports/AUDIT_2026-10-29.md	docs	historical	report/evidence prose kept as history
-reports/AUDIT_INCREMENT_2026-10-30.md	docs	historical	report/evidence prose kept as history
-reports/AUDIT_PORTABILITY_2026-10-30.md	docs	historical	report/evidence prose kept as history
-reports/BANDIT_TRIAGE_2026-10-30.md	docs	historical	report/evidence prose kept as history
-reports/FINAL_E2E_CERTIFICATION.md	source	read	read during this audit (or re-verified after change)
-reports/FINAL_ENGINEERING_REVIEW.md	docs	historical	report/evidence prose kept as history
-reports/FINAL_REMEDIATION.md	docs	historical	report/evidence prose kept as history
-reports/FULL_SYSTEM_AUDIT_2026-10-30.md	docs	historical	report/evidence prose kept as history
-reports/HARDENING_STREAM_2026-10-30.md	docs	historical	report/evidence prose kept as history
-reports/LOCAL_MODELS.md	docs	historical	report/evidence prose kept as history
-reports/PONYTAIL_AUDIT.md	docs	historical	report/evidence prose kept as history
-reports/PONYTAIL_REVIEW.md	docs	historical	report/evidence prose kept as history
-reports/PRODUCTION_BLOCKERS_RESOLUTION.md	docs	historical	report/evidence prose kept as history
-reports/PRODUCTION_CHECKPOINT_2026-10-30.md	docs	historical	report/evidence prose kept as history
-reports/RELEASE_READINESS_FINAL.md	docs	historical	report/evidence prose kept as history
-reports/RELEASE_VALIDATION_2026-10-30.md	docs	historical	report/evidence prose kept as history
-reports/RESTRUCTURING_CONTINUATION_2026-10-30.md	docs	historical	report/evidence prose kept as history
-reports/SKILLS_INVENTORY.md	docs	historical	report/evidence prose kept as history
-reports/V2_PRODUCT.md	docs	historical	report/evidence prose kept as history
-reports/V3_PROGRESS_2026-10-30.md	docs	historical	report/evidence prose kept as history
-reports/V3_RESTRUCTURING_2026-10-30.md	docs	historical	report/evidence prose kept as history
-reports/VALIDATION.md	source	read	read during this audit (or re-verified after change)
-reports/architecture_bandit.json	evidence	historical	frozen evidence/log; not edited
-reports/architecture_full_pytest.log	evidence	historical	frozen evidence/log; not edited
-reports/architecture_python_imports.json	evidence	historical	frozen evidence/log; not edited
-reports/architecture_template_benchmark.json	evidence	historical	frozen evidence/log; not edited
-reports/architecture_web_imports.json	evidence	historical	frozen evidence/log; not edited
-reports/bm25_postings_benchmark.json	evidence	historical	frozen evidence/log; not edited
-reports/cf_eval.md	docs	historical	report/evidence prose kept as history
-reports/chunks_v3_audit_experiment.json	evidence	historical	frozen evidence/log; not edited
-reports/chunks_v3_experiment.json	evidence	historical	frozen evidence/log; not edited
-reports/chunks_v3_unified_experiment.json	evidence	historical	frozen evidence/log; not edited
-reports/curated_collection.json	evidence	historical	frozen evidence/log; not edited
-reports/enterprise-adapter.log	evidence	historical	frozen evidence/log; not edited
-reports/enterprise-after-python.log	evidence	historical	frozen evidence/log; not edited
-reports/enterprise-after-web.log	evidence	historical	frozen evidence/log; not edited
-reports/enterprise-before-python.log	evidence	historical	frozen evidence/log; not edited
-reports/enterprise-before-web.log	evidence	historical	frozen evidence/log; not edited
-reports/enterprise-docs.log	evidence	historical	frozen evidence/log; not edited
-reports/enterprise-inventory.json	evidence	historical	frozen evidence/log; not edited
-reports/enterprise-python-coverage.json	evidence	historical	frozen evidence/log; not edited
-reports/enterprise-python.log	evidence	historical	frozen evidence/log; not edited
-reports/enterprise-web.log	evidence	historical	frozen evidence/log; not edited
-reports/final-bandit-triage.json	evidence	historical	frozen evidence/log; not edited
-reports/final-bandit.json	evidence	historical	frozen evidence/log; not edited
-reports/final-bandit.log	evidence	historical	frozen evidence/log; not edited
-reports/final-docs.log	evidence	historical	frozen evidence/log; not edited
-reports/final-document-review.json	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/SHA256SUMS.txt	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/ab-500.log	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/ab-800.log	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/ab-analysis.json	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/ab-none.log	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/ab_analysis.py	source	suite	imported and exercised by pytest/compileall
-reports/final-e2e-evidence/api.log	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/artifact-lifecycle.log	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/backup-restore.log	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/bandit.json	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/bandit.log	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/bench-latency/itlr-bench-prompt.txt	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/bench-latency/latency-summary.json	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/bench-latency/sweep.json	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/bench-latency/sweep.log	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/bench-latency/sweep.py	source	suite	imported and exercised by pytest/compileall
-reports/final-e2e-evidence/browser-db.log	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/browser_db_fresh.py	source	suite	imported and exercised by pytest/compileall
-reports/final-e2e-evidence/budget800-comparison.json	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/compileall.log	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/dataset-and-protocol-sha256.txt	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/docker-preflight.txt	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/docker-resume-1031c/Caddyfile	config	structure	inventory/consistency check; runtime drill recorded separately
-reports/final-e2e-evidence/docker-resume-1031c/Dockerfile.cpu	other	structure	inventory only
-reports/final-e2e-evidence/docker-resume-1031c/api-health.log	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/docker-resume-1031c/application-build.log	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/docker-resume-1031c/browser-final-result.json	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/docker-resume-1031c/browser-real-result.json	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/docker-resume-1031c/compose.yml	config	structure	inventory/consistency check; runtime drill recorded separately
-reports/final-e2e-evidence/docker-resume-1031c/container-logs.log	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/docker-resume-1031c/docker-commands.jsonl	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/docker-resume-1031c/docker-result.json	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/docker-resume-1031c/docker-stats.txt	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/docker-resume-1031c/image-identities.log	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/docker-resume-1031c/local-images.log	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/docker-resume-1031c/migration-1.log	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/docker-resume-1031c/migration-2.log	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/docker-resume-1031c/observer-evidence/provider-sockets.json	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/docker-resume-1031c/observer.py	source	suite	imported and exercised by pytest/compileall
-reports/final-e2e-evidence/docker-resume-1031c/pg-dump.log	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/docker-resume-1031c/pg-restore.log	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/docker-resume-1031c/provider-probes.json	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/docker-resume-1031c/real-chat-events.json	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/docker-resume-1031c/restart-services.log	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/docker-resume-1031c/seed-fixture.log	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/docker-resume-1031c/web-health.log	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/frozen-eval.log	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/frozen_eval.py	source	suite	imported and exercised by pytest/compileall
-reports/final-e2e-evidence/frozen_eval_ab.py	source	suite	imported and exercised by pytest/compileall
-reports/final-e2e-evidence/gate-results.json	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/gate-summary.txt	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/generation-eval-ab-500.json	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/generation-eval-ab-800.json	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/generation-eval-ab-none.json	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/generation-eval.json	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/http-db.log	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/human-review-packet.jsonl	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/npm-audit.log	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/npm-audit.txt	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/npm-lock.log	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/pip-audit.json	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/pip-audit.log	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/pip-check.log	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/python-coverage.json	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/python-tests.log	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/reliability-load/cancel-n1.json	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/reliability-load/conc-n1.json	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/reliability-load/conc-n2.json	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/reliability-load/conc-n4.json	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/reliability-load/db-after-recovery.json	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/reliability-load/db-before-crash.json	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/reliability-load/health-n1.json	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/reliability-load/load.py	source	suite	imported and exercised by pytest/compileall
-reports/final-e2e-evidence/reliability-load/reliability-summary.json	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/reliability-load/rss-n1.json	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/reliability-load/soak-n1.json	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/reliability-load/tour.log	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/reliability-load/tour.sh	config	structure	inventory/consistency check; runtime drill recorded separately
-reports/final-e2e-evidence/reliability-load/tour2.log	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/reliability-load/tour2.sh	config	structure	inventory/consistency check; runtime drill recorded separately
-reports/final-e2e-evidence/sse-registry.txt	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/tls-smoke.log	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/web-build.log	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/web-lint.log	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/web-tests.log	evidence	historical	frozen evidence/log; not edited
-reports/final-e2e-evidence/web-typecheck.log	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/bandit-triage.json	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/bandit.json	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/browser.json	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/browser.py	source	suite	imported and exercised by pytest/compileall
-reports/final-engineering-evidence/browser_wrapper.py	source	suite	imported and exercised by pytest/compileall
-reports/final-engineering-evidence/budget-green.log	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/budget-red.log	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/build.log	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/calibrate.py	source	suite	imported and exercised by pytest/compileall
-reports/final-engineering-evidence/calibration.json	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/cleanup-python.log	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/compare_generation.py	source	suite	imported and exercised by pytest/compileall
-reports/final-engineering-evidence/coverage_run.py	source	suite	imported and exercised by pytest/compileall
-reports/final-engineering-evidence/docker.log	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/docs.log	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/eval_runtime_search.py	source	suite	imported and exercised by pytest/compileall
-reports/final-engineering-evidence/expansion-green.log	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/expansion-red.log	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/final-python.log	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/generation-before-profile.json	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/history-green.log	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/history-red.log	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/inventory.json	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/inventory.py	source	suite	imported and exercised by pytest/compileall
-reports/final-engineering-evidence/lint.log	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/live-api-server.log	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/live-api.json	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/live-api.log	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/live-budget.json	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/live_api.py	source	suite	imported and exercised by pytest/compileall
-reports/final-engineering-evidence/live_budget.py	source	suite	imported and exercised by pytest/compileall
-reports/final-engineering-evidence/npm-audit.json	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/persistence-green.log	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/persistence-red.log	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/pip-audit.json	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/pip-audit.log	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/pip-check.log	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/postgresql.log	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/prepare-after.log	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/prepare-before.log	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/profile_generation.py	source	suite	imported and exercised by pytest/compileall
-reports/final-engineering-evidence/prompt-experiment.json	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/prompt_experiment.py	source	suite	imported and exercised by pytest/compileall
-reports/final-engineering-evidence/python-coverage.json	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/python-status.json	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/raw-release.json	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/raw_release.py	source	suite	imported and exercised by pytest/compileall
-reports/final-engineering-evidence/refactor-green.log	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/reranker-load.log	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/runtime-boundary-green.log	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/runtime-boundary-red.log	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/runtime-observations.json	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/runtime-search-after-glossary.json	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/runtime-search-before-expansion-fix.json	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/runtime-search.json	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/sampling-comparison.json	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/sse-green.log	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/sse-red.log	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/structure.json	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/temporary-ports.log	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/threshold-green.log	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/threshold-red.log	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/threshold-selection.json	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/typecheck.log	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/web-coverage-summary.json	evidence	historical	frozen evidence/log; not edited
-reports/final-engineering-evidence/web-tests-outside.log	evidence	historical	frozen evidence/log; not edited
-reports/final-focused-python.log	evidence	historical	frozen evidence/log; not edited
-reports/final-focused-web.log	evidence	historical	frozen evidence/log; not edited
-reports/final-import-smoke.log	evidence	historical	frozen evidence/log; not edited
-reports/final-links.log	evidence	historical	frozen evidence/log; not edited
-reports/final-nonstream-red.log	evidence	historical	frozen evidence/log; not edited
-reports/final-npm-audit.json	evidence	historical	frozen evidence/log; not edited
-reports/final-ollama-red.log	evidence	historical	frozen evidence/log; not edited
-reports/final-pip-audit.json	evidence	historical	frozen evidence/log; not edited
-reports/final-pip-audit.log	evidence	historical	frozen evidence/log; not edited
-reports/final-prewarm-red.log	evidence	historical	frozen evidence/log; not edited
-reports/final-python-coverage.json	evidence	historical	frozen evidence/log; not edited
-reports/final-python-red.log	evidence	historical	frozen evidence/log; not edited
-reports/final-python.log	evidence	historical	frozen evidence/log; not edited
-reports/final-secret-scan.json	evidence	historical	frozen evidence/log; not edited
-reports/final-stream-green.log	evidence	historical	frozen evidence/log; not edited
-reports/final-web-red.log	evidence	historical	frozen evidence/log; not edited
-reports/final-web.log	evidence	historical	frozen evidence/log; not edited
-reports/fixture_eval.json	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/api.json	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/api.log	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/bandit.json	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/baseline-python-outside.log	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/browser.json	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/browser.py	source	suite	imported and exercised by pytest/compileall
-reports/full-system-audit-evidence-2026-10-30/build-e5.log	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/build-lexical.log	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/coverage_run.py	source	suite	imported and exercised by pytest/compileall
-reports/full-system-audit-evidence-2026-10-30/docs.log	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/e5.log	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/embeddings-manifest.json	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/environment.json	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/final-python.log	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/generation.json	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/generation.py	source	suite	imported and exercised by pytest/compileall
-reports/full-system-audit-evidence-2026-10-30/ingestion.log	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/inventory.json	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/manifest-green.log	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/manifest-red.log	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/npm-audit.json	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/npm-ci.log	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/ollama-green.log	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/ollama-red.log	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/pip-audit.json	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/pip-check.log	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/probe-before.json	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/probe-fresh.json	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/probe-fresh.log	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/probe.json	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/python-coverage.json	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/python-packages.json	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/python-status.json	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/retrieval-lexical.json	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/retrieval-neural.json	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/runtime-before.log	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/runtime.log	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/runtime.py	source	suite	imported and exercised by pytest/compileall
-reports/full-system-audit-evidence-2026-10-30/semaphore-probe.log	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/threaded-reload.log	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/timeout-green.log	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/timeout-red.log	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/ui-claim-green.log	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/ui-claim-red.log	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/web-build.log	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/web-coverage-summary.json	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/web-green.log	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/web-lint.log	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/web-tests-outside.log	evidence	historical	frozen evidence/log; not edited
-reports/full-system-audit-evidence-2026-10-30/web-typecheck.log	evidence	historical	frozen evidence/log; not edited
-reports/generation_eval_template.csv	evidence	historical	frozen evidence/log; not edited
-reports/generation_eval_template.json	evidence	historical	frozen evidence/log; not edited
-reports/generation_eval_template.md	docs	historical	report/evidence prose kept as history
-reports/hardening-baseline.log	evidence	historical	frozen evidence/log; not edited
-reports/hardening-final.log	evidence	historical	frozen evidence/log; not edited
-reports/hardening-green.log	evidence	historical	frozen evidence/log; not edited
-reports/hardening-lexical.json	evidence	historical	frozen evidence/log; not edited
-reports/hardening-lexical.log	evidence	historical	frozen evidence/log; not edited
-reports/hardening-portability-confirm.log	evidence	historical	frozen evidence/log; not edited
-reports/hardening-portability.log	evidence	historical	frozen evidence/log; not edited
-reports/hardening-red.log	evidence	historical	frozen evidence/log; not edited
-reports/hardening-review.log	evidence	historical	frozen evidence/log; not edited
-reports/hardening-utf8.log	evidence	historical	frozen evidence/log; not edited
-reports/hardening-web.log	evidence	historical	frozen evidence/log; not edited
-reports/human_eval.md	docs	historical	report/evidence prose kept as history
-reports/journey_browser_smoke.json	evidence	historical	frozen evidence/log; not edited
-reports/latency.md	docs	historical	report/evidence prose kept as history
-reports/learning-desktop.png	asset	structure	rendered asset; covered by web build/tests
-reports/learning-mobile.png	asset	structure	rendered asset; covered by web build/tests
-reports/local_embedding_smoke.json	evidence	historical	frozen evidence/log; not edited
-reports/local_models_smoke.json	evidence	historical	frozen evidence/log; not edited
-reports/off_policy.md	docs	historical	report/evidence prose kept as history
-reports/offtopic_eval.md	docs	historical	report/evidence prose kept as history
-reports/per_query.csv	evidence	historical	frozen evidence/log; not edited
-reports/per_query_kw_noisy.csv	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/HUMAN_REVIEW_PROTOCOL.md	docs	historical	report/evidence prose kept as history
-reports/production-blockers-evidence/PROFILE_FINDINGS.md	docs	historical	report/evidence prose kept as history
-reports/production-blockers-evidence/async-sdk-green.log	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/async-utf8-green.log	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/async-utf8-red.log	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/bandit.json	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/bandit.log	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/browser-cancellation-first-harness-failure.json	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/browser-cancellation-first-harness-failure.log	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/browser-cancellation-navigation-harness-failure.log	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/browser-cancellation-review.md	docs	historical	report/evidence prose kept as history
-reports/production-blockers-evidence/browser-cancellation.json	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/browser-cancellation.log	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/browser_cancellation.py	source	suite	imported and exercised by pytest/compileall
-reports/production-blockers-evidence/build.log	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/build_inventory.py	source	suite	imported and exercised by pytest/compileall
-reports/production-blockers-evidence/cancel-api.log	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/cancel-cleanup.json	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/cancel-proxy.log	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/cancellation-agent-green.log	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/cancellation-agent-review.md	docs	historical	report/evidence prose kept as history
-reports/production-blockers-evidence/cancellation-green.log	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/cancellation-proxy.json	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/cancellation-red.log	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/cancellation-regression-before.log	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/cancellation_proxy.py	source	suite	imported and exercised by pytest/compileall
-reports/production-blockers-evidence/citation-support-spotcheck.json	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/cleanup_cancellation_services.py	source	suite	imported and exercised by pytest/compileall
-reports/production-blockers-evidence/compileall.log	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/context-experiment.json	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/context-experiment.log	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/context_experiment.py	source	suite	imported and exercised by pytest/compileall
-reports/production-blockers-evidence/coverage_run.py	source	suite	imported and exercised by pytest/compileall
-reports/production-blockers-evidence/dev-context-prepared.json	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/docker-environment.json	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/docker-sudo-preflight.log	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/eval_generation.py	source	suite	imported and exercised by pytest/compileall
-reports/production-blockers-evidence/final-api-focused.log	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/final-checks.json	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/frozen-blind-cases.jsonl	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/generation-eval.json	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/generation-eval.log	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/generation-summary.json	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/git-diff-numstat.txt	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/git-status.txt	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/handoff-checks.json	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/human-review-packet.jsonl	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/inventory.json	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/lint.log	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/npm-audit.json	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/npm-audit.log	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/pip-audit.json	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/pip-audit.log	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/pip-check.log	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/post-eval-runner-idle.json	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/prepare-context.log	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/prepare_context.py	source	suite	imported and exercised by pytest/compileall
-reports/production-blockers-evidence/profile-local.json	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/profile-local.log	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/profile-ollama-ps.json	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/profile-ollama-tags.json	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/profile-summary.json	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/profile_local.py	source	suite	imported and exercised by pytest/compileall
-reports/production-blockers-evidence/python-coverage.json	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/python-status.json	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/python-tests.log	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/rootless-preflight.log	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/send-disconnect-agent.log	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/staging-EMBEDDINGS_MANIFEST.json	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/staging-MANIFEST.json	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/start_cancellation_services.py	source	suite	imported and exercised by pytest/compileall
-reports/production-blockers-evidence/summarize_profile.py	source	suite	imported and exercised by pytest/compileall
-reports/production-blockers-evidence/typecheck.log	evidence	historical	frozen evidence/log; not edited
-reports/production-blockers-evidence/web-tests.log	evidence	historical	frozen evidence/log; not edited
-reports/production_bandit.json	evidence	historical	frozen evidence/log; not edited
-reports/production_fixture_eval.json	evidence	historical	frozen evidence/log; not edited
-reports/production_pip_audit.json	evidence	historical	frozen evidence/log; not edited
-reports/production_pytest.log	evidence	historical	frozen evidence/log; not edited
-reports/production_pytest_external.log	evidence	historical	frozen evidence/log; not edited
-reports/production_static_imports.json	evidence	historical	frozen evidence/log; not edited
-reports/qwen_live_smoke.json	evidence	historical	frozen evidence/log; not edited
-reports/release-bandit.json	evidence	historical	frozen evidence/log; not edited
-reports/release-bandit.log	evidence	historical	frozen evidence/log; not edited
-reports/release-doc-check.json	evidence	historical	frozen evidence/log; not edited
-reports/release-eval-bandit.json	evidence	historical	frozen evidence/log; not edited
-reports/release-eval-bandit.log	evidence	historical	frozen evidence/log; not edited
-reports/release-final-checks.log	evidence	historical	frozen evidence/log; not edited
-reports/release-focused.log	evidence	historical	frozen evidence/log; not edited
-reports/release-npm-audit.json	evidence	historical	frozen evidence/log; not edited
-reports/release-pip-audit.json	evidence	historical	frozen evidence/log; not edited
-reports/release-pip-audit.log	evidence	historical	frozen evidence/log; not edited
-reports/release-python-coverage.json	evidence	historical	frozen evidence/log; not edited
-reports/release-python.log	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/HUMAN_REVIEW_PROTOCOL.md	docs	historical	report/evidence prose kept as history
-reports/release-readiness-evidence/POSTGRES_STAGING_SUMMARY.md	docs	historical	report/evidence prose kept as history
-reports/release-readiness-evidence/artifact-lifecycle.json	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/artifact-lifecycle.log	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/artifact_lifecycle.py	source	suite	imported and exercised by pytest/compileall
-reports/release-readiness-evidence/backup-restore-result.json	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/backup-restore.log	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/backup_restore.cjs	other	structure	inventory only
-reports/release-readiness-evidence/bandit.json	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/bandit.log	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/blind_cases.jsonl	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/blind_protocol.md	docs	historical	report/evidence prose kept as history
-reports/release-readiness-evidence/browser-db-result.json	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/browser-db.log	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/browser_db.py	source	suite	imported and exercised by pytest/compileall
-reports/release-readiness-evidence/build.log	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/build_inventory.py	source	suite	imported and exercised by pytest/compileall
-reports/release-readiness-evidence/cancellation_cleanup_pattern.json	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/cancellation_cleanup_pattern.py	source	suite	imported and exercised by pytest/compileall
-reports/release-readiness-evidence/cancellation_repro.json	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/cancellation_repro.py	source	suite	imported and exercised by pytest/compileall
-reports/release-readiness-evidence/cleanup_db_services.py	source	suite	imported and exercised by pytest/compileall
-reports/release-readiness-evidence/compileall.log	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/coverage_run.py	source	suite	imported and exercised by pytest/compileall
-reports/release-readiness-evidence/db-cleanup-result.json	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/db_query.cjs	other	structure	inventory only
-reports/release-readiness-evidence/direct-generation.json	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/direct-generation.log	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/direct_generation.py	source	suite	imported and exercised by pytest/compileall
-reports/release-readiness-evidence/final-review-checks.json	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/git-diff-numstat.txt	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/git-status.txt	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/http-db-before-parser-fix.log	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/http-db-first-fixture-failure.log	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/http-db-result.json	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/http-db.log	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/http_db_journeys.py	source	suite	imported and exercised by pytest/compileall
-reports/release-readiness-evidence/human_eval_supplement.jsonl	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/inventory.json	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/lint.log	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/measurement-summary.json	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/migration-1.log	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/migration-2.log	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/migration-result.json	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/npm-audit.json	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/npm-audit.log	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/ollama-list.log	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/ollama-ps.json	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/ollama-ps.log	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/ollama-tags.json	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/pdf-build.log	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/pdf-green.log	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/pdf-lint.log	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/pdf-red.log	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/pdf-typecheck.log	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/pg-download.log	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/pg-shutdown.log	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/pip-audit.json	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/pip-audit.log	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/pip-check.log	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/python-coverage.json	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/python-status.json	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/python-tests.log	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/query-diagnostics.json	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/resources-with-runner.json	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/retrieval-independent.json	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/retrieval_diagnostic.py	source	suite	imported and exercised by pytest/compileall
-reports/release-readiness-evidence/review.md	docs	historical	report/evidence prose kept as history
-reports/release-readiness-evidence/runtime-server.log	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/runtime.json	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/runtime.log	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/runtime.py	source	suite	imported and exercised by pytest/compileall
-reports/release-readiness-evidence/sample_runner.py	source	suite	imported and exercised by pytest/compileall
-reports/release-readiness-evidence/setup_db.cjs	other	structure	inventory only
-reports/release-readiness-evidence/staging-EMBEDDINGS_MANIFEST.json	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/staging-MANIFEST.json	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/start_services.py	source	suite	imported and exercised by pytest/compileall
-reports/release-readiness-evidence/tls-smoke-result.json	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/tls-smoke.log	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/tls_smoke.py	source	suite	imported and exercised by pytest/compileall
-reports/release-readiness-evidence/typecheck.log	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/ui-green.log	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/ui-red.log	evidence	historical	frozen evidence/log; not edited
-reports/release-readiness-evidence/upstream_fixture.cjs	other	structure	inventory only
-reports/release-readiness-evidence/web-tests.log	evidence	historical	frozen evidence/log; not edited
-reports/release-retrieval.json	evidence	historical	frozen evidence/log; not edited
-reports/release-retrieval.log	evidence	historical	frozen evidence/log; not edited
-reports/release-staging-static.json	evidence	historical	frozen evidence/log; not edited
-reports/release-stream-red.log	evidence	historical	frozen evidence/log; not edited
-reports/release-web.log	evidence	historical	frozen evidence/log; not edited
-reports/restructure-inventory.json	evidence	historical	frozen evidence/log; not edited
-reports/restructure-links.log	evidence	historical	frozen evidence/log; not edited
-reports/restructure-python.log	evidence	historical	frozen evidence/log; not edited
-reports/restructure-red.log	evidence	historical	frozen evidence/log; not edited
-reports/restructure-targeted.log	evidence	historical	frozen evidence/log; not edited
-reports/restructure-web.log	evidence	historical	frozen evidence/log; not edited
-reports/results.csv	evidence	historical	frozen evidence/log; not edited
-reports/results_kw_noisy.csv	evidence	historical	frozen evidence/log; not edited
-reports/tables.md	docs	historical	report/evidence prose kept as history
-reports/tables_kw_noisy.md	docs	historical	report/evidence prose kept as history
-requirements.txt	source	read	read during this audit (or re-verified after change)
-scripts/build_all.py	tooling	suite	compileall + import surface; not executed except where noted
-scripts/build_all_v2.py	tooling	suite	compileall + import surface; not executed except where noted
-scripts/collect_curated.py	tooling	suite	compileall + import surface; not executed except where noted
-scripts/collect_data.py	tooling	suite	compileall + import surface; not executed except where noted
-scripts/export_web_catalog.py	tooling	suite	compileall + import surface; not executed except where noted
-scripts/import_curated_snapshot.py	tooling	suite	compileall + import surface; not executed except where noted
-scripts/refresh_pipeline.py	tooling	suite	compileall + import surface; not executed except where noted
-scripts/verify_local_models.py	tooling	suite	compileall + import surface; not executed except where noted
-scripts/verify_staging_browser.cjs	other	structure	inventory only
-tasks/plan.md	source	read	read during this audit (or re-verified after change)
-tasks/todo.md	source	read	read during this audit (or re-verified after change)
-tests/conftest.py	test	suite	executed by pytest (494 passed)
-tests/test_admin_security_cf.py	test	suite	executed by pytest (494 passed)
-tests/test_ann.py	test	suite	executed by pytest (494 passed)
-tests/test_ann_active_version.py	test	suite	executed by pytest (494 passed)
-tests/test_api_hardening.py	test	suite	executed by pytest (494 passed)
-tests/test_api_integration.py	test	suite	executed by pytest (494 passed)
-tests/test_artifact_integrity.py	test	suite	executed by pytest (494 passed)
-tests/test_audit_regressions.py	test	suite	executed by pytest (494 passed)
-tests/test_bm25_refit.py	test	suite	executed by pytest (494 passed)
-tests/test_build_all_v2_cli.py	test	suite	executed by pytest (494 passed)
-tests/test_build_model_load.py	test	suite	executed by pytest (494 passed)
-tests/test_catalog_export_safety.py	test	suite	executed by pytest (494 passed)
-tests/test_chatbot_llm_adapter.py	test	suite	executed by pytest (494 passed)
-tests/test_chatbot_presentation.py	test	suite	executed by pytest (494 passed)
-tests/test_chatbot_retrieval_fixes.py	test	suite	executed by pytest (494 passed)
-tests/test_chunk_contract.py	test	suite	executed by pytest (494 passed)
-tests/test_chunks_v3.py	test	suite	executed by pytest (494 passed)
-tests/test_collect_crawl.py	test	suite	executed by pytest (494 passed)
-tests/test_collect_reconcile.py	test	suite	executed by pytest (494 passed)
-tests/test_collect_runner.py	test	suite	executed by pytest (494 passed)
-tests/test_collect_store_close.py	test	suite	executed by pytest (494 passed)
-tests/test_collect_utils.py	test	suite	executed by pytest (494 passed)
-tests/test_curated_collection.py	test	suite	executed by pytest (494 passed)
-tests/test_embedding_presets.py	test	suite	executed by pytest (494 passed)
-tests/test_engine_reload.py	test	suite	executed by pytest (494 passed)
-tests/test_engineering_eval.py	test	suite	executed by pytest (494 passed)
-tests/test_env_examples.py	test	suite	executed by pytest (494 passed)
-tests/test_eval_generation.py	test	suite	executed by pytest (494 passed)
-tests/test_eval_integrity.py	test	suite	executed by pytest (494 passed)
-tests/test_eval_loader.py	test	suite	executed by pytest (494 passed)
-tests/test_eval_metrics_diversity.py	test	suite	executed by pytest (494 passed)
-tests/test_eval_scripts_paths.py	test	suite	executed by pytest (494 passed)
-tests/test_evidence_binding.py	test	suite	executed by pytest (494 passed)
-tests/test_evidence_binding_edges.py	test	suite	executed by pytest (494 passed)
-tests/test_generate_interactions.py	test	suite	executed by pytest (494 passed)
-tests/test_grounded_citations.py	test	suite	executed by pytest (494 passed)
-tests/test_http_layer.py	test	suite	executed by pytest (494 passed)
-tests/test_index_probe.py	test	suite	executed by pytest (494 passed)
-tests/test_lexical_real_eval.py	test	suite	executed by pytest (494 passed)
-tests/test_lifecycle_robustness.py	test	suite	executed by pytest (494 passed)
-tests/test_llm_async.py	test	suite	executed by pytest (494 passed)
-tests/test_llm_client.py	test	suite	executed by pytest (494 passed)
-tests/test_loaded_fingerprint.py	test	suite	executed by pytest (494 passed)
-tests/test_locking.py	test	suite	executed by pytest (494 passed)
-tests/test_markdown_links.py	test	suite	executed by pytest (494 passed)
-tests/test_normalize.py	test	suite	executed by pytest (494 passed)
-tests/test_offtopic_gate.py	test	suite	executed by pytest (494 passed)
-tests/test_pickle_handles.py	test	suite	executed by pytest (494 passed)
-tests/test_pipeline_fixture.py	test	suite	executed by pytest (494 passed)
-tests/test_rag_query_utils.py	test	suite	executed by pytest (494 passed)
-tests/test_real_source_text.py	test	suite	executed by pytest (494 passed)
-tests/test_release_eval.py	test	suite	executed by pytest (494 passed)
-tests/test_retrieval_service.py	test	suite	executed by pytest (494 passed)
-tests/test_scripts_and_configs.py	test	suite	executed by pytest (494 passed)
-tests/test_significance.py	test	suite	executed by pytest (494 passed)
-tests/test_static_security.py	test	suite	executed by pytest (494 passed)
-tests/test_stream_cancellation.py	test	suite	executed by pytest (494 passed)
-tests/test_versioning.py	test	suite	executed by pytest (494 passed)
-var/data/eval/generation_testset.csv	data	structure	data/config asset; hash/inventory only
-var/data/eval/human_judgments.csv	data	structure	data/config asset; hash/inventory only
-var/data/eval/offtopic_testset.csv	data	structure	data/config asset; hash/inventory only
-var/data/eval/relevance_judgments.csv	data	structure	data/config asset; hash/inventory only
-var/data/eval/relevance_keyword.csv	data	structure	data/config asset; hash/inventory only
-var/data/interactions.csv	data	structure	data/config asset; hash/inventory only
-var/data/interactions_backup_500users.csv	data	structure	data/config asset; hash/inventory only
-var/data/it_learning_items.csv	data	structure	data/config asset; hash/inventory only
-web/.dockerignore	config	structure	inventory/consistency check; runtime drill recorded separately
-web/.env.example	config	structure	inventory/consistency check; runtime drill recorded separately
-web/.gitignore	other	structure	inventory only
-web/.prettierrc	other	structure	inventory only
-web/Dockerfile	source	read	read during this audit (or re-verified after change)
-web/SECURITY_REMEDIATION.md	docs	current-doc	project documentation
-web/docker-entrypoint.sh	source	read	read during this audit (or re-verified after change)
-web/eslint.config.mjs	other	structure	inventory only
-web/nodemon.json	data	structure	data/config asset; hash/inventory only
-web/package-lock.json	data	structure	data/config asset; hash/inventory only
-web/package.json	source	read	read during this audit (or re-verified after change)
-web/src/app.test.ts	source	suite	vitest/typecheck/lint/build (157 tests)
-web/src/app.ts	source	suite	vitest/typecheck/lint/build (157 tests)
-web/src/config/catalog.ts	source	suite	vitest/typecheck/lint/build (157 tests)
-web/src/config/env.test.ts	source	suite	vitest/typecheck/lint/build (157 tests)
-web/src/config/env.ts	source	read	read during this audit (or re-verified after change)
-web/src/db/check.ts	source	suite	vitest/typecheck/lint/build (157 tests)
-web/src/db/migrate.ts	source	suite	vitest/typecheck/lint/build (157 tests)
-web/src/db/pool.ts	source	read	read during this audit (or re-verified after change)
-web/src/db/schema.sql	source	read	read during this audit (or re-verified after change)
-web/src/db/seed-courses.ts	source	suite	vitest/typecheck/lint/build (157 tests)
-web/src/db/sync-courses.ts	source	suite	vitest/typecheck/lint/build (157 tests)
-web/src/db/types.ts	source	suite	vitest/typecheck/lint/build (157 tests)
-web/src/middleware/auth.test.ts	source	suite	vitest/typecheck/lint/build (157 tests)
-web/src/middleware/auth.ts	source	read	read during this audit (or re-verified after change)
-web/src/middleware/security.test.ts	source	suite	vitest/typecheck/lint/build (157 tests)
-web/src/middleware/security.ts	source	read	read during this audit (or re-verified after change)
-web/src/middleware/uploads.test.ts	source	suite	vitest/typecheck/lint/build (157 tests)
-web/src/middleware/uploads.ts	source	read	read during this audit (or re-verified after change)
-web/src/public/app.js	asset	structure	rendered asset; covered by web build/tests
-web/src/public/chat-stream.js	asset	structure	rendered asset; covered by web build/tests
-web/src/public/fonts/inter-latin-ext.woff2	asset	structure	rendered asset; covered by web build/tests
-web/src/public/fonts/inter-latin.woff2	asset	structure	rendered asset; covered by web build/tests
-web/src/public/fonts/inter-vietnamese.woff2	asset	structure	rendered asset; covered by web build/tests
-web/src/public/init.js	asset	structure	rendered asset; covered by web build/tests
-web/src/public/learning.css	asset	structure	rendered asset; covered by web build/tests
-web/src/public/learning.js	asset	structure	rendered asset; covered by web build/tests
-web/src/public/styles.css	asset	structure	rendered asset; covered by web build/tests
-web/src/routes/admin-login.test.ts	source	suite	vitest/typecheck/lint/build (157 tests)
-web/src/routes/admin-security.test.ts	source	suite	vitest/typecheck/lint/build (157 tests)
-web/src/routes/admin.routes.ts	source	read	read during this audit (or re-verified after change)
-web/src/routes/api.routes.ts	source	read	read during this audit (or re-verified after change)
-web/src/routes/auth-security.test.ts	source	suite	vitest/typecheck/lint/build (157 tests)
-web/src/routes/auth.routes.ts	source	read	read during this audit (or re-verified after change)
-web/src/routes/chat-page.test.ts	source	suite	vitest/typecheck/lint/build (157 tests)
-web/src/routes/chat.handlers.ts	source	read	read during this audit (or re-verified after change)
-web/src/routes/chat.routes.test.ts	source	suite	vitest/typecheck/lint/build (157 tests)
-web/src/routes/learning.routes.test.ts	source	suite	vitest/typecheck/lint/build (157 tests)
-web/src/routes/learning.routes.ts	source	read	read during this audit (or re-verified after change)
-web/src/routes/media-range.test.ts	source	suite	vitest/typecheck/lint/build (157 tests)
-web/src/routes/pages.routes.ts	source	read	read during this audit (or re-verified after change)
-web/src/routes/realtime-lifecycle.test.ts	source	suite	vitest/typecheck/lint/build (157 tests)
-web/src/routes/social.routes.ts	source	suite	vitest/typecheck/lint/build (157 tests)
-web/src/routes/upload-extraction.test.ts	source	suite	vitest/typecheck/lint/build (157 tests)
-web/src/server.ts	source	suite	vitest/typecheck/lint/build (157 tests)
-web/src/services/catalog-csv.ts	source	suite	vitest/typecheck/lint/build (157 tests)
-web/src/services/chat-client.test.ts	source	suite	vitest/typecheck/lint/build (157 tests)
-web/src/services/chat-history.test.ts	source	suite	vitest/typecheck/lint/build (157 tests)
-web/src/services/chat-history.ts	source	suite	vitest/typecheck/lint/build (157 tests)
-web/src/services/chat-stream.test.ts	source	suite	vitest/typecheck/lint/build (157 tests)
-web/src/services/chat-stream.ts	source	read	read during this audit (or re-verified after change)
-web/src/services/chat-ui.test.ts	source	suite	vitest/typecheck/lint/build (157 tests)
-web/src/services/dataset-extract.test.ts	source	suite	vitest/typecheck/lint/build (157 tests)
-web/src/services/dataset-extract.ts	source	suite	vitest/typecheck/lint/build (157 tests)
-web/src/services/dataset.test.ts	source	suite	vitest/typecheck/lint/build (157 tests)
-web/src/services/dataset.ts	source	suite	vitest/typecheck/lint/build (157 tests)
-web/src/services/http-range.ts	source	read	read during this audit (or re-verified after change)
-web/src/services/learning.test.ts	source	suite	vitest/typecheck/lint/build (157 tests)
-web/src/services/learning.ts	source	read	read during this audit (or re-verified after change)
-web/src/services/mailer.ts	source	read	read during this audit (or re-verified after change)
-web/src/services/markdown.test.ts	source	suite	vitest/typecheck/lint/build (157 tests)
-web/src/services/markdown.ts	source	suite	vitest/typecheck/lint/build (157 tests)
-web/src/services/password.ts	source	read	read during this audit (or re-verified after change)
-web/src/services/posts.ts	source	suite	vitest/typecheck/lint/build (157 tests)
-web/src/services/realtime.ts	source	suite	vitest/typecheck/lint/build (157 tests)
-web/src/services/recommender-stream.test.ts	source	suite	vitest/typecheck/lint/build (157 tests)
-web/src/services/recommender.ts	source	read	read during this audit (or re-verified after change)
-web/src/services/social.test.ts	source	suite	vitest/typecheck/lint/build (157 tests)
-web/src/services/social.ts	source	suite	vitest/typecheck/lint/build (157 tests)
-web/src/services/static-ui.test.ts	source	suite	vitest/typecheck/lint/build (157 tests)
-web/src/views/account.ejs	asset	structure	rendered asset; covered by web build/tests
-web/src/views/admin-catalog.ejs	asset	structure	rendered asset; covered by web build/tests
-web/src/views/admin-login.ejs	asset	structure	rendered asset; covered by web build/tests
-web/src/views/admin-manage.ejs	asset	structure	rendered asset; covered by web build/tests
-web/src/views/admin-pending.ejs	asset	structure	rendered asset; covered by web build/tests
-web/src/views/admin.ejs	asset	structure	rendered asset; covered by web build/tests
-web/src/views/auth/forgot.ejs	asset	structure	rendered asset; covered by web build/tests
-web/src/views/auth/login.ejs	asset	structure	rendered asset; covered by web build/tests
-web/src/views/auth/register.ejs	asset	structure	rendered asset; covered by web build/tests
-web/src/views/auth/reset.ejs	asset	structure	rendered asset; covered by web build/tests
-web/src/views/blog.ejs	asset	structure	rendered asset; covered by web build/tests
-web/src/views/chat.ejs	asset	structure	rendered asset; covered by web build/tests
-web/src/views/course.ejs	asset	structure	rendered asset; covered by web build/tests
-web/src/views/dashboard.ejs	asset	structure	rendered asset; covered by web build/tests
-web/src/views/error.ejs	asset	structure	rendered asset; covered by web build/tests
-web/src/views/friends.ejs	asset	structure	rendered asset; covered by web build/tests
-web/src/views/home.ejs	asset	structure	rendered asset; covered by web build/tests
-web/src/views/learning.ejs	asset	structure	rendered asset; covered by web build/tests
-web/src/views/messages.ejs	asset	structure	rendered asset; covered by web build/tests
-web/src/views/partials/admin-footer.ejs	asset	structure	rendered asset; covered by web build/tests
-web/src/views/partials/admin-header.ejs	asset	structure	rendered asset; covered by web build/tests
-web/src/views/partials/auth-aside.ejs	asset	structure	rendered asset; covered by web build/tests
-web/src/views/partials/avatar.ejs	asset	structure	rendered asset; covered by web build/tests
-web/src/views/partials/course-card.ejs	asset	structure	rendered asset; covered by web build/tests
-web/src/views/partials/csrf.ejs	asset	structure	rendered asset; covered by web build/tests
-web/src/views/partials/footer.ejs	asset	structure	rendered asset; covered by web build/tests
-web/src/views/partials/header.ejs	asset	structure	rendered asset; covered by web build/tests
-web/src/views/partials/post.ejs	asset	structure	rendered asset; covered by web build/tests
-web/src/views/profile.ejs	asset	structure	rendered asset; covered by web build/tests
-web/src/views/search.ejs	asset	structure	rendered asset; covered by web build/tests
-web/src/views/views.test.ts	source	suite	vitest/typecheck/lint/build (157 tests)
-web/tsconfig.json	data	structure	data/config asset; hash/inventory only
-web/vitest.config.ts	source	read	read during this audit (or re-verified after change)
-.coverage	other	new	added by this audit (untracked in git)
-reports/FINAL_CODEBASE_FREEZE.md	docs	new	added by this audit (untracked in git)
-reports/FINAL_MAINTAINABILITY_REVIEW.md	docs	new	added by this audit (untracked in git)
-reports/FINAL_PRODUCTION_AUDIT.md	docs	new	added by this audit (untracked in git)
-reports/FINAL_RELEASE_READINESS.md	docs	new	added by this audit (untracked in git)
-reports/audit-file-manifest-2026-10-31.tsv	other	new	added by this audit (untracked in git)
-reports/final-e2e-evidence/audit-2026-10-31/audit-bandit-high.json	evidence	new	added by this audit (untracked in git)
-reports/final-e2e-evidence/audit-2026-10-31/audit-npm-audit.log	evidence	new	added by this audit (untracked in git)
-reports/final-e2e-evidence/audit-2026-10-31/audit-python-coverage.json	evidence	new	added by this audit (untracked in git)
-reports/final-e2e-evidence/audit-2026-10-31/audit-retrieval.json	evidence	new	added by this audit (untracked in git)
-reports/final-e2e-evidence/audit-2026-10-31/audit-web-build.log	evidence	new	added by this audit (untracked in git)
-reports/final-e2e-evidence/audit-2026-10-31/audit-web-lint.log	evidence	new	added by this audit (untracked in git)
-reports/final-e2e-evidence/audit-2026-10-31/audit-web-test.log	evidence	new	added by this audit (untracked in git)
-reports/final-e2e-evidence/audit-2026-10-31/audit-web-typecheck.log	evidence	new	added by this audit (untracked in git)
-reports/final-e2e-evidence/audit-2026-10-31/forgot-check.sql	config	new	added by this audit (untracked in git)
-reports/final-e2e-evidence/audit-2026-10-31/schema-logic-check.sql	config	new	added by this audit (untracked in git)
-reports/final-e2e-evidence/audit-2026-10-31/web-tests-final.log	evidence	new	added by this audit (untracked in git)
-reports/final-e2e-evidence/release-2026-10-31/application-build.log	evidence	new	added by this audit (untracked in git)
-reports/final-e2e-evidence/release-2026-10-31/bench_components.py	source	new	added by this audit (untracked in git)
-reports/final-e2e-evidence/release-2026-10-31/browser-final-release.log	evidence	new	added by this audit (untracked in git)
-reports/final-e2e-evidence/release-2026-10-31/browser-final-result.json	evidence	new	added by this audit (untracked in git)
-reports/final-e2e-evidence/release-2026-10-31/cold_check.py	source	new	added by this audit (untracked in git)
-reports/final-e2e-evidence/release-2026-10-31/components-cold.json	evidence	new	added by this audit (untracked in git)
-reports/final-e2e-evidence/release-2026-10-31/components-warm.json	evidence	new	added by this audit (untracked in git)
-reports/final-e2e-evidence/release-2026-10-31/components-warm.log	evidence	new	added by this audit (untracked in git)
-reports/final-e2e-evidence/release-2026-10-31/docker-result.json	evidence	new	added by this audit (untracked in git)
-reports/final-e2e-evidence/release-2026-10-31/driver-console-release.log	evidence	new	added by this audit (untracked in git)
-reports/final-e2e-evidence/release-2026-10-31/frozen-none.json	evidence	new	added by this audit (untracked in git)
-reports/final-e2e-evidence/release-2026-10-31/human_review_scoring_sheet.csv	evidence	new	added by this audit (untracked in git)
-reports/final-e2e-evidence/release-2026-10-31/image-identities.log	evidence	new	added by this audit (untracked in git)
-reports/final-e2e-evidence/release-2026-10-31/old-schema-upgrade.sql	config	new	added by this audit (untracked in git)
-reports/final-e2e-evidence/release-2026-10-31/python-coverage.json	evidence	new	added by this audit (untracked in git)
-reports/final-e2e-evidence/release-2026-10-31/release-frozen-none.log	evidence	new	added by this audit (untracked in git)
-reports/final-e2e-evidence/release-2026-10-31/release-pg-check.sql	config	new	added by this audit (untracked in git)
-reports/final-e2e-evidence/release-2026-10-31/release-pip-audit.log	evidence	new	added by this audit (untracked in git)
-reports/final-e2e-evidence/release-2026-10-31/release-web-test.log	evidence	new	added by this audit (untracked in git)
-reports/final-e2e-evidence/release-2026-10-31/reliability/conc-n1.json	evidence	new	added by this audit (untracked in git)
-reports/final-e2e-evidence/release-2026-10-31/reliability/conc-n2.json	evidence	new	added by this audit (untracked in git)
-reports/final-e2e-evidence/release-2026-10-31/reliability/conc-n4.json	evidence	new	added by this audit (untracked in git)
-reports/final-e2e-evidence/release-2026-10-31/reliability/rss-release.txt	evidence	new	added by this audit (untracked in git)
-reports/final-e2e-evidence/release-2026-10-31/reliability/soak-n1.json	evidence	new	added by this audit (untracked in git)
-reports/release-readiness-evidence/human_review_scoring_sheet.csv	evidence	new	added by this audit (untracked in git)
-web/src/db/pool.test.ts	source	new	added by this audit (untracked in git)
-web/src/routes/lesson-progress.test.ts	source	new	added by this audit (untracked in git)
-web/src/routes/password-reset.test.ts	source	new	added by this audit (untracked in git)
-web/src/routes/session-revocation.test.ts	source	new	added by this audit (untracked in git)
-web/src/services/lesson-progress.ts	source	new	added by this audit (untracked in git)
-web/src/services/mailer.test.ts	source	new	added by this audit (untracked in git)
+.dockerignore	other	structure	inventory
+.env.example	other	structure	inventory
+.github/dependabot.yml	config	structure	compose/CI config
+.github/workflows/ci.yml	config	structure	compose/CI config
+.gitignore	other	structure	inventory
+AGENTS.md	docs	current-doc	doc
+CHANGELOG.md	docs	current-doc	doc
+CONSTRAINTS.md	docs	current-doc	doc
+Dockerfile	config	read	created/edited this deployment audit
+Makefile	other	structure	inventory
+README.md	docs	read	created/edited this deployment audit
+RESEARCH_ITLR.md	docs	current-doc	doc
+bin/refresh_env.sh	config	structure	compose/CI config
+compose.production.yml	config	structure	compose/CI config
+configs/collect.sources.json	data	structure	data/evidence
+configs/curated.resources.json	data	structure	data/evidence
+data/README.md	docs	current-doc	doc
+data/curated_resources.jsonl	data	structure	data/evidence
+data/licenses/Docker-Apache-2.0.txt	data	structure	data/evidence
+data/licenses/MDN-CC-BY-SA-2.5.html	other	structure	inventory
+data/licenses/Python-license.html	other	structure	inventory
+deploy/Caddyfile	other	structure	inventory
+deploy/DEPLOY.md	docs	read	created/edited this deployment audit
+deploy/LOCAL_MODELS.md	docs	current-doc	doc
+deploy/PRODUCTION.md	docs	current-doc	doc
+deploy/api.env.example	other	structure	inventory
+deploy/compose.env.example	other	structure	inventory
+deploy/postgres.env.example	other	structure	inventory
+deploy/web.env.example	other	structure	inventory
+docker-compose.yml	config	read	created/edited this deployment audit
+docs/API.md	docs	current-doc	doc
+docs/ARCHITECTURE.md	docs	current-doc	doc
+docs/EVALUATION.md	docs	current-doc	doc
+docs/PROJECT_MEMORY.md	docs	current-doc	doc
+docs/RAG.md	docs	current-doc	doc
+docs/SECURITY.md	docs	current-doc	doc
+docs/TESTING.md	docs	current-doc	doc
+docs/decisions/ADR-001-deepseek-primary-llm.md	docs	current-doc	doc
+docs/decisions/ADR-002-centralized-artifact-paths.md	docs	current-doc	doc
+docs/decisions/ADR-003-synthetic-interactions-policy.md	docs	current-doc	doc
+docs/decisions/ADR-004-evaluation-design.md	docs	current-doc	doc
+docs/decisions/ADR-005-cf-optional-decoupling.md	docs	current-doc	doc
+docs/decisions/ADR-006-data-sources-licensing.md	docs	current-doc	doc
+docs/decisions/ADR-007-artifact-versioning.md	docs	current-doc	doc
+docs/decisions/ADR-008-admin-token.md	docs	current-doc	doc
+docs/decisions/ADR-009-security-runtime-boundaries.md	docs	current-doc	doc
+docs/decisions/ADR-010-shared-retrieval-and-atomic-state.md	docs	current-doc	doc
+docs/decisions/ADR-011-chatbot-presentation-and-catalog-contract.md	docs	current-doc	doc
+docs/decisions/ADR-012-calibrated-search-and-stream-completion.md	docs	current-doc	doc
+docs/decisions/ADR-013-evidence-excerpt-budget.md	docs	current-doc	doc
+docs/review-2026-10-27.md	docs	current-doc	doc
+docs/superpowers/plans/2026-10-29-itrl-v2.md	docs	historical	doc
+docs/superpowers/specs/2026-10-29-itrl-v2-design.md	docs	historical	doc
+eval/adapt_real_data.py	source	suite	tests/compileall
+eval/bench_chunks_v3.py	source	suite	tests/compileall
+eval/bench_latency.py	source	suite	tests/compileall
+eval/build_ltr.py	source	suite	tests/compileall
+eval/engineering_confirmation_queries.jsonl	data	structure	data/evidence
+eval/engineering_queries.jsonl	data	structure	data/evidence
+eval/eval_cf.py	source	suite	tests/compileall
+eval/eval_fixture.py	source	suite	tests/compileall
+eval/eval_generation.py	source	suite	tests/compileall
+eval/eval_lexical_real.py	source	suite	tests/compileall
+eval/eval_off_policy.py	source	suite	tests/compileall
+eval/eval_offtopic.py	source	suite	tests/compileall
+eval/eval_release_retrieval.py	source	suite	tests/compileall
+eval/eval_v2_real.py	source	suite	tests/compileall
+eval/evaluate_human.py	source	suite	tests/compileall
+eval/make_judgments.py	source	suite	tests/compileall
+eval/prepare_labeling_sheet.py	source	suite	tests/compileall
+eval/release_queries.jsonl	data	structure	data/evidence
+eval/run_all.py	source	suite	tests/compileall
+eval/run_evaluation.py	source	suite	tests/compileall
+itlr/__init__.py	source	suite	tests/compileall
+itlr/api/__init__.py	source	suite	tests/compileall
+itlr/api/__main__.py	source	suite	tests/compileall
+itlr/api/ratelimit.py	source	suite	tests/compileall
+itlr/api/server.py	source	suite	tests/compileall
+itlr/api/static/index.html	other	structure	inventory
+itlr/api/static/orbital-timeline.css	other	structure	inventory
+itlr/api/static/orbital-timeline.js	other	structure	inventory
+itlr/api/static/ui.js	other	structure	inventory
+itlr/api/streaming.py	source	suite	tests/compileall
+itlr/chatbot/__init__.py	source	suite	tests/compileall
+itlr/chatbot/chatbot.py	source	suite	tests/compileall
+itlr/chatbot/citations.py	source	suite	tests/compileall
+itlr/chatbot/data/it_glossary.json	data	structure	data/evidence
+itlr/chatbot/data/it_roles.json	data	structure	data/evidence
+itlr/chatbot/intent_router.py	source	suite	tests/compileall
+itlr/chatbot/knowledge_base.py	source	suite	tests/compileall
+itlr/chatbot/llm_adapter.py	source	suite	tests/compileall
+itlr/chatbot/llm_client.py	source	suite	tests/compileall
+itlr/chatbot/opencode_client.py	source	suite	tests/compileall
+itlr/chatbot/presentation.py	source	suite	tests/compileall
+itlr/chatbot/query_understanding.py	source	suite	tests/compileall
+itlr/collect/__init__.py	source	suite	tests/compileall
+itlr/collect/adapters.py	source	suite	tests/compileall
+itlr/collect/chunk.py	source	suite	tests/compileall
+itlr/collect/extract.py	source	suite	tests/compileall
+itlr/collect/http.py	source	suite	tests/compileall
+itlr/collect/normalize.py	source	suite	tests/compileall
+itlr/collect/quality.py	source	suite	tests/compileall
+itlr/collect/runner.py	source	suite	tests/compileall
+itlr/collect/sources.py	source	suite	tests/compileall
+itlr/collect/store.py	source	suite	tests/compileall
+itlr/collect/url_util.py	source	suite	tests/compileall
+itlr/config.py	source	suite	tests/compileall
+itlr/core/__init__.py	source	suite	tests/compileall
+itlr/core/ann.py	source	suite	tests/compileall
+itlr/core/bm25.py	source	suite	tests/compileall
+itlr/core/chunks.py	source	suite	tests/compileall
+itlr/core/display.py	source	suite	tests/compileall
+itlr/core/embeddings.py	source	suite	tests/compileall
+itlr/core/pipeline.py	source	suite	tests/compileall
+itlr/core/rag.py	source	suite	tests/compileall
+itlr/core/recommender.py	source	suite	tests/compileall
+itlr/core/rerank.py	source	suite	tests/compileall
+itlr/data/__init__.py	source	suite	tests/compileall
+itlr/data/generate_interactions.py	source	suite	tests/compileall
+itlr/data/generate_items.py	source	suite	tests/compileall
+itlr/engine.py	source	suite	tests/compileall
+itlr/eval/__init__.py	source	suite	tests/compileall
+itlr/eval/cf_eval.py	source	suite	tests/compileall
+itlr/eval/diversity.py	source	suite	tests/compileall
+itlr/eval/loader.py	source	suite	tests/compileall
+itlr/eval/ltr_features.py	source	suite	tests/compileall
+itlr/eval/metrics.py	source	suite	tests/compileall
+itlr/eval/off_policy.py	source	suite	tests/compileall
+itlr/eval/significance.py	source	suite	tests/compileall
+itlr/indexv2.py	source	suite	tests/compileall
+itlr/locking.py	source	suite	tests/compileall
+itlr/pipelines/__init__.py	source	suite	tests/compileall
+itlr/pipelines/build_cf.py	source	suite	tests/compileall
+itlr/pipelines/build_embeddings.py	source	suite	tests/compileall
+itlr/pipelines/build_embeddings_v2.py	source	suite	tests/compileall
+itlr/pipelines/build_model.py	source	suite	tests/compileall
+itlr/pipelines/generate_interactions.py	source	suite	tests/compileall
+itlr/retrieval/__init__.py	source	suite	tests/compileall
+itlr/retrieval/bm25.py	source	suite	tests/compileall
+itlr/retrieval/service.py	source	suite	tests/compileall
+itlr/utils/__init__.py	source	suite	tests/compileall
+itlr/utils/repickle.py	source	suite	tests/compileall
+itlr/utils/runtime_patches.py	source	suite	tests/compileall
+itlr/versioning.py	source	suite	tests/compileall
+pyproject.toml	other	structure	inventory
+pytest.ini	config	structure	compose/CI config
+reports/ARCHITECTURE_REFACTOR_2026-10-30.md	docs	historical	doc
+reports/AUDIT_2026-10-29.md	docs	historical	doc
+reports/AUDIT_INCREMENT_2026-10-30.md	docs	historical	doc
+reports/AUDIT_PORTABILITY_2026-10-30.md	docs	historical	doc
+reports/BANDIT_TRIAGE_2026-10-30.md	docs	historical	doc
+reports/FINAL_CODEBASE_FREEZE.md	docs	historical	doc
+reports/FINAL_E2E_CERTIFICATION.md	docs	historical	doc
+reports/FINAL_ENGINEERING_REVIEW.md	docs	historical	doc
+reports/FINAL_MAINTAINABILITY_REVIEW.md	docs	historical	doc
+reports/FINAL_PRODUCTION_AUDIT.md	docs	historical	doc
+reports/FINAL_RELEASE_READINESS.md	docs	historical	doc
+reports/FINAL_REMEDIATION.md	docs	historical	doc
+reports/FULL_SYSTEM_AUDIT_2026-10-30.md	docs	historical	doc
+reports/HARDENING_STREAM_2026-10-30.md	docs	historical	doc
+reports/LOCAL_MODELS.md	docs	historical	doc
+reports/PONYTAIL_AUDIT.md	docs	historical	doc
+reports/PONYTAIL_REVIEW.md	docs	historical	doc
+reports/PRODUCTION_BLOCKERS_RESOLUTION.md	docs	historical	doc
+reports/PRODUCTION_CHECKPOINT_2026-10-30.md	docs	historical	doc
+reports/RELEASE_READINESS_FINAL.md	docs	historical	doc
+reports/RELEASE_VALIDATION_2026-10-30.md	docs	historical	doc
+reports/RESTRUCTURING_CONTINUATION_2026-10-30.md	docs	historical	doc
+reports/SKILLS_INVENTORY.md	docs	historical	doc
+reports/V2_PRODUCT.md	docs	historical	doc
+reports/V3_PROGRESS_2026-10-30.md	docs	historical	doc
+reports/V3_RESTRUCTURING_2026-10-30.md	docs	historical	doc
+reports/VALIDATION.md	docs	historical	doc
+reports/architecture_bandit.json	data	structure	data/evidence
+reports/architecture_full_pytest.log	data	structure	data/evidence
+reports/architecture_python_imports.json	data	structure	data/evidence
+reports/architecture_template_benchmark.json	data	structure	data/evidence
+reports/architecture_web_imports.json	data	structure	data/evidence
+reports/audit-file-manifest-2026-10-31.tsv	other	structure	inventory
+reports/bm25_postings_benchmark.json	data	structure	data/evidence
+reports/cf_eval.md	docs	historical	doc
+reports/chunks_v3_audit_experiment.json	data	structure	data/evidence
+reports/chunks_v3_experiment.json	data	structure	data/evidence
+reports/chunks_v3_unified_experiment.json	data	structure	data/evidence
+reports/curated_collection.json	data	structure	data/evidence
+reports/enterprise-adapter.log	data	structure	data/evidence
+reports/enterprise-after-python.log	data	structure	data/evidence
+reports/enterprise-after-web.log	data	structure	data/evidence
+reports/enterprise-before-python.log	data	structure	data/evidence
+reports/enterprise-before-web.log	data	structure	data/evidence
+reports/enterprise-docs.log	data	structure	data/evidence
+reports/enterprise-inventory.json	data	structure	data/evidence
+reports/enterprise-python-coverage.json	data	structure	data/evidence
+reports/enterprise-python.log	data	structure	data/evidence
+reports/enterprise-web.log	data	structure	data/evidence
+reports/final-bandit-triage.json	data	structure	data/evidence
+reports/final-bandit.json	data	structure	data/evidence
+reports/final-bandit.log	data	structure	data/evidence
+reports/final-docs.log	data	structure	data/evidence
+reports/final-document-review.json	data	structure	data/evidence
+reports/final-e2e-evidence/SHA256SUMS.txt	data	structure	data/evidence
+reports/final-e2e-evidence/ab-500.log	data	structure	data/evidence
+reports/final-e2e-evidence/ab-800.log	data	structure	data/evidence
+reports/final-e2e-evidence/ab-analysis.json	data	structure	data/evidence
+reports/final-e2e-evidence/ab-none.log	data	structure	data/evidence
+reports/final-e2e-evidence/ab_analysis.py	source	suite	tests/compileall
+reports/final-e2e-evidence/api.log	data	structure	data/evidence
+reports/final-e2e-evidence/artifact-lifecycle.log	data	structure	data/evidence
+reports/final-e2e-evidence/audit-2026-10-31/audit-bandit-high.json	data	structure	data/evidence
+reports/final-e2e-evidence/audit-2026-10-31/audit-npm-audit.log	data	structure	data/evidence
+reports/final-e2e-evidence/audit-2026-10-31/audit-python-coverage.json	data	structure	data/evidence
+reports/final-e2e-evidence/audit-2026-10-31/audit-retrieval.json	data	structure	data/evidence
+reports/final-e2e-evidence/audit-2026-10-31/audit-web-build.log	data	structure	data/evidence
+reports/final-e2e-evidence/audit-2026-10-31/audit-web-lint.log	data	structure	data/evidence
+reports/final-e2e-evidence/audit-2026-10-31/audit-web-test.log	data	structure	data/evidence
+reports/final-e2e-evidence/audit-2026-10-31/audit-web-typecheck.log	data	structure	data/evidence
+reports/final-e2e-evidence/audit-2026-10-31/forgot-check.sql	other	structure	inventory
+reports/final-e2e-evidence/audit-2026-10-31/schema-logic-check.sql	other	structure	inventory
+reports/final-e2e-evidence/audit-2026-10-31/web-tests-final.log	data	structure	data/evidence
+reports/final-e2e-evidence/backup-restore.log	data	structure	data/evidence
+reports/final-e2e-evidence/bandit.json	data	structure	data/evidence
+reports/final-e2e-evidence/bandit.log	data	structure	data/evidence
+reports/final-e2e-evidence/bench-latency/itlr-bench-prompt.txt	data	structure	data/evidence
+reports/final-e2e-evidence/bench-latency/latency-summary.json	data	structure	data/evidence
+reports/final-e2e-evidence/bench-latency/sweep.json	data	structure	data/evidence
+reports/final-e2e-evidence/bench-latency/sweep.log	data	structure	data/evidence
+reports/final-e2e-evidence/bench-latency/sweep.py	source	suite	tests/compileall
+reports/final-e2e-evidence/browser-db.log	data	structure	data/evidence
+reports/final-e2e-evidence/browser_db_fresh.py	source	suite	tests/compileall
+reports/final-e2e-evidence/budget800-comparison.json	data	structure	data/evidence
+reports/final-e2e-evidence/compileall.log	data	structure	data/evidence
+reports/final-e2e-evidence/dataset-and-protocol-sha256.txt	data	structure	data/evidence
+reports/final-e2e-evidence/docker-preflight.txt	data	structure	data/evidence
+reports/final-e2e-evidence/docker-resume-1031c/Caddyfile	other	structure	inventory
+reports/final-e2e-evidence/docker-resume-1031c/Dockerfile.cpu	other	structure	inventory
+reports/final-e2e-evidence/docker-resume-1031c/api-health.log	data	structure	data/evidence
+reports/final-e2e-evidence/docker-resume-1031c/application-build.log	data	structure	data/evidence
+reports/final-e2e-evidence/docker-resume-1031c/browser-final-result.json	data	structure	data/evidence
+reports/final-e2e-evidence/docker-resume-1031c/browser-real-result.json	data	structure	data/evidence
+reports/final-e2e-evidence/docker-resume-1031c/compose.yml	config	structure	compose/CI config
+reports/final-e2e-evidence/docker-resume-1031c/container-logs.log	data	structure	data/evidence
+reports/final-e2e-evidence/docker-resume-1031c/docker-commands.jsonl	data	structure	data/evidence
+reports/final-e2e-evidence/docker-resume-1031c/docker-result.json	data	structure	data/evidence
+reports/final-e2e-evidence/docker-resume-1031c/docker-stats.txt	data	structure	data/evidence
+reports/final-e2e-evidence/docker-resume-1031c/image-identities.log	data	structure	data/evidence
+reports/final-e2e-evidence/docker-resume-1031c/local-images.log	data	structure	data/evidence
+reports/final-e2e-evidence/docker-resume-1031c/migration-1.log	data	structure	data/evidence
+reports/final-e2e-evidence/docker-resume-1031c/migration-2.log	data	structure	data/evidence
+reports/final-e2e-evidence/docker-resume-1031c/observer-evidence/provider-sockets.json	data	structure	data/evidence
+reports/final-e2e-evidence/docker-resume-1031c/observer.py	source	suite	tests/compileall
+reports/final-e2e-evidence/docker-resume-1031c/pg-dump.log	data	structure	data/evidence
+reports/final-e2e-evidence/docker-resume-1031c/pg-restore.log	data	structure	data/evidence
+reports/final-e2e-evidence/docker-resume-1031c/provider-probes.json	data	structure	data/evidence
+reports/final-e2e-evidence/docker-resume-1031c/real-chat-events.json	data	structure	data/evidence
+reports/final-e2e-evidence/docker-resume-1031c/restart-services.log	data	structure	data/evidence
+reports/final-e2e-evidence/docker-resume-1031c/seed-fixture.log	data	structure	data/evidence
+reports/final-e2e-evidence/docker-resume-1031c/web-health.log	data	structure	data/evidence
+reports/final-e2e-evidence/frozen-eval.log	data	structure	data/evidence
+reports/final-e2e-evidence/frozen_eval.py	source	suite	tests/compileall
+reports/final-e2e-evidence/frozen_eval_ab.py	source	suite	tests/compileall
+reports/final-e2e-evidence/gate-results.json	data	structure	data/evidence
+reports/final-e2e-evidence/gate-summary.txt	data	structure	data/evidence
+reports/final-e2e-evidence/generation-eval-ab-500.json	data	structure	data/evidence
+reports/final-e2e-evidence/generation-eval-ab-800.json	data	structure	data/evidence
+reports/final-e2e-evidence/generation-eval-ab-none.json	data	structure	data/evidence
+reports/final-e2e-evidence/generation-eval.json	data	structure	data/evidence
+reports/final-e2e-evidence/http-db.log	data	structure	data/evidence
+reports/final-e2e-evidence/human-review-packet.jsonl	data	structure	data/evidence
+reports/final-e2e-evidence/npm-audit.log	data	structure	data/evidence
+reports/final-e2e-evidence/npm-audit.txt	data	structure	data/evidence
+reports/final-e2e-evidence/npm-lock.log	data	structure	data/evidence
+reports/final-e2e-evidence/pip-audit.json	data	structure	data/evidence
+reports/final-e2e-evidence/pip-audit.log	data	structure	data/evidence
+reports/final-e2e-evidence/pip-check.log	data	structure	data/evidence
+reports/final-e2e-evidence/python-coverage.json	data	structure	data/evidence
+reports/final-e2e-evidence/python-tests.log	data	structure	data/evidence
+reports/final-e2e-evidence/release-2026-10-31/application-build.log	data	structure	data/evidence
+reports/final-e2e-evidence/release-2026-10-31/bench_components.py	source	suite	tests/compileall
+reports/final-e2e-evidence/release-2026-10-31/browser-final-release.log	data	structure	data/evidence
+reports/final-e2e-evidence/release-2026-10-31/browser-final-result.json	data	structure	data/evidence
+reports/final-e2e-evidence/release-2026-10-31/cold_check.py	source	suite	tests/compileall
+reports/final-e2e-evidence/release-2026-10-31/components-cold.json	data	structure	data/evidence
+reports/final-e2e-evidence/release-2026-10-31/components-warm.json	data	structure	data/evidence
+reports/final-e2e-evidence/release-2026-10-31/components-warm.log	data	structure	data/evidence
+reports/final-e2e-evidence/release-2026-10-31/docker-result.json	data	structure	data/evidence
+reports/final-e2e-evidence/release-2026-10-31/driver-console-release.log	data	structure	data/evidence
+reports/final-e2e-evidence/release-2026-10-31/frozen-none.json	data	structure	data/evidence
+reports/final-e2e-evidence/release-2026-10-31/human_review_scoring_sheet.csv	data	structure	data/evidence
+reports/final-e2e-evidence/release-2026-10-31/image-identities.log	data	structure	data/evidence
+reports/final-e2e-evidence/release-2026-10-31/old-schema-upgrade.sql	other	structure	inventory
+reports/final-e2e-evidence/release-2026-10-31/python-coverage.json	data	structure	data/evidence
+reports/final-e2e-evidence/release-2026-10-31/release-frozen-none.log	data	structure	data/evidence
+reports/final-e2e-evidence/release-2026-10-31/release-pg-check.sql	other	structure	inventory
+reports/final-e2e-evidence/release-2026-10-31/release-pip-audit.log	data	structure	data/evidence
+reports/final-e2e-evidence/release-2026-10-31/release-web-test.log	data	structure	data/evidence
+reports/final-e2e-evidence/release-2026-10-31/reliability/conc-n1.json	data	structure	data/evidence
+reports/final-e2e-evidence/release-2026-10-31/reliability/conc-n2.json	data	structure	data/evidence
+reports/final-e2e-evidence/release-2026-10-31/reliability/conc-n4.json	data	structure	data/evidence
+reports/final-e2e-evidence/release-2026-10-31/reliability/rss-release.txt	data	structure	data/evidence
+reports/final-e2e-evidence/release-2026-10-31/reliability/soak-n1.json	data	structure	data/evidence
+reports/final-e2e-evidence/reliability-load/cancel-n1.json	data	structure	data/evidence
+reports/final-e2e-evidence/reliability-load/conc-n1.json	data	structure	data/evidence
+reports/final-e2e-evidence/reliability-load/conc-n2.json	data	structure	data/evidence
+reports/final-e2e-evidence/reliability-load/conc-n4.json	data	structure	data/evidence
+reports/final-e2e-evidence/reliability-load/db-after-recovery.json	data	structure	data/evidence
+reports/final-e2e-evidence/reliability-load/db-before-crash.json	data	structure	data/evidence
+reports/final-e2e-evidence/reliability-load/health-n1.json	data	structure	data/evidence
+reports/final-e2e-evidence/reliability-load/load.py	source	suite	tests/compileall
+reports/final-e2e-evidence/reliability-load/reliability-summary.json	data	structure	data/evidence
+reports/final-e2e-evidence/reliability-load/rss-n1.json	data	structure	data/evidence
+reports/final-e2e-evidence/reliability-load/soak-n1.json	data	structure	data/evidence
+reports/final-e2e-evidence/reliability-load/tour.log	data	structure	data/evidence
+reports/final-e2e-evidence/reliability-load/tour.sh	config	structure	compose/CI config
+reports/final-e2e-evidence/reliability-load/tour2.log	data	structure	data/evidence
+reports/final-e2e-evidence/reliability-load/tour2.sh	config	structure	compose/CI config
+reports/final-e2e-evidence/sse-registry.txt	data	structure	data/evidence
+reports/final-e2e-evidence/tls-smoke.log	data	structure	data/evidence
+reports/final-e2e-evidence/web-build.log	data	structure	data/evidence
+reports/final-e2e-evidence/web-lint.log	data	structure	data/evidence
+reports/final-e2e-evidence/web-tests.log	data	structure	data/evidence
+reports/final-e2e-evidence/web-typecheck.log	data	structure	data/evidence
+reports/final-engineering-evidence/bandit-triage.json	data	structure	data/evidence
+reports/final-engineering-evidence/bandit.json	data	structure	data/evidence
+reports/final-engineering-evidence/browser.json	data	structure	data/evidence
+reports/final-engineering-evidence/browser.py	source	suite	tests/compileall
+reports/final-engineering-evidence/browser_wrapper.py	source	suite	tests/compileall
+reports/final-engineering-evidence/budget-green.log	data	structure	data/evidence
+reports/final-engineering-evidence/budget-red.log	data	structure	data/evidence
+reports/final-engineering-evidence/build.log	data	structure	data/evidence
+reports/final-engineering-evidence/calibrate.py	source	suite	tests/compileall
+reports/final-engineering-evidence/calibration.json	data	structure	data/evidence
+reports/final-engineering-evidence/cleanup-python.log	data	structure	data/evidence
+reports/final-engineering-evidence/compare_generation.py	source	suite	tests/compileall
+reports/final-engineering-evidence/coverage_run.py	source	suite	tests/compileall
+reports/final-engineering-evidence/docker.log	data	structure	data/evidence
+reports/final-engineering-evidence/docs.log	data	structure	data/evidence
+reports/final-engineering-evidence/eval_runtime_search.py	source	suite	tests/compileall
+reports/final-engineering-evidence/expansion-green.log	data	structure	data/evidence
+reports/final-engineering-evidence/expansion-red.log	data	structure	data/evidence
+reports/final-engineering-evidence/final-python.log	data	structure	data/evidence
+reports/final-engineering-evidence/generation-before-profile.json	data	structure	data/evidence
+reports/final-engineering-evidence/history-green.log	data	structure	data/evidence
+reports/final-engineering-evidence/history-red.log	data	structure	data/evidence
+reports/final-engineering-evidence/inventory.json	data	structure	data/evidence
+reports/final-engineering-evidence/inventory.py	source	suite	tests/compileall
+reports/final-engineering-evidence/lint.log	data	structure	data/evidence
+reports/final-engineering-evidence/live-api-server.log	data	structure	data/evidence
+reports/final-engineering-evidence/live-api.json	data	structure	data/evidence
+reports/final-engineering-evidence/live-api.log	data	structure	data/evidence
+reports/final-engineering-evidence/live-budget.json	data	structure	data/evidence
+reports/final-engineering-evidence/live_api.py	source	suite	tests/compileall
+reports/final-engineering-evidence/live_budget.py	source	suite	tests/compileall
+reports/final-engineering-evidence/npm-audit.json	data	structure	data/evidence
+reports/final-engineering-evidence/persistence-green.log	data	structure	data/evidence
+reports/final-engineering-evidence/persistence-red.log	data	structure	data/evidence
+reports/final-engineering-evidence/pip-audit.json	data	structure	data/evidence
+reports/final-engineering-evidence/pip-audit.log	data	structure	data/evidence
+reports/final-engineering-evidence/pip-check.log	data	structure	data/evidence
+reports/final-engineering-evidence/postgresql.log	data	structure	data/evidence
+reports/final-engineering-evidence/prepare-after.log	data	structure	data/evidence
+reports/final-engineering-evidence/prepare-before.log	data	structure	data/evidence
+reports/final-engineering-evidence/profile_generation.py	source	suite	tests/compileall
+reports/final-engineering-evidence/prompt-experiment.json	data	structure	data/evidence
+reports/final-engineering-evidence/prompt_experiment.py	source	suite	tests/compileall
+reports/final-engineering-evidence/python-coverage.json	data	structure	data/evidence
+reports/final-engineering-evidence/python-status.json	data	structure	data/evidence
+reports/final-engineering-evidence/raw-release.json	data	structure	data/evidence
+reports/final-engineering-evidence/raw_release.py	source	suite	tests/compileall
+reports/final-engineering-evidence/refactor-green.log	data	structure	data/evidence
+reports/final-engineering-evidence/reranker-load.log	data	structure	data/evidence
+reports/final-engineering-evidence/runtime-boundary-green.log	data	structure	data/evidence
+reports/final-engineering-evidence/runtime-boundary-red.log	data	structure	data/evidence
+reports/final-engineering-evidence/runtime-observations.json	data	structure	data/evidence
+reports/final-engineering-evidence/runtime-search-after-glossary.json	data	structure	data/evidence
+reports/final-engineering-evidence/runtime-search-before-expansion-fix.json	data	structure	data/evidence
+reports/final-engineering-evidence/runtime-search.json	data	structure	data/evidence
+reports/final-engineering-evidence/sampling-comparison.json	data	structure	data/evidence
+reports/final-engineering-evidence/sse-green.log	data	structure	data/evidence
+reports/final-engineering-evidence/sse-red.log	data	structure	data/evidence
+reports/final-engineering-evidence/structure.json	data	structure	data/evidence
+reports/final-engineering-evidence/temporary-ports.log	data	structure	data/evidence
+reports/final-engineering-evidence/threshold-green.log	data	structure	data/evidence
+reports/final-engineering-evidence/threshold-red.log	data	structure	data/evidence
+reports/final-engineering-evidence/threshold-selection.json	data	structure	data/evidence
+reports/final-engineering-evidence/typecheck.log	data	structure	data/evidence
+reports/final-engineering-evidence/web-coverage-summary.json	data	structure	data/evidence
+reports/final-engineering-evidence/web-tests-outside.log	data	structure	data/evidence
+reports/final-focused-python.log	data	structure	data/evidence
+reports/final-focused-web.log	data	structure	data/evidence
+reports/final-import-smoke.log	data	structure	data/evidence
+reports/final-links.log	data	structure	data/evidence
+reports/final-nonstream-red.log	data	structure	data/evidence
+reports/final-npm-audit.json	data	structure	data/evidence
+reports/final-ollama-red.log	data	structure	data/evidence
+reports/final-pip-audit.json	data	structure	data/evidence
+reports/final-pip-audit.log	data	structure	data/evidence
+reports/final-prewarm-red.log	data	structure	data/evidence
+reports/final-python-coverage.json	data	structure	data/evidence
+reports/final-python-red.log	data	structure	data/evidence
+reports/final-python.log	data	structure	data/evidence
+reports/final-secret-scan.json	data	structure	data/evidence
+reports/final-stream-green.log	data	structure	data/evidence
+reports/final-web-red.log	data	structure	data/evidence
+reports/final-web.log	data	structure	data/evidence
+reports/fixture_eval.json	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/api.json	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/api.log	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/bandit.json	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/baseline-python-outside.log	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/browser.json	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/browser.py	source	suite	tests/compileall
+reports/full-system-audit-evidence-2026-10-30/build-e5.log	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/build-lexical.log	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/coverage_run.py	source	suite	tests/compileall
+reports/full-system-audit-evidence-2026-10-30/docs.log	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/e5.log	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/embeddings-manifest.json	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/environment.json	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/final-python.log	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/generation.json	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/generation.py	source	suite	tests/compileall
+reports/full-system-audit-evidence-2026-10-30/ingestion.log	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/inventory.json	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/manifest-green.log	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/manifest-red.log	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/npm-audit.json	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/npm-ci.log	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/ollama-green.log	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/ollama-red.log	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/pip-audit.json	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/pip-check.log	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/probe-before.json	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/probe-fresh.json	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/probe-fresh.log	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/probe.json	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/python-coverage.json	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/python-packages.json	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/python-status.json	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/retrieval-lexical.json	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/retrieval-neural.json	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/runtime-before.log	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/runtime.log	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/runtime.py	source	suite	tests/compileall
+reports/full-system-audit-evidence-2026-10-30/semaphore-probe.log	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/threaded-reload.log	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/timeout-green.log	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/timeout-red.log	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/ui-claim-green.log	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/ui-claim-red.log	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/web-build.log	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/web-coverage-summary.json	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/web-green.log	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/web-lint.log	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/web-tests-outside.log	data	structure	data/evidence
+reports/full-system-audit-evidence-2026-10-30/web-typecheck.log	data	structure	data/evidence
+reports/generation_eval_template.csv	data	structure	data/evidence
+reports/generation_eval_template.json	data	structure	data/evidence
+reports/generation_eval_template.md	docs	historical	doc
+reports/hardening-baseline.log	data	structure	data/evidence
+reports/hardening-final.log	data	structure	data/evidence
+reports/hardening-green.log	data	structure	data/evidence
+reports/hardening-lexical.json	data	structure	data/evidence
+reports/hardening-lexical.log	data	structure	data/evidence
+reports/hardening-portability-confirm.log	data	structure	data/evidence
+reports/hardening-portability.log	data	structure	data/evidence
+reports/hardening-red.log	data	structure	data/evidence
+reports/hardening-review.log	data	structure	data/evidence
+reports/hardening-utf8.log	data	structure	data/evidence
+reports/hardening-web.log	data	structure	data/evidence
+reports/human_eval.md	docs	historical	doc
+reports/journey_browser_smoke.json	data	structure	data/evidence
+reports/latency.md	docs	historical	doc
+reports/learning-desktop.png	other	structure	inventory
+reports/learning-mobile.png	other	structure	inventory
+reports/local_embedding_smoke.json	data	structure	data/evidence
+reports/local_models_smoke.json	data	structure	data/evidence
+reports/off_policy.md	docs	historical	doc
+reports/offtopic_eval.md	docs	historical	doc
+reports/per_query.csv	data	structure	data/evidence
+reports/per_query_kw_noisy.csv	data	structure	data/evidence
+reports/production-blockers-evidence/HUMAN_REVIEW_PROTOCOL.md	docs	historical	doc
+reports/production-blockers-evidence/PROFILE_FINDINGS.md	docs	historical	doc
+reports/production-blockers-evidence/async-sdk-green.log	data	structure	data/evidence
+reports/production-blockers-evidence/async-utf8-green.log	data	structure	data/evidence
+reports/production-blockers-evidence/async-utf8-red.log	data	structure	data/evidence
+reports/production-blockers-evidence/bandit.json	data	structure	data/evidence
+reports/production-blockers-evidence/bandit.log	data	structure	data/evidence
+reports/production-blockers-evidence/browser-cancellation-first-harness-failure.json	data	structure	data/evidence
+reports/production-blockers-evidence/browser-cancellation-first-harness-failure.log	data	structure	data/evidence
+reports/production-blockers-evidence/browser-cancellation-navigation-harness-failure.log	data	structure	data/evidence
+reports/production-blockers-evidence/browser-cancellation-review.md	docs	historical	doc
+reports/production-blockers-evidence/browser-cancellation.json	data	structure	data/evidence
+reports/production-blockers-evidence/browser-cancellation.log	data	structure	data/evidence
+reports/production-blockers-evidence/browser_cancellation.py	source	suite	tests/compileall
+reports/production-blockers-evidence/build.log	data	structure	data/evidence
+reports/production-blockers-evidence/build_inventory.py	source	suite	tests/compileall
+reports/production-blockers-evidence/cancel-api.log	data	structure	data/evidence
+reports/production-blockers-evidence/cancel-cleanup.json	data	structure	data/evidence
+reports/production-blockers-evidence/cancel-proxy.log	data	structure	data/evidence
+reports/production-blockers-evidence/cancellation-agent-green.log	data	structure	data/evidence
+reports/production-blockers-evidence/cancellation-agent-review.md	docs	historical	doc
+reports/production-blockers-evidence/cancellation-green.log	data	structure	data/evidence
+reports/production-blockers-evidence/cancellation-proxy.json	data	structure	data/evidence
+reports/production-blockers-evidence/cancellation-red.log	data	structure	data/evidence
+reports/production-blockers-evidence/cancellation-regression-before.log	data	structure	data/evidence
+reports/production-blockers-evidence/cancellation_proxy.py	source	suite	tests/compileall
+reports/production-blockers-evidence/citation-support-spotcheck.json	data	structure	data/evidence
+reports/production-blockers-evidence/cleanup_cancellation_services.py	source	suite	tests/compileall
+reports/production-blockers-evidence/compileall.log	data	structure	data/evidence
+reports/production-blockers-evidence/context-experiment.json	data	structure	data/evidence
+reports/production-blockers-evidence/context-experiment.log	data	structure	data/evidence
+reports/production-blockers-evidence/context_experiment.py	source	suite	tests/compileall
+reports/production-blockers-evidence/coverage_run.py	source	suite	tests/compileall
+reports/production-blockers-evidence/dev-context-prepared.json	data	structure	data/evidence
+reports/production-blockers-evidence/docker-environment.json	data	structure	data/evidence
+reports/production-blockers-evidence/docker-sudo-preflight.log	data	structure	data/evidence
+reports/production-blockers-evidence/eval_generation.py	source	suite	tests/compileall
+reports/production-blockers-evidence/final-api-focused.log	data	structure	data/evidence
+reports/production-blockers-evidence/final-checks.json	data	structure	data/evidence
+reports/production-blockers-evidence/frozen-blind-cases.jsonl	data	structure	data/evidence
+reports/production-blockers-evidence/generation-eval.json	data	structure	data/evidence
+reports/production-blockers-evidence/generation-eval.log	data	structure	data/evidence
+reports/production-blockers-evidence/generation-summary.json	data	structure	data/evidence
+reports/production-blockers-evidence/git-diff-numstat.txt	data	structure	data/evidence
+reports/production-blockers-evidence/git-status.txt	data	structure	data/evidence
+reports/production-blockers-evidence/handoff-checks.json	data	structure	data/evidence
+reports/production-blockers-evidence/human-review-packet.jsonl	data	structure	data/evidence
+reports/production-blockers-evidence/inventory.json	data	structure	data/evidence
+reports/production-blockers-evidence/lint.log	data	structure	data/evidence
+reports/production-blockers-evidence/npm-audit.json	data	structure	data/evidence
+reports/production-blockers-evidence/npm-audit.log	data	structure	data/evidence
+reports/production-blockers-evidence/pip-audit.json	data	structure	data/evidence
+reports/production-blockers-evidence/pip-audit.log	data	structure	data/evidence
+reports/production-blockers-evidence/pip-check.log	data	structure	data/evidence
+reports/production-blockers-evidence/post-eval-runner-idle.json	data	structure	data/evidence
+reports/production-blockers-evidence/prepare-context.log	data	structure	data/evidence
+reports/production-blockers-evidence/prepare_context.py	source	suite	tests/compileall
+reports/production-blockers-evidence/profile-local.json	data	structure	data/evidence
+reports/production-blockers-evidence/profile-local.log	data	structure	data/evidence
+reports/production-blockers-evidence/profile-ollama-ps.json	data	structure	data/evidence
+reports/production-blockers-evidence/profile-ollama-tags.json	data	structure	data/evidence
+reports/production-blockers-evidence/profile-summary.json	data	structure	data/evidence
+reports/production-blockers-evidence/profile_local.py	source	suite	tests/compileall
+reports/production-blockers-evidence/python-coverage.json	data	structure	data/evidence
+reports/production-blockers-evidence/python-status.json	data	structure	data/evidence
+reports/production-blockers-evidence/python-tests.log	data	structure	data/evidence
+reports/production-blockers-evidence/rootless-preflight.log	data	structure	data/evidence
+reports/production-blockers-evidence/send-disconnect-agent.log	data	structure	data/evidence
+reports/production-blockers-evidence/staging-EMBEDDINGS_MANIFEST.json	data	structure	data/evidence
+reports/production-blockers-evidence/staging-MANIFEST.json	data	structure	data/evidence
+reports/production-blockers-evidence/start_cancellation_services.py	source	suite	tests/compileall
+reports/production-blockers-evidence/summarize_profile.py	source	suite	tests/compileall
+reports/production-blockers-evidence/typecheck.log	data	structure	data/evidence
+reports/production-blockers-evidence/web-tests.log	data	structure	data/evidence
+reports/production_bandit.json	data	structure	data/evidence
+reports/production_fixture_eval.json	data	structure	data/evidence
+reports/production_pip_audit.json	data	structure	data/evidence
+reports/production_pytest.log	data	structure	data/evidence
+reports/production_pytest_external.log	data	structure	data/evidence
+reports/production_static_imports.json	data	structure	data/evidence
+reports/qwen_live_smoke.json	data	structure	data/evidence
+reports/release-bandit.json	data	structure	data/evidence
+reports/release-bandit.log	data	structure	data/evidence
+reports/release-doc-check.json	data	structure	data/evidence
+reports/release-eval-bandit.json	data	structure	data/evidence
+reports/release-eval-bandit.log	data	structure	data/evidence
+reports/release-final-checks.log	data	structure	data/evidence
+reports/release-focused.log	data	structure	data/evidence
+reports/release-npm-audit.json	data	structure	data/evidence
+reports/release-pip-audit.json	data	structure	data/evidence
+reports/release-pip-audit.log	data	structure	data/evidence
+reports/release-python-coverage.json	data	structure	data/evidence
+reports/release-python.log	data	structure	data/evidence
+reports/release-readiness-evidence/HUMAN_REVIEW_PROTOCOL.md	docs	historical	doc
+reports/release-readiness-evidence/POSTGRES_STAGING_SUMMARY.md	docs	historical	doc
+reports/release-readiness-evidence/artifact-lifecycle.json	data	structure	data/evidence
+reports/release-readiness-evidence/artifact-lifecycle.log	data	structure	data/evidence
+reports/release-readiness-evidence/artifact_lifecycle.py	source	suite	tests/compileall
+reports/release-readiness-evidence/backup-restore-result.json	data	structure	data/evidence
+reports/release-readiness-evidence/backup-restore.log	data	structure	data/evidence
+reports/release-readiness-evidence/backup_restore.cjs	other	structure	inventory
+reports/release-readiness-evidence/bandit.json	data	structure	data/evidence
+reports/release-readiness-evidence/bandit.log	data	structure	data/evidence
+reports/release-readiness-evidence/blind_cases.jsonl	data	structure	data/evidence
+reports/release-readiness-evidence/blind_protocol.md	docs	historical	doc
+reports/release-readiness-evidence/browser-db-result.json	data	structure	data/evidence
+reports/release-readiness-evidence/browser-db.log	data	structure	data/evidence
+reports/release-readiness-evidence/browser_db.py	source	suite	tests/compileall
+reports/release-readiness-evidence/build.log	data	structure	data/evidence
+reports/release-readiness-evidence/build_inventory.py	source	suite	tests/compileall
+reports/release-readiness-evidence/cancellation_cleanup_pattern.json	data	structure	data/evidence
+reports/release-readiness-evidence/cancellation_cleanup_pattern.py	source	suite	tests/compileall
+reports/release-readiness-evidence/cancellation_repro.json	data	structure	data/evidence
+reports/release-readiness-evidence/cancellation_repro.py	source	suite	tests/compileall
+reports/release-readiness-evidence/cleanup_db_services.py	source	suite	tests/compileall
+reports/release-readiness-evidence/compileall.log	data	structure	data/evidence
+reports/release-readiness-evidence/coverage_run.py	source	suite	tests/compileall
+reports/release-readiness-evidence/db-cleanup-result.json	data	structure	data/evidence
+reports/release-readiness-evidence/db_query.cjs	other	structure	inventory
+reports/release-readiness-evidence/direct-generation.json	data	structure	data/evidence
+reports/release-readiness-evidence/direct-generation.log	data	structure	data/evidence
+reports/release-readiness-evidence/direct_generation.py	source	suite	tests/compileall
+reports/release-readiness-evidence/final-review-checks.json	data	structure	data/evidence
+reports/release-readiness-evidence/git-diff-numstat.txt	data	structure	data/evidence
+reports/release-readiness-evidence/git-status.txt	data	structure	data/evidence
+reports/release-readiness-evidence/http-db-before-parser-fix.log	data	structure	data/evidence
+reports/release-readiness-evidence/http-db-first-fixture-failure.log	data	structure	data/evidence
+reports/release-readiness-evidence/http-db-result.json	data	structure	data/evidence
+reports/release-readiness-evidence/http-db.log	data	structure	data/evidence
+reports/release-readiness-evidence/http_db_journeys.py	source	suite	tests/compileall
+reports/release-readiness-evidence/human_eval_supplement.jsonl	data	structure	data/evidence
+reports/release-readiness-evidence/human_review_scoring_sheet.csv	data	structure	data/evidence
+reports/release-readiness-evidence/inventory.json	data	structure	data/evidence
+reports/release-readiness-evidence/lint.log	data	structure	data/evidence
+reports/release-readiness-evidence/measurement-summary.json	data	structure	data/evidence
+reports/release-readiness-evidence/migration-1.log	data	structure	data/evidence
+reports/release-readiness-evidence/migration-2.log	data	structure	data/evidence
+reports/release-readiness-evidence/migration-result.json	data	structure	data/evidence
+reports/release-readiness-evidence/npm-audit.json	data	structure	data/evidence
+reports/release-readiness-evidence/npm-audit.log	data	structure	data/evidence
+reports/release-readiness-evidence/ollama-list.log	data	structure	data/evidence
+reports/release-readiness-evidence/ollama-ps.json	data	structure	data/evidence
+reports/release-readiness-evidence/ollama-ps.log	data	structure	data/evidence
+reports/release-readiness-evidence/ollama-tags.json	data	structure	data/evidence
+reports/release-readiness-evidence/pdf-build.log	data	structure	data/evidence
+reports/release-readiness-evidence/pdf-green.log	data	structure	data/evidence
+reports/release-readiness-evidence/pdf-lint.log	data	structure	data/evidence
+reports/release-readiness-evidence/pdf-red.log	data	structure	data/evidence
+reports/release-readiness-evidence/pdf-typecheck.log	data	structure	data/evidence
+reports/release-readiness-evidence/pg-download.log	data	structure	data/evidence
+reports/release-readiness-evidence/pg-shutdown.log	data	structure	data/evidence
+reports/release-readiness-evidence/pip-audit.json	data	structure	data/evidence
+reports/release-readiness-evidence/pip-audit.log	data	structure	data/evidence
+reports/release-readiness-evidence/pip-check.log	data	structure	data/evidence
+reports/release-readiness-evidence/python-coverage.json	data	structure	data/evidence
+reports/release-readiness-evidence/python-status.json	data	structure	data/evidence
+reports/release-readiness-evidence/python-tests.log	data	structure	data/evidence
+reports/release-readiness-evidence/query-diagnostics.json	data	structure	data/evidence
+reports/release-readiness-evidence/resources-with-runner.json	data	structure	data/evidence
+reports/release-readiness-evidence/retrieval-independent.json	data	structure	data/evidence
+reports/release-readiness-evidence/retrieval_diagnostic.py	source	suite	tests/compileall
+reports/release-readiness-evidence/review.md	docs	historical	doc
+reports/release-readiness-evidence/runtime-server.log	data	structure	data/evidence
+reports/release-readiness-evidence/runtime.json	data	structure	data/evidence
+reports/release-readiness-evidence/runtime.log	data	structure	data/evidence
+reports/release-readiness-evidence/runtime.py	source	suite	tests/compileall
+reports/release-readiness-evidence/sample_runner.py	source	suite	tests/compileall
+reports/release-readiness-evidence/setup_db.cjs	other	structure	inventory
+reports/release-readiness-evidence/staging-EMBEDDINGS_MANIFEST.json	data	structure	data/evidence
+reports/release-readiness-evidence/staging-MANIFEST.json	data	structure	data/evidence
+reports/release-readiness-evidence/start_services.py	source	suite	tests/compileall
+reports/release-readiness-evidence/tls-smoke-result.json	data	structure	data/evidence
+reports/release-readiness-evidence/tls-smoke.log	data	structure	data/evidence
+reports/release-readiness-evidence/tls_smoke.py	source	suite	tests/compileall
+reports/release-readiness-evidence/typecheck.log	data	structure	data/evidence
+reports/release-readiness-evidence/ui-green.log	data	structure	data/evidence
+reports/release-readiness-evidence/ui-red.log	data	structure	data/evidence
+reports/release-readiness-evidence/upstream_fixture.cjs	other	structure	inventory
+reports/release-readiness-evidence/web-tests.log	data	structure	data/evidence
+reports/release-retrieval.json	data	structure	data/evidence
+reports/release-retrieval.log	data	structure	data/evidence
+reports/release-staging-static.json	data	structure	data/evidence
+reports/release-stream-red.log	data	structure	data/evidence
+reports/release-web.log	data	structure	data/evidence
+reports/restructure-inventory.json	data	structure	data/evidence
+reports/restructure-links.log	data	structure	data/evidence
+reports/restructure-python.log	data	structure	data/evidence
+reports/restructure-red.log	data	structure	data/evidence
+reports/restructure-targeted.log	data	structure	data/evidence
+reports/restructure-web.log	data	structure	data/evidence
+reports/results.csv	data	structure	data/evidence
+reports/results_kw_noisy.csv	data	structure	data/evidence
+reports/tables.md	docs	historical	doc
+reports/tables_kw_noisy.md	docs	historical	doc
+requirements.txt	data	structure	data/evidence
+scripts/build_all.py	source	suite	tests/compileall
+scripts/build_all_v2.py	source	suite	tests/compileall
+scripts/collect_curated.py	source	suite	tests/compileall
+scripts/collect_data.py	source	suite	tests/compileall
+scripts/export_web_catalog.py	source	suite	tests/compileall
+scripts/import_curated_snapshot.py	source	suite	tests/compileall
+scripts/refresh_pipeline.py	source	suite	tests/compileall
+scripts/verify_local_models.py	source	suite	tests/compileall
+scripts/verify_staging_browser.cjs	other	structure	inventory
+tasks/plan.md	docs	current-doc	doc
+tasks/todo.md	docs	current-doc	doc
+tests/conftest.py	test	suite	tests/compileall
+tests/test_admin_security_cf.py	test	suite	tests/compileall
+tests/test_ann.py	test	suite	tests/compileall
+tests/test_ann_active_version.py	test	suite	tests/compileall
+tests/test_api_hardening.py	test	suite	tests/compileall
+tests/test_api_integration.py	test	suite	tests/compileall
+tests/test_artifact_integrity.py	test	suite	tests/compileall
+tests/test_audit_regressions.py	test	suite	tests/compileall
+tests/test_bm25_refit.py	test	suite	tests/compileall
+tests/test_build_all_v2_cli.py	test	suite	tests/compileall
+tests/test_build_model_load.py	test	suite	tests/compileall
+tests/test_catalog_export_safety.py	test	suite	tests/compileall
+tests/test_chatbot_llm_adapter.py	test	suite	tests/compileall
+tests/test_chatbot_presentation.py	test	suite	tests/compileall
+tests/test_chatbot_retrieval_fixes.py	test	suite	tests/compileall
+tests/test_chunk_contract.py	test	suite	tests/compileall
+tests/test_chunks_v3.py	test	suite	tests/compileall
+tests/test_collect_crawl.py	test	suite	tests/compileall
+tests/test_collect_reconcile.py	test	suite	tests/compileall
+tests/test_collect_runner.py	test	suite	tests/compileall
+tests/test_collect_store_close.py	test	suite	tests/compileall
+tests/test_collect_utils.py	test	suite	tests/compileall
+tests/test_curated_collection.py	test	suite	tests/compileall
+tests/test_embedding_presets.py	test	suite	tests/compileall
+tests/test_engine_reload.py	test	suite	tests/compileall
+tests/test_engineering_eval.py	test	suite	tests/compileall
+tests/test_env_examples.py	test	suite	tests/compileall
+tests/test_eval_generation.py	test	suite	tests/compileall
+tests/test_eval_integrity.py	test	suite	tests/compileall
+tests/test_eval_loader.py	test	suite	tests/compileall
+tests/test_eval_metrics_diversity.py	test	suite	tests/compileall
+tests/test_eval_scripts_paths.py	test	suite	tests/compileall
+tests/test_evidence_binding.py	test	suite	tests/compileall
+tests/test_evidence_binding_edges.py	test	suite	tests/compileall
+tests/test_generate_interactions.py	test	suite	tests/compileall
+tests/test_grounded_citations.py	test	suite	tests/compileall
+tests/test_http_layer.py	test	suite	tests/compileall
+tests/test_index_probe.py	test	suite	tests/compileall
+tests/test_lexical_real_eval.py	test	suite	tests/compileall
+tests/test_lifecycle_robustness.py	test	suite	tests/compileall
+tests/test_llm_async.py	test	suite	tests/compileall
+tests/test_llm_client.py	test	suite	tests/compileall
+tests/test_loaded_fingerprint.py	test	suite	tests/compileall
+tests/test_locking.py	test	suite	tests/compileall
+tests/test_markdown_links.py	test	suite	tests/compileall
+tests/test_normalize.py	test	suite	tests/compileall
+tests/test_offtopic_gate.py	test	suite	tests/compileall
+tests/test_pickle_handles.py	test	suite	tests/compileall
+tests/test_pipeline_fixture.py	test	suite	tests/compileall
+tests/test_rag_query_utils.py	test	suite	tests/compileall
+tests/test_real_source_text.py	test	suite	tests/compileall
+tests/test_release_eval.py	test	suite	tests/compileall
+tests/test_retrieval_service.py	test	suite	tests/compileall
+tests/test_scripts_and_configs.py	test	suite	tests/compileall
+tests/test_significance.py	test	suite	tests/compileall
+tests/test_static_security.py	test	suite	tests/compileall
+tests/test_stream_cancellation.py	test	suite	tests/compileall
+tests/test_versioning.py	test	suite	tests/compileall
+var/data/eval/generation_testset.csv	data	structure	data/evidence
+var/data/eval/human_judgments.csv	data	structure	data/evidence
+var/data/eval/offtopic_testset.csv	data	structure	data/evidence
+var/data/eval/relevance_judgments.csv	data	structure	data/evidence
+var/data/eval/relevance_keyword.csv	data	structure	data/evidence
+var/data/interactions.csv	data	structure	data/evidence
+var/data/interactions_backup_500users.csv	data	structure	data/evidence
+var/data/it_learning_items.csv	data	structure	data/evidence
+web/.dockerignore	other	structure	inventory
+web/.env.example	other	structure	inventory
+web/.gitignore	other	structure	inventory
+web/.prettierrc	other	structure	inventory
+web/Dockerfile	other	structure	inventory
+web/SECURITY_REMEDIATION.md	docs	current-doc	doc
+web/docker-entrypoint.sh	config	structure	compose/CI config
+web/eslint.config.mjs	other	structure	inventory
+web/nodemon.json	data	structure	data/evidence
+web/package-lock.json	data	structure	data/evidence
+web/package.json	data	structure	data/evidence
+web/src/app.test.ts	source	suite	vitest/typecheck
+web/src/app.ts	source	suite	vitest/typecheck
+web/src/config/catalog.ts	source	suite	vitest/typecheck
+web/src/config/env.test.ts	source	suite	vitest/typecheck
+web/src/config/env.ts	source	suite	vitest/typecheck
+web/src/db/check.ts	source	suite	vitest/typecheck
+web/src/db/migrate.ts	source	suite	vitest/typecheck
+web/src/db/pool.test.ts	source	suite	vitest/typecheck
+web/src/db/pool.ts	source	suite	vitest/typecheck
+web/src/db/schema.sql	other	structure	inventory
+web/src/db/seed-courses.ts	source	suite	vitest/typecheck
+web/src/db/sync-courses.ts	source	suite	vitest/typecheck
+web/src/db/types.ts	source	suite	vitest/typecheck
+web/src/middleware/auth.test.ts	source	suite	vitest/typecheck
+web/src/middleware/auth.ts	source	suite	vitest/typecheck
+web/src/middleware/security.test.ts	source	suite	vitest/typecheck
+web/src/middleware/security.ts	source	suite	vitest/typecheck
+web/src/middleware/uploads.test.ts	source	suite	vitest/typecheck
+web/src/middleware/uploads.ts	source	suite	vitest/typecheck
+web/src/public/app.js	other	structure	inventory
+web/src/public/chat-stream.js	other	structure	inventory
+web/src/public/fonts/inter-latin-ext.woff2	other	structure	inventory
+web/src/public/fonts/inter-latin.woff2	other	structure	inventory
+web/src/public/fonts/inter-vietnamese.woff2	other	structure	inventory
+web/src/public/init.js	other	structure	inventory
+web/src/public/learning.css	other	structure	inventory
+web/src/public/learning.js	other	structure	inventory
+web/src/public/styles.css	other	structure	inventory
+web/src/routes/admin-login.test.ts	source	suite	vitest/typecheck
+web/src/routes/admin-security.test.ts	source	suite	vitest/typecheck
+web/src/routes/admin.routes.ts	source	suite	vitest/typecheck
+web/src/routes/api.routes.ts	source	suite	vitest/typecheck
+web/src/routes/auth-security.test.ts	source	suite	vitest/typecheck
+web/src/routes/auth.routes.ts	source	suite	vitest/typecheck
+web/src/routes/chat-page.test.ts	source	suite	vitest/typecheck
+web/src/routes/chat.handlers.ts	source	suite	vitest/typecheck
+web/src/routes/chat.routes.test.ts	source	suite	vitest/typecheck
+web/src/routes/learning.routes.test.ts	source	suite	vitest/typecheck
+web/src/routes/learning.routes.ts	source	suite	vitest/typecheck
+web/src/routes/lesson-progress.test.ts	source	suite	vitest/typecheck
+web/src/routes/media-range.test.ts	source	suite	vitest/typecheck
+web/src/routes/pages.routes.ts	source	suite	vitest/typecheck
+web/src/routes/password-reset.test.ts	source	suite	vitest/typecheck
+web/src/routes/realtime-lifecycle.test.ts	source	suite	vitest/typecheck
+web/src/routes/session-revocation.test.ts	source	suite	vitest/typecheck
+web/src/routes/social.routes.ts	source	suite	vitest/typecheck
+web/src/routes/upload-extraction.test.ts	source	suite	vitest/typecheck
+web/src/server.ts	source	suite	vitest/typecheck
+web/src/services/catalog-csv.ts	source	suite	vitest/typecheck
+web/src/services/chat-client.test.ts	source	suite	vitest/typecheck
+web/src/services/chat-history.test.ts	source	suite	vitest/typecheck
+web/src/services/chat-history.ts	source	suite	vitest/typecheck
+web/src/services/chat-stream.test.ts	source	suite	vitest/typecheck
+web/src/services/chat-stream.ts	source	suite	vitest/typecheck
+web/src/services/chat-ui.test.ts	source	suite	vitest/typecheck
+web/src/services/dataset-extract.test.ts	source	suite	vitest/typecheck
+web/src/services/dataset-extract.ts	source	suite	vitest/typecheck
+web/src/services/dataset.test.ts	source	suite	vitest/typecheck
+web/src/services/dataset.ts	source	suite	vitest/typecheck
+web/src/services/http-range.ts	source	suite	vitest/typecheck
+web/src/services/learning.test.ts	source	suite	vitest/typecheck
+web/src/services/learning.ts	source	suite	vitest/typecheck
+web/src/services/lesson-progress.ts	source	suite	vitest/typecheck
+web/src/services/mailer.test.ts	source	suite	vitest/typecheck
+web/src/services/mailer.ts	source	suite	vitest/typecheck
+web/src/services/markdown.test.ts	source	suite	vitest/typecheck
+web/src/services/markdown.ts	source	suite	vitest/typecheck
+web/src/services/password.ts	source	suite	vitest/typecheck
+web/src/services/posts.ts	source	suite	vitest/typecheck
+web/src/services/realtime.ts	source	suite	vitest/typecheck
+web/src/services/recommender-stream.test.ts	source	suite	vitest/typecheck
+web/src/services/recommender.ts	source	suite	vitest/typecheck
+web/src/services/social.test.ts	source	suite	vitest/typecheck
+web/src/services/social.ts	source	suite	vitest/typecheck
+web/src/services/static-ui.test.ts	source	suite	vitest/typecheck
+web/src/views/account.ejs	other	structure	inventory
+web/src/views/admin-catalog.ejs	other	structure	inventory
+web/src/views/admin-login.ejs	other	structure	inventory
+web/src/views/admin-manage.ejs	other	structure	inventory
+web/src/views/admin-pending.ejs	other	structure	inventory
+web/src/views/admin.ejs	other	structure	inventory
+web/src/views/auth/forgot.ejs	other	structure	inventory
+web/src/views/auth/login.ejs	other	structure	inventory
+web/src/views/auth/register.ejs	other	structure	inventory
+web/src/views/auth/reset.ejs	other	structure	inventory
+web/src/views/blog.ejs	other	structure	inventory
+web/src/views/chat.ejs	other	structure	inventory
+web/src/views/course.ejs	other	structure	inventory
+web/src/views/dashboard.ejs	other	structure	inventory
+web/src/views/error.ejs	other	structure	inventory
+web/src/views/friends.ejs	other	structure	inventory
+web/src/views/home.ejs	other	structure	inventory
+web/src/views/learning.ejs	other	structure	inventory
+web/src/views/messages.ejs	other	structure	inventory
+web/src/views/partials/admin-footer.ejs	other	structure	inventory
+web/src/views/partials/admin-header.ejs	other	structure	inventory
+web/src/views/partials/auth-aside.ejs	other	structure	inventory
+web/src/views/partials/avatar.ejs	other	structure	inventory
+web/src/views/partials/course-card.ejs	other	structure	inventory
+web/src/views/partials/csrf.ejs	other	structure	inventory
+web/src/views/partials/footer.ejs	other	structure	inventory
+web/src/views/partials/header.ejs	other	structure	inventory
+web/src/views/partials/post.ejs	other	structure	inventory
+web/src/views/profile.ejs	other	structure	inventory
+web/src/views/search.ejs	other	structure	inventory
+web/src/views/views.test.ts	source	suite	vitest/typecheck
+web/tsconfig.json	data	structure	data/evidence
+web/vitest.config.ts	source	suite	vitest/typecheck
+.env.docker.example	config	new	created/edited this deployment audit
+compose.host-ollama.yml	config	new	created/edited this deployment audit
+compose.local.yml	config	new	created/edited this deployment audit
+reports/DOCKER_DEPLOYMENT_2026-10-31.md	docs	new	created/edited this deployment audit
+reports/PIPELINE_AUDIT_2026-10-31.md	docs	new	doc
+reports/final-e2e-evidence/docker-local-2026-10-31/api-health.json	data	new	data/evidence
+reports/final-e2e-evidence/docker-local-2026-10-31/build.log	data	new	data/evidence
+reports/final-e2e-evidence/docker-local-2026-10-31/chat-events.sse	other	new	inventory
+reports/final-e2e-evidence/docker-local-2026-10-31/compose-config.txt	data	new	data/evidence
+reports/final-e2e-evidence/docker-local-2026-10-31/compose-ps.txt	data	new	data/evidence
+reports/final-e2e-evidence/docker-local-2026-10-31/images.txt	data	new	data/evidence
+reports/final-e2e-evidence/docker-local-2026-10-31/ollama-host-models-override.yml	config	new	compose/CI config
+reports/final-e2e-evidence/docker-local-2026-10-31/web-ready.json	data	new	data/evidence
+scripts/audit_source_links.py	source	new	tests/compileall
+scripts/verify_web_catalog.py	source	new	tests/compileall
+tests/test_audit_source_links.py	test	new	tests/compileall
+tests/test_export_web_catalog.py	test	new	tests/compileall
+tests/test_verify_web_catalog.py	test	new	tests/compileall
