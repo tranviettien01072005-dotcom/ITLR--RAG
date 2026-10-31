@@ -128,11 +128,20 @@ history is shortened to FastAPI's per-message bound; stored PostgreSQL text rema
 intact. `citations.public_item` shares JSON-safe metadata handling for sources and
 recommendations; non-finite metadata becomes null and full snapshot bodies stay
 inside retrieval artifacts. The shared Ollama request builder owns transport
-payloads for both modes; stream elapsed budget is checked at NDJSON boundaries.
+payloads for sync/async modes. Public sync streaming keeps event-boundary budgeting.
+The API calls async engine/chatbot/adapter transport with a total Ollama generation
+deadline, strict incremental UTF-8 and nested iterator cleanup. ClosingStreamingResponse
+also closes a suspended iterator on ASGI send failure; cancellation propagates without
+producing a successful final. Retrieval preparation runs in a worker thread and cannot
+be forcibly stopped mid-CPU work. Existing sync APIs and pickle paths remain available.
+See [blocker evidence](../reports/PRODUCTION_BLOCKERS_RESOLUTION.md) for real cancellation
+measurements and remaining model/quality/production limits.
 
 Unused preparation category/prefix work was removed with output parity checks.
 Existing orchestration modules and public compatibility aliases remain; no new
 service hierarchy, renamed pickle path or PostgreSQL schema was introduced.
-API health still exposes readiness/items/CF, not a loaded-version fingerprint.
+API health now also exposes the loaded-artifact fingerprint ({version,
+manifest_sha256}); readiness identifies the verified loaded snapshot and only
+changes after a successful admin reload, not on pointer/activation state alone.
 See [ADR-012](decisions/ADR-012-calibrated-search-and-stream-completion.md) and
 [engineering evidence](../reports/FINAL_ENGINEERING_REVIEW.md).

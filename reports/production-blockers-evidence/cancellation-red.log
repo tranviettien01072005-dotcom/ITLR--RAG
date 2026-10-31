@@ -1,0 +1,239 @@
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_ test_api_disconnect_closes_stalled_provider_without_final[before-first-delta] _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7a3da8b52520>
+upstream = ({'first_delta': False}, <threading.Event at 0x7a3da8c42210: set>, <threading.Event at 0x7a3da8985d10: set>)
+after_delta = False
+
+    @pytest.mark.parametrize("after_delta", [False, True], ids=["before-first-delta", "after-first-delta"])
+    def test_api_disconnect_closes_stalled_provider_without_final(monkeypatch, upstream, after_delta):
+        from itlr.api import server as srv
+        state, provider_started, provider_closed = upstream
+        state["first_delta"] = after_delta
+        monkeypatch.setattr(srv, "load_engine", lambda: prepared_engine(monkeypatch))
+    
+        async def run():
+            response = srv.api_chat_stream(srv.ChatReq(message="question"))
+            if inspect.isawaitable(response):
+                response = await response
+            text_sent = asyncio.Event()
+            events = []
+    
+            async def send(message):
+                if message["type"] != "http.response.body":
+                    return
+                for frame in message.get("body", b"").decode().split("\n\n"):
+                    if frame.startswith("data: "):
+                        event = json.loads(frame[6:])
+                        events.append(event)
+                        if event["type"] == "text":
+                            text_sent.set()
+    
+            disconnected_at = None
+    
+            async def receive():
+                nonlocal disconnected_at
+                assert await asyncio.to_thread(provider_started.wait, 2), "Provider request was never started"
+                if after_delta:
+                    await asyncio.wait_for(text_sent.wait(), 2)
+                disconnected_at = time.monotonic()
+                return {"type": "http.disconnect"}
+    
+            # Keep the response alive: cleanup must not depend on CPython destruction.
+            await response({"type": "http", "asgi": {"spec_version": "2.0"}}, receive, send)
+            assert disconnected_at is not None
+            assert time.monotonic() - disconnected_at < 1, "Disconnect waited for the provider read timeout"
+            assert await asyncio.to_thread(provider_closed.wait, 0.5), "Provider socket remains open after client disconnect"
+            assert not {"final", "done"} & {event["type"] for event in events}
+    
+>       asyncio.run(run())
+
+tests/test_stream_cancellation.py:128: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.14/asyncio/runners.py:204: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/asyncio/runners.py:127: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/asyncio/base_events.py:719: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    async def run():
+        response = srv.api_chat_stream(srv.ChatReq(message="question"))
+        if inspect.isawaitable(response):
+            response = await response
+        text_sent = asyncio.Event()
+        events = []
+    
+        async def send(message):
+            if message["type"] != "http.response.body":
+                return
+            for frame in message.get("body", b"").decode().split("\n\n"):
+                if frame.startswith("data: "):
+                    event = json.loads(frame[6:])
+                    events.append(event)
+                    if event["type"] == "text":
+                        text_sent.set()
+    
+        disconnected_at = None
+    
+        async def receive():
+            nonlocal disconnected_at
+            assert await asyncio.to_thread(provider_started.wait, 2), "Provider request was never started"
+            if after_delta:
+                await asyncio.wait_for(text_sent.wait(), 2)
+            disconnected_at = time.monotonic()
+            return {"type": "http.disconnect"}
+    
+        # Keep the response alive: cleanup must not depend on CPython destruction.
+        await response({"type": "http", "asgi": {"spec_version": "2.0"}}, receive, send)
+        assert disconnected_at is not None
+>       assert time.monotonic() - disconnected_at < 1, "Disconnect waited for the provider read timeout"
+E       AssertionError: Disconnect waited for the provider read timeout
+E       assert (14024.662103261 - 14021.652728806) < 1
+E        +  where 14024.662103261 = <built-in function monotonic>()
+E        +    where <built-in function monotonic> = time.monotonic
+
+tests/test_stream_cancellation.py:124: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  itlr.chatbot:chatbot.py:424 chat_stream generation failed
+Traceback (most recent call last):
+  File "/home/o/ITLR--RAG/itlr/chatbot/llm_client.py", line 451, in stream
+    yield from _stream_ollama(messages, num_predict=max_tokens, temperature=temperature)
+  File "/home/o/ITLR--RAG/itlr/chatbot/llm_client.py", line 203, in _stream_ollama
+    for raw in resp:
+               ^^^^
+  File "/usr/lib/python3.14/http/client.py", line 708, in readline
+    return super().readline(limit)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/lib/python3.14/http/client.py", line 700, in peek
+    return self._peek_chunked(n)
+           ~~~~~~~~~~~~~~~~~~^^^
+  File "/usr/lib/python3.14/http/client.py", line 738, in _peek_chunked
+    chunk_left = self._get_chunk_left()
+  File "/usr/lib/python3.14/http/client.py", line 584, in _get_chunk_left
+    chunk_left = self._read_next_chunk_size()
+  File "/usr/lib/python3.14/http/client.py", line 544, in _read_next_chunk_size
+    line = self.fp.readline(_MAXLINE + 1)
+  File "/usr/lib/python3.14/socket.py", line 725, in readinto
+    return self._sock.recv_into(b)
+           ~~~~~~~~~~~~~~~~~~~~^^^
+TimeoutError: timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/o/ITLR--RAG/itlr/chatbot/chatbot.py", line 419, in chat_stream
+    for chunk in try_llm_response_stream(p["sys_prompt"], p["llm_message"], history=p["history"], strict=True):
+                 ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/o/ITLR--RAG/itlr/chatbot/llm_adapter.py", line 46, in try_llm_response_stream
+    yield from llm_client.stream(messages)
+  File "/home/o/ITLR--RAG/itlr/chatbot/llm_client.py", line 455, in stream
+    raise LLMError(f'ollama stream failed ({_safe_err_text(exc)})') from exc
+itlr.chatbot.llm_client.LLMError: ollama stream failed (TimeoutError: timed out)
+_ test_api_disconnect_closes_stalled_provider_without_final[after-first-delta] _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7a3da8b52fd0>
+upstream = ({'first_delta': True}, <threading.Event at 0x7a3d8693e6c0: set>, <threading.Event at 0x7a3d86936eb0: unset>)
+after_delta = True
+
+    @pytest.mark.parametrize("after_delta", [False, True], ids=["before-first-delta", "after-first-delta"])
+    def test_api_disconnect_closes_stalled_provider_without_final(monkeypatch, upstream, after_delta):
+        from itlr.api import server as srv
+        state, provider_started, provider_closed = upstream
+        state["first_delta"] = after_delta
+        monkeypatch.setattr(srv, "load_engine", lambda: prepared_engine(monkeypatch))
+    
+        async def run():
+            response = srv.api_chat_stream(srv.ChatReq(message="question"))
+            if inspect.isawaitable(response):
+                response = await response
+            text_sent = asyncio.Event()
+            events = []
+    
+            async def send(message):
+                if message["type"] != "http.response.body":
+                    return
+                for frame in message.get("body", b"").decode().split("\n\n"):
+                    if frame.startswith("data: "):
+                        event = json.loads(frame[6:])
+                        events.append(event)
+                        if event["type"] == "text":
+                            text_sent.set()
+    
+            disconnected_at = None
+    
+            async def receive():
+                nonlocal disconnected_at
+                assert await asyncio.to_thread(provider_started.wait, 2), "Provider request was never started"
+                if after_delta:
+                    await asyncio.wait_for(text_sent.wait(), 2)
+                disconnected_at = time.monotonic()
+                return {"type": "http.disconnect"}
+    
+            # Keep the response alive: cleanup must not depend on CPython destruction.
+            await response({"type": "http", "asgi": {"spec_version": "2.0"}}, receive, send)
+            assert disconnected_at is not None
+            assert time.monotonic() - disconnected_at < 1, "Disconnect waited for the provider read timeout"
+            assert await asyncio.to_thread(provider_closed.wait, 0.5), "Provider socket remains open after client disconnect"
+            assert not {"final", "done"} & {event["type"] for event in events}
+    
+>       asyncio.run(run())
+
+tests/test_stream_cancellation.py:128: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.14/asyncio/runners.py:204: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/asyncio/runners.py:127: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/asyncio/base_events.py:719: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    async def run():
+        response = srv.api_chat_stream(srv.ChatReq(message="question"))
+        if inspect.isawaitable(response):
+            response = await response
+        text_sent = asyncio.Event()
+        events = []
+    
+        async def send(message):
+            if message["type"] != "http.response.body":
+                return
+            for frame in message.get("body", b"").decode().split("\n\n"):
+                if frame.startswith("data: "):
+                    event = json.loads(frame[6:])
+                    events.append(event)
+                    if event["type"] == "text":
+                        text_sent.set()
+    
+        disconnected_at = None
+    
+        async def receive():
+            nonlocal disconnected_at
+            assert await asyncio.to_thread(provider_started.wait, 2), "Provider request was never started"
+            if after_delta:
+                await asyncio.wait_for(text_sent.wait(), 2)
+            disconnected_at = time.monotonic()
+            return {"type": "http.disconnect"}
+    
+        # Keep the response alive: cleanup must not depend on CPython destruction.
+        await response({"type": "http", "asgi": {"spec_version": "2.0"}}, receive, send)
+        assert disconnected_at is not None
+        assert time.monotonic() - disconnected_at < 1, "Disconnect waited for the provider read timeout"
+>       assert await asyncio.to_thread(provider_closed.wait, 0.5), "Provider socket remains open after client disconnect"
+E       AssertionError: Provider socket remains open after client disconnect
+E       assert False
+
+tests/test_stream_cancellation.py:125: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_stream_cancellation.py::test_api_disconnect_closes_stalled_provider_without_final[before-first-delta]
+FAILED tests/test_stream_cancellation.py::test_api_disconnect_closes_stalled_provider_without_final[after-first-delta]
+2 failed in 10.57s

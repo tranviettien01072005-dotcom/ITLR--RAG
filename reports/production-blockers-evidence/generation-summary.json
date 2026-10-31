@@ -1,0 +1,16 @@
+{
+  "sample_count": 3,
+  "elapsed_s": {
+    "p50": 17.49894724800106,
+    "p95": 27.15250579740041
+  },
+  "ttft_s": {
+    "p50": 3.1692481560003216,
+    "p95": 18.459278233199438
+  },
+  "positive_cases": 2,
+  "positive_accepted_answers": 0,
+  "scope": "frozen AI-authored sample; engine async client normal return implies completion validation; terminal token counters not exposed; no human ratings",
+  "human_groundedness": null,
+  "human_hallucination_rate": null
+}

@@ -79,7 +79,11 @@ def test_admin_reload_correct_token(client, monkeypatch):
 def test_health_reports_cf_false(client):
     r = client.get("/health")
     assert r.status_code == 200
-    assert r.json() == {"status": "ok", "engine": "ready", "cf": False, "items": 0}
+    body = r.json()
+    # Đọc theo field, không ghim đúng khóa: readiness có thể thêm fingerprint
+    # artifacts mà không hợp đồng cũ bị phá vỡ.
+    assert body["status"] == "ok" and body["engine"] == "ready"
+    assert body["cf"] is False and body["items"] == 0
 
 
 def test_personas_503_when_cf_missing(client):

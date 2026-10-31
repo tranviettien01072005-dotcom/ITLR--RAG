@@ -1,11 +1,33 @@
 # ITLR–RAG — Bộ nhớ kỹ thuật hiện hành
 
-Cập nhật: 2026-10-30. Thứ tự ưu tiên: yêu cầu phiên hiện tại → AGENTS/CONSTRAINTS →
+Cập nhật: 2026-10-31. Thứ tự ưu tiên: yêu cầu phiên hiện tại → AGENTS/CONSTRAINTS →
 code và bằng chứng chạy mới → nhật ký lịch sử. Kế hoạch cũ không cấp quyền commit,
 publish, migration hoặc gọi provider trả phí.
 
 ## Trạng thái đã kiểm chứng
 
+- Final E2E certification (2026-10-31, máy này): **489 Python / 146 Web PASS**,
+  coverage **67,37% / 47,05%**; điển hình gates thật: HTTP/DB 36/36, Chrome 9/9,
+  backup/restore 15 bảng fingerprint bằng, TLSv1.3 verified-cert smoke, artifact
+  lifecycle 9/9, CF-absent 503 đúng, health fingerprint lock/reload PASS.
+- Chế độ `llm_extractive` (evidence-bound) là default khi có chunk retrieval: model
+  chọn chunk theo JSON schema, engine bind quote nguyên văn byte-verbatim; frozen
+  blind eval 20 case (SHA `2a3a98e2d207…`): 11/12 positive accepted valid, 1 timeout
+  45s; negative 7/8 không trở thành claim (2 template gate, 1 extractive search,
+  3 `no_selected_evidence`, 2 timeout). Uncached full prompt vẫn FAIL (60s không
+  xong; prefill CPU-bound). Docker daemon socket root:root, sudo noninteractive bị
+  từ chối, thiếu newuidmap → Docker staging **BLOCKED**. Human metrics vẫn null.
+  **NO-GO** production. [E2E certification](../reports/FINAL_E2E_CERTIFICATION.md).
+- Blocker remediation (2026-10-30 → 2026-10-31): **457 Python / 145 Web PASS**,
+  coverage **67,24% / 46,55%**. API SSE dùng async I/O, total generation deadline,
+  strict UTF-8 và explicit iterator cleanup; sync public paths vẫn giữ tương thích.
+  Real Chrome→Express→API→Qwen Stop đóng socket sau64/77ms, DB không lưu partial;
+  request model kế tiếp khoảng0,3s. Chưa có model-internal cancellation ACK.
+  Direct uncached prompt vẫn timeout45s; rút context làm giảm quality nên không áp dụng.
+  Có counterexample citation passage không hỗ trợ claim. Docker bị socket/uidmap
+  block, human metrics null. **NO-GO**, không commit/push/production migration/activation.
+  [Báo cáo và evidence mới](../reports/PRODUCTION_BLOCKERS_RESOLUTION.md).
+  Các checkpoint dưới là lịch sử, không phải lần chạy mới.
 - Release validation mới: **445 Python / 145 Web PASS**, coverage **66,70% / 46,55%**.
   Sửa UI báo success trước EOF/done và PDF Buffer/parser incompatibility bằng RED→GREEN.
   Bộ nguồn mới Recall@5 83,33%, EN6/6 VI4/6; không tuning, AI labels chưa phải human.
@@ -63,7 +85,8 @@ publish, migration hoặc gọi provider trả phí.
 ## Blockers
 
 Docker/PG16/Caddy production lifecycle, independent human generation quality và
-upstream cancellation/capacity chưa được xác nhận. PostgreSQL18 native/backup/restore,
+model-internal cancellation ACK/capacity chưa được xác nhận; transport cancellation
+đã được đo thật trong blocker remediation. PostgreSQL18 native/backup/restore,
 Chrome và artifact lifecycle đã chạy trên fixtures riêng; không thay deployment production.
 Không production DB/index changes, paid API, commit/push. Xem release report cho phạm vi mới.
 

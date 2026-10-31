@@ -1,0 +1,8 @@
+Thiếu /tmp/itlr-system-audit/staging/cf_model.pkl — Collaborative Filtering bị tắt (tùy chọn V2); /api/personas và /api/for-you sẽ trả 503 cho tới khi build CF.
+Could not reach the Hub (Cannot reach https://huggingface.co/api/models/intfloat/multilingual-e5-base: offline mode is enabled. To disable it, please unset the `HF_HUB_OFFLINE` environment variable.). Using cached commit hash for 'intfloat/multilingual-e5-base'.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 3759.03it/s]
+warm-smoke-before 0.3494798769988847 0.22383029800039367 True None
+dev-vi-5025-production-prompt 6.670629608001036 0.22775682200153824 True None
+dev-vi-5061-longest-dev-production-prompt 45.04630903499856 None False TimeoutError: 
+concurrent-1 15.20593137600008 8.453226534998976 True None
+concurrent-2 22.623296294999818 15.35168960900046 True None

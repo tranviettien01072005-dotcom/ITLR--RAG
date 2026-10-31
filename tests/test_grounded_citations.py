@@ -117,13 +117,24 @@ def test_api_preserves_sources_and_early_events(monkeypatch):
     from itlr.api import server
     bot = prepared(monkeypatch)
     monkeypatch.setattr(cb, "try_llm_response", lambda *a, **kw: "Python [item_id:5001]")
-    monkeypatch.setattr(cb, "try_llm_response_stream", lambda *a, **kw: iter(["Python ", "[item_id:5001]"]))
     monkeypatch.setattr(server, "_engine", lambda: bot)
     result = server.api_chat(server.ChatReq(message="q"))
     assert result["sources"][0]["chunk_id"] == "5001:0"
     import json
-    monkeypatch.setattr(server, "StreamingResponse", lambda body, **kwargs: body)
-    frames = [json.loads(frame[6:]) for frame in server.api_chat_stream(server.ChatReq(message="q"))]
+    import asyncio
+    from itlr.chatbot import llm_adapter
+
+    async def tokens(*_args, **_kwargs):
+        yield "Python "
+        yield "[item_id:5001]"
+
+    monkeypatch.setattr(llm_adapter, "try_llm_response_astream", tokens)
+
+    async def collect():
+        response = await server.api_chat_stream(server.ChatReq(message="q"))
+        return [json.loads(frame[6:]) async for frame in response.body_iterator]
+
+    frames = asyncio.run(collect())
     assert [f["type"] for f in frames] == ["sources", "meta", "text", "text", "final", "done"]
     assert frames[-2]["response"] == result["response"]
 

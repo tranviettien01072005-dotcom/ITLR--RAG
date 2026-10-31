@@ -1,10 +1,11 @@
 # Cài đặt và vận hành ITLR–RAG
 
 Review mới: search default 84 có calibration/holdout; LLM timeout phải hữu hạn và >0,
-stream kiểm thêm elapsed budget tại NDJSON boundaries. **NOT READY**: Docker/PG16/Caddy
+API SSE dùng async generation deadline và đóng upstream khi disconnect; sync client
+giữ event-boundary budget. **NOT READY**: Docker/PG16/Caddy
 production deployment và local generation reliability chưa được xác nhận. PostgreSQL18
 native cô lập đã kiểm migration, auth, backup/restore và Chrome với upstream fixture.
-[Release evidence và giới hạn](../reports/RELEASE_READINESS_FINAL.md).
+[Blocker evidence và giới hạn](../reports/PRODUCTION_BLOCKERS_RESOLUTION.md).
 
 For the complete HTTPS/Web/API/PostgreSQL stack use [the production runbook](PRODUCTION.md) and `compose.production.yml`. The original `docker-compose.yml` remains API/refresh only. Web restarts no longer run migration or catalog sync automatically.
 

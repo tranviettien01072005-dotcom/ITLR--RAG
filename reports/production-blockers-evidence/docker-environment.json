@@ -1,0 +1,23 @@
+{
+  "uid": 1000,
+  "tools": {
+    "docker": "/usr/bin/docker",
+    "dockerd": "/usr/bin/dockerd",
+    "dockerd-rootless.sh": "/usr/bin/dockerd-rootless.sh",
+    "dockerd-rootless-setuptool.sh": "/usr/bin/dockerd-rootless-setuptool.sh",
+    "rootlesskit": "/usr/bin/rootlesskit",
+    "newuidmap": null,
+    "newgidmap": null,
+    "slirp4netns": null,
+    "fuse-overlayfs": null
+  },
+  "socket_mode": "0o660",
+  "socket_access": false,
+  "subuid_entry": true,
+  "subgid_entry": true,
+  "global_changes": false,
+  "rootless_daemon_started": false,
+  "verdict": "BLOCKED: host Docker socket denied; rootless prerequisite uidmap helpers missing; no global install or permission changes",
+  "docker_info_exit": 1,
+  "docker_info_error": "permission denied while trying to connect to the docker API at unix:///var/run/docker.sock"
+}

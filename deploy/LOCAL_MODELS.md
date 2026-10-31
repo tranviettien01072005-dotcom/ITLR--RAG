@@ -32,9 +32,12 @@ Giao diện chính vẫn là Web cổng 3000. Đặt `USE_OLLAMA=0` khi chỉ c�
 đã chạy qua `ollama` trên PATH, dùng daemon đó; không cần khởi chạy thêm binary
 trong `var/ollama`. `OLLAMA_MODEL` được giữ nguyên: thiếu model sẽ báo lỗi thay vì
 tự thay bằng model khác. `OLLAMA_TIMEOUT` phải là số hữu hạn dương, áp dụng cho cả
-chat và stream; stream kiểm elapsed budget tại từng NDJSON event, không chỉ chờ I/O.
-Trong một blocking read đang bị stall, deadline chưa phải hard wall-clock; read timeout
-vẫn áp dụng. Khi chưa đặt, giữ timeout legacy 90/240 giây qua
+chat và stream. API SSE hiện dùng async HTTP với total generation deadline kể cả
+khi provider ngừng gửi bytes; Browser disconnect đóng upstream socket qua các tầng.
+Sync public `llm_client.stream()` vẫn kiểm elapsed budget tại từng NDJSON event,
+không có hard deadline trong blocking read. Provider probe/retrieval nằm ngoài
+async generation budget, nên đây chưa phải end-to-end request deadline.
+Khi chưa đặt, giữ timeout legacy 90/240 giây qua
 `DEEPSEEK_TIMEOUT_S`/`DEEPSEEK_STREAM_TIMEOUT_S`. Các tên legacy này không chọn cloud
 provider. Cả chat và stream qua adapter chung áp dụng history character budget;
 đây là xấp xỉ, không phải token accounting chính xác.
@@ -75,3 +78,10 @@ giữ floor cũ. Xem [engineering review](../reports/FINAL_ENGINEERING_REVIEW.md
 Utility `itlr.utils.repickle` chỉ dùng trên bản sao offline tin cậy; mismatch sklearn
 phải rebuild bằng môi trường phù hợp. Utility ghi atomic từng file và trả lỗi khi
 thất bại, không cấp lại manifest/probe hoặc activation. Không chạy trên active data.
+
+Blocker remediation: warm/cache-hit có thể nhanh, nhưng uncached full prompt vẫn
+chạm45s trên CPU này. Không giảm context/output hoặc tăng timeout để hợp thức hóa
+completion. Real Stop/socket/next-request đã đo; model-internal ACK, capacity và
+context token boundaries chưa VERIFIED. Phiên E2E mới: chế độ `llm_extractive`
+(evidence-bound quote) xác nhận 11/12 positive frozen accepted; uncached 60s vẫn timeout.
+[Evidence mới](../reports/PRODUCTION_BLOCKERS_RESOLUTION.md).

@@ -476,3 +476,14 @@ def test_sdk_resources_close_on_completion_error_and_cancel(monkeypatch, mode):
             assert list(iterator) == ['piece']
         assert state['stream_closed']
     assert state['client_closed']
+
+
+@pytest.mark.parametrize('streaming', [False, True])
+def test_ollama_evidence_schema_is_sent_as_decoder_constraint(streaming):
+    schema = {'type': 'array', 'items': {'type': 'string', 'enum': ['5061:0', '5061:7']}, 'maxItems': 2}
+    request = lc._ollama_request([{'role': 'user', 'content': 'question'}], stream=streaming,
+                                 num_predict=2000, temperature=.3, output_schema=schema)
+    payload = json.loads(request.data)
+    assert payload['format'] == schema
+    assert payload['options']['num_predict'] == 2000
+    assert payload['stream'] is streaming

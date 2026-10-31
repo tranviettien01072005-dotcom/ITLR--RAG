@@ -1,0 +1,21 @@
+{
+  "scope": "Real Chrome UI -> Express18030 -> API18080 -> observationproxy18435 -> actualOllama11434, E5 real768d staging; private existing fixture database. Proxy closes actual socket, modelinternal cancellation ACK is not directlyobservable.",
+  "model": "qwen2.5:3b",
+  "ollama_timeout_s": 45,
+  "cases": [
+    {
+      "scenario": "before-first-delta",
+      "db_before": [
+        {
+          "role": "assistant",
+          "count": 3
+        },
+        {
+          "role": "user",
+          "count": 3
+        }
+      ]
+    }
+  ],
+  "browser_exceptions": []
+}

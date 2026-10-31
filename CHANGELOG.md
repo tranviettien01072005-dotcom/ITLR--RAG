@@ -1,5 +1,36 @@
 # ITLR–RAG | Intelligent IT Learning Platform — Changelog
 
+### Evidence-bound extractive generation & readiness fingerprint — 2026-10-31
+
+- Semantic chat có chunk retrieval mặc định dùng chế độ `llm_extractive`: model chọn
+  chunk bằng JSON schema enum, engine trả quote nguyên văn từ excerpt đã lưu; câu
+  không thể bind bị loại `insufficient_evidence` thay vì trả claim chưa kiểm chứng.
+  SSE chỉ phát final text; citation_validation thêm `evidence_binding`.
+  Frozen blind eval (dataset SHA `2a3a98e…`): 11/12 positive accepted valid và
+  byte-verbatim 11/11 join-check PASS; negative 7/8 không trở thành claim.
+- `/health` và `/admin/reload` thêm fingerprint artifacts đã load
+  (`version` + `manifest_sha256`); readiness nhận diện snapshot đã verified,
+  chỉ đổi sau reload thành công; failed reload giữ nguyên fingerprint cũ.
+- Fresh full verification: **489 Python / 146 Web PASS**, coverage **67,37% / 47,05%**,
+  typecheck/lint/build/compileall/pip check/pip-audit(0) PASS; Bandit 0 High,
+  npm audit chỉ advisory dev-chain moderate. Endpoint + journeys thật: HTTP/DB 36/36,
+  Chrome 9/9, backup/restore 15 bảng, TLSv1.3 smoke, artifact lifecycle 9/9 PASS.
+- Uncached full prompt vẫn FAIL ~60s (prefill CPU-bound tại provider); Docker
+  staging vẫn BLOCKED vì docker.sock quyền root:root, sudo noninteractive bị từ chối.
+  Human faithfulness/remaining quality gates chưa có; verdict **NO-GO** cho production.
+- [E2E certification](reports/FINAL_E2E_CERTIFICATION.md).
+
+### Production blocker remediation — 2026-10-31
+
+- API SSE dùng async transport và explicit cleanup; Browser Stop đóng socket Qwen
+  thật khoảng64–77ms, không lưu partial output. Giữ sync APIs/V2/V3/pickle/schema.
+- Async Ollama có total generation deadline và strict fragmented UTF-8 decoding;
+  regression RED → GREEN, thêm7 TCP/ASGI tests và5 mocked SDK compatibility tests.
+- **457 Python / 145 Web PASS**, coverage **67,24% / 46,55%**; không thêm dependencies.
+  Uncached45s timeout và unsupported-passage citation vẫn tái hiện. Không đưa
+  context-cut experiment vào runtime vì quality giảm. Docker/human gates chưa đạt.
+- [Production blockers report, NO-GO](reports/PRODUCTION_BLOCKERS_RESOLUTION.md).
+
 ### Release validation — 2026-10-30
 
 - UI chỉ render final và đổi conversation sau khi parser xác nhận stream hoàn chỉnh;

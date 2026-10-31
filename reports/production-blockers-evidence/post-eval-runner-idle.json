@@ -1,0 +1,5 @@
+{
+  "elapsed_s": 5.000263163001364,
+  "runner_cpu_percent": 0.0,
+  "scope": "shared runner idle observation after final evaluation; not per-request cancellation ACK; no active request controls"
+}

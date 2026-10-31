@@ -7,6 +7,7 @@ Toàn bộ logic lõi (truy hồi ngữ nghĩa, RAG, chatbot có cổng off-topi
 Collaborative Filtering) được giữ nguyên — engine chỉ gói lại cho tiện gọi.
 """
 
+import hashlib
 import logging
 import os
 import pickle
@@ -33,6 +34,7 @@ class RecommenderEngine:
         self.search_index = search_index
         self.cf_model = cf_model   # None khi chưa build CF (tính năng tùy chọn)
         self.chatbot = chatbot
+        self.artifact_fingerprint = None
 
     def search(self, query, item_type=None, min_pct=DEFAULT_SEARCH_MIN_PCT):
         """Tìm kiếm ngữ nghĩa — logic hiểu truy vấn của tab Tìm kiếm.
@@ -99,6 +101,12 @@ class RecommenderEngine:
         """Bản STREAMING: generator yield (event, data) — xem EducationalChatbot.chat_stream."""
         yield from self.chatbot.chat_stream(message, history=history or [])
 
+    async def achat_stream(self, message, history=None):
+        from contextlib import aclosing
+        async with aclosing(self.chatbot.achat_stream(message, history=history or [])) as response:
+            async for event in response:
+                yield event
+
     def personas(self):
         """Danh sách hồ sơ người dùng mô phỏng: [{uid, label}]."""
         self._require_cf()
@@ -136,6 +144,11 @@ def _load_engine():
 
     active_dir = config.current_dir()
     verify_integrity(active_dir, required=os.environ.get("ITLR_REQUIRE_ARTIFACT_MANIFEST") == "1")
+    manifest_path = active_dir / "MANIFEST.json"
+    fingerprint = {
+        "version": active_dir.name if active_dir.parent.name == "versions" else None,
+        "manifest_sha256": hashlib.sha256(manifest_path.read_bytes()).hexdigest() if manifest_path.is_file() else None,
+    }
     def artifact(name):
         return str(active_dir / name)
     with open(artifact("item_list.pkl"), "rb") as f:
@@ -210,7 +223,9 @@ def _load_engine():
         query_prefix=search_index["query_prefix"], ann=ann, reranker=reranker,
     )
     search_index["vocab"] = chatbot.vocab
-    return RecommenderEngine(items, model, search_index, cf_model, chatbot)
+    engine = RecommenderEngine(items, model, search_index, cf_model, chatbot)
+    engine.artifact_fingerprint = fingerprint
+    return engine
 
 
 _ENGINE = None
@@ -218,7 +233,6 @@ _ENGINE_LOCK = threading.RLock()
 
 
 def load_engine():
-    global _ENGINE
     cached = _ENGINE
     if cached is not None:
         return cached

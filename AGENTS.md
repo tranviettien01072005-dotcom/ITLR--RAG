@@ -1,6 +1,6 @@
 # Hướng dẫn làm việc với ITLR–RAG
 
-Cập nhật: 2026-10-30. Tên sản phẩm: **ITLR–RAG | Intelligent IT Learning Platform**. Phạm vi là nền tảng hỗ trợ học CNTT, gợi ý tài nguyên và chatbot RAG. Mô tả dựa trên khả năng có trong repository; không suy diễn trạng thái thương mại, giấy phép open-source hoặc production-ready. Không tự gán MIT; bảo toàn bản quyền và license bên thứ ba.
+Cập nhật: 2026-10-31. Tên sản phẩm: **ITLR–RAG | Intelligent IT Learning Platform**. Phạm vi là nền tảng hỗ trợ học CNTT, gợi ý tài nguyên và chatbot RAG. Mô tả dựa trên khả năng có trong repository; không suy diễn trạng thái thương mại, giấy phép open-source hoặc production-ready. Không tự gán MIT; bảo toàn bản quyền và license bên thứ ba.
 
 ## Tiếp nhận và thực hiện công việc
 
@@ -26,10 +26,16 @@ Cập nhật: 2026-10-30. Tên sản phẩm: **ITLR–RAG | Intelligent IT Learn
 
 Artifacts cũ giữ đường V2. Không xóa hoặc di chuyển shim `itlr/core/bm25.py`: pickle cũ còn tham chiếu module này. `/admin/reload` yêu cầu `X-Admin-Token` khớp `ITLR_ADMIN_TOKEN`; chưa cấu hình phải 403. CF tùy chọn; thiếu model phải trả 503 tại personas/for-you và không làm hỏng retrieval.
 
-Checkpoint hiện hành và blockers: [engineering review](reports/FINAL_ENGINEERING_REVIEW.md).
-Baseline mới 445 Python PASS/0 skip và 140 Web PASS. Checkpoint 414/132 ở
-[restructuring continuation](reports/RESTRUCTURING_CONTINUATION_2026-10-30.md) là lịch sử;
-không trình bày các số này như lần chạy mới.
+Checkpoint hiện hành và blockers: [blocker remediation](reports/PRODUCTION_BLOCKERS_RESOLUTION.md).
+Checkpoint mới nhất (2026-10-31, Linux): **489 Python PASS/0 skip**, coverage statements
+**67,37%**; **146 Web PASS**, line coverage **47,05%**; typecheck/lint/build,
+compileall, pip check, pip-audit 0 advisory PASS. Checkpoint 457/145 (blocker
+remediation) và 414/132 ở [restructuring continuation](reports/RESTRUCTURING_CONTINUATION_2026-10-30.md)
+là lịch sử; không trình bày như lần chạy mới. Frozen blind eval 20 case Qwen thật:
+11/12 positive nhận `llm_extractive` valid citation byte-verbatim; Docker staging
+BLOCKED (docker.sock root:root, không sudo noninteractive); uncached prompt FAIL 60s.
+Chi tiết: [blocker remediation](reports/PRODUCTION_BLOCKERS_RESOLUTION.md) và
+[E2E certification](reports/FINAL_E2E_CERTIFICATION.md).
 
 ## Kiểm chứng trước bàn giao
 
@@ -49,7 +55,7 @@ npm test
 
 ## Dữ liệu và bảo mật
 
-- Catalog legacy 5.000 items và interactions CF là synthetic; snapshot thật ở `data/curated_resources.jsonl`. `/health` chỉ cung cấp readiness/items/CF, chưa có loaded-version fingerprint; đối chiếu provenance riêng, không coi CURRENT.json là bằng chứng engine đã reload.
+- Catalog legacy 5.000 items và interactions CF là synthetic; snapshot thật ở `data/curated_resources.jsonl`. `/health` gồm readiness/items/CF và fingerprint artifacts đã load (`version` + `manifest_sha256`); fingerprint chỉ đổi sau `/admin/reload` thành công; không coi CURRENT.json làm bằng chứng engine đã reload.
 - Qrels metadata/rule-based, nhãn mô phỏng và chẩn đoán bằng luật không thay thế đánh giá độc lập của người dùng thật.
 - Citation ID hợp lệ không chứng minh faithfulness. Chỉ tiêu chưa đo ghi `null`, không ghi 0% lỗi.
 - Secret giữ trong môi trường hoặc file local bị gitignore; không in key, mật khẩu hay reset token vào log/report.

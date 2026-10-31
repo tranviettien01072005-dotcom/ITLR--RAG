@@ -308,12 +308,12 @@ def write_tables(results, sig_rows, ba, full_name, n_queries, suffix="", noisy=F
     else:
         rerank_note = ("**KHÔNG KHẢ DỤNG**: không nạp được reranker; dòng `+ Cross-Encoder` bị bỏ, "
                        "cấu hình Full chạy `(no rerank)`.")
-    lines.append(f"> **Rerank:** {rerank_note}\n")
+    lines.append("> **Rerank:** " + rerank_note + "\n")
     if noisy:
-        lines.append(f"> Truy vấn bị **bỏ dấu + chèn lỗi gõ**, nhãn liên quan giữ nguyên. "
-                     f"Bảng này đo **độ bền** của hệ trước input tiếng Việt đời thực: khớp từ "
-                     f"vựng chính xác (TF-IDF/BM25) sụt mạnh, kênh ngữ nghĩa + char n-gram bỏ dấu "
-                     f"giữ được chất lượng.\n")
+        lines.append("> Truy vấn bị **bỏ dấu + chèn lỗi gõ**, nhãn liên quan giữ nguyên. "
+                     "Bảng này đo **độ bền** của hệ trước input tiếng Việt đời thực: khớp từ "
+                     "vựng chính xác (TF-IDF/BM25) sụt mạnh, kênh ngữ nghĩa + char n-gram bỏ dấu "
+                     "giữ được chất lượng.\n")
     else:
         lines.append("> Lưu ý: nhãn tự động ≈ khớp topic chính xác nên các cấu hình từ vựng "
                      "(TF-IDF/BM25) gần chạm trần — bảng sạch chủ yếu xác nhận **recall** của tầng "

@@ -2,8 +2,32 @@ import MarkdownIt from "markdown-it";
 
 const md = new MarkdownIt({ html: false, breaks: true, linkify: true });
 
-export function renderMd(src: string): string {
-  return md.render(src || "");
+// Only escaped prose becomes citation links; code and existing links stay literal.
+md.core.ruler.after("linkify", "item-citations", state => {
+  const ids: ReadonlySet<number> | undefined = state.env.itemIds;
+  if (!ids) return;
+  for (const block of state.tokens) {
+    let linkDepth = 0;
+    for (const token of block.children || []) {
+      if (token.type === "link_open") linkDepth++;
+      else if (token.type === "link_close") linkDepth--;
+      else if (token.type === "text" && linkDepth === 0) {
+        const escaped = md.utils.escapeHtml(token.content);
+        const linked = escaped.replace(/\[item_id:(\d+)\]/g, (label, raw: string) => {
+          const id = Number(raw);
+          return ids.has(id) ? `<a href="/courses/${id}">item_id:${id}</a>` : label;
+        });
+        if (linked !== escaped) {
+          token.type = "html_inline";
+          token.content = linked;
+        }
+      }
+    }
+  }
+});
+
+export function renderMd(src: string, itemIds?: ReadonlySet<number>): string {
+  return md.render(src || "", { itemIds });
 }
 
 export function googleRefs(query: string): { label: string; url: string }[] {

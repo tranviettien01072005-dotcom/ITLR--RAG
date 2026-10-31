@@ -76,9 +76,5 @@ export async function* readChatEvents(body: ReadableStream<Uint8Array>): AsyncGe
 }
 
 export function renderChatMd(response: string, sources: { item_id: number }[]): string {
-  const ids = new Set(sources.map(source => source.item_id));
-  return renderMd(response.replace(/\[item_id:(\d+)\]/g, (label, raw: string) => {
-    const id = Number(raw);
-    return ids.has(id) ? `[item_id:${id}](/courses/${id})` : label;
-  }));
+  return renderMd(response, new Set(sources.map(source => source.item_id)));
 }

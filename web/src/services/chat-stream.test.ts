@@ -77,3 +77,12 @@ it("preserves multibyte UTF-8 split across network chunks", async () => {
   for await (const event of readChatEvents(stream)) events.push(event);
   expect(events).toEqual([expect.objectContaining({ type: "final", response }), { type: "done" }]);
 });
+
+it("keeps source code and citation-shaped text literal inside code, linking only prose", () => {
+  const response = '> ```text\n> __enter__() [item_id:7]\n> ```\n\n`[item_id:7]` [item_id:7]';
+  const html = renderChatMd(response, [{ item_id: 7 }]);
+  expect(html).toContain('__enter__() [item_id:7]');
+  expect(html).toContain('<code>[item_id:7]</code>');
+  expect(html).not.toContain('[item_id:7](/courses/7)');
+  expect(html.match(/href="\/courses\/7"/g)).toHaveLength(1);
+});

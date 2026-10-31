@@ -1,0 +1,6218 @@
+{
+  "model": "qwen2.5:3b",
+  "source": "current frozen DEV queries only; no confirmation labels used",
+  "budget_s": 45,
+  "cold_start": "NOT MEASURED: shared daemon/model not unloaded",
+  "host": "shared; no inference-load isolation claim",
+  "engine_load_s": 13.06139213499955,
+  "prepared": [
+    {
+      "id": "dev-en-5025",
+      "prompt_chars": 5875,
+      "retrieval_s": 0.10833729899968603
+    },
+    {
+      "id": "dev-vi-5025",
+      "prompt_chars": 5811,
+      "retrieval_s": 0.07912697099891375
+    },
+    {
+      "id": "dev-en-5030",
+      "prompt_chars": 6011,
+      "retrieval_s": 0.08999813700029335
+    },
+    {
+      "id": "dev-vi-5030",
+      "prompt_chars": 5598,
+      "retrieval_s": 0.0833111200008716
+    },
+    {
+      "id": "dev-en-5040",
+      "prompt_chars": 5954,
+      "retrieval_s": 0.08021464199919137
+    },
+    {
+      "id": "dev-vi-5040",
+      "prompt_chars": 5950,
+      "retrieval_s": 0.08912366000004113
+    },
+    {
+      "id": "dev-en-5061",
+      "prompt_chars": 5980,
+      "retrieval_s": 0.07267829699958384
+    },
+    {
+      "id": "dev-vi-5061",
+      "prompt_chars": 6015,
+      "retrieval_s": 0.08805055800075934
+    },
+    {
+      "id": "dev-en-5075",
+      "prompt_chars": 5400,
+      "retrieval_s": 0.08232563500132528
+    },
+    {
+      "id": "dev-vi-5075",
+      "prompt_chars": 5395,
+      "retrieval_s": 0.08124644499912392
+    },
+    {
+      "id": "dev-en-5092",
+      "prompt_chars": 5891,
+      "retrieval_s": 0.079821298000752
+    },
+    {
+      "id": "dev-vi-5092",
+      "prompt_chars": 5902,
+      "retrieval_s": 0.08317608200013638
+    }
+  ],
+  "checks": [
+    {
+      "label": "warm-smoke-before",
+      "prompt_chars": 14,
+      "max_tokens": 64,
+      "wall_s": 0.3494798769988847,
+      "ttft_s": 0.22383029800039367,
+      "last_delta_s": 0.22383029800039367,
+      "delta_count": 1,
+      "answer": "OK",
+      "terminal": {
+        "model": "qwen2.5:3b",
+        "created_at": "2026-10-30T15:27:49.034397096Z",
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 337478166,
+        "load_duration": 1213988,
+        "prompt_eval_count": 33,
+        "prompt_eval_cached_count": 32,
+        "prompt_eval_duration": 124913000,
+        "eval_count": 2,
+        "eval_duration": 125807000
+      },
+      "error": null,
+      "completed": true,
+      "citation": null,
+      "decode_tokens_per_s": 15.897366601222506,
+      "unattributed_duration_s": 0.085544178
+    },
+    {
+      "label": "dev-vi-5025-production-prompt",
+      "prompt_chars": 5811,
+      "max_tokens": 2000,
+      "wall_s": 6.670629608001036,
+      "ttft_s": 0.22775682200153824,
+      "last_delta_s": 6.5113503280008445,
+      "delta_count": 41,
+      "answer": "HTTP status code 404 Not Found cho biết rằng tài nguyên được yêu cầu không tồn tại. [item_id:5025] [chunk_id:5025:9]",
+      "terminal": {
+        "model": "qwen2.5:3b",
+        "created_at": "2026-10-30T15:27:55.705495046Z",
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 6654211402,
+        "load_duration": 1835534,
+        "prompt_eval_count": 1420,
+        "prompt_eval_cached_count": 1419,
+        "prompt_eval_duration": 161292000,
+        "eval_count": 42,
+        "eval_duration": 6441443000
+      },
+      "error": null,
+      "completed": true,
+      "citation": {
+        "status": "valid",
+        "cited_ids": [
+          5025
+        ],
+        "invalid_ids": [],
+        "malformed": false,
+        "invalid_chunk_ids": [],
+        "missing_chunk_item_ids": [],
+        "semantic_grounding": "not_verified"
+      },
+      "decode_tokens_per_s": 6.520278142645989,
+      "unattributed_duration_s": 0.049640868
+    },
+    {
+      "label": "dev-vi-5061-longest-dev-production-prompt",
+      "prompt_chars": 6015,
+      "max_tokens": 2000,
+      "wall_s": 45.04630903499856,
+      "ttft_s": null,
+      "last_delta_s": null,
+      "delta_count": 0,
+      "answer": "",
+      "terminal": null,
+      "error": "TimeoutError: ",
+      "completed": false,
+      "citation": {
+        "status": "missing",
+        "cited_ids": [],
+        "invalid_ids": [],
+        "malformed": false,
+        "invalid_chunk_ids": [],
+        "missing_chunk_item_ids": [],
+        "semantic_grounding": "not_verified"
+      }
+    },
+    {
+      "label": "concurrent-1",
+      "prompt_chars": 5811,
+      "max_tokens": 2000,
+      "wall_s": 15.20593137600008,
+      "ttft_s": 8.453226534998976,
+      "last_delta_s": 15.056554951999715,
+      "delta_count": 41,
+      "answer": "HTTP status code 404 Not Found cho biết rằng tài nguyên được yêu cầu không tồn tại. [item_id:5025] [chunk_id:5025:9]",
+      "terminal": {
+        "model": "qwen2.5:3b",
+        "created_at": "2026-10-30T15:28:55.980561656Z",
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 15028259880,
+        "load_duration": 9746845,
+        "prompt_eval_count": 1420,
+        "prompt_eval_cached_count": 1419,
+        "prompt_eval_duration": 200027000,
+        "eval_count": 42,
+        "eval_duration": 6752995000
+      },
+      "error": null,
+      "completed": true,
+      "citation": {
+        "status": "valid",
+        "cited_ids": [
+          5025
+        ],
+        "invalid_ids": [],
+        "malformed": false,
+        "invalid_chunk_ids": [],
+        "missing_chunk_item_ids": [],
+        "semantic_grounding": "not_verified"
+      },
+      "decode_tokens_per_s": 6.219462623621075,
+      "unattributed_duration_s": 8.065491035
+    },
+    {
+      "label": "concurrent-2",
+      "prompt_chars": 6015,
+      "max_tokens": 2000,
+      "wall_s": 22.623296294999818,
+      "ttft_s": 15.35168960900046,
+      "last_delta_s": 22.4624340320006,
+      "delta_count": 43,
+      "answer": "Context manager Python triển khai hai phương thức là __enter__() và __exit__() khi vào và thoát with. [item_id:5061] [chunk_id:5061:7]",
+      "terminal": {
+        "model": "qwen2.5:3b",
+        "created_at": "2026-10-30T15:29:03.475554424Z",
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 22522971948,
+        "load_duration": 12812099,
+        "prompt_eval_count": 1386,
+        "prompt_eval_cached_count": 1385,
+        "prompt_eval_duration": 138965000,
+        "eval_count": 44,
+        "eval_duration": 7256479000
+      },
+      "error": null,
+      "completed": true,
+      "citation": {
+        "status": "valid",
+        "cited_ids": [
+          5061
+        ],
+        "invalid_ids": [],
+        "malformed": false,
+        "invalid_chunk_ids": [],
+        "missing_chunk_item_ids": [],
+        "semantic_grounding": "not_verified"
+      },
+      "decode_tokens_per_s": 6.0635467972828145,
+      "unattributed_duration_s": 15.114715849
+    }
+  ],
+  "resource_samples": [
+    {
+      "monotonic_s": 14000.571113152,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 34.9375,
+          "interval_cpu_pct": null
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2360.0703125,
+          "interval_cpu_pct": null
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 351.03125,
+          "interval_cpu_pct": null
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14004.461025993,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 34.9375,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2360.0703125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 355.3125,
+          "interval_cpu_pct": 17.224036305858856
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14005.067746635,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 34.9375,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2360.0703125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 361.515625,
+          "interval_cpu_pct": 72.5210203082484
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14005.477621359,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 34.9375,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2360.0703125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 767.98828125,
+          "interval_cpu_pct": 256.17583581549303
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14006.50662505,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 34.9375,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2360.0703125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 803.32421875,
+          "interval_cpu_pct": 49.5625044361006
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14007.142208352,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 34.9375,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2360.0703125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 834.9296875,
+          "interval_cpu_pct": 132.16206236983902
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14007.848354333,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 34.9375,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2360.0703125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 868.66015625,
+          "interval_cpu_pct": 76.47143997540614
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14008.306845746,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 34.9375,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2360.0703125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 960.51171875,
+          "interval_cpu_pct": 202.83913147174889
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14009.206864671,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 34.9375,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2360.0703125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1001.8359375,
+          "interval_cpu_pct": 61.10982610726503
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14009.71516347,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 34.9375,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2360.0703125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1003.03515625,
+          "interval_cpu_pct": 80.66121753699484
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14010.110902257,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 34.9375,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2360.0703125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1021.53515625,
+          "interval_cpu_pct": 101.07677416023171
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14010.490354181,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 34.9375,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2360.0703125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1092.96484375,
+          "interval_cpu_pct": 242.45495721875605
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14011.587704623,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 34.9375,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2360.0703125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1401.8359375,
+          "interval_cpu_pct": 207.77318828475498
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14013.622144872,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 34.9375,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2360.0703125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1738.23828125,
+          "interval_cpu_pct": 27.034463178267234
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14013.901873518,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 34.9375,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2360.0703125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.03515625,
+          "interval_cpu_pct": 214.49358461557898
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14014.191519595,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 34.9375,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2360.0703125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1741.28125,
+          "interval_cpu_pct": 193.33940435126163
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14014.467090956,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.08203125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2388.7890625,
+          "interval_cpu_pct": 10.886472342712548
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.75390625,
+          "interval_cpu_pct": 163.2970851420741
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14014.737470551,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.11328125,
+          "interval_cpu_pct": 3.6985039496297314
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2441.87890625,
+          "interval_cpu_pct": 347.65937126503707
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.75390625,
+          "interval_cpu_pct": 14.794015798512355
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14015.023462698,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.515625,
+          "interval_cpu_pct": 3.496599506271488
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2390.5,
+          "interval_cpu_pct": 388.12254519598116
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.7578125,
+          "interval_cpu_pct": 13.986398025078499
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14015.304100672,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.515625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2390.5,
+          "interval_cpu_pct": 399.0906804371746
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.76171875,
+          "interval_cpu_pct": 14.253238587043036
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14015.586451802,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.515625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2390.5,
+          "interval_cpu_pct": 396.6692111326686
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.76171875,
+          "interval_cpu_pct": 10.625068155340776
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14015.866995532,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.515625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2390.5,
+          "interval_cpu_pct": 399.2247483136598
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.76171875,
+          "interval_cpu_pct": 10.693520044116068
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14016.148179957,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.515625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2390.5,
+          "interval_cpu_pct": 401.8714763464568
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.765625,
+          "interval_cpu_pct": 14.225538985714872
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14016.429949523,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.515625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2390.5,
+          "interval_cpu_pct": 401.03692390762404
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.76953125,
+          "interval_cpu_pct": 10.64699797984654
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14016.71294444,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.515625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2390.5,
+          "interval_cpu_pct": 402.8340904806962
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.7734375,
+          "interval_cpu_pct": 14.134529490553277
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14016.99605271,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.515625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2390.5,
+          "interval_cpu_pct": 399.140583212951
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.77734375,
+          "interval_cpu_pct": 10.596652651669388
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14017.279745226,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.515625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2390.5,
+          "interval_cpu_pct": 398.31857954144664
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.77734375,
+          "interval_cpu_pct": 10.57482954534752
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14017.56081211,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.515625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2390.5,
+          "interval_cpu_pct": 398.4816653116184
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.77734375,
+          "interval_cpu_pct": 10.673616035134081
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14017.842273366,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.515625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2390.5,
+          "interval_cpu_pct": 397.9233290972864
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.77734375,
+          "interval_cpu_pct": 10.658660600820353
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14018.122645027,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.515625,
+          "interval_cpu_pct": 3.566694281560409
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2390.5,
+          "interval_cpu_pct": 403.0364538167317
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.77734375,
+          "interval_cpu_pct": 10.700082844691364
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14018.404484613,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.515625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2390.5,
+          "interval_cpu_pct": 400.93729061970805
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.77734375,
+          "interval_cpu_pct": 14.192470464412771
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14018.687649184,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.515625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2390.5,
+          "interval_cpu_pct": 406.1242534478957
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.77734375,
+          "interval_cpu_pct": 10.594545742118582
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14018.972767962,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.515625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2390.5,
+          "interval_cpu_pct": 392.8187430716701
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.77734375,
+          "interval_cpu_pct": 10.521930617992588
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14019.255353521,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.515625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2390.5,
+          "interval_cpu_pct": 421.11139868711564
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.77734375,
+          "interval_cpu_pct": 14.155004997885289
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14019.551604812,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.515625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2390.5,
+          "interval_cpu_pct": 381.43293694547305
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.77734375,
+          "interval_cpu_pct": 10.12653814899834
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14019.834302932,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.515625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2390.50390625,
+          "interval_cpu_pct": 399.7196727030296
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.77734375,
+          "interval_cpu_pct": 14.149368945238317
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14020.119230983,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.51953125,
+          "interval_cpu_pct": 3.5096579522129296
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2390.50390625,
+          "interval_cpu_pct": 403.61066450431235
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.77734375,
+          "interval_cpu_pct": 10.528973856632556
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14020.40563448,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.51953125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2390.50390625,
+          "interval_cpu_pct": 401.5314100737063
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.77734375,
+          "interval_cpu_pct": 13.966309915607013
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14020.696144987,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.51953125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2390.50390625,
+          "interval_cpu_pct": 423.3926038339405
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.77734375,
+          "interval_cpu_pct": 10.326648873997565
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14021.007600017,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.51953125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2390.50390625,
+          "interval_cpu_pct": 382.0776309187162
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.77734375,
+          "interval_cpu_pct": 12.84294557709998
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14021.297840425,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.51953125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2390.50390625,
+          "interval_cpu_pct": 392.7778381548916
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.77734375,
+          "interval_cpu_pct": 10.336258898813258
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14021.583387932,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 395.73099827606757
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 17.510221162656414
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14021.874180948,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 378.27593493513933
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 6.87774427154841
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14022.150696913,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 401.4234765783639
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.849283150765759
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14022.427517236,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 400.98212008952765
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 7.224903064678151
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14022.703482837,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 398.600403823246
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 14.494560139022024
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14022.980176415,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 401.16579792808716
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 7.228212575282828
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14023.257541403,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 403.800064339831
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.816073151956832
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14023.537053041,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 393.5435418252219
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.73300568614371
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14023.813460079,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 401.5816702902191
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 7.235705770996919
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14024.089946882,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 408.69943438016793
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.850427461419752
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14024.371765264,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 390.3223033904066
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.645153728829294
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14024.648567727,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 401.0079924779171
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.838053850753685
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14024.925159656,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 401.3132284834782
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 7.230868981683309
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14025.202617951,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 396.4559790886663
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.812435793328566
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14025.478717424,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 402.02901799863935
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.86564913509624
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14025.755700023,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 400.74719639438786
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 7.220670205307544
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14026.034779177,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 397.7366220636254
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.74963843414994
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14026.31181736,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 400.66679184136643
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.828832211927992
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14026.588923939,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 396.95917865556333
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 7.217439611919776
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14026.86336586,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 408.10091837333545
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.93127459928725
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14027.143842772,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 395.754499748439
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.696067560766533
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14027.420730929,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 397.27231815241623
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 7.223133057317102
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14027.697985784,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 403.9604644614033
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.82036958378466
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14027.977050633,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 401.34040672260966
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.750189465785642
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14028.255430981,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 395.1428352985221
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 7.184415187246297
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14028.532318029,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 400.8854903181354
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.834742981570393
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14028.809157852,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 400.95387577223283
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 7.2243941580602264
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14029.086053547,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 397.26150310822976
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.834404630219993
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14029.362739705,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 401.17655614649846
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.842609625584648
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14029.639234888,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 401.45364847175165
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.850098607343806
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14029.915434267,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 398.26302433370944
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 7.241145896976979
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14030.191947501,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 401.42744126437765
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 7.232926869627442
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14030.469313648,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 400.19303437194975
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.81602795599781
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14030.745643257,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 398.0753289456503
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.85659988033594
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14031.021725422,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 402.0542217918114
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 7.244220212465372
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14031.298788357,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 400.63099743044637
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.82786479541979
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14031.576656676,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 399.46979346141933
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 14.395307872481622
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14031.853216155,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 401.3603164188623
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 7.231717412952775
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14032.133392161,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 396.17953580060913
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 7.138370014427344
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14032.409811863,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 401.56327207018387
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.853061407300148
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14032.68696066,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 400.50688006632964
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.824510272062131
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14032.964038905,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 396.99977167000736
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 7.21817766672785
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14033.240571643,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 401.39912837342126
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.848625091172714
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14033.517116319,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 401.3818006022549
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.848156773033082
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14033.793879092,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 397.45229753267097
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.839608114527413
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14034.070836902,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 400.7830651177678
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 7.221316488610405
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14034.347754365,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 400.8414593901932
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 7.222368637660156
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14034.624228801,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 397.8668031364917
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.850912812814718
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14034.900172395,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 402.2561219513453
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.871787079765253
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14035.177150864,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 397.1427829662319
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 7.22077787211375
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14035.453643232,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 401.4577357150225
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.850209073378153
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14035.73022994,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 397.7053011531345
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.846508213267327
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14036.00677008,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 401.3883843419832
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.84833471194466
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14036.283497665,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 401.11649873996413
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 7.227324301619992
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14036.559327217,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 398.7970077961563
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.876282030805575
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14036.83628963,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 400.77640427027217
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 7.221196473337256
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14037.111924895,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 399.07810780386035
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.88394839465205
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14037.389053014,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 400.53676400871586
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.825317946179396
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14037.666363689,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 400.2730872137213
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.818191546320392
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14037.942605735,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 3.620013732471005
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 398.20151057157386
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 7.240027464938151
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14038.218538922,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 398.64722759846944
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.87219711631871
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14038.494566949,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 402.1330775930352
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 7.245641037714328
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14038.771175943,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 401.2884700349501
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.845634325268088
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14039.047907095,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 397.4977128702006
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 7.227231143095
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14039.324041244,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 401.97853254496346
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.864284663375269
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14039.601484357,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 403.6863585795392
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.813027461953407
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14039.880996455,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 393.54289416000944
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.732988022547007
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14040.157458142,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 401.5022884515378
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 7.234275467594292
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14040.433486588,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 402.1324671759452
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.868445058807207
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14040.710792076,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 396.67444302185874
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.818393900597451
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14040.988183852,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 400.1560594230998
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 7.21001908870352
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14041.264809685,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 401.2640424639817
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.84497412064732
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14041.541750796,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 400.8072315438512
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 7.221751919711006
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14041.818869437,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 400.55046314853365
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.825688193202781
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14042.096313766,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 396.47593589845746
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.812980069957954
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14042.372965054,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 401.22712170320114
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.843976262247846
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14042.649272045,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 398.1079146857309
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 7.238325721559188
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14042.925676688,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 401.5851499279274
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.85365270075396
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14043.202367116,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 401.1703650266095
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 7.228294865343331
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14043.479964077,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 392.6555953912187
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 7.204689823693976
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14043.754042656,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 408.64193184375654
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.945766031530676
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14044.035050449,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 395.0068388332331
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.675860509005478
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14044.312021803,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 462.14165527010533
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1742.74609375,
+          "interval_cpu_pct": 10.831445045390529
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14044.663098446,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 344.6540873974066
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.484375,
+          "interval_cpu_pct": 11.393523550326906
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14044.967631804,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 364.49208956671936
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.125,
+          "interval_cpu_pct": 9.851137555860559
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14045.289876178,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 422.03995158086315
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.125,
+          "interval_cpu_pct": 9.309704814283227
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14045.666168157,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 374.7090234941238
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.125,
+          "interval_cpu_pct": 7.972532414768772
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14045.998496425,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 370.11597219958304
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.125,
+          "interval_cpu_pct": 9.027218834136379
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14046.397137912,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 398.85462297647194
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.125,
+          "interval_cpu_pct": 10.034078565444704
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14046.784890373,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 343.0023362252079
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.125,
+          "interval_cpu_pct": 7.736894802073076
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14047.131993848,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 400.45695307421306
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.125,
+          "interval_cpu_pct": 11.523941095661618
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14047.528045205,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 373.6889102490551
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.125,
+          "interval_cpu_pct": 5.049850138500575
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14047.933216477,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 333.19242831133016
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.125,
+          "interval_cpu_pct": 7.404276184694511
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14048.261031712,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 417.9183435456424
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.125,
+          "interval_cpu_pct": 9.151496573993246
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14048.625996179,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 386.33898022690096
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.125,
+          "interval_cpu_pct": 8.219978302700206
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14049.050095217,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 351.33302990397453
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.125,
+          "interval_cpu_pct": 9.431759192052148
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14049.412614558,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 386.186291782933
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.125,
+          "interval_cpu_pct": 8.275420538207191
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14049.794756494,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 361.12236579977787
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.125,
+          "interval_cpu_pct": 7.850486213038326
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14050.137469292,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 402.6695262201677
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.125,
+          "interval_cpu_pct": 11.671580470148617
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14050.485042246,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 368.26800971354265
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.125,
+          "interval_cpu_pct": 8.631281477660135
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14050.82094006,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 404.88504042422227
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.125,
+          "interval_cpu_pct": 11.908383541891503
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14051.169950979,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 349.5592640768779
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.125,
+          "interval_cpu_pct": 8.59571960844635
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14051.500485967,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.75390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 478.0129358029453
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.125,
+          "interval_cpu_pct": 12.10159331146727
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14051.898619093,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.7578125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 409.4107959254291
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.125,
+          "interval_cpu_pct": 7.535168023167189
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14052.295927016,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.7578125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 352.37152821634965
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.125,
+          "interval_cpu_pct": 10.067757949040963
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14052.655239636,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.7578125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 350.66956457090794
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.125,
+          "interval_cpu_pct": 8.34927534692525
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14052.965039415,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.7578125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 448.67688559703214
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.12890625,
+          "interval_cpu_pct": 9.68367378986411
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14053.324769262,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.7578125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 325.24407128104565
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.12890625,
+          "interval_cpu_pct": 11.119455428411877
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14053.620155242,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.7578125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 507.81015402289626
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.12890625,
+          "interval_cpu_pct": 10.156203080457107
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14054.006431064,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.7578125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 380.55708286247614
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.12890625,
+          "interval_cpu_pct": 7.766471078824993
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14054.376043363,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.7578125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 311.1368325971958
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.12890625,
+          "interval_cpu_pct": 8.116613024277548
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14054.689747529,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.7578125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 398.46458398501204
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.12890625,
+          "interval_cpu_pct": 9.563150015639518
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14055.034087739,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.7578125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 406.5746489494971
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.12890625,
+          "interval_cpu_pct": 8.712313906060416
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14055.410035377,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.7578125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 385.6920095877822
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.12890625,
+          "interval_cpu_pct": 10.639779574833142
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14055.782107921,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.7578125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 346.70658203701964
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.12890625,
+          "interval_cpu_pct": 8.062943768303315
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14056.100044432,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.7578125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 345.98102512459064
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.12890625,
+          "interval_cpu_pct": 9.4358461397627
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14056.405081388,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.7578125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 314.7159651036866
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.12890625,
+          "interval_cpu_pct": 9.83487390948904
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14056.689055432,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.7578125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 390.8807947256303
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.12890625,
+          "interval_cpu_pct": 14.085794404532326
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14057.027041784,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.7578125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 337.29172590941664
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.12890625,
+          "interval_cpu_pct": 5.917398700163378
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14057.334371699,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.7578125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 357.9215515025978
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.12890625,
+          "interval_cpu_pct": 9.761496859161781
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14057.629808997,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.7578125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 389.2534922923344
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.12890625,
+          "interval_cpu_pct": 13.53925190582017
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14057.955931922,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.7578125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 343.428785326677
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.12890625,
+          "interval_cpu_pct": 6.132656880833984
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14058.246041076,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.7578125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 379.1676287485393
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.12890625,
+          "interval_cpu_pct": 13.787913772675003
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14058.522770324,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.7578125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 404.72772867102844
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.12890625,
+          "interval_cpu_pct": 7.227280869126059
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14058.800578823,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.7578125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 399.5558105651406
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.12890625,
+          "interval_cpu_pct": 10.798805690948916
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14059.086744312,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.7578125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 454.2825917065643
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.12890625,
+          "interval_cpu_pct": 6.988962949330632
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14059.418039424,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 35.7578125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.32421875,
+          "interval_cpu_pct": 353.15945138496824
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.05078125,
+          "interval_cpu_pct": 12.073827397775684
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14059.718013195,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 30.2890625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.171875,
+          "interval_cpu_pct": 406.70222464002273
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1739.96484375,
+          "interval_cpu_pct": 10.000874376396022
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14060.044337231,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 29.109375,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.171875,
+          "interval_cpu_pct": 432.0858546879994
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1739.96484375,
+          "interval_cpu_pct": 9.193316057192774
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14060.432681292,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 29.109375,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.171875,
+          "interval_cpu_pct": 381.1053518332102
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1739.96484375,
+          "interval_cpu_pct": 7.725108483104894
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14060.832070353,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 29.109375,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.171875,
+          "interval_cpu_pct": 368.0621588182112
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1739.96484375,
+          "interval_cpu_pct": 7.5114726289420695
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14061.205041498,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 29.109375,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.171875,
+          "interval_cpu_pct": 353.91477804565505
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1739.96484375,
+          "interval_cpu_pct": 8.043517682857875
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14061.570919087,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 29.109375,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.171875,
+          "interval_cpu_pct": 366.24271075554714
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1739.96484375,
+          "interval_cpu_pct": 8.1994636736301
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14061.915541749,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 29.109375,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.171875,
+          "interval_cpu_pct": 461.3741855434457
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1739.96484375,
+          "interval_cpu_pct": 11.606897749519337
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14062.335088753,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 29.109375,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.171875,
+          "interval_cpu_pct": 319.392103203146
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1739.96484375,
+          "interval_cpu_pct": 7.15056947469922
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14062.676560889,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 29.109375,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.171875,
+          "interval_cpu_pct": 450.9884812381717
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1739.96484375,
+          "interval_cpu_pct": 8.785489894250638
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14063.130066846,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 25.42578125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.171875,
+          "interval_cpu_pct": 304.2958926331914
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1739.96484375,
+          "interval_cpu_pct": 8.820170800961185
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14063.500038152,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 25.42578125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.171875,
+          "interval_cpu_pct": 386.5164613609122
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1739.96484375,
+          "interval_cpu_pct": 10.811649268834275
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14063.87272762,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 25.46875,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.171875,
+          "interval_cpu_pct": 405.1630458198189
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1739.96484375,
+          "interval_cpu_pct": 8.049596936819158
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14064.232151449,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 25.46875,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.171875,
+          "interval_cpu_pct": 361.6899868940989
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1739.96484375,
+          "interval_cpu_pct": 8.346692005247585
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14064.565248066,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 25.46875,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.171875,
+          "interval_cpu_pct": 357.2537033605442
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1739.96484375,
+          "interval_cpu_pct": 9.006395883037792
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14064.895922376,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 25.46875,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.171875,
+          "interval_cpu_pct": 402.2084449194787
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1739.96484375,
+          "interval_cpu_pct": 12.096494584045951
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14065.223633611,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 25.46875,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.171875,
+          "interval_cpu_pct": 424.15390488437197
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1739.96484375,
+          "interval_cpu_pct": 9.15440082484266
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14065.563046857,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 25.46875,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.171875,
+          "interval_cpu_pct": 347.658794671925
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1739.96484375,
+          "interval_cpu_pct": 8.838782915389485
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14065.870040162,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 25.46875,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.171875,
+          "interval_cpu_pct": 407.17500337535614
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1739.96484375,
+          "interval_cpu_pct": 13.029600108011119
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14066.199113275,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 25.46875,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.171875,
+          "interval_cpu_pct": 370.73828028000304
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1739.96484375,
+          "interval_cpu_pct": 6.077676725900291
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14066.52604078,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 25.5390625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.171875,
+          "interval_cpu_pct": 388.4653265880954
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 18.352692594714128
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14066.853042101,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.01953125,
+          "interval_cpu_pct": 3.058091621587095
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.18359375,
+          "interval_cpu_pct": 394.49381918508294
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 15.290458107948512
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14067.174939875,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.01953125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.18359375,
+          "interval_cpu_pct": 382.1088865313966
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 9.319728939790375
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14067.538784738,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.01953125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.18359375,
+          "interval_cpu_pct": 332.55931938146136
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 10.993696508477496
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14067.834973678,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.01953125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.18359375,
+          "interval_cpu_pct": 418.65168902061265
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 10.128669895662151
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14068.146147645,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.01953125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.18359375,
+          "interval_cpu_pct": 465.9772840184086
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 12.854545766022373
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14068.525203132,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.01953125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.18359375,
+          "interval_cpu_pct": 356.1483862658034
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 5.276272389123257
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14068.912043429,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.01953125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.18359375,
+          "interval_cpu_pct": 405.85223726045893
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 7.755138291600612
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14069.304223597,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.01953125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.18359375,
+          "interval_cpu_pct": 316.1812098559057
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 7.64954539974129
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14069.618342349,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.01953125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.18359375,
+          "interval_cpu_pct": 385.2046375129295
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 9.550528202798848
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14069.927010756,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.01953125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.18359375,
+          "interval_cpu_pct": 395.24615164076175
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 9.719167663299382
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14070.243039544,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.01953125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.18359375,
+          "interval_cpu_pct": 344.90528755247726
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 9.492806079425073
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14070.559666969,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.01953125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.18359375,
+          "interval_cpu_pct": 514.8006367425023
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 9.474858344953756
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14071.0522103,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.01953125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.18359375,
+          "interval_cpu_pct": 341.08674186878966
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 6.090834676228489
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14071.451678292,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.01953125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.18359375,
+          "interval_cpu_pct": 340.45280904537395
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 10.013317913098081
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14071.83269043,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.01953125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.18359375,
+          "interval_cpu_pct": 367.44236216504584
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 10.498353204715622
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14072.199571773,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.01953125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.18359375,
+          "interval_cpu_pct": 408.8515343214662
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 10.902707581905533
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14072.59404361,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.01953125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.18359375,
+          "interval_cpu_pct": 339.6947194480292
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 7.605105659286279
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14072.90432913,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.01953125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.18359375,
+          "interval_cpu_pct": 386.740573650395
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 9.668514341256898
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14073.215056314,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.01953125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.18359375,
+          "interval_cpu_pct": 341.13526417445115
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 12.873028836773273
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14073.508040395,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.01953125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.18359375,
+          "interval_cpu_pct": 423.23118572531865
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 10.239464170774816
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14073.863100704,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.01953125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.18359375,
+          "interval_cpu_pct": 340.78717596048716
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 11.265691767288253
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14074.149514836,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.01953125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.18359375,
+          "interval_cpu_pct": 425.95663540715736
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 6.982895662412051
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14074.455644556,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.01953125,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.18359375,
+          "interval_cpu_pct": 356.0582095738877
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 9.799767235980553
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14074.741040326,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.03515625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2445.73828125,
+          "interval_cpu_pct": 399.4453036206539
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 10.511718516330376
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14075.046300835,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.09765625,
+          "interval_cpu_pct": 3.2758904952276873
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2439.546875,
+          "interval_cpu_pct": 429.1416548745896
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 9.827671485678406
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14075.398042531,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.09765625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2439.546875,
+          "interval_cpu_pct": 318.41547724807697
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 11.371981330289328
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14075.685041175,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.09765625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2439.546875,
+          "interval_cpu_pct": 411.1517683685048
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 10.453011060218069
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14075.998043933,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.09765625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2439.546875,
+          "interval_cpu_pct": 405.7472234808598
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 12.779440109633292
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14076.319866033,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.09765625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2439.546875,
+          "interval_cpu_pct": 351.1256684975469
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 9.32192040258809
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14076.605285542,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.09765625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2439.546875,
+          "interval_cpu_pct": 388.90123660004315
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 14.01445897657747
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14076.893054367,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.09765625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2439.546875,
+          "interval_cpu_pct": 423.9514130842395
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 13.900046330632788
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14077.225070213,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.09765625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2439.546875,
+          "interval_cpu_pct": 352.3928192260142
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 6.023808875657859
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14077.522610769,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.1015625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2439.546875,
+          "interval_cpu_pct": 426.83256934009887
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 16.8044318637839
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14077.859807368,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.1015625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2439.546875,
+          "interval_cpu_pct": 382.5661361420071
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 11.862515849364643
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14078.187755071,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.1015625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2439.546875,
+          "interval_cpu_pct": 362.86273363626043
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 9.147800007636745
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14078.490272143,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.1015625,
+          "interval_cpu_pct": 3.305598567993385
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2439.546875,
+          "interval_cpu_pct": 380.14383531907487
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 13.222394271966493
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14078.77640027,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.1015625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2439.546875,
+          "interval_cpu_pct": 405.41278208585305
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 10.484813329808256
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14079.064343901,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.1015625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2439.546875,
+          "interval_cpu_pct": 395.9108232549442
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 10.418705875126278
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14079.347195918,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.1015625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2439.546875,
+          "interval_cpu_pct": 399.50218915973136
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 14.141670412739133
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14079.631354418,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.1015625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2439.546875,
+          "interval_cpu_pct": 401.18455017371866
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 10.557488162462398
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14079.915414878,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.1015625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2439.55078125,
+          "interval_cpu_pct": 401.3230141208953
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 14.08150926740236
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14080.200046129,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.1015625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2439.55078125,
+          "interval_cpu_pct": 397.00489529037793
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 14.053270629746235
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14080.483722943,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.1015625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2439.55078125,
+          "interval_cpu_pct": 401.86576545701433
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 10.575414880448076
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14080.769465421,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.1015625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2439.55078125,
+          "interval_cpu_pct": 398.96063335551077
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 13.998618714230956
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14081.052132505,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.1015625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2439.55078125,
+          "interval_cpu_pct": 403.30129135444685
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 10.613191877744699
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14081.339502652,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.1015625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2439.55078125,
+          "interval_cpu_pct": 396.700914100374
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 10.439497739485088
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14081.622953084,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.1015625,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2439.55078125,
+          "interval_cpu_pct": 402.1867216629783
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 14.111814795193498
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14081.906739933,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.2109375,
+          "interval_cpu_pct": 3.5237714627051155
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.1875,
+          "interval_cpu_pct": 394.66240382329346
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 14.095085850834234
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14082.190036502,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.21484375,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.1875,
+          "interval_cpu_pct": 402.4051558500609
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 14.11947915262936
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14082.474691372,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.21484375,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.1953125,
+          "interval_cpu_pct": 396.9719541421833
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 7.026052285704359
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14082.757713093,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.21484375,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.19921875,
+          "interval_cpu_pct": 399.2626417515486
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 14.133190858460232
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14083.041602974,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.21484375,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.20703125,
+          "interval_cpu_pct": 394.5191692119168
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 14.0899703289981
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14083.326263788,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.21484375,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.20703125,
+          "interval_cpu_pct": 400.4766177632829
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 14.051811149585784
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14083.612170967,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.21484375,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.20703125,
+          "interval_cpu_pct": 402.2284449165472
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 10.492915954347183
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14083.900186591,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.21484375,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.21875,
+          "interval_cpu_pct": 392.3398266769895
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 10.4161015931938
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14084.182033648,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.21484375,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.21875,
+          "interval_cpu_pct": 400.92666286024365
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 14.192094260537926
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14084.471751079,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.21484375,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.21875,
+          "interval_cpu_pct": 410.7450476459759
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 10.354917167545528
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14084.768099949,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.21484375,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.21875,
+          "interval_cpu_pct": 391.43054603086046
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 10.123203776661839
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14085.057282971,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.21484375,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.2265625,
+          "interval_cpu_pct": 370.0078907127263
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 10.374053010634764
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14085.335858506,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.21484375,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.234375,
+          "interval_cpu_pct": 394.86597414285416
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 10.769072022079138
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14085.624072446,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.21484375,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.234375,
+          "interval_cpu_pct": 454.5234696130129
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 13.878579224825103
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14085.971723376,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.21484375,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.234375,
+          "interval_cpu_pct": 319.2857847383105
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 11.505794044622236
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14086.26885959,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.21484375,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.234375,
+          "interval_cpu_pct": 474.52983970554084
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 10.096379568204421
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14086.630053726,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.21484375,
+          "interval_cpu_pct": 2.7685942276808877
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.234375,
+          "interval_cpu_pct": 337.768495776966
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 11.07437691071765
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14086.934570388,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.21484375,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.234375,
+          "interval_cpu_pct": 420.33824736793576
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 9.851677672688329
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14087.264216677,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.21484375,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.234375,
+          "interval_cpu_pct": 339.7581096391708
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 12.13421820139988
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14087.549044442,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.21484375,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.234375,
+          "interval_cpu_pct": 382.6874111108698
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 10.532681039747702
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14087.830046354,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.21875,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.234375,
+          "interval_cpu_pct": 412.8085790381321
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 10.676083940643093
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14088.122887853,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.21875,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.234375,
+          "interval_cpu_pct": 396.1187208646896
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 13.659266236709502
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14088.419962163,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.21875,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.234375,
+          "interval_cpu_pct": 387.10853186933736
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 10.098483440069254
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14088.705746809,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.21875,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.234375,
+          "interval_cpu_pct": 384.9052128559335
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 6.998276597381039
+        }
+      ]
+    },
+    {
+      "monotonic_s": 14088.983979528,
+      "processes": [
+        {
+          "pid": 25391,
+          "name": "ollama",
+          "rss_mib": 26.21875,
+          "interval_cpu_pct": 0.0
+        },
+        {
+          "pid": 41275,
+          "name": "llama-server",
+          "rss_mib": 2442.234375,
+          "interval_cpu_pct": 402.5407234728356
+        },
+        {
+          "pid": 61357,
+          "name": "python",
+          "rss_mib": 1740.02734375,
+          "interval_cpu_pct": 14.376454409745223
+        }
+      ]
+    }
+  ]
+}

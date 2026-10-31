@@ -1,0 +1,33 @@
+# Docker + privilege preflight — 2026-10-31 (this host)
+
+Commands and observed outputs (no secrets, no credentials):
+
+```
+$ id
+uid=1000(o) gid=1000(o) groups=...,27(sudo),...
+
+$ sudo -n true
+sudo: interactive authentication is required    → noninteractive sudo NOT available
+
+$ ls -la /var/run/docker.sock
+srw-rw---- 1 root docker 0 Oct 30 ... /var/run/docker.sock    → user not in `docker` group
+
+$ docker info
+Client: Docker Engine - Community 29.9.2, buildx v0.38.1, compose v5.6.1
+Server:
+permission denied while trying to connect to the docker API at unix:///var/run/docker.sock
+
+$ which newuidmap newgidmap rootlesskit slirp4netns fuse-overlayfs
+(no output — rootless prerequisites absent)
+
+$ which psql initdb postgres
+(no output — no system PostgreSQL binaries)
+```
+
+Conclusion: Docker daemon not reachable without interactive sudo; rootless mode
+cannot be prepared without package installation privileges. Docker staging gate
+remains BLOCKED identical to the previous session's host preflight; not re-attempted
+by loading kernel modules or changing system groups.
+
+PostgreSQL 18.6 fixture binaries at /tmp/itlr-release/pg-root (userspace, no
+system install) were started successfully for the Web/DB/Chrome/TLS/backup gates.

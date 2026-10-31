@@ -146,7 +146,6 @@ def main() -> int:
         }
 
     # ---- 3) citation chatbot ----
-    chatter = eng.chatbot
     chat_note = "template mode (không LLM key)" if not (
         os.environ.get("DEEPSEEK_API_KEY") or os.environ.get("OPENAI_API_KEY")
     ) else os.environ.get("DEEPSEEK_MODEL", "deepseek/cloud")

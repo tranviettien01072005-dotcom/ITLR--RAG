@@ -12,6 +12,8 @@ TF-IDF + RRF + ANN + Cross-Encoder + MMR) giữ nguyên như cũ.
 
 from __future__ import annotations
 
+import asyncio
+import codecs
 import json
 import logging
 import math
@@ -22,7 +24,7 @@ import urllib.request
 from contextlib import closing
 from dataclasses import dataclass
 from threading import Lock
-from typing import Iterator, Optional
+from typing import AsyncIterator, Iterator, Optional
 
 logger = logging.getLogger("itlr.llm")
 
@@ -165,23 +167,27 @@ def ollama_model() -> str:
 
 
 def _ollama_request(messages, *, stream: bool, num_predict: int,
-                    temperature: float) -> urllib.request.Request:
-    payload = json.dumps({
+                    temperature: float, output_schema: dict | None = None) -> urllib.request.Request:
+    payload = {
         "model": ollama_model(),
         "messages": messages,
         "stream": stream,
         "keep_alive": "2h",
         "options": {"num_predict": int(num_predict), "temperature": float(temperature)},
-    }).encode()
+    }
+    if output_schema is not None:
+        payload["format"] = output_schema
     return urllib.request.Request(
         base_url("ollama").rstrip("/") + "/api/chat",
-        data=payload, headers={"Content-Type": "application/json"},
+        data=json.dumps(payload).encode(), headers={"Content-Type": "application/json"},
     )
 
 
-def ollama_chat(messages, *, num_predict: int = 384, temperature: float = 0.5) -> str:
+def ollama_chat(messages, *, num_predict: int = 384, temperature: float = 0.5,
+                output_schema: dict | None = None) -> str:
     """Gọi Ollama non-stream. Raise (caller dịch thành lỗi nghiệp vụ nếu muốn)."""
-    req = _ollama_request(messages, stream=False, num_predict=num_predict, temperature=temperature)
+    req = _ollama_request(messages, stream=False, num_predict=num_predict, temperature=temperature,
+                          output_schema=output_schema)
     with urllib.request.urlopen(req, timeout=timeout_for("ollama", stream=False)) as resp:
         data = json.loads(resp.read())
     if not isinstance(data, dict) or data.get('error') or data.get('done') is not True:
@@ -194,11 +200,26 @@ def ollama_chat(messages, *, num_predict: int = 384, temperature: float = 0.5) -
     return message['content'].strip()
 
 
-def _stream_ollama(messages, *, num_predict: int = 384, temperature: float = 0.5) -> Iterator[str]:
+def _ollama_delta(obj) -> str:
+    if not isinstance(obj, dict) or obj.get('error'):
+        raise LLMError('Invalid Ollama stream event')
+    if 'done' in obj and not isinstance(obj['done'], bool):
+        raise LLMError('Invalid Ollama completion flag')
+    piece = (obj.get("message") or {}).get("content", "")
+    if not isinstance(piece, str):
+        raise LLMError('Invalid Ollama text delta')
+    if obj.get('done') and obj.get('done_reason') not in (None, 'stop'):
+        raise LLMError('Incomplete Ollama text completion')
+    return piece
+
+
+def _stream_ollama(messages, *, num_predict: int = 384, temperature: float = 0.5,
+                   output_schema: dict | None = None) -> Iterator[str]:
     """Ollama stream=true — yield từng mảnh văn bản ngay khi sinh."""
     started = time.monotonic()
     timeout_s = timeout_for("ollama", stream=True)
-    req = _ollama_request(messages, stream=True, num_predict=num_predict, temperature=temperature)
+    req = _ollama_request(messages, stream=True, num_predict=num_predict, temperature=temperature,
+                          output_schema=output_schema)
     with urllib.request.urlopen(req, timeout=timeout_s) as resp:
         for raw in resp:
             if time.monotonic() - started >= timeout_s:
@@ -210,18 +231,10 @@ def _stream_ollama(messages, *, num_predict: int = 384, temperature: float = 0.5
                 obj = json.loads(raw)
             except (ValueError, UnicodeDecodeError) as exc:
                 raise LLMError('Malformed Ollama stream JSON') from exc
-            if not isinstance(obj, dict) or obj.get('error'):
-                raise LLMError('Invalid Ollama stream event')
-            if 'done' in obj and not isinstance(obj['done'], bool):
-                raise LLMError('Invalid Ollama completion flag')
-            piece = (obj.get("message") or {}).get("content", "")
-            if not isinstance(piece, str):
-                raise LLMError('Invalid Ollama text delta')
+            piece = _ollama_delta(obj)
             if piece:
                 yield piece
             if obj.get("done"):
-                if obj.get('done_reason') not in (None, 'stop'):
-                    raise LLMError('Incomplete Ollama text completion')
                 return
     raise LLMError('Ollama stream ended without completion')
 
@@ -344,7 +357,7 @@ def _validate_text_completion(choice) -> None:
 def chat(messages, *, track_usage: "str | None" = None,
          temperature: float = DEFAULT_TEMPERATURE,
          max_tokens: int = DEFAULT_MAX_TOKENS,
-         char_budget: int = 16000) -> LLMResult:
+         char_budget: int = 16000, output_schema: dict | None = None) -> LLMResult:
     """Gọi LLM non-stream theo thứ tự ưu tiên; trả LLMResult.
 
     Raise LLMError khi chưa cấu hình LLM hoặc đã cố hết retry-limit (KHÔNG nuốt lỗi).
@@ -390,7 +403,8 @@ def chat(messages, *, track_usage: "str | None" = None,
 
     # Ollama fallback
     try:
-        text = ollama_chat(messages, num_predict=max_tokens, temperature=temperature)
+        options = {"output_schema": output_schema} if output_schema is not None else {}
+        text = ollama_chat(messages, num_predict=max_tokens, temperature=temperature, **options)
     except Exception as exc:  # noqa: BLE001
         raise LLMError(f"ollama chat thất bại ({_safe_err_text(exc)})") from exc
     return LLMResult(text=text, provider="ollama", model=ollama_model())
@@ -398,7 +412,7 @@ def chat(messages, *, track_usage: "str | None" = None,
 
 def stream(messages, *, temperature: float = DEFAULT_TEMPERATURE,
            max_tokens: int = DEFAULT_MAX_TOKENS,
-           char_budget: int = 16000) -> Iterator[str]:
+           char_budget: int = 16000, output_schema: dict | None = None) -> Iterator[str]:
     """Yield từng mảnh text theo thứ tự ưu tiên DeepSeek → OpenAI → Ollama.
 
     Lỗi TRƯỚC khi streaming được mảnh nào -> raise LLMError (caller rơi về fallback).
@@ -448,8 +462,93 @@ def stream(messages, *, temperature: float = DEFAULT_TEMPERATURE,
         raise LLMError(f"{provider} stream không sinh được mảnh nào")
 
     try:
-        yield from _stream_ollama(messages, num_predict=max_tokens, temperature=temperature)
+        options = {"output_schema": output_schema} if output_schema is not None else {}
+        yield from _stream_ollama(messages, num_predict=max_tokens, temperature=temperature, **options)
     except LLMError:
         raise
     except Exception as exc:
         raise LLMError(f'ollama stream failed ({_safe_err_text(exc)})') from exc
+
+
+async def _ollama_lines(response):
+    # httpx.aiter_lines replaces corrupt UTF-8; provider text must remain strict.
+    decoder = codecs.getincrementaldecoder("utf-8")()
+    pending = ""
+    async for chunk in response.aiter_bytes():
+        pending += decoder.decode(chunk)
+        while "\n" in pending:
+            line, pending = pending.split("\n", 1)
+            yield line
+    pending += decoder.decode(b"", final=True)
+    if pending:
+        yield pending
+
+
+async def astream(messages, *, temperature: float = DEFAULT_TEMPERATURE,
+                  max_tokens: int = DEFAULT_MAX_TOKENS, char_budget: int = 16000,
+                  output_schema: dict | None = None) -> AsyncIterator[str]:
+    """Cancellation-safe transport for ASGI; sync stream() remains compatible."""
+    provider = await asyncio.to_thread(provider_status)
+    if provider == "none":
+        raise LLMError("chưa cấu hình LLM (key trống và Ollama không chạy)")
+    messages = trim_messages(messages, char_budget=char_budget)
+    timeout_s = timeout_for(provider, stream=True)
+    if provider == "ollama":
+        import httpx
+        req = _ollama_request(messages, stream=True, num_predict=max_tokens, temperature=temperature,
+                              output_schema=output_schema)
+        try:
+            async with asyncio.timeout(timeout_s):
+                async with httpx.AsyncClient(timeout=timeout_s, trust_env=False) as client:
+                    async with client.stream("POST", req.full_url, content=req.data,
+                                             headers={"Content-Type": "application/json"}) as response:
+                        response.raise_for_status()
+                        async for raw in _ollama_lines(response):
+                            if not raw.strip():
+                                continue
+                            try:
+                                obj = json.loads(raw)
+                            except ValueError as exc:
+                                raise LLMError('Malformed Ollama stream JSON') from exc
+                            piece = _ollama_delta(obj)
+                            if piece:
+                                yield piece
+                            if obj.get('done'):
+                                return
+                raise LLMError('Ollama stream ended without completion')
+        except LLMError:
+            raise
+        except Exception as exc:
+            raise LLMError(f'ollama stream failed ({_safe_err_text(exc)})') from exc
+        return
+
+    # Preserve the configured cloud contract without blocking the ASGI event loop.
+    from openai import AsyncOpenAI
+    got_any = False
+    backoff = DEFAULT_BACKOFF_S
+    for attempt in range(1, _retries() + 1):
+        saw_stop = False
+        try:
+            async with AsyncOpenAI(api_key=api_key(provider) or "", base_url=base_url(provider),
+                                   timeout=timeout_s, max_retries=0) as client:
+                response = await client.chat.completions.create(**_completions_kwargs(
+                    provider, messages, stream=True, temperature=temperature, max_tokens=max_tokens))
+                async with response:
+                    async for chunk in response:
+                        if not chunk.choices:
+                            continue
+                        choice = chunk.choices[0]
+                        _validate_text_completion(choice)
+                        saw_stop = saw_stop or getattr(choice, 'finish_reason', None) == 'stop'
+                        if choice.delta.content:
+                            got_any = True
+                            yield choice.delta.content
+            if not saw_stop:
+                logger.warning('%s stream accepted without finish metadata: completion unverified (legacy compatibility)', provider)
+            return
+        except Exception as exc:
+            if got_any or attempt == _retries():
+                raise LLMError(f'{provider} stream failed ({_safe_err_text(exc)})') from exc
+            if backoff <= STREAM_RETRY_MAX_BACKOFF:
+                await asyncio.sleep(backoff)
+            backoff *= 2

@@ -1,0 +1,11 @@
+{
+  "temporary_ports_listening": {
+    "15432": false,
+    "18030": false,
+    "18080": false,
+    "18435": false
+  },
+  "private_fixture_credentials_not_copied": true,
+  "new_evidence_secret_scan": "PASS",
+  "historical_report_dirs_unchanged": true
+}

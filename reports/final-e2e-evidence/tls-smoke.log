@@ -1,0 +1,2 @@
+PASS verified-certificate TLS TLSv1.3 /login200; CSP present; HSTS absent under NODE_ENV=test as expected.
+PASS TLSproxy18443 and temporaryWeb18030 stopped.

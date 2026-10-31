@@ -1,11 +1,20 @@
 # ITLR–RAG | Intelligent IT Learning Platform — Validation
 
-Latest release validation: **445 Python PASS/0 skip**, statements **66,70%**;
-**145 Web PASS**, lines **46,55%**. Typecheck/lint/build/compileall/pip check PASS.
-Native PostgreSQL18 fixture migration/HTTP/DB/backup/restore và Chrome journeys PASS;
-real local E5/Qwen requests ghi riêng completion, timeout và fallback.
-[Release readiness và NO-GO](RELEASE_READINESS_FINAL.md) phân biệt các gate.
-Những checkpoint sau là lịch sử.
+Latest blocker remediation: **489 Python PASS/0 skip**,~50s, statements **67,37%**;
+**146 Web PASS**, lines **47,05%**. Typecheck/lint/build/compileall/pip check PASS,
+pip-audit 0 advisory, Bandit 0 High (26 Medium dev-rủi ro đã triage), npm audit chỉ
+còn 14 advisory moderate chuỗi dev (eslint/ejs-minimatch), không advisory runtime.
+Frozen blind eval 20 case với Qwen2.5:3b thật: 11/12 positive được chấp nhận
+`llm_extractive` với citation valid và quote byte-verbatim theo nguồn, 1 case
+timeout 45s; negative 7/8 không đạt thành câu trả lời (2 off-topic gate tức thời,
+1 extractive search-intent, 3 explicit no_selected_evidence, 2 timeout). Real
+Chrome→Express→PostgreSQL journey 36/36 HTTP-DB + 9/9 browser PASS; backup/restore
+15 bảng (fingerprint bằng), TLSv1.3 verified-cert smoke PASS; artifact lifecycle
+build/probe/reload/rollback/tamper 9/9 PASS. Uncached full prompt vẫn FAIL trên 60s
+(bottleneck prefill CPU provider). Docker daemon socket quyền root:root bị chặn →
+Docker production staging BLOCKED. Human faithfulness/score chỉ tiêu vẫn null.
+[Blocker resolution evidence](PRODUCTION_BLOCKERS_RESOLUTION.md),
+[E2E certification](FINAL_E2E_CERTIFICATION.md).
 
 ## Checkpoint trước — refactor trách nhiệm module
 

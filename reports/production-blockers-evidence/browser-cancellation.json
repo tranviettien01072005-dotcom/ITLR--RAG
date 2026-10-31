@@ -1,0 +1,155 @@
+{
+  "scope": "Real Chrome UI -> Express18030 -> API18080 -> observationproxy18435 -> actualOllama11434, E5 real768d staging; private existing fixture database. Proxy closes actual socket, modelinternal cancellation ACK is not directlyobservable.",
+  "model": "qwen2.5:3b",
+  "ollama_timeout_s": 45,
+  "cases": [
+    {
+      "scenario": "before-first-delta",
+      "db_before": [
+        {
+          "role": "assistant",
+          "count": 3
+        },
+        {
+          "role": "user",
+          "count": 3
+        }
+      ],
+      "provider_request_id": 5,
+      "provider_started_s": 0.1562052830013272,
+      "draft_chars_at_stop": 0,
+      "stop_clicked_monotonic": 14742.544231752,
+      "stop_after_submit_s": 0.1656617999997252,
+      "ui_ready_after_stop_s": 0.03069669700016675,
+      "ui": {
+        "status": "Đã dừng hiển thị. Tải lại lịch sử để kiểm tra câu trả lời đã lưu.",
+        "url": "/chat",
+        "conversation": "",
+        "answerChars": 0
+      },
+      "provider_record": {
+        "id": 5,
+        "started_monotonic": 14742.534775235,
+        "provider_bytes": 0,
+        "client_bytes": 0,
+        "method": "POST",
+        "path": "/api/chat",
+        "request_bytes": 6813,
+        "body_sha256": "0b642fbf2b360be88edeec6108d82a60e92996fc27ad707ac75fa266562cfc7d",
+        "model": "qwen2.5:3b",
+        "stream": true,
+        "prompt_chars": 5811,
+        "num_predict": 2000,
+        "upstream_request_sent_monotonic": 14742.53577186,
+        "client_closed_monotonic": 14742.607791862,
+        "client_closed": true,
+        "upstream_socket_closed_monotonic": 14742.608069207,
+        "ended_monotonic": 14742.608165337
+      },
+      "api_provider_close_after_stop_s": 0.06356011000025319,
+      "actual_ollama_socket_close_after_stop_s": 0.06383745500170335,
+      "runner_cpu_idle_window": {
+        "elapsed_s": 1.0159012399999483,
+        "aggregate_cpu_percent": 218.525178687656,
+        "scope": "shared daemon process CPU, not per-request proof"
+      },
+      "db_after": [
+        {
+          "role": "assistant",
+          "count": 3
+        },
+        {
+          "role": "user",
+          "count": 3
+        }
+      ],
+      "partial_persisted": false,
+      "tiny_real_model_probe_after_abort": {
+        "elapsed_s": 0.3270957050008292,
+        "done": true,
+        "done_reason": "stop",
+        "response": "OK",
+        "prompt_eval_count": 33,
+        "prompt_eval_duration_ns": 134211000,
+        "eval_count": 2,
+        "eval_duration_ns": 138047000,
+        "total_duration_ns": 325707464
+      }
+    },
+    {
+      "scenario": "after-first-delta",
+      "db_before": [
+        {
+          "role": "assistant",
+          "count": 3
+        },
+        {
+          "role": "user",
+          "count": 3
+        }
+      ],
+      "provider_request_id": 6,
+      "provider_started_s": 0.1548321489990485,
+      "draft_chars_at_stop": 4,
+      "stop_clicked_monotonic": 14745.260437721,
+      "stop_after_submit_s": 0.3923060989982332,
+      "ui_ready_after_stop_s": 0.02096390800033987,
+      "ui": {
+        "status": "Đã dừng hiển thị. Tải lại lịch sử để kiểm tra câu trả lời đã lưu.",
+        "url": "/chat",
+        "conversation": "",
+        "answerChars": 0
+      },
+      "provider_record": {
+        "id": 6,
+        "started_monotonic": 14745.022963771,
+        "provider_bytes": 275,
+        "client_bytes": 275,
+        "method": "POST",
+        "path": "/api/chat",
+        "request_bytes": 6813,
+        "body_sha256": "0b642fbf2b360be88edeec6108d82a60e92996fc27ad707ac75fa266562cfc7d",
+        "model": "qwen2.5:3b",
+        "stream": true,
+        "prompt_chars": 5811,
+        "num_predict": 2000,
+        "upstream_request_sent_monotonic": 14745.024379227,
+        "first_provider_byte_monotonic": 14745.229593748,
+        "client_closed_monotonic": 14745.337341434,
+        "client_closed": true,
+        "upstream_socket_closed_monotonic": 14745.337600203,
+        "ended_monotonic": 14745.337700697
+      },
+      "api_provider_close_after_stop_s": 0.07690371300122933,
+      "actual_ollama_socket_close_after_stop_s": 0.07716248200085829,
+      "runner_cpu_idle_window": {
+        "elapsed_s": 1.0152709810008673,
+        "aggregate_cpu_percent": 202.90149512293016,
+        "scope": "shared daemon process CPU, not per-request proof"
+      },
+      "db_after": [
+        {
+          "role": "assistant",
+          "count": 3
+        },
+        {
+          "role": "user",
+          "count": 3
+        }
+      ],
+      "partial_persisted": false,
+      "tiny_real_model_probe_after_abort": {
+        "elapsed_s": 0.3107777450004505,
+        "done": true,
+        "done_reason": "stop",
+        "response": "OK",
+        "prompt_eval_count": 33,
+        "prompt_eval_duration_ns": 127632000,
+        "eval_count": 2,
+        "eval_duration_ns": 126589000,
+        "total_duration_ns": 309509884
+      }
+    }
+  ],
+  "browser_exceptions": []
+}

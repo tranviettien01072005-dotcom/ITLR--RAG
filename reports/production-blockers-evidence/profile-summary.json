@@ -1,0 +1,49 @@
+{
+  "scope": "4 directOllama RAGcalls on2developmentqueries; not independentquality benchmark; sharedhost/cache state",
+  "rag_completed": 3,
+  "rag_attempted": 4,
+  "observed_completion_rate": 0.75,
+  "elapsed_including_timeouts_s": {
+    "p50": 18.91461383549995,
+    "p95": 41.682857123998744
+  },
+  "successful_only_ttft_s": {
+    "p50": 8.453226534998976,
+    "p95": 14.66184330160031
+  },
+  "successful_only_decode_tokens_per_s": [
+    6.520278142645989,
+    6.219462623621075,
+    6.0635467972828145
+  ],
+  "resources": {
+    "ollama": {
+      "rss_mib_peak": 35.7578125,
+      "interval_cpu_pct_mean": 0.1305923389858677,
+      "interval_cpu_pct_p95": 0.0,
+      "interval_cpu_pct_max": 3.6985039496297314,
+      "samples": 259
+    },
+    "llama-server": {
+      "rss_mib_peak": 2445.73828125,
+      "interval_cpu_pct_mean": 367.8818852604578,
+      "interval_cpu_pct_p95": 427.06347789354794,
+      "interval_cpu_pct_max": 514.8006367425023,
+      "samples": 259
+    },
+    "python": {
+      "rss_mib_peak": 1742.77734375,
+      "interval_cpu_pct_mean": 17.72665159906317,
+      "interval_cpu_pct_p95": 50.71723660321698,
+      "interval_cpu_pct_max": 256.17583581549303,
+      "samples": 259
+    }
+  },
+  "human_faithfulness": null,
+  "model_coldstart": null,
+  "context_overflow_reproduced": false,
+  "max_prompt_tokens_observed": 1420,
+  "num_ctx_loaded": 4096,
+  "timed_out_prompt_eval_count": null,
+  "note": "successfulcachehit terminal counters do not reveal howmuch prefill timedout requestcompleted; unknown notzero"
+}

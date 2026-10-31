@@ -1,0 +1,82 @@
+FF.                                                                      [100%]
+=================================== FAILURES ===================================
+________________ test_async_provider_rejects_corrupt_utf8[\xff] ________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7a0455c4afd0>
+upstream = ({'first_delta': False, 'response_bytes': b'{"message":{"content":"\xff"},"done":false}\n{"message":{"content":""},"do...true,"done_reason":"stop"}\n'}, <threading.Event at 0x7a0455d4a210: unset>, <threading.Event at 0x7a0455a85f90: unset>)
+invalid = b'\xff'
+
+    @pytest.mark.parametrize("invalid", [b"\xff", b"\xe2\x82"])
+    def test_async_provider_rejects_corrupt_utf8(monkeypatch, upstream, invalid):
+        from itlr.chatbot import llm_client
+        state, _started, _closed = upstream
+        state["response_bytes"] = (b'{"message":{"content":"' + invalid + b'"},"done":false}\n'
+                                   b'{"message":{"content":""},"done":true,"done_reason":"stop"}\n')
+    
+        async def run():
+            with pytest.raises(llm_client.LLMError):
+                _ = [piece async for piece in llm_client.astream([{"role": "user", "content": "q"}])]
+    
+>       asyncio.run(run())
+
+tests/test_stream_cancellation.py:149: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.14/asyncio/runners.py:204: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/asyncio/runners.py:127: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/asyncio/base_events.py:719: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    async def run():
+>       with pytest.raises(llm_client.LLMError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE LLMError
+
+tests/test_stream_cancellation.py:146: Failed
+______________ test_async_provider_rejects_corrupt_utf8[\xe2\x82] ______________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7a0455c4b360>
+upstream = ({'first_delta': False, 'response_bytes': b'{"message":{"content":"\xe2\x82"},"done":false}\n{"message":{"content":""}...true,"done_reason":"stop"}\n'}, <threading.Event at 0x7a0447c35b80: unset>, <threading.Event at 0x7a0447c35c70: unset>)
+invalid = b'\xe2\x82'
+
+    @pytest.mark.parametrize("invalid", [b"\xff", b"\xe2\x82"])
+    def test_async_provider_rejects_corrupt_utf8(monkeypatch, upstream, invalid):
+        from itlr.chatbot import llm_client
+        state, _started, _closed = upstream
+        state["response_bytes"] = (b'{"message":{"content":"' + invalid + b'"},"done":false}\n'
+                                   b'{"message":{"content":""},"done":true,"done_reason":"stop"}\n')
+    
+        async def run():
+            with pytest.raises(llm_client.LLMError):
+                _ = [piece async for piece in llm_client.astream([{"role": "user", "content": "q"}])]
+    
+>       asyncio.run(run())
+
+tests/test_stream_cancellation.py:149: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.14/asyncio/runners.py:204: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/asyncio/runners.py:127: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.14/asyncio/base_events.py:719: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    async def run():
+>       with pytest.raises(llm_client.LLMError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE LLMError
+
+tests/test_stream_cancellation.py:146: Failed
+=========================== short test summary info ============================
+FAILED tests/test_stream_cancellation.py::test_async_provider_rejects_corrupt_utf8[\xff]
+FAILED tests/test_stream_cancellation.py::test_async_provider_rejects_corrupt_utf8[\xe2\x82]
+2 failed, 1 passed, 3 deselected in 1.81s

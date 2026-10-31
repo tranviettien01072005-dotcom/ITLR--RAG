@@ -1,0 +1,9 @@
+PASS real-browser-login-after-postgres-restart
+PASS learning-progress-survives-db-restart
+PASS persisted-chat-renders-in-browser
+PASS real-browser-sse-persists-and-completes
+PASS browser-reload-confirms-persisted-chat
+PASS final-missing-done-browser-never-completes
+PASS final-invalid-utf8-browser-never-completes
+PASS final-done-browser-completes
+PASS browser-no-uncaught-exceptions

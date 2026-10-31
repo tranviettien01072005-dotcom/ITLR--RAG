@@ -84,7 +84,7 @@ KINDS = ("api", "rss", "web")
 def _load_json(path: Path) -> dict:
     try:
         return json.loads(path.read_text(encoding="utf-8"))
-    except FileNotFoundError as exc:
+    except FileNotFoundError:
         raise SourcesError(f"Không tìm thấy file cấu hình nguồn: {path}")
     except json.JSONDecodeError as exc:
         raise SourcesError(f"JSON cấu hình nguồn hỏng: {path}: {exc}")

@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/tmp/itlr-blockers/browser_cancellation.py", line 77, in <module>
+    navigate('/chat','#chatinput');fill('#chatinput',query);start=time.monotonic();click('#chatform button[type=submit]')
+                                   ~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/itlr-blockers/browser_cancellation.py", line 66, in fill
+    command('DOM.focus',{'nodeId':node(selector)});command('Input.insertText',{'text':text})
+                                  ~~~~^^^^^^^^^^
+  File "/tmp/itlr-blockers/browser_cancellation.py", line 64, in node
+    root=command('DOM.getDocument')['root']['nodeId'];return command('DOM.querySelector',{'nodeId':root,'selector':selector})['nodeId']
+                                                             ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/itlr-blockers/browser_cancellation.py", line 49, in command
+    if 'error'in obj:raise RuntimeError(obj['error'])
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: {'code': -32000, 'message': 'Could not find node with given id'}

@@ -20,7 +20,7 @@ import itlr.utils.runtime_patches  # noqa: F401,E402  (dọn nhiễu console tr�
 
 import json  # noqa: E402
 import time  # noqa: E402
-from contextlib import asynccontextmanager  # noqa: E402
+from contextlib import asynccontextmanager, aclosing  # noqa: E402
 from pathlib import Path  # noqa: E402
 from typing import List, Optional, Union  # noqa: E402
 
@@ -29,11 +29,11 @@ from fastapi.responses import (  # noqa: E402
     FileResponse,
     JSONResponse,
     PlainTextResponse,
-    StreamingResponse,
 )  # noqa: E402
 from fastapi.staticfiles import StaticFiles  # noqa: E402
 from pydantic import BaseModel, Field, field_validator  # noqa: E402
 
+from itlr.api.streaming import ClosingStreamingResponse
 from itlr.api import ratelimit  # noqa: E402
 from itlr.engine import load_engine  # noqa: E402
 from itlr.retrieval.service import DEFAULT_SEARCH_MIN_PCT  # noqa: E402
@@ -192,7 +192,8 @@ def health():
         raise _artifact_load_error()
     return {"status": "ok", "engine": "ready",
             "cf": bool(getattr(eng, "cf_model", None) is not None),
-            "items": int(len(eng.items)) if getattr(eng, "items", None) is not None else 0}
+            "items": int(len(eng.items)) if getattr(eng, "items", None) is not None else 0,
+            "artifacts": getattr(eng, "artifact_fingerprint", None)}
 
 
 @app.get("/metrics", response_class=PlainTextResponse)
@@ -299,13 +300,12 @@ def api_chat(req: ChatReq):
 
 
 @app.post("/api/chat/stream", dependencies=[Depends(_chat_rate)])
-def api_chat_stream(req: ChatReq):
+async def api_chat_stream(req: ChatReq):
     """Trả lời chatbot dạng SSE — mỗi frame là 1 dòng `data: {json}` rồi dòng trống.
 
-    Model local (Ollama) chậm ~30-135s/câu; nếu chờ cả câu, proxy/Heroku (timeout 30s) trả
-    503 trước khi xong. Stream đẩy chữ ngay khi sinh nên không chạm hard-timeout.
-    Lỗi TRƯỚC khi stream bắt đầu ⇒ 503 thật; lỗi giữa stream ⇒ frame json vì không thể
-    đổi status sau khi header đã gửi.
+    Text là provisional; chỉ final xác nhận completion/citation. Async provider I/O
+    đóng socket khi client disconnect và giữ total deadline ngay cả khi provider đứng.
+    Lỗi giữa stream dùng frame json vì headers đã được gửi.
     """
     eng = _engine()
     history = [{"role": m.role, "content": m.content} for m in req.history]
@@ -313,15 +313,20 @@ def api_chat_stream(req: ChatReq):
     def _frame(obj):
         return "data: " + json.dumps(obj, ensure_ascii=False) + "\n\n"
 
-    def gen():
+    async def gen():
+        # Legacy engines retain their sync contract; current engines use cancellable I/O.
+        from starlette.concurrency import iterate_in_threadpool
+        events = (eng.achat_stream(req.message, history=history) if hasattr(eng, "achat_stream")
+                  else iterate_in_threadpool(eng.chat_stream(req.message, history=history)))
         try:
-            for ev, data in eng.chat_stream(req.message, history=history):
-                if ev == "text":
-                    yield _frame({"type": "text", "text": data})
-                elif ev == "sources":
-                    yield _frame({"type": "sources", "sources": data})
-                elif ev in {"meta", "final"}:
-                    yield _frame({"type": ev, **data})
+            async with aclosing(events):
+                async for ev, data in events:
+                    if ev == "text":
+                        yield _frame({"type": "text", "text": data})
+                    elif ev == "sources":
+                        yield _frame({"type": "sources", "sources": data})
+                    elif ev in {"meta", "final"}:
+                        yield _frame({"type": ev, **data})
         except Exception as e:  # noqa: BLE001
             _log(f"[!] /api/chat/stream lỗi: {e}")
             yield _frame({"type": "error", "message": _CHAT_ERROR_MSG})
@@ -330,7 +335,7 @@ def api_chat_stream(req: ChatReq):
                           "generation_mode": "error", "generation_error": "stream_failed"})
         yield _frame({"type": "done"})
 
-    return StreamingResponse(
+    return ClosingStreamingResponse(
         gen(),
         media_type="text/event-stream",
         headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
@@ -392,7 +397,8 @@ def admin_reload(request: Request):
         raise _artifact_load_error()
     n = len(eng.items) if hasattr(eng, "items") else None
     return {"ok": True, "reloaded": True, "items": n,
-            "cf": bool(getattr(eng, "cf_model", None) is not None)}
+            "cf": bool(getattr(eng, "cf_model", None) is not None),
+            "artifacts": getattr(eng, "artifact_fingerprint", None)}
 
 
 @app.get("/api/personas")

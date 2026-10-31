@@ -1,0 +1,1 @@
+[rootlesskit:parent] error: failed to setup UID/GID map: newuidmap 63811 [0 1000 1 1 100000 65536] failed: : exec: "newuidmap": executable file not found in $PATH

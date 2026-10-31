@@ -6,10 +6,12 @@ ITLR–RAG hỗ trợ học Công nghệ thông tin bằng tiếng Việt: tìm 
 
 Repository đang được phát triển; kết quả từng checkpoint và phạm vi kiểm chứng xem [validation](reports/VALIDATION.md). Chưa đủ bằng chứng để xác nhận production-ready.
 
-Release validation Linux: **445 Python PASS/0 skip, 145 Web PASS**; coverage
-Python statements **66,70%**, Web lines **46,55%**. Native PostgreSQL18/backup/restore
-và Chrome DB journeys đã chạy trên fixtures cô lập; Docker production chưa chạy.
-[Kết quả, bằng chứng và NO-GO](reports/RELEASE_READINESS_FINAL.md).
+Blocker remediation Linux: **457 Python PASS/0 skip, 145 Web PASS**; coverage
+Python statements **67,24%**, Web lines **46,55%**. Stop từ Chrome tới Ollama thật
+đóng socket trong khoảng 64–77ms, không lưu partial output. Prompt uncached vẫn có
+thể timeout45s và citation identity chưa bảo đảm passage support. **NO-GO**.
+[Báo cáo mới và bằng chứng](reports/PRODUCTION_BLOCKERS_RESOLUTION.md).
+[Release validation trước](reports/RELEASE_READINESS_FINAL.md) giữ scoped PG18/backup/Chrome/TLS evidence.
 [Full-system audit trước](reports/FULL_SYSTEM_AUDIT_2026-10-30.md) được giữ nguyên.
 
 Search mặc định `min_pct=84` (cosine 0,84); truyền `min_pct=90` để giữ floor cũ.
@@ -134,9 +136,10 @@ Qrels có evidence nhưng là engineer-authored, chưa phải independent human 
 [Production runbook](deploy/PRODUCTION.md) mô tả Compose/Caddy, staging, migration, monitoring, backup/restore và rollback.
 Một host Linux, local filesystem, một worker/replica mỗi service là giới hạn hiện hành. Docker/Web restart không tự migrate hoặc seed.
 
-API: `GET /live` là liveness; `GET /health` trả readiness, số items và trạng thái CF,
-chưa công khai version/hash của engine đã nạp. CURRENT.json/manifest chỉ là trạng thái
-filesystem. Web: `GET /health` là liveness, `GET /ready` kiểm PostgreSQL. OpenAPI ở `/docs`.
+API: `GET /live` là liveness; `GET /health` trả readiness, số items, trạng thái CF và
+fingerprint artifacts đã nạp (`version` + `manifest_sha256`); fingerprint chỉ đổi sau
+`/admin/reload` thành công, không chứng minh pointer CURRENT.json. Web: `GET /health`
+là liveness, `GET /ready` kiểm PostgreSQL. OpenAPI ở `/docs`.
 
 API chính: `POST /api/search`, `POST /api/chat`, `POST /api/chat/stream`, `GET /api/personas`, `POST /api/for-you`. CF thiếu model trả 503. `POST /admin/reload` yêu cầu `X-Admin-Token` khớp cấu hình.
 
@@ -154,7 +157,7 @@ WARNING `completion unverified`; không coi đó là bằng chứng completion t
 - Chưa xác nhận Docker/PostgreSQL/HTTPS staging, authenticated E2E, backup/restore hoặc recovery trên storage production.
 - Chưa có đánh giá độc lập đủ rộng về neural retrieval, CrossEncoder, faithfulness, hallucination và refusal.
 - Usage/cost tracker hiện ghi cho non-stream completions; streaming usage/cost chưa được đo đầy đủ.
-- Catalog legacy 5.000 items và interactions CF là synthetic; snapshot curated chứa 118 trang thật. `/health` cung cấp số items runtime; provenance cần đối chiếu riêng với release/artifact manifest tin cậy.
+- Catalog legacy 5.000 items và interactions CF là synthetic; snapshot curated chứa 118 trang thật. `/health` cung cấp số items runtime cùng fingerprint artifacts đã load; provenance cần đối chiếu riêng với release/artifact manifest tin cậy.
 - CSV catalog, PostgreSQL và artifact activation chưa có transaction xuyên hệ thống; release cần maintenance window.
 - Pickle chỉ từ builder tin cậy. SHA256 inventory không xác nhận tác giả nếu attacker sửa được cả file và manifest.
 - Chẩn đoán học tập bằng luật chưa được xác nhận là phép đo năng lực; local locks/rate limiter RAM chưa hỗ trợ nhiều host.

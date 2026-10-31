@@ -1,0 +1,1 @@
+PASS logical backup/restore: 15 table row counts and SHA256 fingerprints equal; cluster restart preserves all data.

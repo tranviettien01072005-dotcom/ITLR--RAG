@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/tmp/itlr-blockers/browser_cancellation.py", line 90, in <module>
+    wait('!document.querySelector("#chatform button[type=submit]").disabled',3)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/itlr-blockers/browser_cancellation.py", line 60, in wait
+    raise AssertionError('Browser wait timed out: '+expression)
+AssertionError: Browser wait timed out: !document.querySelector("#chatform button[type=submit]").disabled

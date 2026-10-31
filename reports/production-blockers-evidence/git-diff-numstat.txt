@@ -1,0 +1,15 @@
+3	3	AGENTS.md
+11	0	CHANGELOG.md
+5	5	CONSTRAINTS.md
+6	4	README.md
+3	2	deploy/DEPLOY.md
+11	3	deploy/LOCAL_MODELS.md
+8	1	docs/ARCHITECTURE.md
+13	2	docs/PROJECT_MEMORY.md
+20	16	itlr/api/server.py
+40	6	itlr/chatbot/chatbot.py
+15	6	itlr/chatbot/llm_adapter.py
+99	10	itlr/chatbot/llm_client.py
+6	0	itlr/engine.py
+6	5	reports/VALIDATION.md
+14	3	tests/test_grounded_citations.py

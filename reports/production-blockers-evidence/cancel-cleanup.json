@@ -1,0 +1,11 @@
+{
+  "own_services_stopped": true,
+  "ports_listening": {
+    "15432": false,
+    "18030": false,
+    "18080": false,
+    "18435": false
+  },
+  "fixture_data_preserved": true,
+  "no_migration_or_seed": true
+}

@@ -1,0 +1,20 @@
+ M AGENTS.md
+ M CHANGELOG.md
+ M CONSTRAINTS.md
+ M README.md
+ M deploy/DEPLOY.md
+ M deploy/LOCAL_MODELS.md
+ M docs/ARCHITECTURE.md
+ M docs/PROJECT_MEMORY.md
+ M itlr/api/server.py
+ M itlr/chatbot/chatbot.py
+ M itlr/chatbot/llm_adapter.py
+ M itlr/chatbot/llm_client.py
+ M itlr/engine.py
+ M reports/VALIDATION.md
+ M tests/test_grounded_citations.py
+?? itlr/api/streaming.py
+?? reports/PRODUCTION_BLOCKERS_RESOLUTION.md
+?? reports/production-blockers-evidence/
+?? tests/test_llm_async.py
+?? tests/test_stream_cancellation.py

@@ -36,6 +36,9 @@
     "pg-copy-streams": "^6.0.6",
     "zod": "^4.6.7"
   },
+  "overrides": {
+    "minimatch": "^11.0.1"
+  },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
     "@types/bcryptjs": "^2.4.6",

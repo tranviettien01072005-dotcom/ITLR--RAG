@@ -79,8 +79,6 @@ def main() -> int:
              config.COLLECT_DB)
     store = CollectStore(config.COLLECT_DB)
 
-    presources = Path(config.COLLECT_DIR) / "last_run.json"
-
     if args.stats_only:
         print(json.dumps(store.stats(), ensure_ascii=False, indent=2))
         store.close()
@@ -114,7 +112,6 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    from itlr import config
     from itlr.locking import file_lock
     with file_lock(config.DATA_DIR / ".pipeline.lock"):
         sys.exit(main())
