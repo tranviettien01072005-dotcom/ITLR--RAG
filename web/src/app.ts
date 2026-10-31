@@ -1,3 +1,4 @@
+import { metricsAuthorized, metricsMiddleware, renderMetrics } from "./services/metrics";
 import path from "node:path";
 import { DocumentInputError } from "./services/dataset-extract";
 import "express-async-errors";
@@ -28,6 +29,17 @@ app.use(express.static(path.join(__dirname, "public"), { maxAge: env.isProd ? "7
 app.use(express.urlencoded({ extended: true, limit: "1mb" }));
 app.use(express.json({ limit: "1mb" }));
 app.use(cookieParser());
+
+// Prometheus metrics: token-protected (Bearer) or loopback-only. No prompts/PII labels.
+app.get("/metrics", async (req, res) => {
+  if (!metricsAuthorized(req)) {
+    res.status(403).type("text/plain").send("metrics forbidden");
+    return;
+  }
+  const { body, contentType } = await renderMetrics();
+  res.set("Content-Type", contentType).send(body);
+});
+app.use(metricsMiddleware);
 
 app.use(globalLimiter);
 

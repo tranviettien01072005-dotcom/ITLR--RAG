@@ -516,6 +516,36 @@ không commit/push, không đổi active artifacts hay dữ liệu thật. WIP `
 - Evidence + SHA256: `reports/final-e2e-evidence/SHA256SUMS.txt`,
   `docker-resume-1031c/`; chi tiết trong [certification §11](../reports/FINAL_E2E_CERTIFICATION.md).
 
+## Final release hardening — 2026-10-31 (host PG, host Ollama, model pull)
+
+Native với PostgreSQL host thật: sync catalog thật 0→178 vào `itlr_web` (không xóa users/
+messages/enrollments); Web native `/ready`, course 200/404, dashboard, restart giữ DB/session.
+Write E2E trên DB người dùng BLOCKED (không có CREATEDB; tránh ghi dữ liệu thật). Docker
+host-Ollama override PASS (Ollama 0.0.0.0:11435 + host-gateway); pull model 1.9GB vào volume và
+chat `llm_extractive` PASS; logout/CSRF PASS. Human faithfulness vẫn **NOT VERIFIED** (0
+reviewer, 40 case ready). Gates 510 Python / 166 Web, coverage 68,27%/52,41%, security 0.
+[Report](../reports/FINAL_RELEASE_READINESS.md). Production **NO-GO**.
+
+## Dual-mode E2E — 2026-10-31 (Native + Docker, artifact override fix)
+
+Chạy thật 2 mode: Native (API 18080/Web 13080/PG16 container 15434, Qwen host) và Docker
+(compose.local + model mount, API 18000/Web 13000/PG 55432). Cả hai: health 178 item, search,
+chat SSE `llm_extractive` + citation valid, register/login, course 200/404, chat lưu DB,
+cancel không lưu partial; Docker restart giữ 4 message + session. Fix `ITLR_ARTIFACTS_DIR`
+trỏ root pointer → VersionError (test RED→GREEN, config resolve CURRENT.json). Gates 510
+Python / 166 Web, coverage 68,27%/52,41%, security 0. [Report](../reports/FINAL_DUAL_MODE_E2E.md).
+Production **NO-GO** (cold SLO, human).
+
+## Observability & final engineering pass — 2026-10-31
+
+Thêm metrics Prometheus (API/Web), tracing OTel opt-in, compose profile `monitoring` gồm
+Prometheus/Grafana/Loki/Tempo/collector/cAdvisor/node/postgres-exporter/promtail; dashboard
+13 panel + 10 alert; token Bearer cho scrape, cổng loopback, retention giới hạn. Smoke thật:
+13 container healthy, 5/5 target up, chat SSE `llm_extractive`, trace có `sse.chat`, Loki có log,
+Grafana dashboard/datasource OK, overhead ~383 MiB. Gates 508 Python / 166 Web PASS, coverage
+68,22%/52,41%, security 0. [Final review](../reports/FINAL_ENGINEERING_REVIEW.md).
+Production **NO-GO** (cold SLO 49,80s, human null).
+
 ## Pipeline audit — 2026-10-31 (catalog sync, link audit, 404 root cause)
 
 Root cause 404: index 178 item thật đã build/activate nhưng PostgreSQL Web chưa sync; CSV

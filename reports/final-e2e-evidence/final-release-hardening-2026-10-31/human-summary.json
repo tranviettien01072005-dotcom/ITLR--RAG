@@ -1,0 +1,17 @@
+{
+  "dataset": "blind_cases.jsonl SHA 2a3a98e2d207\u2026 (12 positive / 8 negative real corpus; AI-authored queries, not human labels)",
+  "supplement": "human_eval_supplement.jsonl SHA 818e3b35\u2026 (20 case: hard negatives, VI/EN, multi-hop, injection)",
+  "sample_size": 40,
+  "criteria": "faithfulness 0-3, answer relevance 0-3, citation support 0-3, refusal appropriateness 0-3; unsupported_claims count; protocol HUMAN_REVIEW_PROTOCOL.md",
+  "reviewers": 0,
+  "human_scores": null,
+  "heuristic_only": {
+    "basis": "final.generation_mode=llm_extractive + citation_validation.status=valid + evidence_binding=verbatim (structure, not entailment)",
+    "accepted_positives": 11,
+    "positive_total": 12,
+    "negative_nonclaim": 7,
+    "negative_total": 8,
+    "source": "reports/final-e2e-evidence/generation-eval-ab-none.json (run 2026-10-31, cold/no-cache)"
+  },
+  "status": "NOT VERIFIED \u2014 no independent human reviewer in this environment; no fabricated scores"
+}

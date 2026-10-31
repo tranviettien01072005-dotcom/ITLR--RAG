@@ -1,0 +1,9 @@
+itlr-local-promtail-1	0.71%	32.03MiB / 96MiB
+itlr-local-otel-collector-1	6.06%	40.62MiB / 160MiB
+itlr-local-grafana-1	2.41%	66.47MiB / 256MiB
+itlr-local-loki-1	1.63%	56.27MiB / 256MiB
+itlr-local-prometheus-1	0.04%	36.58MiB / 512MiB
+itlr-local-tempo-1	0.10%	57.8MiB / 256MiB
+itlr-local-node-exporter-1	0.00%	9.762MiB / 64MiB
+itlr-local-cadvisor-1	7.02%	74.18MiB / 160MiB
+itlr-local-postgres-exporter-1	0.00%	9.289MiB / 64MiB

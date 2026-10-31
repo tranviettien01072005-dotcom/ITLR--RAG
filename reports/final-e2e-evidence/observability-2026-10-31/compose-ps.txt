@@ -1,0 +1,13 @@
+api Up 49 seconds (healthy)
+cadvisor Up 4 minutes (healthy)
+grafana Up 4 minutes
+loki Up 4 minutes
+node-exporter Up 4 minutes
+ollama Up 4 minutes (healthy)
+otel-collector Up 4 minutes
+postgres Up 29 minutes (healthy)
+postgres-exporter Up 4 minutes
+prometheus Up About a minute
+promtail Up 4 minutes
+tempo Up 4 minutes
+web Up 3 minutes (healthy)

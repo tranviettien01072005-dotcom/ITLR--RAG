@@ -35,6 +35,8 @@ from pydantic import BaseModel, Field, field_validator  # noqa: E402
 
 from itlr.api.streaming import ClosingStreamingResponse
 from itlr.api import ratelimit  # noqa: E402
+from itlr.observability import metrics as obs  # noqa: E402
+from itlr.observability.tracing import init_tracing, span  # noqa: E402
 from itlr.engine import load_engine  # noqa: E402
 from itlr.retrieval.service import DEFAULT_SEARCH_MIN_PCT  # noqa: E402
 from itlr.versioning import VersionError  # noqa: E402
@@ -129,10 +131,23 @@ def _prewarm_ollama():
     threading.Thread(target=_warm, daemon=True).start()
 
 
+def _provider_label() -> str:
+    """Bounded provider label; no model prompts or keys."""
+    if str(os.environ.get("USE_OLLAMA", "")).lower() in ("1", "true", "yes"):
+        return "ollama"
+    if os.environ.get("DEEPSEEK_API_KEY"):
+        return "deepseek"
+    if os.environ.get("OPENAI_API_KEY"):
+        return "openai"
+    return "template"
+
+
 @asynccontextmanager
 async def lifespan(_app):
     """Nạp artifacts ngay khi khởi động để lỗi thiếu artifacts lộ sớm, request đầu nhanh."""
     ratelimit.validate_workers()
+    if init_tracing("itlr-api"):
+        _log("[i] OpenTelemetry tracing bật (OTLP exporter).")
     try:
         load_engine()
         _log("[OK] Engine sẵn sàng — API tại http://localhost:8000")
@@ -154,6 +169,17 @@ _METRICS = {"requests_total": 0, "errors_total": 0, "by_route": {}}
 
 
 @app.middleware("http")
+async def _trace_request(request: Request, call_next):
+    with span("http.request", method=request.method) as current:
+        response = await call_next(request)
+        route = request.scope.get("route")
+        if current is not None:
+            current.set_attribute("route", getattr(route, "path", "unmatched"))
+            current.set_attribute("status", response.status_code)
+        return response
+
+
+@app.middleware("http")
 async def _track_metrics(request: Request, call_next):
     t0 = time.perf_counter()
     _METRICS["requests_total"] += 1
@@ -171,6 +197,10 @@ async def _track_metrics(request: Request, call_next):
     r["ms_max"] = max(r["ms_max"], dt_ms)
     if resp.status_code >= 500:
         _METRICS["errors_total"] += 1
+    from fastapi import Request as _Req  # local alias keeps module import order stable
+    route = request.scope.get("route")
+    route_path = getattr(route, "path", "unmatched")
+    obs.observe_http(route_path, request.method, resp.status_code, dt_ms / 1000.0)
     resp.headers["Content-Security-Policy"] = ("default-src 'self'; script-src 'self'; "
         "style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; "
         "object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'")
@@ -193,10 +223,13 @@ def health():
         eng = load_engine()
     except (FileNotFoundError, VersionError):
         raise _artifact_load_error()
+    fingerprint = getattr(eng, "artifact_fingerprint", None) or {}
+    items = int(len(eng.items)) if getattr(eng, "items", None) is not None else 0
+    obs.set_artifact_info(fingerprint.get("version"), fingerprint.get("manifest_sha256"), items)
     return {"status": "ok", "engine": "ready",
             "cf": bool(getattr(eng, "cf_model", None) is not None),
-            "items": int(len(eng.items)) if getattr(eng, "items", None) is not None else 0,
-            "artifacts": getattr(eng, "artifact_fingerprint", None)}
+            "items": items,
+            "artifacts": fingerprint or None}
 
 
 @app.get("/metrics", response_class=PlainTextResponse)
@@ -224,6 +257,17 @@ def metrics(request: Request):
         lines.append(f'route_latency_ms_avg{{path="{safe}"}} {avg:.2f}')
         lines.append(f'route_latency_ms_max{{path="{safe}"}} {r["ms_max"]:.2f}')
     return "\n".join(lines) + "\n"
+
+
+@app.get("/metrics/prometheus", response_class=PlainTextResponse)
+def prometheus_metrics(request: Request):
+    """Prometheus text format behind the same auth as /metrics (token or loopback)."""
+    if not _metrics_allowed(request):
+        if _admin_token_expected():
+            raise HTTPException(status_code=403, detail="Cần header X-Admin-Token.")
+        raise HTTPException(status_code=403, detail="/metrics chỉ mở cho loopback.")
+    body, content_type = obs.render_metrics()
+    return PlainTextResponse(body, media_type=content_type)
 
 
 class SearchReq(BaseModel):
@@ -282,7 +326,11 @@ def _cf_unavailable_detail() -> str:
 def api_search(req: SearchReq):
     eng = _engine()
     item_type = req.type if req.type in ("Khóa học", "Tài liệu") else None
-    return eng.search(req.query, item_type=item_type, min_pct=req.min_pct)
+    started = time.perf_counter()
+    with span("retrieval.search"):
+        result = eng.search(req.query, item_type=item_type, min_pct=req.min_pct)
+        obs.observe_retrieval("search", time.perf_counter() - started)
+    return result
 
 
 _CHAT_ERROR_MSG = (
@@ -294,16 +342,23 @@ _CHAT_ERROR_MSG = (
 def api_chat(req: ChatReq):
     eng = _engine()
     history = _history_payload(req)
-    try:
-        result = eng.chat(req.message, history=history)
-    except Exception as e:  # noqa: BLE001
-        _log(f"[!] /api/chat lỗi: {e}")
-        # 503: lỗi TẠM THỜI ở tầng chatbot/LLM — client thấy rõ lỗi kiểu HTTP,
-        # báo cáo lỗi không còn bị che bởi HTTP 200 "giả thành công".
-        return JSONResponse(
-            status_code=503,
-            content={"response": _CHAT_ERROR_MSG, "recommendations": [],
-                     "intent": "error"})
+    provider = _provider_label()
+    with span("generation.chat", provider=provider):
+        try:
+            started = time.perf_counter()
+            result = eng.chat(req.message, history=history)
+            mode = str(result.get("generation_mode") or "unknown")
+            obs.observe_llm(provider, mode, time.perf_counter() - started)
+            obs.observe_generation(mode, ((result.get("citation_validation") or {}).get("status")))
+        except Exception as e:  # noqa: BLE001
+            _log(f"[!] /api/chat lỗi: {e}")
+            obs.observe_generation("error", None)
+            # 503: lỗi TẠM THỜI ở tầng chatbot/LLM — client thấy rõ lỗi kiểu HTTP,
+            # báo cáo lỗi không còn bị che bởi HTTP 200 "giả thành công".
+            return JSONResponse(
+                status_code=503,
+                content={"response": _CHAT_ERROR_MSG, "recommendations": [],
+                         "intent": "error"})
     return result
 
 
@@ -321,27 +376,56 @@ async def api_chat_stream(req: ChatReq):
     def _frame(obj):
         return "data: " + json.dumps(obj, ensure_ascii=False) + "\n\n"
 
-    async def gen():
+    async def _frames():
         # Legacy engines retain their sync contract; current engines use cancellable I/O.
         from starlette.concurrency import iterate_in_threadpool
         events = (eng.achat_stream(req.message, history=history) if hasattr(eng, "achat_stream")
                   else iterate_in_threadpool(eng.chat_stream(req.message, history=history)))
+        provider = _provider_label()
+        started = time.perf_counter()
+        ttft: float | None = None
+        final: dict | None = None
+        result = "aborted"
         try:
             async with aclosing(events):
                 async for ev, data in events:
                     if ev == "text":
+                        if ttft is None:
+                            ttft = time.perf_counter() - started
+                            obs.observe_ttft(provider, ttft)
                         yield _frame({"type": "text", "text": data})
                     elif ev == "sources":
                         yield _frame({"type": "sources", "sources": data})
                     elif ev in {"meta", "final"}:
+                        if ev == "final":
+                            final = data
                         yield _frame({"type": ev, **data})
+            yield _frame({"type": "done"})
+            result = "done"
         except Exception as e:  # noqa: BLE001
             _log(f"[!] /api/chat/stream lỗi: {e}")
+            result = "error"
             yield _frame({"type": "error", "message": _CHAT_ERROR_MSG})
             yield _frame({"type": "final", "response": _CHAT_ERROR_MSG, "intent": "error",
                           "sources": [], "recommendations": [], "provisional": False,
                           "generation_mode": "error", "generation_error": "stream_failed"})
-        yield _frame({"type": "done"})
+            yield _frame({"type": "done"})
+        finally:
+            elapsed = time.perf_counter() - started
+            if final is not None:
+                mode = str(final.get("generation_mode") or "unknown")
+                obs.observe_llm(provider, mode, elapsed)
+                obs.observe_generation(
+                    mode, ((final.get("citation_validation") or {}).get("status")))
+            obs.observe_sse(result, elapsed)
+
+    async def gen():
+        with span("sse.chat", provider=_provider_label()):
+            # Explicitly close the inner generator: an abandoned `async for` would only be
+            # finalized later, delaying engine/provider cleanup on client disconnect.
+            async with aclosing(_frames()) as frames:
+                async for frame in frames:
+                    yield frame
 
     return ClosingStreamingResponse(
         gen(),
@@ -372,9 +456,22 @@ _LOOPBACK_HOSTS = frozenset({"127.0.0.1", "::1", "localhost"})
 
 
 def _metrics_allowed(request: Request) -> bool:
-    """Token cấu hình ⇒ đòi token (prod). Không token ⇒ chỉ loopback (dev local)."""
-    if _admin_token_expected():
-        return _admin_authorized(request)
+    """Token cấu hình ⇒ đòi token (prod). Không token ⇒ chỉ loopback (dev local).
+
+    Chấp nhận `X-Admin-Token` hoặc `Authorization: Bearer <token>` để Prometheus
+    (credentials_file) scrape được mà không phải tắt auth.
+    """
+    expected = _admin_token_expected()
+    if expected:
+        if _admin_authorized(request):
+            return True
+        import secrets
+        header = request.headers.get("authorization", "")
+        given = header[7:] if header.startswith("Bearer ") else ""
+        try:
+            return secrets.compare_digest(given.encode("utf-8"), expected.encode("utf-8"))
+        except (UnicodeError, ValueError):
+            return False
     return ratelimit.client_ip(request) in _LOOPBACK_HOSTS
 
 
@@ -404,9 +501,11 @@ def admin_reload(request: Request):
     except (FileNotFoundError, VersionError):
         raise _artifact_load_error()
     n = len(eng.items) if hasattr(eng, "items") else None
+    fingerprint = getattr(eng, "artifact_fingerprint", None) or {}
+    obs.set_artifact_info(fingerprint.get("version"), fingerprint.get("manifest_sha256"), n)
     return {"ok": True, "reloaded": True, "items": n,
             "cf": bool(getattr(eng, "cf_model", None) is not None),
-            "artifacts": getattr(eng, "artifact_fingerprint", None)}
+            "artifacts": fingerprint or None}
 
 
 @app.get("/api/personas")

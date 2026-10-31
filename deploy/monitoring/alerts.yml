@@ -1,0 +1,70 @@
+groups:
+  - name: itlr-api
+    rules:
+      - alert: ItlrApiDown
+        expr: up{job="itlr-api"} == 0
+        for: 2m
+        labels: { severity: critical }
+        annotations:
+          summary: "ITLR API is not scrapeable"
+          description: "Prometheus cannot reach api:8000/metrics/prometheus (token or crash)."
+      - alert: ItlrApi5xxRate
+        expr: sum(rate(itlr_http_requests_total{status_class="5xx"}[5m])) > 0.05
+        for: 5m
+        labels: { severity: warning }
+        annotations:
+          summary: "API 5xx rate above 0.05 req/s"
+      - alert: ItlrApiP95Slow
+        expr: histogram_quantile(0.95, sum(rate(itlr_http_request_duration_seconds_bucket[5m])) by (le)) > 5
+        for: 10m
+        labels: { severity: warning }
+        annotations:
+          summary: "API p95 latency > 5s"
+      - alert: ItlrRetrievalP95Slow
+        expr: histogram_quantile(0.95, sum(rate(itlr_retrieval_duration_seconds_bucket[5m])) by (le)) > 2
+        for: 10m
+        labels: { severity: warning }
+        annotations:
+          summary: "Retrieval p95 > 2s (embedding/FAISS/BM25)"
+      - alert: ItlrGenerationErrors
+        expr: increase(itlr_generation_modes_total{mode="error"}[10m]) > 0
+        for: 1m
+        labels: { severity: critical }
+        annotations:
+          summary: "Generation returned error mode"
+      - alert: ItlrSseErrors
+        expr: increase(itlr_sse_streams_total{result="error"}[5m]) > 0
+        for: 1m
+        labels: { severity: warning }
+        annotations:
+          summary: "SSE stream ended with error"
+      - alert: ItlrCitationInvalid
+        expr: increase(itlr_citation_status_total{status="invalid"}[15m]) > 0
+        for: 1m
+        labels: { severity: warning }
+        annotations:
+          summary: "Invalid citations detected in final answers"
+  - name: itlr-infrastructure
+    rules:
+      - alert: ItlrPostgresDown
+        expr: pg_up == 0
+        for: 2m
+        labels: { severity: critical }
+        annotations:
+          summary: "PostgreSQL exporter reports pg_up=0"
+      - alert: ItlrContainerMemoryHigh
+        expr: |
+          (sum by (name) (container_memory_usage_bytes{name=~"itlr-local-.*"})
+           / sum by (name) (container_spec_memory_limit_bytes{name=~"itlr-local-.*"} > 0)) > 0.9
+        for: 10m
+        labels: { severity: warning }
+        annotations:
+          summary: "Container {{ $labels.name }} above 90% memory limit"
+      - alert: ItlrDiskLow
+        expr: |
+          (node_filesystem_avail_bytes{mountpoint="/",fstype!~"tmpfs|overlay"}
+           / node_filesystem_size_bytes{mountpoint="/",fstype!~"tmpfs|overlay"}) < 0.10
+        for: 15m
+        labels: { severity: warning }
+        annotations:
+          summary: "Host root filesystem below 10% free"

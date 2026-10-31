@@ -1,0 +1,1 @@
+native mode: API 18080, Web 13080, PostgreSQL 16 container 15434 (host PG requires credentials; native app processes)

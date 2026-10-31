@@ -1,4 +1,137 @@
-# Final engineering review — ITLR–RAG, 2026-10-30
+# Final engineering review — ITLR–RAG, 2026-10-31
+
+**Verdict tách biệt: LOCAL READY / DEMO READY (scoped) / PRODUCTION NO-GO.** Code, Docker
+local full-stack, RAG dữ liệu thật và observability đã chạy thực tế trên máy này. Production vẫn
+bị chặn bởi cold SLO 45s (49,80s trên CPU) và human faithfulness chưa có người chấm.
+
+## 1. Kiến trúc cuối cùng
+
+```mermaid
+flowchart LR
+    B[Browser] --> W[Express Web :3000]
+    W --> PG[(PostgreSQL)]
+    W --> A[FastAPI RAG :8000]
+    A --> E[Engine]
+    E --> R[E5 + FAISS + BM25 + RRF + rerank]
+    E --> C[Chatbot / citations]
+    C --> O[Ollama Qwen2.5:3b]
+    S[Nguồn thật] --> K[Crawler/SQLite] --> BUILD[Build/probe/activate] --> R
+    A -. OTLP .-> OC[otel-collector] --> T[Tempo]
+    P[Prometheus] -. scrape .-> A
+    P --> G[Grafana]
+    L[Loki] --> G
+    T --> G
+```
+
+Boundaries giữ nguyên: Web → HTTP → API → engine → retrieval/chatbot; provider SDK chỉ trong
+`llm_client`; batch pipeline tách khỏi serving. Observability là sidecar/profile, không nằm
+trong đường request.
+
+## 2. Thay đổi của vòng cuối
+
+| Nhóm | Thay đổi | Lý do |
+|---|---|---|
+| Metrics API | `itlr/observability/metrics.py`; `/metrics/prometheus`; instrument middleware, search, chat/SSE, artifact version | Prometheus chuẩn, label cardinality thấp, không log prompt |
+| Tracing | `itlr/observability/tracing.py` (OTLP opt-in), span `http.request`, `retrieval.search`, `generation.chat`, `sse.chat`, `crawler.run`, `crawler.pipeline`, `index.build` | Theo dõi request + pipeline mà không ảnh hưởng khi tắt |
+| Web metrics | `web/src/services/metrics.ts`, `/metrics`, middleware, SSE outcome counter | Metric Web + bảo vệ token/loopback |
+| Monitoring stack | `compose.monitoring.yml` + `deploy/monitoring/*` (Prometheus, Grafana, Loki, Tempo, otel-collector, cAdvisor, node-exporter, postgres-exporter, promtail), dashboard 13 panel, 10 alert | Profile opt-in, retention/volume/security |
+| Docker | `compose.local.yml`, `compose.host-ollama.yml`, `.env.docker.example`, Dockerfile CPU torch | Full stack local + Windows/Ubuntu |
+| Pipeline | export `--refresh`, verify catalog, audit link, max-id, refresh tích hợp | Sửa 404 gốc, dữ liệu thật |
+| Docs | README Docker/monitoring/Windows, ARCHITECTURE trace, SECURITY/TESTING/EVALUATION | Đồng bộ code |
+
+Commit đã đẩy trước đó: `e763d5f` (pipeline + Docker). Vòng này (observability) **chưa commit**.
+
+## 3. Lỗi sửa và bằng chứng RED → GREEN
+
+| Lỗi | Root cause | RED | GREEN |
+|---|---|---|---|
+| Prometheus không có dữ liệu LLM/SSE/citation | tên Counter Prometheus có hậu tố `_total` nhưng dashboard/alert dùng tên gốc | query `sum(itlr_sse_streams)` trả `no-data` | sửa `_total`; query trả 1; alert rules reload 10 |
+| API metrics không scrape được từ container | endpoint chỉ nhận `X-Admin-Token` | Prometheus target cần token | thêm `Authorization: Bearer`; target `itlr-api` **up** |
+| Không có trace cho SSE | chỉ sync chat có span | trace SSE không có `sse.chat` | rebuild API; trace có `sse.chat` |
+| Crawler/index không trace | batch scripts không init | không có span batch | thêm `crawler.run`/`index.build` (no-op khi tắt) |
+| Host Ollama không truy cập từ container | daemon bind `127.0.0.1` | container `connection refused` | docs yêu cầu `OLLAMA_HOST=0.0.0.0`; test dùng container Ollama + model mount |
+| Course 404 | PostgreSQL chưa sync sau build | `/courses/5129` 404 | export+sync → 200 |
+
+Test mới: 5 Python observability + 3 Web metrics (+2 mailer từ lượt trước). Không skip, không hạ
+gate.
+
+## 4. Test results (lượt cuối)
+
+| Gate | Kết quả |
+|---|---|
+| Python pytest | **510 passed / 0 skip**, ~56s |
+| Python coverage | **4109/6019 = 68,27%** |
+| Web vitest | **166 passed / 32 file** |
+| Web coverage | lines **52,41%**; statements 49,23%; branches 40,45% |
+| typecheck / lint / build / compileall / pip check | PASS |
+| pip-audit / npm audit / Bandit | 0 / 0 / 0 High |
+| Secret scan / `git diff --check` | 0 hit / PASS |
+| Docker compose config (base, host override, monitoring) | PASS |
+| Prometheus promtool check + 10 alert rules; Loki/Tempo verify; OTel validate; promtail syntax | PASS |
+
+## 5. Xác minh runtime (Docker + Qwen + monitoring)
+
+| Hạng mục | Kết quả |
+|---|---|
+| 13 container stack (4 app + 9 monitoring) | tất cả **up/healthy** (trừ Loki/Tempo/Tempo readiness tạm 503 lúc khởi động, sau 200) |
+| Prometheus targets | 5/5 **up** (api, web, cadvisor, node, postgres) |
+| API metrics | không token **403**, bearer **200**; có `itlr_http_requests_total`, `itlr_artifact_info` item 178 |
+| Web metrics | bearer **200** |
+| Traffic thật | search 200; chat SSE `sources→meta→text→final→done`, `llm_extractive` |
+| Prometheus metric sau traffic | LLM count 1, SSE 1, citation 1, generation 1 |
+| Tempo | trace `POST /api/chat/stream` có spans `http.request`, `sse.chat`, `fastapi.*` |
+| Loki | log container `itlr-local-api-1` truy vấn được (`{service="api"}`) |
+| Grafana | health 200; dashboard `itlr-rag` 13 panel; 3 datasources |
+| Alerts | 2 group / **10 rules** |
+| Overhead monitoring | **~383 MiB RAM**, ~15–20% CPU lúc scrape (9 container) |
+| Shutdown | dừng sạch, ports đóng, **volume giữ** (pgdata, prom, grafana, loki, tempo, ollama) |
+
+## 6. Đã kiểm chứng / NOT VERIFIED
+
+- **Ubuntu:** đã chạy thực tế (Docker 29.9.2) — PASS.
+- **Windows 11:** chỉ có hướng dẫn WSL2; **NOT VERIFIED** trên máy Windows thật.
+- `ollama pull` model mới trong container: **NOT VERIFIED** (test dùng model host mount).
+- Public TLS/ACME/production compose: **NOT RE-RUN** (evidence staging cũ).
+- Full 178-link audit: mới mẫu 6 link (PASS).
+- Cold SLO 45s: **FAIL** (49,80s); human faithfulness **NOT VERIFIED**.
+- High cardinality/soak dài của monitoring: chưa soak; retention đã giới hạn.
+
+## 7. Rủi ro và giới hạn
+
+1. Cold prompt >45s trên CPU → cần hardware mạnh hơn/GPU; không nới SLO.
+2. Human evaluation chưa có; mọi metric dashboard là runtime, không phải faithfulness.
+3. cAdvisor `privileged` và promtail đọc `docker.sock` — cần thiết cho container/log metrics;
+   tắt nếu chính sách bảo mật không cho phép (README).
+4. Prometheus/Grafana dùng token/mật khẩu local; không có SSO/HA; single-host.
+5. observability dùng thêm ~383 MiB; trên laptop 8 GB vẫn khả thi nhưng nên bật khi debug.
+6. Trace chỉ bật khi đặt `OTEL_EXPORTER_OTLP_ENDPOINT`; không có span thì không ảnh hưởng serving.
+
+## 8. Khởi động và kiểm tra cuối
+
+```bash
+# stack + monitoring (sau khi đã có .env.docker, model, artifacts, DB)
+docker compose --env-file .env.docker -f compose.local.yml -f compose.monitoring.yml --profile monitoring up -d
+curl -fsS localhost:8000/health        # items + artifact version
+curl -fsS localhost:3000/ready         # PostgreSQL
+curl -fsS localhost:9090/-/healthy     # Prometheus
+curl -fsS localhost:3001/api/health    # Grafana
+# sinh traffic rồi mở dashboard http://localhost:3001 (admin / GRAFANA_ADMIN_PASSWORD)
+docker compose ... stop                # giữ volume; không dùng down -v
+```
+
+## 9. Verdict
+
+- **LOCAL READY** — code sạch trong phạm vi kiểm chứng, full stack Docker chạy được, RAG dữ
+  liệu thật, monitoring/profile hoạt động, gates xanh.
+- **DEMO READY (scoped)** — demo single-host với dữ liệu thật; cần cảnh báo cold latency ~50s
+  và không cam kết SLA.
+- **PRODUCTION READY: NO-GO** — cold SLO 45s và human faithfulness chưa đạt; chưa có HA/soak/
+  Windows verification.
+
+---
+
+## (Historical) Final engineering review — ITLR–RAG, 2026-10-30
+
 
 **Verdict: NO-GO cho production.** Retrieval có cải thiện đo được; correctness và
 resource boundaries được sửa bằng regression. Chưa có PostgreSQL/Docker/HTTPS

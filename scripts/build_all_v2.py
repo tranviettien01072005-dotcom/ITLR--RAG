@@ -209,4 +209,8 @@ if __name__ == "__main__":
     from itlr import config
     from itlr.locking import file_lock
     with file_lock(config.DATA_DIR / ".pipeline.lock"):
-        sys.exit(main())
+        from itlr.observability.tracing import init_tracing, span
+        init_tracing("itlr-batch")
+        with span("index.build"):
+            code = main()
+        raise SystemExit(code)

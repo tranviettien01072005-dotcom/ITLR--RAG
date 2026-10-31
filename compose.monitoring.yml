@@ -1,0 +1,151 @@
+# Observability profile (opt-in). Merge with compose.local.yml:
+#   docker compose --env-file .env.docker -f compose.local.yml -f compose.monitoring.yml \
+#     --profile monitoring up -d
+# Every service is in the `monitoring` profile, so the normal stack is unchanged when unused.
+# Ports bind 127.0.0.1 only. Grafana requires GRAFANA_ADMIN_PASSWORD; Prometheus scrapes the
+# API/Web with the admin token passed via a container-local credentials file (never baked in).
+name: itlr-local
+
+services:
+  prometheus:
+    profiles: ["monitoring"]
+    image: prom/prometheus:v2.55.1
+    restart: unless-stopped
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        printf '%s' "$$ITLR_ADMIN_TOKEN" > /tmp/metrics_token
+        exec /bin/prometheus \
+          --config.file=/etc/prometheus/prometheus.yml \
+          --storage.tsdb.path=/prometheus \
+          --storage.tsdb.retention.time=7d \
+          --storage.tsdb.retention.size=512MB \
+          --web.listen-address=0.0.0.0:9090
+    environment:
+      ITLR_ADMIN_TOKEN: ${ITLR_ADMIN_TOKEN:?set ITLR_ADMIN_TOKEN in .env.docker}
+    volumes:
+      - ./deploy/monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./deploy/monitoring/alerts.yml:/etc/prometheus/alerts.yml:ro
+      - promdata:/prometheus
+    ports:
+      - "127.0.0.1:${PROMETHEUS_PORT:-9090}:9090"
+    mem_limit: 512m
+    cpus: 1
+
+  grafana:
+    profiles: ["monitoring"]
+    image: grafana/grafana:11.3.0
+    restart: unless-stopped
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:?set GRAFANA_ADMIN_PASSWORD in .env.docker}
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GF_AUTH_ANONYMOUS_ENABLED: "false"
+      GF_SERVER_ROOT_URL: http://localhost:${GRAFANA_PORT:-3001}
+      GF_ANALYTICS_REPORTING_ENABLED: "false"
+      GF_ANALYTICS_CHECK_FOR_UPDATES: "false"
+    volumes:
+      - ./deploy/monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./deploy/monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
+      - grafanadata:/var/lib/grafana
+    ports:
+      - "127.0.0.1:${GRAFANA_PORT:-3001}:3000"
+    mem_limit: 256m
+    depends_on:
+      - prometheus
+
+  loki:
+    profiles: ["monitoring"]
+    image: grafana/loki:3.2.1
+    restart: unless-stopped
+    command: ["-config.file=/etc/loki/loki-config.yml"]
+    volumes:
+      - ./deploy/monitoring/loki-config.yml:/etc/loki/loki-config.yml:ro
+      - lokidata:/loki
+    ports:
+      - "127.0.0.1:${LOKI_PORT:-3100}:3100"
+    mem_limit: 256m
+
+  promtail:
+    profiles: ["monitoring"]
+    image: grafana/promtail:3.2.1
+    restart: unless-stopped
+    command: ["-config.file=/etc/promtail/promtail.yml"]
+    volumes:
+      - ./deploy/monitoring/promtail.yml:/etc/promtail/promtail.yml:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    mem_limit: 96m
+    depends_on:
+      - loki
+
+  tempo:
+    profiles: ["monitoring"]
+    image: grafana/tempo:2.6.1
+    restart: unless-stopped
+    command: ["-config.file=/etc/tempo/tempo.yml"]
+    volumes:
+      - ./deploy/monitoring/tempo.yml:/etc/tempo/tempo.yml:ro
+      - tempodata:/var/tempo
+    ports:
+      - "127.0.0.1:${TEMPO_PORT:-3200}:3200"
+    mem_limit: 256m
+
+  otel-collector:
+    profiles: ["monitoring"]
+    image: otel/opentelemetry-collector-contrib:0.111.0
+    restart: unless-stopped
+    command: ["--config=/etc/otel/config.yml"]
+    volumes:
+      - ./deploy/monitoring/otel-collector.yml:/etc/otel/config.yml:ro
+    ports:
+      - "127.0.0.1:4318:4318"
+    mem_limit: 160m
+    depends_on:
+      - tempo
+
+  cadvisor:
+    profiles: ["monitoring"]
+    image: gcr.io/cadvisor/cadvisor:v0.49.1
+    restart: unless-stopped
+    privileged: true
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+    ports:
+      - "127.0.0.1:8080:8080"
+    mem_limit: 160m
+    cpus: 0.5
+
+  node-exporter:
+    profiles: ["monitoring"]
+    image: prom/node-exporter:v1.8.2
+    restart: unless-stopped
+    command:
+      - "--path.rootfs=/host"
+    pid: host
+    volumes:
+      - /:/host:ro,rslave
+    ports:
+      - "127.0.0.1:9100:9100"
+    mem_limit: 64m
+
+  postgres-exporter:
+    profiles: ["monitoring"]
+    image: prometheuscommunity/postgres-exporter:v0.16.0
+    restart: unless-stopped
+    environment:
+      DATA_SOURCE_NAME: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}?sslmode=disable
+    ports:
+      - "127.0.0.1:9187:9187"
+    mem_limit: 64m
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  promdata: null
+  grafanadata: null
+  lokidata: null
+  tempodata: null

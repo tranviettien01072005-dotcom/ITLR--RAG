@@ -231,6 +231,129 @@ dc logs -f --tail=200 web api
 | Cổng bị chiếm (3000/8000/5432/11434) | đổi `WEB_PORT`/`API_PORT`/`POSTGRES_PORT`/`OLLAMA_PORT` trong `.env.docker`; các cổng chỉ bind `127.0.0.1` |
 | Qwen trả lời rất chậm/timeout | CPU-only prefill ~30–50s/prompt; tăng `OLLAMA_TIMEOUT` cho local, hoặc dùng hardware mạnh hơn |
 
+### 10. Windows 11 (WSL2) và Ubuntu
+
+**Ubuntu (Docker Engine + Compose plugin):**
+
+```bash
+sudo apt-get update && sudo apt-get install -y docker.io docker-compose-v2
+sudo usermod -aG docker "$USER"      # logout/login lại để có quyền
+docker --version && docker compose version
+```
+
+**Windows 11:** cài WSL2 + Docker Desktop (bật "Use the WSL 2 based engine"), clone repo **trong
+filesystem WSL** (ví dụ `~/ITLR--RAG`, không dùng `/mnt/c/...` để tránh chậm I/O), rồi chạy các
+lệnh y hệt trong terminal WSL. Docker Desktop tự cung cấp `host.docker.internal` cho
+`compose.host-ollama.yml`. Nếu file bị checkout CRLF, chạy `git config core.autocrlf input` và
+`git checkout -- .` trước khi build (entrypoint Web đã tự gỡ CR cho script).
+
+**Khởi động lại toàn bộ sau khi đã có dữ liệu/index** (một lệnh):
+
+```bash
+docker compose --env-file .env.docker -f compose.local.yml up -d
+docker compose --env-file .env.docker -f compose.local.yml ps      # trạng thái + health
+docker compose --env-file .env.docker -f compose.local.yml logs -f api web
+docker compose --env-file .env.docker -f compose.local.yml stop    # giữ volume
+```
+
+## Observability (Prometheus + Grafana + OTel + Loki + Tempo)
+
+Profile `monitoring` là opt-in: stack thường không khởi động các container này. Metrics runtime
+có cardinality thấp (route template, mode, status, provider, artifact version); **không** ghi
+query, prompt, user id hay secret vào label/log. Chỉ số offline (Recall@K, faithfulness) vẫn
+đo bằng `eval/` — dashboard không tạo hay thay thế các số đó.
+
+### Bật / tắt
+
+```bash
+# .env.docker: đặt GRAFANA_ADMIN_PASSWORD (>=12 ký tự).
+# Muốn trace: thêm OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4318 rồi recreate api.
+dc() { docker compose --env-file .env.docker -f compose.local.yml -f compose.monitoring.yml "$@"; }
+dc --profile monitoring up -d
+```
+
+| Dịch vụ | URL (loopback) | Ghi chú |
+|---|---|---|
+| Grafana | http://localhost:3001 | admin / `GRAFANA_ADMIN_PASSWORD`; anonymous tắt |
+| Prometheus | http://localhost:9090 | scrape 15s, retention 7d / 512MB |
+| Loki | http://localhost:3100 | log Docker của stack `itlr-local-*`, retention 168h |
+| Tempo | http://localhost:3200 | trace OTLP, retention 24h |
+| OTLP HTTP | http://localhost:4318 | collector nhận trace từ API |
+
+Dashboard **ITLR RAG / LLM** (Grafana → folder ITLR): API request rate, latency p95/p99,
+retrieval p50/p95, LLM p50/p95/p99 theo mode, TTFT, tokens/s, generation modes, SSE outcomes,
+citation status, artifact version, container CPU/RAM, `pg_up`.
+
+Tắt monitoring (giữ volume):
+
+```bash
+dc stop prometheus grafana loki promtail tempo otel-collector cadvisor node-exporter postgres-exporter
+```
+
+### Xem dashboard lần đầu (Grafana)
+
+1. Mở http://localhost:3001 → đăng nhập `admin` / `GRAFANA_ADMIN_PASSWORD` trong `.env.docker`.
+2. Vào **Dashboards → ITLR → ITLR RAG / LLM**. Chọn time range `Last 6 hours`, refresh `30s`.
+3. Tạo tải thật: mở http://localhost:3000, tìm kiếm một chủ đề CNTT và gửi 1 câu hỏi chat.
+4. Đọc panel:
+   - **API request rate / p95-p99** (giây): tăng khi có request; p95 > 5s cần xem lại CPU/queue.
+   - **Retrieval p50/p95** (giây): E5 + FAISS + BM25 + RRF; p95 > 2s là bất thường trên máy này.
+   - **LLM latency theo mode**, **TTFT**: mode `llm_extractive` là generation thật; `insufficient_evidence`
+     là từ chối đúng khi thiếu bằng chứng, không phải lỗi.
+   - **Tokens/s** (prompt/completion), **Generation modes**, **SSE outcomes** (done/error/aborted).
+   - **Citation status**: `valid` là điều kiện accepted; `invalid` cần điều tra nguồn/chunk id.
+   - **Artifact version / Items loaded**: khớp `/health`; đổi sau `/admin/reload` thành công.
+   - **Container CPU/RAM**, **pg_up**.
+5. Trace: **Explore → Tempo → Search** chọn service `itlr-api`; span `http.request` chứa
+   `retrieval.search`, `generation.chat` (không có nội dung câu hỏi/prompt).
+6. Log: **Explore → Loki** query `{service="api"}` hoặc `{service="web"}`.
+7. Alert: Prometheus → **Alerts** (10 rule: API down/5xx/p95, retrieval, generation error, SSE,
+   citation invalid, PostgreSQL down, RAM container, disk thấp).
+
+Số liệu trên dashboard là **runtime**; Recall@K/faithfulness vẫn phải chạy `eval/` và không được
+suy ra từ dashboard.
+
+### Metrics phát ra
+
+| Metric | Ý nghĩa |
+|---|---|
+| `itlr_http_requests_total`, `itlr_http_request_duration_seconds` | request API theo route template/method/status class |
+| `itlr_retrieval_duration_seconds` | search (gồm E5 encode + FAISS + BM25 + RRF) |
+| `itlr_llm_request_duration_seconds`, `itlr_llm_ttft_seconds` | generation wall-clock và TTFT (SSE text đầu tiên) |
+| `itlr_llm_tokens{kind=prompt\|completion}` | token provider báo (không nội dung) |
+| `itlr_generation_modes`, `itlr_citation_status`, `itlr_sse_streams` | mode cuối, citation valid/invalid/missing, SSE done/error/aborted |
+| `itlr_artifact_info{version,manifest_sha256}`, `itlr_artifact_items` | snapshot artifacts đang phục vụ (chỉ đổi sau reload) |
+| `itlr_web_*` | request Web, process/runtime Node, SSE outcome phía Web |
+
+Trace: `http.request` → `retrieval.search` → `generation.chat`; batch pipeline phát
+`crawler.run` / `crawler.pipeline` / `index.build` khi chạy với `OTEL_EXPORTER_OTLP_ENDPOINT`.
+Ollama không có `/metrics` native: CPU/RAM container do cAdvisor thu; chất lượng/latency LLM đo
+ở tầng API.
+
+### Bảo mật và tài nguyên
+
+- Tất cả cổng monitoring bind `127.0.0.1`; Grafana bắt buộc mật khẩu, không cho đăng ký.
+- Prometheus scrape API/Web bằng token từ `ITLR_ADMIN_TOKEN`, ghi vào file trong container
+  (không nằm trong config/repo); Web dùng cùng token qua `METRICS_TOKEN`.
+- Promtail đọc `/var/run/docker.sock:ro`; cAdvisor cần `privileged` — nếu không chấp nhận, bỏ
+  hai service này khỏi profile và giữ node-exporter + metrics ứng dụng.
+- Footprint đo thật trên laptop CPU-only khi bật đủ 9 container monitoring: **~383 MiB RAM**
+  (prometheus 37, grafana 66, loki 56, tempo 58, collector 41, cAdvisor 74, promtail 32, exporter 19)
+  và ~15–20% CPU lúc scrape khởi động; ổn định thấp hơn khi rảnh. Retention giới hạn như bảng trên.
+- Không log prompt/PII: ứng dụng không log nội dung chat; dashboard chỉ dùng metrics tổng hợp.
+
+### Troubleshooting
+
+| Hiện tượng | Nguyên nhân / cách sửa |
+|---|---|
+| Prometheus target `itlr-api` DOWN | token khác `ITLR_ADMIN_TOKEN`, hoặc API chưa healthy; `dc logs prometheus api`; kiểm `curl -H "Authorization: Bearer $ITLR_ADMIN_TOKEN" localhost:8000/metrics/prometheus` |
+| Web `/metrics` 403 | `METRICS_TOKEN` trong container Web phải bằng token scrape (compose đặt từ `ITLR_ADMIN_TOKEN`); hoặc scrape từ loopback |
+| Grafana không có dữ liệu | chờ 15–30s cho scrape đầu; check datasources Prometheus/Loki/Tempo; `dc logs grafana` |
+| Không thấy trace | thiếu `OTEL_EXPORTER_OTLP_ENDPOINT` hoặc chưa recreate API; `dc logs otel-collector tempo`; thử tạo 1 request |
+| Loki không có log | promtail chỉ ship container tên `itlr-local-*`; kiểm `docker ps`; `dc logs promtail` |
+| Cổng monitoring bị chiếm | đổi `PROMETHEUS_PORT`, `GRAFANA_PORT`, `LOKI_PORT`, `TEMPO_PORT` trong `.env.docker` |
+| Tốn RAM | giảm retention Prometheus/Loki, tắt cadvisor/promtail nếu không cần, hoặc chạy profile khi debug |
+
 ## Cấu hình
 
 Cấu hình Python đi qua `itlr/config.py` (paths) và biến môi trường của process; Web đọc
@@ -265,8 +388,8 @@ env -u DEEPSEEK_API_KEY -u OPENAI_API_KEY \
 cd web && npm run typecheck && npm run lint && npm run build && npm test
 ```
 
-Kết quả mới nhất (máy Linux, commit `f14c428`, không thay đổi code runtime): **503 Python PASS/0 skip**, coverage
-statements **67,63%**; **163 Web PASS**, line coverage **51,45%**; typecheck/lint/build,
+Kết quả mới nhất (máy Linux, commit `f14c428`, không thay đổi code runtime): **510 Python PASS/0 skip**, coverage
+statements **68,27%**; **166 Web PASS**, line coverage **52,41%**; typecheck/lint/build,
 compileall, pip check PASS; pip-audit **0**, npm audit **0**, Bandit **0 High**. Docker staging
 fresh `--no-cache` + Chrome **11/11** PASS trong phạm vi single-host. Phương pháp, coverage và
 giới hạn: [TESTING](docs/TESTING.md) · [EVALUATION](docs/EVALUATION.md).
@@ -310,6 +433,7 @@ không tự migrate/seed.
 | Metric, dataset, nguồn nhãn, giới hạn | [docs/EVALUATION.md](docs/EVALUATION.md) |
 | Bảo mật, trust boundary, scan | [docs/SECURITY.md](docs/SECURITY.md) |
 | Quyết định kiến trúc | [ADR](docs/decisions/ADR-001-deepseek-primary-llm.md) (001–013) |
+| Đánh giá kỹ thuật cuối | [FINAL_ENGINEERING_REVIEW](reports/FINAL_ENGINEERING_REVIEW.md), [dual-mode E2E](reports/FINAL_DUAL_MODE_E2E.md), [release readiness](reports/FINAL_RELEASE_READINESS.md) |
 | Trạng thái & evidence mới nhất | [PROJECT_MEMORY](docs/PROJECT_MEMORY.md), [VALIDATION](reports/VALIDATION.md), [certification](reports/FINAL_E2E_CERTIFICATION.md), [code freeze](reports/FINAL_CODEBASE_FREEZE.md), [maintainability](reports/FINAL_MAINTAINABILITY_REVIEW.md), [pipeline audit](reports/PIPELINE_AUDIT_2026-10-31.md), [Docker local](reports/DOCKER_DEPLOYMENT_2026-10-31.md) |
 | Quy ước cho coding agent | [AGENTS](AGENTS.md), [CONSTRAINTS](CONSTRAINTS.md) |
 | Lịch sử thay đổi | [CHANGELOG](CHANGELOG.md) |

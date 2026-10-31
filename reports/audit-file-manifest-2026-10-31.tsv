@@ -1,5 +1,6 @@
 path	kind	status	note
 .dockerignore	other	structure	inventory
+.env.docker.example	config	read	read/edited final pass
 .env.example	other	structure	inventory
 .github/dependabot.yml	config	structure	compose/CI config
 .github/workflows/ci.yml	config	structure	compose/CI config
@@ -7,11 +8,13 @@ path	kind	status	note
 AGENTS.md	docs	current-doc	doc
 CHANGELOG.md	docs	current-doc	doc
 CONSTRAINTS.md	docs	current-doc	doc
-Dockerfile	config	read	created/edited this deployment audit
+Dockerfile	config	read	read/edited final pass
 Makefile	other	structure	inventory
-README.md	docs	read	created/edited this deployment audit
+README.md	docs	read	read/edited final pass
 RESEARCH_ITLR.md	docs	current-doc	doc
 bin/refresh_env.sh	config	structure	compose/CI config
+compose.host-ollama.yml	config	read	read/edited final pass
+compose.local.yml	config	read	read/edited final pass
 compose.production.yml	config	structure	compose/CI config
 configs/collect.sources.json	data	structure	data/evidence
 configs/curated.resources.json	data	structure	data/evidence
@@ -21,14 +24,14 @@ data/licenses/Docker-Apache-2.0.txt	data	structure	data/evidence
 data/licenses/MDN-CC-BY-SA-2.5.html	other	structure	inventory
 data/licenses/Python-license.html	other	structure	inventory
 deploy/Caddyfile	other	structure	inventory
-deploy/DEPLOY.md	docs	read	created/edited this deployment audit
+deploy/DEPLOY.md	docs	current-doc	doc
 deploy/LOCAL_MODELS.md	docs	current-doc	doc
 deploy/PRODUCTION.md	docs	current-doc	doc
 deploy/api.env.example	other	structure	inventory
 deploy/compose.env.example	other	structure	inventory
 deploy/postgres.env.example	other	structure	inventory
 deploy/web.env.example	other	structure	inventory
-docker-compose.yml	config	read	created/edited this deployment audit
+docker-compose.yml	config	structure	compose/CI config
 docs/API.md	docs	current-doc	doc
 docs/ARCHITECTURE.md	docs	current-doc	doc
 docs/EVALUATION.md	docs	current-doc	doc
@@ -76,7 +79,7 @@ itlr/__init__.py	source	suite	tests/compileall
 itlr/api/__init__.py	source	suite	tests/compileall
 itlr/api/__main__.py	source	suite	tests/compileall
 itlr/api/ratelimit.py	source	suite	tests/compileall
-itlr/api/server.py	source	suite	tests/compileall
+itlr/api/server.py	docs	read	read/edited final pass
 itlr/api/static/index.html	other	structure	inventory
 itlr/api/static/orbital-timeline.css	other	structure	inventory
 itlr/api/static/orbital-timeline.js	other	structure	inventory
@@ -105,7 +108,7 @@ itlr/collect/runner.py	source	suite	tests/compileall
 itlr/collect/sources.py	source	suite	tests/compileall
 itlr/collect/store.py	source	suite	tests/compileall
 itlr/collect/url_util.py	source	suite	tests/compileall
-itlr/config.py	source	suite	tests/compileall
+itlr/config.py	docs	read	read/edited final pass
 itlr/core/__init__.py	source	suite	tests/compileall
 itlr/core/ann.py	source	suite	tests/compileall
 itlr/core/bm25.py	source	suite	tests/compileall
@@ -150,16 +153,18 @@ reports/AUDIT_2026-10-29.md	docs	historical	doc
 reports/AUDIT_INCREMENT_2026-10-30.md	docs	historical	doc
 reports/AUDIT_PORTABILITY_2026-10-30.md	docs	historical	doc
 reports/BANDIT_TRIAGE_2026-10-30.md	docs	historical	doc
+reports/DOCKER_DEPLOYMENT_2026-10-31.md	docs	historical	doc
 reports/FINAL_CODEBASE_FREEZE.md	docs	historical	doc
 reports/FINAL_E2E_CERTIFICATION.md	docs	historical	doc
-reports/FINAL_ENGINEERING_REVIEW.md	docs	historical	doc
+reports/FINAL_ENGINEERING_REVIEW.md	docs	read	read/edited final pass
 reports/FINAL_MAINTAINABILITY_REVIEW.md	docs	historical	doc
 reports/FINAL_PRODUCTION_AUDIT.md	docs	historical	doc
-reports/FINAL_RELEASE_READINESS.md	docs	historical	doc
+reports/FINAL_RELEASE_READINESS.md	docs	read	read/edited final pass
 reports/FINAL_REMEDIATION.md	docs	historical	doc
 reports/FULL_SYSTEM_AUDIT_2026-10-30.md	docs	historical	doc
 reports/HARDENING_STREAM_2026-10-30.md	docs	historical	doc
 reports/LOCAL_MODELS.md	docs	historical	doc
+reports/PIPELINE_AUDIT_2026-10-31.md	docs	historical	doc
 reports/PONYTAIL_AUDIT.md	docs	historical	doc
 reports/PONYTAIL_REVIEW.md	docs	historical	doc
 reports/PRODUCTION_BLOCKERS_RESOLUTION.md	docs	historical	doc
@@ -231,6 +236,14 @@ reports/final-e2e-evidence/browser_db_fresh.py	source	suite	tests/compileall
 reports/final-e2e-evidence/budget800-comparison.json	data	structure	data/evidence
 reports/final-e2e-evidence/compileall.log	data	structure	data/evidence
 reports/final-e2e-evidence/dataset-and-protocol-sha256.txt	data	structure	data/evidence
+reports/final-e2e-evidence/docker-local-2026-10-31/api-health.json	data	structure	data/evidence
+reports/final-e2e-evidence/docker-local-2026-10-31/build.log	data	structure	data/evidence
+reports/final-e2e-evidence/docker-local-2026-10-31/chat-events.sse	other	structure	inventory
+reports/final-e2e-evidence/docker-local-2026-10-31/compose-config.txt	data	structure	data/evidence
+reports/final-e2e-evidence/docker-local-2026-10-31/compose-ps.txt	data	structure	data/evidence
+reports/final-e2e-evidence/docker-local-2026-10-31/images.txt	data	structure	data/evidence
+reports/final-e2e-evidence/docker-local-2026-10-31/ollama-host-models-override.yml	config	structure	compose/CI config
+reports/final-e2e-evidence/docker-local-2026-10-31/web-ready.json	data	structure	data/evidence
 reports/final-e2e-evidence/docker-preflight.txt	data	structure	data/evidence
 reports/final-e2e-evidence/docker-resume-1031c/Caddyfile	other	structure	inventory
 reports/final-e2e-evidence/docker-resume-1031c/Dockerfile.cpu	other	structure	inventory
@@ -674,6 +687,7 @@ reports/results_kw_noisy.csv	data	structure	data/evidence
 reports/tables.md	docs	historical	doc
 reports/tables_kw_noisy.md	docs	historical	doc
 requirements.txt	data	structure	data/evidence
+scripts/audit_source_links.py	source	suite	tests/compileall
 scripts/build_all.py	source	suite	tests/compileall
 scripts/build_all_v2.py	source	suite	tests/compileall
 scripts/collect_curated.py	source	suite	tests/compileall
@@ -683,6 +697,7 @@ scripts/import_curated_snapshot.py	source	suite	tests/compileall
 scripts/refresh_pipeline.py	source	suite	tests/compileall
 scripts/verify_local_models.py	source	suite	tests/compileall
 scripts/verify_staging_browser.cjs	other	structure	inventory
+scripts/verify_web_catalog.py	source	suite	tests/compileall
 tasks/plan.md	docs	current-doc	doc
 tasks/todo.md	docs	current-doc	doc
 tests/conftest.py	test	suite	tests/compileall
@@ -693,6 +708,7 @@ tests/test_api_hardening.py	test	suite	tests/compileall
 tests/test_api_integration.py	test	suite	tests/compileall
 tests/test_artifact_integrity.py	test	suite	tests/compileall
 tests/test_audit_regressions.py	test	suite	tests/compileall
+tests/test_audit_source_links.py	test	suite	tests/compileall
 tests/test_bm25_refit.py	test	suite	tests/compileall
 tests/test_build_all_v2_cli.py	test	suite	tests/compileall
 tests/test_build_model_load.py	test	suite	tests/compileall
@@ -719,6 +735,7 @@ tests/test_eval_metrics_diversity.py	test	suite	tests/compileall
 tests/test_eval_scripts_paths.py	test	suite	tests/compileall
 tests/test_evidence_binding.py	test	suite	tests/compileall
 tests/test_evidence_binding_edges.py	test	suite	tests/compileall
+tests/test_export_web_catalog.py	test	suite	tests/compileall
 tests/test_generate_interactions.py	test	suite	tests/compileall
 tests/test_grounded_citations.py	test	suite	tests/compileall
 tests/test_http_layer.py	test	suite	tests/compileall
@@ -742,6 +759,7 @@ tests/test_scripts_and_configs.py	test	suite	tests/compileall
 tests/test_significance.py	test	suite	tests/compileall
 tests/test_static_security.py	test	suite	tests/compileall
 tests/test_stream_cancellation.py	test	suite	tests/compileall
+tests/test_verify_web_catalog.py	test	suite	tests/compileall
 tests/test_versioning.py	test	suite	tests/compileall
 var/data/eval/generation_testset.csv	data	structure	data/evidence
 var/data/eval/human_judgments.csv	data	structure	data/evidence
@@ -763,7 +781,7 @@ web/nodemon.json	data	structure	data/evidence
 web/package-lock.json	data	structure	data/evidence
 web/package.json	data	structure	data/evidence
 web/src/app.test.ts	source	suite	vitest/typecheck
-web/src/app.ts	source	suite	vitest/typecheck
+web/src/app.ts	docs	read	read/edited final pass
 web/src/config/catalog.ts	source	suite	vitest/typecheck
 web/src/config/env.test.ts	source	suite	vitest/typecheck
 web/src/config/env.ts	source	suite	vitest/typecheck
@@ -870,21 +888,61 @@ web/src/views/search.ejs	other	structure	inventory
 web/src/views/views.test.ts	source	suite	vitest/typecheck
 web/tsconfig.json	data	structure	data/evidence
 web/vitest.config.ts	source	suite	vitest/typecheck
-.env.docker.example	config	new	created/edited this deployment audit
-compose.host-ollama.yml	config	new	created/edited this deployment audit
-compose.local.yml	config	new	created/edited this deployment audit
-reports/DOCKER_DEPLOYMENT_2026-10-31.md	docs	new	created/edited this deployment audit
-reports/PIPELINE_AUDIT_2026-10-31.md	docs	new	doc
-reports/final-e2e-evidence/docker-local-2026-10-31/api-health.json	data	new	data/evidence
-reports/final-e2e-evidence/docker-local-2026-10-31/build.log	data	new	data/evidence
-reports/final-e2e-evidence/docker-local-2026-10-31/chat-events.sse	other	new	inventory
-reports/final-e2e-evidence/docker-local-2026-10-31/compose-config.txt	data	new	data/evidence
-reports/final-e2e-evidence/docker-local-2026-10-31/compose-ps.txt	data	new	data/evidence
-reports/final-e2e-evidence/docker-local-2026-10-31/images.txt	data	new	data/evidence
-reports/final-e2e-evidence/docker-local-2026-10-31/ollama-host-models-override.yml	config	new	compose/CI config
-reports/final-e2e-evidence/docker-local-2026-10-31/web-ready.json	data	new	data/evidence
-scripts/audit_source_links.py	source	new	tests/compileall
-scripts/verify_web_catalog.py	source	new	tests/compileall
-tests/test_audit_source_links.py	test	new	tests/compileall
-tests/test_export_web_catalog.py	test	new	tests/compileall
-tests/test_verify_web_catalog.py	test	new	tests/compileall
+compose.monitoring.yml	config	new	read/edited final pass
+deploy/monitoring/alerts.yml	config	new	compose/CI config
+deploy/monitoring/grafana/dashboards/itlr-rag.json	data	new	data/evidence
+deploy/monitoring/grafana/provisioning/dashboards/dashboards.yml	config	new	compose/CI config
+deploy/monitoring/grafana/provisioning/datasources/datasources.yml	config	new	compose/CI config
+deploy/monitoring/loki-config.yml	config	new	compose/CI config
+deploy/monitoring/otel-collector.yml	config	new	compose/CI config
+deploy/monitoring/prometheus.yml	config	new	compose/CI config
+deploy/monitoring/promtail.yml	config	new	compose/CI config
+deploy/monitoring/tempo.yml	config	new	compose/CI config
+itlr/observability/__init__.py	source	new	tests/compileall
+itlr/observability/metrics.py	docs	new	read/edited final pass
+itlr/observability/tracing.py	docs	new	read/edited final pass
+reports/FINAL_DUAL_MODE_E2E.md	docs	new	read/edited final pass
+reports/final-e2e-evidence/dual-mode-2026-10-31/docker/api-chat.sse	other	new	inventory
+reports/final-e2e-evidence/dual-mode-2026-10-31/docker/build.log	data	new	data/evidence
+reports/final-e2e-evidence/dual-mode-2026-10-31/docker/cancel.sse	other	new	inventory
+reports/final-e2e-evidence/dual-mode-2026-10-31/docker/environment.txt	data	new	data/evidence
+reports/final-e2e-evidence/dual-mode-2026-10-31/docker/web-chat.sse	other	new	inventory
+reports/final-e2e-evidence/dual-mode-2026-10-31/native/api-chat.sse	other	new	inventory
+reports/final-e2e-evidence/dual-mode-2026-10-31/native/api-final.log	data	new	data/evidence
+reports/final-e2e-evidence/dual-mode-2026-10-31/native/api.log	data	new	data/evidence
+reports/final-e2e-evidence/dual-mode-2026-10-31/native/cancel.sse	other	new	inventory
+reports/final-e2e-evidence/dual-mode-2026-10-31/native/environment.txt	data	new	data/evidence
+reports/final-e2e-evidence/dual-mode-2026-10-31/native/web-chat.sse	other	new	inventory
+reports/final-e2e-evidence/dual-mode-2026-10-31/native/web.log	data	new	data/evidence
+reports/final-e2e-evidence/dual-mode-2026-10-31/python-coverage.json	data	new	data/evidence
+reports/final-e2e-evidence/dual-mode-2026-10-31/python-tests.log	data	new	data/evidence
+reports/final-e2e-evidence/dual-mode-2026-10-31/test_config_artifact_override.py	source	new	tests/compileall
+reports/final-e2e-evidence/dual-mode-2026-10-31/web-tests.log	data	new	data/evidence
+reports/final-e2e-evidence/final-release-hardening-2026-10-31/docker-model-pull.log	data	new	data/evidence
+reports/final-e2e-evidence/final-release-hardening-2026-10-31/docker-pulled-chat.sse	other	new	inventory
+reports/final-e2e-evidence/final-release-hardening-2026-10-31/host-pg.txt	data	new	data/evidence
+reports/final-e2e-evidence/final-release-hardening-2026-10-31/hostollama-chat.sse	other	new	inventory
+reports/final-e2e-evidence/final-release-hardening-2026-10-31/hostpg-web.log	data	new	data/evidence
+reports/final-e2e-evidence/final-release-hardening-2026-10-31/hostpg-web2.log	data	new	data/evidence
+reports/final-e2e-evidence/final-release-hardening-2026-10-31/human-summary.json	data	new	data/evidence
+reports/final-e2e-evidence/final-release-hardening-2026-10-31/ollama-11435.log	data	new	data/evidence
+reports/final-e2e-evidence/human-faithfulness-2026-10-31/README.md	docs	new	doc
+reports/final-e2e-evidence/human-faithfulness-2026-10-31/summary.json	data	new	data/evidence
+reports/final-e2e-evidence/observability-2026-10-31/api-rebuild.log	data	new	data/evidence
+reports/final-e2e-evidence/observability-2026-10-31/build.log	data	new	data/evidence
+reports/final-e2e-evidence/observability-2026-10-31/chat-events.sse	other	new	inventory
+reports/final-e2e-evidence/observability-2026-10-31/compose-ps.txt	data	new	data/evidence
+reports/final-e2e-evidence/observability-2026-10-31/docker-stats.txt	data	new	data/evidence
+reports/final-e2e-evidence/observability-2026-10-31/grafana-dashboard.json	data	new	data/evidence
+reports/final-e2e-evidence/observability-2026-10-31/grafana-datasources.json	data	new	data/evidence
+reports/final-e2e-evidence/observability-2026-10-31/loki-sample.json	data	new	data/evidence
+reports/final-e2e-evidence/observability-2026-10-31/loki-verify.log	data	new	data/evidence
+reports/final-e2e-evidence/observability-2026-10-31/prom-rules.json	data	new	data/evidence
+reports/final-e2e-evidence/observability-2026-10-31/prom-targets.json	data	new	data/evidence
+reports/final-e2e-evidence/observability-2026-10-31/tempo-search.json	data	new	data/evidence
+reports/final-e2e-evidence/observability-2026-10-31/tempo-trace-sse.json	data	new	data/evidence
+reports/final-e2e-evidence/observability-2026-10-31/tempo-verify.log	data	new	data/evidence
+tests/test_config_artifact_override.py	docs	new	read/edited final pass
+tests/test_observability.py	docs	new	read/edited final pass
+web/src/services/metrics.test.ts	docs	new	read/edited final pass
+web/src/services/metrics.ts	docs	new	read/edited final pass

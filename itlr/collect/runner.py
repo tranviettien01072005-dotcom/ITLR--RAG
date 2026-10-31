@@ -23,6 +23,7 @@ from itlr.collect.quality import content_hash, cut_text, passes_quality
 from itlr.collect.store import CollectStore
 from itlr.collect.url_util import content_key, normalize_url
 from itlr.collect.sources import Source, SourceSet
+from itlr.observability.tracing import span
 
 LOG = logging.getLogger("itlr.collect")
 
@@ -56,6 +57,19 @@ class CollectRunner:
         sources = tuple(sources or self.sset.sources)
         t0 = time.time()
         self._stats = self._fresh_stats()
+        with span("crawler.run", sources=len(sources)):
+            self._collect_sources(sources)
+        self._stats["seconds"] = round(time.time() - t0, 1)
+
+        totals = self._stats["totals"] = {
+            "new": 0, "updated": 0, "unchanged": 0, "quality_rejected": 0,
+            "duplicates": 0, "skipped": 0, "missing": 0, "restored": 0}
+        for s in self._stats["sources"].values():
+            for k in totals:
+                totals[k] += int(s.get(k, 0))
+        return self._stats
+
+    def _collect_sources(self, sources) -> None:
         for src in sources:
             try:
                 self._collect_source(src)
@@ -66,14 +80,6 @@ class CollectRunner:
             except Exception as exc:  # noqa: BLE001
                 LOG.exception("Nguồn %s NGOÀI DỰ KIẾN lỗi: %s", src.source_id, exc)
                 self._stats["sources"][src.source_id] = {"error": str(exc)}
-        self._stats["seconds"] = round(time.time() - t0, 1)
-        totals = self._stats["totals"] = {
-            "new": 0, "updated": 0, "unchanged": 0, "quality_rejected": 0,
-            "duplicates": 0, "skipped": 0, "missing": 0, "restored": 0}
-        for s in self._stats["sources"].values():
-            for k in totals:
-                totals[k] += int(s.get(k, 0))
-        return self._stats
 
     # ---------- per source ----------
     def _collect_source(self, src: Source) -> None:

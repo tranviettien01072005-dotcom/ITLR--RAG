@@ -1,0 +1,1 @@
+docker mode: compose.local.yml + host-ollama model mount override; API 18000, Web 13000, PG 55432

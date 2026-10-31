@@ -1,0 +1,8 @@
+Host PostgreSQL 18 cluster on 127.0.0.1:5432 (user itlr_user, DB itlr_web) reachable read-only.
+Before sync: courses=0, users=1, messages=4, enrollments=0 (catalog empty -> course click 404).
+Ran `node dist/db/sync-courses.js` against host DB: Imported 178 resources; enrollments preserved.
+After: courses=178, users=1, messages=4 (no user data deleted).
+Native Web (node dist/server.js) against host DB: /ready 200, /login 200, course 5129 200,
+course 999999 404, dashboard 200 with a signed session for the existing user (read-only check).
+Restart Web process: /ready 200, course 200, dashboard 200 (DB + JWT persistence).
+No CREATE DATABASE privilege (rolcreatedb=f) -> full write E2E on host DB NOT performed.

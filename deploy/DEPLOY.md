@@ -50,7 +50,7 @@ Không source file `.env` từ nguồn không tin cậy.
 
 | Biến | Mặc định / ý nghĩa |
 |---|---|
-| `ITLR_ARTIFACTS_DIR` | override thư mục artifacts (mặc định `var/artifacts`, có thể theo `CURRENT.json`) |
+| `ITLR_ARTIFACTS_DIR` | override thư mục artifacts: có thể trỏ **root có `CURRENT.json`** (tự resolve version) hoặc **version/staging phẳng** có `MANIFEST.json`; mặc định `var/artifacts` |
 | `ITLR_ITEMS_CSV`, `ITLR_INTERACTIONS_CSV` | override CSV catalog/interactions |
 | `ITLR_REQUIRE_ARTIFACT_MANIFEST=1` | kiểm SHA256 inventory trước khi nạp pickle |
 | `ITLR_ADMIN_TOKEN` | bảo vệ `/admin/reload` và `/metrics`; rỗng ⇒ tắt (403) |

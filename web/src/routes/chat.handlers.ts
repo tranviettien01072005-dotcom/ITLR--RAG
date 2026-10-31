@@ -3,6 +3,7 @@ import { z } from "zod";
 import { recommender } from "../services/recommender";
 import { renderChatMd, finalChatSchema, type FinalChat } from "../services/chat-stream";
 import { ownedChatHistory, saveChat } from "../services/chat-history";
+import { observeChatStream } from "../services/metrics";
 
 const chatSchema = z.object({
   message: z.string().trim().min(1).max(2000),
@@ -43,6 +44,7 @@ export async function handleChatStream(req: Request, res: Response) {
   let sourceMs: number | null = null, firstTokenMs: number | null = null;
   const write = (data: unknown) => { if (!res.destroyed) res.write(`data: ${JSON.stringify(data)}\n\n`); };
   const heartbeat = setInterval(() => { if (!res.destroyed) res.write(": ping\n\n"); }, 15000);
+  let outcome: "done" | "error" | "aborted" = "aborted";
   try {
     let final: FinalChat | undefined;
     for await (const event of recommender.chatStream(message, history, controller.signal)) {
@@ -62,9 +64,12 @@ export async function handleChatStream(req: Request, res: Response) {
     write({ ...final, response_html: renderChatMd(final.response, final.sources), conversation_id: id,
       timings: { sources_ms: sourceMs, first_token_ms: firstTokenMs, total_ms: performance.now() - started } });
     write({ type: "done" });
+    outcome = "done";
   } catch {
     if (!controller.signal.aborted) write({ type: "error", error: "Không hoàn tất được câu trả lời hoặc lưu lịch sử. Hãy thử lại." });
+    if (!controller.signal.aborted) outcome = "error";
   } finally {
+    observeChatStream(outcome);
     clearInterval(heartbeat);
     controller.abort();
     res.off("close", disconnect);

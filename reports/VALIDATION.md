@@ -23,10 +23,10 @@ Working tree sạch tại `f14c428…`; không commit/push, không đổi active
 
 | Gate | Kết quả thực chạy |
 |---|---|
-| Python pytest | **503 PASS / 0 skip**, 66,3s |
-| Python statements coverage | **3946/5835 = 67,63%** |
-| Web Vitest | **163 PASS / 30 files** |
-| Web line coverage | **725/1409 = 51,45%** (statements 48,31%, branches 39,68%) |
+| Python pytest | **510 PASS / 0 skip**, 55,8s |
+| Python statements coverage | **4109/6019 = 68,27%** |
+| Web Vitest | **166 PASS / 32 files** |
+| Web line coverage | **759/1448 = 52,41%** (statements 49,23%, branches 40,45%) |
 | Typecheck / lint / build | PASS |
 | compileall / pip check | PASS |
 | pip-audit | **0 advisory** |

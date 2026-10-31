@@ -37,7 +37,14 @@ def _resolve_active_dir() -> Path:
     """
     override = os.environ.get("ITLR_ARTIFACTS_DIR")
     if override:
-        return Path(override)
+        override_path = Path(override)
+        # Operators often point at the artifacts root (which holds CURRENT.json) instead of
+        # the flat version directory. Resolve the pointer in that case; a flat staging dir
+        # (MANIFEST.json, no CURRENT.json) is still used directly.
+        if (override_path / "CURRENT.json").is_file():
+            from itlr.versioning import current_dir as resolve_version
+            return resolve_version(override_path)
+        return override_path
     from itlr.versioning import current_dir as resolve_version
     return resolve_version(ARTIFACTS_DIR)
 

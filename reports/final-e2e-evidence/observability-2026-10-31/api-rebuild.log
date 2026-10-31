@@ -1,0 +1,69 @@
+ Image itlr-local-api Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 480B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 2.12kB done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/python:3.12-slim
+#3 DONE 1.6s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 116B done
+#4 DONE 0.0s
+
+#5 [ 1/11] FROM docker.io/library/python:3.12-slim@sha256:aa943ce411423c7582288f18707ff66eddcbaeb510502d747a72aeb34f30d159
+#5 resolve docker.io/library/python:3.12-slim@sha256:aa943ce411423c7582288f18707ff66eddcbaeb510502d747a72aeb34f30d159 0.0s done
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 54.31kB done
+#6 DONE 0.0s
+
+#7 [ 2/11] WORKDIR /app
+#7 CACHED
+
+#8 [ 3/11] COPY requirements.txt ./
+#8 CACHED
+
+#9 [ 4/11] RUN pip install --no-cache-dir --index-url https://download.pytorch.org/whl/cpu "torch==2.15.0+cpu"     && pip install --no-cache-dir -r requirements.txt
+#9 CACHED
+
+#10 [ 5/11] COPY itlr ./itlr
+#10 DONE 0.1s
+
+#11 [ 6/11] COPY eval ./eval
+#11 DONE 0.1s
+
+#12 [ 7/11] COPY configs ./configs
+#12 DONE 0.1s
+
+#13 [ 8/11] COPY scripts ./scripts
+#13 DONE 0.1s
+
+#14 [ 9/11] COPY pytest.ini ./
+#14 DONE 0.1s
+
+#15 [10/11] RUN python -c "import itlr.api.server"     && python -c "import itlr.collect.runner; import itlr.indexv2; import itlr.versioning"
+#15 DONE 7.4s
+
+#16 [11/11] RUN mkdir -p /app/var/artifacts /app/var/data/collect /app/var/hf
+#16 DONE 0.3s
+
+#17 exporting to image
+#17 exporting layers
+#17 exporting layers 0.5s done
+#17 exporting manifest sha256:5549142eb79ebdf9bd040e1ea0d93175b5a6002a5fdb31bf184e1b0662796554 0.0s done
+#17 exporting config sha256:326a41097fc3dbc50ecd9e19be29bb5a4273e5f0bd561f4ce44fe37ce83c3fa6 0.0s done
+#17 exporting attestation manifest sha256:c854fd5b3807f40717792e9b2ff0e56dd8b5c4665f2c7007dbfc55a3bc54d2fb 0.0s done
+#17 exporting manifest list sha256:5f09abe15807ff5cf5685909414d78b1c18b9ba2f1f8541ef2f91687a608250e 0.0s done
+#17 naming to docker.io/library/itlr-local-api:latest done
+#17 unpacking to docker.io/library/itlr-local-api:latest
+#17 unpacking to docker.io/library/itlr-local-api:latest 0.3s done
+#17 DONE 1.0s
+
+#18 resolving provenance for metadata file
+#18 DONE 0.0s
+ Image itlr-local-api Built 

@@ -1,5 +1,41 @@
 # ITLR–RAG | Intelligent IT Learning Platform — Changelog
 
+## Final release hardening: host PG, host Ollama, model pull, human gap — 2026-10-31
+
+- Native với PostgreSQL host: kết nối DB `itlr_web`, catalog 0→**178** bằng sync thật
+  (users/messages giữ nguyên), Web native course 200/404 + dashboard, restart giữ DB/session.
+  Write E2E trên DB người dùng **BLOCKED** (không có quyền tạo DB; tránh ghi dữ liệu thật).
+- Docker host-Ollama override: PASS qua Ollama bind `0.0.0.0:11435` + host-gateway.
+- Docker tải model mới: pull `qwen2.5:3b` 1.9GB vào volume, chat `llm_extractive` PASS.
+- Docker logout/CSRF: 403 thiếu CSRF, logout 302, dashboard về login PASS.
+- Human faithfulness: 40 case, rubric 0–3, 0 reviewer → **NOT VERIFIED** (không điểm giả).
+- Gates: 510 Python / 166 Web, coverage 68,27% / 52,41%, security 0.
+  [Report](reports/FINAL_RELEASE_READINESS.md). Production **NO-GO**.
+
+## Dual-mode E2E + artifact override fix — 2026-10-31
+
+- Chạy thật cả Native (uvicorn + node, PostgreSQL 16 container, Qwen host) và Docker full
+  stack với 178 item thật: register/login, course 200/404, search, chat SSE
+  `llm_extractive` + citation valid, persistence, cancel không lưu partial, restart Docker giữ DB.
+- Fix root cause: `ITLR_ARTIFACTS_DIR` trỏ root có `CURRENT.json` bị dùng trực tiếp → API 503
+  VersionError. Nay tự resolve version; staging phẳng vẫn dùng trực tiếp. Test RED→GREEN.
+- Gates: **510 Python / 166 Web PASS**, coverage 68,27% / 52,41%; security 0.
+  [Dual-mode report](reports/FINAL_DUAL_MODE_E2E.md). Production vẫn NO-GO.
+
+## Observability profile + final engineering pass — 2026-10-31
+
+- Thêm metrics Prometheus cardinality thấp cho API/Web (route template, mode, status, provider,
+  artifact version), endpoint `/metrics/prometheus` (admin token hoặc Bearer) và `/metrics` Web
+  (token/loopback); instrument search, chat/SSE (TTFT, tokens, citation, outcome).
+- OTel tracing opt-in (`OTEL_EXPORTER_OTLP_ENDPOINT`) cho `http.request`, `retrieval.search`,
+  `generation.chat`, `sse.chat`, `crawler.run`, `index.build`; no-op khi tắt.
+- Compose profile `monitoring`: Prometheus + Grafana + Loki + Tempo + otel-collector + cAdvisor
+  + node-exporter + postgres-exporter + promtail; dashboard 13 panel, 10 alert, retention/volume/
+  loopback; footprint đo **~383 MiB RAM**.
+- README: Docker full stack, Windows WSL2/Ubuntu, monitoring walkthrough, troubleshooting.
+- Gates: **508 Python / 166 Web PASS**, coverage 68,22% / 52,41%; pip-audit/npm audit 0,
+  Bandit 0 High. Production vẫn NO-GO (cold SLO 45s, human).
+
 ## Pipeline audit: catalog export/verify, source-link audit, 404 root cause — 2026-10-31
 
 - Root cause 404 khi bấm khóa học: PostgreSQL Web chưa refresh sau khi build index (CSV

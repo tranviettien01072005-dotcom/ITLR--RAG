@@ -1,4 +1,79 @@
-# FINAL RELEASE READINESS — ITLR–RAG (2026-10-31)
+# FINAL RELEASE READINESS — ITLR–RAG (2026-10-31, final hardening)
+
+| Mục | Giá trị |
+|---|---|
+| Branch / HEAD | `main` @ `e976375` + thay đổi chưa commit (observability, config fix, docs) |
+| Artifacts | `20261031-170147-14c44d161680`, manifest `d802fe44…`, 178 item thật |
+| Evidence | `reports/final-e2e-evidence/final-release-hardening-2026-10-31/`, `dual-mode-2026-10-31/`, `observability-2026-10-31/`, `SHA256SUMS.txt` |
+| Nguyên tắc | không commit/push, không `down -v`, không xóa dữ liệu người dùng, không điểm human giả |
+
+## 1. Đóng các khoảng trống của dual-mode E2E
+
+| Khoảng trống | Kết quả | Bằng chứng |
+|---|---|---|
+| Native với **PostgreSQL host** | **PASS scoped (read)** + repair catalog | Host PG18 `127.0.0.1:5432` (user `itlr_user`, DB `itlr_web`) kết nối được; trước sync `courses=0, users=1, messages=4` → chạy `sync-courses` **0→178**, users/messages giữ nguyên; Web native `/ready` 200, `/login` 200, `/courses/5129` **200**, id lạ **404**, `/dashboard` 200 (session ký cho user hiện có, read-only) |
+| Native restart persistence | **PASS** | Dừng/khởi động lại Web native trên host PG: `/ready` 200, course 200, dashboard 200; DB/messages không đổi |
+| Native write E2E trên host DB | **BLOCKED / NOT VERIFIED** | `rolcreatedb=f` (không tạo DB test được); không migrate/ghi chat vào DB người dùng để tránh thay đổi dữ liệu thật |
+| Docker **host Ollama override** | **PASS** | Host Ollama bind `0.0.0.0:11435` (process riêng, không restart daemon người dùng) + `host.docker.internal`; API 200, Web 200, chat `llm_extractive`, citation valid |
+| Docker **tải model mới** | **PASS** | Pull `qwen2.5:3b` (1.9 GB) vào volume `itlr-local_ollama_models`; `ollama list` trong container; chat với model vừa pull `llm_extractive` + citation valid |
+| Docker **logout/CSRF** | **PASS** | register 302, dashboard 200, POST chat thiếu CSRF **403**, logout 302, dashboard sau logout **302** |
+| Monitoring thật | **PASS (prior run cùng cây)** | 5/5 Prometheus target up, 13 panel, 10 alert, trace `sse.chat`, Loki log, ~383 MiB RAM; không re-run sau thay đổi config-only |
+| Human faithfulness | **NOT VERIFIED** | 40 case (12 positive/8 negative frozen + 20 supplement), rubric 0–3, 0 reviewer; heuristic 11/12 accepted + 7/8 negative (cấu trúc, không phải entailment) |
+| Windows 11/WSL2 | **NOT VERIFIED** | Không có môi trường Windows thật; chỉ hướng dẫn |
+
+## 2. Thay đổi và root cause
+
+- **Config artifact override:** `ITLR_ARTIFACTS_DIR` trỏ root có `CURRENT.json` từng bị dùng trực
+  tiếp → API 503 VersionError. `itlr/config.py` giờ resolve version; staging phẳng vẫn dùng trực
+  tiếp. Test RED→GREEN `tests/test_config_artifact_override.py`; Native và Docker đều dùng được.
+- **Host DB catalog repair:** DB native `itlr_web` có catalog rỗng (0 course) dù users/messages
+  thật tồn tại — đúng lớp lỗi 404. Đã sync 178 item thật (upsert, không xóa enrollment).
+- Không đổi model, threshold, prompt, retrieval ranking, schema hay API.
+
+## 3. Quality gates (cây cuối)
+
+| Gate | Kết quả |
+|---|---|
+| Python pytest | **510 passed / 0 skip**, 76s |
+| Python coverage | **4109/6019 = 68,27%** |
+| Web vitest | **166 passed / 32 file**, lines **52,41%** |
+| typecheck / lint / build / compileall / pip check | PASS |
+| pip-audit / npm audit / Bandit | **0 / 0 / 0 High** |
+| Secret scan / `git diff --check` | 0 hit / PASS |
+| Docker compose config (base/host/monitoring) | PASS |
+| Prometheus rules + Loki/Tempo/OTel/promtail config | PASS |
+| Cold SLO 45s | **FAIL** — 49,80s (CPU-only) |
+| Human faithfulness | **NOT VERIFIED** (`null`) |
+
+## 4. Tài liệu
+
+README/DEPLOY đã có: Native (Ubuntu/Windows WSL2), Docker full stack + host Ollama, model
+download, crawl/build/activate, migrate/sync, monitoring (Grafana walkthrough), backup/restore,
+troubleshooting. Bổ sung ngữ nghĩa `ITLR_ARTIFACTS_DIR` (root có pointer hoặc version phẳng).
+Kiểm tra link nội bộ: 0 broken.
+
+## 5. Rủi ro còn lại
+
+1. **Cold prompt 49,80s > 45s** trên CPU — blocker production; cần GPU/CPU mạnh hơn, đo lại.
+2. **Human faithfulness** chưa có reviewer độc lập → mọi kết luận chất lượng vẫn `null`.
+3. Native host DB chỉ **read**; write E2E trên DB người dùng chưa làm (thiếu quyền tạo DB, tránh
+   thay đổi dữ liệu thật). Write E2E đã PASS trên DB cô lập (container).
+4. Windows/WSL2, HA/soak dài, TLS production: **NOT VERIFIED**.
+5. Monitoring chưa soak; cAdvisor privileged/promtail docker.sock là trade-off bảo mật.
+6. Host DB `itlr_web` đã được sync 178 catalog (additive). Nếu người dùng muốn rollback catalog
+   cần backup/restore DB theo quy trình, không xóa row bằng tay.
+
+## 6. Verdict
+
+- **LOCAL READY** — Native (host PostgreSQL + app native) và Docker (container model + host Ollama
+  override) chạy thật; RAG 178 item; Web/DB/SSE/persistence/logout/CSRF/restart verified.
+- **DEMO READY (scoped)** — dữ liệu thật, single-host; cảnh báo cold ~50s, không SLA, không human eval.
+- **PRODUCTION NO-GO** — cold SLO 45s và human faithfulness chưa đạt; HA/Windows/soak chưa kiểm.
+
+---
+
+## (Historical) FINAL RELEASE READINESS — ITLR–RAG (2026-10-31, first pass)
+
 
 | Mục | Giá trị |
 |---|---|

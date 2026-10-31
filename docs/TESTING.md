@@ -37,8 +37,8 @@ tắt quiet, không phải để bỏ phạm vi test. Web test dùng env giả l
 
 | Suite | Kết quả | Coverage |
 |---|---|---|
-| Python `pytest tests/` | **503 passed / 0 failed / 0 skipped**, ~66s | statements **3949/5839 = 67,63%** (`itlr/`, gồm cả pipelines) |
-| Web `vitest` | **163 passed / 30 file** | lines **725/1409 = 51,45%**; statements 48,31%; branches 39,68%; functions 42,7% |
+| Python `pytest tests/` | **510 passed / 0 failed / 0 skipped**, ~56s | statements **4109/6019 = 68,27%** (`itlr/`, gồm cả pipelines) |
+| Web `vitest` | **166 passed / 32 file** | lines **759/1448 = 52,41%**; statements 49,23%; branches 40,45%; functions 43,97% |
 | Typecheck / ESLint / build | PASS | — |
 | compileall / pip check | PASS | — |
 | pip-audit / npm audit | **0 advisory / 0 vulnerability** | — |
