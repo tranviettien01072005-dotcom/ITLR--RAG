@@ -64,3 +64,26 @@ def test_cosine_threshold_is_inclusive_at_one_after_normalization():
     hits = index.search('docker', [1., 2., 3.], min_relevance=1.)
     assert len(hits) == 1
     assert hits[0]['dense_score'] <= 1.
+
+
+def test_min_relevance_gates_sparse_candidates_before_fusion():
+    """Hợp đồng hiện hành: ngưỡng dense (min_relevance) áp cho CẢ candidate BM25 TRƯỚC
+    fusion ⇒ mọi kết quả trả về đều có dense_score >= min_relevance. Chunk khớp BM25
+    tốt nhưng dense dưới ngưỡng KHÔNG được trả về.
+
+    Đây là lựa chọn design có chủ đích (ngưỡng floor chặt trên kết quả cuối), không phải
+    bug. Muốn tách candidate generation dense/sparse độc lập (thêm ứng viên lexical
+    xuyên ngưỡng) phải: thay đổi test này một cách có chủ ý, chạy lại eval Recall@5
+    trên frozen benchmark, và ghi ADR."""
+    from itlr.core.chunks import ChunkIndex
+    rows = [dict(item_id=1, chunk_idx=0, chunk_text='terraform state locking guide'),
+            dict(item_id=2, chunk_idx=0, chunk_text='container orchestration overview')]
+    index = ChunkIndex(rows, np.array([[0., 1.], [1., 0.]], dtype='float32'))
+    query_vec = np.array([1., 0.], dtype='float32')
+    # BM25 khớp item 1 (3 token), dense item 1 = 0.0 dưới ngưỡng 0.5 → bị loại.
+    hits = index.search('terraform state locking', query_vec, top_k=2, min_relevance=0.5)
+    assert [h['item_id'] for h in hits] == [2]
+    assert all(h['dense_score'] >= 0.5 for h in hits)
+    # Không ngưỡng: RRF trả cả hai, item 1 đứng đầu nhờ sparse top-1.
+    hits = index.search('terraform state locking', query_vec, top_k=2)
+    assert {h['item_id'] for h in hits} == {1, 2}
