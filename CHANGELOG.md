@@ -1,5 +1,48 @@
 # ITLR–RAG | Intelligent IT Learning Platform — Changelog
 
+## Review độc lập + regression test cho refactor chatbot — 2026-11-02
+
+- Thêm `tests/test_chatbot_prepare_pipeline.py` (23 test, deterministic, không LLM thật):
+  greeting không encode, off-topic chặn 1 encode, multi-intent ghép handler không LLM,
+  handler trả None fall-through, extractive final citation inline `valid`, CF fallback
+  hiệu chỉnh 0-100, evidence-selection schema + `llm_message`, `no_source_text` final,
+  kb_block bật `want_llm` ở mode search (và ngược lại), legacy prompt khi không có chunk
+  index, stream legacy/sync/async: chunk rỗng bị bỏ qua, không có chunk ⇒
+  `generation_unavailable`, exception trước token ⇒ `generation_failed` (không đổi error
+  semantics), selective chỉ phát tail AFTER khi có kết quả và vị trí text ngay trước `final`.
+- Sửa fixture `build_service` thêm `origin='crawl:example.org'` (bug fixture: thiếu `origin`
+  làm `source_contract` gán `evidence_kind='unknown'` — không phải sửa test che regression).
+- **534 Python PASS** (+23); branch coverage `itlr/chatbot/chatbot.py` **58% → 71%**
+  (missed statements 223 → 148); compileall OK. Không thay đổi runtime code trong phiên này.
+
+## Refactor chatbot orchestration — 2026-11-02
+
+- Tách `_prepare` (complexity **61**, 170 dòng) thành 5 giai đoạn có tên rõ trên
+  `EducationalChatbot`: `_off_topic_result`, `_intent_stage`, `_gather_evidence`,
+  `_extractive_final`, `_llm_context`; `_prepare` còn ~49 dòng (complexity **13**) chỉ
+  điều phối thứ tự. Khử song song trùng finalize giữa `chat_stream`/`achat_stream` qua
+  `_finalize_stream` (semantics `tail_text` sau `final` cho `llm_extractive` giữ nguyên).
+- Không đổi hành vi: **511 Python / 166 Web PASS**, compileall OK, pyflakes 0 lỗi thật.
+  Metrics đo bằng AST trên module: cyclomatic max **61 → 19** (`_prepare` 61/170 dòng →
+  13/49 dòng; lớn nhất giờ `_intent_stage` 19, `_gather_evidence` 18). Tổng cyclomatic
+  283 → 291: +8 do `_finalize_stream` dùng chung thay 2 bản chép inline — trao đổi nhỏ,
+  ít trùng lặp hơn, thêm 2 guard tại 2 call site.
+- Sửa link trong `docs/PROJECT_MEMORY.md` (thiếu `../` đến báo cáo 2026-11-02) — FAIL
+  `test_tracked_markdown_file_links_resolve` trong baseline phiên này → GREEN.
+
+## Audit cycle: chunk retrieval contract pinned — 2026-11-02
+
+- Kiểm toán vòng mới trên working tree sạch `7feeb2d`: **510 Python + 1 test mới / 166 Web
+  PASS**, typecheck/lint/build, compileall, pip check, pip-audit 0, npm audit 0, Bandit
+  0 High (Low 38 / Medium 26, pickle+urllib đã nêu trong SECURITY/ADR).
+- Thêm test characterization `test_min_relevance_gates_sparse_candidates_before_fusion`
+  ghim hợp đồng hiện hành của `ChunkIndex.search`: ngưỡng dense `min_relevance` áp cho
+  cả ứng viên BM25 TRƯỚC fusion, kết quả cuối luôn thỏa dense floor. Không phải bug —
+  muốn tách candidate generation dense/sparse độc lập phải thay test có chủ ý + eval
+  Recall@5 trên frozen benchmark + ADR.
+- Production vẫn **NO-GO** (human faithfulness NOT VERIFIED, SLO 45s FAIL hardware-bound
+  — xem PROJECT_MEMORY; không có bằng chứng mới thay đổi verdict).
+
 ## Final release hardening: host PG, host Ollama, model pull, human gap — 2026-10-31
 
 - Native với PostgreSQL host: kết nối DB `itlr_web`, catalog 0→**178** bằng sync thật

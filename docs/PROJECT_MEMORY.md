@@ -1,8 +1,31 @@
 # ITLR–RAG — Bộ nhớ kỹ thuật hiện hành
 
-Cập nhật: 2026-10-31. Thứ tự ưu tiên: yêu cầu phiên hiện tại → AGENTS/CONSTRAINTS →
+Cập nhật: 2026-11-02. Thứ tự ưu tiên: yêu cầu phiên hiện tại → AGENTS/CONSTRAINTS →
 code và bằng chứng chạy mới → nhật ký lịch sử. Kế hoạch cũ không cấp quyền commit,
 publish, migration hoặc gọi provider trả phí.
+
+## Chu kỳ mới nhất
+
+- Review + tests độc lập cho refactor chatbot (2026-11-02): thêm
+  `tests/test_chatbot_prepare_pipeline.py` (23 test, no-LLM); **534 Python PASS**;
+  branch coverage chatbot.py **58% → 71%**. Fixture `build_service` thêm `origin`
+  (src_contract cần provenance). Chưa phủ còn: continue-branches trong vòng multi,
+  rec thiếu 'score'; stream cancellation trung gian đã có ở `test_stream_cancellation`.
+- Refactor chatbot orchestration (2026-11-02): `_prepare` (complexity 61/170 dòng) tách
+  thành `_off_topic_result` → `_intent_stage` → `_gather_evidence` → `_extractive_final`
+  / `_llm_context`; `_prepare` còn 13/49 dòng. `chat_stream`/`achat_stream` cùng dùng
+  `_finalize_stream`. Hành vi bất biến: **511 Python / 166 Web PASS**; đo complexity bằng
+  AST script ad-hoc (không commit vào repo). Baseline phiên còn bắt FAIL link trong
+  PROJECT_MEMORY (thiếu `../`), đã sửa.
+- Audit cycle 2026-11-02 (HEAD `7feeb2d`, tree sạch): baseline chạy thật **510 Python PASS**
+  (sau thêm test: **511**), **166 Web PASS**, lines 52,41%; pip check/npm audit 0, Bandit
+  **High 0** (Low 38/Medium 26 — pickle+urllib, đã nêu SECURITY/ADR), pyflakes 0 lỗi thật
+  (38 re-export cố chủ ý). Xác minh `ChunkIndex.search`: ngưỡng dense áp cho cả ứng viên
+  BM25 TRƯỚC fusion là **hợp đồng có chủ đích** (kết quả cuối luôn thỏa min_relevance),
+  đã ghim test characterization `test_min_relevance_gates_sparse_candidates_before_fusion`;
+  tách candidate generation độc lập giữ làm backlog (cần frozen benchmark + ADR). Không thay
+  đổi runtime. [Báo cáo](../reports/AUDIT_CYCLE_2026-11-02.md). Production **NO-GO** (không
+  thay đổi so với checkpoint 2026-10-31: human faithfulness NOT VERIFIED, SLO 45s FAIL).
 
 ## Trạng thái đã kiểm chứng
 

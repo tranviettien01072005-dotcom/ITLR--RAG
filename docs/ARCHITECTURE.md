@@ -51,6 +51,7 @@ flowchart TB
 | `itlr/core/chunks.py` | FAISS chunk, RRF, CrossEncoder | thay đổi candidate/fusion/rerank |
 | `itlr/core/` | item retrieval legacy (V2), primitive | duy trì tương thích V2 |
 | `itlr/chatbot/` | intent, evidence, generation, citation | thay đổi orchestration trả lời |
+| `itlr/chatbot/chatbot.py` | `_prepare` điều phối 5 giai đoạn: `_off_topic_result` → `_intent_stage` → `_gather_evidence` → `_extractive_final` / `_llm_context`; stream sync/async chung `_finalize_stream` | thay đổi thứ tự/hành vi pipeline chat |
 | `itlr/chatbot/presentation.py` | template Markdown, tóm tắt catalog | thay đổi output template |
 | `itlr/chatbot/llm_client.py` | transport provider, retry, usage | thay đổi tích hợp LLM |
 | `itlr/chatbot/llm_adapter.py` | history, fallback/logging | thay đổi adaptation |
