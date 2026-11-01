@@ -34,14 +34,15 @@ class CountingEncoder:
 
 def build_service(encoder, texts=("docker networks", "docker volumes", "python lists"),
                   vectors=((1.0, 0.0), (0.8, 0.6), (0.0, 1.0)),
-                  platforms=("Docs", "Coursera", "Coursera")):
+                  platforms=("Docs", "Coursera", "Coursera"),
+                  origin="crawl:example.org"):
     from itlr.retrieval.service import RetrievalService
     from itlr.core.chunks import ChunkIndex
     rows = [dict(item_id=i + 1, chunk_idx=0, chunk_text=t) for i, t in enumerate(texts)]
     items = pd.DataFrame([
         dict(item_id=i + 1, type='Tài liệu', title=f'Item {i + 1}', category='DevOps',
              description=f'Về {t}', topics=t, instructor='', platform=platforms[i],
-             link='https://example.org', level='Cơ bản')
+             link='https://example.org', level='Cơ bản', origin=origin)
         for i, t in enumerate(texts)
     ])
     vecs = np.asarray(vectors, dtype='float32')[:len(texts)]
